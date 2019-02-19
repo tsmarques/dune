@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: cdc4c6dfe2baed8395138f0b1b8e1910                            *
+// IMC XML MD5: 91d7531f361c96af60273fb577b584f0                            *
 //***************************************************************************
 
 // ISO C++ 98 headers.
@@ -26465,6 +26465,74 @@ namespace DUNE
       IMC::toJSON(os__, "ch14", ch14, nindent__);
       IMC::toJSON(os__, "ch15", ch15, nindent__);
       IMC::toJSON(os__, "ch16", ch16, nindent__);
+    }
+
+    Thrust::Thrust(void)
+    {
+      m_header.mgid = 909;
+      clear();
+    }
+
+    void
+    Thrust::clear(void)
+    {
+      value = 0;
+    }
+
+    bool
+    Thrust::fieldsEqual(const Message& msg__) const
+    {
+      const IMC::Thrust& other__ = static_cast<const Thrust&>(msg__);
+      if (value != other__.value) return false;
+      return true;
+    }
+
+    int
+    Thrust::validate(void) const
+    {
+      return true;
+    }
+
+    uint8_t*
+    Thrust::serializeFields(uint8_t* bfr__) const
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Thrust::deserializeFields(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
+    }
+
+    uint16_t
+    Thrust::reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::reverseDeserialize(value, bfr__, size__);
+      return bfr__ - start__;
+    }
+
+    fp64_t
+    Thrust::getValueFP(void) const
+    {
+      return static_cast<fp64_t>(value);
+    }
+
+    void
+    Thrust::setValueFP(fp64_t val)
+    {
+      value = static_cast<fp64_t>(val);
+    }
+
+    void
+    Thrust::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
+    {
+      IMC::toJSON(os__, "value", value, nindent__);
     }
 
     TotalMagIntensity::TotalMagIntensity(void)
