@@ -44,7 +44,7 @@ namespace Simulators
     //! data points where "x" is time in seconds, and "y"
     //! is thrust in newtons
     //!
-    //! @author Ricardo Martins
+    //! @author Tiago Sá Marques
     namespace Motor
     {
       //! %Task arguments.
