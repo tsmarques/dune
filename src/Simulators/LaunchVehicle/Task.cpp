@@ -1,7 +1,8 @@
-
 //***************************************************************************
 // Copyright 2007-2017 Universidade do Porto - Faculdade de Engenharia      *
 // Laboratório de Sistemas e Tecnologia Subaquática (LSTS)                  *
+//                                                                          *
+// Copyright 2019 CEP - Clube Espacial Português                            *
 //***************************************************************************
 // This file is part of DUNE: Unified Navigation Environment.               *
 //                                                                          *
