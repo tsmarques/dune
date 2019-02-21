@@ -64,25 +64,21 @@ namespace Simulators
     //! %LaunchVehicle simulator task
     struct Task: public Tasks::Periodic
     {
+      //! Motor(s) used by the launcher
+      Motor* m_motor;
       //! Motors' entity labels
       std::vector<std::string> m_motor_labels;
-      //! If the engines have started combusting
-      bool m_triggered;
       //! If task was given a valid description of the thrust curve
       bool m_valid_thrust_curve;
       //! Thrust produced by this engine/motor
       IMC::Thrust m_thrust;
       //! Epoch Time, in milliseconds, at which this motor was triggered
       uint64_t m_trigger_msec;
-      //! Mapping between the end of interval of time and the
-      //! the pair of m and b that describe the linear thrust function
-      ThrustCurve m_thrust_curve_f;
       //! Task arguments
       Arguments m_args;
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_triggered(false),
         m_valid_thrust_curve(false),
         m_trigger_msec(0)
       {
@@ -122,8 +118,9 @@ namespace Simulators
           return;
         }
 
+        m_motor = new Motor(this, m_args.thrust_curve);
         m_motor_labels.reserve(m_args.n_motors);
-        m_valid_thrust_curve = Motor::parseThrustCurve(this, m_thrust_curve_f, m_args.thrust_curve);
+        m_valid_thrust_curve = m_motor->parseThrustCurve();
       }
 
       //! Initialize resources.
@@ -136,14 +133,20 @@ namespace Simulators
       }
 
       void
+      onResourceRelease(void)
+      {
+        // Memory::clear(m_motor);
+      }
+
+      void
       consume(const IMC::SetThrusterActuation* msg)
       {
         if (!m_valid_thrust_curve)
           return;
 
-        if (!m_triggered && std::abs(msg->value) == 1)
+        if (!m_motor->isActive() && std::abs(msg->value) == 1)
         {
-          m_triggered = true;
+          m_motor->trigger();
           m_trigger_msec = Time::Clock::getSinceEpochMsec();
           return;
         }
@@ -156,12 +159,12 @@ namespace Simulators
       void
       updateThrust(void)
       {
-        if (!m_triggered || !m_valid_thrust_curve)
+        if (!m_motor->isActive() || !m_valid_thrust_curve)
           return;
 
         // For now assume that all motors are equal
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
-        m_thrust.value = Motor::computeEngineThrust(m_thrust_curve_f, curr_time_sec);
+        m_thrust.value = m_motor->computeEngineThrust(curr_time_sec);
 
         for (int i = 0; i < m_args.n_motors; ++i)
         {
@@ -173,6 +176,11 @@ namespace Simulators
       void
       task(void)
       {
+        if (!m_motor->isActive() && m_valid_thrust_curve)
+        {
+           m_motor->trigger();
+          m_trigger_msec = Time::Clock::getSinceEpochMsec();
+        }
         updateThrust();
       }
     };
