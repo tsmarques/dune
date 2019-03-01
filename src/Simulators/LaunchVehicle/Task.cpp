@@ -77,6 +77,9 @@ namespace Simulators
       float mass_flow_rate;
     };
 
+    //! Atmosphere's "Scale height"
+    static const float c_atmos_scale_height = 8000;
+
     //! %LaunchVehicle simulator task
     struct Task: public Tasks::Periodic
     {
@@ -224,6 +227,12 @@ namespace Simulators
         return m_args.dry_mass + m_args.motor_mass + (m_args.prop_mass - prop_mass_delta);
       }
 
+      float
+      computeAtmosphericDensity(fp32_t height)
+      {
+        return m_args.atmos_density * std::exp((-height / c_atmos_scale_height));
+      }
+
       void
       updateThrust(float curr_time_sec)
       {
@@ -306,7 +315,8 @@ namespace Simulators
           m_sstate.w = 0;
         }
 
-        m_drag.value = 0.5 * m_args.coeff_drag * m_args.area * m_args.atmos_density * std::pow(m_sstate.w, 2);
+        fp32_t atmos_density = computeAtmosphericDensity(m_sstate.height);
+        m_drag.value = 0.5 * m_args.coeff_drag * m_args.area * atmos_density * std::pow(m_sstate.w, 2);
 
         dispatch(m_sstate);
         dispatch(m_drag);
