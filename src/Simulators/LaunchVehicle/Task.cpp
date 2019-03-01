@@ -229,12 +229,18 @@ namespace Simulators
         {
           if (thrust_f.interval_start != prev_params.interval_start)
           {
+            // what's missing from previous interval
             m_sstate.w += computeVelocity(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end, mass);
             m_sstate.height += computeHeight(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end, mass);
-          }
 
-          m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec, mass);
-          m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec, mass);
+            m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec, mass);
+            m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec, mass);
+          }
+          else
+          {
+            m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, m_prev_time_sec, t_sec, mass);
+            m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, m_prev_time_sec, t_sec, mass);
+          }
         }
         else
         {
