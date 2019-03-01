@@ -73,6 +73,8 @@ namespace Simulators
       float area;
       //! Atmospheric density
       float atmos_density;
+      //! Motor's mass flow rate
+      float mass_flow_rate;
     };
 
     //! %LaunchVehicle simulator task
@@ -146,6 +148,10 @@ namespace Simulators
         .units(Units::KilogramPerCubicMeter)
         .description("Atmospheric density at sea-level, kg/m^3");
 
+        param("Mass Flow Rate", m_args.mass_flow_rate)
+        .defaultValue("0.050")
+        .description("Motor's mass flow rate in kg/s");
+
         // Register consumers.
         bind<IMC::SetThrusterActuation>(this);
       }
@@ -209,6 +215,15 @@ namespace Simulators
         (void) msg;
       }
 
+      float
+      computeMass(float t_sec)
+      {
+        float prop_mass_delta = t_sec * m_args.mass_flow_rate;
+        if (prop_mass_delta > m_args.prop_mass)
+          prop_mass_delta = m_args.prop_mass;
+        return m_args.dry_mass + m_args.motor_mass + (m_args.prop_mass - prop_mass_delta);
+      }
+
       void
       updateThrust(float curr_time_sec)
       {
@@ -254,7 +269,7 @@ namespace Simulators
       void
       updateState(float t_sec)
       {
-        const float mass = m_args.dry_mass + m_args.motor_mass + m_args.prop_mass;
+        const float mass = computeMass(t_sec);
 
         ThrustParameters thrust_f = m_motor->getFunctionParameters(t_sec);
         ThrustParameters prev_params = m_motor->getFunctionParameters(m_prev_time_sec);
