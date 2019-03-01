@@ -39,8 +39,16 @@ namespace Simulators
 {
   namespace LaunchVehicle
   {
+    struct ThrustParameters
+    {
+      float interval_start;
+      float interval_end;
+      float m;
+      float b;
+    };
+
     //! Thrust curve function parameters
-    typedef std::map<float, std::pair<float, float> > ThrustCurve;
+    typedef std::map<float, ThrustParameters> ThrustCurve;
 
     class Motor
     {
@@ -65,6 +73,9 @@ namespace Simulators
 
       bool
       parseThrustCurve();
+
+      ThrustParameters
+      getFunctionParameters(float curr_time_sec);
 
       void
       trigger(void)
