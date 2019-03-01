@@ -83,7 +83,7 @@ namespace Simulators
       //! Epoch Time, in milliseconds, at which this motor was triggered
       uint64_t m_trigger_msec;
       IMC::SimulatedState m_sstate;
-      //!
+      //! Previous timestep in seconds
       float m_prev_time_sec;
       //! Task arguments
       Arguments m_args;
