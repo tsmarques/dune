@@ -278,9 +278,9 @@ namespace Simulators
         }
         else
         {
-          float accel = m_args.gravity - (m_drag.value / mass);
+          float accel = -m_args.gravity + (m_drag.value / mass);
           float dt = t_sec - m_prev_time_sec;
-          m_sstate.w = m_sstate.w - (accel * dt);
+          m_sstate.w = m_sstate.w + (accel * dt);
           m_sstate.height = m_sstate.height + (m_sstate.w * dt);
         }
 
@@ -291,7 +291,7 @@ namespace Simulators
           m_sstate.w = 0;
         }
 
-        m_drag.value = std::fabs(0.5 * m_args.coeff_drag * m_args.area * m_args.atmos_density * m_sstate.w);
+        m_drag.value = 0.5 * m_args.coeff_drag * m_args.area * m_args.atmos_density * std::pow(m_sstate.w, 2);
 
         dispatch(m_sstate);
         dispatch(m_drag);
