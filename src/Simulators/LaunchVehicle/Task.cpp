@@ -67,6 +67,12 @@ namespace Simulators
       float motor_mass;
       //! Gravity constant
       float gravity;
+      //! Crag coefficient
+      float coeff_drag;
+      //! Cross sectional area
+      float area;
+      //! Atmospheric density
+      float atmos_density;
     };
 
     //! %LaunchVehicle simulator task
@@ -80,6 +86,8 @@ namespace Simulators
       bool m_valid_thrust_curve;
       //! Thrust produced by this engine/motor
       IMC::Thrust m_thrust;
+      //! Curent drag force
+      IMC::Force m_drag;
       //! Epoch Time, in milliseconds, at which this motor was triggered
       uint64_t m_trigger_msec;
       IMC::SimulatedState m_sstate;
@@ -124,6 +132,19 @@ namespace Simulators
         .defaultValue("9.80665")
         .units(Units::Newton)
         .description("Gravity's value in Newtons");
+
+        param("Drag Coefficent", m_args.coeff_drag)
+        .defaultValue("0.45")
+        .description("Drag coefficient");
+
+        param("Area", m_args.area)
+        .defaultValue("0.006")
+        .description("Launcher's reference area in m^2");
+
+        param("Atmospheric density", m_args.atmos_density)
+        .defaultValue("1.225")
+        .units(Units::KilogramPerCubicMeter)
+        .description("Atmospheric density at sea-level, kg/m^3");
 
         // Register consumers.
         bind<IMC::SetThrusterActuation>(this);
@@ -208,13 +229,13 @@ namespace Simulators
       fp32_t
       computeVelocity(const float& m, const float& b, const float& s, const float& f, const float& mass)
       {
-        return ((b * f - m_args.gravity * mass * f + 0.5 * std::pow(f, 2) * m - b * s + m_args.gravity * mass * s - 0.5 * m * std::pow(s, 2)) / mass);
+        return (b * f - m_args.gravity * mass * f - mass * m_drag.value * f + 0.5 * std::pow(f, 2) * m - b * s + m_args.gravity * mass * s + mass * m_drag.value * s - 0.5 * m * std::pow(s, 2)) / mass;
       }
 
       fp32_t
       computeHeight(const float& m, const float& b, const float& s, const float& f, const float& mass)
       {
-        return (0.5 * (m_args.gravity * mass * std::pow(s, 2) - 0.333333 * m * std::pow(s, 3) - m_args.gravity * mass * std::pow(f, 2) + 0.333333 * m * std::pow(f, 3) + b * (-std::pow(s, 2) + std::pow(f, 2)))) / mass;
+        return ((0.5 * (b - m_args.gravity * mass - m_drag.value) * (std::pow(f, 2) - std::pow(s, 2)) + 0.166667 * m * (std::pow(f, 3) - std::pow(s, 3))) / mass);
       }
 
       void
@@ -244,8 +265,9 @@ namespace Simulators
         }
         else
         {
+          float accel = m_args.gravity - (m_drag.value / mass);
           float dt = t_sec - m_prev_time_sec;
-          m_sstate.w = m_sstate.w - (m_args.gravity * dt);
+          m_sstate.w = m_sstate.w - (accel * dt);
           m_sstate.height = m_sstate.height + (m_sstate.w * dt);
         }
 
@@ -256,7 +278,10 @@ namespace Simulators
           m_sstate.w = 0;
         }
 
+        m_drag.value = std::fabs(0.5 * m_args.coeff_drag * m_args.area * m_args.atmos_density * m_sstate.w);
+
         dispatch(m_sstate);
+        dispatch(m_drag);
       }
 
       void
@@ -266,6 +291,7 @@ namespace Simulators
         {
           m_motor->trigger();
           m_trigger_msec = Time::Clock::getSinceEpochMsec();
+          m_drag.value = 0;
         }
 
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
