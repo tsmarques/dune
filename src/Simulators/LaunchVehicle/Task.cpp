@@ -226,6 +226,19 @@ namespace Simulators
       }
 
       //! Compute acceleration's integral on the given interval [s, f]
+      //! F = Ft - Fd - Fg
+      //! F - total force
+      //! Ft - Thrust force
+      //! Fd - Drag force
+      //! Fg - Gravity force
+      //!
+      //! a(t) = (mt + b) - 0.5 * Cd * A * p * v^2 - mass * g
+      //! Cd - Drag coefficient
+      //! A - Reference area
+      //! p - Atmospheric density
+      //! v - velocity
+      //! m - Current launcher's total mass
+      //! g - Gravity constant
       fp32_t
       computeVelocity(const float& m, const float& b, const float& s, const float& f, const float& mass)
       {
