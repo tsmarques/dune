@@ -266,13 +266,15 @@ namespace Simulators
       fp32_t
       computeVelocity(const float& m, const float& b, const float& s, const float& f, const float& mass)
       {
-        return (b * f - m_args.gravity * mass * f - mass * m_drag.value * f + 0.5 * std::pow(f, 2) * m - b * s + m_args.gravity * mass * s + mass * m_drag.value * s - 0.5 * m * std::pow(s, 2)) / mass;
+        float drag_accel = m_drag.value / mass;
+        return (b * f - m_args.gravity * mass * f - mass * drag_accel * f + 0.5 * std::pow(f, 2) * m - b * s + m_args.gravity * mass * s + mass * drag_accel * s - 0.5 * m * std::pow(s, 2)) / mass;
       }
 
       fp32_t
       computeHeight(const float& m, const float& b, const float& s, const float& f, const float& mass)
       {
-        return ((0.5 * (b - m_args.gravity * mass - m_drag.value) * (std::pow(f, 2) - std::pow(s, 2)) + 0.166667 * m * (std::pow(f, 3) - std::pow(s, 3))) / mass);
+        float drag_accel = m_drag.value / mass;
+        return ((0.5 * (b - m_args.gravity * mass - drag_accel) * (std::pow(f, 2) - std::pow(s, 2)) + 0.166667 * m * (std::pow(f, 3) - std::pow(s, 3))) / mass);
       }
 
       void
