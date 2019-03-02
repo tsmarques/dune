@@ -305,9 +305,23 @@ namespace Simulators
         else
         {
           float accel = -m_args.gravity + (m_drag.value / mass);
-          float dt = t_sec - m_prev_time_sec;
-          m_sstate.w = m_sstate.w + (accel * dt);
-          m_sstate.height = m_sstate.height + (m_sstate.w * dt);
+          float dt;
+          if (thrust_f.interval_start != prev_params.interval_start)
+          {
+            // what's missing from previous interval
+            m_sstate.w += computeVelocity(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end, mass);
+            m_sstate.height += computeHeight(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end, mass);
+
+            dt = t_sec - prev_params.interval_end;
+            m_sstate.w = m_sstate.w + (accel * dt);
+            m_sstate.height = m_sstate.height + (m_sstate.w * dt) - (0.5) * (accel * std::pow(dt, 2));
+          }
+          else
+          {
+            dt = t_sec - m_prev_time_sec;
+            m_sstate.w = m_sstate.w + (accel * dt);
+            m_sstate.height = m_sstate.height + (m_sstate.w * dt) - (0.5) * (accel * std::pow(dt, 2));
+          }
         }
 
         // hit the ground
