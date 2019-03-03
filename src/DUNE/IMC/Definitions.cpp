@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 91d7531f361c96af60273fb577b584f0                            *
+// IMC XML MD5: 45c0e65fd4d14d2ba8898bc01a1d8928                            *
 //***************************************************************************
 
 // ISO C++ 98 headers.
@@ -7108,6 +7108,7 @@ namespace DUNE
     Force::clear(void)
     {
       value = 0;
+      label.clear();
     }
 
     bool
@@ -7115,6 +7116,7 @@ namespace DUNE
     {
       const IMC::Force& other__ = static_cast<const Force&>(msg__);
       if (value != other__.value) return false;
+      if (label != other__.label) return false;
       return true;
     }
 
@@ -7129,6 +7131,7 @@ namespace DUNE
     {
       uint8_t* ptr__ = bfr__;
       ptr__ += IMC::serialize(value, ptr__);
+      ptr__ += IMC::serialize(label, ptr__);
       return ptr__;
     }
 
@@ -7137,6 +7140,7 @@ namespace DUNE
     {
       const uint8_t* start__ = bfr__;
       bfr__ += IMC::deserialize(value, bfr__, size__);
+      bfr__ += IMC::deserialize(label, bfr__, size__);
       return bfr__ - start__;
     }
 
@@ -7145,6 +7149,7 @@ namespace DUNE
     {
       const uint8_t* start__ = bfr__;
       bfr__ += IMC::reverseDeserialize(value, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(label, bfr__, size__);
       return bfr__ - start__;
     }
 
@@ -7164,6 +7169,7 @@ namespace DUNE
     Force::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
     {
       IMC::toJSON(os__, "value", value, nindent__);
+      IMC::toJSON(os__, "label", label, nindent__);
     }
 
     SonarData::SonarData(void)
@@ -26465,74 +26471,6 @@ namespace DUNE
       IMC::toJSON(os__, "ch14", ch14, nindent__);
       IMC::toJSON(os__, "ch15", ch15, nindent__);
       IMC::toJSON(os__, "ch16", ch16, nindent__);
-    }
-
-    Thrust::Thrust(void)
-    {
-      m_header.mgid = 909;
-      clear();
-    }
-
-    void
-    Thrust::clear(void)
-    {
-      value = 0;
-    }
-
-    bool
-    Thrust::fieldsEqual(const Message& msg__) const
-    {
-      const IMC::Thrust& other__ = static_cast<const Thrust&>(msg__);
-      if (value != other__.value) return false;
-      return true;
-    }
-
-    int
-    Thrust::validate(void) const
-    {
-      return true;
-    }
-
-    uint8_t*
-    Thrust::serializeFields(uint8_t* bfr__) const
-    {
-      uint8_t* ptr__ = bfr__;
-      ptr__ += IMC::serialize(value, ptr__);
-      return ptr__;
-    }
-
-    uint16_t
-    Thrust::deserializeFields(const uint8_t* bfr__, uint16_t size__)
-    {
-      const uint8_t* start__ = bfr__;
-      bfr__ += IMC::deserialize(value, bfr__, size__);
-      return bfr__ - start__;
-    }
-
-    uint16_t
-    Thrust::reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__)
-    {
-      const uint8_t* start__ = bfr__;
-      bfr__ += IMC::reverseDeserialize(value, bfr__, size__);
-      return bfr__ - start__;
-    }
-
-    fp64_t
-    Thrust::getValueFP(void) const
-    {
-      return static_cast<fp64_t>(value);
-    }
-
-    void
-    Thrust::setValueFP(fp64_t val)
-    {
-      value = static_cast<fp64_t>(val);
-    }
-
-    void
-    Thrust::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
-    {
-      IMC::toJSON(os__, "value", value, nindent__);
     }
 
     TotalMagIntensity::TotalMagIntensity(void)

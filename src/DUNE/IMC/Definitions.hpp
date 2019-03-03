@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 91d7531f361c96af60273fb577b584f0                            *
+// IMC XML MD5: 45c0e65fd4d14d2ba8898bc01a1d8928                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -7133,6 +7133,8 @@ namespace DUNE
     public:
       //! Measured Force.
       fp32_t value;
+      //! Force Label.
+      std::string label;
 
       static uint16_t
       getIdStatic(void)
@@ -7182,6 +7184,12 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 4;
+      }
+
+      unsigned
+      getVariableSerializationSize(void) const
+      {
+        return IMC::getSerializationSize(label);
       }
 
       fp64_t
@@ -24964,73 +24972,6 @@ namespace DUNE
       {
         return 64;
       }
-
-      void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
-    };
-
-    //! Rocket Motor Thrust.
-    class Thrust: public Message
-    {
-    public:
-      //! Value.
-      fp64_t value;
-
-      static uint16_t
-      getIdStatic(void)
-      {
-        return 909;
-      }
-
-      Thrust(void);
-
-      Thrust*
-      clone(void) const
-      {
-        return new Thrust(*this);
-      }
-
-      void
-      clear(void);
-
-      bool
-      fieldsEqual(const Message& msg__) const;
-
-      int
-      validate(void) const;
-
-      uint8_t*
-      serializeFields(uint8_t* bfr__) const;
-
-      uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
-
-      uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
-
-      uint16_t
-      getId(void) const
-      {
-        return Thrust::getIdStatic();
-      }
-
-      const char*
-      getName(void) const
-      {
-        return "Thrust";
-      }
-
-      unsigned
-      getFixedSerializationSize(void) const
-      {
-        return 8;
-      }
-
-      fp64_t
-      getValueFP(void) const;
-
-      void
-      setValueFP(fp64_t val);
 
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const;

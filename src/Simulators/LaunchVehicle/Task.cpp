@@ -90,7 +90,7 @@ namespace Simulators
       //! If task was given a valid description of the thrust curve
       bool m_valid_thrust_curve;
       //! Thrust produced by this engine/motor
-      IMC::Thrust m_thrust;
+      IMC::Force m_thrust;
       //! Curent drag force
       IMC::Force m_drag;
       //! Epoch Time, in milliseconds, at which this motor was triggered
@@ -154,6 +154,9 @@ namespace Simulators
         param("Mass Flow Rate", m_args.mass_flow_rate)
         .defaultValue("0.050")
         .description("Motor's mass flow rate in kg/s");
+
+        m_thrust.label = "Thrust";
+        m_drag.label = "Drag";
 
         // Register consumers.
         bind<IMC::SetThrusterActuation>(this);
