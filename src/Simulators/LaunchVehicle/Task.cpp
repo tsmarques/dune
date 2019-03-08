@@ -73,8 +73,6 @@ namespace Simulators
       float area;
       //! Atmospheric density
       float atmos_density;
-      //! Motor's mass flow rate
-      float mass_flow_rate;
     };
 
     //! Atmosphere's "Scale height"
@@ -151,13 +149,6 @@ namespace Simulators
         .units(Units::KilogramPerCubicMeter)
         .description("Atmospheric density at sea-level, kg/m^3");
 
-        param("Mass Flow Rate", m_args.mass_flow_rate)
-        .defaultValue("0.050")
-        .description("Motor's mass flow rate in kg/s");
-
-        m_thrust.label = "Thrust";
-        m_drag.label = "Drag";
-
         // Register consumers.
         bind<IMC::SetThrusterActuation>(this);
       }
@@ -222,15 +213,6 @@ namespace Simulators
       }
 
       float
-      computeMass(float t_sec)
-      {
-        float prop_mass_delta = t_sec * m_args.mass_flow_rate;
-        if (prop_mass_delta > m_args.prop_mass)
-          prop_mass_delta = m_args.prop_mass;
-        return m_args.dry_mass + m_args.motor_mass + (m_args.prop_mass - prop_mass_delta);
-      }
-
-      float
       computeAtmosphericDensity(fp32_t height)
       {
         return m_args.atmos_density * std::exp((-height / c_atmos_scale_height));
@@ -283,7 +265,7 @@ namespace Simulators
       void
       updateState(float t_sec)
       {
-        const float mass = computeMass(t_sec);
+        const float mass = m_args.dry_mass + m_args.motor_mass + m_args.prop_mass;
 
         ThrustParameters thrust_f = m_motor->getFunctionParameters(t_sec);
         ThrustParameters prev_params = m_motor->getFunctionParameters(m_prev_time_sec);
