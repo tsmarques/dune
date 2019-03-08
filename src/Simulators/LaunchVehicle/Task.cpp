@@ -96,6 +96,8 @@ namespace Simulators
       IMC::SimulatedState m_sstate;
       //! Previous timestep in seconds
       float m_prev_time_sec;
+      //! Current mass of the launcher
+      float m_mass;
       //! Task arguments
       Arguments m_args;
 
@@ -249,24 +251,22 @@ namespace Simulators
       //! m - Current launcher's total mass
       //! g - Gravity constant
       fp32_t
-      computeVelocity(const float& m, const float& b, const float& s, const float& f, const float& mass)
+      computeVelocity(const float& m, const float& b, const float& s, const float& f)
       {
-        float drag_accel = m_drag.value / mass;
-        return (b * f - m_args.gravity * mass * f - mass * drag_accel * f + 0.5 * std::pow(f, 2) * m - b * s + m_args.gravity * mass * s + mass * drag_accel * s - 0.5 * m * std::pow(s, 2)) / mass;
+        float drag_accel = m_drag.value / m_mass;
+        return (b * f - m_args.gravity * m_mass * f - m_mass * drag_accel * f + 0.5 * std::pow(f, 2) * m - b * s + m_args.gravity * m_mass * s + m_mass * drag_accel * s - 0.5 * m * std::pow(s, 2)) / m_mass;
       }
 
       fp32_t
-      computeHeight(const float& m, const float& b, const float& s, const float& f, const float& mass)
+      computeHeight(const float& m, const float& b, const float& s, const float& f)
       {
-        float drag_accel = m_drag.value / mass;
-        return ((0.5 * (b - m_args.gravity * mass - drag_accel) * (std::pow(f, 2) - std::pow(s, 2)) + 0.166667 * m * (std::pow(f, 3) - std::pow(s, 3))) / mass);
+        float drag_accel = m_drag.value / m_mass;
+        return ((0.5 * (b - m_args.gravity * m_mass - drag_accel) * (std::pow(f, 2) - std::pow(s, 2)) + 0.166667 * m * (std::pow(f, 3) - std::pow(s, 3))) / m_mass);
       }
 
       void
       updateState(float t_sec)
       {
-        const float mass = m_args.dry_mass + m_args.motor_mass + m_args.prop_mass;
-
         ThrustParameters thrust_f = m_motor->getFunctionParameters(t_sec);
         ThrustParameters prev_params = m_motor->getFunctionParameters(m_prev_time_sec);
 
@@ -275,27 +275,27 @@ namespace Simulators
           if (thrust_f.interval_start != prev_params.interval_start)
           {
             // what's missing from previous interval
-            m_sstate.w += computeVelocity(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end, mass);
-            m_sstate.height += computeHeight(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end, mass);
+            m_sstate.w += computeVelocity(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end);
+            m_sstate.height += computeHeight(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end);
 
-            m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec, mass);
-            m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec, mass);
+            m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec);
+            m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec);
           }
           else
           {
-            m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, m_prev_time_sec, t_sec, mass);
-            m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, m_prev_time_sec, t_sec, mass);
+            m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, m_prev_time_sec, t_sec);
+            m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, m_prev_time_sec, t_sec);
           }
         }
         else
         {
-          float accel = -m_args.gravity + (m_drag.value / mass);
+          float accel = -m_args.gravity + (m_drag.value / m_mass);
           float dt;
           if (thrust_f.interval_start != prev_params.interval_start)
           {
             // what's missing from previous interval
-            m_sstate.w += computeVelocity(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end, mass);
-            m_sstate.height += computeHeight(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end, mass);
+            m_sstate.w += computeVelocity(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end);
+            m_sstate.height += computeHeight(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end);
 
             dt = t_sec - prev_params.interval_end;
             m_sstate.w = m_sstate.w + (accel * dt);
@@ -335,6 +335,7 @@ namespace Simulators
 
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
 
+        m_mass = computeMass(curr_time_sec);
         updateThrust(curr_time_sec);
         updateState(curr_time_sec);
 
