@@ -335,7 +335,7 @@ namespace Simulators
 
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
 
-        m_mass = computeMass(curr_time_sec);
+        m_mass = m_args.dry_mass + m_args.prop_mass + m_args.motor_mass;
         updateThrust(curr_time_sec);
         updateState(curr_time_sec);
 
