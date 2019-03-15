@@ -20,7 +20,7 @@ namespace Simulators
       std::map<float, ThrustParameters >::iterator itr = m_thrust_curve_f.begin();
       while (itr != m_thrust_curve_f.end() && !found)
       {
-        if (curr_time_sec < itr->first)
+        if (curr_time_sec <= itr->first)
         {
           found = true;
           m_owner_task->debug("Found interval for %f starting at %f", curr_time_sec, itr->first);
