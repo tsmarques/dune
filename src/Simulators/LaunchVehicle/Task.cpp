@@ -81,6 +81,8 @@ namespace Simulators
     //! %LaunchVehicle simulator task
     struct Task: public Tasks::Periodic
     {
+      //! Timestep in seconds
+      double tstep_sec;
       //! Motor(s) used by the launcher
       Motor* m_motor;
       //! Motors' entity labels
@@ -98,14 +100,18 @@ namespace Simulators
       float m_prev_time_sec;
       //! Current mass of the launcher
       float m_mass;
+      //! Take off event has happened
+      bool lift_off;
       //! Task arguments
       Arguments m_args;
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
+        tstep_sec(0),
         m_valid_thrust_curve(false),
         m_trigger_msec(0),
-        m_prev_time_sec(0)
+        m_prev_time_sec(0),
+        lift_off(false)
       {
         param("Number Of Motors", m_args.n_motors)
         .defaultValue("1")
@@ -170,6 +176,8 @@ namespace Simulators
       void
       onUpdateParameters(void)
       {
+        tstep_sec = 1.0 / getFrequency();
+
         if (m_args.thrust_curve.empty())
         {
           war("No thrust curve found");
@@ -228,22 +236,16 @@ namespace Simulators
 
         // For now assume that all motors are equal
         m_thrust.value = m_motor->computeEngineThrust(curr_time_sec);
-
-        for (int i = 0; i < m_args.n_motors; ++i)
-        {
-          m_thrust.setSourceEntity(resolveEntity(m_motor_labels[i]));
-          dispatch(m_thrust);
-        }
       }
 
-      //! Compute acceleration's integral on the given interval [s, f]
+      //! Compute acceleration's integral
       //! F = Ft - Fd - Fg
       //! F - total force
       //! Ft - Thrust force
       //! Fd - Drag force
       //! Fg - Gravity force
       //!
-      //! a(t) = (mt + b) - 0.5 * Cd * A * p * v^2 - mass * g
+      //! a(t) = (ht + b) - (0.5 * Cd * A * p * v^2) / m - g
       //! Cd - Drag coefficient
       //! A - Reference area
       //! p - Atmospheric density
@@ -251,10 +253,70 @@ namespace Simulators
       //! m - Current launcher's total mass
       //! g - Gravity constant
       fp32_t
-      computeVelocity(const float& m, const float& b, const float& s, const float& f)
+      dv_dt(const float& v, const float& t_sec, const float& mass)
       {
-        float drag_accel = m_drag.value / m_mass;
-        return (b * f - m_args.gravity * m_mass * f - m_mass * drag_accel * f + 0.5 * std::pow(f, 2) * m - b * s + m_args.gravity * m_mass * s + m_mass * drag_accel * s - 0.5 * m * std::pow(s, 2)) / m_mass;
+        float thrust = m_motor->computeEngineThrust(t_sec);
+        float accel_thrust = thrust / mass;
+        float accel_drag = (0.5 * m_args.coeff_drag * m_args.atmos_density * m_args.area * std::pow(v, 2)) / mass;
+
+        // should b opposite to velocity
+        accel_drag = accel_drag * (v >= 0 ? 1 : -1);
+
+        inf("v: %.4f | at: %.4f | ad: %.4f", v, accel_thrust, accel_drag);
+        return accel_thrust - m_args.gravity - accel_drag;
+      }
+
+      void
+      computeVelocity(const ThrustParameters& thrust_f, const ThrustParameters& prev_thrust_f, const float& t_sec)
+      {
+        std::vector<float> t_steps;
+        std::vector<float> t0;
+        std::vector<float> dt;
+        std::vector<float> m;
+        std::vector<float> b;
+
+        // prepare simulation step
+        if (thrust_f.interval_start != prev_thrust_f.interval_start)
+        {
+          t_steps.reserve(2);
+          t0.reserve(2);
+          dt.reserve(2);
+
+          t_steps[0] = prev_thrust_f.interval_end;
+          t_steps[1] = t_sec;
+
+          t0[0] = m_prev_time_sec;
+          t0[1] = t_steps[0];
+
+          dt[0] = (t_steps[0] - t0[0]) / 10.0;
+          dt[1] = (t_steps[1] - t0[1]) / 10.0;
+        }
+        else
+        {
+          t_steps.reserve(1);
+          t0.reserve(1);
+          dt.reserve(1);
+
+          t0[0] = t_sec;
+          t_steps[0] = t0[0] + tstep_sec;
+          dt[0] = tstep_sec / 10.0;
+        }
+
+        size_t step = 0;
+        while (step < t_steps.capacity())
+        {
+          while (t0[step] < t_steps[step])
+          {
+            float k1 = dv_dt(m_sstate.w, t0[step], m_mass);
+            float k2 = dv_dt(m_sstate.w + k1 * (0.5 * dt[step]), t0[step] + (0.5 * dt[step]), m_mass);
+            float k3 = dv_dt(m_sstate.w + k2 * (0.5 * dt[step]), t0[step] + (0.5 * dt[step]), m_mass);
+            float k4 = dv_dt(m_sstate.w + k3 * dt[step], t0[step] + dt[step], m_mass);
+
+            m_sstate.w = m_sstate.w + (k1 + 2 * (k2 + k3) + k4) / 6.0;
+            t0[step] += dt[step];
+          }
+          ++step;
+        }
       }
 
       fp32_t
@@ -267,60 +329,20 @@ namespace Simulators
       void
       updateState(float t_sec)
       {
+        // not enough to lift
+        if (m_thrust.value < m_args.gravity * m_mass && !lift_off)
+          return;
+
+        if (!lift_off)
+        {
+          lift_off = true;
+          war("Lift off %.4f", m_thrust.value);
+        }
+
         ThrustParameters thrust_f = m_motor->getFunctionParameters(t_sec);
         ThrustParameters prev_params = m_motor->getFunctionParameters(m_prev_time_sec);
 
-        if (m_thrust.value != 0)
-        {
-          if (thrust_f.interval_start != prev_params.interval_start)
-          {
-            // what's missing from previous interval
-            m_sstate.w += computeVelocity(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end);
-            m_sstate.height += computeHeight(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end);
-
-            m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec);
-            m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, thrust_f.interval_start, t_sec);
-          }
-          else
-          {
-            m_sstate.w += computeVelocity(thrust_f.m, thrust_f.b, m_prev_time_sec, t_sec);
-            m_sstate.height += computeHeight(thrust_f.m, thrust_f.b, m_prev_time_sec, t_sec);
-          }
-        }
-        else
-        {
-          float accel = -m_args.gravity + (m_drag.value / m_mass);
-          float dt;
-          if (thrust_f.interval_start != prev_params.interval_start)
-          {
-            // what's missing from previous interval
-            m_sstate.w += computeVelocity(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end);
-            m_sstate.height += computeHeight(prev_params.m, prev_params.b, m_prev_time_sec, prev_params.interval_end);
-
-            dt = t_sec - prev_params.interval_end;
-            m_sstate.w = m_sstate.w + (accel * dt);
-            m_sstate.height = m_sstate.height + (m_sstate.w * dt) - (0.5) * (accel * std::pow(dt, 2));
-          }
-          else
-          {
-            dt = t_sec - m_prev_time_sec;
-            m_sstate.w = m_sstate.w + (accel * dt);
-            m_sstate.height = m_sstate.height + (m_sstate.w * dt) - (0.5) * (accel * std::pow(dt, 2));
-          }
-        }
-
-        // hit the ground
-        if (m_sstate.height < 0)
-        {
-          m_sstate.height = 0;
-          m_sstate.w = 0;
-        }
-
-        fp32_t atmos_density = computeAtmosphericDensity(m_sstate.height);
-        m_drag.value = 0.5 * m_args.coeff_drag * m_args.area * atmos_density * std::pow(m_sstate.w, 2);
-
-        dispatch(m_sstate);
-        dispatch(m_drag);
+        computeVelocity(thrust_f, prev_params, t_sec);
       }
 
       void
@@ -331,6 +353,8 @@ namespace Simulators
           m_motor->trigger();
           m_trigger_msec = Time::Clock::getSinceEpochMsec();
           m_drag.value = 0;
+          m_sstate.w = 0;
+          m_sstate.height = 0;
         }
 
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
@@ -339,6 +363,15 @@ namespace Simulators
         updateThrust(curr_time_sec);
         updateState(curr_time_sec);
 
+        // dispatch states
+        for (int i = 0; i < m_args.n_motors; ++i)
+        {
+          m_thrust.setSourceEntity(resolveEntity(m_motor_labels[i]));
+          dispatch(m_thrust);
+        }
+
+        dispatch(m_sstate);
+        dispatch(m_drag);
         m_prev_time_sec = curr_time_sec;
       }
     };
