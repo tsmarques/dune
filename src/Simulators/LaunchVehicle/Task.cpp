@@ -271,10 +271,9 @@ namespace Simulators
         float accel_thrust = thrust / mass;
         float accel_drag = (0.5 * m_args.coeff_drag * m_args.atmos_density * m_args.area * std::pow(v, 2)) / mass;
 
-        // should b opposite to velocity
+        // should be opposite to velocity
         accel_drag = accel_drag * (v >= 0 ? 1 : -1);
 
-        inf("v: %.4f | at: %.4f | ad: %.4f", v, accel_thrust, accel_drag);
         return accel_thrust - m_args.gravity - accel_drag;
       }
 
