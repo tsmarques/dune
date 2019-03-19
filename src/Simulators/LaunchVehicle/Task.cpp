@@ -93,6 +93,8 @@ namespace Simulators
       IMC::Force m_thrust;
       //! Curent drag force
       IMC::Force m_drag;
+      //! Weight force
+      IMC::Force m_weight;
       //! Epoch Time, in milliseconds, at which this motor was triggered
       uint64_t m_trigger_msec;
       IMC::SimulatedState m_sstate;
@@ -171,6 +173,16 @@ namespace Simulators
           reserveEntity(motor_label);
           debug("Reserving %s", motor_label.c_str());
         }
+
+        reserveEntity("LV - Drag");
+        reserveEntity("LV - Weight");
+      }
+
+      void
+      onEntityResolution(void)
+      {
+        m_drag.setSourceEntity(resolveEntity("LV - Drag"));
+        m_weight.setSourceEntity(resolveEntity("LV - Weight"));
       }
 
       void
@@ -362,6 +374,7 @@ namespace Simulators
         m_mass = m_args.dry_mass + m_args.prop_mass + m_args.motor_mass;
         updateThrust(curr_time_sec);
         updateState(curr_time_sec);
+        m_weight.value = m_args.gravity * m_mass;
 
         // dispatch states
         for (int i = 0; i < m_args.n_motors; ++i)
@@ -372,6 +385,7 @@ namespace Simulators
 
         dispatch(m_sstate);
         dispatch(m_drag);
+        dispatch(m_weight);
         m_prev_time_sec = curr_time_sec;
       }
     };
