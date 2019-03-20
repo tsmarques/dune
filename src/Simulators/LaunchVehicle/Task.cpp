@@ -368,6 +368,7 @@ namespace Simulators
         updateThrust(curr_time_sec);
         updateState(curr_time_sec);
         m_weight.value = m_args.gravity * m_mass;
+        m_drag.value = (0.5 * m_args.coeff_drag * m_args.atmos_density * m_args.area * std::pow(m_sstate.w, 2));
 
         // dispatch states
         for (int i = 0; i < m_args.n_motors; ++i)
