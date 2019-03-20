@@ -112,6 +112,7 @@ namespace Simulators
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
         tstep_sec(0),
+        m_motor(NULL),
         m_valid_thrust_curve(false),
         m_trigger_msec(0),
         m_prev_time_sec(0),
@@ -199,25 +200,30 @@ namespace Simulators
           war("No thrust curve found");
           return;
         }
-
-        m_motor = new Motor(this, m_args.thrust_curve);
-        m_motor_labels.reserve(m_args.n_motors);
-        m_valid_thrust_curve = m_motor->parseThrustCurve();
       }
 
       //! Initialize resources.
       void
       onResourceInitialization(void)
       {
+        m_motor_labels.reserve(m_args.n_motors);
+        m_valid_thrust_curve = m_motor->parseThrustCurve();
+
         Status::Code status = m_valid_thrust_curve ? Status::CODE_ACTIVE : Status::CODE_IDLE;
         IMC::EntityState::StateEnum state = m_valid_thrust_curve ? IMC::EntityState::ESTA_NORMAL : IMC::EntityState::ESTA_ERROR;
         setEntityState(state, status);
       }
 
       void
+      onResourceAcquisition(void)
+      {
+        m_motor = new Motor(this, m_args.thrust_curve);
+      }
+
+      void
       onResourceRelease(void)
       {
-        // Memory::clear(m_motor);
+        Memory::clear(m_motor);
       }
 
       void
