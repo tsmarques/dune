@@ -119,24 +119,24 @@ namespace Simulators
         .defaultValue("1")
         .description("How many motors this launch vehicle has");
 
-        param("Thrust Curve", m_args.thrust_curve)
-        .description("Data points, time in seconds and thrust in newtons, that describe this motor's thrust function");
-
-        param("Motor Name", m_args.motor_name)
-        .defaultValue("Aerotech I65W")
-        .description("Name/Brand of the motor we're simulating");
-
         param("Dry Mass", m_args.dry_mass)
         .defaultValue("2.550")
         .units(Units::Kilogram)
         .description("Launcher's mass without motor (and propellant) in kg");
 
-        param("Motor Mass", m_args.motor_mass)
+        param("Motor -- Name", m_args.motor_name)
+        .defaultValue("Aerotech I65W")
+        .description("Name/Brand of the motor we're simulating");
+
+        param("Motor -- Thrust Curve", m_args.thrust_curve)
+        .description("Data points, time in seconds and thrust in newtons, that describe this motor's thrust function");
+
+        param("Motor -- Mass", m_args.motor_mass)
         .defaultValue("0.375")
         .units(Units::Kilogram)
         .description("Motor's casing mass without propellant in kg");
 
-        param("Propellant Mass", m_args.prop_mass)
+        param("Motor -- Propellant Mass", m_args.prop_mass)
         .defaultValue("0.377")
         .units(Units::Kilogram)
         .description("Propellant's mass in kg");
