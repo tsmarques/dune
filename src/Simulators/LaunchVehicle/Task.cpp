@@ -95,6 +95,8 @@ namespace Simulators
       IMC::Force m_drag;
       //! Weight force
       IMC::Force m_weight;
+      //! Dynamic pressure felt by the vehicle
+      IMC::Pressure m_dynp;
       //! Epoch Time, in milliseconds, at which this motor was triggered
       uint64_t m_trigger_msec;
       IMC::SimulatedState m_sstate;
@@ -176,6 +178,7 @@ namespace Simulators
 
         reserveEntity("LV - Drag");
         reserveEntity("LV - Weight");
+        reserveEntity("LV - Dynamic Pressure");
       }
 
       void
@@ -183,6 +186,7 @@ namespace Simulators
       {
         m_drag.setSourceEntity(resolveEntity("LV - Drag"));
         m_weight.setSourceEntity(resolveEntity("LV - Weight"));
+        m_dynp.setSourceEntity(resolveEntity("LV - Dynamic Pressure"));
       }
 
       void
@@ -360,6 +364,7 @@ namespace Simulators
           m_drag.value = 0;
           m_sstate.w = 0;
           m_sstate.height = 0;
+          m_dynp.value = 0;
         }
 
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
@@ -367,8 +372,10 @@ namespace Simulators
         m_mass = m_args.dry_mass + m_args.prop_mass + m_args.motor_mass;
         updateThrust(curr_time_sec);
         updateState(curr_time_sec);
+
         m_weight.value = m_args.gravity * m_mass;
-        m_drag.value = (0.5 * m_args.coeff_drag * m_args.atmos_density * m_args.area * std::pow(m_sstate.w, 2));
+        m_dynp.value = 0.5 * m_args.atmos_density * std::pow(m_sstate.w, 2);
+        m_drag.value = (m_args.coeff_drag * m_args.area * m_dynp.value);
 
         // dispatch states
         for (int i = 0; i < m_args.n_motors; ++i)
@@ -380,6 +387,7 @@ namespace Simulators
         dispatch(m_sstate);
         dispatch(m_drag);
         dispatch(m_weight);
+        dispatch(m_dynp);
         m_prev_time_sec = curr_time_sec;
       }
     };
