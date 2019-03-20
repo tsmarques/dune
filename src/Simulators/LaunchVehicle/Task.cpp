@@ -308,8 +308,8 @@ namespace Simulators
           t0.reserve(1);
           dt.reserve(1);
 
-          t0[0] = t_sec;
-          t_steps[0] = t0[0] + tstep_sec;
+          t0[0] = m_prev_time_sec;
+          t_steps[0] = t_sec;
           dt[0] = tstep_sec / 10.0;
         }
 
