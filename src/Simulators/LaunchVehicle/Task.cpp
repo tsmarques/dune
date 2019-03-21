@@ -334,13 +334,6 @@ namespace Simulators
         }
       }
 
-      fp32_t
-      computeHeight(const float& m, const float& b, const float& s, const float& f)
-      {
-        float drag_accel = m_drag.value / m_mass;
-        return ((0.5 * (b - m_args.gravity * m_mass - drag_accel) * (std::pow(f, 2) - std::pow(s, 2)) + 0.166667 * m * (std::pow(f, 3) - std::pow(s, 3))) / m_mass);
-      }
-
       void
       updateState(float t_sec)
       {
@@ -357,7 +350,55 @@ namespace Simulators
         ThrustParameters thrust_f = m_motor->getFunctionParameters(t_sec);
         ThrustParameters prev_params = m_motor->getFunctionParameters(m_prev_time_sec);
 
-        computeVelocity(thrust_f, prev_params, t_sec);
+        std::vector<float> t_steps;
+        std::vector<float> t0;
+        std::vector<float> dt;
+
+        // prepare simulation step
+        if (thrust_f.interval_start != prev_params.interval_start)
+        {
+          t_steps.reserve(2);
+          t0.reserve(2);
+          dt.reserve(2);
+
+          t_steps[0] = prev_params.interval_end;
+          t_steps[1] = t_sec;
+
+          t0[0] = m_prev_time_sec;
+          t0[1] = t_steps[0];
+
+          dt[0] = (t_steps[0] - t0[0]);
+          dt[1] = (t_steps[1] - t0[1]);
+        }
+        else
+        {
+          t_steps.reserve(1);
+          t0.reserve(1);
+          dt.reserve(1);
+
+          t0[0] = m_prev_time_sec;
+          t_steps[0] = t_sec;
+          dt[0] = tstep_sec;
+        }
+
+        size_t step = 0;
+        while (step < t_steps.capacity())
+        {
+          float k1 = dv_dt(m_sstate.w, t0[step], m_mass);
+          float k2 = dv_dt(m_sstate.w + k1 * 0.5, t0[step] + (0.5 * dt[step]), m_mass);
+          float k3 = dv_dt(m_sstate.w + k2 * 0.5, t0[step] + (0.5 * dt[step]), m_mass);
+          float k4 = dv_dt(m_sstate.w + k3 * dt[step], t0[step] + dt[step], m_mass);
+
+          m_sstate.w = m_sstate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0);
+          m_sstate.height = m_sstate.height + m_sstate.w * dt[step];
+          ++step;
+        }
+
+        if (m_sstate.height <= 0)
+        {
+          m_sstate.height = 0;
+          m_sstate.w = 0;
+        }
       }
 
       void
