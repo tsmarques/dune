@@ -78,6 +78,15 @@ namespace Simulators
     //! Atmosphere's "Scale height"
     static const float c_atmos_scale_height = 8000;
 
+    //! Drag force entity label
+    static const char* c_drag_force_ent_label = "LV - Drag";
+
+    //! Weight entity label
+    static const char* c_weight_ent_label = "LV - Weight";
+
+    //! Dynamic pressure entity label
+    static const char* c_dynp_ent_label = "LV - Dynamic Pressure";
+
     //! %LaunchVehicle simulator task
     struct Task: public Tasks::Periodic
     {
@@ -177,17 +186,17 @@ namespace Simulators
           debug("Reserving %s", motor_label.c_str());
         }
 
-        reserveEntity("LV - Drag");
-        reserveEntity("LV - Weight");
-        reserveEntity("LV - Dynamic Pressure");
+        reserveEntity(c_drag_force_ent_label);
+        reserveEntity(c_weight_ent_label);
+        reserveEntity(c_dynp_ent_label);
       }
 
       void
       onEntityResolution(void)
       {
-        m_drag.setSourceEntity(resolveEntity("LV - Drag"));
-        m_weight.setSourceEntity(resolveEntity("LV - Weight"));
-        m_dynp.setSourceEntity(resolveEntity("LV - Dynamic Pressure"));
+        m_drag.setSourceEntity(resolveEntity(c_drag_force_ent_label));
+        m_weight.setSourceEntity(resolveEntity(c_weight_ent_label));
+        m_dynp.setSourceEntity(resolveEntity(c_dynp_ent_label));
       }
 
       void
