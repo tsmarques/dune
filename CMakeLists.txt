@@ -1,5 +1,5 @@
 ############################################################################
-# Copyright 2007-2017 Universidade do Porto - Faculdade de Engenharia      #
+# Copyright 2007-2019 Universidade do Porto - Faculdade de Engenharia      #
 # Laboratório de Sistemas e Tecnologia Subaquática (LSTS)                  #
 ############################################################################
 # This file is part of DUNE: Unified Navigation Environment.               #
@@ -28,11 +28,16 @@
 ############################################################################
 
 # Validate CMake version.
-cmake_minimum_required(VERSION 2.6.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1 FATAL_ERROR)
 
 if(COMMAND CMAKE_POLICY)
   cmake_policy(SET CMP0003 NEW)
 endif(COMMAND CMAKE_POLICY)
+
+# Required C++ Standard.
+set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(cmake/Toolchain.cmake)
 
@@ -43,11 +48,11 @@ project("DUNE")
 set(PROJECT_NAME "DUNE: Unified Navigation Environment")
 set(PROJECT_SHORT_NAME "DUNE")
 set(PROJECT_VENDOR "Universidade do Porto - LSTS")
-set(PROJECT_COPYRIGHT "Copyright (C) 2007-2017 - ${PROJECT_VENDOR}")
+set(PROJECT_COPYRIGHT "Copyright (C) 2007-2019 - ${PROJECT_VENDOR}")
 set(PROJECT_CONTACT "DUNE <dune@lsts.pt>")
-set(PROJECT_VERSION_YEAR  "2017")
-set(PROJECT_VERSION_MONTH "01")
-set(PROJECT_VERSION_PATCH "0")
+set(PROJECT_VERSION_YEAR  "2019")
+set(PROJECT_VERSION_MONTH "02")
+set(PROJECT_VERSION_PATCH "1")
 set(PROJECT_VERSION_RCN   "0")
 
 # Version formats.
