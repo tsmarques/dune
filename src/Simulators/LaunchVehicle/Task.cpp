@@ -239,6 +239,10 @@ namespace Simulators
         {
           m_motor->trigger();
           m_trigger_msec = Time::Clock::getSinceEpochMsec();
+          m_drag.value = 0;
+          m_sstate.w = 0;
+          m_sstate.height = 0;
+          m_dynp.value = 0;
           return;
         }
 
@@ -409,12 +413,12 @@ namespace Simulators
       {
         if (!m_motor->isActive() && m_valid_thrust_curve)
         {
-          m_motor->trigger();
-          m_trigger_msec = Time::Clock::getSinceEpochMsec();
-          m_drag.value = 0;
-          m_sstate.w = 0;
-          m_sstate.height = 0;
-          m_dynp.value = 0;
+          IMC::SetThrusterActuation ignition;
+          ignition.value = 1;
+          ignition.setDestination(getSystemId());
+
+          dispatch(ignition, DF_LOOP_BACK);
+          return;
         }
 
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
