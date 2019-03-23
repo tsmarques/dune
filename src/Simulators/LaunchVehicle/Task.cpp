@@ -87,6 +87,9 @@ namespace Simulators
     //! Dynamic pressure entity label
     static const char* c_dynp_ent_label = "LV - Dynamic Pressure";
 
+    //! Thrust force entity label
+    static const char* c_thrust_ent_label = "LV - Thrust";
+
     //! %LaunchVehicle simulator task
     struct Task: public Tasks::Periodic
     {
@@ -94,8 +97,6 @@ namespace Simulators
       double tstep_sec;
       //! Motor(s) used by the launcher
       Motor* m_motor;
-      //! Motors' entity labels
-      std::vector<std::string> m_motor_labels;
       //! If task was given a valid description of the thrust curve
       bool m_valid_thrust_curve;
       //! Thrust produced by this engine/motor
@@ -178,14 +179,7 @@ namespace Simulators
       void
       onEntityReservation(void)
       {
-        for (int i = 0; i < m_args.n_motors; ++i)
-        {
-          std::string motor_label = String::str("%s - %d", m_args.motor_name.c_str(), i);
-          m_motor_labels.push_back(motor_label);
-          reserveEntity(motor_label);
-          debug("Reserving %s", motor_label.c_str());
-        }
-
+        reserveEntity(c_thrust_ent_label);
         reserveEntity(c_drag_force_ent_label);
         reserveEntity(c_weight_ent_label);
         reserveEntity(c_dynp_ent_label);
@@ -194,6 +188,7 @@ namespace Simulators
       void
       onEntityResolution(void)
       {
+        m_thrust.setSourceEntity(resolveEntity(c_thrust_ent_label));
         m_drag.setSourceEntity(resolveEntity(c_drag_force_ent_label));
         m_weight.setSourceEntity(resolveEntity(c_weight_ent_label));
         m_dynp.setSourceEntity(resolveEntity(c_dynp_ent_label));
@@ -215,7 +210,6 @@ namespace Simulators
       void
       onResourceInitialization(void)
       {
-        m_motor_labels.reserve(m_args.n_motors);
         m_valid_thrust_curve = m_motor->parseThrustCurve();
 
         Status::Code status = m_valid_thrust_curve ? Status::CODE_ACTIVE : Status::CODE_IDLE;
@@ -433,13 +427,7 @@ namespace Simulators
         m_dynp.value = 0.5 * m_args.atmos_density * std::pow(m_sstate.w, 2);
         m_drag.value = (m_args.coeff_drag * m_args.area * m_dynp.value);
 
-        // dispatch states
-        for (int i = 0; i < m_args.n_motors; ++i)
-        {
-          m_thrust.setSourceEntity(resolveEntity(m_motor_labels[i]));
-          dispatch(m_thrust);
-        }
-
+        dispatch(m_thrust);
         dispatch(m_sstate);
         dispatch(m_drag);
         dispatch(m_weight);
