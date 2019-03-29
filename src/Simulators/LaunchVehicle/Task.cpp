@@ -282,11 +282,11 @@ namespace Simulators
       //! m - Current launcher's total mass
       //! g - Gravity constant
       fp32_t
-      dv_dt(const float& v, const float& t_sec, const float& mass)
+      dv_dt(const float& v, const float& t_sec, const float& mass, const float& height)
       {
         float thrust = m_motor->computeEngineThrust(t_sec);
         float accel_thrust = thrust / mass;
-        float accel_drag = (0.5 * m_args.coeff_drag * m_args.atmos_density * m_args.area * std::pow(v, 2)) / mass;
+        float accel_drag = (0.5 * m_args.coeff_drag * computeAtmosphericDensity(height) * m_args.area * std::pow(v, 2)) / mass;
 
         // should be opposite to velocity
         accel_drag = accel_drag * (v >= 0 ? 1 : -1);
@@ -344,10 +344,10 @@ namespace Simulators
         size_t step = 0;
         while (step < t_steps.capacity())
         {
-          float k1 = dv_dt(m_sstate.w, t0[step], m_mass);
-          float k2 = dv_dt(m_sstate.w + k1 * 0.5, t0[step] + (0.5 * dt[step]), m_mass);
-          float k3 = dv_dt(m_sstate.w + k2 * 0.5, t0[step] + (0.5 * dt[step]), m_mass);
-          float k4 = dv_dt(m_sstate.w + k3 * dt[step], t0[step] + dt[step], m_mass);
+          float k1 = dv_dt(m_sstate.w, t0[step], m_mass, m_sstate.height);
+          float k2 = dv_dt(m_sstate.w + k1 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_sstate.height);
+          float k3 = dv_dt(m_sstate.w + k2 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_sstate.height);
+          float k4 = dv_dt(m_sstate.w + k3 * dt[step], t0[step] + dt[step], m_mass, m_sstate.height);
 
           m_sstate.w = m_sstate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0);
           m_sstate.height = m_sstate.height + m_sstate.w * dt[step];
@@ -381,7 +381,7 @@ namespace Simulators
         updateState(curr_time_sec);
 
         m_weight.value = m_args.gravity * m_mass;
-        m_dynp.value = 0.5 * m_args.atmos_density * std::pow(m_sstate.w, 2);
+        m_dynp.value = 0.5 * computeAtmosphericDensity(m_sstate.height) * std::pow(m_sstate.w, 2);
         m_drag.value = (m_args.coeff_drag * m_args.area * m_dynp.value);
 
         dispatch(m_thrust);
