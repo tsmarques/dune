@@ -109,6 +109,7 @@ namespace Simulators
       IMC::Pressure m_dynp;
       //! Epoch Time, in milliseconds, at which this motor was triggered
       uint64_t m_trigger_msec;
+      //! Simulated state to dispatch
       IMC::SimulatedState m_sstate;
       //! Previous timestep in seconds
       float m_prev_time_sec;
@@ -235,7 +236,20 @@ namespace Simulators
         if (!m_valid_thrust_curve)
           return;
 
-        if (!m_motor->isActive() && std::abs(msg->value) == 1)
+        if (msg->value == 0)
+        {
+          war("can't stop a solid motor");
+          return;
+        }
+
+        if (msg->value <= 0)
+        {
+          war("Invalid thrust %f for a solid motor", msg->value);
+          return;
+        }
+
+        //! Solid motor: we just care about triggering (1)
+        if (!m_motor->isActive() && msg->value == 1)
         {
           m_motor->trigger();
           m_trigger_msec = Time::Clock::getSinceEpochMsec();
@@ -245,10 +259,6 @@ namespace Simulators
           m_dynp.value = 0;
           return;
         }
-
-        //! Solid motor: we just care about triggering (1)
-        war("Invalid thrust %f for a solid motor", msg->value);
-        (void) msg;
       }
 
       float
