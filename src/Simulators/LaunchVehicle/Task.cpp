@@ -117,6 +117,10 @@ namespace Simulators
       float m_mass;
       //! Take off event has happened
       bool lift_off;
+      //! Current drag coefficient
+      float curr_drag_coeff;
+      //! Current reference area
+      float curr_ref_area;
       //! Task arguments
       Arguments m_args;
 
@@ -205,6 +209,9 @@ namespace Simulators
           war("No thrust curve found");
           return;
         }
+
+        curr_drag_coeff = m_args.coeff_drag;
+        curr_ref_area = m_args.area;
       }
 
       //! Initialize resources.
@@ -296,7 +303,7 @@ namespace Simulators
       {
         float thrust = m_motor->computeEngineThrust(t_sec);
         float accel_thrust = thrust / mass;
-        float accel_drag = (0.5 * m_args.coeff_drag * computeAtmosphericDensity(height) * m_args.area * std::pow(v, 2)) / mass;
+        float accel_drag = (0.5 * curr_drag_coeff * computeAtmosphericDensity(height) * curr_ref_area * std::pow(v, 2)) / mass;
 
         // should be opposite to velocity
         accel_drag = accel_drag * (v >= 0 ? 1 : -1);
@@ -392,7 +399,7 @@ namespace Simulators
 
         m_weight.value = m_args.gravity * m_mass;
         m_dynp.value = 0.5 * computeAtmosphericDensity(m_sstate.height) * std::pow(m_sstate.w, 2);
-        m_drag.value = (m_args.coeff_drag * m_args.area * m_dynp.value);
+        m_drag.value = (curr_drag_coeff * curr_ref_area * m_dynp.value);
 
         dispatch(m_thrust);
         dispatch(m_sstate);
