@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 45c0e65fd4d14d2ba8898bc01a1d8928                            *
+// IMC XML MD5: c659e4d5ac49839c6943e6b96ceedb88                            *
 //***************************************************************************
 
 // ISO C++ 98 headers.
@@ -26471,6 +26471,62 @@ namespace DUNE
       IMC::toJSON(os__, "ch14", ch14, nindent__);
       IMC::toJSON(os__, "ch15", ch15, nindent__);
       IMC::toJSON(os__, "ch16", ch16, nindent__);
+    }
+
+    FlightEvent::FlightEvent(void)
+    {
+      m_header.mgid = 909;
+      clear();
+    }
+
+    void
+    FlightEvent::clear(void)
+    {
+      type = 0;
+    }
+
+    bool
+    FlightEvent::fieldsEqual(const Message& msg__) const
+    {
+      const IMC::FlightEvent& other__ = static_cast<const FlightEvent&>(msg__);
+      if (type != other__.type) return false;
+      return true;
+    }
+
+    int
+    FlightEvent::validate(void) const
+    {
+      return true;
+    }
+
+    uint8_t*
+    FlightEvent::serializeFields(uint8_t* bfr__) const
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(type, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    FlightEvent::deserializeFields(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(type, bfr__, size__);
+      return bfr__ - start__;
+    }
+
+    uint16_t
+    FlightEvent::reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(type, bfr__, size__);
+      return bfr__ - start__;
+    }
+
+    void
+    FlightEvent::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
+    {
+      IMC::toJSON(os__, "type", type, nindent__);
     }
 
     TotalMagIntensity::TotalMagIntensity(void)

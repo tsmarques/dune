@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 45c0e65fd4d14d2ba8898bc01a1d8928                            *
+// IMC XML MD5: c659e4d5ac49839c6943e6b96ceedb88                            *
 //***************************************************************************
 
 MESSAGE(1, EntityState)
@@ -340,5 +340,6 @@ MESSAGE(905, Tachograph)
 MESSAGE(906, ApmStatus)
 MESSAGE(907, SadcReadings)
 MESSAGE(908, DmsDetection)
+MESSAGE(909, FlightEvent)
 MESSAGE(2006, TotalMagIntensity)
 #undef MESSAGE

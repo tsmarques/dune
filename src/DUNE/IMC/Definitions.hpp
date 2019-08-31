@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 45c0e65fd4d14d2ba8898bc01a1d8928                            *
+// IMC XML MD5: c659e4d5ac49839c6943e6b96ceedb88                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -24971,6 +24971,88 @@ namespace DUNE
       getFixedSerializationSize(void) const
       {
         return 64;
+      }
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+    };
+
+    //! Flight Event.
+    class FlightEvent: public Message
+    {
+    public:
+      //! Type.
+      enum TypeEnum
+      {
+        //! Idle.
+        FLEV_IDLE = 0,
+        //! Ignition.
+        FLEV_IGNITION = 1,
+        //! Lift Off.
+        FLEV_LIFTOFF = 2,
+        //! Maximum Dynamic Pressure.
+        FLEV_MAX_Q = 3,
+        //! Coasting.
+        FLEV_COASTING = 4,
+        //! Apogee.
+        FLEV_APOGEE = 5,
+        //! Recovery.
+        FLEV_RECOVERY = 6,
+        //! Touchdown.
+        FLEV_TOUCHDOWN = 7
+      };
+
+      //! Type.
+      uint8_t type;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 909;
+      }
+
+      FlightEvent(void);
+
+      FlightEvent*
+      clone(void) const
+      {
+        return new FlightEvent(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return FlightEvent::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "FlightEvent";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 1;
       }
 
       void

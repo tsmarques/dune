@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 45c0e65fd4d14d2ba8898bc01a1d8928                            *
+// IMC XML MD5: c659e4d5ac49839c6943e6b96ceedb88                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_MACROS_HPP_INCLUDED_
@@ -652,6 +652,8 @@
 #define DUNE_IMC_SADCREADINGS 907
 //! DmsDetection identification number.
 #define DUNE_IMC_DMSDETECTION 908
+//! FlightEvent identification number.
+#define DUNE_IMC_FLIGHTEVENT 909
 //! TotalMagIntensity identification number.
 #define DUNE_IMC_TOTALMAGINTENSITY 2006
 
