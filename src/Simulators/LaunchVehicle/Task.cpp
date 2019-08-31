@@ -73,6 +73,12 @@ namespace Simulators
       float area;
       //! Atmospheric density
       float atmos_density;
+      //! parachute's cross sectional area
+      float parachute_area;
+      //! Parachute's mass in kg
+      float parachute_mass;
+      //! Parachute's deployment delay after apogee
+      float parachute_delay;
     };
 
     //! Atmosphere's "Scale height"
@@ -121,6 +127,8 @@ namespace Simulators
       float curr_drag_coeff;
       //! Current reference area
       float curr_ref_area;
+      //! Parachute time trigger
+      Time::Counter<double> m_parachute_wdg;
       //! Task arguments
       Arguments m_args;
 
@@ -131,7 +139,8 @@ namespace Simulators
         m_valid_thrust_curve(false),
         m_trigger_msec(0),
         m_prev_time_sec(0),
-        lift_off(false)
+        lift_off(false),
+        m_parachute_wdg()
       {
         param("Number Of Motors", m_args.n_motors)
         .defaultValue("1")
@@ -176,6 +185,21 @@ namespace Simulators
         .defaultValue("1.225")
         .units(Units::KilogramPerCubicMeter)
         .description("Atmospheric density at sea-level, kg/m^3");
+
+        param("Parachute -- Area", m_args.parachute_area)
+        .defaultValue("0.289")
+        .description("Parachute's reference area in m^2");
+
+        param("Parachute -- Mass", m_args.parachute_mass)
+        .defaultValue("0.062")
+        .units(Units::Kilogram)
+        .description("Parachute's mass in kg");
+
+        param("Parachute -- Delay", m_args.parachute_delay)
+        .defaultValue("5")
+        .units(Units::Second)
+        .description("Time, in seconds, after apogee to deploy the parachute"
+                    "If deployment is not time based set this value as 0");
 
         // Register consumers.
         bind<IMC::SetThrusterActuation>(this);
@@ -266,6 +290,31 @@ namespace Simulators
           m_dynp.value = 0;
           return;
         }
+      }
+
+      void
+      consume(const IMC::FlightEvent* event)
+      {
+          if (event->type != FlightEvent::FLEV_RECOVERY)
+              return;
+
+          if(m_args.parachute_delay == 0)
+              return;
+
+          m_parachute_wdg.setTop(m_args.parachute_delay);
+      }
+
+      void
+      checkParachuteTrigger()
+      {
+          if(m_args.parachute_delay == 0 || m_parachute_wdg.getTop() == 0)
+              return;
+
+          if (m_parachute_wdg.overflow())
+          {
+              m_parachute_wdg.setTop(0);
+              curr_ref_area += m_args.parachute_area;
+          }
       }
 
       float
@@ -392,8 +441,9 @@ namespace Simulators
         }
 
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
+        checkParachuteTrigger();
 
-        m_mass = m_args.dry_mass + m_args.prop_mass + m_args.motor_mass;
+        m_mass = m_args.dry_mass + m_args.prop_mass + m_args.motor_mass + m_args.parachute_mass;
         updateThrust(curr_time_sec);
         updateState(curr_time_sec);
 
@@ -406,6 +456,7 @@ namespace Simulators
         dispatch(m_drag);
         dispatch(m_weight);
         dispatch(m_dynp);
+
         m_prev_time_sec = curr_time_sec;
       }
     };
