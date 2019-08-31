@@ -67,7 +67,7 @@ namespace Simulators
       // previous data points
       float yn1 = 0;
       float xn1 = 0;
-      for (std::string line : m_thrust_curve_def)
+      for (const std::string& line : m_thrust_curve_def)
       {
         float xn;
         float yn;
