@@ -262,20 +262,20 @@ namespace Simulators
 
         if (paramChanged(m_args.initial_lat))
         {
-            m_initial_fix.lat = m_args.initial_lat;
-            m_sstate.lat = m_initial_fix.lat;
+          m_initial_fix.lat = m_args.initial_lat;
+          m_sstate.lat = m_initial_fix.lat;
         }
 
         if (paramChanged(m_args.initial_lon))
         {
-            m_initial_fix.lon = m_args.initial_lon;
-            m_sstate.lon = m_initial_fix.lon;
+          m_initial_fix.lon = m_args.initial_lon;
+          m_sstate.lon = m_initial_fix.lon;
         }
 
         if (paramChanged(m_args.initial_height))
         {
-            m_initial_fix.height = m_args.initial_height;
-            m_sstate.height = m_args.initial_height;
+          m_initial_fix.height = m_args.initial_height;
+          m_sstate.height = m_args.initial_height;
         }
       }
 
@@ -336,26 +336,26 @@ namespace Simulators
       void
       consume(const IMC::FlightEvent* event)
       {
-          if (event->type != FlightEvent::FLEV_RECOVERY)
-              return;
+        if (event->type != FlightEvent::FLEV_RECOVERY)
+          return;
 
-          if(m_args.parachute_delay == 0)
-              return;
+        if(m_args.parachute_delay == 0)
+          return;
 
-          m_parachute_wdg.setTop(m_args.parachute_delay);
+        m_parachute_wdg.setTop(m_args.parachute_delay);
       }
 
       void
       checkParachuteTrigger()
       {
-          if(m_args.parachute_delay == 0 || m_parachute_wdg.getTop() == 0)
-              return;
+        if(m_args.parachute_delay == 0 || m_parachute_wdg.getTop() == 0)
+          return;
 
-          if (m_parachute_wdg.overflow())
-          {
-              m_parachute_wdg.setTop(0);
-              curr_ref_area += m_args.parachute_area;
-          }
+        if (m_parachute_wdg.overflow())
+        {
+          m_parachute_wdg.setTop(0);
+          curr_ref_area += m_args.parachute_area;
+        }
       }
 
       float
