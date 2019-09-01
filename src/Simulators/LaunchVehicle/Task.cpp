@@ -73,6 +73,12 @@ namespace Simulators
       float area;
       //! Atmospheric density
       float atmos_density;
+      //! LV's initial latitude in radians
+      double initial_lat;
+      //! LV's initial longitude in radians
+      double initial_lon;
+      //! LV's initial height in meters
+      float initial_height;
       //! parachute's cross sectional area
       float parachute_area;
       //! Parachute's mass in kg
@@ -117,6 +123,8 @@ namespace Simulators
       uint64_t m_trigger_msec;
       //! Simulated state to dispatch
       IMC::SimulatedState m_sstate;
+      //! Initial GPS state
+      IMC::GpsFix m_initial_fix;
       //! Previous timestep in seconds
       float m_prev_time_sec;
       //! Current mass of the launcher
@@ -186,6 +194,21 @@ namespace Simulators
         .units(Units::KilogramPerCubicMeter)
         .description("Atmospheric density at sea-level, kg/m^3");
 
+        param("Initial Latitude", m_args.initial_lat)
+        .defaultValue("0.4992520593366")
+        .units(Units::Radian)
+        .description("Initial latitude in radians");
+
+        param("Initial Longitude", m_args.initial_lon)
+        .defaultValue("-1.40678083")
+        .units(Units::Radian)
+        .description("Initial longitude in radians");
+
+        param("Initial Height", m_args.initial_height)
+        .defaultValue("0.0")
+        .units(Units::Meter)
+        .description("Initial height in meters");
+
         param("Parachute -- Area", m_args.parachute_area)
         .defaultValue("0.289")
         .description("Parachute's reference area in m^2");
@@ -236,6 +259,24 @@ namespace Simulators
 
         curr_drag_coeff = m_args.coeff_drag;
         curr_ref_area = m_args.area;
+
+        if (paramChanged(m_args.initial_lat))
+        {
+            m_initial_fix.lat = m_args.initial_lat;
+            m_sstate.lat = m_initial_fix.lat;
+        }
+
+        if (paramChanged(m_args.initial_lon))
+        {
+            m_initial_fix.lon = m_args.initial_lon;
+            m_sstate.lon = m_initial_fix.lon;
+        }
+
+        if (paramChanged(m_args.initial_height))
+        {
+            m_initial_fix.height = m_args.initial_height;
+            m_sstate.height = m_args.initial_height;
+        }
       }
 
       //! Initialize resources.
@@ -286,7 +327,7 @@ namespace Simulators
           m_trigger_msec = Time::Clock::getSinceEpochMsec();
           m_drag.value = 0;
           m_sstate.w = 0;
-          m_sstate.height = 0;
+          m_sstate.height = m_args.initial_height;
           m_dynp.value = 0;
           return;
         }
@@ -420,16 +461,27 @@ namespace Simulators
           ++step;
         }
 
-        if (m_sstate.height <= 0)
+        if (m_sstate.height <= m_args.initial_height)
         {
-          m_sstate.height = 0;
+          m_sstate.height = m_args.initial_height;
           m_sstate.w = 0;
         }
       }
 
       void
+      setInitialConditions()
+      {
+        if (tstep_sec != 0)
+          return;
+
+        dispatch(m_initial_fix);
+        dispatch(m_sstate);
+      }
+
+      void
       task(void)
       {
+        setInitialConditions();
         if (!m_motor->isActive() && m_valid_thrust_curve)
         {
           IMC::SetThrusterActuation ignition;
