@@ -137,6 +137,8 @@ namespace Simulators
       float curr_ref_area;
       //! Parachute time trigger
       Time::Counter<double> m_parachute_wdg;
+      //! Flag if initial simulation conditions were set
+      bool m_initial_condition;
       //! Task arguments
       Arguments m_args;
 
@@ -148,7 +150,8 @@ namespace Simulators
         m_trigger_msec(0),
         m_prev_time_sec(0),
         lift_off(false),
-        m_parachute_wdg()
+        m_parachute_wdg(),
+        m_initial_condition(false)
       {
         param("Number Of Motors", m_args.n_motors)
         .defaultValue("1")
@@ -471,9 +474,10 @@ namespace Simulators
       void
       setInitialConditions()
       {
-        if (tstep_sec != 0)
+        if (!m_initial_condition)
           return;
 
+        m_initial_condition = true;
         dispatch(m_initial_fix);
         dispatch(m_sstate);
       }
