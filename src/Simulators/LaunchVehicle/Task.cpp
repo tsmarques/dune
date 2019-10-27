@@ -102,6 +102,9 @@ namespace Simulators
     //! Thrust force entity label
     static const char* c_thrust_ent_label = "LV - Thrust";
 
+    //! Entity label to dispatch navigation messages
+    static const char* c_navigation_ent_label = "Navigation";
+
     //! %LaunchVehicle simulator task
     struct Task: public Tasks::Periodic
     {
@@ -123,6 +126,8 @@ namespace Simulators
       uint64_t m_trigger_msec;
       //! Simulated state to dispatch
       IMC::SimulatedState m_sstate;
+      //! Navigation data
+      IMC::EstimatedState m_estate;
       //! Initial GPS state
       IMC::GpsFix m_initial_fix;
       //! Previous timestep in seconds
@@ -238,6 +243,7 @@ namespace Simulators
         reserveEntity(c_drag_force_ent_label);
         reserveEntity(c_weight_ent_label);
         reserveEntity(c_dynp_ent_label);
+        reserveEntity(c_navigation_ent_label);
       }
 
       void
@@ -247,6 +253,7 @@ namespace Simulators
         m_drag.setSourceEntity(resolveEntity(c_drag_force_ent_label));
         m_weight.setSourceEntity(resolveEntity(c_weight_ent_label));
         m_dynp.setSourceEntity(resolveEntity(c_dynp_ent_label));
+        m_estate.setSourceEntity(resolveEntity(c_navigation_ent_label));
       }
 
       void
@@ -266,19 +273,19 @@ namespace Simulators
         if (paramChanged(m_args.initial_lat))
         {
           m_initial_fix.lat = m_args.initial_lat;
-          m_sstate.lat = m_initial_fix.lat;
+          m_estate.lat = m_initial_fix.lat;
         }
 
         if (paramChanged(m_args.initial_lon))
         {
           m_initial_fix.lon = m_args.initial_lon;
-          m_sstate.lon = m_initial_fix.lon;
+          m_estate.lon = m_initial_fix.lon;
         }
 
         if (paramChanged(m_args.initial_height))
         {
           m_initial_fix.height = m_args.initial_height;
-          m_sstate.height = m_args.initial_height;
+          m_estate.height = m_args.initial_height;
         }
       }
 
@@ -329,8 +336,8 @@ namespace Simulators
           m_motor->trigger();
           m_trigger_msec = Time::Clock::getSinceEpochMsec();
           m_drag.value = 0;
-          m_sstate.w = 0;
-          m_sstate.height = m_args.initial_height;
+          m_estate.w = 0;
+          m_estate.height = m_args.initial_height;
           m_dynp.value = 0;
           return;
         }
@@ -454,20 +461,20 @@ namespace Simulators
         size_t step = 0;
         while (step < t_steps.capacity())
         {
-          float k1 = dv_dt(m_sstate.w, t0[step], m_mass, m_sstate.height);
-          float k2 = dv_dt(m_sstate.w + k1 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_sstate.height);
-          float k3 = dv_dt(m_sstate.w + k2 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_sstate.height);
-          float k4 = dv_dt(m_sstate.w + k3 * dt[step], t0[step] + dt[step], m_mass, m_sstate.height);
+          float k1 = dv_dt(m_estate.w, t0[step], m_mass, m_estate.height);
+          float k2 = dv_dt(m_estate.w + k1 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_estate.height);
+          float k3 = dv_dt(m_estate.w + k2 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_estate.height);
+          float k4 = dv_dt(m_estate.w + k3 * dt[step], t0[step] + dt[step], m_mass, m_estate.height);
 
-          m_sstate.w = m_sstate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0);
-          m_sstate.height = m_sstate.height + m_sstate.w * dt[step];
+          m_estate.w = m_estate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0);
+          m_estate.height = m_estate.height + m_estate.w * dt[step];
           ++step;
         }
 
-        if (m_sstate.height <= m_args.initial_height)
+        if (m_estate.height <= m_args.initial_height)
         {
-          m_sstate.height = m_args.initial_height;
-          m_sstate.w = 0;
+          m_estate.height = m_args.initial_height;
+          m_estate.w = 0;
         }
       }
 
@@ -479,6 +486,17 @@ namespace Simulators
 
         m_initial_condition = true;
         dispatch(m_initial_fix);
+        dispatch(m_estate);
+      }
+
+      void
+      updateSimulation(void)
+      {
+        m_sstate.lat = m_estate.lat;
+        m_sstate.lon = m_estate.lon;
+        m_sstate.w = m_estate.w;
+        m_sstate.height = m_estate.height;
+
         dispatch(m_sstate);
       }
 
@@ -504,14 +522,16 @@ namespace Simulators
         updateState(curr_time_sec);
 
         m_weight.value = m_args.gravity * m_mass;
-        m_dynp.value = 0.5 * computeAtmosphericDensity(m_sstate.height) * std::pow(m_sstate.w, 2);
+        m_dynp.value = 0.5 * computeAtmosphericDensity(m_estate.height) * std::pow(m_estate.w, 2);
         m_drag.value = (curr_drag_coeff * curr_ref_area * m_dynp.value);
 
         dispatch(m_thrust);
-        dispatch(m_sstate);
+        dispatch(m_estate);
         dispatch(m_drag);
         dispatch(m_weight);
         dispatch(m_dynp);
+
+        updateSimulation();
 
         m_prev_time_sec = curr_time_sec;
       }
