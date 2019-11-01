@@ -79,6 +79,8 @@ namespace Simulators
       double initial_lon;
       //! LV's initial height in meters
       float initial_height;
+      //! Parachute's drag coefficient
+      float parachute_drag_coeff;
       //! parachute's cross sectional area
       float parachute_area;
       //! Parachute's mass in kg
@@ -140,8 +142,6 @@ namespace Simulators
       float curr_drag_coeff;
       //! Current reference area
       float curr_ref_area;
-      //! Parachute time trigger
-      Time::Counter<double> m_parachute_wdg;
       //! Flag if initial simulation conditions were set
       bool m_initial_condition;
       //! Task arguments
@@ -155,7 +155,6 @@ namespace Simulators
         m_trigger_msec(0),
         m_prev_time_sec(0),
         lift_off(false),
-        m_parachute_wdg(),
         m_initial_condition(false)
       {
         param("Number Of Motors", m_args.n_motors)
@@ -217,23 +216,22 @@ namespace Simulators
         .units(Units::Meter)
         .description("Initial height in meters");
 
+        param("Parachute -- Drag Coefficient", m_args.parachute_drag_coeff)
+        .defaultValue("1.5")
+        .description("Parachute's drag coefficient when open");
+
         param("Parachute -- Area", m_args.parachute_area)
-        .defaultValue("0.289")
-        .description("Parachute's reference area in m^2");
+        .defaultValue("2.064")
+        .description("Parachute's projected area in m^2");
 
         param("Parachute -- Mass", m_args.parachute_mass)
         .defaultValue("0.062")
         .units(Units::Kilogram)
         .description("Parachute's mass in kg");
 
-        param("Parachute -- Delay", m_args.parachute_delay)
-        .defaultValue("5")
-        .units(Units::Second)
-        .description("Time, in seconds, after apogee to deploy the parachute"
-                    "If deployment is not time based set this value as 0");
-
         // Register consumers.
         bind<IMC::SetThrusterActuation>(this);
+        bind<IMC::FlightEvent>(this);
       }
 
       void
@@ -267,8 +265,11 @@ namespace Simulators
           return;
         }
 
-        curr_drag_coeff = m_args.coeff_drag;
-        curr_ref_area = m_args.area;
+        if (paramChanged(m_args.coeff_drag))
+          curr_drag_coeff = m_args.coeff_drag;
+
+        if (paramChanged(m_args.area))
+          curr_ref_area = m_args.area;
 
         if (paramChanged(m_args.initial_lat))
         {
@@ -333,6 +334,7 @@ namespace Simulators
         //! Solid motor: we just care about triggering (1)
         if (!m_motor->isActive() && msg->value == 1)
         {
+          setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
           m_motor->trigger();
           m_trigger_msec = Time::Clock::getSinceEpochMsec();
           m_drag.value = 0;
@@ -349,23 +351,9 @@ namespace Simulators
         if (event->type != FlightEvent::FLEV_RECOVERY)
           return;
 
-        if(m_args.parachute_delay == 0)
-          return;
-
-        m_parachute_wdg.setTop(m_args.parachute_delay);
-      }
-
-      void
-      checkParachuteTrigger()
-      {
-        if(m_args.parachute_delay == 0 || m_parachute_wdg.getTop() == 0)
-          return;
-
-        if (m_parachute_wdg.overflow())
-        {
-          m_parachute_wdg.setTop(0);
-          curr_ref_area += m_args.parachute_area;
-        }
+        inf("activating parachute");
+        curr_ref_area += m_args.parachute_area;
+        curr_drag_coeff += m_args.parachute_drag_coeff;
       }
 
       float
@@ -515,7 +503,6 @@ namespace Simulators
         }
 
         float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
-        checkParachuteTrigger();
 
         m_mass = m_args.dry_mass + m_args.prop_mass + m_args.motor_mass + m_args.parachute_mass;
         updateThrust(curr_time_sec);

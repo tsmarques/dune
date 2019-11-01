@@ -53,6 +53,8 @@ namespace Supervisors
       uint16_t pressure_window_size;
       //! Window size for apogee monitor
       uint16_t altitude_window_size;
+      //! Delay in seconds
+      double parachute_delay;
     };
 
     struct Task: public DUNE::Tasks::Task
@@ -69,6 +71,8 @@ namespace Supervisors
       ApogeeMonitor* m_apogee_monitor;
       //! Entity ID for thrust messages
       unsigned int m_thrust_eid;
+      //! Timer to trigger parachute
+      Time::Counter<double> m_parachute_wdg;
       //! Task Arguments
       Arguments m_args;
 
@@ -109,6 +113,11 @@ namespace Supervisors
             .description("Accumulate this number of altitude data to make sure"
                          " we have reached apogee");
 
+        param("Parachute Delay", m_args.parachute_delay)
+            .defaultValue("10")
+            .units(Units::Second)
+            .description("Wait this much before triggering parachute recovery");
+
         m_thrust.value = 0;
         bind<IMC::Force>(this);
         bind<IMC::EstimatedState>(this);
@@ -119,7 +128,14 @@ namespace Supervisors
       void
       onEntityResolution(void)
       {
-        m_thrust_eid = resolveEntity(m_args.thrust_ent_label);
+        try
+        {
+          m_thrust_eid = resolveEntity(m_args.thrust_ent_label);
+        }
+        catch (...)
+        {
+          err("failed to resolve entity");
+        }
       }
 
       //! Acquire resources.
@@ -197,11 +213,18 @@ namespace Supervisors
 
             inf("apogee");
             m_flight_state.type = IMC::FlightEvent::FLEV_APOGEE;
+            m_parachute_wdg.setTop(m_args.parachute_delay);
             break;
           case IMC::FlightEvent::FLEV_APOGEE:
             // TODO trigger recovery timer
+            if (!m_parachute_wdg.overflow())
+              break;
+
+            inf("recovery");
+            m_flight_state.type = IMC::FlightEvent::FLEV_RECOVERY;
             break;
           case IMC::FlightEvent::FLEV_RECOVERY:
+            // do nothing ?
             break;
           default:
             war("Unknown flight event %d", m_flight_state.type);
