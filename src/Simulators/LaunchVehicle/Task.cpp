@@ -142,8 +142,6 @@ namespace Simulators
       float curr_drag_coeff;
       //! Current reference area
       float curr_ref_area;
-      //! Flag if initial simulation conditions were set
-      bool m_initial_condition;
       //! Task arguments
       Arguments m_args;
 
@@ -154,8 +152,7 @@ namespace Simulators
         m_valid_thrust_curve(false),
         m_trigger_msec(0),
         m_prev_time_sec(0),
-        lift_off(false),
-        m_initial_condition(false)
+        lift_off(false)
       {
         param("Number Of Motors", m_args.n_motors)
         .defaultValue("1")
@@ -295,6 +292,7 @@ namespace Simulators
       onResourceInitialization(void)
       {
         m_valid_thrust_curve = m_motor->parseThrustCurve();
+        setInitialConditions();
 
         Status::Code status = m_valid_thrust_curve ? Status::CODE_ACTIVE : Status::CODE_IDLE;
         IMC::EntityState::StateEnum state = m_valid_thrust_curve ? IMC::EntityState::ESTA_NORMAL : IMC::EntityState::ESTA_ERROR;
@@ -352,8 +350,8 @@ namespace Simulators
           return;
 
         inf("activating parachute");
-        curr_ref_area += m_args.parachute_area;
-        curr_drag_coeff += m_args.parachute_drag_coeff;
+        curr_ref_area = std::max(m_args.parachute_area, curr_ref_area);
+        curr_drag_coeff = std::max(m_args.parachute_drag_coeff, curr_drag_coeff);
       }
 
       float
@@ -469,12 +467,29 @@ namespace Simulators
       void
       setInitialConditions()
       {
-        if (!m_initial_condition)
-          return;
-
-        m_initial_condition = true;
         dispatch(m_initial_fix);
         dispatch(m_estate);
+
+        inf("Motor name: %s\n "
+            "Number of motors: %d\n"
+            "Dry Mass: %f\n"
+            "Motor mass: %f\n"
+            "Propellant Mass: %f\n"
+            "Drag Coefficient: %f\n"
+            "Area: %f\n"
+            "Parachute Drag Coefficient: %f\n"
+            "Parachute area: %f\n"
+            "Parachute mass: %f\n",
+            m_args.motor_name.c_str(),
+            m_args.n_motors,
+            m_args.dry_mass,
+            m_args.motor_mass,
+            m_args.prop_mass,
+            m_args.coeff_drag,
+            m_args.area,
+            m_args.parachute_drag_coeff,
+            m_args.parachute_area,
+            m_args.parachute_mass);
       }
 
       void
@@ -491,7 +506,6 @@ namespace Simulators
       void
       task(void)
       {
-        setInitialConditions();
         if (!m_motor->isActive() && m_valid_thrust_curve)
         {
           IMC::SetThrusterActuation ignition;
