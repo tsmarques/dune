@@ -401,10 +401,10 @@ namespace Simulators
       updateState(float t_sec)
       {
         // not enough to lift
-        if (m_thrust.value < m_args.gravity * m_mass && !lift_off)
+        if (m_thrust.value < m_args.gravity * m_mass && m_estate.height == 0)
           return;
 
-        if (!lift_off)
+        if (!lift_off && m_estate.height != 0)
         {
           lift_off = true;
           war("Lift off %.4f", m_thrust.value);
@@ -457,9 +457,9 @@ namespace Simulators
           ++step;
         }
 
-        if (m_estate.height <= m_args.initial_height)
+        if (m_estate.height < 0)
         {
-          m_estate.height = m_args.initial_height;
+          m_estate.height = 0;
           m_estate.w = 0;
         }
       }
