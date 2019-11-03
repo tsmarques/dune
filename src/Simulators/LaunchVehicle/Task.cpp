@@ -31,6 +31,7 @@
 
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
+#include <DUNE/Physics.hpp>
 
 #include "Motor.hpp"
 
@@ -88,9 +89,6 @@ namespace Simulators
       //! Parachute's deployment delay after apogee
       float parachute_delay;
     };
-
-    //! Atmosphere's "Scale height"
-    static const float c_atmos_scale_height = 8000;
 
     //! Drag force entity label
     static const char* c_drag_force_ent_label = "LV - Drag";
@@ -354,12 +352,6 @@ namespace Simulators
         curr_drag_coeff = std::max(m_args.parachute_drag_coeff, curr_drag_coeff);
       }
 
-      float
-      computeAtmosphericDensity(fp32_t height)
-      {
-        return m_args.atmos_density * std::exp((-height / c_atmos_scale_height));
-      }
-
       void
       updateThrust(float curr_time_sec)
       {
@@ -389,7 +381,7 @@ namespace Simulators
       {
         float thrust = m_motor->computeEngineThrust(t_sec);
         float accel_thrust = thrust / mass;
-        float accel_drag = (0.5 * curr_drag_coeff * computeAtmosphericDensity(height) * curr_ref_area * std::pow(v, 2)) / mass;
+        float accel_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_args.atmos_density, height, v) / mass;
 
         // should be opposite to velocity
         accel_drag = accel_drag * (v >= 0 ? 1 : -1);
@@ -523,8 +515,8 @@ namespace Simulators
         updateState(curr_time_sec);
 
         m_weight.value = m_args.gravity * m_mass;
-        m_dynp.value = 0.5 * computeAtmosphericDensity(m_estate.height) * std::pow(m_estate.w, 2);
-        m_drag.value = (curr_drag_coeff * curr_ref_area * m_dynp.value);
+        m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.height, m_estate.w);
+        m_drag.value = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
 
         dispatch(m_thrust);
         dispatch(m_estate);
