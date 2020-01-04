@@ -32,55 +32,51 @@
 
 #include <DUNE/DUNE.hpp>
 
-namespace DUNE
+namespace DUNE::Physics
 {
-  //! %Math routines and classes.
-  namespace Physics
+  //! Atmosphere's "Scale height"
+  const float c_atmos_scale_height = 8000;
+
+  //! Get the atmospheric density at the given height
+  //! @param[i] sea_level_dens Sea level density
+  //! @param[in] height body's height
+  inline fp64_t
+  getAtmosphericDensity(double sea_level_dens, double height)
   {
-    //! Atmosphere's "Scale height"
-    const float c_atmos_scale_height = 8000;
+    return sea_level_dens * std::exp((-height / c_atmos_scale_height));
+  }
 
-    //! Get the atmospheric density at the given height
-    //! @param[i] sea_level_dens Sea level density
-    //! @param[in] height body's height
-    inline fp64_t
-    getAtmosphericDensity(double sea_level_dens, double height)
-    {
-      return sea_level_dens * std::exp((-height / c_atmos_scale_height));
-    }
+  //! Compute the dynamic pressure of a body with the given velocity
+  //! at the given height
+  //! @param[in] height body's height
+  //! @param[i] sea_level_dens Sea level density
+  //! @param[i] vertical_velocity Body's vertical velocity
+  inline fp64_t
+  getDynamicPressure(double sea_level_dens, double height, double vertical_velocity)
+  {
+    return 0.5 * Physics::getAtmosphericDensity(sea_level_dens, height) * std::pow(vertical_velocity, 2);
+  }
 
-    //! Compute the dynamic pressure of a body with the given velocity
-    //! at the given height
-    //! @param[in] height body's height
-    //! @param[i] sea_level_dens Sea level density
-    //! @param[i] vertical_velocity Body's vertical velocity
-    inline fp64_t
-    getDynamicPressure(double sea_level_dens, double height, double vertical_velocity)
-    {
-      return 0.5 * Physics::getAtmosphericDensity(sea_level_dens, height) * std::pow(vertical_velocity, 2);
-    }
+  //! Compute the drag force from a body moving vertically through the air
+  //! @param[in] cd body's drag coefficient
+  //! @param[i] area Body's cross-sectional area
+  //! @param[in] height body's height
+  //! @param[i] sea_level_dens Sea level density
+  //! @param[i] vertical_velocity Body's vertical velocity
+  inline fp64_t
+  getDragForce(double cd, double area, double sea_level_dens, double height, double vertical_velocity)
+  {
+    return cd * area * getDynamicPressure(sea_level_dens, height, vertical_velocity);
+  }
 
-    //! Compute the drag force from a body moving vertically through the air
-    //! @param[in] cd body's drag coefficient
-    //! @param[i] area Body's cross-sectional area
-    //! @param[in] height body's height
-    //! @param[i] sea_level_dens Sea level density
-    //! @param[i] vertical_velocity Body's vertical velocity
-    inline fp64_t
-    getDragForce(double cd, double area, double sea_level_dens, double height, double vertical_velocity)
-    {
-      return cd * area * getDynamicPressure(sea_level_dens, height, vertical_velocity);
-    }
-
-    //! Compute the drag force from a body moving vertically through the air
-    //! @param[in] cd body's drag coefficient
-    //! @param[i] area Body's cross-sectional area
-    //! @param[in] dynp Current dynamic pressure
-    inline fp64_t
-    getDragForce(double cd, double area, double dynp)
-    {
-      return cd * area * dynp;
-    }
+  //! Compute the drag force from a body moving vertically through the air
+  //! @param[in] cd body's drag coefficient
+  //! @param[i] area Body's cross-sectional area
+  //! @param[in] dynp Current dynamic pressure
+  inline fp64_t
+  getDragForce(double cd, double area, double dynp)
+  {
+    return cd * area * dynp;
   }
 }
 
