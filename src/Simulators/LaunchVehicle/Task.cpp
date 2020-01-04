@@ -76,8 +76,8 @@ namespace Simulators::LaunchVehicle
     double initial_lat{};
     //! LV's initial longitude in radians
     double initial_lon{};
-    //! LV's initial height in meters
-    float initial_height{};
+    //! LV's initial altitude in meters
+    float initial_altitude{};
     //! Parachute's drag coefficient
     float parachute_drag_coeff{};
     //! parachute's cross sectional area
@@ -205,10 +205,10 @@ namespace Simulators::LaunchVehicle
           .units(Units::Radian)
           .description("Initial longitude in radians");
 
-      param("Initial Height", m_args.initial_height)
+      param("Initial Altitude", m_args.initial_altitude)
           .defaultValue("0.0")
           .units(Units::Meter)
-          .description("Initial height in meters");
+          .description("Initial altitude in meters");
 
       param("Parachute -- Drag Coefficient", m_args.parachute_drag_coeff)
           .defaultValue("1.5")
@@ -277,10 +277,10 @@ namespace Simulators::LaunchVehicle
         m_estate.lon = m_initial_fix.lon;
       }
 
-      if (paramChanged(m_args.initial_height))
+      if (paramChanged(m_args.initial_altitude))
       {
-        m_initial_fix.height = m_args.initial_height;
-        m_estate.height = m_args.initial_height;
+        m_initial_fix.altitude = m_args.initial_altitude;
+        m_estate.alt = m_args.initial_altitude;
       }
     }
 
@@ -334,7 +334,7 @@ namespace Simulators::LaunchVehicle
         m_trigger_msec = Time::Clock::getSinceEpochMsec();
         m_drag.value = 0;
         m_estate.w = 0;
-        m_estate.height = m_args.initial_height;
+        m_estate.alt = m_args.initial_altitude;
         m_dynp.value = 0;
         return;
       }
@@ -376,11 +376,11 @@ namespace Simulators::LaunchVehicle
     //! m - Current launcher's total mass
     //! g - Gravity constant
     fp32_t
-    dv_dt(const float& v, const float& t_sec, const float& mass, const float& height)
+    dv_dt(const float& v, const float& t_sec, const float& mass, const float& altitude)
     {
       float thrust = m_motor->computeEngineThrust(t_sec);
       float accel_thrust = thrust / mass;
-      float accel_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_args.atmos_density, height, v) / mass;
+      float accel_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_args.atmos_density, altitude, v) / mass;
 
       // should be opposite to velocity
       accel_drag = accel_drag * (v >= 0 ? 1 : -1);
@@ -392,10 +392,10 @@ namespace Simulators::LaunchVehicle
     updateState(float t_sec)
     {
       // not enough to lift
-      if (m_thrust.value < m_args.gravity * m_mass && m_estate.height == 0)
+      if (m_thrust.value < m_args.gravity * m_mass && m_estate.alt == 0)
         return;
 
-      if (!lift_off && m_estate.height != 0)
+      if (!lift_off && m_estate.alt != 0)
       {
         lift_off = true;
         war("Lift off %.4f", m_thrust.value);
@@ -438,19 +438,19 @@ namespace Simulators::LaunchVehicle
       size_t step = 0;
       while (step < t_steps.capacity())
       {
-        float k1 = dv_dt(m_estate.w, t0[step], m_mass, m_estate.height);
-        float k2 = dv_dt(m_estate.w + k1 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_estate.height);
-        float k3 = dv_dt(m_estate.w + k2 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_estate.height);
-        float k4 = dv_dt(m_estate.w + k3 * dt[step], t0[step] + dt[step], m_mass, m_estate.height);
+        float k1 = dv_dt(m_estate.w, t0[step], m_mass, m_estate.alt);
+        float k2 = dv_dt(m_estate.w + k1 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_estate.alt);
+        float k3 = dv_dt(m_estate.w + k2 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_estate.alt);
+        float k4 = dv_dt(m_estate.w + k3 * dt[step], t0[step] + dt[step], m_mass, m_estate.alt);
 
         m_estate.w = m_estate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0);
-        m_estate.height = m_estate.height + m_estate.w * dt[step];
+        m_estate.alt = m_estate.altitude + m_estate.w * dt[step];
         ++step;
       }
 
-      if (m_estate.height < 0)
+      if (m_estate.alt < 0)
       {
-        m_estate.height = 0;
+        m_estate.alt = 0;
         m_estate.w = 0;
       }
     }
@@ -503,7 +503,7 @@ namespace Simulators::LaunchVehicle
       updateState(curr_time_sec);
 
       m_weight.value = m_args.gravity * m_mass;
-      m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.height, m_estate.w);
+      m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
       m_drag.value = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
 
       dispatch(m_thrust);
