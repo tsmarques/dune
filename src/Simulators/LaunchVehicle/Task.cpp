@@ -122,8 +122,6 @@ namespace Simulators::LaunchVehicle
     IMC::Pressure m_dynp;
     //! Epoch Time, in milliseconds, at which this motor was triggered
     uint64_t m_trigger_msec;
-    //! Simulated state to dispatch
-    IMC::SimulatedState m_sstate;
     //! Navigation data
     IMC::EstimatedState m_estate;
     //! Initial GPS state
@@ -486,17 +484,6 @@ namespace Simulators::LaunchVehicle
     }
 
     void
-    updateSimulation()
-    {
-      m_sstate.lat = m_estate.lat;
-      m_sstate.lon = m_estate.lon;
-      m_sstate.w = m_estate.w;
-      m_sstate.height = m_estate.height;
-
-      dispatch(m_sstate);
-    }
-
-    void
     task() override
     {
       if (!m_motor->isActive() && m_valid_thrust_curve)
@@ -524,8 +511,6 @@ namespace Simulators::LaunchVehicle
       dispatch(m_drag);
       dispatch(m_weight);
       dispatch(m_dynp);
-
-      updateSimulation();
 
       m_prev_time_sec = curr_time_sec;
     }
