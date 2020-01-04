@@ -231,7 +231,7 @@ namespace Simulators::LaunchVehicle
     }
 
     void
-    onEntityReservation(void)
+    onEntityReservation() override
     {
       reserveEntity(c_thrust_ent_label);
       reserveEntity(c_drag_force_ent_label);
@@ -241,7 +241,7 @@ namespace Simulators::LaunchVehicle
     }
 
     void
-    onEntityResolution(void)
+    onEntityResolution() override
     {
       m_thrust.setSourceEntity(resolveEntity(c_thrust_ent_label));
       m_drag.setSourceEntity(resolveEntity(c_drag_force_ent_label));
@@ -251,7 +251,7 @@ namespace Simulators::LaunchVehicle
     }
 
     void
-    onUpdateParameters(void)
+    onUpdateParameters() override
     {
       tstep_sec = 1.0 / getFrequency();
 
@@ -288,7 +288,7 @@ namespace Simulators::LaunchVehicle
 
     //! Initialize resources.
     void
-    onResourceInitialization(void)
+    onResourceInitialization() override
     {
       m_valid_thrust_curve = m_motor->parseThrustCurve();
       setInitialConditions();
@@ -299,13 +299,13 @@ namespace Simulators::LaunchVehicle
     }
 
     void
-    onResourceAcquisition(void)
+    onResourceAcquisition() override
     {
       m_motor = new Motor(this, m_args.thrust_curve);
     }
 
     void
-    onResourceRelease(void)
+    onResourceRelease() override
     {
       Memory::clear(m_motor);
     }
@@ -486,7 +486,7 @@ namespace Simulators::LaunchVehicle
     }
 
     void
-    updateSimulation(void)
+    updateSimulation()
     {
       m_sstate.lat = m_estate.lat;
       m_sstate.lon = m_estate.lon;
@@ -497,7 +497,7 @@ namespace Simulators::LaunchVehicle
     }
 
     void
-    task(void)
+    task() override
     {
       if (!m_motor->isActive() && m_valid_thrust_curve)
       {
