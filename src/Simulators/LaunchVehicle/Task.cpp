@@ -148,7 +148,10 @@ namespace Simulators::LaunchVehicle
         m_valid_thrust_curve(false),
         m_trigger_msec(0),
         m_prev_time_sec(0),
-        lift_off(false)
+        m_mass(0),
+        lift_off(false),
+        curr_drag_coeff(0),
+        curr_ref_area(0)
     {
       param("Number Of Motors", m_args.n_motors)
           .defaultValue("1")
