@@ -486,6 +486,9 @@ namespace Simulators::LaunchVehicle
     void
     task() override
     {
+      if (getEntityState() != IMC::EntityState::ESTA_NORMAL)
+        return;
+
       if (!m_motor->isActive() && m_valid_thrust_curve)
       {
         IMC::SetThrusterActuation ignition;
