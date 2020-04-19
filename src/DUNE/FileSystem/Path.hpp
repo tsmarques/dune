@@ -105,8 +105,7 @@ namespace DUNE
       static Path
       applicationFile();
 
-      Path()
-      { }
+      Path () = default;
 
       Path(const char* path):
         m_path(path)

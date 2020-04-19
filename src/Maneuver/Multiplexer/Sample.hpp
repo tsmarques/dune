@@ -69,8 +69,7 @@ namespace Maneuver
         m_done(false)
       { }
 
-      ~Sample() override
-      { }
+      ~Sample () override = default;
 
       //! Start maneuver function
       //! @param[in] maneuver Sample maneuver message

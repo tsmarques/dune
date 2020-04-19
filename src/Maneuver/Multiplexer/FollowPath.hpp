@@ -53,8 +53,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~FollowPath() override
-      { }
+      ~FollowPath () override = default;
 
       //! Reset function
       void

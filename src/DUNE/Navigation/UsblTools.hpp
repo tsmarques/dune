@@ -660,8 +660,7 @@ namespace DUNE
       {
       public:
         //! Constructor.
-        Modem()
-        { }
+        Modem () = default;
 
         //! This function verifies if we are waiting for the target's reply.
         //! @param[in] name name of the target.

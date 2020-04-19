@@ -66,8 +66,7 @@ namespace Simulators
         virtual void
         process(const Item& item) = 0;
 
-        virtual
-        ~Iteration(){ }
+        virtual ~Iteration () = default;
       };
 
       //! Constructor.

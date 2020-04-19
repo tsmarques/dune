@@ -61,9 +61,7 @@ namespace DUNE
         };
 
         //! Destructor.
-        virtual
-        ~Generator()
-        { }
+        virtual ~Generator () = default;
 
         //! Maximum value returned by random()
         static const int32_t c_max_random = 0x7fffffffL;

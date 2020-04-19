@@ -111,8 +111,7 @@ namespace Sensors
       }
 
       //! Destructor
-      ~Frame83P() override
-      { }
+      ~Frame83P () override = default;
 
       //! Get data start address.
       //! @return pointer to address.

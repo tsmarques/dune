@@ -53,9 +53,7 @@ namespace DUNE
       virtual Task*
       create(std::string, Context&) = 0;
 
-      virtual
-      ~AbstractCreator()
-      { }
+      virtual ~AbstractCreator () = default;
     };
   }
 }

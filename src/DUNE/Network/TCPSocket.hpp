@@ -130,11 +130,10 @@ namespace DUNE
       doFlushInput() override;
 
       // Non - copyable.
-      TCPSocket(TCPSocket const&);
+      TCPSocket (TCPSocket const &) = delete;
 
       // Non - assignable
-      TCPSocket&
-      operator=(TCPSocket const&);
+      TCPSocket &operator= (TCPSocket const &) = delete;
 
       //! Disable SIGPIPE generation.
       void

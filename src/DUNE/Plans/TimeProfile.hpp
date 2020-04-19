@@ -73,8 +73,7 @@ namespace DUNE
           time = t;
         }
 
-        ~SpeedProfile()
-        { }
+        ~SpeedProfile () = default;
 
         void
         setTime(float t)

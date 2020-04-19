@@ -46,8 +46,7 @@ namespace DUNE
         seed(value);
       }
 
-      FSR256::~FSR256()
-      { }
+      FSR256::~FSR256 () = default;
 
       int32_t
       FSR256::random()

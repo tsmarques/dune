@@ -72,11 +72,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      Mutex(const Mutex&);
+      Mutex (const Mutex &) = delete;
 
       // Non - assignable
-      Mutex&
-      operator=(const Mutex&);
+      Mutex &operator= (const Mutex &) = delete;
     };
   }
 }

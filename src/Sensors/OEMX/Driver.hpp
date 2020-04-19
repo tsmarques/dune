@@ -73,8 +73,7 @@ namespace Sensors
         m_timeout_uart = 1.0f;;
       }
 
-      ~DriverOEMX()
-      {}
+      ~DriverOEMX () = default;
 
       bool
       initCTD(int numberSamples)

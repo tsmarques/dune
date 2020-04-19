@@ -94,11 +94,10 @@ namespace DUNE
       generateName();
 
       //! Non-copyable.
-      SharedMemory(const SharedMemory&);
+      SharedMemory (const SharedMemory &) = delete;
 
       //! Non - assignable
-      SharedMemory&
-      operator=(const SharedMemory&);
+      SharedMemory &operator= (const SharedMemory &) = delete;
     };
   }
 }

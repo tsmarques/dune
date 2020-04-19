@@ -50,8 +50,7 @@ namespace DUNE
       bind<IMC::RemoteState>(this);
     }
 
-    VehicleFormation::~VehicleFormation()
-    { }
+    VehicleFormation::~VehicleFormation () = default;
 
     void
     VehicleFormation::onUpdateParameters()

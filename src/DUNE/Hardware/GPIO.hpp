@@ -83,10 +83,10 @@ namespace DUNE
 
     private:
       //! Disallow copy constructor.
-      GPIO(const GPIO&);
+      GPIO (const GPIO &) = delete;
 
       //! Disallow copy assignment.
-      GPIO& operator=(const GPIO&);
+      GPIO &operator= (const GPIO &) = delete;
 
       //! GPIO number.
       unsigned int m_number;

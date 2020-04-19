@@ -42,12 +42,11 @@ namespace DUNE
 {
   namespace Streams
   {
-    OutputMultiplexerBuffer::OutputMultiplexerBuffer()
-    { }
+  OutputMultiplexerBuffer::OutputMultiplexerBuffer () = default;
 
-    OutputMultiplexerBuffer::OutputMultiplexerBuffer(std::ostream* stream)
-    {
-      m_streams.push_back(stream);
+  OutputMultiplexerBuffer::OutputMultiplexerBuffer (std::ostream *stream)
+  {
+    m_streams.push_back (stream);
     }
 
     OutputMultiplexerBuffer::~OutputMultiplexerBuffer()

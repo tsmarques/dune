@@ -199,8 +199,8 @@ namespace Transports
         m_parent->dispatch(m);
       }
 
-      ~Router()
-      { }
+      ~Router () = default;
+
     private:
       Task* m_parent;
       std::map<std::string, double> m_acousticVisibility;

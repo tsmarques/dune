@@ -60,8 +60,7 @@ namespace DUNE
       .description("Enable verbose output regarding outgoing messages");
     }
 
-    SimpleTransport::~SimpleTransport()
-    { }
+    SimpleTransport::~SimpleTransport () = default;
 
     void
     SimpleTransport::consume(const IMC::Message* msg)

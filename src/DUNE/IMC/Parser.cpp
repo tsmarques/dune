@@ -40,8 +40,7 @@ namespace DUNE
       reset();
     }
 
-    Parser::~Parser()
-    { }
+    Parser::~Parser () = default;
 
     void
     Parser::reset()

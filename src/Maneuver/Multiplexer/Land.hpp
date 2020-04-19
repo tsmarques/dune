@@ -137,8 +137,7 @@ namespace Maneuver
         m_task->dispatch(m_land);
       }
 
-      ~Land() override
-      { }
+      ~Land () override = default;
 
     private:
       //! Desired Path message

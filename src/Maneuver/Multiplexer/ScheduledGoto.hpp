@@ -203,8 +203,7 @@ namespace Maneuver
         return speed;
       }
 
-      ~ScheduledGoto() override
-      { }
+      ~ScheduledGoto () override = default;
 
     private:
       //! Timer counter to update speed

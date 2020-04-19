@@ -80,11 +80,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      Condition(Condition const&);
+      Condition (Condition const &) = delete;
 
       // Non - assignable
-      Condition&
-      operator=(Condition const&);
+      Condition &operator= (Condition const &) = delete;
     };
   }
 }

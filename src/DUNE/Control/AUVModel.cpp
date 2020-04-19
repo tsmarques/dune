@@ -61,8 +61,7 @@ namespace DUNE
     }
 
     //! Destructor.
-    AUVModel::~AUVModel()
-    { }
+    AUVModel::~AUVModel () = default;
 
     Matrix
     AUVModel::step(const Matrix& nu_dot, const Matrix& nu, const Matrix& eta)

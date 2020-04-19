@@ -49,9 +49,7 @@ namespace DUNE
         m_var(var)
       { }
 
-      
-      ~BasicStringReader() override
-      { }
+      ~BasicStringReader () override = default;
 
       bool
       read(const std::string& value) override

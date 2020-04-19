@@ -62,11 +62,10 @@ namespace DUNE
       Condition& m_lock;
 
       //! This class is non - copyable.
-      ScopedCondition(const ScopedCondition&);
+      ScopedCondition (const ScopedCondition &) = delete;
 
       //! This class is non - assignable.
-      ScopedCondition&
-      operator=(const ScopedCondition&);
+      ScopedCondition &operator= (const ScopedCondition &) = delete;
     };
   }
 }

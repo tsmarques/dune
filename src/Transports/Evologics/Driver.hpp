@@ -92,8 +92,7 @@ namespace Transports
       { }
 
       //! Destructor.
-      ~Driver() override
-      { }
+      ~Driver () override = default;
 
       //! Reset device.
       void

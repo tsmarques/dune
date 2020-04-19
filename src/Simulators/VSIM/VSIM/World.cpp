@@ -42,8 +42,7 @@ namespace Simulators
       setGravity(grv[0], grv[1], grv[2]);
     }
 
-    World::~World()
-    {  }
+    World::~World () = default;
 
     void
     World::setGravity(double x, double y, double z)

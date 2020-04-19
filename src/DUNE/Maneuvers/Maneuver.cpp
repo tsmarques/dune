@@ -48,8 +48,7 @@ namespace DUNE
       bind<IMC::PathControlState>(this);
     }
 
-    Maneuver::~Maneuver()
-    { }
+    Maneuver::~Maneuver () = default;
 
     void
     Maneuver::onEntityReservation()

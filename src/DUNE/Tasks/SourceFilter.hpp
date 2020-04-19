@@ -77,8 +77,8 @@ namespace DUNE
                    const std::string& msg_name);
 
       //! Destructor.
-      ~SourceFilter()
-      {  };
+      ~SourceFilter () = default;
+      ;
 
       //! Define filter by systems.
       //! @param[in] source desired sources system and entity names.

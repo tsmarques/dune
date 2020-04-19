@@ -49,9 +49,7 @@ namespace DUNE
         m_var(var)
       { }
 
-      
-      ~BasicStringWriter() override
-      { }
+      ~BasicStringWriter () override = default;
 
       std::string
       write() override

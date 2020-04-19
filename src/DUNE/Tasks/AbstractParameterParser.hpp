@@ -42,9 +42,7 @@ namespace DUNE
     {
     public:
       //! Destructor.
-      virtual
-      ~AbstractParameterParser()
-      { }
+      virtual ~AbstractParameterParser () = default;
 
       virtual void
       read(const std::string& value) = 0;

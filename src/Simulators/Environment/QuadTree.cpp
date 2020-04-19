@@ -202,7 +202,7 @@ namespace Simulators
       public:
         Search(std::vector<QuadTree::Item>& vector): m_vector(vector) { }
 
-        ~Search() override{ }
+        ~Search () override = default;
 
         void
         process(const QuadTree::Item& item) override
@@ -231,7 +231,7 @@ namespace Simulators
       public:
         count(): m_elems(0) { }
 
-        ~count() override{ }
+        ~count () override = default;
 
         void
         process(const QuadTree::Item& item) override
@@ -262,8 +262,7 @@ namespace Simulators
         m_stream(stream)
       { }
 
-      ~Dump() override
-      { }
+      ~Dump () override = default;
 
       void
       process(const QuadTree::Item& item) override

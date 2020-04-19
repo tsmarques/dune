@@ -48,8 +48,7 @@ namespace Power
     class PowerChannels
     {
     public:
-      PowerChannels()
-      { }
+      PowerChannels () = default;
 
       ~PowerChannels()
       {

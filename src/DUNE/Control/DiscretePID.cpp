@@ -53,8 +53,7 @@ namespace DUNE
     }
 
     //! Destructor.
-    DiscretePID::~DiscretePID()
-    { }
+    DiscretePID::~DiscretePID () = default;
 
     void
     DiscretePID::setGains(const std::vector<float>& gains)

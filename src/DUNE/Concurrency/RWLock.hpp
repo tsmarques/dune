@@ -75,11 +75,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      RWLock(RWLock const&);
+      RWLock (RWLock const &) = delete;
 
       // Non - assignable
-      RWLock&
-      operator=(RWLock const&);
+      RWLock &operator= (RWLock const &) = delete;
     };
   }
 }

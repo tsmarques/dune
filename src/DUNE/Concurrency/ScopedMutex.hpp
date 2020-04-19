@@ -62,11 +62,10 @@ namespace DUNE
       Mutex& m_lock;
 
       //! This class is non - copyable.
-      ScopedMutex(const ScopedMutex&);
+      ScopedMutex (const ScopedMutex &) = delete;
 
       //! This class is non - assignable.
-      ScopedMutex&
-      operator=(const ScopedMutex&);
+      ScopedMutex &operator= (const ScopedMutex &) = delete;
     };
   }
 }

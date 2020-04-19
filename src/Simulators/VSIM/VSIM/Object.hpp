@@ -57,9 +57,7 @@ namespace Simulators
       Object();
 
       //! Destructor.
-      virtual
-      ~Object()
-      { }
+      virtual ~Object () = default;
 
       //! Sets Mass and Inertial and Added Mass Matrix (diagonal).
       //! @param[in] m mass.

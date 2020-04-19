@@ -253,8 +253,7 @@ namespace DUNE
       bind<IMC::WaterVelocity>(this);
     }
 
-    BasicNavigation::~BasicNavigation()
-    { }
+    BasicNavigation::~BasicNavigation () = default;
 
     void
     BasicNavigation::onUpdateParameters()

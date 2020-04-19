@@ -300,8 +300,7 @@ namespace Actuators
         bind<IMC::RemoteActionsRequest>(this);
       }
 
-      ~Task() override
-      { }
+      ~Task () override = default;
 
       void
       onEntityReservation() override

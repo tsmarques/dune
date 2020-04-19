@@ -100,8 +100,7 @@ namespace Plan
       }
 
       //! Destructor
-      ~FuelPrediction()
-      { }
+      ~FuelPrediction () = default;
 
       //! Use fuel level messages to compute error in prediction
       //! @param[in] msg FuelLevel message

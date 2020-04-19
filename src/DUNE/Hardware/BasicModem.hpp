@@ -53,9 +53,7 @@ namespace DUNE
       //! @param[in] handle I/O handle.
       BasicModem(Tasks::Task* task, IO::Handle* handle);
 
-      
-      ~BasicModem() override
-      { }
+      ~BasicModem () override = default;
 
       void
       initialize();

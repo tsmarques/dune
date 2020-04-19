@@ -80,8 +80,7 @@ namespace Actuators
         m_amc_state(Parser::PS_PREAMBLE)
       { }
 
-      ~Parser()
-      { }
+      ~Parser () = default;
 
       //! Parse message received
       bool

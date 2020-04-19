@@ -48,13 +48,11 @@ namespace DUNE
     class AbstractTask: public Concurrency::Thread
     {
     public:
-      AbstractTask()
-      { }
+      AbstractTask () = default;
 
       //! Destructor.
-      
-      ~AbstractTask() override
-      { }
+
+      ~AbstractTask () override = default;
 
       //! Queue a message for later consumption.
       //! @param msg message object.

@@ -57,9 +57,8 @@ namespace DUNE
       Periodic(const std::string& name, Context& ctx);
 
       //! Destructor.
-      
-      ~Periodic() override
-      { }
+
+      ~Periodic () override = default;
 
       //! Set the task frequency programmatically. The frequency of a
       //! task might change when configuration parameters are updated.

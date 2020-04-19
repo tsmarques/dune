@@ -58,9 +58,7 @@ namespace DUNE
         m_created(false)
       { }
 
-      virtual
-      ~Runnable()
-      { }
+      virtual ~Runnable () = default;
 
       void
       start()

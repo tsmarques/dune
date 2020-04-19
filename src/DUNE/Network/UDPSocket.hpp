@@ -137,11 +137,10 @@ namespace DUNE
       createEventHandle();
 
       //! Non - copyable.
-      UDPSocket(const UDPSocket&);
+      UDPSocket (const UDPSocket &) = delete;
 
       //! Non - assignable
-      UDPSocket&
-      operator=(const UDPSocket&);
+      UDPSocket &operator= (const UDPSocket &) = delete;
     };
   }
 }

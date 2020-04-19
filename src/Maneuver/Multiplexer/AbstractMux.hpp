@@ -49,9 +49,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      virtual
-      ~AbstractMux()
-      { }
+      virtual ~AbstractMux () = default;
 
       //! Start function
       virtual void

@@ -48,8 +48,7 @@ namespace DUNE
     class ParameterTable
     {
     public:
-      ParameterTable()
-      { }
+      ParameterTable () = default;
 
       ~ParameterTable();
 

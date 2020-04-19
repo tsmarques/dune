@@ -59,8 +59,7 @@ namespace DUNE
           reset();
         }
 
-        ~ProtocolParser()
-        { }
+        ~ProtocolParser () = default;
 
         template <typename T>
         static void

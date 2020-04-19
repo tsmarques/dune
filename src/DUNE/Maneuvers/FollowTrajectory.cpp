@@ -47,8 +47,7 @@ namespace DUNE
       bind<IMC::EstimatedState>(this);
     }
 
-    FollowTrajectory::~FollowTrajectory()
-    { }
+    FollowTrajectory::~FollowTrajectory () = default;
 
     void
     FollowTrajectory::onUpdateParameters()

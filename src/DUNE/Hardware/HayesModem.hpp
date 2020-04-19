@@ -55,9 +55,8 @@ namespace DUNE
       HayesModem(Tasks::Task* task, IO::Handle* handle);
 
       //! Destructor.
-      
-      ~HayesModem() override
-      { }
+
+      ~HayesModem () override = default;
 
       void
       initialize();

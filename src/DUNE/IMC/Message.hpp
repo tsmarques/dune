@@ -61,9 +61,7 @@ namespace DUNE
       }
 
       //! Default destructor.
-      virtual
-      ~Message()
-      { }
+      virtual ~Message () = default;
 
       //! Retrieve a copy of the message.
       //! @return message copy.

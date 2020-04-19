@@ -124,11 +124,10 @@ namespace DUNE
       getStateImpl() override;
 
       //! Non - copyable.
-      Thread(const Thread&);
+      Thread (const Thread &) = delete;
 
       //! Non - assignable
-      Thread&
-      operator=(const Thread&);
+      Thread &operator= (const Thread &) = delete;
     };
   }
 }

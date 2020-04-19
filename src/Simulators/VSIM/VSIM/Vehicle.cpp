@@ -35,12 +35,11 @@ namespace Simulators
 {
   namespace VSIM
   {
-    Vehicle::Vehicle()
-    { }
+  Vehicle::Vehicle () = default;
 
-    Vehicle::~Vehicle()
-    {
-      while (!m_vehicle_forces.empty())
+  Vehicle::~Vehicle ()
+  {
+    while (!m_vehicle_forces.empty ())
       {
         Force* f = m_vehicle_forces.front();
         m_vehicle_forces.pop_front();

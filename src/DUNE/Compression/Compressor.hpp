@@ -52,9 +52,7 @@ namespace DUNE
         m_processed_total(0)
       { }
 
-      virtual
-      ~Compressor()
-      { }
+      virtual ~Compressor () = default;
 
       void
       compress(char* dst, unsigned long dst_len, char* src, unsigned long src_len);

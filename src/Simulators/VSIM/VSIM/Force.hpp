@@ -47,9 +47,7 @@ namespace Simulators
       Force();
 
       //! Destructor.
-      virtual
-      ~Force()
-      { }
+      virtual ~Force () = default;
 
       //! Defines force vector.
       //! @param[in] x force along x-axis.

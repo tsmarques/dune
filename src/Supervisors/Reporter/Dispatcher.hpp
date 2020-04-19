@@ -57,8 +57,7 @@ namespace Supervisors
     {
     public:
       //! Constructor.
-      Dispatcher()
-      { }
+      Dispatcher () = default;
 
       //! Add tickets to dispatcher.
       //! @param[in] ticket ticket with report information.

@@ -65,8 +65,7 @@ namespace Transports
       }
 
       //! Destructor.
-      ~Driver() override
-      { }
+      ~Driver () override = default;
 
       void
       checkMessages()

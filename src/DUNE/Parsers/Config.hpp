@@ -63,8 +63,7 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      Config()
-      { }
+      Config () = default;
 
       //! Create the parser and parse a configuration file.
       //! @param fname name of the configuration file to parse.
@@ -210,11 +209,10 @@ namespace DUNE
       mutable Concurrency::RWLock m_data_lock;
 
       // Non - copyable.
-      Config(const Config&);
+      Config (const Config &) = delete;
 
       // Non - assignable
-      Config&
-      operator=(const Config&);
+      Config &operator= (const Config &) = delete;
     };
   }
 }

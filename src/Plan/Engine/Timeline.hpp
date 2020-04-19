@@ -71,8 +71,7 @@ namespace Plan
       }
 
       //! Destructor
-      ~Timeline()
-      { }
+      ~Timeline () = default;
 
       //! Set the complete plan end ETA
       //! @param[in] value plan's end ETA

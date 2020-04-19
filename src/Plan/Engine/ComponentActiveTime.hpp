@@ -57,12 +57,10 @@ namespace Plan
       using const_iterator = ATMap::const_iterator;
 
       //! Constructor
-      ComponentActiveTime()
-      { }
+      ComponentActiveTime () = default;
 
       //! Destructor
-      ~ComponentActiveTime()
-      { }
+      ~ComponentActiveTime () = default;
 
       //! Add a component's active time to the list
       //! @param[in] id component name

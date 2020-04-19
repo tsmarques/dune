@@ -110,8 +110,7 @@ namespace Maneuver
         }
       }
 
-      ~Takeoff() override
-      { }
+      ~Takeoff () override = default;
 
     private:
       //! Desired Path message

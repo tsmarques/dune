@@ -72,8 +72,7 @@ namespace DUNE
       { }
 
       //! Destructor.
-      virtual ~BasicEntity()
-      { }
+      virtual ~BasicEntity () = default;
 
       //! Set the IMC bindings using the provided recipient object.
       //! @param[in] recipient pointer to the recipient object to use for binding to IMC messages.

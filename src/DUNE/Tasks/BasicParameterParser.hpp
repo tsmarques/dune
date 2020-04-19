@@ -61,8 +61,7 @@ namespace DUNE
         m_var = T();
       }
 
-      ~BasicParameterParser() override
-      { }
+      ~BasicParameterParser () override = default;
 
       std::string
       getTypeName() override
@@ -155,8 +154,7 @@ namespace DUNE
         m_max_size(UINT_MAX)
       { }
 
-      ~BasicParameterParser() override
-      { }
+      ~BasicParameterParser () override = default;
 
       std::string
       getTypeName() override
@@ -228,8 +226,7 @@ namespace DUNE
         m_copy(var)
       { }
 
-      ~BasicParameterParser() override
-      { }
+      ~BasicParameterParser () override = default;
 
       std::string
       getTypeName() override

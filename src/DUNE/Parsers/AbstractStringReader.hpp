@@ -40,9 +40,7 @@ namespace DUNE
     class AbstractStringReader
     {
     public:
-      virtual
-      ~AbstractStringReader()
-      { }
+      virtual ~AbstractStringReader () = default;
 
       virtual bool
       read(const std::string& value) = 0;

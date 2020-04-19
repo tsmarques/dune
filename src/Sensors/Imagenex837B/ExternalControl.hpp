@@ -106,8 +106,7 @@ namespace Sensors
       }
 
       //! Destructor.
-      ~ExternalControl()
-      { }
+      ~ExternalControl () = default;
 
       //! Get frame start address.
       //! @return pointer to address.

@@ -64,9 +64,7 @@ namespace DUNE
         }
 
         //! Destructor.
-        virtual
-        ~Chunk()
-        { }
+        virtual ~Chunk () = default;
 
         //! Write chunk to output stream.
         //! @param[in] os output stream.

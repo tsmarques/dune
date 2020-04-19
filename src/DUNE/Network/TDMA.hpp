@@ -50,8 +50,7 @@ namespace DUNE
     {
     public:
       //! Empty Constructor.
-      TDMA()
-      { }
+      TDMA () = default;
 
       //! Constructor.
       //! @param[in] slot_count total number of slots.

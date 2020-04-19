@@ -49,12 +49,9 @@ namespace Transports
     public:
       typedef std::map<std::string, std::string> HeaderFieldsMap;
 
-      RequestHandler()
-      { }
+      RequestHandler () = default;
 
-      virtual
-      ~RequestHandler()
-      { }
+      virtual ~RequestHandler () = default;
 
       virtual void
       handleGET(TCPSocket* sock, Utils::TupleList& headers, const char* uri);

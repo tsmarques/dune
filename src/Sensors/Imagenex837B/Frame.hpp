@@ -73,13 +73,10 @@ namespace Sensors
       };
 
       //! Constructor.
-      Frame()
-      { }
+      Frame () = default;
 
       //! Destructor.
-      virtual
-      ~Frame()
-      { }
+      virtual ~Frame () = default;
 
       //! Get frame start address.
       //! @return pointer to address.

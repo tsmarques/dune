@@ -85,8 +85,7 @@ namespace Sensors
         m_sadc_state(DriverSADC::PS_PREAMBLE)
       { }
 
-      ~DriverSADC()
-      { }
+      ~DriverSADC () = default;
 
       //! Parse message received
       bool

@@ -88,8 +88,7 @@ namespace Maneuver
           m_task->signalProgress((uint16_t)time_left);
       }
 
-      ~Idle() override
-      { }
+      ~Idle () override = default;
 
     private:
       //! End time of the loiter

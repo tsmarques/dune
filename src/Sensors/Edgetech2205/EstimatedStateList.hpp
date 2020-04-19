@@ -54,8 +54,7 @@ namespace Sensors
     {
     public:
       //! Constructor.
-      EstimatedStateList()
-      { }
+      EstimatedStateList () = default;
 
       //! Destructor.
       ~EstimatedStateList()

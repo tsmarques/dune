@@ -103,8 +103,7 @@ namespace Maneuver
         }
       }
 
-      ~Launch() override
-      { }
+      ~Launch () override = default;
 
     private:
       //! Maneuver states for the state machine

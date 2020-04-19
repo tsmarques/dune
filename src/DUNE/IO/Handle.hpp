@@ -51,9 +51,7 @@ namespace DUNE
     {
     public:
       //! Destructor.
-      virtual
-      ~Handle()
-      { }
+      virtual ~Handle () = default;
 
       //! Write binary data to I/O handle.
       //! @param[in] data data buffer.

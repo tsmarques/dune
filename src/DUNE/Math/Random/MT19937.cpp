@@ -52,8 +52,7 @@ namespace DUNE
         seed(seed_value);
       }
 
-      MT19937::~MT19937()
-      { }
+      MT19937::~MT19937 () = default;
 
       uint32_t
       MT19937::random32()

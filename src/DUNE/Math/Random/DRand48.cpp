@@ -53,8 +53,7 @@ namespace DUNE
         seed(seed_value);
       }
 
-      DRand48::~DRand48()
-      { }
+      DRand48::~DRand48 () = default;
 
       int32_t
       DRand48::next(int bits)

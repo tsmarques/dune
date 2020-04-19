@@ -79,8 +79,7 @@ namespace Sensors
         m_dms_state(DriverDMS::PS_PREAMBLE)
       { }
 
-      ~DriverDMS()
-      { }
+      ~DriverDMS () = default;
 
       //! Parse message received
       bool

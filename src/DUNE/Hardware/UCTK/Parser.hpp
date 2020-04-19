@@ -58,8 +58,7 @@ namespace DUNE
           m_payload_idx(0)
         { }
 
-        ~Parser()
-        { }
+        ~Parser () = default;
 
         //! Check if internal finite state machine is waiting for the
         //! synchronization byte.

@@ -61,9 +61,8 @@ namespace Maneuver
       { }
 
       //! Destructor
-      
-      ~MuxedManeuver() override
-      { }
+
+      ~MuxedManeuver () override = default;
 
       //! Start maneuver function
       //! @param[in] maneuver rows maneuver message

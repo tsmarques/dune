@@ -58,9 +58,7 @@ namespace Sensors
         m_bfr.resize(c_max_size);
       }
 
-      ~CommandLink()
-      {
-      }
+      ~CommandLink () = default;
 
       void
       setSocketTimeout(double value)

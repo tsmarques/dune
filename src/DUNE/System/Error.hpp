@@ -117,8 +117,7 @@ namespace DUNE
       }
 
       //! Destructor.
-      ~Error() throw() override
-      { }
+      ~Error () throw () override = default;
 
       //! Get the full description of the exception.
       //! @return description c string.

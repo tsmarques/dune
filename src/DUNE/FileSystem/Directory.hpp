@@ -68,8 +68,7 @@ namespace DUNE
         RD_FILE_NAME
       };
 
-      Directory()
-      { }
+      Directory () = default;
 
       Directory(const Path& path);
 

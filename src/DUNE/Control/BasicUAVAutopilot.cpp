@@ -59,8 +59,7 @@ namespace DUNE
       bind<IMC::ControlLoops>(this);
     }
 
-    BasicUAVAutopilot::~BasicUAVAutopilot()
-    {   }
+    BasicUAVAutopilot::~BasicUAVAutopilot () = default;
 
     void
     BasicUAVAutopilot::onResourceInitialization()

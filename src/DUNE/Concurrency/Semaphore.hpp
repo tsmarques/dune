@@ -71,11 +71,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      Semaphore(const Semaphore&);
+      Semaphore (const Semaphore &) = delete;
 
       // Non - assignable
-      Semaphore&
-      operator=(const Semaphore&);
+      Semaphore &operator= (const Semaphore &) = delete;
     };
   }
 }

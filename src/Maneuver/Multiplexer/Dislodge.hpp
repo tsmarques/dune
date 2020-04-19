@@ -161,8 +161,7 @@ namespace Maneuver
         }
       }
 
-      ~Dislodge() override
-      { }
+      ~Dislodge () override = default;
 
     private:
       enum State

@@ -50,9 +50,7 @@ namespace DUNE
     public:
       BasicRemoteOperation(const std::string& name, Tasks::Context& ctx);
 
-      
-      ~BasicRemoteOperation() override
-      { }
+      ~BasicRemoteOperation () override = default;
 
       void
       consume(const IMC::RemoteActions* message);

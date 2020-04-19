@@ -69,11 +69,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      Barrier(Barrier const&);
+      Barrier (Barrier const &) = delete;
 
       // Non - assignable
-      Barrier&
-      operator=(Barrier const&);
+      Barrier &operator= (Barrier const &) = delete;
     };
   }
 }

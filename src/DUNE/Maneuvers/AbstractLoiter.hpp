@@ -51,9 +51,7 @@ namespace DUNE
       { }
 
       //! Destructor
-      virtual
-      ~AbstractLoiter()
-      { }
+      virtual ~AbstractLoiter () = default;
 
       //! On PathControlState message.
       //! @param[in] pcs pointer to PathControlState message

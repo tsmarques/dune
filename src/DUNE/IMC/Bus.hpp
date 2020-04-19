@@ -113,11 +113,10 @@ namespace DUNE
       Concurrency::TSQueue<BackLogEntry*> m_back_log;
 
       //! Non - copyable.
-      Bus(Bus const&);
+      Bus (Bus const &) = delete;
 
       //! Non - assignable.
-      Bus&
-      operator=(Bus const&);
+      Bus &operator= (Bus const &) = delete;
     };
   }
 }

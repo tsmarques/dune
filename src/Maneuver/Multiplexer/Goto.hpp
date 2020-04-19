@@ -81,8 +81,7 @@ namespace Maneuver
           m_task->signalProgress(pcs->eta);
       }
 
-      ~Goto() override
-      { }
+      ~Goto () override = default;
     };
   }
 }

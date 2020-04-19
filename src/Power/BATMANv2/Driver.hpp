@@ -95,7 +95,7 @@ namespace Power
             resetStateNewData();
           }
 
-          ~DriverBatMan(){}
+          ~DriverBatMan () = default;
 
           void
           resetStateNewData()

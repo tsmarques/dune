@@ -52,9 +52,7 @@ namespace DUNE
         m_unprocessed(0)
       { }
 
-      virtual
-      ~Decompressor()
-      { }
+      virtual ~Decompressor () = default;
 
       void
       decompress(char* dst, unsigned long dst_len, char* src, unsigned long src_len);

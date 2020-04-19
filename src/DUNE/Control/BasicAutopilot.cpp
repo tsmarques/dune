@@ -88,8 +88,7 @@ namespace DUNE
       bind<IMC::ControlLoops>(this);
     }
 
-    BasicAutopilot::~BasicAutopilot()
-    { }
+    BasicAutopilot::~BasicAutopilot () = default;
 
     void
     BasicAutopilot::onResourceInitialization()
