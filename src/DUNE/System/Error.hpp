@@ -117,12 +117,12 @@ namespace DUNE
       }
 
       //! Destructor.
-      ~Error () throw () override = default;
+      ~Error () noexcept override = default;
 
       //! Get the full description of the exception.
       //! @return description c string.
-      const char*
-      what() const throw() override
+      const char *
+      what () const noexcept override
       {
         return m_full_msg.c_str();
       }
