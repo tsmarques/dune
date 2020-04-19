@@ -42,7 +42,7 @@ namespace DUNE
   namespace IO
   {
 #if defined(DUNE_OS_POSIX)
-    typedef int NativeHandle;
+    using NativeHandle = int;
 #elif defined(DUNE_OS_WINDOWS)
     typedef HANDLE NativeHandle;
 #endif

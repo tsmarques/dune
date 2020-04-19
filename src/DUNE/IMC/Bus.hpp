@@ -98,7 +98,7 @@ namespace DUNE
       getBindings();
 
     private:
-      typedef std::list<Tasks::AbstractTask*> TransportList;
+      using TransportList = std::list<Tasks::AbstractTask *>;
       //! Table of recipients.
       std::map<uint16_t, TransportList> m_recipients;
       //! Internal list lock.

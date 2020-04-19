@@ -90,7 +90,7 @@ namespace Monitors
       //! Entity Monitoring State message.
       IMC::EntityMonitoringState m_ems;
       //! Type to store all Entity Ids.
-      typedef std::set<uint8_t> EIdSet;
+      using EIdSet = std::set<uint8_t>;
       //! Record of all available entity information.
       std::vector<ESRecord> m_record;
       //! Ids of all currently monitored entities.

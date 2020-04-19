@@ -129,7 +129,7 @@ namespace Control
         //! Task arguments.
         Arguments m_args;
         //! Type definition for PX4 packet handler.
-        typedef void (Task::* PktHandler)(const mavlink_message_t* msg);
+        using PktHandler = void (Task::*)(const mavlink_message_t *);
         typedef std::map<int, PktHandler> PktHandlerMap;
         //! PX4 packet handling
         PktHandlerMap m_mlh;

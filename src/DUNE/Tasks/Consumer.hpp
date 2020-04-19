@@ -41,7 +41,7 @@ namespace DUNE
     class Consumer: public AbstractConsumer
     {
     public:
-      typedef void (T::* Routine)(const M*);
+      using Routine = void (T::*)(const M *);
 
       //! Constructor.
       Consumer(T& o, Routine f):

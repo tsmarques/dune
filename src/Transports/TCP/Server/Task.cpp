@@ -68,7 +68,7 @@ namespace Transports
         };
 
         // Client list.
-        typedef std::list<Client> ClientList;
+        using ClientList = std::list<Client>;
         ClientList m_clients;
 
         Task(const std::string& name, Tasks::Context& ctx):

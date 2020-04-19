@@ -118,7 +118,7 @@ namespace DUNE
 
     private:
       //! Filter lists
-      typedef std::vector<std::set<uint32_t> > FilterList;
+      using FilterList = std::vector<std::set<uint32_t> >;
 
       //! Define a set of filtered messages.
       //! @param[in] messages filtered messages' names.

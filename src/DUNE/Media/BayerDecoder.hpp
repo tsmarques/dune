@@ -88,7 +88,7 @@ namespace DUNE
 
     private:
       //! Type of decoder functions.
-      typedef void (BayerDecoder::*Decoder)(const uint8_t*, uint8_t*, int, int) const;
+      using Decoder = void (BayerDecoder::*)(const uint8_t *, uint8_t *, int, int) const;
       //! Pointer to decoder.
       Decoder m_decoder;
       //! True if tile starts with a green pixel.

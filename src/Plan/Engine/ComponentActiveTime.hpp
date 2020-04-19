@@ -54,7 +54,7 @@ namespace Plan
       //! Map of strings to floats
       typedef std::map<std::string, float> ATMap;
       //! Const iterator
-      typedef ATMap::const_iterator const_iterator;
+      using const_iterator = ATMap::const_iterator;
 
       //! Constructor
       ComponentActiveTime()

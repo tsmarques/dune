@@ -169,7 +169,7 @@ namespace Plan
       };
 
       //! Stack of timed actions
-      typedef std::stack<TimedAction> TimedStack;
+      using TimedStack = std::stack<TimedAction>;
 
       //! Actions that should be fired on plan and maneuver start or end
       struct EventActions

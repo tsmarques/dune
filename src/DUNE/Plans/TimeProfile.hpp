@@ -101,7 +101,7 @@ namespace DUNE
       //! Mapping between maneuver IDs and their profiles
       typedef std::map< std::string, Profile> ProfileMap;
       //! Const iterator for this map
-      typedef ProfileMap::const_iterator const_iterator;
+      using const_iterator = ProfileMap::const_iterator;
 
       //! Constructor
       TimeProfile (const SpeedModel *speed_model)

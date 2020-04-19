@@ -55,7 +55,7 @@ namespace Simulators
       //! Task arguments
       Arguments m_args;
       //! Leak set
-      typedef std::vector<Entities::StatefulEntity*> LeakSet;
+      using LeakSet = std::vector<Entities::StatefulEntity *>;
       LeakSet m_leaks;
 
       Task(const std::string& name, Tasks::Context& ctx):

@@ -50,7 +50,7 @@ namespace DUNE
     class MessageList
     {
     public:
-      typedef typename std::vector<Type*>::const_iterator const_iterator;
+      using const_iterator = typename std::vector<Type *>::const_iterator;
 
       //! Default constructor.
       MessageList () : m_parent (nullptr) {}

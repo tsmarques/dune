@@ -51,8 +51,8 @@ namespace Plan
     public:
       typedef std::pair<float, float> SpeedPair;
       typedef std::map<float, float> GroupMap;
-      typedef GroupMap::iterator iterator;
-      typedef GroupMap::const_iterator const_iterator;
+      using iterator = GroupMap::iterator;
+      using const_iterator = GroupMap::const_iterator;
 
       GroupSpeed(float tol):
         m_tolerance(tol)

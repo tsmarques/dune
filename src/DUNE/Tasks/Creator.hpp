@@ -44,7 +44,7 @@ namespace DUNE
 {
   namespace Tasks
   {
-    typedef DUNE::Tasks::Task* (*task_creator_t)(const std::string&, DUNE::Tasks::Context&);
+    using task_creator_t = DUNE::Tasks::Task *(*)(const std::string &, DUNE::Tasks::Context &);
 
     struct Creator
     {

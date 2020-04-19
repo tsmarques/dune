@@ -44,7 +44,7 @@
 
 extern "C"
 {
-  typedef void (*dune_concurrency_raw_tls_dtr_t)(void*);
+  using dune_concurrency_raw_tls_dtr_t = void (*)(void *);
 }
 
 namespace DUNE

@@ -39,7 +39,7 @@ namespace Transports
     struct Task: public DUNE::Tasks::Task
     {
       // Convenience typedef.
-      typedef CircularBuffer<IMC::LogBookEntry> LBEBuffer;
+      using LBEBuffer = CircularBuffer<IMC::LogBookEntry>;
       // Size for logbook buffer.
       static const uint32_t c_logbook_sz = 128;
       // Size for error logbook buffer.

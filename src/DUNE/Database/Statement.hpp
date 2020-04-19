@@ -46,7 +46,7 @@ namespace DUNE
 {
   namespace Database
   {
-    typedef sqlite3_stmt STMT_HANDLE;
+    using STMT_HANDLE = sqlite3_stmt;
 
     // Export DLL Symbol.
     class DUNE_DLL_SYM Statement;

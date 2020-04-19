@@ -40,7 +40,7 @@ namespace DUNE
 {
   namespace Database
   {
-    typedef sqlite3 DB_HANDLE;
+    using DB_HANDLE = sqlite3;
 
     // Forward declaration.
     class Statement;

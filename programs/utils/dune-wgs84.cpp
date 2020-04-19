@@ -149,7 +149,7 @@ wmmC(std::istream& is)
 int
 main(int argc, char** argv)
 {
-  typedef void cfunc (std::istream &);
+  using cfunc = void (std::istream &);
   typedef std::map<std::string, cfunc*> CmdMap;
   CmdMap commands;
 

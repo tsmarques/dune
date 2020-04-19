@@ -46,7 +46,7 @@ namespace DUNE
 {
   namespace IMC
   {
-    typedef Message* (*Creator) ();
+    using Creator = Message *(*)();
 
     template <typename Type>
     static Message*
