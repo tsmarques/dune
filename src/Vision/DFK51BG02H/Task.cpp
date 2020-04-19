@@ -290,14 +290,14 @@ namespace Vision
       }
 
       //! Destructor.
-      ~Task(void) override
+      ~Task() override
       {
         delete [] m_rgb24_bfr;
       }
 
       //! Update internal parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         // White-balance filter.
         m_white.setRFactor(m_args.r_factor);
@@ -309,7 +309,7 @@ namespace Vision
 
       //! Acquire resources and buffers.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         // Initialize JPEG compressor.
         m_jpeg.setInputDimensions(c_width, c_height);
@@ -330,7 +330,7 @@ namespace Vision
 
       //! Release allocated resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_gvcp);
 
@@ -351,7 +351,7 @@ namespace Vision
 
       //! Initialize resources and start capturing frames.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         debug("setting privileges");
         m_gvcp->setPrivilege(GVCP::PRIV_BV_CONTROL | GVCP::PRIV_BV_EXCLUSIVE);
@@ -418,7 +418,7 @@ namespace Vision
       }
 
       void
-      onRequestActivation(void) override
+      onRequestActivation() override
       {
         IMC::LoggingControl log_ctl;
         log_ctl.op = IMC::LoggingControl::COP_REQUEST_CURRENT_NAME;
@@ -426,20 +426,20 @@ namespace Vision
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         m_log_dir.create();
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         Frame* frame = NULL;
 

@@ -291,7 +291,7 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         // Application of the wind vector
         if (m_model != NULL)
@@ -331,7 +331,7 @@ namespace Simulators
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         spew("do 'onResourceRelease'");
 
@@ -340,7 +340,7 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         spew("onResourceAquisition - start");
 
@@ -727,7 +727,7 @@ namespace Simulators
       }
 
       void
-      task(void) override
+      task() override
       {
         // Handle IMC messages from bus
         consumeMessages();

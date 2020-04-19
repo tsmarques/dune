@@ -122,7 +122,7 @@ namespace Vision
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

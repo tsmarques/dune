@@ -50,11 +50,11 @@ namespace DUNE
       bind<IMC::RemoteState>(this);
     }
 
-    VehicleFormation::~VehicleFormation(void)
+    VehicleFormation::~VehicleFormation()
     { }
 
     void
-    VehicleFormation::onUpdateParameters(void)
+    VehicleFormation::onUpdateParameters()
     {
       m_cstep_period = 1.0 / m_cstep_period;
     }
@@ -231,7 +231,7 @@ namespace DUNE
     }
 
     void
-    VehicleFormation::onManeuverDeactivation(void)
+    VehicleFormation::onManeuverDeactivation()
     {
       onReset();
 

@@ -114,13 +114,13 @@ namespace Autonomy
       }
 
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         reserveEntity("TREX (External)");
       }
 
       void
-      updateEntityState(void)
+      updateEntityState()
       {
         if (!isActive()) {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -255,13 +255,13 @@ namespace Autonomy
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_pwr_cpu.name = m_args.aux_pwr_channel;
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         inf("%s", DTR(Status::getString(Status::CODE_ACTIVE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -274,7 +274,7 @@ namespace Autonomy
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         inf("%s", DTR(Status::getString(Status::CODE_IDLE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -282,7 +282,7 @@ namespace Autonomy
 
       // Start a FollowReference maneuver that is controlled by TREX
       void
-      startExecution(void)
+      startExecution()
       {
         inf("Starting TREX plan...");
         IMC::PlanControl startPlan;
@@ -313,7 +313,7 @@ namespace Autonomy
 
       // Stop ongoing FollowReference maneuver
       void
-      stopExecution(void)
+      stopExecution()
       {
         inf("Stopping TREX plan...");
         IMC::PlanControl stopPlan;
@@ -324,7 +324,7 @@ namespace Autonomy
       }
 
       void
-      checkState(void)
+      checkState()
       {
         m_trex_control = m_last_plan_state.plan_id == "trex_plan"
         && m_last_plan_state.state == IMC::PlanControlState::PCS_EXECUTING;
@@ -347,7 +347,7 @@ namespace Autonomy
       }
 
       void
-      resetAuxCpu(void)
+      resetAuxCpu()
       {
         if (m_args.aux_pwr_channel == "None")
         {
@@ -364,7 +364,7 @@ namespace Autonomy
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         std::map<unsigned int, double>::iterator it;
         std::map<unsigned int, double> oldMap;

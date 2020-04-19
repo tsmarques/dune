@@ -99,7 +99,7 @@ namespace DUNE
       //! Get an iterator to all_distances begin()
       //! @return const iterator to m_all_distance.begin()
       std::vector<float>::const_iterator
-      getDistancesBegin(void)
+      getDistancesBegin()
       {
         return m_all_distances.begin();
       };
@@ -107,7 +107,7 @@ namespace DUNE
       //! Get an iterator to all_distances begin()
       //! @return const iterator to m_all_distance.begin()
       std::vector<float>::const_iterator
-      getDistancesEnd(void)
+      getDistancesEnd()
       {
         return m_all_distances.end();
       };
@@ -115,7 +115,7 @@ namespace DUNE
       //! Get current point index
       //! @return index
       unsigned
-      getIndex(void)
+      getIndex()
       {
         return m_index;
       }
@@ -124,7 +124,7 @@ namespace DUNE
       //! Stage of a row
       struct Stage
       {
-        Stage(void):
+        Stage():
           label("undefined"), x(0), y(0)
         { }
 
@@ -142,21 +142,21 @@ namespace DUNE
 
       inline
       bool
-      squareCurve(void) const
+      squareCurve() const
       {
         return (m_flags & IMC::Rows::FLG_SQUARE_CURVE) != 0;
       };
 
       inline
       bool
-      curveRight(void) const
+      curveRight() const
       {
         return (m_flags & IMC::Rows::FLG_CURVE_RIGHT) != 0;
       };
 
       inline
       bool
-      curveLeft(void) const
+      curveLeft() const
       {
         return (m_flags & IMC::Rows::FLG_CURVE_RIGHT) == 0;
       };

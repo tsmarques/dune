@@ -136,13 +136,13 @@ namespace Control
         }
 
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           BasicAutopilot::onResourceInitialization();
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           // Validate gain matrix
           if ((m_args.k_gain.rows() != 3) || (m_args.k_gain.columns() != 12))
@@ -164,7 +164,7 @@ namespace Control
         }
 
         void
-        reset(void) override
+        reset() override
         {
           BasicAutopilot::reset();
         }

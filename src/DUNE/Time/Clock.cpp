@@ -56,7 +56,7 @@ namespace DUNE
   namespace Time
   {
     uint64_t
-    Clock::getNsec(void)
+    Clock::getNsec()
     {
       // POSIX RT.
 #if defined(DUNE_SYS_HAS_CLOCK_GETTIME)
@@ -80,7 +80,7 @@ namespace DUNE
     }
 
     uint64_t
-    Clock::getSinceEpochNsec(void)
+    Clock::getSinceEpochNsec()
     {
       // POSIX RT.
 #if defined(DUNE_SYS_HAS_CLOCK_GETTIME)

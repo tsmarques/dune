@@ -44,14 +44,14 @@ namespace DUNE
       class FSR256: public Generator
       {
       public:
-        FSR256(void);
+        FSR256();
 
         FSR256(int32_t seed);
 
         ~FSR256() override;
 
         int32_t
-        random(void) override;
+        random() override;
 
         void
         seed(int32_t value) override;

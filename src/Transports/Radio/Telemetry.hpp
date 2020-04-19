@@ -204,7 +204,7 @@ namespace Transports
 
        //! update the Tx synchronization number
        void
-       updateTxSync(void)
+       updateTxSync()
        {
           if(local_tx_sync == 255)
             local_tx_sync = 0;
@@ -232,7 +232,7 @@ namespace Transports
 
        //! verifies if TX channel is busy
        bool
-       isIdle(void)
+       isIdle()
        {
          if(m_tx_telemetry_State == IDLE)
            return true;
@@ -240,7 +240,7 @@ namespace Transports
        }
 
        void
-       createReport(void)
+       createReport()
        {
          m_task->trace("create Report");
     	   XxMesg ReportFrame;
@@ -452,7 +452,7 @@ namespace Transports
        }
 
        bool
-       anyDataToProcess(void)
+       anyDataToProcess()
        {
          //verify  queue to read
          if(m_rx_msg_queue.empty())
@@ -557,7 +557,7 @@ namespace Transports
          return false;
        }
        void
-       sendAKtoRXMsg(void)
+       sendAKtoRXMsg()
        {
          XxMesg tx_ak_mesg;
          updateTxSync();

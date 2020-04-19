@@ -54,7 +54,7 @@ namespace DUNE
     //! usually shared by a large number of classes (namely Tasks).
     struct Context
     {
-      Context(void);
+      Context();
 
       //! Current configuration.
       Parsers::Config config;

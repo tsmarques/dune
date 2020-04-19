@@ -63,7 +63,7 @@ namespace DUNE
       unsigned day_year;
 
       //! Default constructor, initializes object with current time.
-      BrokenDown(void)
+      BrokenDown()
       {
         convert();
       }

@@ -97,7 +97,7 @@ namespace Control
         }
 
         //! Destructor.
-        ~DistanceTracking(void)
+        ~DistanceTracking()
         { }
 
       private:

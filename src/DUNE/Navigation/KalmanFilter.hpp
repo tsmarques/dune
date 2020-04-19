@@ -62,7 +62,7 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      KalmanFilter(void);
+      KalmanFilter();
 
       //! Constructor.
       //! @param A state-transition model.
@@ -91,7 +91,7 @@ namespace DUNE
 
       //! Keep the state covariance matrix symmetric.
       void
-      normalize(void);
+      normalize();
 
       //! Predict the state at the next timestep subject to control input.
       //! @param b control input matrix.
@@ -101,7 +101,7 @@ namespace DUNE
 
       //! Predict the state at the next timestep assuming no input.
       void
-      predict(void);
+      predict();
 
       //! Kalman Filter update function.
       //! @param threshold threshold to reject large state innovations.
@@ -124,7 +124,7 @@ namespace DUNE
       //! Get state matrix.
       //! @return state matrix.
       inline Math::Matrix
-      getState(void) const
+      getState() const
       {
         return m_x;
       }
@@ -137,12 +137,12 @@ namespace DUNE
 
       //! Reset state matrix.
       void
-      resetState(void);
+      resetState();
 
       //! Get state transition matrix.
       //! @return state transition matrix.
       inline Math::Matrix
-      getStateTransition(void) const
+      getStateTransition() const
       {
         return m_ax;
       }
@@ -155,7 +155,7 @@ namespace DUNE
       //! Get state covariance transition matrix.
       //! @return state covariance transition matrix.
       inline Math::Matrix
-      getCovarianceTransition(void) const
+      getCovarianceTransition() const
       {
         return m_ap;
       }
@@ -172,7 +172,7 @@ namespace DUNE
 
       //! Reset output matrices.
       void
-      resetOutputs(void);
+      resetOutputs();
 
       //! Get output matrix value.
       //! @param pos matrix index.
@@ -225,7 +225,7 @@ namespace DUNE
       //! Get output transition matrix.
       //! @return output transition matrix.
       inline Math::Matrix
-      getObservation(void) const
+      getObservation() const
       {
         return m_c;
       }
@@ -277,7 +277,7 @@ namespace DUNE
       //! Get state covariance matrix.
       //! @return state covariance matrix.
       inline Math::Matrix
-      getCovariance(void) const
+      getCovariance() const
       {
         return m_p;
       }

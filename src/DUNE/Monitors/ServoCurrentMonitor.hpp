@@ -60,7 +60,7 @@ namespace DUNE
       }
 
       //! Destructor
-      ~ServoCurrentMonitor(void)
+      ~ServoCurrentMonitor()
       { }
 
       //! Update function

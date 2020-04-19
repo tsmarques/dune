@@ -44,7 +44,7 @@ namespace Simulators
 {
   namespace VSIM
   {
-    UUV::UUV(void):
+    UUV::UUV():
       m_volume(NULL)
     {
       setBuoyancyPosition(0, 0, 0);
@@ -70,7 +70,7 @@ namespace Simulators
       m_volume = new Volume(x, y, z);
     }
 
-    UUV::~UUV(void)
+    UUV::~UUV()
     {
       if (m_volume != NULL)
       {
@@ -113,7 +113,7 @@ namespace Simulators
     }
 
     void
-    UUV::applyRestoringForcesMoments(void)
+    UUV::applyRestoringForcesMoments()
     {
       double B = (DUNE::Math::c_gravity * DUNE::Math::c_water_density * m_volume->sub_volume(m_position[2]));
 
@@ -132,7 +132,7 @@ namespace Simulators
     }
 
     void
-    UUV::applyCoriolisForce(void)
+    UUV::applyCoriolisForce()
     {
       // Vehicle center of gravity relative to center of buoyancy.
       double zg = -m_buoyancy_position[2];
@@ -187,7 +187,7 @@ namespace Simulators
     }
 
     void
-    UUV::applyForces(void)
+    UUV::applyForces()
     {
       applyDragForces();
       applyControlForces();

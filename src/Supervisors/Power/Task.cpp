@@ -100,7 +100,7 @@ namespace Supervisors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -132,7 +132,7 @@ namespace Supervisors
       }
 
       void
-      powerDown(void)
+      powerDown()
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_POWER_DOWN);
 
@@ -158,7 +158,7 @@ namespace Supervisors
       }
 
       void
-      powerDownAbort(void)
+      powerDownAbort()
       {
         if (powerDownAborted())
         {
@@ -181,13 +181,13 @@ namespace Supervisors
       }
 
       bool
-      powerDownCommand(void)
+      powerDownCommand()
       {
         return std::system(m_args.cmd_pwr_down.c_str()) == 0;
       }
 
       bool
-      powerDownAbortCommand(void)
+      powerDownAbortCommand()
       {
         return std::system(m_args.cmd_pwr_down_abort.c_str()) == 0;
       }
@@ -220,19 +220,19 @@ namespace Supervisors
       }
 
       bool
-      powerDownInProgress(void)
+      powerDownInProgress()
       {
         return m_power_op == IMC::PowerOperation::POP_PWR_DOWN_IP;
       }
 
       bool
-      powerDownAborted(void)
+      powerDownAborted()
       {
         return m_power_op == IMC::PowerOperation::POP_PWR_DOWN_ABORTED;
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

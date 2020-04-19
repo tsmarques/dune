@@ -617,7 +617,7 @@ namespace DUNE
     }
 
     void
-    SourceFilter::filterDefinition(void)
+    SourceFilter::filterDefinition()
     {
       std::vector<std::string> filt_def;
 
@@ -654,7 +654,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    SourceFilter::generateInfoSystem(void)
+    SourceFilter::generateInfoSystem()
     {
       std::vector<std::string> filt_def;
 
@@ -682,7 +682,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    SourceFilter::generateInfoEntity(void)
+    SourceFilter::generateInfoEntity()
     {
       std::vector<std::string> filt_def;
 
@@ -710,7 +710,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    SourceFilter::generateInfoSystemEntity(void)
+    SourceFilter::generateInfoSystemEntity()
     {
       std::vector<std::string> filt_def;
 
@@ -768,7 +768,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    SourceFilter::generateInfoMessageSystem(void)
+    SourceFilter::generateInfoMessageSystem()
     {
       std::vector<std::string> filt_def;
 
@@ -813,7 +813,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    SourceFilter::generateInfoMessageEntity(void)
+    SourceFilter::generateInfoMessageEntity()
     {
       std::vector<std::string> filt_def;
 
@@ -858,7 +858,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    SourceFilter::generateInfoMessageSystemEntity(void)
+    SourceFilter::generateInfoMessageSystemEntity()
     {
       std::vector<std::string> filt_def;
 
@@ -932,7 +932,7 @@ namespace DUNE
     }
 
     void
-    SourceFilter::printDefinitionWarnings(void)
+    SourceFilter::printDefinitionWarnings()
     {
       // Print the filter definition warnings
       std::vector<std::string> war = warnings();
@@ -965,7 +965,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    SourceFilter::warnings(void)
+    SourceFilter::warnings()
     {
       std::vector<std::string> war = m_warnings;
       m_warnings.clear();

@@ -82,7 +82,7 @@ namespace DUNE
       //! The statement will not be bound to any arguments
       //! nor have any available results afterwards.
       void
-      reset(void);
+      reset();
 
       //! Bind an argument to NULL.
       //! @param null Null datum.
@@ -180,10 +180,10 @@ namespace DUNE
       int m_idx;
 
       void
-      throwError(void);
+      throwError();
 
       bool
-      nullColumn(void);
+      nullColumn();
     };
   }
 }

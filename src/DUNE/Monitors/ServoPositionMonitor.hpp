@@ -65,7 +65,7 @@ namespace DUNE
       }
 
       //! Destructor
-      ~ServoPositionMonitor(void)
+      ~ServoPositionMonitor()
       {
         Memory::clear(m_pos_trigger);
       }

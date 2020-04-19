@@ -60,7 +60,7 @@ namespace DUNE
       .description("Enable verbose output regarding outgoing messages");
     }
 
-    SimpleTransport::~SimpleTransport(void)
+    SimpleTransport::~SimpleTransport()
     { }
 
     void
@@ -84,7 +84,7 @@ namespace DUNE
     }
 
     void
-    SimpleTransport::onMain(void)
+    SimpleTransport::onMain()
     {
       m_rl.setupRates(m_gargs.rlim);
       m_rl.setupEntities(m_gargs.entities_flt, this);

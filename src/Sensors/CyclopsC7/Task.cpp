@@ -123,7 +123,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         for(unsigned i = 0; i < c_max_n_probes; ++i)
         {
@@ -138,7 +138,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         for(unsigned i = 0; i < c_max_n_probes; ++i)
         {
@@ -162,7 +162,7 @@ namespace Sensors
       }
 
       void
-      onRequestActivation(void) override
+      onRequestActivation() override
       {
         unsigned m_power_control_ready = 0 , number_active_probes = 0;
         for (unsigned i=0; i < c_max_n_probes ;i++)
@@ -196,7 +196,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         for(unsigned i = 0; i < c_max_n_probes; ++i)
         {
@@ -211,7 +211,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         for(unsigned i = 0; i < c_max_n_probes; ++i)
         {
@@ -220,7 +220,7 @@ namespace Sensors
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         unsigned m_power_control_ready=0 , number_active_probes = 0;
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -309,7 +309,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

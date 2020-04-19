@@ -110,7 +110,7 @@ namespace Maneuver
         }
       }
 
-      ~Takeoff(void) override
+      ~Takeoff() override
       { }
 
     private:

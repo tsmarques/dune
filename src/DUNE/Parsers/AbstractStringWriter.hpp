@@ -41,11 +41,11 @@ namespace DUNE
     {
     public:
       virtual
-      ~AbstractStringWriter(void)
+      ~AbstractStringWriter()
       { }
 
       virtual std::string
-      write(void) = 0;
+      write() = 0;
     };
   }
 }

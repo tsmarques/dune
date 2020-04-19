@@ -66,7 +66,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
@@ -138,7 +138,7 @@ namespace Transports
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

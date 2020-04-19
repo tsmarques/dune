@@ -83,7 +83,7 @@ namespace DUNE
 #endif
     }
 
-    I2C::~I2C(void)
+    I2C::~I2C()
     {
 #if defined(DUNE_SYS_HAS_LINUX_I2C_DEV)
       close(m_fd);

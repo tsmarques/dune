@@ -45,7 +45,7 @@ namespace DUNE
     setLanguage(const DUNE::FileSystem::Path& folder, const std::string& name = "");
 
     static std::string
-    getLanguage(void);
+    getLanguage();
   };
 }
 

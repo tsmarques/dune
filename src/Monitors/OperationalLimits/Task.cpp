@@ -187,7 +187,7 @@ namespace Monitors
 
       //! There's an absolute maximum depth rating, limit the "operational limit"
       void
-      setMaxDepth(void)
+      setMaxDepth()
       {
         if (m_ol.mask & IMC::OPL_MAX_DEPTH)
           m_ol.max_depth = std::min(m_ol.max_depth, m_max_depth);
@@ -198,7 +198,7 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (m_use_cfg)
         {
@@ -218,7 +218,7 @@ namespace Monitors
 
       //! Reset task to initial state.
       void
-      reset(void)
+      reset()
       {
         m_atest_time = 0;
         m_emask = 0;
@@ -325,7 +325,7 @@ namespace Monitors
 
       //! Update state of the system.
       void
-      updateState(void)
+      updateState()
       {
         if (m_emask)
         {
@@ -347,7 +347,7 @@ namespace Monitors
       }
 
       void
-      task(void) override
+      task() override
       {
         double speed = std::sqrt(m_estate.vx * m_estate.vx + m_estate.vy * m_estate.vy + m_estate.vz * m_estate.vz);
         uint8_t omask = m_emask;

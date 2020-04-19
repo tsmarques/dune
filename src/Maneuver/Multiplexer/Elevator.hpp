@@ -70,7 +70,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~Elevator(void) override
+      ~Elevator() override
       {
         Memory::clear(m_vmon);
         Memory::clear(m_elevate);
@@ -145,7 +145,7 @@ namespace Maneuver
 
       //! Check vertical progress
       void
-      checkVerticalProgress(void)
+      checkVerticalProgress()
       {
         // compute vertical rate
         // (multiply by minus direction for absolute value)

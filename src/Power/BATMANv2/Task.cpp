@@ -190,7 +190,7 @@ namespace Power
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         for (uint8_t i = 0; i < m_args.number_cell; ++i)
         {
@@ -225,7 +225,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         try
@@ -245,7 +245,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_driver->stopAcquisition();
         m_uart->flush();
@@ -256,7 +256,7 @@ namespace Power
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_uart != NULL)
         {
@@ -335,7 +335,7 @@ namespace Power
       }
 
       void
-      dispatchData(void)
+      dispatchData()
       {
         m_driver->resetStateNewData();
 
@@ -463,7 +463,7 @@ namespace Power
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {    
         while (!stopping())
         {

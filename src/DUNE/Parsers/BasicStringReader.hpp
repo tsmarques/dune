@@ -50,7 +50,7 @@ namespace DUNE
       { }
 
       
-      ~BasicStringReader(void) override
+      ~BasicStringReader() override
       { }
 
       bool

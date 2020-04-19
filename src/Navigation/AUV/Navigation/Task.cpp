@@ -300,7 +300,7 @@ namespace Navigation
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           BasicNavigation::onUpdateParameters();
 
@@ -338,7 +338,7 @@ namespace Navigation
         }
 
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           BasicNavigation::onResourceInitialization();
           m_avg_speed = new MovingAverage<double>(m_args.navg_speed);
@@ -346,7 +346,7 @@ namespace Navigation
         }
 
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           BasicNavigation::onResourceRelease();
           Memory::clear(m_avg_speed);
@@ -354,7 +354,7 @@ namespace Navigation
         }
 
         void
-        onEntityResolution(void) override
+        onEntityResolution() override
         {
           BasicNavigation::onEntityResolution();
           try
@@ -368,7 +368,7 @@ namespace Navigation
         }
 
         void
-        onReportEntityState(void) override
+        onReportEntityState() override
         {
           IMC::AlignmentState as;
 
@@ -443,7 +443,7 @@ namespace Navigation
         }
 
         bool
-        setup(void) override
+        setup() override
         {
           BasicNavigation::setup();
 
@@ -466,7 +466,7 @@ namespace Navigation
         }
 
         void
-        reset(void) override
+        reset() override
         {
           BasicNavigation::reset();
           m_gps_reading = false;
@@ -474,13 +474,13 @@ namespace Navigation
         }
 
         double
-        getBiasedHeading(void)
+        getBiasedHeading()
         {
           return m_kal.getState(STATE_PSI) + m_kal.getState(STATE_PSI_BIAS);
         }
 
         void
-        onConsumeLblConfig(void) override
+        onConsumeLblConfig() override
         {
           if (m_kal.resize(NUM_OUT + m_ranging.getSize()))
             Task::onUpdateParameters();
@@ -546,13 +546,13 @@ namespace Navigation
         }
 
         unsigned
-        getNumberOutputs(void) override
+        getNumberOutputs() override
         {
           return NUM_OUT;
         }
 
         void
-        task(void) override
+        task() override
         {
           if(!BasicNavigation::isActive())
             return;
@@ -728,7 +728,7 @@ namespace Navigation
         }
 
         void
-        sendDeActiveIMU(void)
+        sendDeActiveIMU()
         {
           IMC::EntityParameter p;
           p.name = "Active";
@@ -793,7 +793,7 @@ namespace Navigation
 
         // Reinitialize Extended Kalman Filter output matrix function.
         void
-        resetKalman(void)
+        resetKalman()
         {
           m_kal.resetOutputs();
           m_kal.setObservation(OUT_U, STATE_U, 1.0);
@@ -807,7 +807,7 @@ namespace Navigation
         }
 
         void
-        logData(void)
+        logData()
         {
           m_estate.psi = Angles::normalizeRadian(m_kal.getState(STATE_PSI));
           m_estate.r = m_kal.getState(STATE_R);

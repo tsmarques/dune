@@ -50,10 +50,10 @@ namespace DUNE
         Interface(IO::Handle* handle);
 
         virtual
-        ~Interface(void);
+        ~Interface();
 
         void
-        flush(void)
+        flush()
         {
           while (!m_queue.empty())
             delete m_queue.pop();
@@ -61,10 +61,10 @@ namespace DUNE
         }
 
         FirmwareInfo
-        getFirmwareInfo(void);
+        getFirmwareInfo();
 
         void
-        resetDevice(void);
+        resetDevice();
 
         bool
         sendFrame(Frame& frame, double timeout = 1.0);
@@ -73,13 +73,13 @@ namespace DUNE
         setBootStop(bool value);
 
         Frame*
-        pop(void)
+        pop()
         {
           return m_queue.pop();
         }
 
         unsigned
-        consume(void)
+        consume()
         {
           unsigned frame_count = 0;
           size_t rv = m_handle->read(m_buffer, sizeof(m_buffer));

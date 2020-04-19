@@ -168,7 +168,7 @@ namespace Power
         std::memset(m_adcs, 0, sizeof(m_adcs));
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         onResourceRelease();
         clearLEDs();
@@ -187,7 +187,7 @@ namespace Power
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -233,7 +233,7 @@ namespace Power
 
       //! Reserve entities.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -255,7 +255,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -276,7 +276,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         turnOffLEDs();
 
@@ -289,7 +289,7 @@ namespace Power
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_ctl != NULL)
         {
@@ -302,7 +302,7 @@ namespace Power
       }
 
       void
-      turnOffLEDs(void)
+      turnOffLEDs()
       {
         for (uint8_t i = 0; i < c_led_count; ++i)
           setBrightness(i, 0);
@@ -355,7 +355,7 @@ namespace Power
       }
 
       void
-      clearLEDs(void)
+      clearLEDs()
       {
         std::map<std::string, LED*>::iterator itr = m_led_by_name.begin();
         for (; itr != m_led_by_name.end(); ++itr)
@@ -390,7 +390,7 @@ namespace Power
       }
 
       bool
-      getMonitors(void)
+      getMonitors()
       {
         UCTK::Frame frame;
         frame.setId(PKT_ID_STATE);
@@ -439,7 +439,7 @@ namespace Power
       }
 
       void
-      dispatchPowerChannelStates(void)
+      dispatchPowerChannelStates()
       {
         std::map<unsigned, PowerChannel*>::const_iterator itr = m_channels.begin();
 
@@ -454,7 +454,7 @@ namespace Power
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

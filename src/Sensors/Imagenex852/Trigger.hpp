@@ -45,7 +45,7 @@ namespace Sensors
     class Trigger: public Concurrency::Thread
     {
     public:
-      Trigger(void):
+      Trigger():
         m_active(false),
         m_uart(NULL),
         m_switch_data(NULL),
@@ -80,7 +80,7 @@ namespace Sensors
       }
 
       void
-      trigger(void)
+      trigger()
       {
         try
         {
@@ -101,14 +101,14 @@ namespace Sensors
       }
 
       bool
-      isActive(void)
+      isActive()
       {
         ScopedMutex m(m_mutex);
         return m_active;
       }
 
       void
-      run(void) override
+      run() override
       {
         PeriodicDelay delay(m_delay);
 

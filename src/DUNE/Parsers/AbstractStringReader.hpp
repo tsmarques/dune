@@ -41,7 +41,7 @@ namespace DUNE
     {
     public:
       virtual
-      ~AbstractStringReader(void)
+      ~AbstractStringReader()
       { }
 
       virtual bool

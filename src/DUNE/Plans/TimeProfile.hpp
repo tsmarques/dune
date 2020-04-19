@@ -73,7 +73,7 @@ namespace DUNE
           time = t;
         }
 
-        ~SpeedProfile(void)
+        ~SpeedProfile()
         { }
 
         void
@@ -113,7 +113,7 @@ namespace DUNE
       };
 
       //! Destructor
-      ~TimeProfile(void)
+      ~TimeProfile()
       {
         Memory::clear(m_accum_dur);
         Memory::clear(m_speed_vec);
@@ -127,7 +127,7 @@ namespace DUNE
 
       //! Clear the vector
       inline void
-      clear(void)
+      clear()
       {
         m_profiles.clear();
         m_last_valid.clear();
@@ -136,7 +136,7 @@ namespace DUNE
       //! First position of the vector
       //! @return const iterator to begin()
       inline const_iterator
-      begin(void) const
+      begin() const
       {
         return m_profiles.begin();
       }
@@ -144,7 +144,7 @@ namespace DUNE
       //! Last position of the vector
       //! @return const iterator to end()
       inline const_iterator
-      end(void) const
+      end() const
       {
         return m_profiles.end();
       }
@@ -152,7 +152,7 @@ namespace DUNE
       //! Size of the map
       //! @return size of the map
       inline size_t
-      size(void) const
+      size() const
       {
         return m_profiles.size();
       }
@@ -169,7 +169,7 @@ namespace DUNE
       //! ID of last maneuver with a valid duration
       //! @return ID string of the maneuver
       inline const std::string&
-      lastValid(void) const
+      lastValid() const
       {
         return m_last_valid;
       }
@@ -177,7 +177,7 @@ namespace DUNE
       //! Has finite duration
       //! @return true has finite duration, false otherwise
       inline bool
-      isDurationFinite(void) const
+      isDurationFinite() const
       {
         return m_finite_duration;
       }
@@ -195,7 +195,7 @@ namespace DUNE
         //! Uncertainty of the measure in meters
         float uncertainty;
 
-        BathymetricInfo(void):
+        BathymetricInfo():
           depth(0.0), validity(false), reference(0), uncertainty(0.0)
         { };
       };
@@ -235,7 +235,7 @@ namespace DUNE
         //! Get the last computed duration
         //! @return last computed duration
         float
-        getLastDuration(void) const
+        getLastDuration() const
         {
           if (!vec.size())
           {
@@ -251,7 +251,7 @@ namespace DUNE
         //! Get the vector size or number of durations
         //! @return size of vec
         size_t
-        size(void) const
+        size() const
         {
           return vec.size();
         }

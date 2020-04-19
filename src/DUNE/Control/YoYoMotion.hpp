@@ -199,7 +199,7 @@ namespace DUNE
 
       //! System is now braking.
       void
-      startedBraking(void)
+      startedBraking()
       {
         if (m_invert)
           return;

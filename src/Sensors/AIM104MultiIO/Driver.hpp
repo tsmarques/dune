@@ -46,7 +46,7 @@ namespace Sensors
     public:
       Driver(uint32_t address, fp32_t input_range, bool mode_dif);
 
-      ~Driver(void);
+      ~Driver();
 
       bool
       setChannel(uint8_t channel);

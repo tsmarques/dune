@@ -132,7 +132,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.variation))
           m_args.variation = Angles::radians(m_args.variation);
@@ -145,13 +145,13 @@ namespace Maneuver
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_yoyo);
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         try
         {
@@ -166,7 +166,7 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void) override
+      onManeuverDeactivation() override
       {
         // Do not calibrate.
         if (!m_args.compass_calib)

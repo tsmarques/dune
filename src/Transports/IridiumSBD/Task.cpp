@@ -115,7 +115,7 @@ namespace Transports
       }
 
       //! Destructor.
-      ~Task(void) override
+      ~Task() override
       {
         Memory::clear(m_tx_request);
 
@@ -131,7 +131,7 @@ namespace Transports
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.mbox_check_per))
           m_mbox_check_timer.setTop(m_args.mbox_check_per);
@@ -142,7 +142,7 @@ namespace Transports
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -162,27 +162,27 @@ namespace Transports
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         m_mbox_check_timer.reset();
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_driver)
         {
@@ -288,7 +288,7 @@ namespace Transports
       }
 
       void
-      handleSBD(void)
+      handleSBD()
       {
         uint8_t bfr[340];
         unsigned rv = m_driver->readBufferMT(bfr, sizeof(bfr));
@@ -306,7 +306,7 @@ namespace Transports
       }
 
       void
-      handleSessionResult(void)
+      handleSessionResult()
       {
         const SessionResult& res = m_driver->getSessionResult();
 
@@ -330,7 +330,7 @@ namespace Transports
       }
 
       void
-      cleanExpired(void)
+      cleanExpired()
       {
         std::list<TxRequest*>::iterator itr = m_tx_requests.begin();
         while (itr != m_tx_requests.end())
@@ -346,7 +346,7 @@ namespace Transports
       }
 
       void
-      processQueue(void)
+      processQueue()
       {
         cleanExpired();
 
@@ -396,7 +396,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

@@ -88,17 +88,17 @@ namespace DUNE
       bind<IMC::ControlLoops>(this);
     }
 
-    BasicAutopilot::~BasicAutopilot(void)
+    BasicAutopilot::~BasicAutopilot()
     { }
 
     void
-    BasicAutopilot::onResourceInitialization(void)
+    BasicAutopilot::onResourceInitialization()
     {
       requestDeactivation();
     }
 
     void
-    BasicAutopilot::reset(void)
+    BasicAutopilot::reset()
     {
       m_vertical_ref = 0;
       m_vertical_mode = VERTICAL_MODE_NONE;
@@ -419,7 +419,7 @@ namespace DUNE
     }
 
     void
-    BasicAutopilot::onMain(void)
+    BasicAutopilot::onMain()
     {
       while (!stopping())
       {

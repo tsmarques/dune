@@ -126,23 +126,23 @@ namespace DUNE
 
       //! Destructor.
       
-      ~BasicNavigation(void) override;
+      ~BasicNavigation() override;
 
       //! Update internal parameters.
       void
-      onUpdateParameters(void) override;
+      onUpdateParameters() override;
 
       //! Resolve entities.
       void
-      onEntityResolution(void) override;
+      onEntityResolution() override;
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override;
+      onResourceInitialization() override;
 
       //! Release allocated resources.
       void
-      onResourceRelease(void) override;
+      onResourceRelease() override;
 
       void
       consume(const IMC::Acceleration* msg);
@@ -193,7 +193,7 @@ namespace DUNE
       //! Get depth value.
       //! @return depth value.
       inline double
-      getDepth(void) const
+      getDepth() const
       {
         return m_depth_readings ? (m_depth_bfr / m_depth_readings) : 0.0;
       }
@@ -202,7 +202,7 @@ namespace DUNE
       //! Negative value denotes invalid estimate.
       //! @return altitude value.
       inline double
-      getAltitude(void)
+      getAltitude()
       {
         if (!m_alt_sanity)
         {
@@ -239,7 +239,7 @@ namespace DUNE
       //! Get heading rate value.
       //! @return heading rate.
       inline double
-      getHeadingRate(void)
+      getHeadingRate()
       {
         double pitch = getEuler(AXIS_Y);
 
@@ -291,7 +291,7 @@ namespace DUNE
       //! Get Euler Angles increment value along a specific axis.
       //! @return euler angles increment value
       inline float
-      getEulerDeltaTimestep(void) const
+      getEulerDeltaTimestep() const
       {
         return m_edelta_ts;
       }
@@ -299,7 +299,7 @@ namespace DUNE
       //! Number of depth readings since last cycle plus constant filter gain.
       //! @return true is received, false otherwise.
       inline bool
-      gotDepthReadings(void) const
+      gotDepthReadings() const
       {
         return m_depth_readings > c_wma_filter;
       }
@@ -307,7 +307,7 @@ namespace DUNE
       //! Number of euler angles readings since last cycle plus constant filter gain.
       //! @return true is received, false otherwise.
       inline bool
-      gotEulerReadings(void) const
+      gotEulerReadings() const
       {
         return m_euler_readings > c_wma_filter;
       }
@@ -315,7 +315,7 @@ namespace DUNE
       //! Number of angular velocity readings since last cycle plus constant filter gain.
       //! @return true is received, false otherwise.
       inline bool
-      gotAngularReadings(void) const
+      gotAngularReadings() const
       {
         return m_angular_readings > c_wma_filter;
       }
@@ -323,7 +323,7 @@ namespace DUNE
       //! Number of acceleration readings since last cycle plus constant filter gain.
       //! @return true is received, false otherwise.
       inline bool
-      gotAccelerationReadings(void) const
+      gotAccelerationReadings() const
       {
         return m_accel_readings > c_wma_filter;
       }
@@ -331,7 +331,7 @@ namespace DUNE
       //! Get AHRS Entity Id.
       //! @return AHRS entity id.
       inline unsigned
-      getAhrsId(void) const
+      getAhrsId() const
       {
         return m_ahrs_eid;
       }
@@ -348,7 +348,7 @@ namespace DUNE
       //! This function checks if navigation must reject all lbl.
       //! @return true if LBL is to be rejected, false otherwise.
       inline bool
-      rejectLbl(void) const
+      rejectLbl() const
       {
         return m_reject_all_lbl;
       }
@@ -356,7 +356,7 @@ namespace DUNE
       //! Routine to get navigation time step.
       //! @return time step.
       inline double
-      getTimeStep(void)
+      getTimeStep()
       {
         return m_delta.getDelta();
       }
@@ -416,15 +416,15 @@ namespace DUNE
 
       //! Routine to reset navigation.
       virtual void
-      reset(void);
+      reset();
 
       //! Routine to setup navigation.
       virtual bool
-      setup(void);
+      setup();
 
       //! Method invoked when LblConfig message is received.
       virtual void
-      onConsumeLblConfig(void);
+      onConsumeLblConfig();
 
       //! Routine to update navigation filter parameters when a GpsFix message is received.
       //! @param[in] hacc GPS Sensor horizontal accuracy index.
@@ -448,7 +448,7 @@ namespace DUNE
 
       //! Routine to assign EKF filter output variables when a DVL velocity message is received.
       virtual void
-      runKalmanDVL(void);
+      runKalmanDVL();
 
       //! Routine to assign EKF filter output variables when a UsblFixExtended message is received.
       //! @param[in] x vehicle north displacement (m).
@@ -465,20 +465,20 @@ namespace DUNE
       //! Get number of EKF outputs.
       //! @return number of outputs.
       virtual unsigned
-      getNumberOutputs(void) = 0;
+      getNumberOutputs() = 0;
 
       //! Routine called to assign common dispatch messages.
       void
-      onDispatchNavigation(void);
+      onDispatchNavigation();
 
       //! Routine to check if navigation task is active.
       //! @return true if active, false otherwise.
       bool
-      isActive(void);
+      isActive();
 
       //! Routine to report navigation messages to the bus.
       void
-      reportToBus(void);
+      reportToBus();
 
       //! Routine to update sensor buffers.
       //! @param[in] filter sensor filters gain.
@@ -487,23 +487,23 @@ namespace DUNE
 
       //! Routine to reset acceleration buffers.
       void
-      resetAcceleration(void);
+      resetAcceleration();
 
       //! Routine to reset angular velocity buffers.
       void
-      resetAngularVelocity(void);
+      resetAngularVelocity();
 
       //! Routine to reset depth buffers.
       void
-      resetDepth(void);
+      resetDepth();
 
       //! Routine to reset euler angles buffers.
       void
-      resetEulerAngles(void);
+      resetEulerAngles();
 
       //! Routine to reset euler angles delta buffers.
       void
-      resetEulerAnglesDelta(void);
+      resetEulerAnglesDelta();
 
       //! Routine to check navigation uncertainty.
       //! @param[in] abort abort if position uncertainty is exceeded.
@@ -594,7 +594,7 @@ namespace DUNE
 
       //! Routine to reset sensor buffers.
       void
-      resetBuffers(void);
+      resetBuffers();
 
       //! Routine to start navigation
       //! @param[in] msg GpsFix IMC message
@@ -604,7 +604,7 @@ namespace DUNE
       //! Routine to correct LBL positions. This method must be invoked whenever
       //! a new navigation reference is created to correct transducers positions.
       void
-      correctLBL(void);
+      correctLBL();
 
       //! True if this task is active.
       bool m_active;

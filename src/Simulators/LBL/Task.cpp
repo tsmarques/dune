@@ -149,7 +149,7 @@ namespace Simulators
 
       //! Update parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.ping_delay))
           m_pinger.setTop(m_args.ping_delay);
@@ -157,7 +157,7 @@ namespace Simulators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_WAIT_GPS_FIX);
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
@@ -165,7 +165,7 @@ namespace Simulators
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
         Memory::clear(m_gps);
@@ -175,7 +175,7 @@ namespace Simulators
       //! Check LBL is defined.
       //! @return true if LBL is defined, false otherwise.
       bool
-      checkLbl(void) const
+      checkLbl() const
       {
         return m_lbl_cfg != NULL;
       }
@@ -183,7 +183,7 @@ namespace Simulators
       //! Check GPS is defined.
       //! @return true if GPS is defined, false otherwise.
       bool
-      checkGps(void) const
+      checkGps() const
       {
         return m_gps != NULL;
       }
@@ -191,14 +191,14 @@ namespace Simulators
       //! Check if we are ready to simulate LBL.
       //! @return true if we are ready to simulate, false otherwise.
       bool
-      ready(void) const
+      ready() const
       {
         return checkGps() && checkLbl() && (m_lbl_cfg->beacons.size() > 0);
       }
 
       //! Reset ranger.
       void
-      reset(void)
+      reset()
       {
         m_cursor = m_lbl_cfg->beacons.begin();
         m_pinger.reset();
@@ -276,14 +276,14 @@ namespace Simulators
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         m_pinger.reset();
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -353,7 +353,7 @@ namespace Simulators
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

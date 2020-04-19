@@ -48,7 +48,7 @@ namespace Vision
     {
     public:
       //! Constructor.
-      AutoExposure(void)
+      AutoExposure()
       { }
 
       //! Calculate the gain update

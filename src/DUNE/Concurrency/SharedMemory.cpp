@@ -78,7 +78,7 @@ namespace DUNE
       generateName();
     }
 
-    SharedMemory::~SharedMemory(void)
+    SharedMemory::~SharedMemory()
     {
 #if defined(DUNE_SYS_HAS_POSIX_IPC)
       munmap(m_ptr, m_size);
@@ -93,7 +93,7 @@ namespace DUNE
     }
 
     void
-    SharedMemory::create(void)
+    SharedMemory::create()
     {
       m_creator = true;
 
@@ -124,7 +124,7 @@ namespace DUNE
     }
 
     void
-    SharedMemory::open(void)
+    SharedMemory::open()
     {
       m_creator = false;
 
@@ -151,7 +151,7 @@ namespace DUNE
     }
 
     void
-    SharedMemory::generateName(void)
+    SharedMemory::generateName()
     {
 #if defined(DUNE_SYS_HAS_POSIX_IPC)
       Math::Random::Generator* gen =

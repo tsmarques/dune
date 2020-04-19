@@ -65,7 +65,7 @@ namespace Plan
       };
 
       //! Default constructor.
-      Calibration(void)
+      Calibration()
       {
         clear();
       }
@@ -85,7 +85,7 @@ namespace Plan
 
       //! Clear calibration
       void
-      clear(void)
+      clear()
       {
         m_state = CS_NONE;
         m_time = -1.0;
@@ -93,7 +93,7 @@ namespace Plan
 
       //! Start calibration
       void
-      start(void)
+      start()
       {
         if (m_time >= 0.0)
         {
@@ -108,7 +108,7 @@ namespace Plan
 
       //! Stop calibration
       void
-      stop(void)
+      stop()
       {
         m_state = CS_DONE;
       }
@@ -142,7 +142,7 @@ namespace Plan
       //! Get remaining time in calibration
       //! @return remaining time
       float
-      getRemaining(void) const
+      getRemaining() const
       {
         return m_timer.getRemaining();
       }
@@ -150,7 +150,7 @@ namespace Plan
       //! Get elapsed calibration time
       //! @return elapsed calibration time
       float
-      getElapsedTime(void) const
+      getElapsedTime() const
       {
         return m_time - m_timer.getRemaining();
       }
@@ -158,7 +158,7 @@ namespace Plan
       //! Check if calibration is in progress
       //! @return true if in progress
       bool
-      inProgress(void) const
+      inProgress() const
       {
         return CS_IN_PROGRESS == m_state;
       }
@@ -166,7 +166,7 @@ namespace Plan
       //! Check if calibration has not yet started
       //! @return true if it has not yet started
       bool
-      notStarted(void) const
+      notStarted() const
       {
         return CS_NOT_STARTED == m_state;
       }
@@ -174,7 +174,7 @@ namespace Plan
       //! Calibration is done
       //! @return true if calibration is done
       bool
-      isDone(void) const
+      isDone() const
       {
         return CS_DONE == m_state;
       }
@@ -182,7 +182,7 @@ namespace Plan
       //! Calibration has failed
       //! @return true if calibration has failed
       bool
-      hasFailed(void) const
+      hasFailed() const
       {
         return CS_FAILED == m_state;
       }
@@ -190,7 +190,7 @@ namespace Plan
       //! Get error message
       //! @return error string message
       const std::string&
-      getInfo(void) const
+      getInfo() const
       {
         return m_info;
       }

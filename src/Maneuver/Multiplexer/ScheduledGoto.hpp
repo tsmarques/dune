@@ -203,7 +203,7 @@ namespace Maneuver
         return speed;
       }
 
-      ~ScheduledGoto(void) override
+      ~ScheduledGoto() override
       { }
 
     private:

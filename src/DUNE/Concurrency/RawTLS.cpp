@@ -47,7 +47,7 @@ namespace DUNE
 #endif
     }
 
-    RawTLS::~RawTLS(void)
+    RawTLS::~RawTLS()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_KEY)
       pthread_key_delete(m_key);
@@ -69,7 +69,7 @@ namespace DUNE
     }
 
     void*
-    RawTLS::get(void)
+    RawTLS::get()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_KEY)
       return pthread_getspecific(m_key);

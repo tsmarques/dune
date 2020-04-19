@@ -53,10 +53,10 @@ namespace DUNE
       SimpleTransport(const std::string& name, Tasks::Context& ctx);
 
       
-      ~SimpleTransport(void) override;
+      ~SimpleTransport() override;
 
       void
-      onMain(void) override;
+      onMain() override;
 
       void
       consume(const IMC::Message* msg);

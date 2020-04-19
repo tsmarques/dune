@@ -50,7 +50,7 @@ namespace DUNE
 
       //! Clear sample.
       void
-      clear(void)
+      clear()
       {
         m_accum = 0;
         m_oldest = 0;
@@ -78,7 +78,7 @@ namespace DUNE
       //! Extract mean value of the sample.
       //! @return mean value.
       T
-      mean(void)
+      mean()
       {
         if (sampleSize())
           return m_accum / sampleSize();
@@ -89,7 +89,7 @@ namespace DUNE
       //! Extract standard deviation of the sample.
       //! @return standard deviation value.
       T
-      stdev(void)
+      stdev()
       {
         unsigned size = sampleSize();
 
@@ -108,7 +108,7 @@ namespace DUNE
       //! Know size of sample.
       //! @return size of the sample.
       unsigned
-      sampleSize(void)
+      sampleSize()
       {
         return (unsigned)m_window.size();
       }
@@ -116,7 +116,7 @@ namespace DUNE
       //! Know size of window.
       //! @return size of the window.
       unsigned
-      windowSize(void)
+      windowSize()
       {
         return m_window_size;
       }

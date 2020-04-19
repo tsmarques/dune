@@ -87,14 +87,14 @@ namespace Simulators
 
       //! Acquire resources. Initializes random number generator.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
@@ -117,7 +117,7 @@ namespace Simulators
       //! stored in #m_sstate plus some gaussian noise (according to parametrized
       //! standard deviation). If task is not active, returns immediately.
       void
-      task(void) override
+      task() override
       {
         // Return if task is not active.
         if (!isActive())

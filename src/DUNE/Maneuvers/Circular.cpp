@@ -95,7 +95,7 @@ namespace DUNE
     }
 
     bool
-    Circular::isLoitering(void) const
+    Circular::isLoitering() const
     {
       return m_loitering;
     }

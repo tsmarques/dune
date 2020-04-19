@@ -65,11 +65,11 @@ namespace Transports
       }
 
       //! Destructor.
-      ~Driver(void) override
+      ~Driver() override
       { }
 
       void
-      checkMessages(void)
+      checkMessages()
       {
         IMC::TextMessage sms;
         std::string location;
@@ -187,7 +187,7 @@ namespace Transports
       std::string m_pin;
 
       void
-      queryRSSI(void) override
+      queryRSSI() override
       {
         sendAT("+CSQ");
         std::string line = readLine();
@@ -201,13 +201,13 @@ namespace Transports
       }
 
       void
-      sendReset(void) override
+      sendReset() override
       {
         sendAT("Z");
       }
 
       void
-      sendInitialization(void) override
+      sendInitialization() override
       {
         setEcho(false);
         setErrorVerbosity(2);

@@ -75,12 +75,12 @@ namespace DUNE
       //! Retrieve the string/character used as directory separator.
       //! @return directory separator string.
       static const char*
-      separator(void);
+      separator();
 
       //! Retrieve the length of the directory separator string.
       //! @return length of the directory separator string.
       static unsigned int
-      separatorLength(void);
+      separatorLength();
 
       //! Retrieve the capacity of the device in which a path resides.
       //! @param path path.
@@ -98,14 +98,14 @@ namespace DUNE
       //! Retrieve the full path of the current working directory.
       //! @return full path of the current working directory.
       static Path
-      current(void);
+      current();
 
       //! Retrieve the full path of the application's executable.
       //! @return full path of the application's executable.
       static Path
-      applicationFile(void);
+      applicationFile();
 
-      Path(void)
+      Path()
       { }
 
       Path(const char* path):
@@ -129,12 +129,12 @@ namespace DUNE
       //! Retrieve the path type.
       //! @return path type.
       Type
-      type(void) const;
+      type() const;
 
       //! Check if the path exists.
       //! @return true if the path exists, false otherwise.
       bool
-      exists(void) const
+      exists() const
       {
         return type() != PT_INVALID;
       }
@@ -142,7 +142,7 @@ namespace DUNE
       //! Check if the path is a regular file.
       //! @return true if the path is a regular file, false otherwise.
       bool
-      isFile(void) const
+      isFile() const
       {
         return type() == PT_FILE;
       }
@@ -150,7 +150,7 @@ namespace DUNE
       //! Check if the path is a directory.
       //! @return true if the path is a directory, false otherwise.
       bool
-      isDirectory(void) const
+      isDirectory() const
       {
         return type() == PT_DIRECTORY;
       }
@@ -158,7 +158,7 @@ namespace DUNE
       //! Check if the path is a symbolic link.
       //! @return true if the path is a symbolic link, false otherwise.
       bool
-      isLink(void) const
+      isLink() const
       {
         return type() == PT_LINK;
       }
@@ -166,7 +166,7 @@ namespace DUNE
       //! Check if the path is a device file.
       //! @return true if the path is a device file, false otherwise.
       bool
-      isDevice(void) const
+      isDevice() const
       {
         return type() == PT_DEVICE;
       }
@@ -174,13 +174,13 @@ namespace DUNE
       //! Check if the path is absolute.
       //! @return true if the path is absolute, false otherwise.
       bool
-      isAbsolute(void) const;
+      isAbsolute() const;
 
       int64_t
-      size(void) const;
+      size() const;
 
       time_t
-      getLastModifiedTime(void) const;
+      getLastModifiedTime() const;
 
       //! Remove the path from the filesystem.
       //! @param mode removal mode.
@@ -197,28 +197,28 @@ namespace DUNE
       copy(const Path& destination) const;
 
       Path
-      absolute(void) const
+      absolute() const
       {
         return current().str() + separator() + m_path;
       }
 
       Path
-      root(void) const;
+      root() const;
 
       Path
-      basename(void) const;
+      basename() const;
 
       Path
       dirname(bool include_last_sep = true) const;
 
       std::string
-      extension(void) const;
+      extension() const;
 
       std::string
       suffix(const Path& path, bool keep_first_sep = false) const;
 
       void
-      normalize(void);
+      normalize();
 
       void
       contents(std::vector<Path>& dirs) const
@@ -230,19 +230,19 @@ namespace DUNE
       contents(std::vector<Path>& dirs, int min_depth, int max_depth, int depth = 0) const;
 
       void
-      clear(void);
+      clear();
 
       bool
-      empty(void) const;
+      empty() const;
 
       inline const std::string&
-      str(void) const
+      str() const
       {
         return m_path;
       }
 
       inline const char*
-      c_str(void) const
+      c_str() const
       {
         return m_path.c_str();
       }

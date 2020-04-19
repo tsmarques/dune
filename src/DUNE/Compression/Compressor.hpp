@@ -53,7 +53,7 @@ namespace DUNE
       { }
 
       virtual
-      ~Compressor(void)
+      ~Compressor()
       { }
 
       void
@@ -72,31 +72,31 @@ namespace DUNE
       compress(Utils::ByteBuffer& dst, Utils::ByteBuffer& src);
 
       unsigned long
-      compressed(void) const
+      compressed() const
       {
         return m_compressed;
       }
 
       unsigned long
-      compressedTotal(void) const
+      compressedTotal() const
       {
         return m_compressed_total;
       }
 
       unsigned long
-      processed(void) const
+      processed() const
       {
         return m_processed;
       }
 
       unsigned long
-      processedTotal(void) const
+      processedTotal() const
       {
         return m_processed_total;
       }
 
       int
-      level(void) const
+      level() const
       {
         return m_level;
       }

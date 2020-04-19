@@ -109,7 +109,7 @@ namespace DUNE
       m_scope(SCOPE_GLOBAL)
     { }
 
-    Parameter::~Parameter(void)
+    Parameter::~Parameter()
     {
       if (m_reader != NULL)
         delete m_reader;

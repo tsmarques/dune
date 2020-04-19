@@ -44,7 +44,7 @@ namespace Sensors
     {
     public:
       //! Constructor.
-      SwitchData(void)
+      SwitchData()
       {
         std::memset(m_data, 0, sizeof(m_data));
         m_data[SD_HDR0] = 0xFE;
@@ -74,7 +74,7 @@ namespace Sensors
       //! Get start gain from switch data command.
       //! @return start gain value.
       uint8_t
-      getStartGain(void) const
+      getStartGain() const
       {
         return m_data[SD_START_GAIN];
       }
@@ -102,7 +102,7 @@ namespace Sensors
       //! Get range from switch data command.
       //! @return range value.
       uint8_t
-      getRange(void)
+      getRange()
       {
         return m_data[SD_RANGE];
       }
@@ -132,7 +132,7 @@ namespace Sensors
       //! Get number of data points from switch data command.
       //! @return number of data points.
       unsigned
-      getDataPoints(void) const
+      getDataPoints() const
       {
         if (m_data[SD_DATA_POINTS] == 25)
           return 252;
@@ -158,7 +158,7 @@ namespace Sensors
       //! Get profile minimum range from switch data command.
       //! @return profile minimum range value.
       double
-      getProfileMinRange(void) const
+      getProfileMinRange() const
       {
         return Math::round(m_data[SD_PROF_MIN_RANGE] / 10.0);
       }
@@ -182,7 +182,7 @@ namespace Sensors
       //! Get pulse length from switch data command.
       //! @return pulse length value.
       fp32_t
-      getPulseLength(void) const
+      getPulseLength() const
       {
         return m_data[SD_PULSE_LEN] / 1000000.0;
       }
@@ -190,7 +190,7 @@ namespace Sensors
       //! Retrieve the switch data.
       //! @return switch data.
       const uint8_t*
-      data(void) const
+      data() const
       {
         return m_data;
       }
@@ -198,7 +198,7 @@ namespace Sensors
       //! Retrieve the size of the switch data.
       //! @return size of the switch data.
       unsigned
-      size(void) const
+      size() const
       {
         return sizeof(m_data);
       }

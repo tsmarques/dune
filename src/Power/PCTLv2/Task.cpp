@@ -253,7 +253,7 @@ namespace Power
         bind<IMC::QueryLedBrightness>(this);
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -264,7 +264,7 @@ namespace Power
 
       //! Update parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         // Fill LED map.
         m_led_map.clear();
@@ -307,7 +307,7 @@ namespace Power
 
       //! Reserve entities.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -337,7 +337,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -354,7 +354,7 @@ namespace Power
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         for (unsigned i = 0; i < c_pwrs_count; ++i)
           setPowerChannelState(i, m_args.pwr_states[i] ? 1 : 0);
@@ -369,7 +369,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_proto.requestVersion();
 
@@ -636,7 +636,7 @@ namespace Power
 
       //! Report leak entities.
       void
-      onReportEntityState(void) override
+      onReportEntityState() override
       {
         dispatch(m_leaks[0]);
         dispatch(m_leaks[1]);
@@ -733,7 +733,7 @@ namespace Power
 
       //! Dispatch power channel state messages to bus.
       void
-      dispatchPowerChannelStates(void)
+      dispatchPowerChannelStates()
       {
         std::map<unsigned, PowerChannel*>::const_iterator itr = m_channels.begin();
 
@@ -745,7 +745,7 @@ namespace Power
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

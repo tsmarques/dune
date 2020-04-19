@@ -35,7 +35,7 @@ namespace Simulators
 {
   namespace VSIM
   {
-    Force::Force(void)
+    Force::Force()
     {
       for (unsigned i = 0; i < 3; ++i)
       {
@@ -70,19 +70,19 @@ namespace Simulators
     }
 
     bool
-    Force::isInertial(void)
+    Force::isInertial()
     {
       return m_fIsInertial;
     }
 
     bool
-    Force::isTorque(void)
+    Force::isTorque()
     {
       return m_fIsTorque;
     }
 
     bool
-    Force::isPosInertial(void)
+    Force::isPosInertial()
     {
       return m_pIsInertial;
     }
@@ -112,7 +112,7 @@ namespace Simulators
 
     // return ASV actuation
     double
-    Force::getActuation(void)
+    Force::getActuation()
     {
       // do nothing.
       return 0;

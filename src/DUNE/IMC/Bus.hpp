@@ -60,10 +60,10 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      Bus(void);
+      Bus();
 
       //! Destructor.
-      ~Bus(void);
+      ~Bus();
 
       //! Register a task as a recipient a given message
       //! identification number.
@@ -85,17 +85,17 @@ namespace DUNE
       void dispatch (const Message *msg, Tasks::AbstractTask *task = nullptr);
 
       inline void
-      pause(void)
+      pause()
       {
         Concurrency::ScopedMutex lock(m_paused_lock);
         m_paused = true;
       }
 
       void
-      resume(void);
+      resume();
 
       const std::vector<TransportBindings*>
-      getBindings(void);
+      getBindings();
 
     private:
       typedef std::list<Tasks::AbstractTask*> TransportList;

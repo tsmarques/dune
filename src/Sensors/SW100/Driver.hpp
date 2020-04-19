@@ -52,19 +52,19 @@ namespace Sensors
       { }
 
       bool
-      setup(void);
+      setup();
 
       bool
-      read(void);
+      read();
 
       inline const double*
-      getData(void)
+      getData()
       {
         return m_data;
       }
 
       inline int
-      getId(void)
+      getId()
       {
         return m_id;
       }

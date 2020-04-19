@@ -61,11 +61,11 @@ namespace DUNE
         m_var = T();
       }
 
-      ~BasicParameterParser(void) override
+      ~BasicParameterParser() override
       { }
 
       std::string
-      getTypeName(void) override
+      getTypeName() override
       {
         return ParameterTypeName::get(m_var);
       }
@@ -78,7 +78,7 @@ namespace DUNE
       }
 
       bool
-      commit(void) override
+      commit() override
       {
         if (m_var == m_copy)
           return false;
@@ -113,7 +113,7 @@ namespace DUNE
       }
 
       void
-      validate(void) override
+      validate() override
       {
         if (m_min_set)
         {
@@ -155,11 +155,11 @@ namespace DUNE
         m_max_size(UINT_MAX)
       { }
 
-      ~BasicParameterParser(void) override
+      ~BasicParameterParser() override
       { }
 
       std::string
-      getTypeName(void) override
+      getTypeName() override
       {
         T tmp;
         return std::string("list:") + ParameterTypeName::get(tmp);
@@ -175,7 +175,7 @@ namespace DUNE
       }
 
       bool
-      commit(void) override
+      commit() override
       {
         if (m_var == m_copy)
           return false;
@@ -197,7 +197,7 @@ namespace DUNE
       }
 
       void
-      validate(void) override
+      validate() override
       {
         if (m_min_size < UINT_MAX)
         {
@@ -228,11 +228,11 @@ namespace DUNE
         m_copy(var)
       { }
 
-      ~BasicParameterParser(void) override
+      ~BasicParameterParser() override
       { }
 
       std::string
-      getTypeName(void) override
+      getTypeName() override
       {
         return "matrix";
       }
@@ -247,7 +247,7 @@ namespace DUNE
       }
 
       bool
-      commit(void) override
+      commit() override
       {
         if (m_var == m_copy)
           return false;

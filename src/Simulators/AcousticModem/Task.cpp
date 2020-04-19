@@ -98,7 +98,7 @@ namespace Simulators
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (isActive())
         {
@@ -112,7 +112,7 @@ namespace Simulators
 
       //! Acquire resources by binding to the local UDP port.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_sock = new UDPSocket;
         m_sock->bind(m_args.local_port, Address::Any, false);
@@ -121,7 +121,7 @@ namespace Simulators
 
       //! Release resources. Clears UDP socket.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_sock);
       }
@@ -158,7 +158,7 @@ namespace Simulators
       //! and contains a DUNE::IMC::UamTxFrame (inline) it gets translated to a
       //! @publish DUNE::IMC::UamRxFrame and gets posted to the local bus.
       void
-      readData(void)
+      readData()
       {
         if (!Poll::poll(*m_sock, 1.0))
           return;
@@ -192,7 +192,7 @@ namespace Simulators
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

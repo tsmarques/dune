@@ -63,7 +63,7 @@ namespace Simulators
       //! Returns world's integration timestep.
       //! @return world integration timestep.
       double
-      getTimeStep(void)
+      getTimeStep()
       {
         return m_timestep;
       }
@@ -80,16 +80,16 @@ namespace Simulators
 
       //! Simulation's tick.
       void
-      takeStep(void);
+      takeStep();
 
     private:
       //! Applies forces to all objects/vehicles.
       void
-      applyForces(void);
+      applyForces();
 
       //! Fetches all objects and vehicles data from simulator.
       void
-      update(void);
+      update();
 
       //! Set world's gravity.
       //! @param[in] x set world gravity in the x-axis.

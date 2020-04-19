@@ -130,13 +130,13 @@ namespace Transports
         }
 
         //! Default destructor.
-        ~Radio3dr(void) override
+        ~Radio3dr() override
         {
            Memory::clear(m_handle);
         }
 
         int
-        configDevice(void) override
+        configDevice() override
         {
           int status;
           status =DeviceVerifyConf();

@@ -180,13 +180,13 @@ namespace DUNE
     }
 
     bool
-    StationKeep::isInside(void) const
+    StationKeep::isInside() const
     {
       return (m_sks == ST_ON_STATION);
     }
 
     bool
-    StationKeep::isMoving(void) const
+    StationKeep::isMoving() const
     {
       return (m_sks == ST_OFF_STATION);
     }

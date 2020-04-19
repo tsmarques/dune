@@ -82,7 +82,7 @@ namespace Simulators
       //! Return vehicle actuation.
       //! @return vehicle actuation.
       double
-      getActuation(void) override;
+      getActuation() override;
 
     private:
       //! Sets engine's max force and position.

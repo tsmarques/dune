@@ -50,11 +50,11 @@ namespace DUNE
       { }
 
       
-      ~BasicStringWriter(void) override
+      ~BasicStringWriter() override
       { }
 
       std::string
-      write(void) override
+      write() override
       {
         return uncastLexical(m_var);
       }

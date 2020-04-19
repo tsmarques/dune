@@ -51,7 +51,7 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      InlineMessage (void) : m_parent (nullptr), m_msg (NULL) {}
+      InlineMessage () : m_parent (nullptr), m_msg (NULL) {}
 
       //! Copy constructor.
       InlineMessage(const InlineMessage& other):
@@ -62,7 +62,7 @@ namespace DUNE
       }
 
       //! Default destructor.
-      ~InlineMessage(void)
+      ~InlineMessage()
       {
         clear();
       }
@@ -86,7 +86,7 @@ namespace DUNE
       }
 
       void
-      clear(void)
+      clear()
       {
         if (m_msg != NULL)
         {
@@ -96,7 +96,7 @@ namespace DUNE
       }
 
       const Type*
-      get(void) const
+      get() const
       {
         if (isNull())
           throw std::runtime_error(DTR("dereference of null inline message"));
@@ -105,7 +105,7 @@ namespace DUNE
       }
 
       Type*
-      get(void)
+      get()
       {
         if (isNull())
           throw std::runtime_error(DTR("dereference of null inline message"));
@@ -137,7 +137,7 @@ namespace DUNE
       }
 
       unsigned
-      getSerializationSize(void) const
+      getSerializationSize() const
       {
         if (m_msg == NULL)
           return 2;
@@ -146,19 +146,19 @@ namespace DUNE
       }
 
       bool
-      isNull(void) const
+      isNull() const
       {
         return m_msg == NULL;
       }
 
       Type&
-      operator*(void) const
+      operator*() const
       {
         return *m_msg;
       }
 
       Type*
-      operator->(void) const
+      operator->() const
       {
         return m_msg;
       }
@@ -289,7 +289,7 @@ namespace DUNE
       }
 
       void
-      synchronizeHeader(void)
+      synchronizeHeader()
       {
         if ((m_parent == NULL) || (m_msg == NULL))
           return;

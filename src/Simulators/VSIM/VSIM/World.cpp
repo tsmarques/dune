@@ -42,7 +42,7 @@ namespace Simulators
       setGravity(grv[0], grv[1], grv[2]);
     }
 
-    World::~World(void)
+    World::~World()
     {  }
 
     void
@@ -68,7 +68,7 @@ namespace Simulators
     }
 
     void
-    World::applyForces(void)
+    World::applyForces()
     {
       std::list<Object*>::iterator oitr = m_objects.begin();
       for (; oitr != m_objects.end(); ++oitr)
@@ -80,7 +80,7 @@ namespace Simulators
     }
 
     void
-    World::update(void)
+    World::update()
     {
       std::list<Object*>::iterator oitr = m_objects.begin();
       for (; oitr != m_objects.end(); ++oitr)
@@ -92,7 +92,7 @@ namespace Simulators
     }
 
     void
-    World::takeStep(void)
+    World::takeStep()
     {
       // Apply forces to vehicle.
       applyForces();

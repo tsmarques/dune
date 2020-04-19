@@ -98,7 +98,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           PathController::onUpdateParameters();
 
@@ -109,13 +109,13 @@ namespace Control
         }
 
         void
-        onEntityReservation(void) override
+        onEntityReservation() override
         {
           PathController::onEntityReservation();
         }
 
         void
-        onPathActivation(void) override
+        onPathActivation() override
         {
           // Activate heading cotroller.
           enableControlLoops(IMC::CL_YAW);

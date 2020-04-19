@@ -95,17 +95,17 @@ namespace Power
             resetStateNewData();
           }
 
-          ~DriverBatMan(void){}
+          ~DriverBatMan(){}
 
           void
-          resetStateNewData(void)
+          resetStateNewData()
           {
             for(uint8_t t = 0; t < 8; t++)
               m_batManData.state_new_data[t] = false;
           }
 
           bool
-          getVersionFirmware(void)
+          getVersionFirmware()
           {
             if(sendCommand("@VERS,*", "$VERS,"))
               return true;
@@ -130,7 +130,7 @@ namespace Power
           }
 
           bool
-          startAcquisition(void)
+          startAcquisition()
           {
             if(sendCommand("@START,*", "$RSP,ACK,,*"))
               return true;
@@ -139,7 +139,7 @@ namespace Power
           }
 
           bool
-          stopAcquisition(void)
+          stopAcquisition()
           {
             if (sendCommand("@STOP,*", ""))
               return true;
@@ -188,7 +188,7 @@ namespace Power
           }
 
           bool
-          haveNewData(void)
+          haveNewData()
           {
             std::size_t rv = m_uart->readString(bfr, sizeof(bfr));
 
@@ -290,7 +290,7 @@ namespace Power
           }
 
           std::string
-          getFirmwareVersion(void)
+          getFirmwareVersion()
           {
             return m_batManData.firmVersion;
           }

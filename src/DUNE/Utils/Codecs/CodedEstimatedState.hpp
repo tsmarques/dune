@@ -106,7 +106,7 @@ namespace DUNE
         //! Get payload size.
         //! @return size of payload.
         static size_t
-        getSize(void)
+        getSize()
         {
           // Size of lat, lon, depth, alt and yaw.
           return sizeof(c_id) + 2 * sizeof(fp64_t) + 3 * sizeof(int16_t);

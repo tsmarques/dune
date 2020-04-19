@@ -85,7 +85,7 @@ namespace Plan
       m_rt_stat = new RunTimeStatistics(&m_post_stat);
     }
 
-    Plan::~Plan(void)
+    Plan::~Plan()
     {
       Memory::clear(m_profiles);
       Memory::clear(m_sched);
@@ -97,7 +97,7 @@ namespace Plan
     }
 
     void
-    Plan::clear(void)
+    Plan::clear()
     {
       // Do not clear m_spec
 
@@ -138,7 +138,7 @@ namespace Plan
     }
 
     void
-    Plan::planStarted(void)
+    Plan::planStarted()
     {
       // Post statistics
       if (m_rt_stat != NULL)
@@ -156,7 +156,7 @@ namespace Plan
     }
 
     void
-    Plan::planStopped(void)
+    Plan::planStopped()
     {
       if (m_sched != NULL)
         m_sched->planStopped(m_affected_ents);
@@ -170,7 +170,7 @@ namespace Plan
     }
 
     void
-    Plan::calibrationStarted(void)
+    Plan::calibrationStarted()
     {
       m_calib->setTime(m_est_cal_time);
     }
@@ -189,7 +189,7 @@ namespace Plan
     }
 
     void
-    Plan::maneuverDone(void)
+    Plan::maneuverDone()
     {
       if (!m_started_maneuver)
         return;
@@ -214,13 +214,13 @@ namespace Plan
     }
 
     uint16_t
-    Plan::getEstimatedCalibrationTime(void) const
+    Plan::getEstimatedCalibrationTime() const
     {
       return m_est_cal_time;
     }
 
     bool
-    Plan::isDone(void) const
+    Plan::isDone() const
     {
       // FIXME: we are only fetching a single transition and not all of them
 
@@ -235,7 +235,7 @@ namespace Plan
     }
 
     IMC::PlanManeuver*
-    Plan::loadStartManeuver(void)
+    Plan::loadStartManeuver()
     {
       m_last_id = m_spec->start_man_id;
 
@@ -243,7 +243,7 @@ namespace Plan
     }
 
     IMC::PlanManeuver*
-    Plan::loadNextManeuver(void)
+    Plan::loadNextManeuver()
     {
       m_last_id = m_curr_node->trans[0]->dest_man;
 
@@ -320,7 +320,7 @@ namespace Plan
     }
 
     float
-    Plan::getETA(void) const
+    Plan::getETA() const
     {
       if (m_progress >= 0.0)
         return getTotalDuration() * (1.0 - 0.01 * m_progress);
@@ -331,7 +331,7 @@ namespace Plan
     // Private
 
     float
-    Plan::getExecutionDuration(void) const
+    Plan::getExecutionDuration() const
     {
       if (!isLinear() || !m_profiles->size())
         return -1.0;
@@ -349,7 +349,7 @@ namespace Plan
     }
 
     bool
-    Plan::waitingForDevice(void)
+    Plan::waitingForDevice()
     {
       if (m_sched != NULL)
         return m_sched->waitingForDevice();
@@ -358,7 +358,7 @@ namespace Plan
     }
 
     float
-    Plan::scheduledTimeLeft(void) const
+    Plan::scheduledTimeLeft() const
     {
       if (m_sched != NULL)
         return m_sched->calibTimeLeft();
@@ -514,7 +514,7 @@ namespace Plan
     }
 
     void
-    Plan::sequenceNodes(void)
+    Plan::sequenceNodes()
     {
       std::string maneuver_id = m_spec->start_man_id;
       PlanMap::iterator itr = m_graph.find(maneuver_id);

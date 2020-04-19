@@ -137,7 +137,7 @@ namespace DUNE
       //! Get distance using current beam data.
       //! @return distance.
       float
-      get(void)
+      get()
       {
         float dist = 0.0;
         unsigned valid = 0;
@@ -197,7 +197,7 @@ namespace DUNE
 
       //! Dispatch Distance messages to bus.
       void
-      dispatch(void)
+      dispatch()
       {
         for (unsigned i = 0; i < m_list.size(); ++i)
           m_task->dispatch(m_list[i], Tasks::DF_KEEP_TIME);
@@ -230,7 +230,7 @@ namespace DUNE
     private:
       //! Clear data.
       void
-      clear(void)
+      clear()
       {
         m_list.clear();
         m_prev = 0;
@@ -257,7 +257,7 @@ namespace DUNE
 
       //! Set device state.
       void
-      setDeviceState(void)
+      setDeviceState()
       {
         IMC::DeviceState ds;
 

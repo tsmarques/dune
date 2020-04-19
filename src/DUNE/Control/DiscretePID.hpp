@@ -45,10 +45,10 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      DiscretePID(void);
+      DiscretePID();
 
       //! Destructor.
-      ~DiscretePID(void);
+      ~DiscretePID();
 
       //! Set PID gains using vector.
       //! @param[in] gains pid gains vector in order p, i, d.
@@ -107,7 +107,7 @@ namespace DUNE
 
       //! Reset pid variables
       void
-      reset(void);
+      reset();
 
     private:
       //! Proportional gain.

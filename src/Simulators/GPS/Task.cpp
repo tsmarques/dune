@@ -152,7 +152,7 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_origin.lat = Math::Angles::radians(m_args.position[0]);
         m_origin.lon = Math::Angles::radians(m_args.position[1]);
@@ -161,7 +161,7 @@ namespace Simulators
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         // Dispatching local origin.
         dispatch(m_origin);
@@ -194,7 +194,7 @@ namespace Simulators
 
       //! Report invalid fix.
       void
-      reportInvalidFix(void)
+      reportInvalidFix()
       {
         trace("reporting invalid fix");
 
@@ -209,7 +209,7 @@ namespace Simulators
       }
 
       void
-      task(void) override
+      task() override
       {
         // Report invalid fixes when system is underwater.
         if (m_sstate.z > m_args.act_depth)

@@ -89,7 +89,7 @@ namespace Plan
 
       //! Flush all remaining timed actions in the schedule
       void
-      flushTimed(void);
+      flushTimed();
 
       //! The plan has started
       //! @param[out] affected vector of entities that will be (de)activated during the plan
@@ -114,7 +114,7 @@ namespace Plan
       //! Get the time of the earliest scheduled action
       //! @return time of the earliest scheduled action
       inline float
-      getEarliestSchedule(void) const
+      getEarliestSchedule() const
       {
         return m_earliest;
       }
@@ -129,12 +129,12 @@ namespace Plan
       //! Check if we are still waiting for a device in calibration process
       //! @return true if we are still waiting
       bool
-      waitingForDevice(void);
+      waitingForDevice();
 
       //! Compute a shorter time for calibration
       //! @return time left for calibration according to devices to activate
       float
-      calibTimeLeft(void);
+      calibTimeLeft();
 
       //! Fill the object component active time
       //! @param[in] nodes vector of sequenced plan maneuvers
@@ -276,7 +276,7 @@ namespace Plan
 
       //! Schedule timed actions
       void
-      scheduleTimed(void);
+      scheduleTimed();
 
       //! Dispatch actions
       //! @param[in] msg SetEntityParameters to dispatch
@@ -298,11 +298,11 @@ namespace Plan
       //! Find the stack with the next scheduled action
       //! @return iterator to the stack with the next scheduled action
       std::map<std::string, TimedStack>::iterator
-      nextSchedule(void);
+      nextSchedule();
 
       //! Printed timed actions
       void
-      printTimed(void);
+      printTimed();
 
       //! Map of entity labels to TimedStack's
       //! This means we'll have one stack per component

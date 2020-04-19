@@ -60,7 +60,7 @@ namespace Maneuver
         MuxedManeuver<IMC::Drop, DropArgs>(task, args)
       { }
 
-      ~Drop(void) override
+      ~Drop() override
       { }
 
       //! Start maneuver function

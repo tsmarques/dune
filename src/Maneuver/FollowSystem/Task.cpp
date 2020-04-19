@@ -124,7 +124,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.timeout))
           m_last_update.setTop(m_args.timeout);
@@ -134,7 +134,7 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void) override
+      onManeuverDeactivation() override
       {
         m_first_announce = true;
         m_has_estimated_state = false;
@@ -293,7 +293,7 @@ namespace Maneuver
       }
 
       void
-      onStateReport(void) override
+      onStateReport() override
       {
         if (!m_maneuver.duration)
           return;

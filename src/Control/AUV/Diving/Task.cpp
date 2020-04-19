@@ -161,7 +161,7 @@ namespace Control
 
         //! Release resources.
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           Memory::clear(m_counter_solo);
           Memory::clear(m_counter_step);
@@ -169,7 +169,7 @@ namespace Control
 
         //! Acquire resources.
         void
-        onResourceAcquisition(void) override
+        onResourceAcquisition() override
         {
           m_counter_solo = new Time::Counter<float>(m_args.time_solo);
           m_counter_step = new Time::Counter<float>(m_args.time_step);
@@ -177,7 +177,7 @@ namespace Control
 
         //! Initialize resources.
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           requestDeactivation();
           reset();
@@ -185,21 +185,21 @@ namespace Control
 
         //! On activation
         void
-        onActivation(void) override
+        onActivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         //! On deactivation
         void
-        onDeactivation(void) override
+        onDeactivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         //! Reset all variables
         void
-        reset(void)
+        reset()
         {
           m_mstate = SM_IDLE;
           m_rpm = -1.0;
@@ -331,7 +331,7 @@ namespace Control
         }
 
         void
-        task(void) override
+        task() override
         {
           if (!isActive())
             return;
@@ -387,7 +387,7 @@ namespace Control
 
         //! Idle state machine routine
         void
-        onIdle(void)
+        onIdle()
         {
           if ((m_depth < m_args.depth_threshold) && (m_z_ref.value > m_args.depth_threshold)
               && (m_dspeed.value > 0.0) && (m_rpm > m_args.speed_tol))
@@ -400,7 +400,7 @@ namespace Control
 
         //! Checking state machine routine
         void
-        onChecking(void)
+        onChecking()
         {
           if (!hasZReference() || (m_dspeed.value == 0.0))
           {
@@ -425,7 +425,7 @@ namespace Control
 
         //! Submerged state machine routine
         void
-        onSubmerged(void)
+        onSubmerged()
         {
           if (!hasZReference())
           {
@@ -444,7 +444,7 @@ namespace Control
 
         //! Forcing state machine routine
         void
-        onForcing(void)
+        onForcing()
         {
           if (!hasZReference() || (m_dspeed.value == 0.0))
           {
@@ -493,7 +493,7 @@ namespace Control
         //! Increase desired speed
         //! @return true if was able to increase speed, false otherwise
         bool
-        increaseSpeed(void)
+        increaseSpeed()
         {
           if (m_incs == 0)
           {
@@ -523,7 +523,7 @@ namespace Control
         //! Check if we have depth/altitude reference
         //! @return true if we do, false otherwise
         bool
-        hasZReference(void)
+        hasZReference()
         {
           if (m_z_ref.z_units == IMC::Z_DEPTH)
           {

@@ -55,7 +55,7 @@ namespace Sensors
     {
     public:
       void
-      clear(void)
+      clear()
       {
         std::map<ErrorFlags, unsigned>::iterator itr = m_counts.begin();
         for (; itr != m_counts.end(); ++itr)
@@ -73,7 +73,7 @@ namespace Sensors
       }
 
       unsigned
-      getTotal(void)
+      getTotal()
       {
         unsigned total = 0;
         std::map<ErrorFlags, unsigned>::const_iterator itr = m_counts.begin();

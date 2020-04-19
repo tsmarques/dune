@@ -166,7 +166,7 @@ namespace Vision
         m_socket.bind(c_port);
       }
 
-      ~GVCP(void)
+      ~GVCP()
       {
         try
         {
@@ -327,14 +327,14 @@ namespace Vision
 
       //! Start streaming.
       void
-      startStreaming(void)
+      startStreaming()
       {
         writeRegister(ADR_ACQ_CTL, 1);
       }
 
       //! Stop streaming.
       void
-      stopStreaming(void)
+      stopStreaming()
       {
         setStrobeMode(STROBE_MODE_OFF, m_polarity);
         writeRegister(ADR_ACQ_CTL, 0);
@@ -342,7 +342,7 @@ namespace Vision
 
       //! Send keep-alive signal.
       void
-      keepAlive(void)
+      keepAlive()
       {
         readRegister(ADR_PRIV);
       }
@@ -520,7 +520,7 @@ namespace Vision
       }
 
       uint16_t
-      getSequence(void)
+      getSequence()
       {
         ScopedMutex l(m_seq_lock);
         if (++m_seq == 0)

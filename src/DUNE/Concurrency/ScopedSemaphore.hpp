@@ -52,7 +52,7 @@ namespace DUNE
       }
 
       //! Destruct the object, unlocking the associated semaphore.
-      ~ScopedSemaphore(void)
+      ~ScopedSemaphore()
       {
         m_lock.unlock();
       }

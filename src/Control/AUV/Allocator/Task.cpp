@@ -211,7 +211,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.max_fin_rot))
             m_args.max_fin_rot = Angles::radians(m_args.max_fin_rot);
@@ -221,26 +221,26 @@ namespace Control
         }
 
         void
-        onActivation(void) override
+        onActivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         void
-        onDeactivation(void) override
+        onDeactivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         void
-        reset(void)
+        reset()
         {
           m_braking = false;
           requestDeactivation();
         }
         //! Release resources.
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
             Memory::clear(m_last_estimated_state);
             Memory::clear(m_last_rpm);
@@ -249,7 +249,7 @@ namespace Control
           
         }
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           reset();
 
@@ -276,7 +276,7 @@ namespace Control
 
         //! Resolve entities for messages
         void
-        onEntityResolution(void) override
+        onEntityResolution() override
         {
           try
           {
@@ -664,7 +664,7 @@ namespace Control
 
         //! Brake but ignore desired control
         void
-        brake(void)
+        brake()
         {
           m_fins[0].value = m_args.max_fin_rot;
           m_fins[3].value = -m_args.max_fin_rot;
@@ -676,7 +676,7 @@ namespace Control
 
         //! Change my pitch up
         void
-        brakePitch(void)
+        brakePitch()
         {
           m_fins[0].value = 0.0;
           m_fins[3].value = 0.0;
@@ -689,7 +689,7 @@ namespace Control
 
         //! Compute actually produced torque
         void
-        computeProducedTorque(void)
+        computeProducedTorque()
         {
           IMC::ControlParcel produced_torque;
           produced_torque.d = - (m_servo_pos[0] + m_servo_pos[3]) / 2.0;
@@ -702,7 +702,7 @@ namespace Control
 
         //! Dispatch all fins desired positions
         inline void
-        dispatchAllFins(void)
+        dispatchAllFins()
         {
           double delta = m_delta.getDelta();
 
@@ -721,7 +721,7 @@ namespace Control
         }
 
         void
-        onMain(void) override
+        onMain() override
         {
           while (!stopping())
           {

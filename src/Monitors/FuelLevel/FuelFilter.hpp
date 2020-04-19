@@ -153,7 +153,7 @@ namespace Monitors
         m_bdata->setEntities(eids);
       }
 
-      ~FuelFilter(void)
+      ~FuelFilter()
       {
         Memory::clear(m_bdata);
       }
@@ -268,7 +268,7 @@ namespace Monitors
       //! Update fuel filter
       //! @return true if the filter has gathered enough data to start estimating, false otherwise
       bool
-      update(void)
+      update()
       {
         // check if we are still waiting for the first measurements
         if (!m_bdata->gotMeasurements())
@@ -560,7 +560,7 @@ namespace Monitors
       //! Compute an initial estimate for the energy left in batteries
       //! @return initial estimate computed
       float
-      computeInitialEstimate(void)
+      computeInitialEstimate()
       {
         float value;
 
@@ -669,7 +669,7 @@ namespace Monitors
       //! Compute a rough estimate of the confidence on the measure of energy (in %)
       //! @return value of confidence computed
       inline float
-      computeConfidence(void)
+      computeConfidence()
       {
         return computeConfidence(m_initial_estimate - m_energy_consumed);
       }
@@ -707,7 +707,7 @@ namespace Monitors
         }
 
         void
-        reset(void)
+        reset()
         {
           if (type_real)
             start = real;
@@ -716,7 +716,7 @@ namespace Monitors
         }
 
         inline bool
-        overflow(void)
+        overflow()
         {
           if (type_real)
             return real - start > top;

@@ -63,7 +63,7 @@ namespace Actuators
         }
 
         //! Destructor.
-        ~ServoPwm(void) override
+        ~ServoPwm() override
         {
           closeConfigServo();
         }
@@ -76,7 +76,7 @@ namespace Actuators
         }
 
         bool
-        CheckGPIOSate(void)
+        CheckGPIOSate()
         {
           if(m_gpio_state)
             return true;
@@ -86,7 +86,7 @@ namespace Actuators
 
       private:
         void
-        run(void) override
+        run() override
         {
           c_time_delayms = 19500;
           wdog_tout = 0.02;
@@ -183,7 +183,7 @@ namespace Actuators
 
         //!Close PinOut config
         bool
-        closeConfigServo(void)
+        closeConfigServo()
         {
           // Unexport the pin
           if ((myOutputHandle = fopen("/sys/class/gpio/unexport", "ab")) == NULL)

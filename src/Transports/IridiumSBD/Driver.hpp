@@ -68,11 +68,11 @@ namespace Transports
       }
 
       //! Destructor.
-      ~Driver(void) override
+      ~Driver() override
       { }
 
       void
-      sendReset(void) override
+      sendReset() override
       {
         sendAT("Z0");
       }
@@ -81,7 +81,7 @@ namespace Transports
       //! originated SBD session.
       //! @return MOMSN.
       unsigned
-      getMOMSN(void)
+      getMOMSN()
       {
         std::string value = readValue("+SBDS");
         unsigned momsn = 0;
@@ -146,7 +146,7 @@ namespace Transports
       //! at the GSS. This function should be used when hasRingAlert
       //! returns true.
       void
-      checkMailBoxAlert(void)
+      checkMailBoxAlert()
       {
         sendSBD(std::vector<uint8_t>(), true);
       }
@@ -154,7 +154,7 @@ namespace Transports
       //! Start an SBD session to query the number of messages waiting
       //! at the GSS.
       void
-      checkMailBox(void)
+      checkMailBox()
       {
         sendSBD(std::vector<uint8_t>(), false);
       }
@@ -185,7 +185,7 @@ namespace Transports
       //! should be called if hasSessionResult returns true.
       //! @return session result.
       const SessionResult&
-      getSessionResult(void)
+      getSessionResult()
       {
         ScopedMutex l(m_mutex);
         m_session_result_read = true;
@@ -196,7 +196,7 @@ namespace Transports
       //! @return true if SBD session result is available, false
       //! otherwise.
       bool
-      hasSessionResult(void)
+      hasSessionResult()
       {
         ScopedMutex l(m_mutex);
         return !m_session_result_read;
@@ -204,7 +204,7 @@ namespace Transports
 
       //! Clear MO SBD message buffer.
       void
-      clearBufferMO(void)
+      clearBufferMO()
       {
         std::string rv = readValue("+SBDD0");
         if (rv != "0")
@@ -213,7 +213,7 @@ namespace Transports
 
       //! Clear MT SBD message buffer.
       void
-      clearBufferMT(void)
+      clearBufferMT()
       {
         std::string rv = readValue("+SBDD1");
         if (rv != "0")
@@ -223,7 +223,7 @@ namespace Transports
       //! Check if a ring alert was received.
       //! @return true if ring alert was received, false otherwise.
       bool
-      hasRingAlert(void)
+      hasRingAlert()
       {
         ScopedMutex l(m_mutex);
         return m_sbd_ring;
@@ -231,7 +231,7 @@ namespace Transports
 
       //! Clear ring alert notification.
       void
-      clearRingAlert(void)
+      clearRingAlert()
       {
         ScopedMutex l(m_mutex);
         m_sbd_ring = false;
@@ -240,7 +240,7 @@ namespace Transports
       //! Retrieve the count of MT SBD messages waiting at the GSS.
       //! @return count of MT SBD messages queued at the GSS.
       unsigned
-      getQueuedMT(void)
+      getQueuedMT()
       {
         ScopedMutex l(m_mutex);
         return m_queued_mt;
@@ -270,7 +270,7 @@ namespace Transports
       //! Perform ISU initialization, this function must be called
       //! before any other.
       void
-      sendInitialization(void) override
+      sendInitialization() override
       {
         setEcho(false);
         setFlowControl(false);
@@ -407,7 +407,7 @@ namespace Transports
       }
 
       void
-      clearSequenceNumber(void)
+      clearSequenceNumber()
       {
         std::string rv = readValue("+SBDC");
         if (rv != "0")

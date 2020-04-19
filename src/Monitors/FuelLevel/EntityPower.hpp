@@ -51,13 +51,13 @@ namespace Monitors
       { }
 
       inline float
-      getPower(void) const
+      getPower() const
       {
         return m_power;
       }
 
       inline float
-      getPowerPerSecond(void) const
+      getPowerPerSecond() const
       {
         return getPower() / 3600.0;
       }

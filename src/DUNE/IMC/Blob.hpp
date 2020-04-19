@@ -43,12 +43,12 @@ namespace DUNE
       //! Retrieve pointer to blob data.
       //! @return pointer to blob data.
       static const unsigned char*
-      getData(void);
+      getData();
 
       //! Retrieve size of the blob in bytes.
       //! @return blob's size.
       static unsigned int
-      getSize(void);
+      getSize();
     };
   }
 }

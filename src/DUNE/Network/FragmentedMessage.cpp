@@ -34,7 +34,7 @@ namespace DUNE
 {
   namespace Network
   {
-    FragmentedMessage::FragmentedMessage(void)
+    FragmentedMessage::FragmentedMessage()
     {
       m_parent = NULL;
       m_src = m_uid = m_creation_time = m_num_frags = -1;
@@ -95,7 +95,7 @@ namespace DUNE
     }
 
     double
-    FragmentedMessage::getAge(void)
+    FragmentedMessage::getAge()
     {
       if (m_creation_time < 0)
         return 0;
@@ -104,12 +104,12 @@ namespace DUNE
     }
 
     int
-    FragmentedMessage::getFragmentsMissing(void)
+    FragmentedMessage::getFragmentsMissing()
     {
       return m_num_frags - m_fragments.size();
     }
 
-    FragmentedMessage::~FragmentedMessage(void)
+    FragmentedMessage::~FragmentedMessage()
     {
       m_fragments.clear();
     }

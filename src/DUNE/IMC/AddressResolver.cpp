@@ -38,13 +38,13 @@ namespace DUNE
     //! Name of the unknown address.
     static const char* c_unknown = "unknown";
 
-    AddressResolver::AddressResolver(void):
+    AddressResolver::AddressResolver():
       m_name(c_unknown),
       m_id(invalid())
     { }
 
     const char*
-    AddressResolver::name(void)
+    AddressResolver::name()
     {
       Concurrency::ScopedMutex m(m_mutex);
       return m_name.c_str();
@@ -58,7 +58,7 @@ namespace DUNE
     }
 
     unsigned
-    AddressResolver::id(void)
+    AddressResolver::id()
     {
       Concurrency::ScopedMutex m(m_mutex);
       return m_id;

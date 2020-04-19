@@ -90,7 +90,7 @@ namespace DUNE
       }
 
       void
-      clearPowerChannelNames(void)
+      clearPowerChannelNames()
       {
         m_power_channels.clear();
       }
@@ -102,22 +102,22 @@ namespace DUNE
       }
 
       virtual bool
-      onConnect(void) = 0;
+      onConnect() = 0;
 
       virtual void
-      onDisconnect(void) = 0;
+      onDisconnect() = 0;
 
       virtual bool
-      enableLogControl(void)
+      enableLogControl()
       {
         return false;
       }
 
       virtual bool
-      onReadData(void) = 0;
+      onReadData() = 0;
 
       virtual bool
-      onSynchronize(void);
+      onSynchronize();
 
       virtual void
       onEstimatedState(const DUNE::IMC::EstimatedState& msg);
@@ -129,19 +129,19 @@ namespace DUNE
       onOpenLog(const DUNE::FileSystem::Path& path);
 
       virtual void
-      onCloseLog(void);
+      onCloseLog();
 
       virtual void
-      onInitializeDevice(void) = 0;
+      onInitializeDevice() = 0;
 
       void
-      clearFaultCount(void)
+      clearFaultCount()
       {
         m_fault_count = 0;
       }
 
       void
-      clearTimeoutCount(void)
+      clearTimeoutCount()
       {
         m_timeout_count = 0;
       }
@@ -208,10 +208,10 @@ namespace DUNE
       unsigned m_timeout_count;
 
       void
-      onResourceRelease(void) override;
+      onResourceRelease() override;
 
       void
-      onResourceInitialization(void) override;
+      onResourceInitialization() override;
 
       //! Push a new state to the state queue.
       //! @param[in] state state machine state.
@@ -221,65 +221,65 @@ namespace DUNE
       //! Test if state queue has pending state transitions.
       //! @return true if state queue has pending states, false otherwise.
       bool
-      hasQueuedStates(void) const;
+      hasQueuedStates() const;
 
       //! Retrieve the current finite state machine state.
       //! @return current finite state machine state.
       StateMachineStates
-      getCurrentState(void) const;
+      getCurrentState() const;
 
       //! Dequeue the current finite state machine state.
       //! @return dequeued finite state machine state.
       StateMachineStates
-      dequeueState(void);
+      dequeueState();
 
       void
-      initializeDevice(void);
+      initializeDevice();
 
       void
-      onRequestActivation(void) override;
+      onRequestActivation() override;
 
       bool
-      connect(void);
+      connect();
 
       void
       failActivation(const std::string& message);
 
       void
-      onRequestDeactivation(void) override;
+      onRequestDeactivation() override;
 
       void
-      disconnect(void);
+      disconnect();
 
       void
-      onDeactivation(void) override;
+      onDeactivation() override;
 
       void
-      onActivation(void) override;
+      onActivation() override;
 
       //! Request the name of the current log file.
       void
-      requestLogName(void);
+      requestLogName();
 
       bool
-      readSample(void);
+      readSample();
 
       bool
-      synchronize(void);
+      synchronize();
 
       void
       openLog(const DUNE::FileSystem::Path& path);
 
       void
-      closeLog(void);
+      closeLog();
 
       //! Power-on device.
       void
-      turnPowerOn(void);
+      turnPowerOn();
 
       //! Power-off device.
       void
-      turnPowerOff(void);
+      turnPowerOff();
 
       //! Control device power.
       //! @param[in] op desired power channel operation.
@@ -294,10 +294,10 @@ namespace DUNE
 
       //! Update state machine.
       void
-      updateStateMachine(void);
+      updateStateMachine();
 
       void
-      onMain(void) override;
+      onMain() override;
     };
   }
 }

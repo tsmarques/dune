@@ -54,7 +54,7 @@ namespace DUNE
       create(std::string, Context&) = 0;
 
       virtual
-      ~AbstractCreator(void)
+      ~AbstractCreator()
       { }
     };
   }

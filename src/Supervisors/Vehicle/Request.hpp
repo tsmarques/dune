@@ -75,37 +75,37 @@ namespace Supervisors
         m_issue_time = -1.0;
       }
 
-      ~Request(void)
+      ~Request()
       {
         delete m_msg;
       }
 
       bool
-      isStop(void)
+      isStop()
       {
         return (m_type == RT_STOP);
       }
 
       bool
-      isStart(void)
+      isStart()
       {
         return (m_type == RT_START);
       }
 
       double
-      getIssueTime(void)
+      getIssueTime()
       {
         return m_issue_time;
       }
 
       IMC::Message*
-      getMessage(void)
+      getMessage()
       {
         return m_msg;
       }
 
       void
-      issue(void)
+      issue()
       {
         m_issue_time = Time::Clock::get();
       }

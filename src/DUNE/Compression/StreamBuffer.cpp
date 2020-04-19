@@ -69,7 +69,7 @@ namespace DUNE
       m_bfr.setSize(c_get_bfr_size);
     }
 
-    StreamBuffer::~StreamBuffer(void)
+    StreamBuffer::~StreamBuffer()
     {
       sync();
 
@@ -81,7 +81,7 @@ namespace DUNE
     }
 
     int
-    StreamBuffer::sync(void)
+    StreamBuffer::sync()
     {
       if (m_ostream)
       {
@@ -102,7 +102,7 @@ namespace DUNE
     }
 
     StreamBuffer::int_type
-    StreamBuffer::underflow(void)
+    StreamBuffer::underflow()
     {
       return EOF;
     }

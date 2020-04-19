@@ -43,7 +43,7 @@ namespace DUNE
       static const int64_t c_b = 0xBL;
       static const int64_t c_m = (c_one << 48) - 1;
 
-      DRand48::DRand48(void)
+      DRand48::DRand48()
       {
         seed(Generator::arbitrarySeed());
       }
@@ -53,7 +53,7 @@ namespace DUNE
         seed(seed_value);
       }
 
-      DRand48::~DRand48(void)
+      DRand48::~DRand48()
       { }
 
       int32_t
@@ -64,7 +64,7 @@ namespace DUNE
       }
 
       int32_t
-      DRand48::random(void)
+      DRand48::random()
       {
         int32_t v, b;
         do

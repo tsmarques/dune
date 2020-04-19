@@ -64,13 +64,13 @@ namespace DUNE
       //! Retrieve the amount of seconds that must elapse before
       //! restarting the task.
       unsigned
-      getDelay(void) const
+      getDelay() const
       {
         return m_delay;
       }
 
       bool
-      isError(void) const
+      isError() const
       {
         return m_error;
       }
@@ -78,7 +78,7 @@ namespace DUNE
       //! Retrieve error message.
       //! @return error message.
       const char*
-      getError(void)
+      getError()
       {
         return m_msg.c_str();
       }

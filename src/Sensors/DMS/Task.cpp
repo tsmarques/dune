@@ -157,7 +157,7 @@ namespace Sensors
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         unsigned eid = 0;
 
@@ -182,7 +182,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -196,7 +196,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVATING);
 
@@ -220,7 +220,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_uart != NULL)
         {
@@ -236,7 +236,7 @@ namespace Sensors
 
       //! Config board DMS
       void
-      configDMS(void)
+      configDMS()
       {
         m_uart->write(m_driver->disable_output(), strlen(m_driver->disable_output()));
         processFeedback();
@@ -272,7 +272,7 @@ namespace Sensors
 
       //! Check feadback of commands
       void
-      processFeedback(void)
+      processFeedback()
       {
         if(!processInput(m_args.timeout_uart, false))
           m_is_correct_conf = false;
@@ -280,7 +280,7 @@ namespace Sensors
 
       //! Read data send by DMS board.
       bool
-      checkSerialPort(void)
+      checkSerialPort()
       {
         if (m_poll.wasTriggered(*m_uart))
         {
@@ -401,7 +401,7 @@ namespace Sensors
       }
 
       bool
-      checkDataDMS(void)
+      checkDataDMS()
       {
         bool checkEnd = processInput(m_args.timeout_uart, true);
         m_uart->flush();
@@ -418,7 +418,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

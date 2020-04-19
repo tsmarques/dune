@@ -77,7 +77,7 @@ struct PseudoTimer
   //! Time
   double time;
 
-  PseudoTimer(void):
+  PseudoTimer():
     valid(false)
   { }
 
@@ -91,13 +91,13 @@ struct PseudoTimer
   }
 
   bool
-  isValid(void) const
+  isValid() const
   {
     return valid;
   }
 
   double
-  getTime(void) const
+  getTime() const
   {
     return time;
   }

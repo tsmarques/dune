@@ -53,7 +53,7 @@ namespace Transports
               const DUNE::Network::Address& local_addr,
               double timeout);
 
-      ~Session(void) override;
+      ~Session() override;
 
     private:
       //! Parent task.
@@ -90,7 +90,7 @@ namespace Transports
       sendReply(unsigned number, const std::string& message);
 
       void
-      sendOK(void);
+      sendOK();
 
       void
       sendFileInfo(const DUNE::FileSystem::Path& path, DUNE::Network::TCPSocket* sock, DUNE::Time::BrokenDown& time_ref);
@@ -99,10 +99,10 @@ namespace Transports
       sendFileInfoMLSD(const DUNE::FileSystem::Path& path, DUNE::Network::TCPSocket* sock);
 
       void
-      closeControlConnection(void);
+      closeControlConnection();
 
       DUNE::Network::TCPSocket*
-      openDataConnection(void);
+      openDataConnection();
 
       void
       closeDataConnection(DUNE::Network::TCPSocket* sock);
@@ -168,10 +168,10 @@ namespace Transports
       handleCommand(const std::string& cmd, const std::string& arg);
 
       void
-      handleCommandSocket(void);
+      handleCommandSocket();
 
       void
-      run(void) override;
+      run() override;
     };
   }
 }

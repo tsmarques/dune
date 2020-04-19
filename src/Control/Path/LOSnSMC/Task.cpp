@@ -127,7 +127,7 @@ namespace Control
        }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           PathController::onUpdateParameters();
 
@@ -137,7 +137,7 @@ namespace Control
         }
 
         void
-        onPathActivation(void) override
+        onPathActivation() override
         {
           if (!m_args.use_controller)
             return;

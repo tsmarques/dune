@@ -56,50 +56,50 @@ namespace DUNE
 
       //! Destructor.
       
-      ~HayesModem(void) override
+      ~HayesModem() override
       { }
 
       void
-      initialize(void);
+      initialize();
 
       std::string
-      getManufacturer(void);
+      getManufacturer();
 
       //! Query the ISU model.
       //! @return ISU model name.
       std::string
-      getModel(void);
+      getModel();
 
       //! Query the ISU revision.
       //! @return ISU revision.
       std::string
-      getRevision(void);
+      getRevision();
 
       //! Query the ISU serial number (IMEI).
       //! @return ISU serial number (IMEI),
       std::string
-      getIMEI(void);
+      getIMEI();
 
       //! Retrieve received signal strength indication (RSSI).
       //! @return RSSI value.
       float
-      getRSSI(void);
+      getRSSI();
 
     protected:
       void
-      sendInitialization(void) override
+      sendInitialization() override
       { }
 
       void
-      sendReset(void) override
+      sendReset() override
       { }
 
       virtual void
-      queryRSSI(void)
+      queryRSSI()
       { }
 
       virtual void
-      expectOK(void);
+      expectOK();
 
       void
       sendAT(const std::string& str);
@@ -111,7 +111,7 @@ namespace DUNE
       expect(const std::string& str);
 
       void
-      expectREADY(void);
+      expectREADY();
 
       void
       setRSSI(float value);

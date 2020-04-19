@@ -53,7 +53,7 @@ namespace Transports
       Server(int port, unsigned threads, RequestHandler& handler);
 
       //! Destructor.
-      ~Server(void);
+      ~Server();
 
       void
       poll(double timeout);

@@ -89,12 +89,12 @@ namespace DUNE
 
       //! Validate the speed model
       void
-      validate(void) const;
+      validate() const;
 
       //! Get time of arrival factor
       //! @return time of arrival in seconds
       float
-      getTimeFactor(void) const
+      getTimeFactor() const
       {
         return m_time_factor;
       }

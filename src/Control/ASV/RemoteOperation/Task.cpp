@@ -79,7 +79,7 @@ namespace Control
         }
 
         void
-        onActivation(void) override
+        onActivation() override
         {
           m_thrust[0].value = 0;
           m_thrust[1].value = 0;
@@ -88,7 +88,7 @@ namespace Control
         }
 
         void
-        onDeactivation(void) override
+        onDeactivation() override
         {
           m_thrust[0].value = 0;
           m_thrust[1].value = 0;
@@ -97,7 +97,7 @@ namespace Control
         }
 
         void
-        onConnectionTimeout(void) override
+        onConnectionTimeout() override
         {
           m_thrust[0].value = 0;
           m_thrust[1].value = 0;
@@ -144,7 +144,7 @@ namespace Control
         }
 
         void
-        actuate(void) override
+        actuate() override
         {
           debug("%0.2f %0.2f", m_thrust[0].value, m_thrust[1].value);
 

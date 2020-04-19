@@ -88,7 +88,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         // Initialize socket.
         m_sock.setMulticastTTL(1);
@@ -213,7 +213,7 @@ namespace Transports
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

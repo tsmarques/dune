@@ -56,10 +56,10 @@ namespace DUNE
 
       //! Destructor.
       
-      ~VehicleFormation(void) override;
+      ~VehicleFormation() override;
 
       void
-      onUpdateParameters(void) override;
+      onUpdateParameters() override;
 
       //! Consumer for IMC::VehicleFormation message.
       //! @param msg vehicle formation message
@@ -99,7 +99,7 @@ namespace DUNE
       //! Abstract method called upon path completion.
       //! This will not be called in approach stage (see isApproaching()).
       virtual void
-      onPathCompletion(void) = 0;
+      onPathCompletion() = 0;
 
       //! Abstract method invoked for trajectory control.
       //! This will be invoked periodically according to the
@@ -110,12 +110,12 @@ namespace DUNE
 
       //! Method called upon maneuver deactivation.
       void
-      onManeuverDeactivation(void) override;
+      onManeuverDeactivation() override;
 
       //! Method invoked on maneuver reset.
       //! By default the base class implementation does nothing.
       virtual void
-      onReset(void)
+      onReset()
       { }
 
       //! Trajectory point.
@@ -136,7 +136,7 @@ namespace DUNE
 
       //! Get number of points in the trajetory.
       inline size_t
-      trajectory_points(void) const
+      trajectory_points() const
       {
         return m_traj.size();
       }
@@ -170,7 +170,7 @@ namespace DUNE
       //! Get configuration of local vehicle in formation.
       //! @return participant data for local vehicle
       inline const Participant&
-      self(void)
+      self()
       {
         return m_participants[m_fidx];
       }
@@ -178,7 +178,7 @@ namespace DUNE
       //! Get index of local vehicle in formation.
       //! @return formation index.
       inline int
-      formation_index(void) const
+      formation_index() const
       {
         return m_fidx;
       }
@@ -199,7 +199,7 @@ namespace DUNE
       //! Get control step period.
       //! @return control step period.
       inline double
-      controlPeriod(void) const
+      controlPeriod() const
       {
         return m_cstep_period;
       }
@@ -207,7 +207,7 @@ namespace DUNE
       //! Check if maneuver is still in approach stage (i.e. moving to the initial point).
       //! @return true if maneuver is in approach state, false otherwise.
       inline bool
-      isApproaching(void) const
+      isApproaching() const
       {
         return m_approach;
       }

@@ -54,9 +54,9 @@ namespace DUNE
       class Protocol
       {
       public:
-        Protocol(void);
+        Protocol();
 
-        ~Protocol(void);
+        ~Protocol();
 
         void
         setUART(const std::string& uart_dev);
@@ -73,10 +73,10 @@ namespace DUNE
         open(int baud = 0);
 
         bool
-        isOpen(void);
+        isOpen();
 
         void
-        close(void);
+        close();
 
         unsigned
         read(uint8_t* bfr, unsigned bfr_len);
@@ -174,16 +174,16 @@ namespace DUNE
                           int data_size = 0);
 
         void
-        requestVersion(void);
+        requestVersion();
 
         void
-        requestName(void);
+        requestName();
 
         void
-        requestReset(void);
+        requestReset();
 
         void
-        requestBootJump(void);
+        requestBootJump();
 
         int
         requestBaud(const std::string& device);
@@ -269,7 +269,7 @@ namespace DUNE
 
         //! Reset internal state machine parser.
         void
-        reset(void);
+        reset();
 
         //! Test device baud rate.
         //! @param device serial port device.

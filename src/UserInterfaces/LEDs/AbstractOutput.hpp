@@ -41,7 +41,7 @@ namespace UserInterfaces
     {
     public:
       virtual
-      ~AbstractOutput(void)
+      ~AbstractOutput()
       { }
 
       virtual void

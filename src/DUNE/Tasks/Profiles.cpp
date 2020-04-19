@@ -55,7 +55,7 @@ namespace DUNE
     }
 
     void
-    Profiles::clear(void)
+    Profiles::clear()
     {
       Concurrency::ScopedMutex l(m_mutex);
       std::map<std::string, Profiles::Details*>::iterator itr = m_profiles.begin();
@@ -117,7 +117,7 @@ namespace DUNE
     }
 
     std::string
-    Profiles::getSelected(void)
+    Profiles::getSelected()
     {
       std::set<std::string>::iterator itr = m_selected.begin();
 

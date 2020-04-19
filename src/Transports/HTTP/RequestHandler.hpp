@@ -49,11 +49,11 @@ namespace Transports
     public:
       typedef std::map<std::string, std::string> HeaderFieldsMap;
 
-      RequestHandler(void)
+      RequestHandler()
       { }
 
       virtual
-      ~RequestHandler(void)
+      ~RequestHandler()
       { }
 
       virtual void

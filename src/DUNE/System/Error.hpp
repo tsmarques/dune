@@ -117,13 +117,13 @@ namespace DUNE
       }
 
       //! Destructor.
-      ~Error(void) throw() override
+      ~Error() throw() override
       { }
 
       //! Get the full description of the exception.
       //! @return description c string.
       const char*
-      what(void) const throw() override
+      what() const throw() override
       {
         return m_full_msg.c_str();
       }
@@ -131,7 +131,7 @@ namespace DUNE
       //! Retrieve the message of the last error.
       //! @return last error message.
       static std::string
-      getLastMessage(void)
+      getLastMessage()
       {
 #if defined(DUNE_SYS_HAS_GET_LAST_ERROR)
         return getMessage(GetLastError());

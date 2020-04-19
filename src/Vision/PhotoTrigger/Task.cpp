@@ -127,7 +127,7 @@ namespace Vision
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_period = 1.0 / m_args.freq;
 
@@ -163,7 +163,7 @@ namespace Vision
       }
 
       void
-      trigger(void)
+      trigger()
       {
         IMC::PowerChannelControl pcc;
         IMC::LogBookEntry log_entry;
@@ -183,7 +183,7 @@ namespace Vision
       }
 
       void
-      sendPulse(void)
+      sendPulse()
       {
         trigger();
         Delay::wait(m_period - 0.2);
@@ -191,7 +191,7 @@ namespace Vision
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

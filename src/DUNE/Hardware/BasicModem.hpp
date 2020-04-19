@@ -54,11 +54,11 @@ namespace DUNE
       BasicModem(Tasks::Task* task, IO::Handle* handle);
 
       
-      ~BasicModem(void) override
+      ~BasicModem() override
       { }
 
       void
-      initialize(void);
+      initialize();
 
       //! Set line termination for modem to CPU commands.
       //! @param[in] term line terminator.
@@ -66,7 +66,7 @@ namespace DUNE
       setLineTermIn(const std::string& term);
 
       const std::string&
-      getLineTermIn(void);
+      getLineTermIn();
 
       //! Set line termination for CPU to modem commands.
       //! @param[in] str line terminator.
@@ -74,7 +74,7 @@ namespace DUNE
       setLineTermOut(const std::string& str);
 
       const std::string&
-      getLineTermOut(void);
+      getLineTermOut();
 
       //! Remove leading and trailing blank characters from lines.
       //! @param[in] enable true to enable trimming, false otherwise.
@@ -90,12 +90,12 @@ namespace DUNE
       //! Test if the modem is busy.
       //! @return true if the modem is busy, false otherwise.
       bool
-      isBusy(void);
+      isBusy();
 
       //! Test if the modem is cooling down.
       //! @return true if the modem is cooling down, false otherwise.
       bool
-      isCooling(void);
+      isCooling();
 
       void
       setBusy(bool value);
@@ -124,11 +124,11 @@ namespace DUNE
       }
 
       virtual void
-      sendInitialization(void)
+      sendInitialization()
       { }
 
       virtual void
-      sendReset(void)
+      sendReset()
       { }
 
       //! Test if command is not complete (i.e. is a fragment). This
@@ -153,7 +153,7 @@ namespace DUNE
       setTimeout(double timeout);
 
       double
-      getTimeout(void);
+      getTimeout();
 
       void
       expect(const std::string& str);
@@ -162,22 +162,22 @@ namespace DUNE
       readRaw(Time::Counter<double>& timer, uint8_t* data, unsigned data_size);
 
       ReadMode
-      getReadMode(void);
+      getReadMode();
 
       void
       setReadMode(ReadMode mode);
 
       void
-      flushInput(void);
+      flushInput();
 
       std::string
-      readLine(void);
+      readLine();
 
       std::string
       readLine(Time::Counter<double>& timer);
 
       Tasks::Task*
-      getTask(void)
+      getTask()
       {
         return m_task;
       }
@@ -226,7 +226,7 @@ namespace DUNE
       processInput(std::string& str);
 
       void
-      run(void) override;
+      run() override;
     };
   }
 }

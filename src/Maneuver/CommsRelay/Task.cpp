@@ -104,7 +104,7 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void) override
+      onManeuverDeactivation() override
       {
         // stop moving
         setControl(0);
@@ -112,7 +112,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (m_args.z_mode == "Depth")
           m_control = IMC::CL_DEPTH | IMC::CL_SPEED | IMC::CL_PATH;
@@ -187,7 +187,7 @@ namespace Maneuver
       }
 
       void
-      step(void)
+      step()
       {
         bool loiter = m_args.loitering_radius > 0;
         double dist = WGS84::distance(m_cur_lat, m_cur_lon, 0, m_lat_center, m_lon_center, 0);

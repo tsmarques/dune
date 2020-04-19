@@ -99,14 +99,14 @@ namespace Maneuver
 
       //! Destructor
       
-      ~Task(void) override
+      ~Task() override
       {
         Memory::clear(m_stages_parser);
         Memory::clear(m_alt_avrg);
       }
 
       void
-      onManeuverDeactivation(void) override
+      onManeuverDeactivation() override
       {
         Memory::clear(m_stages_parser);
         Memory::clear(m_alt_avrg);

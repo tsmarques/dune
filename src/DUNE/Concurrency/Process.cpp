@@ -66,7 +66,7 @@ namespace DUNE
       int handle;
     };
 
-    Process::Process(void):
+    Process::Process():
       m_smem(sizeof(ProcessPrivate))
     {
 #if defined(DUNE_SYS_HAS_FORK)
@@ -77,7 +77,7 @@ namespace DUNE
 #endif
     }
 
-    Process::~Process(void)
+    Process::~Process()
     {
 #if defined(DUNE_SYS_HAS_FORK)
       stopImpl();
@@ -87,7 +87,7 @@ namespace DUNE
     }
 
     void
-    Process::startImpl(void)
+    Process::startImpl()
     {
 #if defined(DUNE_SYS_HAS_FORK)
       pid_t pid = fork();
@@ -109,7 +109,7 @@ namespace DUNE
     }
 
     void
-    Process::stopImpl(void)
+    Process::stopImpl()
     {
 #if defined(DUNE_SYS_HAS_FORK)
       setStateImpl(StateStopping);
@@ -117,7 +117,7 @@ namespace DUNE
     }
 
     void
-    Process::joinImpl(void)
+    Process::joinImpl()
     {
 #if defined(DUNE_SYS_HAS_FORK)
       waitpid(m_pvt->handle, 0, 0);
@@ -136,7 +136,7 @@ namespace DUNE
     }
 
     Runnable::State
-    Process::getStateImpl(void)
+    Process::getStateImpl()
     {
       // POSIX implementation.
 #if defined(DUNE_SYS_HAS_FORK)

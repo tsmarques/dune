@@ -52,10 +52,10 @@ namespace DUNE
     {
     public:
       //! Create an unbound UDP socket.
-      UDPSocket(void);
+      UDPSocket();
 
       //! Destroy an UDP socket.
-      ~UDPSocket(void) override;
+      ~UDPSocket() override;
 
       void
       enableBroadcast(bool value);
@@ -112,7 +112,7 @@ namespace DUNE
       unsigned m_con_port;
 
       IO::NativeHandle
-      doGetNative(void) const override
+      doGetNative() const override
       {
 #if defined(DUNE_OS_WINDOWS)
         return m_event_handle;
@@ -134,7 +134,7 @@ namespace DUNE
       }
 
       void
-      createEventHandle(void);
+      createEventHandle();
 
       //! Non - copyable.
       UDPSocket(const UDPSocket&);

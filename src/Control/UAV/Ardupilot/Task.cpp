@@ -472,13 +472,13 @@ namespace Control
         }
 
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           Memory::clear(m_TCP_sock);
         }
 
         void
-        onResourceAcquisition(void) override
+        onResourceAcquisition() override
         {
           openConnection();
 
@@ -492,7 +492,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           //! Minimum value for bank (RC1) and vertical rate (R2)
           //! are simetrical to maximum values, no need to input them manually
@@ -501,7 +501,7 @@ namespace Control
         }
 
         void
-        openConnection(void)
+        openConnection()
         {
           try
           {
@@ -691,7 +691,7 @@ namespace Control
 
         //! Messages for FBWB control (using DUNE's controllers)
         void
-        activateFBW(void)
+        activateFBW()
         {
           if (m_vehicle_type == VEHICLE_FIXEDWING)
           {
@@ -1280,7 +1280,7 @@ namespace Control
         }
 
         void
-        loiterHere(void)
+        loiterHere()
         {
 
           if ((getEntityState() != IMC::EntityState::ESTA_NORMAL) || m_external || m_ground)
@@ -1471,7 +1471,7 @@ namespace Control
         }
 
         void
-        onMain(void) override
+        onMain() override
         {
           while (!stopping())
           {
@@ -1552,7 +1552,7 @@ namespace Control
         }
 
         void
-        handleArdupilotData(void)
+        handleArdupilotData()
         {
           mavlink_status_t status;
 
@@ -1844,7 +1844,7 @@ namespace Control
         }
 
         float
-        getHeight(void)
+        getHeight()
         {
           return m_hae_msl + m_hae_offset;
         }

@@ -69,13 +69,13 @@ namespace Transports
           .description("Remote server port");
         }
 
-        ~Task(void) override
+        ~Task() override
         {
           onResourceRelease();
         }
 
         void
-        onResourceAcquisition(void) override
+        onResourceAcquisition() override
         {
           try
           {
@@ -93,7 +93,7 @@ namespace Transports
         }
 
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           if (m_sock)
           {

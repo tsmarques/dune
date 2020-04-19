@@ -40,7 +40,7 @@ namespace DUNE
 {
   namespace Concurrency
   {
-    Condition::Condition(void):
+    Condition::Condition():
       m_clock_monotonic(false)
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_COND)
@@ -64,7 +64,7 @@ namespace DUNE
 #endif
     }
 
-    Condition::~Condition(void)
+    Condition::~Condition()
     {
       try
       {
@@ -75,7 +75,7 @@ namespace DUNE
     }
 
     void
-    Condition::destroy(void)
+    Condition::destroy()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_COND)
       int rv = pthread_cond_destroy(&m_cond);
@@ -118,7 +118,7 @@ namespace DUNE
     }
 
     void
-    Condition::lock(void)
+    Condition::lock()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_COND)
       pthread_mutex_lock(&m_mutex);
@@ -126,7 +126,7 @@ namespace DUNE
     }
 
     void
-    Condition::unlock(void)
+    Condition::unlock()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_COND)
       pthread_mutex_unlock(&m_mutex);
@@ -134,7 +134,7 @@ namespace DUNE
     }
 
     void
-    Condition::broadcast(void)
+    Condition::broadcast()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_COND)
       int rv = pthread_cond_broadcast(&m_cond);
@@ -145,7 +145,7 @@ namespace DUNE
     }
 
     void
-    Condition::signal(void)
+    Condition::signal()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_COND)
       int rv = pthread_cond_signal(&m_cond);

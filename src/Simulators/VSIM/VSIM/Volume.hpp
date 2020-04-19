@@ -44,7 +44,7 @@ namespace Simulators
 
       //! Destructor.
       virtual
-      ~Volume(void)
+      ~Volume()
       { }
 
       //! Get aprox. submersed volume.

@@ -61,7 +61,7 @@ namespace DUNE
     }
 
     //! Destructor.
-    AUVModel::~AUVModel(void)
+    AUVModel::~AUVModel()
     { }
 
     Matrix
@@ -101,7 +101,7 @@ namespace DUNE
 
     //! Computes matrix of added mass and inertia
     Matrix
-    AUVModel::computeM(void)
+    AUVModel::computeM()
     {
       // added mass matrix
       Matrix Ma = -Matrix(&m_addedmass(0), 6);

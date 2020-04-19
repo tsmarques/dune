@@ -47,14 +47,14 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      Derivative(void)
+      Derivative()
       {
         clear();
       }
 
       //! Clear data.
       void
-      clear(void)
+      clear()
       {
         m_val_latest = 0;
         m_val_previous = 0;
@@ -81,7 +81,7 @@ namespace DUNE
 
       //! Check current derivative.
       Type
-      check(void) const
+      check() const
       {
         return m_derivative;
       }

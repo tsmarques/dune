@@ -64,7 +64,7 @@ namespace DUNE
     class InvalidCode: public Error
     {
     public:
-      InvalidCode(void):
+      InvalidCode():
         Error("unable to extract NMEA code from sentence")
       { }
     };
@@ -72,7 +72,7 @@ namespace DUNE
     class TypeMismatch: public Error
     {
     public:
-      TypeMismatch(void):
+      TypeMismatch():
         Error("type mismatch")
       { }
     };
@@ -80,7 +80,7 @@ namespace DUNE
     class InvalidChecksum: public Error
     {
     public:
-      InvalidChecksum(void):
+      InvalidChecksum():
         Error("no proper checksum found")
       { }
     };

@@ -342,7 +342,7 @@ namespace Sensors
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.uart_dev) && (m_uart != NULL))
           throw RestartNeeded(DTR("restarting to change UART device"), 1);
@@ -389,7 +389,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
 
@@ -406,21 +406,21 @@ namespace Sensors
 
       //! Release resources
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
         requestDeactivation();
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         requestDeactivation();
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onRequestActivation(void) override
+      onRequestActivation() override
       {
         m_power_channel_control.op = IMC::PowerChannelControl::PCC_OP_TURN_ON;
         dispatch(m_power_channel_control);
@@ -429,14 +429,14 @@ namespace Sensors
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         inf("%s", DTR(Status::getString(Status::CODE_ACTIVE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         inf("%s", DTR(Status::getString(Status::CODE_IDLE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -446,7 +446,7 @@ namespace Sensors
       }
 
       void
-      checkActivationProgress(void)
+      checkActivationProgress()
       {
         if (m_countdown.overflow())
         {
@@ -496,7 +496,7 @@ namespace Sensors
 
       //! Set switch data range.
       void
-      setRange(void)
+      setRange()
       {
         uint8_t idx = getIndex(m_args.range, c_ranges, c_ranges_size);
 
@@ -506,7 +506,7 @@ namespace Sensors
 
       //! Set switch data start gain.
       void
-      setStartGain(void)
+      setStartGain()
       {
         m_sdata[SD_START_GAIN] = m_args.start_gain;
       }
@@ -526,21 +526,21 @@ namespace Sensors
 
       //! Set switch data step size.
       void
-      setStepSize(void)
+      setStepSize()
       {
         m_sdata[SD_STEP_SIZE] = (uint8_t)(m_args.step_size / 0.3);
       }
 
       //! Set switch data profile mode.
       void
-      setProfile(void)
+      setProfile()
       {
         m_sdata[SD_PROFILE] = m_args.profile ? 1 : 0;
       }
 
       //! Set switch data number of bits per data point.
       void
-      setDataBits(void)
+      setDataBits()
       {
         m_sonar.bits_per_point = m_args.data_bits;
         m_sdata[SD_DATA_BITS] = m_args.data_bits;
@@ -548,21 +548,21 @@ namespace Sensors
 
       //! Set switch data number of data points.
       void
-      setDataPoints(void)
+      setDataPoints()
       {
         m_sdata[SD_DATA_POINTS] = (uint8_t)(m_args.data_points / 10.0);
       }
 
       //! Set switch data profile minimum range.
       void
-      setProfileMinRange(void)
+      setProfileMinRange()
       {
         m_sdata[SD_PROFILE_MIN_RANGE] = (uint8_t)(m_args.profile_min_range * 10.0);
       }
 
       //! Set switch data delay.
       void
-      setSwitchDelay(void)
+      setSwitchDelay()
       {
         uint8_t sd = (uint8_t)(m_args.switch_delay / 2);
 
@@ -605,21 +605,21 @@ namespace Sensors
 
       //! Set switch data sector width.
       void
-      setSectorWidth(void)
+      setSectorWidth()
       {
         m_sdata[SD_SECTOR_WIDTH] = (uint8_t)(m_args.sector_width / 3);
       }
 
       //! Set switch data train angle.
       void
-      setTrainAngle(void)
+      setTrainAngle()
       {
         m_sdata[SD_TRAIN_ANGLE] = (uint8_t)((m_args.train_angle + 180) / 3);
       }
 
       //! Test communication with device.
       void
-      testComms(void)
+      testComms()
       {
         m_uart->write(m_sdata, c_sdata_size);
 
@@ -629,7 +629,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         uint8_t bfr[c_max_rdata_size];
 

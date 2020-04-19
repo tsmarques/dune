@@ -210,7 +210,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
 
@@ -235,14 +235,14 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
 
@@ -259,7 +259,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         while (!stopping())
         {
@@ -423,7 +423,7 @@ namespace Sensors
 
       //! Routine to run calibration proceedings.
       void
-      runCalibration(void)
+      runCalibration()
       {
         if (m_uart == nullptr)
           return;
@@ -449,7 +449,7 @@ namespace Sensors
       //! Check if sensor has the same hard iron calibration parameters.
       //! @return true if the parameters are the same, false otherwise.
       bool
-      isCalibrated(void)
+      isCalibrated()
       {
         m_uart->setMinimumRead(CMD_READ_EEPROM_SIZE);
 
@@ -488,7 +488,7 @@ namespace Sensors
 
       //! Soft-reset device.
       void
-      resetDevice(void)
+      resetDevice()
       {
         uint8_t bfr[c_number_axis];
 
@@ -521,7 +521,7 @@ namespace Sensors
       //! Set new hard iron calibration parameters.
       //! @return true if successful, false otherwise.
       bool
-      setHardIron(void)
+      setHardIron()
       {
         inf(DTR("new hard-iron calibration parameters: %f, %f, 0.0"), m_args.hard_iron[0], m_args.hard_iron[1]);
         m_uart->setMinimumRead(CMD_WRITE_EEPROM_SIZE);
@@ -565,7 +565,7 @@ namespace Sensors
 
       //! Correct data according with mounting position.
       void
-      rotateData(void)
+      rotateData()
       {
         Math::Matrix data(3, 1);
 
@@ -598,7 +598,7 @@ namespace Sensors
       }
 
       void
-      reportEntityState(void)
+      reportEntityState()
       {
         if (m_wdog.overflow())
         {
@@ -631,7 +631,7 @@ namespace Sensors
 
       //! Main task.
       void
-      task(void) override
+      task() override
       {
         // Check for incoming messages.
         consumeMessages();

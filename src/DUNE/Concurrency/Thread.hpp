@@ -60,11 +60,11 @@ namespace DUNE
 
     public:
       // Constructor.
-      Thread(void);
+      Thread();
 
       //! Destructor.
       
-      ~Thread(void) override;
+      ~Thread() override;
 
       //! Retrieve the percentage of CPU time used by this thread
       //! since the last call to this function or object creation. On
@@ -72,23 +72,23 @@ namespace DUNE
       //! @return percentage of the CPU time used or -1 if this value
       //! cannot be computed.
       int
-      getProcessorUsage(void);
+      getProcessorUsage();
 
     protected:
       void
-      startImpl(void) override;
+      startImpl() override;
 
       void
-      stopImpl(void) override;
+      stopImpl() override;
 
       void
-      joinImpl(void) override;
+      joinImpl() override;
 
       void
       setPriorityImpl(Scheduler::Policy policy, unsigned priority) override;
 
       unsigned
-      getPriorityImpl(void) override;
+      getPriorityImpl() override;
 
     private:
       //! Thread state.
@@ -121,7 +121,7 @@ namespace DUNE
       setStateImpl(Runnable::State state) override;
 
       Runnable::State
-      getStateImpl(void) override;
+      getStateImpl() override;
 
       //! Non - copyable.
       Thread(const Thread&);

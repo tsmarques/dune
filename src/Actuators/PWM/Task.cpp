@@ -101,7 +101,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         if ( m_args.operation_mode == c_mode_operation[0])
@@ -134,7 +134,7 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_servo_0 != NULL)
         {
@@ -196,7 +196,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         IMC::ServoPosition msgServoPos;
 

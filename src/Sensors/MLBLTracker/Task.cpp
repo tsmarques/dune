@@ -253,13 +253,13 @@ namespace Sensors
         bind<IMC::EstimatedState>(this);
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if ((m_gpio_txd != NULL) && paramChanged(m_args.gpio_txd) && !m_ignore_gpio)
           throw RestartNeeded(DTR("restarting to change transducer detection GPIO"), 1);
@@ -289,7 +289,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         // Configure transducer GPIO (if any).
         if (m_args.gpio_txd > 0)
@@ -335,7 +335,7 @@ namespace Sensors
       //! Check if we have a TCP socket as device input argument.
       //! @return true if it is a TCP socket, false otherwise.
       bool
-      openSocket(void)
+      openSocket()
       {
         char addr[128] = {0};
         unsigned port = 0;
@@ -352,7 +352,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_pc);
         Memory::clear(m_gpio_txd);
@@ -360,7 +360,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://acoustic/operation/")
@@ -369,14 +369,14 @@ namespace Sensors
       }
 
       void
-      resetOp(void)
+      resetOp()
       {
         m_op = OP_NONE;
         m_op_deadline = -1.0;
       }
 
       bool
-      hasTransducer(void)
+      hasTransducer()
       {
         if (m_ignore_gpio)
           return true;
@@ -897,7 +897,7 @@ namespace Sensors
 
       //! Read sentence.
       void
-      readSentence(void)
+      readSentence()
       {
         char bfr[c_bfr_size];
         size_t rv = m_handle->readString(bfr, sizeof(bfr));
@@ -954,7 +954,7 @@ namespace Sensors
 
       //! Check operation timeouts.
       void
-      checkTimeouts(void)
+      checkTimeouts()
       {
         if (m_op == OP_NONE)
           return;
@@ -992,7 +992,7 @@ namespace Sensors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

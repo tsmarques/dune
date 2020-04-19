@@ -83,14 +83,14 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.input_timeout))
           m_wdog.setTop(m_args.input_timeout);
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
@@ -98,7 +98,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_uart->writeString("#");
         m_uart->writeString("M1\r\n");
@@ -106,13 +106,13 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         char bfr[16];
 

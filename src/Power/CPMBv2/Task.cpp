@@ -153,7 +153,7 @@ namespace Power
         std::memset(m_adcs, 0, sizeof(m_adcs));
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         onResourceRelease();
         clearADCs();
@@ -171,7 +171,7 @@ namespace Power
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         // Produces ADC messages.
         for (unsigned i = 0; i < c_adcs_count; ++i)
@@ -206,7 +206,7 @@ namespace Power
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -228,7 +228,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -250,7 +250,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         std::map<unsigned, PowerChannel*>::const_iterator itr = m_channels.begin();
         for ( ; itr != m_channels.end(); ++itr)
@@ -261,7 +261,7 @@ namespace Power
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_ctl != NULL)
         {
@@ -315,7 +315,7 @@ namespace Power
 
       //! Dispatches power channel states to IMC bus.
       void
-      dispatchPowerChannelStates(void)
+      dispatchPowerChannelStates()
       {
         std::map<unsigned, PowerChannel*>::const_iterator itr = m_channels.begin();
 
@@ -326,7 +326,7 @@ namespace Power
       }
 
       bool
-      getMonitors(void)
+      getMonitors()
       {
         UCTK::Frame frame;
         frame.setId(PKT_ID_STATE);
@@ -366,7 +366,7 @@ namespace Power
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

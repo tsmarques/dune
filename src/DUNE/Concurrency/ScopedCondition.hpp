@@ -52,7 +52,7 @@ namespace DUNE
       }
 
       //! Destruct the object, unlocking the associated condition.
-      ~ScopedCondition(void)
+      ~ScopedCondition()
       {
         m_lock.unlock();
       }

@@ -49,7 +49,7 @@ namespace Transports
     {
     public:
       //! Constructor.
-      SessionResult(void):
+      SessionResult():
         m_mo_status(0),
         m_mo_msn(0),
         m_mt_status(0),
@@ -81,7 +81,7 @@ namespace Transports
       //! @return true if the MO transaction was successful, false
       //! otherwise.
       bool
-      isSuccessMO(void) const
+      isSuccessMO() const
       {
         return (m_mo_status <= 4);
       }
@@ -91,7 +91,7 @@ namespace Transports
       //! @return true if the MT transaction was successful, false
       //! otherwise.
       bool
-      isSuccessMT(void) const
+      isSuccessMT() const
       {
         return (m_mo_status < 4)
         && (m_mo_status != 1)
@@ -101,7 +101,7 @@ namespace Transports
       //! Retrieve the MO status code.
       //! @return MO status code.
       unsigned
-      getStatusMO(void) const
+      getStatusMO() const
       {
         return m_mo_status;
       }
@@ -109,7 +109,7 @@ namespace Transports
       //! Retrieve the MT status code.
       //! @return MT status code.
       unsigned
-      getStatusMT(void) const
+      getStatusMT() const
       {
         return m_mt_status;
       }
@@ -117,7 +117,7 @@ namespace Transports
       //! Retrieve the MO SBD message sequence number.
       //! @return MO SBD message sequence number.
       unsigned
-      getSequenceMO(void) const
+      getSequenceMO() const
       {
         return m_mo_msn;
       }
@@ -125,7 +125,7 @@ namespace Transports
       //! Retrieve the MT SBD message sequence number.
       //! @return MT SBD message sequence number.
       unsigned
-      getSequenceMT(void) const
+      getSequenceMT() const
       {
         return m_mt_msn;
       }
@@ -134,7 +134,7 @@ namespace Transports
       //! from the GSS or zero if no message was received.
       //! @return length of the MT SBD message.
       unsigned
-      getLengthMT(void) const
+      getLengthMT() const
       {
         return m_mt_length;
       }
@@ -143,7 +143,7 @@ namespace Transports
       //! be transferred to the transceiver.
       //! @return count of MT SBD messages.
       unsigned
-      getQueuedMT(void) const
+      getQueuedMT() const
       {
         return m_mt_queued;
       }

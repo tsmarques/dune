@@ -72,7 +72,7 @@ namespace DUNE
       open(path);
     }
 
-    Directory::~Directory(void)
+    Directory::~Directory()
     {
       try
       {
@@ -111,7 +111,7 @@ namespace DUNE
     }
 
     bool
-    Directory::isOpen(void)
+    Directory::isOpen()
     {
       // POSIX Implementation.
 #if defined(DUNE_SYS_HAS_DIRENT_H)
@@ -125,7 +125,7 @@ namespace DUNE
     }
 
     bool
-    Directory::close(void)
+    Directory::close()
     {
 #if defined(DUNE_SYS_HAS_DIRENT_H)
       if (closedir(m_handle) != 0)

@@ -326,7 +326,7 @@ namespace Control
 
         //! Initialize resources.
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           BasicAutopilot::onResourceInitialization();
 
@@ -334,7 +334,7 @@ namespace Control
 
         //! Acquire resources.
         void
-        onResourceAcquisition(void) override
+        onResourceAcquisition() override
         {
           BasicAutopilot::onResourceAcquisition();
 
@@ -344,7 +344,7 @@ namespace Control
 
         //! Release Resources.
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           Memory::clear(m_ca);
 
@@ -353,7 +353,7 @@ namespace Control
 
         //! On activation.
         void
-        onAutopilotActivation(void) override
+        onAutopilotActivation() override
         {
           if (m_ca != NULL)
             m_ca->activate();
@@ -361,7 +361,7 @@ namespace Control
 
         //! On deactivation.
         void
-        onAutopilotDeactivation(void) override
+        onAutopilotDeactivation() override
         {
           if (m_ca != NULL)
             m_ca->deactivate();
@@ -369,7 +369,7 @@ namespace Control
 
         //! Update internal parameters.
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           reset();
 
@@ -421,7 +421,7 @@ namespace Control
 
         //! Initialize PID related variables.
         void
-        initializePIDs(void)
+        initializePIDs()
         {
           float output_limits[LP_MAX_LOOPS];
           output_limits[LP_ROLL] = m_args.max_fin_rot;
@@ -445,7 +445,7 @@ namespace Control
 
         //! Member variable reset function.
         void
-        reset(void) override
+        reset() override
         {
           BasicAutopilot::reset();
 
@@ -455,7 +455,7 @@ namespace Control
 
         //! Reserve entities for messages.
         void
-        onEntityReservation(void) override
+        onEntityReservation() override
         {
           if (m_args.log_parcels)
           {

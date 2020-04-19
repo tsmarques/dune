@@ -52,10 +52,10 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      DynamicLoader(void);
+      DynamicLoader();
 
       //! Destructor.
-      ~DynamicLoader(void);
+      ~DynamicLoader();
 
       //! Load dynamic library from file.
       //! @param[in] path file path.
@@ -64,7 +64,7 @@ namespace DUNE
 
       //! Unload dynamic library.
       void
-      unload(void);
+      unload();
 
       //! Get symbol pointer from name
       //! @param[in] name symbol name

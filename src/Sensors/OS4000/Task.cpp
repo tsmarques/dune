@@ -183,14 +183,14 @@ namespace Sensors
 
       //! Release allocated resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_uart->setCanonicalInput(true);
@@ -199,7 +199,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_accumulator = 0;
         m_state = STA_BOOT;
@@ -222,7 +222,7 @@ namespace Sensors
 
       //! Update %Task parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.data_tout))
           m_wdog.setTop(m_args.data_tout);
@@ -231,7 +231,7 @@ namespace Sensors
       //! Read a string from the serial port,
       //! @return amount of bytes actually read.
       int
-      readString(void)
+      readString()
       {
         consumeMessages();
 
@@ -357,7 +357,7 @@ namespace Sensors
       }
 
       void
-      calibrating(void)
+      calibrating()
       {
         if (!Poll::poll(*m_uart, 1.0))
           return;
@@ -386,7 +386,7 @@ namespace Sensors
       }
 
       void
-      terminateCalibration(void)
+      terminateCalibration()
       {
         m_accumulator = 0;
         m_uart->writeString("\x20");
@@ -395,7 +395,7 @@ namespace Sensors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

@@ -53,7 +53,7 @@ namespace Vision
       { }
 
       void
-      clear(void)
+      clear()
       {
         m_slave_entities.clear();
       }
@@ -74,7 +74,7 @@ namespace Vision
       }
 
       void
-      activate(void)
+      activate()
       {
         std::vector<EntityActivation>::iterator itr = m_slave_entities.begin();
         for (; itr != m_slave_entities.end(); ++itr)
@@ -84,7 +84,7 @@ namespace Vision
       }
 
       void
-      deactivate(void)
+      deactivate()
       {
         std::vector<EntityActivation>::iterator itr = m_slave_entities.begin();
         for (; itr != m_slave_entities.end(); ++itr)
@@ -94,7 +94,7 @@ namespace Vision
       }
 
       bool
-      checkActivation(void)
+      checkActivation()
       {
         bool rv = true;
 
@@ -111,7 +111,7 @@ namespace Vision
       }
 
       bool
-      checkDeactivation(void)
+      checkDeactivation()
       {
         bool rv = true;
 

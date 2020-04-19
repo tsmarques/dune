@@ -79,13 +79,13 @@ namespace Simulators
         bind<IMC::SimulatedState>(this);
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         Task::onResourceRelease();
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         //! Set source system alias
         if (!m_args.src_alias.empty())
@@ -106,13 +106,13 @@ namespace Simulators
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear( m_state_flt );
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         //! Process the systems and entities allowed to pass the SimulatedState
         m_state_flt = new Tasks::SourceFilter(*this, m_args.state_src, "SimulatedState");
@@ -157,7 +157,7 @@ namespace Simulators
       }
 
       void
-      task(void) override
+      task() override
       {
         //! Check if system is active
         if (!isActive())

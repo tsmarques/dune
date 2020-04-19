@@ -61,7 +61,7 @@ namespace DUNE
 
       //! Clear sample.
       void
-      clear(void)
+      clear()
       {
         m_accum.assign(m_wsizes.size(), (T)0.0);
         m_window.clear();

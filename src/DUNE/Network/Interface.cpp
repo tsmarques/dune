@@ -74,12 +74,12 @@ namespace DUNE
 {
   namespace Network
   {
-    Interface::Interface(void):
+    Interface::Interface():
       m_features(0)
     { }
 
     std::vector<Interface>
-    Interface::get(void)
+    Interface::get()
     {
       std::vector<Interface> itfs;
 

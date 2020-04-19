@@ -149,7 +149,7 @@ namespace Sensors
       //! Get profile range.
       //! @return profile range.
       float
-      getProfileRange(void) const
+      getProfileRange() const
       {
         return m_profile_range;
       }
@@ -157,7 +157,7 @@ namespace Sensors
       //! Get range.
       //! @return maximum range.
       uint8_t
-      getRange(void) const
+      getRange() const
       {
         return m_range;
       }
@@ -176,7 +176,7 @@ namespace Sensors
       //! Retrieve number of data points of the last shot.
       //! @return number of data points of the last shot.
       unsigned
-      getDataPointsCount(void) const
+      getDataPointsCount() const
       {
         return m_data_points;
       }
@@ -253,7 +253,7 @@ namespace Sensors
       }
 
       void
-      clear(void)
+      clear()
       {
         m_state = STA_HDR_0;
         m_previous = 0;

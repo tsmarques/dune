@@ -131,13 +131,13 @@ namespace Transports
         }
 
         //! Default destructor.
-        ~RadioRFDXXXxPtP(void) override
+        ~RadioRFDXXXxPtP() override
         {
            Memory::clear(m_handle);
         }
 
         int
-        configDevice(void) override
+        configDevice() override
         {
           int status;
           status =DeviceVerifyConf();

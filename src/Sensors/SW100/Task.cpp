@@ -124,20 +124,20 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_driver = new Driver(this, *m_uart);
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_wdog.setTop(m_args.data_timeout);
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
         Memory::clear(m_driver);
@@ -156,13 +156,13 @@ namespace Sensors
       }
 
       bool
-      ableToCalibrate(void)
+      ableToCalibrate()
       {
         return (m_at_surface && !m_maneuvering);
       }
 
       void
-      task(void) override
+      task() override
       {
         if (m_wdog.overflow())
         {

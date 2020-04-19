@@ -96,7 +96,7 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_iridium_timer.setTop(m_args.iridium_period);
       }
@@ -355,7 +355,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_fuel);
         Memory::clear(m_pstate);
@@ -364,7 +364,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -438,7 +438,7 @@ namespace Transports
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         int req_id = 1;
         while (!stopping())

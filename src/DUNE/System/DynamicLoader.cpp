@@ -56,11 +56,11 @@ namespace DUNE
 {
   namespace System
   {
-    DynamicLoader::DynamicLoader(void):
+    DynamicLoader::DynamicLoader():
       m_handle(NULL)
     { }
 
-    DynamicLoader::~DynamicLoader(void)
+    DynamicLoader::~DynamicLoader()
     {
       if (m_handle == NULL)
         return;
@@ -92,7 +92,7 @@ namespace DUNE
     }
 
     void
-    DynamicLoader::unload(void)
+    DynamicLoader::unload()
     {
       int rv = 0;
 

@@ -63,7 +63,7 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      Config(void)
+      Config()
       { }
 
       //! Create the parser and parse a configuration file.
@@ -176,7 +176,7 @@ namespace DUNE
       //! Retrieve the file option of the parsed configuration file.
       //! @return parsed file option.
       std::vector<std::string>
-      files(void)
+      files()
       {
         return m_files;
       }
@@ -184,7 +184,7 @@ namespace DUNE
       //! Retrieve all the available sections.
       //! @return list of all sections.
       std::vector<std::string>
-      sections(void);
+      sections();
 
       //! Retrieve all the options under the given section.
       //! @param section section of interest.

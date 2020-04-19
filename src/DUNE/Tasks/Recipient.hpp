@@ -56,10 +56,10 @@ namespace DUNE
       Recipient(AbstractTask* task, Context& ctx);
 
       //! Destructor.
-      ~Recipient(void);
+      ~Recipient();
 
       void
-      unbindAll(void);
+      unbindAll();
 
       void
       put(const IMC::Message*);
@@ -71,7 +71,7 @@ namespace DUNE
       waitForMessages(double timeout);
 
       void
-      runCallBacks(void);
+      runCallBacks();
 
     private:
       //! Task.

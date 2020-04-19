@@ -233,7 +233,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.yaw_max))
             m_args.yaw_max = Angles::radians(m_args.yaw_max);
@@ -253,7 +253,7 @@ namespace Control
 
         //! Reserve entities.
         void
-        onEntityReservation(void) override
+        onEntityReservation() override
         {
           if (m_args.log_parcels)
           {
@@ -266,7 +266,7 @@ namespace Control
 
         //! Resolve entities.
         void
-        onEntityResolution(void) override
+        onEntityResolution() override
         {
           try
           {
@@ -289,21 +289,21 @@ namespace Control
 
         //! On activation
         void
-        onActivation(void) override
+        onActivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         //! On deactivation
         void
-        onDeactivation(void) override
+        onDeactivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         //! Reset PIDs and actuation references.
         void
-        reset(void)
+        reset()
         {
           m_rpm_pid.reset();
           m_mps_pid.reset();
@@ -323,7 +323,7 @@ namespace Control
 
         //! Setup PIDs.
         void
-        setup(void)
+        setup()
         {
           m_rpm_pid.setGains(m_args.rpm_gains);
           m_rpm_pid.setOutputLimits(-m_args.act_max, m_args.act_max);
@@ -344,7 +344,7 @@ namespace Control
         }
 
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           reset();
         }
@@ -572,7 +572,7 @@ namespace Control
 
         //! Distribute actuation references if over-saturated.
         void
-        shareSaturation(void)
+        shareSaturation()
         {
           // New control logic when saturation occurs
           if (!m_args.share)
@@ -596,7 +596,7 @@ namespace Control
         }
 
         void
-        onMain(void) override
+        onMain() override
         {
           while (!stopping())
           {

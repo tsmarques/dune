@@ -124,13 +124,13 @@ namespace Supervisors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_sid = resolveSystemName(m_args.system_name);
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -197,13 +197,13 @@ namespace Supervisors
       }
 
       void
-      onRequestActivation(void) override
+      onRequestActivation() override
       {
         sendActiveParameter("true");
       }
 
       void
-      onRequestDeactivation(void) override
+      onRequestDeactivation() override
       {
         sendActiveParameter("false");
       }
@@ -252,7 +252,7 @@ namespace Supervisors
       }
 
       void
-      queryEntityInfo(void)
+      queryEntityInfo()
       {
         IMC::QueryEntityInfo msg;
         msg.setDestination(m_sid);
@@ -280,7 +280,7 @@ namespace Supervisors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

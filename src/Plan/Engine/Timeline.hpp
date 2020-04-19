@@ -64,14 +64,14 @@ namespace Plan
       typedef std::map<std::string, ETA> ETAMap;
 
       //! Constructor
-      Timeline(void)
+      Timeline()
       {
         m_plan.end = 0.0;
         m_execution_duration = -1.0;
       }
 
       //! Destructor
-      ~Timeline(void)
+      ~Timeline()
       { }
 
       //! Set the complete plan end ETA
@@ -85,7 +85,7 @@ namespace Plan
       //! Get the complete plan ETA
       //! @return the plan's ETA
       inline float
-      getPlanETA(void) const
+      getPlanETA() const
       {
         return m_plan.start;
       }
@@ -142,7 +142,7 @@ namespace Plan
       //! Get execution duration
       //! @return execution duration in seconds
       inline float
-      getExecutionDuration(void) const
+      getExecutionDuration() const
       {
         return m_execution_duration;
       }

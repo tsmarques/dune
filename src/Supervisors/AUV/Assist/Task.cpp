@@ -145,26 +145,26 @@ namespace Supervisors
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.trigger_time))
             m_ltimer.setTop(m_args.trigger_time);
         }
 
         void
-        onResourceAcquisition(void) override
+        onResourceAcquisition() override
         {
           m_vmon = new VerticalMonitor(c_vertical_timeout, m_args.min_ascent_rate);
         }
 
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           Memory::clear(m_vmon);
         }
 
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           // Initialize entity state.
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -300,14 +300,14 @@ namespace Supervisors
 
         //! Signal that the start of the dislodge plan has failed
         inline void
-        failedStartPlan(void)
+        failedStartPlan()
         {
           err(DTR("failed to start %s plan"), m_args.plan_id.c_str());
         }
 
         //! Dispatch the dislodge plan
         inline void
-        dispatchDislodge(void)
+        dispatchDislodge()
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
 
@@ -326,7 +326,7 @@ namespace Supervisors
         //! Test the main conditions to consider throwing a dislodge plan
         //! @return true if the conditions hold, false otherwise
         bool
-        mainConditions(void)
+        mainConditions()
         {
           if (m_motor)
             return false;
@@ -355,7 +355,7 @@ namespace Supervisors
         //! Test if the ascent rate condition hold
         //! @return true if condition holds, false otherwise
         bool
-        ascentCondition(void)
+        ascentCondition()
         {
           return m_vmon->isProgressSlow(-m_vz);
         }
@@ -386,7 +386,7 @@ namespace Supervisors
 
         //! Routine to run when on idle state
         void
-        onIdle(void)
+        onIdle()
         {
           if (!mainConditions())
           {
@@ -403,7 +403,7 @@ namespace Supervisors
 
         //! Routine to run when on checkstuck state
         void
-        onCheckStuck(void)
+        onCheckStuck()
         {
           if (!mainConditions())
           {
@@ -420,7 +420,7 @@ namespace Supervisors
 
         //! Routine to run when on startdislodge state
         void
-        onStartDislodge(void)
+        onStartDislodge()
         {
           if (m_dtimer.overflow())
           {
@@ -430,7 +430,7 @@ namespace Supervisors
         }
 
         void
-        task(void) override
+        task() override
         {
           switch (m_astate)
           {

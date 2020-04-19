@@ -266,7 +266,7 @@ namespace Transports
       //! Process sentence.
       //! @return true if message was correctly processed, false otherwise.
       bool
-      processSentence(void)
+      processSentence()
       {
         bool msg_validity = false;
         uint16_t crc, crc2;
@@ -286,7 +286,7 @@ namespace Transports
 
       //! Process new data.
       void
-      processNewData(void)
+      processNewData()
       {
         if(m_config_status==true)
         {
@@ -318,7 +318,7 @@ namespace Transports
       //! Release
       //! Read sentence.
       void
-      readSentence(void)
+      readSentence()
       {
         // Initialize received message parser
         char bfr[c_bfr_size];
@@ -372,7 +372,7 @@ namespace Transports
       //! Open TCP socket.
       //! @return true if socket was opened, false otherwise.
       bool
-      openSocket(void)
+      openSocket()
       {
         char socket_addr[128] = { 0 };
         unsigned port = 0;
@@ -388,7 +388,7 @@ namespace Transports
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setAndSendState(STA_BOOT);
         try
@@ -409,7 +409,7 @@ namespace Transports
 
       //! Initialize resources and configure modem
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         // Process modem addresses.
         std::string agent = getSystemName();
@@ -513,7 +513,7 @@ namespace Transports
       }
       //! Update parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
 
@@ -535,7 +535,7 @@ namespace Transports
       }
       //! Routine to run calibration proceedings.
       void
-      runCalibration(void)
+      runCalibration()
       {
         if (m_handle == NULL)
           return;
@@ -583,7 +583,7 @@ namespace Transports
       //! Check if sensor has the same hard iron calibration parameters.
       //! @return true if the parameters are the same, false otherwise.
       bool
-      isCalibrated(void)
+      isCalibrated()
       {
 
         if( ((int32_t) (m_data_beacon.cid_settings_msg.ahrs_cal.mag_hard_x*100)) != ( (int32_t) (m_args.hard_iron[0]*100)))
@@ -608,7 +608,7 @@ namespace Transports
       //! Set new hard iron calibration parameters.
       //! @return true if successful, false otherwise.
       bool
-      setHardIron(void)
+      setHardIron()
       {
 
         m_data_beacon.cid_settings_msg.ahrs_cal.mag_hard_x = m_args.hard_iron[0];
@@ -628,7 +628,7 @@ namespace Transports
       }
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         clearTicket(IMC::UamTxStatus::UTS_CANCELED);
         Memory::clear(m_handle);
@@ -673,7 +673,7 @@ namespace Transports
       //! Checks if the modem is working.
       //! @return true if modem has a new message.
       bool
-      hasConnection(void)
+      hasConnection()
       {
         if (Clock::get() >= (m_last_input + c_input_tout))
         {
@@ -684,7 +684,7 @@ namespace Transports
 
       //! Processing incoming data.
       void
-      handleBinaryMessage(void)
+      handleBinaryMessage()
       {
         if (m_data_beacon.cid_dat_receive_msg.ack_flag != 0)
         {
@@ -832,7 +832,7 @@ namespace Transports
       //! The method tries to send the packet again until it reaches the maximum
       //! number of retries. @see MAX_MESSAGE_ERRORS.
       void
-      handleCommunicationError(void)
+      handleCommunicationError()
       {
 
         if( !(m_data_beacon.cid_dat_send_msg.msg_type == MSG_OWAY ||
@@ -855,7 +855,7 @@ namespace Transports
       }
       //! Correct data according with mounting position.
       void
-      rotateData(void)
+      rotateData()
       {
         Math::Matrix data(3, 1);
 
@@ -890,7 +890,7 @@ namespace Transports
       //! Handle AHRS data send by local beacon.
       //! The method tries to dispach all the necessary information for navigation
       void
-      handleAhrsData(void)
+      handleAhrsData()
       {
         if(m_data_beacon.cid_status_msg.outputflags_list[5])
         {
@@ -935,7 +935,7 @@ namespace Transports
       //! Handle Pressure , Depth, Temperature and Sound Speed data and dispactch .
       //! The method tries to dispach data prom sensors:Pressure , Depth, Temperature and Sound Speed data
       void
-      handlePressureSensor (void)
+      handlePressureSensor ()
       {
         m_depth.value = ((fp32_t) (m_data_beacon.cid_status_msg.EnvironmentDepth))/10; //int32_t // m_channel_readout * m_args.depth_conv;
         m_pressure.value =  (((fp32_t) (m_data_beacon.cid_status_msg.environment_pressure))/1000)* Math::c_pascal_per_bar;
@@ -953,7 +953,7 @@ namespace Transports
       //! If the sending fails, it tries to send the packet again.
       //! If the modem is busy, it tries to send the packet to poll the status.
       void
-      handleDatSendResponse(void)
+      handleDatSendResponse()
       {
         if (m_data_beacon.cid_dat_send_msg.status != CST_OK)
         {
@@ -1164,7 +1164,7 @@ namespace Transports
 
       //! Checks if an OWAY message is waiting to be sent.
       void
-      checkTxOWAY(void) {
+      checkTxOWAY() {
 
         if (m_data_beacon.cid_dat_send_msg.packetDataSendStatus())
         {
@@ -1190,7 +1190,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

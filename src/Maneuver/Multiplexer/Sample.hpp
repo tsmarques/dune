@@ -69,7 +69,7 @@ namespace Maneuver
         m_done(false)
       { }
 
-      ~Sample(void) override
+      ~Sample() override
       { }
 
       //! Start maneuver function

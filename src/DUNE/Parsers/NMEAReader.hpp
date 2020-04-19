@@ -58,12 +58,12 @@ namespace DUNE
       NMEAReader(const std::string& sentence);
 
       //! Destructor.
-      ~NMEAReader(void);
+      ~NMEAReader();
 
       //! Retrieve sentence code.
       //! @return sentence code.
       const char*
-      code(void) const
+      code() const
       {
         return m_code.c_str();
       }
@@ -71,7 +71,7 @@ namespace DUNE
       //! Skip the next field in the input stream.
       //! @return current object.
       NMEAReader&
-      skip(void);
+      skip();
 
       //! Convert the next field in the input stream to boolean.
       //! @param value output variable.
@@ -115,7 +115,7 @@ namespace DUNE
       //! @return true of there are no more fields to extract, false
       //! otherwise.
       bool
-      eos(void);
+      eos();
 
     private:
       //! Input stream.
@@ -131,7 +131,7 @@ namespace DUNE
 
       //! Check if we can convert the next field.
       void
-      checkFieldStart(void);
+      checkFieldStart();
 
       //! Parse NMEA checksum.
       //! @param checksum in ASCII format.

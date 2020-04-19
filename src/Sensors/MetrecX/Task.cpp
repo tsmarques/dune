@@ -263,7 +263,7 @@ namespace Sensors
         bind<IMC::Temperature>(this);
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         // To clear uart if an exception is thrown.
         onResourceRelease();
@@ -273,7 +273,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         try
         {
@@ -308,7 +308,7 @@ namespace Sensors
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_need_setup = true;
 
@@ -363,7 +363,7 @@ namespace Sensors
 
       //! Reserve entities.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_channels; ++i)
         {
@@ -396,7 +396,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         try
@@ -413,13 +413,13 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_uart->writeString("\r");
         Delay::wait(1.0);
@@ -433,7 +433,7 @@ namespace Sensors
 
       //! Setup device.
       void
-      setup(void)
+      setup()
       {
         m_need_setup = false;
         checkDigital();
@@ -443,7 +443,7 @@ namespace Sensors
 
       //! Start monitoring device.
       void
-      startMonitoring(void)
+      startMonitoring()
       {
         // Start Monitoring.
         if (!sendCommand(c_cmd_sampl))
@@ -457,7 +457,7 @@ namespace Sensors
 
       //! Stop monitoring device.
       void
-      stopMonitoring(void)
+      stopMonitoring()
       {
         // To exit sensor talk mode (stop monitoring).
         m_uart->writeString("\x03");
@@ -465,7 +465,7 @@ namespace Sensors
 
       //! Disable all input channels.
       void
-      disableInChannels(void)
+      disableInChannels()
       {
         for (unsigned i = 0; i < c_in_count; i++)
         {
@@ -476,7 +476,7 @@ namespace Sensors
 
       //! Setup internal channels.
       void
-      setupInternal(void)
+      setupInternal()
       {
         // Start by turning off internal channels.
         disableInChannels();
@@ -516,7 +516,7 @@ namespace Sensors
       //! Cross check of what internal channels may be turned on
       //! and what channels the user want turned on.
       void
-      checkDigital(void)
+      checkDigital()
       {
         uint8_t mask = 0;
         for (unsigned i = 0; i < c_di_count; ++i)
@@ -710,7 +710,7 @@ namespace Sensors
       //! Get active channels.
       //! @return active channels.
       inline unsigned
-      getChannels(void)
+      getChannels()
       {
         unsigned active = 0;
 
@@ -726,7 +726,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         char bfr[255];
         double values[c_total];

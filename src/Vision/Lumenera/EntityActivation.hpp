@@ -81,7 +81,7 @@ namespace Vision
       }
 
       unsigned int
-      getSystemId(void) const
+      getSystemId() const
       {
         if (m_sys_id != DUNE_IMC_CONST_NULL_ID)
           return m_sys_id;
@@ -92,7 +92,7 @@ namespace Vision
       }
 
       std::string const
-      getSystemName(void) const
+      getSystemName() const
       {
         if (m_system != "")
           return m_system;
@@ -103,7 +103,7 @@ namespace Vision
       }
 
       unsigned int
-      getEntityId(void) const
+      getEntityId() const
       {
         if (m_id != DUNE_IMC_CONST_UNK_EID)
           return m_id;
@@ -114,7 +114,7 @@ namespace Vision
       }
 
       std::string
-      getEntityLabel(void) const
+      getEntityLabel() const
       {
         if (m_name != "")
           return m_name;
@@ -125,19 +125,19 @@ namespace Vision
       }
 
       void
-      activate(void)
+      activate()
       {
         setActiveParameter(true);
       }
 
       void
-      deactivate(void)
+      deactivate()
       {
         setActiveParameter(false);
       }
 
       bool
-      checkActivation(void)
+      checkActivation()
       {
         if (m_act_state == IMC::EntityActivationState::EAS_ACTIVE)
           return true;
@@ -149,7 +149,7 @@ namespace Vision
       }
 
       bool
-      checkDeactivation(void)
+      checkDeactivation()
       {
         if (m_act_state == IMC::EntityActivationState::EAS_INACTIVE)
           return true;

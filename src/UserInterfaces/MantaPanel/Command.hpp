@@ -52,14 +52,14 @@ namespace UserInterfaces
       { }
 
       bool
-      isDone(void)
+      isDone()
       {
         ScopedMutex l(m_done_mx);
         return m_done;
       }
 
       void
-      run(void) override
+      run() override
       {
         while (!isStopping())
         {

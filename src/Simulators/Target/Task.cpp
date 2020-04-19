@@ -94,27 +94,27 @@ namespace Simulators
 
       //! Acquire resources
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(Random::Factory::c_default, -1);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_lat = Angles::radians(m_args.lat);
         m_lon = Angles::radians(m_args.lon);
       }
 
       void
-      sendTarget(void)
+      sendTarget()
       {
         IMC::Target trg;
 
@@ -142,7 +142,7 @@ namespace Simulators
       }
 
       void
-      task(void) override
+      task() override
       {
         sendTarget();
       }

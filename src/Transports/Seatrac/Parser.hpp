@@ -85,7 +85,7 @@ namespace Transports
 
 
       //! Constructor.
-      DataSeatrac(void)
+      DataSeatrac()
       {
         cid_dat_send_msg.lock_flag = 0;
         cid_dat_receive_msg.data_rec_flag = 0;

@@ -63,7 +63,7 @@ namespace DUNE
 
       const int Protocol::c_error_last = 8;
 
-      Protocol::Protocol(void):
+      Protocol::Protocol():
         m_uart(0),
         m_i2c(0),
         m_i2c_read_pend(false),
@@ -72,7 +72,7 @@ namespace DUNE
         reset();
       }
 
-      Protocol::~Protocol(void)
+      Protocol::~Protocol()
       {
         close();
       }
@@ -142,13 +142,13 @@ namespace DUNE
       }
 
       bool
-      Protocol::isOpen(void)
+      Protocol::isOpen()
       {
         return m_open;
       }
 
       void
-      Protocol::close(void)
+      Protocol::close()
       {
         if (m_uart)
         {
@@ -234,25 +234,25 @@ namespace DUNE
       }
 
       void
-      Protocol::requestVersion(void)
+      Protocol::requestVersion()
       {
         sendCommand(c_cmd_info);
       }
 
       void
-      Protocol::requestReset(void)
+      Protocol::requestReset()
       {
         sendCommand(c_cmd_reset);
       }
 
       void
-      Protocol::requestBootJump(void)
+      Protocol::requestBootJump()
       {
         sendCommand(c_cmd_bldr);
       }
 
       void
-      Protocol::requestName(void)
+      Protocol::requestName()
       {
         sendCommand(c_cmd_name);
       }
@@ -275,7 +275,7 @@ namespace DUNE
       }
 
       void
-      Protocol::reset(void)
+      Protocol::reset()
       {
         m_sm_state = STA_NONE;
         m_sm_size = 0;

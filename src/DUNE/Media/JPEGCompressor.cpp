@@ -84,7 +84,7 @@ namespace DUNE
 {
   namespace Media
   {
-    JPEGCompressor::JPEGCompressor(void)
+    JPEGCompressor::JPEGCompressor()
     {
       // Initialize destination manager.
       m_mgr = new DestinationManager;
@@ -107,7 +107,7 @@ namespace DUNE
       jpeg_set_defaults(m_jcinfo);
     }
 
-    JPEGCompressor::~JPEGCompressor(void)
+    JPEGCompressor::~JPEGCompressor()
     {
       jpeg_destroy_compress(m_jcinfo);
       delete m_jcinfo;
@@ -204,13 +204,13 @@ namespace DUNE
     }
 
     const uint8_t*
-    JPEGCompressor::imageData(void) const
+    JPEGCompressor::imageData() const
     {
       return m_mgr->bfr;
     }
 
     uint32_t
-    JPEGCompressor::imageSize(void) const
+    JPEGCompressor::imageSize() const
     {
       return m_mgr->bfr_size - m_mgr->mgr.free_in_buffer;
     }

@@ -69,10 +69,10 @@ namespace DUNE
       registerDynamicTasks(const char* folder);
 
       static int
-      getRegisteredCount(void);
+      getRegisteredCount();
 
       static Table&
-      getTable(void);
+      getTable();
     };
   }
 }

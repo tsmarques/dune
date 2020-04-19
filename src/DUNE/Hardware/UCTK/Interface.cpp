@@ -43,14 +43,14 @@ namespace DUNE
         m_handle(handle)
       { }
 
-      Interface::~Interface(void)
+      Interface::~Interface()
       {
         while (!m_queue.empty())
           delete m_queue.pop();
       }
 
       FirmwareInfo
-      Interface::getFirmwareInfo(void)
+      Interface::getFirmwareInfo()
       {
         FirmwareInfo info;
         getFirmwareName(info);
@@ -59,7 +59,7 @@ namespace DUNE
       }
 
       void
-      Interface::resetDevice(void)
+      Interface::resetDevice()
       {
         UCTK::Frame frame;
         frame.setId(PKT_ID_RESET);

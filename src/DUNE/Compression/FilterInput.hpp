@@ -54,7 +54,7 @@ namespace DUNE
         setStream(stream, m_method);
       }
 
-      ~FilterInput(void) override
+      ~FilterInput() override
       {
         delete m_buffer;
       }

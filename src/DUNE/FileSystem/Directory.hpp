@@ -68,22 +68,22 @@ namespace DUNE
         RD_FILE_NAME
       };
 
-      Directory(void)
+      Directory()
       { }
 
       Directory(const Path& path);
 
       //! Destructor.
-      ~Directory(void);
+      ~Directory();
 
       bool
       open(const Path& path);
 
       bool
-      isOpen(void);
+      isOpen();
 
       bool
-      close(void);
+      close();
 
       const char*
       readEntry(ReadOptions options = RD_FILE_NAME);

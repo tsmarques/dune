@@ -101,7 +101,7 @@ namespace DUNE
     }
 
     void
-    FigureEight::computeLoopCenters(void)
+    FigureEight::computeLoopCenters()
     {
       m_left.center_lat = m_prop.lat;
       m_left.center_lon = m_prop.lon;
@@ -116,7 +116,7 @@ namespace DUNE
     }
 
     void
-    FigureEight::computeLoopExits(void)
+    FigureEight::computeLoopExits()
     {
       m_left.exit_lat = m_left.center_lat;
       m_left.exit_lon = m_left.center_lon;
@@ -259,7 +259,7 @@ namespace DUNE
     }
 
     bool
-    FigureEight::isLoitering(void) const
+    FigureEight::isLoitering() const
     {
       return m_state != FE_INIT;
     }

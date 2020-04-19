@@ -98,7 +98,7 @@ namespace Power
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_slave_id = resolveSystemName(m_args.slave_system);
       }
@@ -160,7 +160,7 @@ namespace Power
       }
 
       void
-      onRequestActivation(void) override
+      onRequestActivation() override
       {
         m_slave_alive = false;
         sendPowerChannelControl(m_args.cam_pwr, true);
@@ -169,7 +169,7 @@ namespace Power
       }
 
       void
-      checkActivation(void)
+      checkActivation()
       {
         if (!isActivating())
           return;
@@ -189,13 +189,13 @@ namespace Power
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onRequestDeactivation(void) override
+      onRequestDeactivation() override
       {
         setActiveParameter(false);
 
@@ -208,7 +208,7 @@ namespace Power
       }
 
       void
-      checkDeactivation(void)
+      checkDeactivation()
       {
         if (!isDeactivating())
           return;
@@ -218,7 +218,7 @@ namespace Power
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         sendPowerChannelControl(m_args.cam_pwr, false);
         sendPowerChannelControl(m_args.cpu_pwr, false);
@@ -227,7 +227,7 @@ namespace Power
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

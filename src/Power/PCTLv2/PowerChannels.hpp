@@ -48,16 +48,16 @@ namespace Power
     class PowerChannels
     {
     public:
-      PowerChannels(void)
+      PowerChannels()
       { }
 
-      ~PowerChannels(void)
+      ~PowerChannels()
       {
         clear();
       }
 
       void
-      clear(void)
+      clear()
       {
         std::map<unsigned, PowerChannel*>::iterator itr = m_by_id.begin();
         for (; itr != m_by_id.end(); ++itr)
@@ -88,37 +88,37 @@ namespace Power
       }
 
       std::map<std::string, PowerChannel*>::const_iterator
-      begin_by_name(void) const
+      begin_by_name() const
       {
         return m_by_name.begin();
       }
 
       std::map<std::string, PowerChannel*>::const_iterator
-      end_by_name(void) const
+      end_by_name() const
       {
         return m_by_name.end();
       }
 
       std::map<unsigned, PowerChannel*>::const_iterator
-      begin(void) const
+      begin() const
       {
         return m_by_id.begin();
       }
 
       std::map<unsigned, PowerChannel*>::const_iterator
-      end(void) const
+      end() const
       {
         return m_by_id.end();
       }
 
       std::map<unsigned, PowerChannel*>::iterator
-      begin(void)
+      begin()
       {
         return m_by_id.begin();
       }
 
       std::map<unsigned, PowerChannel*>::iterator
-      end(void)
+      end()
       {
         return m_by_id.end();
       }

@@ -124,7 +124,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           // Initialize ILOS m_integrator
           m_integrator = m_args.int_init;
@@ -137,20 +137,20 @@ namespace Control
         }
 
         void
-        onEntityReservation(void) override
+        onEntityReservation() override
         {
           PathController::onEntityReservation();
         }
 
         void
-        onPathActivation(void) override
+        onPathActivation() override
         {
           // Activate heading cotroller.
           enableControlLoops(IMC::CL_YAW);
         }
 
         void
-        reset(void)
+        reset()
         {
           m_integrator = 0.0;
         }

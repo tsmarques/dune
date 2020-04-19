@@ -44,7 +44,7 @@ namespace DUNE
     {
     public:
       //! Initialize the internal value with 0.
-      AtomicInteger(void)
+      AtomicInteger()
       {
         assign(0);
       }
@@ -78,7 +78,7 @@ namespace DUNE
       //! Retrieve internal value.
       //! @return internal value.
       long
-      value(void)
+      value()
       {
         ScopedMutex lock(m_lock);
         return m_value;
@@ -87,7 +87,7 @@ namespace DUNE
       //! Increment the internal value by 1.
       //! @return new value of the integer.
       long
-      increment(void)
+      increment()
       {
         ScopedMutex lock(m_lock);
         return ++m_value;
@@ -96,7 +96,7 @@ namespace DUNE
       //! Decrement the internal value by 1.
       //! @return new value of the integer.
       long
-      decrement(void)
+      decrement()
       {
         ScopedMutex lock(m_lock);
         return --m_value;

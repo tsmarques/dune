@@ -63,12 +63,12 @@ namespace DUNE
       //! Get default scheduling policy.
       //! @return current scheduling policy.
       static Policy
-      get(void);
+      get();
 
       //! Get the native scheduling policy identifier.
       //! @return scheduling policy identifier.
       static unsigned
-      native(void);
+      native();
 
       //! Translate a DUNE scheduling policy to a native scheduling
       //! policy identifier.
@@ -80,21 +80,21 @@ namespace DUNE
       //! Force the running thread to relinquish the processor until
       //! it becomes the head of its thread list.
       static void
-      yield(void);
+      yield();
 
       //! Get the minimum priority value for current default
       //! scheduling policy.
       //! @return minimum priority value for current scheduling
       //! policy.
       static unsigned
-      minimumPriority(void);
+      minimumPriority();
 
       //! Get the maximum priority value for current default
       //! scheduling policy.
       //! @return maximum priority value for current scheduling
       //! policy.
       static unsigned
-      maximumPriority(void);
+      maximumPriority();
     };
   }
 }

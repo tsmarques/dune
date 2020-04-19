@@ -176,20 +176,20 @@ namespace Navigation
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.gps_timeout))
             m_time_without_gps.setTop(m_args.gps_timeout);
         }
 
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_WAIT_GPS_FIX);
         }
 
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           Memory::clear(m_origin);
 
@@ -359,7 +359,7 @@ namespace Navigation
 
         //! Setup filter.
         void
-        setup(void)
+        setup()
         {
           if (!m_ranging.getSize())
           {
@@ -460,7 +460,7 @@ namespace Navigation
         }
 
         void
-        onMain(void) override
+        onMain() override
         {
           while (!stopping())
           {

@@ -98,7 +98,7 @@ namespace Transports
 
       //! Define the message structure fields
       void
-      outputFlagsComp(void)
+      outputFlagsComp()
       {
         outputflags_list[0] = (ENVIRONMENT_FLAG & output_flags);
         outputflags_list[1] = (ATTITUDE_FLAG & output_flags);
@@ -208,7 +208,7 @@ namespace Transports
       //! Decoding the data packet.
       //! @return index.
       int
-      packetDataDecode(void)
+      packetDataDecode()
       {
         std::memcpy(&index, packet_data + 0, 1);
         std::memcpy(&n_sub_messages, packet_data + 1, 1);
@@ -394,7 +394,7 @@ namespace Transports
       //! Returns if packages constructor is free.
       //! @return lock flag.
       int
-      packetDataSendStatus(void)
+      packetDataSendStatus()
       {
         return lock_flag;
       }
@@ -465,7 +465,7 @@ namespace Transports
 
       //! Define the message structure fields
       void
-      queryFlagsExtract(void)
+      queryFlagsExtract()
       {
         query_flags_list[0]=(0x01 & query_flags);
         query_flags_list[1]=(0x02 & query_flags);

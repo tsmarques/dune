@@ -45,7 +45,7 @@ namespace DUNE
       m_ctx(ctx)
     { }
 
-    Recipient::~Recipient(void)
+    Recipient::~Recipient()
     {
       unbindAll();
 
@@ -58,7 +58,7 @@ namespace DUNE
     }
 
     void
-    Recipient::unbindAll(void)
+    Recipient::unbindAll()
     {
       std::map<uint32_t, std::vector<AbstractConsumer*> >::iterator itr = m_cbacks.begin();
 
@@ -97,7 +97,7 @@ namespace DUNE
     }
 
     void
-    Recipient::runCallBacks(void)
+    Recipient::runCallBacks()
     {
       unsigned int size = m_mqueue.size();
 

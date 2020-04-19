@@ -57,7 +57,7 @@ namespace Supervisors
     {
     public:
       //! Constructor.
-      Dispatcher(void)
+      Dispatcher()
       { }
 
       //! Add tickets to dispatcher.
@@ -110,7 +110,7 @@ namespace Supervisors
 
       //! Trigger through all tickets.
       void
-      run(void)
+      run()
       {
         // Iterate and call triggers.
         std::vector<Ticket>::iterator itr = m_list.begin();
@@ -120,7 +120,7 @@ namespace Supervisors
 
       //! Clear dispatcher list.
       void
-      clear(void)
+      clear()
       {
         m_list.clear();
       }
@@ -128,7 +128,7 @@ namespace Supervisors
       //! Check if dispatcher is empty.
       //! @return true if dispatcher is empty, false otherwise.
       bool
-      isEmpty(void)
+      isEmpty()
       {
         if (m_list.size() == 0)
           return true;

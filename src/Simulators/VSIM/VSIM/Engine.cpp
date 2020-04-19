@@ -104,7 +104,7 @@ namespace Simulators
     }
 
     double
-    Engine::getActuation(void)
+    Engine::getActuation()
     {
       return m_act;
     }

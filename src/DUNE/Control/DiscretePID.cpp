@@ -36,7 +36,7 @@ namespace DUNE
   namespace Control
   {
     //! Constructor.
-    DiscretePID::DiscretePID(void):
+    DiscretePID::DiscretePID():
       m_kp(0),
       m_ki(0),
       m_kd(0),
@@ -53,7 +53,7 @@ namespace DUNE
     }
 
     //! Destructor.
-    DiscretePID::~DiscretePID(void)
+    DiscretePID::~DiscretePID()
     { }
 
     void
@@ -154,7 +154,7 @@ namespace DUNE
     }
 
     void
-    DiscretePID::reset(void)
+    DiscretePID::reset()
     {
       m_int_err = 0;
       m_prev_err = 0;

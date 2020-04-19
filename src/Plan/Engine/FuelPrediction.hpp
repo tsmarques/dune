@@ -100,7 +100,7 @@ namespace Plan
       }
 
       //! Destructor
-      ~FuelPrediction(void)
+      ~FuelPrediction()
       { }
 
       //! Use fuel level messages to compute error in prediction
@@ -117,7 +117,7 @@ namespace Plan
       //! Check if prediction error can be computed
       //! @return true if prediction error is valid, false otherwise
       inline bool
-      isFuelValid(void) const
+      isFuelValid() const
       {
         return (m_starting_fuel >= 0.0);
       }
@@ -126,7 +126,7 @@ namespace Plan
       //! Check if the fuel values are valid first!
       //! @return error in prediction in percentage
       inline float
-      getPredictionError(void) const
+      getPredictionError() const
       {
         return getTotal(true) - (m_starting_fuel - m_current_fuel);
       }

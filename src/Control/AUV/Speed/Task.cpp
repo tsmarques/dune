@@ -193,19 +193,19 @@ namespace Control
         }
 
         void
-        onActivation(void) override
+        onActivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         void
-        onDeactivation(void) override
+        onDeactivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           requestDeactivation();
 
@@ -215,7 +215,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.rpm_gains) ||
               paramChanged(m_args.mps_gains) ||
@@ -234,7 +234,7 @@ namespace Control
 
         //! Initialize PID related variables
         void
-        initializePIDs(void)
+        initializePIDs()
         {
           m_rpm_pid.setGains(m_args.rpm_gains);
           m_rpm_pid.setOutputLimits(m_args.min_thrust, m_args.max_thrust);
@@ -252,7 +252,7 @@ namespace Control
         }
 
         void
-        reset(void)
+        reset()
         {
           m_desired_speed = 0;
           m_rpm_pid.reset();
@@ -473,7 +473,7 @@ namespace Control
         }
 
         void
-        onMain(void) override
+        onMain() override
         {
           while (!stopping())
           {

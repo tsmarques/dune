@@ -50,26 +50,26 @@ namespace Control
         { }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           PathController::onUpdateParameters();
         }
 
         void
-        onEntityReservation(void) override
+        onEntityReservation() override
         {
           PathController::onEntityReservation();
         }
 
         void
-        onPathActivation(void) override
+        onPathActivation() override
         {
           // Activate heading controller.
           enableControlLoops(IMC::CL_YAW);
         }
 
         void
-        onPathDeactivation(void) override
+        onPathDeactivation() override
         {
           // Deactivate heading controller.
           disableControlLoops(IMC::CL_YAW);

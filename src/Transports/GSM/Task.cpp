@@ -193,7 +193,7 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.rsms_per))
           m_rsms_timer.setTop(m_args.rsms_per);
@@ -211,7 +211,7 @@ namespace Transports
 
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -230,7 +230,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL , getMessage(Status::CODE_IDLE).c_str());
           if (m_args.request_balance) {
@@ -243,7 +243,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_driver)
         {
@@ -324,7 +324,7 @@ namespace Transports
       }
 
       void
-      processQueue(void)
+      processQueue()
       {
         if (m_queue.empty())
         {
@@ -362,7 +362,7 @@ namespace Transports
       }
 
       void
-      pollStatus(void)
+      pollStatus()
       {
         try
         {
@@ -387,7 +387,7 @@ namespace Transports
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

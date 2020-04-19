@@ -68,7 +68,7 @@
 #endif
 
 void
-registerStaticTasks(void);
+registerStaticTasks();
 
 using DUNE_NAMESPACES;
 
@@ -109,7 +109,7 @@ handleTerminate(DWORD type)
 #endif
 
 void
-setDaemonSignalHandlers(void)
+setDaemonSignalHandlers()
 {
   // POSIX implementation.
 #if defined(DUNE_SYS_HAS_SIGACTION)

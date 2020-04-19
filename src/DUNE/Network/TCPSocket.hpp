@@ -59,7 +59,7 @@ namespace DUNE
       TCPSocket(bool create = true);
 
       //! Destroy an TCP socket.
-      ~TCPSocket(void) override;
+      ~TCPSocket() override;
 
       //! Assign a name to a socket.
       void
@@ -103,10 +103,10 @@ namespace DUNE
       setSendTimeout(double timeout);
 
       Address
-      getBoundAddress(void);
+      getBoundAddress();
 
       uint16_t
-      getBoundPort(void);
+      getBoundPort();
 
     private:
       //! System specific socket handle.
@@ -118,7 +118,7 @@ namespace DUNE
 #endif
 
       IO::NativeHandle
-      doGetNative(void) const override;
+      doGetNative() const override;
 
       size_t
       doRead(uint8_t* buffer, size_t size) override;
@@ -127,7 +127,7 @@ namespace DUNE
       doWrite(const uint8_t* bfr, size_t size) override;
 
       void
-      doFlushInput(void) override;
+      doFlushInput() override;
 
       // Non - copyable.
       TCPSocket(TCPSocket const&);
@@ -138,10 +138,10 @@ namespace DUNE
 
       //! Disable SIGPIPE generation.
       void
-      disableSIGPIPE(void);
+      disableSIGPIPE();
 
       void
-      createEventHandle(void);
+      createEventHandle();
     };
   }
 }

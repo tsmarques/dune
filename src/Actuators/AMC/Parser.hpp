@@ -76,11 +76,11 @@ namespace Actuators
         PS_CS
       };
 
-      Parser(void):
+      Parser():
         m_amc_state(Parser::PS_PREAMBLE)
       { }
 
-      ~Parser(void)
+      ~Parser()
       { }
 
       //! Parse message received
@@ -126,7 +126,7 @@ namespace Actuators
 
       //! Filter data received of AMC board
       bool
-      translate(void)
+      translate()
       {
         int id;
 

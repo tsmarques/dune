@@ -53,16 +53,16 @@ namespace DUNE
     public:
       Semaphore(int value = 1);
 
-      ~Semaphore(void);
+      ~Semaphore();
 
       void
-      lock(void);
+      lock();
 
       void
-      unlock(void);
+      unlock();
 
       int
-      getValue(void);
+      getValue();
 
     private:
       //! Semaphore's handle.

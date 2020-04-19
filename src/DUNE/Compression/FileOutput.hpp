@@ -53,7 +53,7 @@ namespace DUNE
         attach(m_stream);
       }
 
-      ~FileOutput(void) override
+      ~FileOutput() override
       {
         delete m_buffer;
       }

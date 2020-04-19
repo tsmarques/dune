@@ -98,7 +98,7 @@ namespace DUNE
       //! Get current state.
       //! @return current state.
       inline STATE
-      current(void)
+      current()
       {
         return m_state;
       }

@@ -44,10 +44,10 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      Initializer(void);
+      Initializer();
 
       //! Default destructor.
-      ~Initializer(void);
+      ~Initializer();
     };
 
     static Initializer initializer;

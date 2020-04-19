@@ -161,7 +161,7 @@ namespace Sensors
       //! Retrieve the range of the last shot ([5, 50] meter).
       //! @return range of the last shot in meter.
       unsigned
-      getRange(void) const
+      getRange() const
       {
         return m_range;
       }
@@ -169,7 +169,7 @@ namespace Sensors
       //! Retrieve the profile range of the last shot.
       //! @return range of the last shot in meter.
       double
-      getProfileRange(void) const
+      getProfileRange() const
       {
         return m_profile_range;
       }
@@ -177,7 +177,7 @@ namespace Sensors
       //! Retrieve number of data points of the last shot.
       //! @return number of data points of the last shot.
       unsigned
-      getDataPointsCount(void) const
+      getDataPointsCount() const
       {
         return m_data_points_max;
       }
@@ -231,7 +231,7 @@ namespace Sensors
       uint8_t m_previous;
 
       void
-      clear(void)
+      clear()
       {
         m_state = STA_HDR0;
         m_data_points_max = 0;

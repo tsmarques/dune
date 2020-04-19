@@ -38,7 +38,7 @@ namespace DUNE
 {
   namespace Concurrency
   {
-    Mutex::Mutex(void)
+    Mutex::Mutex()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_MUTEX)
       int rv = 0;
@@ -56,7 +56,7 @@ namespace DUNE
 #endif
     }
 
-    Mutex::~Mutex(void)
+    Mutex::~Mutex()
     {
       try
       {
@@ -67,7 +67,7 @@ namespace DUNE
     }
 
     void
-    Mutex::lock(void)
+    Mutex::lock()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_MUTEX)
       int rv = pthread_mutex_lock(&m_mutex);
@@ -78,7 +78,7 @@ namespace DUNE
     }
 
     void
-    Mutex::unlock(void)
+    Mutex::unlock()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_MUTEX)
       int rv = pthread_mutex_unlock(&m_mutex);
@@ -89,7 +89,7 @@ namespace DUNE
     }
 
     void
-    Mutex::tryLock(void)
+    Mutex::tryLock()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_MUTEX)
       int rv = pthread_mutex_trylock(&m_mutex);
@@ -100,7 +100,7 @@ namespace DUNE
     }
 
     void
-    Mutex::destroy(void)
+    Mutex::destroy()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_MUTEX)
       int rv = pthread_mutex_destroy(&m_mutex);

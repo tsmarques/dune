@@ -94,13 +94,13 @@ namespace Plan
       }
 
       const_iterator
-      begin(void) const
+      begin() const
       {
         return m_gmap.begin();
       }
 
       const_iterator
-      end(void) const
+      end() const
       {
         return m_gmap.end();
       }

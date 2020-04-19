@@ -49,7 +49,7 @@ namespace DUNE
       //! Previously allocated value is returned, or a new one
       //! is created first time round.
       T&
-      value(void)
+      value()
       {
         T* data = reinterpret_cast<T*>(RawTLS::get());
         if (!data)
@@ -59,7 +59,7 @@ namespace DUNE
 
       //! Clear datum that is allocated for calling thread.
       void
-      clear(void)
+      clear()
       {
         // Base class takes care of deallocation
         RawTLS::set(0);
@@ -73,7 +73,7 @@ namespace DUNE
       }
 
       T&
-      operator*(void)
+      operator*()
       {
         return value();
       }

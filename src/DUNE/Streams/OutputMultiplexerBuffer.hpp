@@ -46,25 +46,25 @@ namespace DUNE
     class OutputMultiplexerBuffer: public std::streambuf
     {
     public:
-      OutputMultiplexerBuffer(void);
+      OutputMultiplexerBuffer();
 
       OutputMultiplexerBuffer(std::ostream* stream);
 
       
-      ~OutputMultiplexerBuffer(void) override;
+      ~OutputMultiplexerBuffer() override;
 
       void
       add(std::ostream* stream);
 
     protected:
       int
-      sync(void) override;
+      sync() override;
 
       int_type
       overflow(int_type c) override;
 
       int_type
-      underflow(void) override
+      underflow() override
       {
         std::cerr << "underflow" << std::endl;
         return 1;

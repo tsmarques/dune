@@ -173,7 +173,7 @@ namespace UserInterfaces
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.systems))
         {
@@ -201,7 +201,7 @@ namespace UserInterfaces
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         if (!m_args.banner.empty())
         {
@@ -221,7 +221,7 @@ namespace UserInterfaces
       }
 
       void
-      reset(void)
+      reset()
       {
         m_mode = MODE_NONE;
         m_last_acop = -1.0;
@@ -453,7 +453,7 @@ namespace UserInterfaces
       }
 
       void
-      executeOnPowerDown(void)
+      executeOnPowerDown()
       {
         if (!m_power_down)
           return;
@@ -489,7 +489,7 @@ namespace UserInterfaces
       }
 
       void
-      checkTimeout(void)
+      checkTimeout()
       {
         if (m_last_acop < 0)
           return;
@@ -508,7 +508,7 @@ namespace UserInterfaces
       }
 
       void
-      updateProgressBar(void)
+      updateProgressBar()
       {
         if (m_mode == MODE_NONE || m_mode == MODE_SYS_SELECT)
           return;
@@ -524,7 +524,7 @@ namespace UserInterfaces
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

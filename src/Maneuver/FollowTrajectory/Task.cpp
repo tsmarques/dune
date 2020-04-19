@@ -98,7 +98,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         Maneuvers::FollowTrajectory::onUpdateParameters();
       }
@@ -133,7 +133,7 @@ namespace Maneuver
       }
 
       void
-      onPathCompletion(void) override
+      onPathCompletion() override
       {
         m_done = true;
       }
@@ -230,7 +230,7 @@ namespace Maneuver
 
       //! Function for testing the trajectory's feasibility
       bool
-      isFeasible(void)
+      isFeasible()
       {
         size_t n = trajectory_points();
 

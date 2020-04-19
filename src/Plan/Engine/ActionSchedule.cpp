@@ -142,7 +142,7 @@ namespace Plan
     }
 
     void
-    ActionSchedule::flushTimed(void)
+    ActionSchedule::flushTimed()
     {
       while (1)
       {
@@ -272,7 +272,7 @@ namespace Plan
     }
 
     bool
-    ActionSchedule::waitingForDevice(void)
+    ActionSchedule::waitingForDevice()
     {
       // if there are any requests hanging, then we're waiting
       if (!m_reqs.empty())
@@ -291,7 +291,7 @@ namespace Plan
     }
 
     float
-    ActionSchedule::calibTimeLeft(void)
+    ActionSchedule::calibTimeLeft()
     {
       if (!m_reqs.empty())
         return -1.0;
@@ -631,7 +631,7 @@ namespace Plan
     }
 
     void
-    ActionSchedule::scheduleTimed(void)
+    ActionSchedule::scheduleTimed()
     {
       if (m_unsched.empty())
         return;
@@ -704,7 +704,7 @@ namespace Plan
     }
 
     std::map<std::string, ActionSchedule::TimedStack>::iterator
-    ActionSchedule::nextSchedule(void)
+    ActionSchedule::nextSchedule()
     {
       if (!m_timed.size())
         return m_timed.end();
@@ -728,7 +728,7 @@ namespace Plan
     }
 
     void
-    ActionSchedule::printTimed(void)
+    ActionSchedule::printTimed()
     {
       std::map<std::string, TimedStack> clone = m_timed;
 

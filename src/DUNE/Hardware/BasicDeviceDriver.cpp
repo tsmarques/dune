@@ -56,13 +56,13 @@ namespace DUNE
     }
 
     void
-    BasicDeviceDriver::onResourceRelease(void)
+    BasicDeviceDriver::onResourceRelease()
     {
       requestDeactivation();
     }
 
     void
-    BasicDeviceDriver::onResourceInitialization(void)
+    BasicDeviceDriver::onResourceInitialization()
     {
       setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
     }
@@ -74,19 +74,19 @@ namespace DUNE
     }
 
     bool
-    BasicDeviceDriver::hasQueuedStates(void) const
+    BasicDeviceDriver::hasQueuedStates() const
     {
       return !m_sm_state_queue.empty();
     }
 
     BasicDeviceDriver::StateMachineStates
-    BasicDeviceDriver::getCurrentState(void) const
+    BasicDeviceDriver::getCurrentState() const
     {
       return m_sm_state;
     }
 
     BasicDeviceDriver::StateMachineStates
-    BasicDeviceDriver::dequeueState(void)
+    BasicDeviceDriver::dequeueState()
     {
       if (hasQueuedStates())
       {
@@ -98,13 +98,13 @@ namespace DUNE
     }
 
     void
-    BasicDeviceDriver::onRequestActivation(void)
+    BasicDeviceDriver::onRequestActivation()
     {
       queueState(SM_ACT_BEGIN);
     }
 
     bool
-    BasicDeviceDriver::connect(void)
+    BasicDeviceDriver::connect()
     {
       Counter<double> timer(1.0);
       try
@@ -131,13 +131,13 @@ namespace DUNE
     }
 
     void
-    BasicDeviceDriver::onRequestDeactivation(void)
+    BasicDeviceDriver::onRequestDeactivation()
     {
       queueState(SM_DEACT_BEGIN);
     }
 
     void
-    BasicDeviceDriver::disconnect(void)
+    BasicDeviceDriver::disconnect()
     {
       debug("disconnecting");
       onDisconnect();
@@ -145,14 +145,14 @@ namespace DUNE
     }
 
     void
-    BasicDeviceDriver::onDeactivation(void)
+    BasicDeviceDriver::onDeactivation()
     {
       setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       debug("deactivation complete");
     }
 
     void
-    BasicDeviceDriver::onActivation(void)
+    BasicDeviceDriver::onActivation()
     {
       initializeDevice();
       setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -160,7 +160,7 @@ namespace DUNE
     }
 
     void
-    BasicDeviceDriver::initializeDevice(void)
+    BasicDeviceDriver::initializeDevice()
     {
       debug("initializing device");
       onInitializeDevice();
@@ -168,7 +168,7 @@ namespace DUNE
 
     //! Request the name of the current log file.
     void
-    BasicDeviceDriver::requestLogName(void)
+    BasicDeviceDriver::requestLogName()
     {
       if (!enableLogControl())
         return;
@@ -228,7 +228,7 @@ namespace DUNE
     }
 
     bool
-    BasicDeviceDriver::readSample(void)
+    BasicDeviceDriver::readSample()
     {
       return onReadData();
     }
@@ -250,7 +250,7 @@ namespace DUNE
     }
 
     void
-    BasicDeviceDriver::closeLog(void)
+    BasicDeviceDriver::closeLog()
     {
       if (!enableLogControl())
         return;
@@ -284,7 +284,7 @@ namespace DUNE
 
     //! Power-on device.
     void
-    BasicDeviceDriver::turnPowerOn(void)
+    BasicDeviceDriver::turnPowerOn()
     {
       trace("turning power on");
       controlPower(IMC::PowerChannelControl::PCC_OP_TURN_ON);
@@ -292,7 +292,7 @@ namespace DUNE
 
     //! Power-off device.
     void
-    BasicDeviceDriver::turnPowerOff(void)
+    BasicDeviceDriver::turnPowerOff()
     {
       trace("turning power off");
       controlPower(IMC::PowerChannelControl::PCC_OP_TURN_OFF);
@@ -330,7 +330,7 @@ namespace DUNE
     }
 
     void
-    BasicDeviceDriver::updateStateMachine(void)
+    BasicDeviceDriver::updateStateMachine()
     {
       switch (dequeueState())
       {
@@ -483,7 +483,7 @@ namespace DUNE
     }
 
     bool
-    BasicDeviceDriver::synchronize(void)
+    BasicDeviceDriver::synchronize()
     {
       bool rv = onSynchronize();
       if (rv)
@@ -493,7 +493,7 @@ namespace DUNE
     }
 
     bool
-    BasicDeviceDriver::onSynchronize(void)
+    BasicDeviceDriver::onSynchronize()
     {
       return true;
     }
@@ -517,13 +517,13 @@ namespace DUNE
     }
 
     void
-    BasicDeviceDriver::onCloseLog(void)
+    BasicDeviceDriver::onCloseLog()
     {
       trace("handled close log request");
     }
 
     void
-    BasicDeviceDriver::onMain(void)
+    BasicDeviceDriver::onMain()
     {
       while (!stopping())
       {

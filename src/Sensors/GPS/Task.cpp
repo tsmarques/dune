@@ -160,7 +160,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         if (m_args.pwr_channels.size() > 0)
         {
@@ -192,7 +192,7 @@ namespace Sensors
       }
 
       bool
-      openSocket(void)
+      openSocket()
       {
         char addr[128] = {0};
         unsigned port = 0;
@@ -207,7 +207,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_reader != NULL)
         {
@@ -220,7 +220,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         for (unsigned i = 0; i < c_max_init_cmds; ++i)
         {
@@ -276,7 +276,7 @@ namespace Sensors
       }
 
       void
-      clearMessages(void)
+      clearMessages()
       {
         m_euler.clear();
         m_agvel.clear();
@@ -747,7 +747,7 @@ namespace Sensors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

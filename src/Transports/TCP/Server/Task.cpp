@@ -84,13 +84,13 @@ namespace Transports
           .description("Set to true to announce the service");
         }
 
-        ~Task(void) override
+        ~Task() override
         {
           onResourceRelease();
         }
 
         void
-        onResourceAcquisition(void) override
+        onResourceAcquisition() override
         {
           int port_limit = m_args.port + c_port_retries;
 
@@ -176,7 +176,7 @@ namespace Transports
         }
 
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           for (ClientList::iterator itr = m_clients.begin(); itr != m_clients.end(); ++itr)
           {
@@ -231,7 +231,7 @@ namespace Transports
         }
 
         void
-        acceptNewClient(void)
+        acceptNewClient()
         {
           Client c;
           c.socket = 0;

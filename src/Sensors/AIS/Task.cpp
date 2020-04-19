@@ -101,7 +101,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -120,7 +120,7 @@ namespace Sensors
       //! Check if we have a TCP socket as device input argument.
       //! @return true if it is a TCP socket, false otherwise.
       bool
-      openSocket(void)
+      openSocket()
       {
         char addr[128] = {0};
         unsigned port = 0;
@@ -135,7 +135,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_handle);
       }
@@ -213,7 +213,7 @@ namespace Sensors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         std::vector<char> bfr;
         bfr.resize(c_read_buffer_size);

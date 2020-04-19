@@ -45,7 +45,7 @@ namespace DUNE
   namespace Time
   {
     std::string
-    Format::getTimeDate(void)
+    Format::getTimeDate()
     {
       return getTimeDate(static_cast<double>(std::time(0)));
     }
@@ -73,7 +73,7 @@ namespace DUNE
     }
 
     std::string
-    Format::getDateSafe(void)
+    Format::getDateSafe()
     {
       return getDateSafe(static_cast<double>(std::time(0)));
     }
@@ -101,7 +101,7 @@ namespace DUNE
     }
 
     std::string
-    Format::getTimeSafe(void)
+    Format::getTimeSafe()
     {
       return getTimeSafe(static_cast<double>(std::time(0)));
     }

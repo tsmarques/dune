@@ -93,7 +93,7 @@ namespace DUNE
 {
   namespace Network
   {
-    UDPSocket::UDPSocket(void):
+    UDPSocket::UDPSocket():
       m_con_port(0)
     {
       //  POSIX / Win32
@@ -124,7 +124,7 @@ namespace DUNE
       createEventHandle();
     }
 
-    UDPSocket::~UDPSocket(void)
+    UDPSocket::~UDPSocket()
     {
       // POSIX
 #if defined(DUNE_SYS_HAS_CLOSE)
@@ -233,7 +233,7 @@ namespace DUNE
     }
 
     void
-    UDPSocket::createEventHandle(void)
+    UDPSocket::createEventHandle()
     {
 #if defined(DUNE_OS_WINDOWS)
       m_event_handle = CreateEvent(NULL, FALSE, FALSE, NULL);

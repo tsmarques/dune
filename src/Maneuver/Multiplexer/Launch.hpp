@@ -103,7 +103,7 @@ namespace Maneuver
         }
       }
 
-      ~Launch(void) override
+      ~Launch() override
       { }
 
     private:

@@ -62,7 +62,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         m_incoming.clear();
       }
@@ -91,7 +91,7 @@ namespace Transports
       }
 
       void
-      messageRipper(void)
+      messageRipper()
       {
         debug("ripping old messages");
 
@@ -114,7 +114,7 @@ namespace Transports
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

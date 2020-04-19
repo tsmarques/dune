@@ -71,7 +71,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~YoYo(void) override
+      ~YoYo() override
       {
         Memory::clear(m_yoyo);
       }

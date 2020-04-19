@@ -117,7 +117,7 @@ namespace DUNE
 
       //! Destructor.
       
-      ~Task(void) override
+      ~Task() override
       {
         while (!m_entities.empty())
         {
@@ -131,7 +131,7 @@ namespace DUNE
       //! Retrieve the task's name.
       //! @return name of the task.
       const char*
-      getName(void) const override
+      getName() const override
       {
         return m_name.c_str();
       }
@@ -139,7 +139,7 @@ namespace DUNE
       //! Retrieve the system's name.
       //! @return name of the system.
       const char*
-      getSystemName(void) const
+      getSystemName() const
       {
         return m_ctx.resolver.name();
       }
@@ -147,7 +147,7 @@ namespace DUNE
       //! Retrieve the system's identifier.
       //! @return system identifier.
       unsigned int
-      getSystemId(void) const
+      getSystemId() const
       {
         return m_ctx.resolver.id();
       }
@@ -155,7 +155,7 @@ namespace DUNE
       //! Retrieve the main entity identifier of the task.
       //! @return main entity identifier.
       unsigned int
-      getEntityId(void) const
+      getEntityId() const
       {
         return m_entity->getId();
       }
@@ -185,7 +185,7 @@ namespace DUNE
       //! Get current debug level.
       //! @return debug level.
       DebugLevel
-      getDebugLevel(void) const
+      getDebugLevel() const
       {
         return m_debug_level;
       }
@@ -193,7 +193,7 @@ namespace DUNE
       //! Retrieve the task's activation time.
       //! @return activation time of the task.
       uint16_t
-      getActivationTime(void) const
+      getActivationTime() const
       {
         return m_args.act_time;
       }
@@ -201,7 +201,7 @@ namespace DUNE
       //! Retrieve the task's deactivation time.
       //! @return deactivation time of the task.
       uint16_t
-      getDeactivationTime(void) const
+      getDeactivationTime() const
       {
         return m_args.deact_time;
       }
@@ -225,7 +225,7 @@ namespace DUNE
 
       //! Load parameters from context's configuration.
       void
-      loadConfig(void);
+      loadConfig();
 
       //! Set scheduling priority programatically. The priority of a
       //! task might change when configuration parameters are updated.
@@ -240,7 +240,7 @@ namespace DUNE
       //! when configuration parameters are updated.
       //! @return task priority.
       unsigned int
-      getPriority(void) const
+      getPriority() const
       {
         return m_args.priority;
       }
@@ -339,26 +339,26 @@ namespace DUNE
       //! Instruct task to reserve all entity identifiers that it
       //! needs for normal execution.
       void
-      reserveEntities(void);
+      reserveEntities();
 
       //! Instruct task to resolve all entity identifiers that it
       //! needs for normal execution.
       void
-      resolveEntities(void);
+      resolveEntities();
 
       //! Acquire resources whose configuration depends on dynamic
       //! parameters.
       void
-      acquireResources(void);
+      acquireResources();
 
       //! Free all resources acquired in acquireResources().
       void
-      releaseResources(void);
+      releaseResources();
 
       //! Instruct task to initialize the resources acquired in
       //! acquireResources().
       void
-      initializeResources(void);
+      initializeResources();
 
       //! Instruct task to update its run-time parameters.
       //! @param[in] act_deact if true this function will request
@@ -374,7 +374,7 @@ namespace DUNE
       //! Retrieve the main entity label of the task.
       //! @return main entity label.
       const char*
-      getEntityLabel(void) const
+      getEntityLabel() const
       {
         return m_entity->getLabel().c_str();
       }
@@ -418,7 +418,7 @@ namespace DUNE
       //! Retrieve the current entity state.
       //! @return entity state.
       IMC::EntityState::StateEnum
-      getEntityState(void) const
+      getEntityState() const
       {
         return m_entity->getState();
       }
@@ -457,7 +457,7 @@ namespace DUNE
       //! Test if task is stopping.
       //! @return true if task is stopping, false otherwise.
       bool
-      stopping(void)
+      stopping()
       {
         return isStopping();
       }
@@ -465,7 +465,7 @@ namespace DUNE
       //! Test if task is active.
       //! @return true if task is active, false otherwise.
       bool
-      isActive(void) const
+      isActive() const
       {
         return m_entity->isActive();
       }
@@ -473,7 +473,7 @@ namespace DUNE
       //! Test if task is activating.
       //! @return true if task is activating, false otherwise.
       bool
-      isActivating(void) const
+      isActivating() const
       {
         return m_entity->isActivating();
       }
@@ -481,7 +481,7 @@ namespace DUNE
       //! Test if task is deactivating.
       //! @return true if task is deactivating, false otherwise.
       bool
-      isDeactivating(void) const
+      isDeactivating() const
       {
         return m_entity->isDeactivating();
       }
@@ -499,7 +499,7 @@ namespace DUNE
       //! Call the consumers of all messages currently in the
       //! receiving queue.
       void
-      consumeMessages(void)
+      consumeMessages()
       {
         m_recipient->runCallBacks();
       }
@@ -610,17 +610,17 @@ namespace DUNE
 
       //! Request task to start/resume normal execution.
       void
-      requestActivation(void);
+      requestActivation();
 
       //! Request task to stop normal execution and enter an idleness
       //! state.
       void
-      requestDeactivation(void);
+      requestDeactivation();
 
       //! Derived classes should use this function to signal that
       //! activation was completed successfully.
       void
-      activate(void);
+      activate();
 
       //! Derived classes should use this function to signal that
       //! activation failed.
@@ -631,7 +631,7 @@ namespace DUNE
       //! Derived classes should use this function to signal that
       //! deactivation was completed successfully.
       void
-      deactivate(void);
+      deactivate();
 
       //! Derived classes should use this function to signal that
       //! deactivation failed.
@@ -652,7 +652,7 @@ namespace DUNE
       //! identifiers other than that of the main entity should
       //! override this function.
       virtual void
-      onEntityReservation(void)
+      onEntityReservation()
       { }
 
       //! Called when the task is instructed to resolve all the entity
@@ -660,7 +660,7 @@ namespace DUNE
       //! resolveEntity(). Derived classes that need to resolve entity
       //! identifiers should override this function.
       virtual void
-      onEntityResolution(void)
+      onEntityResolution()
       { }
 
       //! Called when the task is instructed to report the state of
@@ -668,13 +668,13 @@ namespace DUNE
       //! of entities other than the main entity should override this
       //! function to dispatch the EntityState of those entities.
       virtual void
-      onReportEntityState(void)
+      onReportEntityState()
       { }
 
       //! Called when the task is instructed to acquire resources
       //! whose configuration is defined by run-time parameters.
       virtual void
-      onResourceAcquisition(void)
+      onResourceAcquisition()
       { }
 
       //! Called when the task is instructed to release resources.
@@ -683,14 +683,14 @@ namespace DUNE
       //! must be implemented in such a way that it can be called at
       //! any time.
       virtual void
-      onResourceRelease(void)
+      onResourceRelease()
       { }
 
       //! Called when the task is instructed to initialize resources
       //! acquired previously or whose initialization depends on
       //! run-time parameters.
       virtual void
-      onResourceInitialization(void)
+      onResourceInitialization()
       { }
 
       //! Called when the task is instructed to update its run-time
@@ -698,7 +698,7 @@ namespace DUNE
       //! values based on run-time parameters should override this
       //! function.
       virtual void
-      onUpdateParameters(void)
+      onUpdateParameters()
       { }
 
       //! Called when an external activation request is
@@ -708,7 +708,7 @@ namespace DUNE
       //! when the request is completed or activationFailed() if the
       //! request cannot be honoured.
       virtual void
-      onRequestActivation(void)
+      onRequestActivation()
       {
         spew("on request activation");
         activate();
@@ -721,7 +721,7 @@ namespace DUNE
       //! when the request is completed or deactivationFailed() if the
       //! request cannot be honoured.
       virtual void
-      onRequestDeactivation(void)
+      onRequestDeactivation()
       {
         spew("on request deactivation");
         deactivate();
@@ -729,7 +729,7 @@ namespace DUNE
 
       //! Called when the task starts/resumes normal execution.
       virtual void
-      onActivation(void)
+      onActivation()
       {
         spew("on activation");
       }
@@ -737,7 +737,7 @@ namespace DUNE
       //! Called when the task stops normal execution and enters an
       //! idleness state.
       virtual void
-      onDeactivation(void)
+      onDeactivation()
       {
         spew("on deactivation");
       }
@@ -755,7 +755,7 @@ namespace DUNE
       onPopEntityParameters(const IMC::PopEntityParameters* msg);
 
       virtual void
-      onMain(void) = 0;
+      onMain() = 0;
 
     private:
       struct BasicArguments
@@ -801,13 +801,13 @@ namespace DUNE
       //! messages. This function will at least report the state of
       //! the main entity.
       void
-      reportEntityState(void);
+      reportEntityState();
 
       void
       log(IMC::LogBookEntry::TypeEnum type, const char* format, std::va_list arg_list);
 
       void
-      run(void) override;
+      run() override;
 
       //! Register a consumer for a given message identifier.
       //! @param[in] message_id message identifier.

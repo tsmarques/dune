@@ -315,7 +315,7 @@ namespace Control
 
         //! Acquire resources.
         void
-        onResourceAcquisition(void) override
+        onResourceAcquisition() override
         {
           openConnection();
 
@@ -330,7 +330,7 @@ namespace Control
         }
 
         void
-        openConnection(void)
+        openConnection()
         {
           try
           {
@@ -361,14 +361,14 @@ namespace Control
 
         //! Release resources.
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           Memory::clear(m_TCP_sock);
           Memory::clear(m_UDP_sock);
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           // Mavlink Phototrigger
           if(paramChanged(m_args.mavlink_phototrigger))
@@ -409,7 +409,7 @@ namespace Control
         }
 
         void
-        clearMission(void)
+        clearMission()
         {
           // Clear previous mission on PX4
           mavlink_msg_mission_clear_all_pack(255, 0, &m_msg, m_sysid, 0);
@@ -734,7 +734,7 @@ namespace Control
 
         //! Main loop.
         void
-        onMain(void) override
+        onMain() override
         {
           while (!stopping())
           {
@@ -759,7 +759,7 @@ namespace Control
 
 
         void
-        handleArdupilotData(void)
+        handleArdupilotData()
         {
           mavlink_status_t status;
 

@@ -127,7 +127,7 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_sync_deadline.setTop(m_args.max_boot_tout);
       }
@@ -221,7 +221,7 @@ namespace Monitors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

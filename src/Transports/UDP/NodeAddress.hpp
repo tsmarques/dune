@@ -66,13 +66,13 @@ namespace Transports
       }
 
       const Address&
-      getAddress(void) const
+      getAddress() const
       {
         return m_addr;
       }
 
       unsigned
-      getPort(void) const
+      getPort() const
       {
         return m_port;
       }

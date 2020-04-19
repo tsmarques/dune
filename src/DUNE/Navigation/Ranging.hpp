@@ -110,7 +110,7 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      Ranging (void) : m_origin (nullptr)
+      Ranging () : m_origin (nullptr)
       {
         m_num_transponders = 0;
 
@@ -119,7 +119,7 @@ namespace DUNE
       }
 
       //! Destructor.
-      ~Ranging(void)
+      ~Ranging()
       {
         Memory::clear(m_origin);
 
@@ -157,7 +157,7 @@ namespace DUNE
       //! Get size of acoustic setup.
       //! @return size of setup.
       unsigned
-      getSize(void)
+      getSize()
       {
         return m_num_transponders;
       }

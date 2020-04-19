@@ -207,7 +207,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    Config::sections(void)
+    Config::sections()
     {
       Concurrency::ScopedRWLock(m_data_lock, false);
 

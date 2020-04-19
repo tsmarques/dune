@@ -39,7 +39,7 @@ using DUNE_NAMESPACES;
 
 static
 void
-usage(void)
+usage()
 {
   std::cerr << "Usage:\n\t replaylsf [options] host port f1 ... fn\n"
             << "Options:\n\t-s speed : replay speed (0 for no time-based replay, default is 1.0)\n"

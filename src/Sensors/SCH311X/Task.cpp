@@ -87,7 +87,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         // Initilize temperature paths.
         for (unsigned i = 0; i < c_max_temps; ++i)
@@ -95,7 +95,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         for (unsigned i = 0; i < c_max_temps; ++i)
         {
@@ -107,7 +107,7 @@ namespace Sensors
       }
 
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         m_temps[0].setSourceEntity(reserveEntity(m_args.elabel_temp0));
         m_temps[1].setSourceEntity(reserveEntity(m_args.elabel_temp1));
@@ -127,7 +127,7 @@ namespace Sensors
       }
 
       void
-      task(void) override
+      task() override
       {
         for (unsigned i = 0; i < c_max_temps; ++i)
         {

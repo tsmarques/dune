@@ -61,7 +61,7 @@ namespace Maneuver
         m_end_time(-1.0)
       { }
 
-      ~StationKeeping(void) override
+      ~StationKeeping() override
       {
         Memory::clear(m_skeep);
       }
@@ -109,7 +109,7 @@ namespace Maneuver
 
       //! On state report function
       void
-      onStateReport(void) override
+      onStateReport() override
       {
         if (m_skeep == NULL)
           return;

@@ -71,7 +71,7 @@ namespace DUNE
       Connection(const char* path, int flags);
 
       //! Destructor.
-      ~Connection(void);
+      ~Connection();
 
       //! Execute an SQL statement directly
       //! and optionally obtain the number of affected rows
@@ -82,25 +82,25 @@ namespace DUNE
 
       //! Begin transaction.
       void
-      beginTransaction(void);
+      beginTransaction();
 
       //! Commit (end) current transaction.
       void
-      commit(void);
+      commit();
 
       //! Rollback current transaction.
       void
-      rollback(void);
+      rollback();
 
       //! Get description of last error.
       //! @return description of last database error.
       const char*
-      lastError(void);
+      lastError();
 
       //! Get internal database connection handle.
       //! This is for use by other classes in the package.
       inline DB_HANDLE*
-      handle(void)
+      handle()
       {
         return m_handle;
       }

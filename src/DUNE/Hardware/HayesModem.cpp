@@ -51,7 +51,7 @@ namespace DUNE
     //! Perform ISU initialization, this function must be called
     //! before any other.
     void
-    HayesModem::initialize(void)
+    HayesModem::initialize()
     {
       // Reset and flush pending input.
       sendReset();
@@ -67,7 +67,7 @@ namespace DUNE
     //! Query the ISU manufacturer.
     //! @return ISU manufacturer name.
     std::string
-    HayesModem::getManufacturer(void)
+    HayesModem::getManufacturer()
     {
       return readValue("+CGMI");
     }
@@ -75,7 +75,7 @@ namespace DUNE
     //! Query the ISU model.
     //! @return ISU model name.
     std::string
-    HayesModem::getModel(void)
+    HayesModem::getModel()
     {
       return readValue("+CGMM");
     }
@@ -83,7 +83,7 @@ namespace DUNE
     //! Query the ISU revision.
     //! @return ISU revision.
     std::string
-    HayesModem::getRevision(void)
+    HayesModem::getRevision()
     {
       sendAT("+CGMR");
       std::vector<std::string> rev;
@@ -102,7 +102,7 @@ namespace DUNE
     //! Query the ISU serial number (IMEI).
     //! @return ISU serial number (IMEI),
     std::string
-    HayesModem::getIMEI(void)
+    HayesModem::getIMEI()
     {
       return readValue("+CGSN");
     }
@@ -110,7 +110,7 @@ namespace DUNE
     //! Retrieve received signal strength indication (RSSI).
     //! @return RSSI value.
     float
-    HayesModem::getRSSI(void)
+    HayesModem::getRSSI()
     {
       queryRSSI();
 
@@ -188,13 +188,13 @@ namespace DUNE
     }
 
     void
-    HayesModem::expectOK(void)
+    HayesModem::expectOK()
     {
       expect("OK");
     }
 
     void
-    HayesModem::expectREADY(void)
+    HayesModem::expectREADY()
     {
       expect("READY");
     }

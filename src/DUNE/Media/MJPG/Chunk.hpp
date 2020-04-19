@@ -65,7 +65,7 @@ namespace DUNE
 
         //! Destructor.
         virtual
-        ~Chunk(void)
+        ~Chunk()
         { }
 
         //! Write chunk to output stream.
@@ -91,7 +91,7 @@ namespace DUNE
         //! Get size of chunk in bytes.
         //! @return chunk size.
         uint32_t
-        getSize(void) const
+        getSize() const
         {
           return getDataSize() + 4 + 4;
         }
@@ -110,7 +110,7 @@ namespace DUNE
 
         //! Get size of chunk data.
         uint32_t
-        getDataSize(void) const
+        getDataSize() const
         {
           return m_data_size + m_pad_size;
         }

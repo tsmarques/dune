@@ -76,7 +76,7 @@ namespace Sensors
       }
 
       void
-      read(void)
+      read()
       {
         if (!Poll::poll(*m_handle, 1.0))
           return;
@@ -99,7 +99,7 @@ namespace Sensors
       }
 
       void
-      run(void) override
+      run() override
       {
         while (!isStopping())
         {

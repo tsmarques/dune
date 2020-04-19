@@ -113,7 +113,7 @@ namespace DUNE
       }
     }
 
-    Manager::~Manager(void)
+    Manager::~Manager()
     {
       // Request all tasks to stop.
       for (unsigned int i = 0; i < m_list.size(); ++i)
@@ -159,7 +159,7 @@ namespace DUNE
     }
 
     void
-    Manager::start(void)
+    Manager::start()
     {
       std::map<std::string, Task*>::iterator itr;
 
@@ -209,7 +209,7 @@ namespace DUNE
     }
 
     void
-    Manager::measureCpuUsage(void)
+    Manager::measureCpuUsage()
     {
       std::map<std::string, Task*>::const_iterator itr = m_tasks.begin();
 
@@ -235,7 +235,7 @@ namespace DUNE
     }
 
     void
-    Manager::adjustPriorities(void)
+    Manager::adjustPriorities()
     {
       while (!m_cpu_usage_hogs.empty())
       {

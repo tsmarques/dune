@@ -77,14 +77,14 @@ namespace DUNE
             m_sonar_conf (false){};
 
       //! Deconstructor
-      ~SlopeData(void)
+      ~SlopeData()
       {
         Memory::clear(m_frange);
       };
 
       //! Reset the object
       void
-      reset(void)
+      reset()
       {
         Memory::clear(m_frange);
 
@@ -148,7 +148,7 @@ namespace DUNE
       //! Get forward range
       //! @return forward range
       inline float
-      getFRange(void)
+      getFRange()
       {
         if (!isRangeValid())
           return c_max_range;
@@ -159,7 +159,7 @@ namespace DUNE
       //! Get current slope angle
       //! @return current slope angle
       inline float
-      getSlope(void) const
+      getSlope() const
       {
         return m_curr_slope;
       }
@@ -167,7 +167,7 @@ namespace DUNE
       //! Get distance to slope top
       //! @return current distance to slope top
       inline float
-      getDistanceToSlope(void) const
+      getDistanceToSlope() const
       {
         if (m_slope_top.dist == nullptr)
           return -1.0;
@@ -199,7 +199,7 @@ namespace DUNE
       //! Test if slope is too steep
       //! @return true if slope is too steep
       inline bool
-      isTooSteep(void)
+      isTooSteep()
       {
         if (!isRangeValid())
           return false;
@@ -218,7 +218,7 @@ namespace DUNE
       //! of if distance to slope top is very short
       //! @return true if cleared
       inline bool
-      isTopCleared(void) const
+      isTopCleared() const
       {
         if (m_slope_top.dist == nullptr)
           return true;
@@ -247,7 +247,7 @@ namespace DUNE
       //! Test if slope is increasing
       //! @return true if slope is increasing
       inline bool
-      isSlopeIncreasing(void)
+      isSlopeIncreasing()
       {
         if (!isRangeValid())
           return false;
@@ -257,7 +257,7 @@ namespace DUNE
 
       //! Flag slope top as invalid
       inline void
-      renderSlopeInvalid(void)
+      renderSlopeInvalid()
       {
         m_slope_top.valid = false;
       }
@@ -266,7 +266,7 @@ namespace DUNE
       //! Test if forward range is valid
       //! @return true if range is valid and can be used
       inline bool
-      isRangeValid(void)
+      isRangeValid()
       {
         if (m_frange != nullptr)
           {
@@ -326,16 +326,16 @@ namespace DUNE
         //! Validity.
         bool valid;
 
-        SlopeTop (void) : dist (nullptr){};
+        SlopeTop () : dist (nullptr){};
 
-        ~SlopeTop(void)
+        ~SlopeTop()
         {
           Memory::clear(dist);
         };
 
         //! Reset this structure
         void
-        reset(void)
+        reset()
         {
           if (dist != NULL)
             dist->clear();

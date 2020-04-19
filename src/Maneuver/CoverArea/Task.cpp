@@ -66,13 +66,13 @@ namespace Maneuver
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         resetVar();
       }
 
       void
-      resetVar(void)
+      resetVar()
       {
         m_rows = Matrix();
         m_current_row = -1;

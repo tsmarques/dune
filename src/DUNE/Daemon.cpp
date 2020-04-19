@@ -144,7 +144,7 @@ namespace DUNE
     bind<IMC::EntityParameters>(this);
   }
 
-  Daemon::~Daemon(void)
+  Daemon::~Daemon()
   {
     m_ctx.mbus.pause();
     delete m_tman;
@@ -153,13 +153,13 @@ namespace DUNE
   }
 
   bool
-  Daemon::callReboot(void)
+  Daemon::callReboot()
   {
     return call_reboot;
   }
 
   void
-  Daemon::onResourceInitialization(void)
+  Daemon::onResourceInitialization()
   {
     try
     {
@@ -265,7 +265,7 @@ namespace DUNE
   }
 
   void
-  Daemon::measureCpuUsage(void)
+  Daemon::measureCpuUsage()
   {
     // Measure CPU usage per task.
     m_tman->measureCpuUsage();
@@ -293,7 +293,7 @@ namespace DUNE
   }
 
   void
-  Daemon::dispatchPeriodic(void)
+  Daemon::dispatchPeriodic()
   {
     measureCpuUsage();
 
@@ -321,7 +321,7 @@ namespace DUNE
   }
 
   void
-  Daemon::onMain(void)
+  Daemon::onMain()
   {
     while (!stopping())
     {

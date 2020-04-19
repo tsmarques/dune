@@ -44,14 +44,14 @@ namespace DUNE
 {
   namespace Utils
   {
-    OptionParser::OptionParser(void)
+    OptionParser::OptionParser()
     {
       add("-h", "--help", DTR("Print this message and exit"), 0);
       add("-v", "--version", DTR("Print the version information and exit"), 0);
       add("-a", "--arch", DTR("Print architecture information and exit"), 0);
     }
 
-    OptionParser::~OptionParser(void)
+    OptionParser::~OptionParser()
     {
       std::list<std::string>::iterator itr = m_option_lst.begin();
 
@@ -121,7 +121,7 @@ namespace DUNE
     }
 
     void
-    OptionParser::usage(void)
+    OptionParser::usage()
     {
       using namespace std;
 

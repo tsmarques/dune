@@ -55,7 +55,7 @@ namespace DUNE
 
       //! Destruct the object, unlocking the associated read/write
       //! lock.
-      ~ScopedRWLock(void)
+      ~ScopedRWLock()
       {
         m_lock.unlock();
       }

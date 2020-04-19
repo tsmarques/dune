@@ -120,7 +120,7 @@ namespace Plan
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         if (m_db != NULL)
           return;
@@ -172,7 +172,7 @@ namespace Plan
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_db == NULL)
           return;
@@ -616,7 +616,7 @@ namespace Plan
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

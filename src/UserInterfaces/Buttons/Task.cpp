@@ -70,19 +70,19 @@ namespace UserInterfaces
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_buttons = new Hardware::Buttons(m_args.event_dev);
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_buttons);
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

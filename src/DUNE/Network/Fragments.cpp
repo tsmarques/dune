@@ -75,12 +75,12 @@ namespace DUNE
     }
 
     int
-    Fragments::getNumberOfFragments(void)
+    Fragments::getNumberOfFragments()
     {
       return m_num_frags;
     }
 
-    Fragments::~Fragments(void)
+    Fragments::~Fragments()
     {
       m_fragments.clear();
     }

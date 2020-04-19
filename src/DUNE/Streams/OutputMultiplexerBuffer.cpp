@@ -42,7 +42,7 @@ namespace DUNE
 {
   namespace Streams
   {
-    OutputMultiplexerBuffer::OutputMultiplexerBuffer(void)
+    OutputMultiplexerBuffer::OutputMultiplexerBuffer()
     { }
 
     OutputMultiplexerBuffer::OutputMultiplexerBuffer(std::ostream* stream)
@@ -50,7 +50,7 @@ namespace DUNE
       m_streams.push_back(stream);
     }
 
-    OutputMultiplexerBuffer::~OutputMultiplexerBuffer(void)
+    OutputMultiplexerBuffer::~OutputMultiplexerBuffer()
     {
       sync();
     }
@@ -62,7 +62,7 @@ namespace DUNE
     }
 
     int
-    OutputMultiplexerBuffer::sync(void)
+    OutputMultiplexerBuffer::sync()
     {
       for (unsigned int i = 0; i < m_streams.size(); ++i)
       {

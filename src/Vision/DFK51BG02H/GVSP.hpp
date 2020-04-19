@@ -64,7 +64,7 @@ namespace Vision
       }
 
       //! Destructor.
-      ~GVSP(void) override
+      ~GVSP() override
       {
         delete [] m_buffer;
       }
@@ -83,7 +83,7 @@ namespace Vision
       //! Dequeue dirty frame.
       //! @return frame dirty frame or NULL if none is available.
       Frame*
-      dequeueDirty(void)
+      dequeueDirty()
       {
         ScopedMutex l(m_lock);
         if (m_dirty.empty())
@@ -117,7 +117,7 @@ namespace Vision
       //! Dequeue clean frame.
       //! @return clean frame or NULL if none is available.
       Frame*
-      dequeueClean(void)
+      dequeueClean()
       {
         ScopedMutex l(m_lock);
         if (m_clean.empty())
@@ -153,7 +153,7 @@ namespace Vision
       std::queue<Frame*> m_clean;
 
       void
-      run(void) override
+      run() override
       {
         Frame* frame = NULL;
 

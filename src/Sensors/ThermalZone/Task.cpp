@@ -66,13 +66,13 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         m_temp.setSourceEntity(reserveEntity(m_args.elabel_temp));
       }
@@ -87,7 +87,7 @@ namespace Sensors
       }
 
       void
-      task(void) override
+      task() override
       {
         try
         {

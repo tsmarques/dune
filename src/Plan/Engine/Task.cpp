@@ -201,7 +201,7 @@ namespace Plan
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         try
         {
@@ -223,7 +223,7 @@ namespace Plan
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.speriod))
           m_args.speriod = 1.0 / m_args.speriod;
@@ -234,20 +234,20 @@ namespace Plan
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_plan);
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_plan = new Plan(&m_spec, m_args.progress, m_args.fpredict, m_args.max_depth,
                           this, m_args.calibration_time, &m_ctx.config);
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         debug("database file: '%s'", m_db_file.c_str());
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -660,7 +660,7 @@ namespace Plan
 
       //! Get current plan
       void
-      getPlan(void)
+      getPlan()
       {
         if (!initMode() && !execMode())
         {
@@ -888,7 +888,7 @@ namespace Plan
       //! Send a request to start calibration procedures
       //! @return true if request was sent
       bool
-      startCalibration(void)
+      startCalibration()
       {
         if (blockedMode())
         {
@@ -1050,7 +1050,7 @@ namespace Plan
 
       //! Set task's initial state
       void
-      setInitialState(void)
+      setInitialState()
       {
         m_pcs.state = IMC::PlanControlState::PCS_READY;
         m_pcs.plan_id.clear();
@@ -1068,7 +1068,7 @@ namespace Plan
 
       //! Report progress
       void
-      reportProgress(void)
+      reportProgress()
       {
         // Must be executing or calibrating to be able to compute progress
         if (m_plan == NULL || (!execMode() && !initMode()))
@@ -1079,7 +1079,7 @@ namespace Plan
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         setInitialState();
 
@@ -1164,31 +1164,31 @@ namespace Plan
       }
 
       inline bool
-      pendingReply(void)
+      pendingReply()
       {
         return m_vc_reply_deadline >= 0;
       }
 
       inline bool
-      blockedMode(void) const
+      blockedMode() const
       {
         return m_pcs.state == IMC::PlanControlState::PCS_BLOCKED;
       }
 
       inline bool
-      readyMode(void) const
+      readyMode() const
       {
         return m_pcs.state == IMC::PlanControlState::PCS_READY;
       }
 
       inline bool
-      initMode(void) const
+      initMode() const
       {
         return m_pcs.state == IMC::PlanControlState::PCS_INITIALIZING;
       }
 
       inline bool
-      execMode(void) const
+      execMode() const
       {
         return m_pcs.state == IMC::PlanControlState::PCS_EXECUTING;
       }

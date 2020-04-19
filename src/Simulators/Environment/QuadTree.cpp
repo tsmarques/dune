@@ -58,7 +58,7 @@ namespace Simulators
         m_leaf = true;
       }
 
-      ~Node(void)
+      ~Node()
       {
         if (!m_leaf)
         {
@@ -89,7 +89,7 @@ namespace Simulators
       }
 
       bool
-      isLeaf(void) const
+      isLeaf() const
       {
         return m_leaf;
       }
@@ -241,7 +241,7 @@ namespace Simulators
         }
 
         uint32_t
-        result(void)
+        result()
         {
           return m_elems;
         }
@@ -262,7 +262,7 @@ namespace Simulators
         m_stream(stream)
       { }
 
-      ~Dump(void) override
+      ~Dump() override
       { }
 
       void

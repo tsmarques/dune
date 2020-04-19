@@ -51,27 +51,27 @@ namespace DUNE
       class MT19937: public Generator
       {
       public:
-        MT19937(void);
+        MT19937();
 
         MT19937(int32_t seed);
 
-        ~MT19937(void) override;
+        ~MT19937() override;
 
         int32_t
-        random(void) override;
+        random() override;
 
         double
-        uniform(void) override;
+        uniform() override;
 
         void
         seed(int32_t) override;
 
       private:
         uint32_t
-        random32(void);
+        random32();
 
         void
-        regenerate(void);
+        regenerate();
 
         static const int N = 694;
         int m_pos;

@@ -47,9 +47,9 @@ namespace DUNE
       getFragment(int frag_number);
 
       int
-      getNumberOfFragments(void);
+      getNumberOfFragments();
 
-      ~Fragments(void);
+      ~Fragments();
 
     private:
       static int s_uid;

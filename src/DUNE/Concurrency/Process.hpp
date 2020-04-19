@@ -58,29 +58,29 @@ namespace DUNE
     class Process: public Runnable
     {
     public:
-      Process(void);
+      Process();
 
       
-      ~Process(void) override;
+      ~Process() override;
 
     private:
       ProcessPrivate* m_pvt;
       SharedMemory m_smem;
 
       void
-      startImpl(void) override;
+      startImpl() override;
 
       void
-      stopImpl(void) override;
+      stopImpl() override;
 
       void
-      joinImpl(void) override;
+      joinImpl() override;
 
       void
       setPriorityImpl(Scheduler::Policy policy, unsigned priority) override;
 
       Runnable::State
-      getStateImpl(void) override;
+      getStateImpl() override;
 
       void
       setStateImpl(Runnable::State value) override;

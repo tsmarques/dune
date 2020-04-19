@@ -89,7 +89,7 @@ namespace Autonomy
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
@@ -456,7 +456,7 @@ namespace Autonomy
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

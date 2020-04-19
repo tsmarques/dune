@@ -60,21 +60,21 @@ namespace Transports
       //! Actual data gathered at these coords
       IMC::Message* sample;
 
-      DataSample(void)
+      DataSample()
       {
         latDegs = lonDegs = zMeters = timestamp = 0;
         priority = source = -1;
         sample = NULL;
       }
 
-      ~DataSample(void)
+      ~DataSample()
       {
         if (sample != NULL)
           delete sample;
       }
 
       int
-      serializationSize(void)
+      serializationSize()
       {
         return sample->getPayloadSerializationSize() + MINIMUM_SAMPLE_SIZE;
       }
@@ -154,7 +154,7 @@ namespace Transports
         m_task(task)
     { }
 
-      ~DataStore(void)
+      ~DataStore()
       {
         Concurrency::ScopedRWLock(m_lock, true);
         while (!m_samples.empty())

@@ -36,7 +36,7 @@ namespace DUNE
 {
   namespace Concurrency
   {
-    RWLock::RWLock(void)
+    RWLock::RWLock()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_RWLOCK)
       int rv = pthread_rwlock_init(&m_lock, 0);
@@ -46,7 +46,7 @@ namespace DUNE
 #endif
     }
 
-    RWLock::~RWLock(void)
+    RWLock::~RWLock()
     {
       try
       {
@@ -58,7 +58,7 @@ namespace DUNE
 
     //! Apply a read lock.
     void
-    RWLock::lockRead(void)
+    RWLock::lockRead()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_RWLOCK)
       int rv = pthread_rwlock_rdlock(&m_lock);
@@ -70,7 +70,7 @@ namespace DUNE
 
     //! Apply a write lock.
     void
-    RWLock::lockWrite(void)
+    RWLock::lockWrite()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_RWLOCK)
       int rv = pthread_rwlock_wrlock(&m_lock);
@@ -82,7 +82,7 @@ namespace DUNE
 
     //! Release the lock held.
     void
-    RWLock::unlock(void)
+    RWLock::unlock()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_RWLOCK)
       int rv = pthread_rwlock_unlock(&m_lock);
@@ -94,7 +94,7 @@ namespace DUNE
 
     //! Release the lock held.
     void
-    RWLock::destroy(void)
+    RWLock::destroy()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_RWLOCK)
       int rv = pthread_rwlock_destroy(&m_lock);

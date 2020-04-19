@@ -89,27 +89,27 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.max_bank))
             m_args.max_bank = Angles::radians(m_args.max_bank);
         }
 
         void
-        onActivation(void) override
+        onActivation() override
         {
           enableControlLoops(IMC::CL_VERTICAL_RATE | IMC::CL_SPEED | IMC::CL_ROLL);
           normalize();
         }
 
         void
-        onDeactivation(void) override
+        onDeactivation() override
         {
           normalize();
         }
 
         void
-        onConnectionTimeout(void) override
+        onConnectionTimeout() override
         {
           normalize();
         }
@@ -124,7 +124,7 @@ namespace Control
         }
 
         void
-        update(void)
+        update()
         {
           trace("%0.2f %0.2f %0.2f", Angles::degrees(m_bank.value), m_speed.value, m_vrate.value);
 

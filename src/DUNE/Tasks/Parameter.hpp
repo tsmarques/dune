@@ -98,7 +98,7 @@ namespace DUNE
       Parameter(const std::string& param_name, const std::string& type_name);
 
       //! Destructor.
-      ~Parameter(void);
+      ~Parameter();
 
       void
       reader(AbstractParameterParser* r);
@@ -107,25 +107,25 @@ namespace DUNE
       read(const std::string& val);
 
       bool
-      commit(void)
+      commit()
       {
         return m_reader->commit();
       }
 
       std::string
-      name(void) const
+      name() const
       {
         return m_name;
       }
 
       std::string
-      value(void) const
+      value() const
       {
         return m_value;
       }
 
       std::string
-      defaultValue(void) const
+      defaultValue() const
       {
         return m_default;
       }
@@ -149,7 +149,7 @@ namespace DUNE
       }
 
       Units::Types
-      units(void) const
+      units() const
       {
         return m_units;
       }
@@ -162,7 +162,7 @@ namespace DUNE
       }
 
       std::string
-      description(void) const
+      description() const
       {
         return m_desc;
       }
@@ -252,7 +252,7 @@ namespace DUNE
       writeXML(std::ostream& os) const;
 
       bool
-      changed(void)
+      changed()
       {
         bool old = m_changed;
         m_changed = false;
@@ -266,13 +266,13 @@ namespace DUNE
       }
 
       Visibility
-      getVisibility(void) const
+      getVisibility() const
       {
         return m_visibility;
       }
 
       Scope
-      getScope(void) const
+      getScope() const
       {
         return m_scope;
       }

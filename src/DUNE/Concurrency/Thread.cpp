@@ -102,7 +102,7 @@ namespace DUNE
 {
   namespace Concurrency
   {
-    Thread::Thread(void):
+    Thread::Thread():
       m_start_barrier(2)
     {
 #if defined(DUNE_OS_LINUX)
@@ -130,7 +130,7 @@ namespace DUNE
       setStateImpl(StateUnknown);
     }
 
-    Thread::~Thread(void)
+    Thread::~Thread()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD)
       pthread_attr_destroy(&m_attr);
@@ -138,7 +138,7 @@ namespace DUNE
     }
 
     void
-    Thread::startImpl(void)
+    Thread::startImpl()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD)
       setStateImpl(StateStarting);
@@ -152,13 +152,13 @@ namespace DUNE
     }
 
     void
-    Thread::stopImpl(void)
+    Thread::stopImpl()
     {
       setStateImpl(StateStopping);
     }
 
     void
-    Thread::joinImpl(void)
+    Thread::joinImpl()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD)
       int rv = pthread_join(m_handle, 0);
@@ -196,7 +196,7 @@ namespace DUNE
     }
 
     unsigned
-    Thread::getPriorityImpl(void)
+    Thread::getPriorityImpl()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD)
       int native_policy;
@@ -227,7 +227,7 @@ namespace DUNE
     }
 
     Runnable::State
-    Thread::getStateImpl(void)
+    Thread::getStateImpl()
     {
       ScopedMutex m(m_state_mx);
       return m_state;
@@ -241,7 +241,7 @@ namespace DUNE
     }
 
     int
-    Thread::getProcessorUsage(void)
+    Thread::getProcessorUsage()
     {
       // Linux v2.6 implementation.
 #if defined(DUNE_OS_LINUX)

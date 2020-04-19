@@ -385,7 +385,7 @@ namespace Sensors
 
       //! Update task parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (isActive())
         {
@@ -517,7 +517,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         requestDeactivation();
         closeLog();
@@ -525,7 +525,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_frame837);
         Memory::clear(m_frame83P);
@@ -535,7 +535,7 @@ namespace Sensors
       }
 
       void
-      onRequestActivation(void) override
+      onRequestActivation() override
       {
         m_power_channel_control.op = IMC::PowerChannelControl::PCC_OP_TURN_ON;
         dispatch(m_power_channel_control);
@@ -544,7 +544,7 @@ namespace Sensors
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         inf("%s", DTR(Status::getString(Status::CODE_ACTIVE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -557,7 +557,7 @@ namespace Sensors
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         closeLog();
 
@@ -572,7 +572,7 @@ namespace Sensors
       }
 
       void
-      checkActivationProgress(void)
+      checkActivationProgress()
       {
         if (m_countdown.overflow())
         {
@@ -619,7 +619,7 @@ namespace Sensors
 
       //! Close current log file.
       void
-      closeLog(void)
+      closeLog()
       {
         if (m_log_file.is_open())
         {
@@ -874,7 +874,7 @@ namespace Sensors
 
       //! Request get echo using External Control frame.
       bool
-      getEcho(void)
+      getEcho()
       {
         if (m_frame83P == NULL)
           return false;
@@ -922,7 +922,7 @@ namespace Sensors
 
       //! Handle sonar data to 837/83P file formats.
       void
-      writeToFile(void)
+      writeToFile()
       {
         // Update information.
         update();
@@ -947,7 +947,7 @@ namespace Sensors
 
       //! Update state (to be logged in 837/83P file formats).
       void
-      update(void)
+      update()
       {
         setNadirAngle(m_args.nadir + Angles::degrees(m_estate.phi));
 
@@ -991,7 +991,7 @@ namespace Sensors
 
       //! Check current water column.
       void
-      checkAltitude(void)
+      checkAltitude()
       {
         if (m_estate.alt > c_min_alt)
           setRange((unsigned)(m_estate.alt * m_args.mod_mul + m_args.mod_add));
@@ -1000,7 +1000,7 @@ namespace Sensors
       //! Request sonar data.
       //! @return true if return is successful, false otherwise.
       bool
-      request(void)
+      request()
       {
         if (m_ec != NULL)
         {
@@ -1022,7 +1022,7 @@ namespace Sensors
 
       //! Process return data.
       void
-      process(void)
+      process()
       {
         // Store data or dispatch to bus.
         if (m_frame837 != NULL || m_frame83P != NULL)
@@ -1036,7 +1036,7 @@ namespace Sensors
 
       //! Check sonar range.
       void
-      checkRange(void)
+      checkRange()
       {
         // Modify range if needed.
         if (m_args.mod)
@@ -1050,7 +1050,7 @@ namespace Sensors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

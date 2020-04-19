@@ -161,7 +161,7 @@ namespace Maneuver
         }
       }
 
-      ~Dislodge(void) override
+      ~Dislodge() override
       { }
 
     private:
@@ -211,7 +211,7 @@ namespace Maneuver
       //! Burst direction
       //! @return true for front, false for back
       bool
-      burstDirection(void)
+      burstDirection()
       {
         switch (m_dir)
         {
@@ -247,7 +247,7 @@ namespace Maneuver
 
       //! Stop bursting
       void
-      stopBurst(void)
+      stopBurst()
       {
         IMC::DesiredSpeed ds;
         ds.value = 0.0;
@@ -257,7 +257,7 @@ namespace Maneuver
 
       //! Failed attempt of dislodging
       void
-      failedAttempt(void)
+      failedAttempt()
       {
         ++m_attempts;
 

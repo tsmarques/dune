@@ -167,7 +167,7 @@ namespace Transports
       }
 
       float
-      getCommRange(void)
+      getCommRange()
       {
         return m_comm_range;
       }
@@ -203,7 +203,7 @@ namespace Transports
       RWLock m_allowed_msgs_lock;
 
       void
-      recomputeVisibleNodes(void)
+      recomputeVisibleNodes()
       {
         ScopedRWLock l(m_positions_lock, true);
         for (std::map<unsigned, NodePosition>::iterator itr =

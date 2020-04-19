@@ -83,13 +83,13 @@ namespace Transports
         .description("TCP port to listen on");
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -104,7 +104,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_sock != NULL)
         {
@@ -131,7 +131,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_sock->bind(m_args.tcp_port);
         m_sock->listen(1024);
@@ -162,7 +162,7 @@ namespace Transports
       }
 
       void
-      checkMainSocket(void)
+      checkMainSocket()
       {
         if (m_poll.wasTriggered(*m_sock))
         {
@@ -181,7 +181,7 @@ namespace Transports
       }
 
       void
-      checkClientSockets(void)
+      checkClientSockets()
       {
         char bfr[1024];
 
@@ -214,7 +214,7 @@ namespace Transports
       }
 
       void
-      checkSerialPort(void)
+      checkSerialPort()
       {
         if (m_poll.wasTriggered(*m_uart))
         {
@@ -231,7 +231,7 @@ namespace Transports
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

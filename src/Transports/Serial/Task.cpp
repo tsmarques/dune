@@ -70,20 +70,20 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.device, m_args.baud_rate);
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
 
         m_parser.reset();
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         onResourceRelease();
       }

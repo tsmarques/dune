@@ -54,20 +54,20 @@ namespace DUNE
       }
     }
 
-    Statement::~Statement(void)
+    Statement::~Statement()
     {
       if (m_handle)
         sqlite3_finalize(m_handle);
     }
 
     void
-    Statement::throwError(void)
+    Statement::throwError()
     {
       throw Error(m_conn.lastError());
     }
 
     void
-    Statement::reset(void)
+    Statement::reset()
     {
       m_idx = 0;
 
@@ -169,7 +169,7 @@ namespace DUNE
     }
 
     bool
-    Statement::nullColumn(void)
+    Statement::nullColumn()
     {
       return sqlite3_column_type(m_handle, m_idx) == SQLITE_NULL;
     }

@@ -46,7 +46,7 @@ namespace DUNE
       ZlibDecompressor(bool gzip = false);
 
       
-      ~ZlibDecompressor(void) override;
+      ~ZlibDecompressor() override;
 
     protected:
       unsigned long
@@ -63,7 +63,7 @@ namespace DUNE
       int m_wbits;
 
       void
-      clear(void);
+      clear();
     };
   }
 }

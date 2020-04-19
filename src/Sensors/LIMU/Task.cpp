@@ -196,7 +196,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_rotation.fill(c_axes_count, c_axes_count, &m_args.rotation_mx[0]);
 
@@ -220,7 +220,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         if (!m_args.pwr_name.empty())
         {
@@ -250,7 +250,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_ctl);
         Memory::clear(m_uart);
@@ -258,7 +258,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         setHardIronFactors();
@@ -318,7 +318,7 @@ namespace Sensors
 
       //! Get current Hard-Iron calibration parameters.
       void
-      getHardIronFactors(void)
+      getHardIronFactors()
       {
         if (m_ctl == NULL)
           return;
@@ -345,7 +345,7 @@ namespace Sensors
 
       //! Set Hard-Iron calibration parameters.
       void
-      setHardIronFactors(void)
+      setHardIronFactors()
       {
         if (m_ctl == NULL)
           return;
@@ -514,7 +514,7 @@ namespace Sensors
 
       //! Read input from sensor.
       void
-      readInput(void)
+      readInput()
       {
         size_t rv = m_uart->read(m_buffer, sizeof(m_buffer));
         for (size_t i = 0; i < rv; ++i)
@@ -539,7 +539,7 @@ namespace Sensors
       }
 
       void
-      reportEntityState(void)
+      reportEntityState()
       {
         if (m_wdog.overflow())
         {
@@ -574,7 +574,7 @@ namespace Sensors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

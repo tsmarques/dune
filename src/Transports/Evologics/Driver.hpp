@@ -92,12 +92,12 @@ namespace Transports
       { }
 
       //! Destructor.
-      ~Driver(void) override
+      ~Driver() override
       { }
 
       //! Reset device.
       void
-      sendReset(void) override
+      sendReset() override
       {
         sendAT("Z1");
         sendAT("Z3");
@@ -106,7 +106,7 @@ namespace Transports
 
       //! Set control over modem.
       void
-      setControl(void)
+      setControl()
       {
         if (getFirmwareVersion() == "1.6")
           return;
@@ -187,7 +187,7 @@ namespace Transports
       //! Retrieve the firmware version string.
       //! @return firmware version.
       std::string
-      getFirmwareVersion(void)
+      getFirmwareVersion()
       {
         return m_version;
       }
@@ -262,7 +262,7 @@ namespace Transports
       //! between communicating devices.
       //! @return propagation time (microsecond).
       unsigned
-      getPropagationTime(void)
+      getPropagationTime()
       {
         sendAT("?T");
         std::string str = readLine();
@@ -276,7 +276,7 @@ namespace Transports
       //! Retrieve the configured sound speed.
       //! @return sound speed (in m/s).
       unsigned
-      getSoundSpeed(void)
+      getSoundSpeed()
       {
         sendAT("?CA");
         std::string str = readLine();
@@ -313,7 +313,7 @@ namespace Transports
       //! Retrieve value of system clock.
       //! @return sound speed (in m/s).
       uint32_t
-      getClock(void)
+      getClock()
       {
         sendAT("?CLOCK");
         std::string str = readLine();
@@ -329,7 +329,7 @@ namespace Transports
       //! source to the local device.
       //! @return multipath structure.
       std::vector<unsigned>
-      getMultipathStructure(void)
+      getMultipathStructure()
       {
         std::vector<unsigned> mp;
         mp.resize(16, 0);
@@ -348,7 +348,7 @@ namespace Transports
       }
 
       void
-      switchToNoiseState(void)
+      switchToNoiseState()
       {
         sendAT("N");
         std::string rv = readLine();
@@ -357,7 +357,7 @@ namespace Transports
       }
 
       void
-      switchToListenState(void)
+      switchToListenState()
       {
         sendAT("A");
         std::string rv = readLine();
@@ -507,7 +507,7 @@ namespace Transports
       double m_declination;
 
       void
-      sendInitialization(void) override
+      sendInitialization() override
       {
         // Get firmware version.
         sendAT("I0");
@@ -606,7 +606,7 @@ namespace Transports
       }
 
       void
-      expectOK(void) override
+      expectOK() override
       {
         std::string rv = readLine();
         if ((rv != "OK") && (rv != "[*]OK"))

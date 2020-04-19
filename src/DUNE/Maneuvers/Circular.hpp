@@ -76,7 +76,7 @@ namespace DUNE
       //! Check if loitering
       //! @return true if loitering, false otherwise
       bool
-      isLoitering(void) const override;
+      isLoitering() const override;
 
     private:
       //! @param[in] task pointer to task object (debug and inf)

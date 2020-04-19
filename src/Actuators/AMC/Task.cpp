@@ -166,7 +166,7 @@ namespace Actuators
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         unsigned eid = 0;
 
@@ -197,7 +197,7 @@ namespace Actuators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
@@ -205,7 +205,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_parse = new Parser();
         m_poll.add(*m_uart);
@@ -219,7 +219,7 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_uart != NULL)
         {
@@ -240,7 +240,7 @@ namespace Actuators
 
       //! Read data send by AMC board.
       bool
-      checkSerialPort(void)
+      checkSerialPort()
       {
         if (m_poll.wasTriggered(*m_uart))
         {
@@ -393,7 +393,7 @@ namespace Actuators
 
       //! Stop all motors
       void
-      stopAllMotor(void)
+      stopAllMotor()
       {
         for (uint8_t i = 0; i < c_max_motors; i++)
         {
@@ -475,7 +475,7 @@ namespace Actuators
 
       //! Set rpm for all motors
       void
-      setRpmValues(void)
+      setRpmValues()
       {
         for (uint8_t i = 0; i < c_max_motors; i++)
         {
@@ -488,7 +488,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      task(void) override
+      task() override
       {
         setRpmValues();
 

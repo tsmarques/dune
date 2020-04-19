@@ -42,7 +42,7 @@ namespace DUNE
   {
     static int counter = 0;
 
-    Initializer::Initializer(void)
+    Initializer::Initializer()
     {
       if (counter++ == 0)
       {
@@ -52,7 +52,7 @@ namespace DUNE
       }
     }
 
-    Initializer::~Initializer(void)
+    Initializer::~Initializer()
     {
       if (--counter == 0)
       {

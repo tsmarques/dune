@@ -175,7 +175,7 @@ namespace Power
 
       //! Resolve entity names.
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         try
         {
@@ -189,7 +189,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         //Input
         unsigned nr = 0;
@@ -447,7 +447,7 @@ namespace Power
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         //Do nothing (allow the operator to see the LEDs)
         Delay::wait(2.0);

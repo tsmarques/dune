@@ -104,7 +104,7 @@ namespace Transports
       m_sock_data->listen(5);
     }
 
-    Session::~Session(void)
+    Session::~Session()
     {
       closeControlConnection();
 
@@ -121,7 +121,7 @@ namespace Transports
     }
 
     void
-    Session::closeControlConnection(void)
+    Session::closeControlConnection()
     {
       if (m_sock == NULL)
         return;
@@ -223,13 +223,13 @@ namespace Transports
     }
 
     void
-    Session::sendOK(void)
+    Session::sendOK()
     {
       sendReply(200, "OK");
     }
 
     TCPSocket*
-    Session::openDataConnection(void)
+    Session::openDataConnection()
     {
       TCPSocket* sock = NULL;
 
@@ -596,7 +596,7 @@ namespace Transports
     }
 
     void
-    Session::run(void)
+    Session::run()
     {
       try
       {

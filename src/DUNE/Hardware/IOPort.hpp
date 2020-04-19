@@ -59,7 +59,7 @@ namespace DUNE
       IOPort(uint32_t base_address, uint32_t size);
 
       //! Destructor.
-      ~IOPort(void);
+      ~IOPort();
 
       void
       write(uint8_t value, uint32_t offset = 0);

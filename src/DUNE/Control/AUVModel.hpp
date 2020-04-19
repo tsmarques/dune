@@ -89,21 +89,21 @@ namespace DUNE
 
       //! Get the roll fin lift coefficient
       inline double
-      getRollFinLift(void)
+      getRollFinLift()
       {
         return m_fin_lift(2);
       }
 
       //! Get the pitch fin lift coefficient
       inline double
-      getPitchFinLift(void)
+      getPitchFinLift()
       {
         return m_fin_lift(3);
       }
 
       //! Get the yaw fin lift coefficient
       inline double
-      getYawFinLift(void)
+      getYawFinLift()
       {
         return m_fin_lift(4);
       }
@@ -111,7 +111,7 @@ namespace DUNE
     private:
       //! Computes added mass and inertia
       Math::Matrix
-      computeM(void);
+      computeM();
 
       //! Computes quadratic damping matrix
       Math::Matrix

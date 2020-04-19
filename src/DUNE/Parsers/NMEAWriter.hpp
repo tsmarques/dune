@@ -93,7 +93,7 @@ namespace DUNE
       //! termination.
       //! @return NMEA compliant sentence.
       std::string
-      sentence(void);
+      sentence();
 
     private:
       //! Internal string stream.

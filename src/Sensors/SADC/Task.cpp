@@ -188,7 +188,7 @@ namespace Sensors
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         unsigned eid = 0;
 
@@ -216,7 +216,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -230,7 +230,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVATING);
         m_is_correct_conf = true;
@@ -250,7 +250,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_uart != NULL)
         {
@@ -266,7 +266,7 @@ namespace Sensors
 
       //! Config board SADC
       void
-      config_SADC(void)
+      config_SADC()
       {
         m_uart->write(m_driver->disable_output(), strlen(m_driver->enable_output()));
         process_feedback();
@@ -334,7 +334,7 @@ namespace Sensors
 
       //! Check feadback of commands
       void
-      process_feedback(void)
+      process_feedback()
       {
         if(!processInput(m_args.timeout_uart, false))
           m_is_correct_conf = false;
@@ -342,7 +342,7 @@ namespace Sensors
 
       //! Read data send by SADC board.
       bool
-      checkSerialPort(void)
+      checkSerialPort()
       {
         if (m_poll.wasTriggered(*m_uart))
         {
@@ -455,7 +455,7 @@ namespace Sensors
       }
 
       bool
-      checkDataSADC(void)
+      checkDataSADC()
       {
         bool checkEnd = false;
 
@@ -482,7 +482,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

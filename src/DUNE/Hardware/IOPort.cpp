@@ -101,7 +101,7 @@ namespace DUNE
     }
 
     //! Destructor.
-    IOPort::~IOPort(void)
+    IOPort::~IOPort()
     {
 #if defined(DUNE_OS_LINUX)
 

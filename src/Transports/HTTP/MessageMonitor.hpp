@@ -46,16 +46,16 @@ namespace Transports
     public:
       MessageMonitor(const std::string& system, uint64_t uid);
 
-      ~MessageMonitor(void);
+      ~MessageMonitor();
 
       void
       setEntities(const std::map<unsigned, std::string>& entities);
 
       DUNE::Utils::ByteBuffer*
-      messagesJSON(void);
+      messagesJSON();
 
       DUNE::Utils::ByteBuffer*
-      logbookJSON(void);
+      logbookJSON();
 
       void
       addLogEntry(const DUNE::IMC::LogBookEntry* msg);
@@ -64,13 +64,13 @@ namespace Transports
       updateMessage(const DUNE::IMC::Message* msg);
 
       void
-      readLock(void)
+      readLock()
       {
         m_mutex.lock();
       }
 
       void
-      readUnlock(void)
+      readUnlock()
       {
         m_mutex.unlock();
       }

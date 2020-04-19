@@ -183,13 +183,13 @@ namespace Actuators
         bind<IMC::QueryLedBrightness>(this);
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         clearLEDs();
       }
 
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         std::string label = String::str("%s %s", getEntityLabel(), c_vdc_mcu_suffix);
         m_mcu_ent = reserveEntity<Entities::BasicEntity>(label);
@@ -197,7 +197,7 @@ namespace Actuators
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         clearLEDs();
         for (unsigned i = 0; i < m_args.led_names.size(); ++i)
@@ -218,7 +218,7 @@ namespace Actuators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -239,7 +239,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         if (!getConstantParameters())
           throw RestartNeeded(DTR("failed to get constant parameters"), c_restart_delay);
@@ -270,7 +270,7 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_ctl != NULL)
         {
@@ -284,7 +284,7 @@ namespace Actuators
       }
 
       void
-      setConfig(void)
+      setConfig()
       {
         if (m_ctl != NULL)
         {
@@ -320,7 +320,7 @@ namespace Actuators
       }
 
       void
-      clearLEDs(void)
+      clearLEDs()
       {
         std::map<std::string, LED*>::iterator itr = m_led_by_name.begin();
         for (; itr != m_led_by_name.end(); ++itr)
@@ -363,7 +363,7 @@ namespace Actuators
       }
 
       bool
-      getConstantParameters(void)
+      getConstantParameters()
       {
         UCTK::Frame frame;
         frame.setId(PKT_ID_PARAMS);
@@ -401,7 +401,7 @@ namespace Actuators
       }
 
       bool
-      getMonitors(void)
+      getMonitors()
       {
         UCTK::Frame frame;
         frame.setId(PKT_ID_STATE);
@@ -435,7 +435,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         Counter<double> m_mon_timer(1.0);
 

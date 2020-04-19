@@ -62,7 +62,7 @@ namespace Maneuver
 
       //! Destructor
       
-      ~MuxedManeuver(void) override
+      ~MuxedManeuver() override
       { }
 
       //! Start maneuver function

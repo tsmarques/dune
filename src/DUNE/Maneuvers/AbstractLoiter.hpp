@@ -52,7 +52,7 @@ namespace DUNE
 
       //! Destructor
       virtual
-      ~AbstractLoiter(void)
+      ~AbstractLoiter()
       { }
 
       //! On PathControlState message.
@@ -74,7 +74,7 @@ namespace DUNE
       //! Are we loiterting already?
       //! @return true if loitering, false otherwise.
       virtual bool
-      isLoitering(void) const = 0;
+      isLoitering() const = 0;
 
     protected:
       //! Pointer to task

@@ -56,11 +56,11 @@ namespace DUNE
 
       //! Destructor.
       
-      ~ProxyPathController(void) override;
+      ~ProxyPathController() override;
 
       //! Entity reservation callback.
       void
-      onEntityResolution(void) override;
+      onEntityResolution() override;
 
       //! Handler for EstimatedState source id filter. This is called when
       //! an EstimatedState is received. By default it only passes

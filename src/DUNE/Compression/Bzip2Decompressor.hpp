@@ -44,9 +44,9 @@ namespace DUNE
     class Bzip2Decompressor: public Decompressor
     {
     public:
-      Bzip2Decompressor(void);
+      Bzip2Decompressor();
 
-      ~Bzip2Decompressor(void) override;
+      ~Bzip2Decompressor() override;
 
     protected:
       unsigned long
@@ -61,7 +61,7 @@ namespace DUNE
       bool m_clear;
 
       void
-      clear(void);
+      clear();
     };
   }
 }

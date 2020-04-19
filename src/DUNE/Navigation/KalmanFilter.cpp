@@ -35,7 +35,7 @@ namespace DUNE
 {
   namespace Navigation
   {
-    KalmanFilter::KalmanFilter(void)
+    KalmanFilter::KalmanFilter()
     {
       m_state_count = 1;
       Math::Matrix I(1);
@@ -102,7 +102,7 @@ namespace DUNE
     }
 
     void
-    KalmanFilter::normalize(void)
+    KalmanFilter::normalize()
     {
       m_p = 0.5 * (m_p + transpose(m_p));
     }
@@ -118,7 +118,7 @@ namespace DUNE
     }
 
     void
-    KalmanFilter::predict(void)
+    KalmanFilter::predict()
     {
       m_x = m_ax * m_x;
       m_p = m_ap * m_p * transpose(m_ap) + m_q;
@@ -185,13 +185,13 @@ namespace DUNE
     }
 
     void
-    KalmanFilter::resetState(void)
+    KalmanFilter::resetState()
     {
       m_x.fill(0.0);
     }
 
     void
-    KalmanFilter::resetOutputs(void)
+    KalmanFilter::resetOutputs()
     {
       m_y.fill(0.0);
       m_innov.fill(0.0);

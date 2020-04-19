@@ -67,13 +67,13 @@ namespace Vision
         }
 
         double
-        getTimeStamp(void) const
+        getTimeStamp() const
         {
           return m_timestamp;
         }
 
         ByteBuffer*
-        getBuffer(void)
+        getBuffer()
         {
           return &m_buffer;
         }
@@ -95,7 +95,7 @@ namespace Vision
         preAllocateFrames();
       }
 
-      ~Log(void) override
+      ~Log() override
       {
         while (!m_queue.empty())
         {
@@ -115,13 +115,13 @@ namespace Vision
       }
 
       int64_t
-      getSize(void)
+      getSize()
       {
         return m_path.size();
       }
 
       size_t
-      getFrameCount(void)
+      getFrameCount()
       {
         return m_frame_count;
       }
@@ -139,7 +139,7 @@ namespace Vision
       }
 
       Frame*
-      getFreeFrame(void)
+      getFreeFrame()
       {
         Frame* frame = m_free_queue.pop();
         if (frame == NULL)
@@ -149,7 +149,7 @@ namespace Vision
       }
 
       ByteBuffer*
-      getBuffer(void)
+      getBuffer()
       {
         return NULL;
       }
@@ -191,7 +191,7 @@ namespace Vision
       }
 
       void
-      preAllocateFrames(void)
+      preAllocateFrames()
       {
         for (size_t i = 0; i < 10; ++i)
         {
@@ -201,7 +201,7 @@ namespace Vision
       }
 
       void
-      processQueue(void)
+      processQueue()
       {
         while (!m_queue.empty())
         {
@@ -218,7 +218,7 @@ namespace Vision
       }
 
       void
-      run(void) override
+      run() override
       {
         while (!isStopping())
         {

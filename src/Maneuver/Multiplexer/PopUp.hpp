@@ -73,7 +73,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~PopUp(void) override
+      ~PopUp() override
       {
         Memory::clear(m_skeep);
         Memory::clear(m_elevate);
@@ -109,21 +109,21 @@ namespace Maneuver
 
       //! Go up to the surface
       inline void
-      goUp(void)
+      goUp()
       {
         elevate(0.0, IMC::Z_DEPTH);
       }
 
       //! Go down to the maneuver's z reference
       inline void
-      goDown(void)
+      goDown()
       {
         elevate(m_maneuver.z, m_maneuver.z_units);
       }
 
       //! Start station keeping
       void
-      startStationKeeping(void)
+      startStationKeeping()
       {
         Memory::clear(m_skeep);
 
@@ -341,14 +341,14 @@ namespace Maneuver
 
       //! On state report
       void
-      onStateReport(void) override
+      onStateReport() override
       {
         computeETA();
       }
 
       //! Compute ETA
       inline void
-      computeETA(void)
+      computeETA()
       {
         if (m_pstate == ST_SKEEP)
         {
@@ -367,7 +367,7 @@ namespace Maneuver
       //! Will use current position
       //! @return true if must use current waypoint
       bool
-      useCurr(void)
+      useCurr()
       {
         return (m_maneuver.flags & IMC::PopUp::FLG_CURR_POS) != 0;
       }
@@ -375,7 +375,7 @@ namespace Maneuver
       //! Must wait some time at surface
       //! @return true if must wait when surface has been reached
       bool
-      mustWait(void)
+      mustWait()
       {
         return (m_maneuver.flags & IMC::PopUp::FLG_WAIT_AT_SURFACE) != 0;
       }
@@ -383,7 +383,7 @@ namespace Maneuver
       //! Must station keep while at surface
       //! @return true if position must be kept at surface
       bool
-      mustKeep(void)
+      mustKeep()
       {
         return (m_maneuver.flags & IMC::PopUp::FLG_STATION_KEEP) != 0;
       }

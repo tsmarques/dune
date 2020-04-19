@@ -58,7 +58,7 @@ namespace DUNE
         ~DRand48() override;
 
         int32_t
-        random(void) override;
+        random() override;
 
         void
         seed(int32_t value) override;

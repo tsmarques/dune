@@ -51,7 +51,7 @@ namespace DUNE
         uint32_t total_frames;
 
         //! Constructor.
-        Properties(void):
+        Properties():
           width(0),
           height(0),
           fps(0),

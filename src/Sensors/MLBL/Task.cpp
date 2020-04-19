@@ -184,7 +184,7 @@ namespace Sensors
       // Depth
       float depth;
 
-      Beacon(void):
+      Beacon():
         id(0),
         query_frequency(0),
         reply_frequency(0),
@@ -202,12 +202,12 @@ namespace Sensors
       // Beacons.
       std::vector<Beacon> beacons;
 
-      LBL(void):
+      LBL():
         index(0)
       { }
 
       unsigned
-      next(void)
+      next()
       {
         unsigned it = index;
         if (++index >= beacons.size())
@@ -217,19 +217,19 @@ namespace Sensors
       }
 
       bool
-      empty(void) const
+      empty() const
       {
         return beacons.empty();
       }
 
       void
-      clear(void)
+      clear()
       {
         beacons.clear();
       }
 
       unsigned
-      size(void)
+      size()
       {
         return beacons.size();
       }
@@ -479,7 +479,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setAndSendState(STA_BOOT);
 
@@ -499,14 +499,14 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
         Memory::clear(m_reporter);
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_sound_speed = m_args.sound_speed_def;
 
@@ -515,7 +515,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         // Process micro-modem addresses.
         std::vector<std::string> addrs = m_ctx.config.options(m_args.addr_section);
@@ -621,7 +621,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         try
         {
@@ -988,7 +988,7 @@ namespace Sensors
       }
 
       void
-      ping(void)
+      ping()
       {
         unsigned index = m_lbl.next();
 
@@ -1012,7 +1012,7 @@ namespace Sensors
       }
 
       void
-      pingNarrowBand(void)
+      pingNarrowBand()
       {
         std::vector<unsigned> freqs;
         unsigned iterator = 0;
@@ -1057,7 +1057,7 @@ namespace Sensors
       }
 
       void
-      fullAcousticReport(void)
+      fullAcousticReport()
       {
         double lat;
         double lon;
@@ -1347,7 +1347,7 @@ namespace Sensors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

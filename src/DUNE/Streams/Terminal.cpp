@@ -60,7 +60,7 @@ namespace DUNE
     }
 
     void
-    Terminal::close(void)
+    Terminal::close()
     {
       Concurrency::ScopedMutex l(m_mutex);
       if (m_out != NULL)

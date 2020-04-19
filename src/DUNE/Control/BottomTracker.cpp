@@ -73,13 +73,13 @@ namespace DUNE
       reset();
     }
 
-    BottomTracker::~BottomTracker(void)
+    BottomTracker::~BottomTracker()
     {
       Memory::clear(m_sdata);
     }
 
     void
-    BottomTracker::reset(void)
+    BottomTracker::reset()
     {
       if (m_sdata != NULL)
         m_sdata->reset();
@@ -95,7 +95,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::activate(void)
+    BottomTracker::activate()
     {
       m_active = true;
       reset();
@@ -104,7 +104,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::deactivate(void)
+    BottomTracker::deactivate()
     {
       m_active = false;
       debug("disabling");
@@ -189,7 +189,7 @@ namespace DUNE
     }
 
     bool
-    BottomTracker::checkObstacles(void)
+    BottomTracker::checkObstacles()
     {
       // Too many interferences at surface.
       if (!isUnderwater())
@@ -226,7 +226,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::updateStateMachine(void)
+    BottomTracker::updateStateMachine()
     {
       if (!m_active)
         return;
@@ -268,7 +268,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::onIdle(void)
+    BottomTracker::onIdle()
     {
       if (m_z_ref.z_units == IMC::Z_ALTITUDE)
         m_mstate = SM_TRACKING;
@@ -279,7 +279,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::safetyWithoutZRef(void)
+    BottomTracker::safetyWithoutZRef()
     {
       // Render slope top as invalid here
       m_sdata->renderSlopeInvalid();
@@ -322,7 +322,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::onTracking(void)
+    BottomTracker::onTracking()
     {
       // Render slope top as invalid here
       m_sdata->renderSlopeInvalid();
@@ -384,7 +384,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::onDepth(void)
+    BottomTracker::onDepth()
     {
       // Render slope top as invalid here
       m_sdata->renderSlopeInvalid();
@@ -420,7 +420,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::onLimitDepth(void)
+    BottomTracker::onLimitDepth()
     {
       if ((m_z_ref.z_units == IMC::Z_DEPTH) && (m_z_ref.value < m_args->depth_limit))
       {
@@ -458,7 +458,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::onUnsafe(void)
+    BottomTracker::onUnsafe()
     {
       m_cparcel.d = m_sdata->updateSlopeTop(m_estate);
 
@@ -534,7 +534,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::onAvoiding(void)
+    BottomTracker::onAvoiding()
     {
       // check if slope is safe right now and
       // check if buoyancy has pulled the vehicle up to a safe depth/altitude
@@ -597,7 +597,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::dispatchSafeDepth(void) const
+    BottomTracker::dispatchSafeDepth() const
     {
       // compute depth at top of slope
       float depth_at_slope = m_estate.depth - m_sdata->getFRange() * sin(m_estate.theta);
@@ -616,7 +616,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::dispatchLimitDepth(void) const
+    BottomTracker::dispatchLimitDepth() const
     {
       IMC::DesiredZ limit_depth;
       limit_depth.value = m_args->depth_limit;
@@ -626,7 +626,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::dispatchSameZ(void) const
+    BottomTracker::dispatchSameZ() const
     {
       IMC::DesiredZ same_z = m_z_ref;
       m_args->entity->dispatch(same_z);
@@ -634,7 +634,7 @@ namespace DUNE
     }
 
     void
-    BottomTracker::dispatchAdmAltitude(void) const
+    BottomTracker::dispatchAdmAltitude() const
     {
       IMC::DesiredZ zed;
       zed.value = m_args->adm_alt;
@@ -644,7 +644,7 @@ namespace DUNE
     }
 
     bool
-    BottomTracker::isAltitudeValid(void) const
+    BottomTracker::isAltitudeValid() const
     {
       if (m_estate.alt > 0.0 && isUnderwater())
         return true;
@@ -653,7 +653,7 @@ namespace DUNE
     }
 
     bool
-    BottomTracker::isUnderwater(void) const
+    BottomTracker::isUnderwater() const
     {
       if (m_estate.depth > c_depth_hyst)
         return true;
@@ -684,7 +684,7 @@ namespace DUNE
     }
 
     double
-    BottomTracker::getReverseZ(void) const
+    BottomTracker::getReverseZ() const
     {
       return m_estate.depth + m_estate.alt - m_z_ref.value;
     }

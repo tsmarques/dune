@@ -59,11 +59,11 @@ namespace DUNE
 
       //! Destructor.
       
-      ~PathController(void) override;
+      ~PathController() override;
 
       //! Entity reservation callback.
       void
-      onEntityReservation(void) override;
+      onEntityReservation() override;
 
       //! Consumer for Brake message.
       //! @param brake message to consume.
@@ -109,32 +109,32 @@ namespace DUNE
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
       void
-      onUpdateParameters(void) override;
+      onUpdateParameters() override;
 
       //! On resource initialization
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
       void
-      onResourceInitialization(void) override;
+      onResourceInitialization() override;
 
       //! On resource aquisition
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
       void
-      onResourceRelease(void) override;
+      onResourceRelease() override;
 
       //! Handler for path control activation.
       //! This is called when path control is activated.
       //! By default it does nothing.
       virtual void
-      onPathActivation(void)
+      onPathActivation()
       { }
 
       //! Handler for path control deactivation.
       //! This is called when path control is deactivated.
       //! By default it does nothing.
       virtual void
-      onPathDeactivation(void)
+      onPathDeactivation()
       { }
 
       //! All data regarding the vehicle's state while tracking the path
@@ -238,7 +238,7 @@ namespace DUNE
       //! altitude references will be fired at the start of a path.
       //! @return false (at the base class level)
       virtual bool
-      hasSpecificZControl(void) const
+      hasSpecificZControl() const
       {
         return false;
       }
@@ -253,13 +253,13 @@ namespace DUNE
       getEta(const TrackingState& ts);
 
       float
-      getSpeed(void)
+      getSpeed()
       { 
         return std::max((double)m_eta_min_speed, m_ts.speed);
       }
 
       float
-      getTimeFactor(void)
+      getTimeFactor()
       {
         return m_time_factor;
       }
@@ -301,7 +301,7 @@ namespace DUNE
 
       //! Task method.
       void
-      onMain(void) override;
+      onMain() override;
 
     private:
       //! Update entity state
@@ -316,7 +316,7 @@ namespace DUNE
 
       //! Update tracking state variable
       void
-      updateTrackingState(void);
+      updateTrackingState();
 
       //! Test if there has been a jump in navigation
       //! @param[in] new_state newly received EstimatedState
@@ -331,11 +331,11 @@ namespace DUNE
 
       //! Monitor along track error and update variables
       void
-      monitorAlongTrackError(void);
+      monitorAlongTrackError();
 
       //! Monitor cross track error and update variables
       void
-      monitorCrossTrackError(void);
+      monitorCrossTrackError();
 
       //! Dispatch new control loops
       //! @param[in] enable control loops message enable field
@@ -345,11 +345,11 @@ namespace DUNE
 
       //! OnActivation routine from parent class
       void
-      onActivation(void) override;
+      onActivation() override;
 
       //! OnDeactivation routine from parent class
       void
-      onDeactivation(void) override;
+      onDeactivation() override;
 
       //! Update position relatively to track
       //! @param[in] coord current coordinate
@@ -364,12 +364,12 @@ namespace DUNE
 
       //! Deactivate bottom tracker
       void
-      deactivateBottomTracker(void);
+      deactivateBottomTracker();
 
       //! Is the system performing bottom tracking ?
       //! @return true if it is bottom tracking, false otherwise.
       bool
-      isTrackingBottom(void)
+      isTrackingBottom()
       {
         return m_btd.enabled && (m_btrack != NULL);
       }

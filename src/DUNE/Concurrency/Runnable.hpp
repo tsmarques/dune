@@ -54,16 +54,16 @@ namespace DUNE
         StateUnknown
       };
 
-      Runnable(void):
+      Runnable():
         m_created(false)
       { }
 
       virtual
-      ~Runnable(void)
+      ~Runnable()
       { }
 
       void
-      start(void)
+      start()
       {
         startImpl();
         ScopedMutex m(m_created_lock);
@@ -71,19 +71,19 @@ namespace DUNE
       }
 
       void
-      stop(void)
+      stop()
       {
         stopImpl();
       }
 
       void
-      join(void)
+      join()
       {
         joinImpl();
       }
 
       void
-      stopAndJoin(void)
+      stopAndJoin()
       {
         stop();
         join();
@@ -96,72 +96,72 @@ namespace DUNE
       }
 
       unsigned
-      getPriority(void)
+      getPriority()
       {
         return getPriorityImpl();
       }
 
       State
-      getState(void)
+      getState()
       {
         return getStateImpl();
       }
 
       bool
-      isCreated(void)
+      isCreated()
       {
         ScopedMutex m(m_created_lock);
         return m_created;
       }
 
       bool
-      isStopping(void)
+      isStopping()
       {
         return getState() == StateStopping;
       }
 
       bool
-      isRunning(void)
+      isRunning()
       {
         return getState() == StateRunning;
       }
 
       bool
-      isStarting(void)
+      isStarting()
       {
         return getState() == StateStarting;
       }
 
       bool
-      isDead(void)
+      isDead()
       {
         return getState() == StateDead;
       }
 
     protected:
       virtual void
-      run(void) = 0;
+      run() = 0;
 
       virtual void
-      startImpl(void) = 0;
+      startImpl() = 0;
 
       virtual void
-      stopImpl(void) = 0;
+      stopImpl() = 0;
 
       virtual void
-      joinImpl(void) = 0;
+      joinImpl() = 0;
 
       virtual void
       setStateImpl(State value) = 0;
 
       virtual State
-      getStateImpl(void) = 0;
+      getStateImpl() = 0;
 
       virtual void
       setPriorityImpl(Scheduler::Policy policy, unsigned priority) = 0;
 
       virtual unsigned
-      getPriorityImpl(void) = 0;
+      getPriorityImpl() = 0;
 
     private:
       bool m_created;

@@ -224,7 +224,7 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.max_rotation_rate))
           m_args.max_rotation_rate = Angles::radians(m_args.max_rotation_rate);
@@ -237,7 +237,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -253,7 +253,7 @@ namespace Monitors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -263,7 +263,7 @@ namespace Monitors
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         if (m_args.curr_fault_detect)
         {
@@ -280,7 +280,7 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -447,7 +447,7 @@ namespace Monitors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

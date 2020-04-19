@@ -62,7 +62,7 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      StreamEstimator(void):
+      StreamEstimator():
         m_static_north(c_samples),
         m_static_east(c_samples),
         m_static(false),

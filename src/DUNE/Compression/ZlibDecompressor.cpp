@@ -52,14 +52,14 @@ namespace DUNE
       clear();
     }
 
-    ZlibDecompressor::~ZlibDecompressor(void)
+    ZlibDecompressor::~ZlibDecompressor()
     {
       inflateEnd(&m_private->stream);
       delete m_private;
     }
 
     void
-    ZlibDecompressor::clear(void)
+    ZlibDecompressor::clear()
     {
       m_clear = false;
 

@@ -96,7 +96,7 @@ namespace Sensors
       };
 
       //! Constructor.
-      Frame837(void)
+      Frame837()
       {
         m_data.resize(c_ivx_size, 0);
         m_data[0] = '8';
@@ -106,13 +106,13 @@ namespace Sensors
       }
 
       //! Destructor
-      ~Frame837(void) override
+      ~Frame837() override
       { }
 
       //! Get data start address.
       //! @return pointer to address.
       uint8_t*
-      getMessageData(void) override
+      getMessageData() override
       {
         return &m_data[c_start_data];
       }
@@ -120,7 +120,7 @@ namespace Sensors
       //! Get footer start address.
       //! @return pointer to address.
       uint8_t*
-      getFooterData(void) override
+      getFooterData() override
       {
         return &m_data[c_hdr_size + c_rhdr_size + getMessageSize()];
       }
@@ -128,7 +128,7 @@ namespace Sensors
       //! Retrieve the size of the frame.
       //! @return frame size.
       size_t
-      getSize(void) const override
+      getSize() const override
       {
         return c_hdr_size + c_rhdr_size + getMessageSize() + getFooterSize();
       }
@@ -136,7 +136,7 @@ namespace Sensors
       //! Retrieve message size.
       //! @return message size.
       size_t
-      getMessageSize(void) const override
+      getMessageSize() const override
       {
         return m_ivx_mode ? c_ivx_body_size : c_iux_body_size;
       }
@@ -144,14 +144,14 @@ namespace Sensors
       //! Retrieve footer size.
       //! @return footer size.
       size_t
-      getFooterSize(void) const override
+      getFooterSize() const override
       {
         return m_ivx_mode ? c_ivx_frame_size : c_iux_frame_size;
       }
 
       //! Define total bytes in header.
       void
-      setTotalBytes(void)
+      setTotalBytes()
       {
         // Total bytes.
         if (m_ivx_mode)
@@ -168,7 +168,7 @@ namespace Sensors
 
       //! Define number of bytes to read in header.
       void
-      setBytesToRead(void)
+      setBytesToRead()
       {
         // Total bytes.
         if (m_ivx_mode)
@@ -252,7 +252,7 @@ namespace Sensors
 
       //! Set repetition rate using local Delta class.
       void
-      setRepRate(void)
+      setRepRate()
       {
         // Compute time delta.
         double tstep = trimValue(m_delta.getDelta(), 0.0, 2.0);
@@ -261,91 +261,91 @@ namespace Sensors
 
       //! Get range index.
       unsigned
-      getIndexRange(void) override
+      getIndexRange() override
       {
         return HDR_IDX_RANGE;
       }
 
       //! Get tilt angle index.
       unsigned
-      getIndexTiltAngle(void) override
+      getIndexTiltAngle() override
       {
         return HDR_IDX_TILT_ANGLE;
       }
 
       //! Get latitude index.
       unsigned
-      getIndexLatitude(void) override
+      getIndexLatitude() override
       {
         return HDR_IDX_LATITUDE;
       }
 
       //! Get longitude index.
       unsigned
-      getIndexLongitude(void) override
+      getIndexLongitude() override
       {
         return HDR_IDX_LONGITUDE;
       }
 
       //! Get speed index.
       unsigned
-      getIndexSpeed(void) override
+      getIndexSpeed() override
       {
         return HDR_IDX_SPEED;
       }
 
       //! Get speed index.
       unsigned
-      getIndexSoundSpeed(void) override
+      getIndexSoundSpeed() override
       {
         return HDR_IDX_SOUND_SPEED;
       }
 
       //! Get course index.
       unsigned
-      getIndexCourse(void) override
+      getIndexCourse() override
       {
         return HDR_IDX_COURSE;
       }
 
       //! Get milliseconds index.
       unsigned
-      getIndexMilli(void) override
+      getIndexMilli() override
       {
         return HDR_IDX_MILLI;
       }
 
       //! Get roll index.
       unsigned
-      getIndexRoll(void) override
+      getIndexRoll() override
       {
         return HDR_IDX_ROLL;
       }
 
       //! Get pitch index.
       unsigned
-      getIndexPitch(void) override
+      getIndexPitch() override
       {
         return HDR_IDX_PITCH;
       }
 
       //! Get heading index.
       unsigned
-      getIndexHeading(void) override
+      getIndexHeading() override
       {
         return HDR_IDX_HEADING;
       }
 
       //! Get repetition rate index.
       unsigned
-      getIndexRepRate(void) override
+      getIndexRepRate() override
       {
         return HDR_IDX_REP_RATE;
       }
 
       //! Get frequency index.
       unsigned
-      getIndexFrequency(void) override
+      getIndexFrequency() override
       {
         return HDR_IDX_FREQUENCY;
       }
@@ -353,7 +353,7 @@ namespace Sensors
     private:
       //! Define frame constant header.
       void
-      setHeader(void)
+      setHeader()
       {
         // Video Frame Length (unavailable).
         for (unsigned i = 0; i < 4; ++i)
@@ -371,7 +371,7 @@ namespace Sensors
 
       //! Define frame constant sonar return header data.
       void
-      setSonarReturnHeader(void)
+      setSonarReturnHeader()
       {
         // IUX or IVX.
         m_data[HDR_IDX_MODE_I] = 'I';
@@ -387,7 +387,7 @@ namespace Sensors
 
       //! Set number of bytes to read.
       void
-      setNumberOfBytesToRead(void)
+      setNumberOfBytesToRead()
       {
         if (m_ivx_mode)
           m_data[HDR_IDX_N_TO_READ] = (uint8_t) 0x0b;
@@ -397,7 +397,7 @@ namespace Sensors
 
       //! Set packet number
       void
-      setPacketNumber(void)
+      setPacketNumber()
       {
         if (m_ivx_mode)
           m_data[HDR_IDX_PACKET_NUM] = (uint8_t) 0x0f;
@@ -407,7 +407,7 @@ namespace Sensors
 
       //! Define frame footer.
       void
-      setFooter(void)
+      setFooter()
       {
         uint32_t addr = c_hdr_size + c_rhdr_size + getMessageSize();
         m_data[addr] = (uint8_t) 0xfc;
@@ -423,7 +423,7 @@ namespace Sensors
 
       //! Set sonar return header mode.
       void
-      setMode(void)
+      setMode()
       {
         if (m_ivx_mode)
           m_data[HDR_IDX_MODE_UV] = 'V';

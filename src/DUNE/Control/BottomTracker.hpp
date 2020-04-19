@@ -83,19 +83,19 @@ namespace DUNE
       BottomTracker(const Arguments* args);
 
       //! Destructor.
-      ~BottomTracker(void);
+      ~BottomTracker();
 
       //! Reset task's variables.
       void
-      reset(void);
+      reset();
 
       //! Activate bottom tracker
       void
-      activate(void);
+      activate();
 
       //! Deactivate bottom tracker
       void
-      deactivate(void);
+      deactivate();
 
       //! On consume message Distance.
       //! @param[in] msg message being consumed.
@@ -159,39 +159,39 @@ namespace DUNE
       //! Take appropriate measures
       //! @return true if safe, false if not safe or unable to tell
       bool
-      checkObstacles(void);
+      checkObstacles();
 
       //! Check vehicle's safety even if no z reference is defined
       void
-      safetyWithoutZRef(void);
+      safetyWithoutZRef();
 
       //! Update bottom tracking state machine.
       void
-      updateStateMachine(void);
+      updateStateMachine();
 
       //! On idle state.
       void
-      onIdle(void);
+      onIdle();
 
       //! On altitude tracking state.
       void
-      onTracking(void);
+      onTracking();
 
       //! On depth tracking state.
       void
-      onDepth(void);
+      onDepth();
 
       //! Near depth limit.
       void
-      onLimitDepth(void);
+      onLimitDepth();
 
       //! On unsafe state.
       void
-      onUnsafe(void);
+      onUnsafe();
 
       //! On avoiding state.
       void
-      onAvoiding(void);
+      onAvoiding();
 
       //! Brake
       //! @param[in] start true to start braking, false to stop
@@ -200,43 +200,43 @@ namespace DUNE
 
       //! Dispatch safe depth message.
       void
-      dispatchSafeDepth(void) const;
+      dispatchSafeDepth() const;
 
       //! Dispatch absolute limit for desired depth message.
       void
-      dispatchLimitDepth(void) const;
+      dispatchLimitDepth() const;
 
       //! Dispatch same altitude.
       void
-      dispatchSameZ(void) const;
+      dispatchSameZ() const;
 
       //! Dispatch altitude message.
       void
-      dispatchAltitude(void) const;
+      dispatchAltitude() const;
 
       //! Dispatch admissible altitude.
       void
-      dispatchAdmAltitude(void) const;
+      dispatchAdmAltitude() const;
 
       //! Get the opposite Z reference.
       //! @return altitude/depth reference when controlling in depth/altitude.
       double
-      getReverseZ(void) const;
+      getReverseZ() const;
 
       //! Check if forward range measurement could be the surface.
       //! @return true if it can be the surface.
       bool
-      isSurface(void) const;
+      isSurface() const;
 
       //! Check if altitude values should be ignored or not.
       //! @return true if they should be ignored.
       bool
-      isAltitudeValid(void) const;
+      isAltitudeValid() const;
 
       //! Check if vehicle depth is above minimum.
       //! @return true if depth is above minimum.
       bool
-      isUnderwater(void) const;
+      isUnderwater() const;
 
       //! Check if vehicle is reaching maximum limit.
       //! @param[in] depth_ref current depth reference.

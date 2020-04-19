@@ -119,7 +119,7 @@ namespace Control
         }
 
         void
-        onActivation(void) override
+        onActivation() override
         {
           // Activate vertical rate controller.
           IMC::ControlLoops cloops;
@@ -131,7 +131,7 @@ namespace Control
         }
 
         void
-        onDeactivation(void) override
+        onDeactivation() override
         {
           // Deactivate vertical rate controller.
           IMC::ControlLoops cloops;
@@ -158,14 +158,14 @@ namespace Control
         }
 
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           Memory::clear(m_cmd_flt);
           Memory::clear(m_state_flt);
         }
 
         void
-        onResourceAcquisition(void) override
+        onResourceAcquisition() override
         {
           // Process the systems allowed to define DesiredZ
           m_cmd_flt = new Tasks::SourceFilter(*this, true, m_args.cmd_src, "DesiredZ");
@@ -233,7 +233,7 @@ namespace Control
         }
 
         void
-        task(void) override
+        task() override
         {
           if (!isActive())
             return;

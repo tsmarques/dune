@@ -55,7 +55,7 @@ namespace DUNE
         {  }
 
         //! Destructor.
-        ~IDX1(void) override
+        ~IDX1() override
         {
           std::list<uint8_t*>::const_iterator itr = m_index.begin();
           for (; itr != m_index.end(); ++itr)

@@ -365,7 +365,7 @@ namespace Transports
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
          if (m_args.power_channel.empty())
           m_powered = true;
@@ -374,13 +374,13 @@ namespace Transports
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
       }
 
       //! Resolve entity names.
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
           try
           {
@@ -395,7 +395,7 @@ namespace Transports
       //! @return true if socket was opened, false otherwise.
 
       void
-      onRequestActivation(void) override
+      onRequestActivation() override
       {
 
         int m_addr = 0;
@@ -458,7 +458,7 @@ namespace Transports
       }
 
       void
-      onRequestDeactivation(void) override
+      onRequestDeactivation() override
       {
         m_sm_state = SM_DEACT_BEGIN;
         hardwareUpdateStateMachine();
@@ -466,7 +466,7 @@ namespace Transports
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         m_reporter = new Supervisors::Reporter::Client(this, Supervisors::Reporter::IS_RADIO,
@@ -491,7 +491,7 @@ namespace Transports
 
       //! Turn power channel on.
       void
-      turnPowerOn(void)
+      turnPowerOn()
       {
         debug("switching power on");
         controlPower(IMC::PowerChannelControl::PCC_OP_TURN_ON);
@@ -499,7 +499,7 @@ namespace Transports
 
       //! Turn power channel off.
       void
-      turnPowerOff(void)
+      turnPowerOff()
       {
         debug("switching power off");
         controlPower(IMC::PowerChannelControl::PCC_OP_TURN_OFF);
@@ -508,7 +508,7 @@ namespace Transports
       //! Test if power channel is on.
       //! @return true if power channel is on, false otherwise.
       bool
-      isPowered(void)
+      isPowered()
       {
         return m_powered;
       }
@@ -529,7 +529,7 @@ namespace Transports
       }
 
       void
-      hardwareUpdateStateMachine(void)
+      hardwareUpdateStateMachine()
       {
         switch (m_sm_state)
         {
@@ -657,7 +657,7 @@ namespace Transports
       }
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
          std::vector<std::string> addrs = m_ctx.config.options(m_args.addr_section);
         for (unsigned i = 0; i < addrs.size(); ++i)
@@ -679,14 +679,14 @@ namespace Transports
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_reporter);
         Memory::clear(m_telemetry);
       }
 
       void
-      radioReport(void)
+      radioReport()
       {
         //report creation
         if (m_args.report_enable)
@@ -701,7 +701,7 @@ namespace Transports
         }
       }
       void
-      highSpeedReport(void)
+      highSpeedReport()
       {
 
         //report creation
@@ -721,7 +721,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

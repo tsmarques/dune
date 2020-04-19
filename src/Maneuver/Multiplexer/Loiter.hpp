@@ -70,7 +70,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~Loiter(void) override
+      ~Loiter() override
       {
         Memory::clear(m_ltr);
       }

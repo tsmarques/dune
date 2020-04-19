@@ -45,9 +45,9 @@ namespace DUNE
     class MessageFilter
     {
     public:
-      MessageFilter(void);
+      MessageFilter();
 
-      ~MessageFilter(void);
+      ~MessageFilter();
 
       void
       setupRates(const std::vector<std::string>& spec);

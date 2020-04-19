@@ -36,7 +36,7 @@ using namespace DUNE::Parsers;
 
 static
 void
-usage(void)
+usage()
 {
   std::cerr << "== Usage == "
             << std::endl

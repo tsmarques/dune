@@ -62,7 +62,7 @@ namespace DUNE
 #endif
     }
 
-    GPIO::~GPIO(void)
+    GPIO::~GPIO()
     {
       // Linux 2.6 implementation.
 #if defined(DUNE_OS_LINUX)
@@ -121,7 +121,7 @@ namespace DUNE
     }
 
     bool
-    GPIO::getValue(void)
+    GPIO::getValue()
     {
       if (m_direction != GPIO_DIR_INPUT)
         throw Error("GPIO is not configured as input", String::str(m_number));

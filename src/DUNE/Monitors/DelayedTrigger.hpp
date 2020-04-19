@@ -57,7 +57,7 @@ namespace DUNE
       }
 
       //! Destructor
-      ~DelayedTrigger(void)
+      ~DelayedTrigger()
       {
         Memory::clear(m_mov_avg);
       }

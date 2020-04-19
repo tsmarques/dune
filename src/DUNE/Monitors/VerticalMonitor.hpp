@@ -61,7 +61,7 @@ namespace DUNE
         m_mave = new Math::MovingAverage<float>(c_vsamples);
       }
 
-      ~VerticalMonitor(void)
+      ~VerticalMonitor()
       {
         Memory::clear(m_mave);
       }

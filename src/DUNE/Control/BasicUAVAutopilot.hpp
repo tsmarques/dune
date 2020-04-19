@@ -54,22 +54,22 @@ namespace DUNE
 
       //! Destructor.
       
-      ~BasicUAVAutopilot(void) override;
+      ~BasicUAVAutopilot() override;
 
       void
-      onResourceInitialization(void) override;
+      onResourceInitialization() override;
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       { }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       { }
 
       //! Reset to initial values
       virtual void
-      reset(void);
+      reset();
 
       //! To be used by derived class when estimated state is received
       virtual void
@@ -82,25 +82,25 @@ namespace DUNE
       consume(const IMC::ControlLoops* msg);
 
       void
-      onMain(void) override;
+      onMain() override;
     protected:
 
       //! On autopilot activation
       //! Does nothing by default
       virtual void
-      onAutopilotActivation(void)
+      onAutopilotActivation()
       { }
 
       //! On autopilot deactivation
       //! Does nothing by default
       virtual void
-      onAutopilotDeactivation(void)
+      onAutopilotDeactivation()
       { }
 
       //! On deactivation leave error or active entity state
       //! Method from parent class
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         reset();
@@ -110,7 +110,7 @@ namespace DUNE
       //! On activation enter active entity state
       //! Method from parent class
       void
-      onActivation(void) override
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         reset();

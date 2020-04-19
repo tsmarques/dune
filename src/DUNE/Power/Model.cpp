@@ -53,7 +53,7 @@ namespace DUNE
     }
 
     void
-    Model::validate(void) const
+    Model::validate() const
     {
       if (!m_conv_watt.size() || !m_conv_rpm.size())
         throw std::runtime_error("power model has empty parameters");

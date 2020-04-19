@@ -137,7 +137,7 @@ namespace Maneuver
         m_task->dispatch(m_land);
       }
 
-      ~Land(void) override
+      ~Land() override
       { }
 
     private:

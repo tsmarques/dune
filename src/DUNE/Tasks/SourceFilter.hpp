@@ -77,7 +77,7 @@ namespace DUNE
                    const std::string& msg_name);
 
       //! Destructor.
-      ~SourceFilter(void)
+      ~SourceFilter()
       {  };
 
       //! Define filter by systems.
@@ -181,41 +181,41 @@ namespace DUNE
 
       //! Filter definition description for user information.
       void
-      filterDefinition(void);
+      filterDefinition();
 
       //! Generate user information for a systems filter description
       //! return user information with the filter description.
       std::vector<std::string>
-      generateInfoSystem(void);
+      generateInfoSystem();
 
       //! Show a entities filter description for user information
       //! return user information with the filter description.
       std::vector<std::string>
-      generateInfoEntity(void);
+      generateInfoEntity();
 
       //! Show a systems and entities filter description for user information
       //! return user information with the filter description.
       std::vector<std::string>
-      generateInfoSystemEntity(void);
+      generateInfoSystemEntity();
 
       //! Show a messages and systems filter description for user information
       //! return user information with the filter description.
       std::vector<std::string>
-      generateInfoMessageSystem(void);
+      generateInfoMessageSystem();
 
       //! Show a messages and entities filter description for user information
       //! return user information with the filter description.
       std::vector<std::string>
-      generateInfoMessageEntity(void);
+      generateInfoMessageEntity();
 
       //! Show a messages, systems, and entities filter description for user information
       //! return user information with the filter description.
       std::vector<std::string>
-      generateInfoMessageSystemEntity(void);
+      generateInfoMessageSystemEntity();
 
       //! Filter definition warnings print-out.
       void
-      printDefinitionWarnings(void);
+      printDefinitionWarnings();
 
       //! Message rejection print-out.
       //! @param[in] msg input message.
@@ -225,7 +225,7 @@ namespace DUNE
       //! Warnings for user information.
       //! @return warnings.
       std::vector<std::string>
-      warnings(void);
+      warnings();
 
       //! Parent task.
       Tasks::Task& m_task;

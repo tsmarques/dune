@@ -160,7 +160,7 @@ namespace Autonomy
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.comms_delta))
           m_delta.setTop(m_args.comms_delta);
@@ -182,25 +182,25 @@ namespace Autonomy
         }
       }
 
-     ~Task(void) override
+     ~Task() override
       {
         Memory::clear(m_sampler);
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         bind(this, m_args.message);
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -265,7 +265,7 @@ namespace Autonomy
 
       //! Action was triggered.
       void
-      fire(void)
+      fire()
       {
         // No actions if not active.
         if (!isActive())
@@ -316,7 +316,7 @@ namespace Autonomy
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

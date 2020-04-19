@@ -74,13 +74,13 @@ namespace Simulators
       }
 
       inline bool
-      isValid(void)
+      isValid()
       {
         return m_counter.overflow();
       }
 
       double
-      update(void)
+      update()
       {
         if (!isValid())
           return 0.0;
@@ -107,7 +107,7 @@ namespace Simulators
 
     private:
       inline double
-      getIncrement(void)
+      getIncrement()
       {
         return m_args->step_size * (double)m_direction;
       }
@@ -344,14 +344,14 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
         m_pb = new PencilBeam(&m_args.pb);
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
         Memory::clear(m_qtree);
@@ -359,7 +359,7 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.bottom_width))
           m_args.bottom_width = Angles::radians(m_args.bottom_width);
@@ -398,7 +398,7 @@ namespace Simulators
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         Utils::String::toLowerCase(m_args.location);
         Path path = m_ctx.dir_cfg / "simulation" / ("bathymetry-" + m_args.location + ".ini");
@@ -486,7 +486,7 @@ namespace Simulators
       }
 
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         m_bd.setSourceEntity(reserveEntity(m_args.label_bd));
         m_fd.setSourceEntity(reserveEntity(m_args.label_fd));
@@ -524,7 +524,7 @@ namespace Simulators
       }
 
       void
-      task(void) override
+      task() override
       {
         if (getEntityState() != IMC::EntityState::ESTA_NORMAL)
           return;  // Home ref not setup
@@ -540,7 +540,7 @@ namespace Simulators
 
       //! Update bottom distance value with bathymetry
       inline void
-      updateBottomDistance(void)
+      updateBottomDistance()
       {
         double depth = depthAt(m_sstate.x + m_off_n, m_sstate.y + m_off_e);
         double error = m_prng->gaussian() * m_args.bd_std_dev;
@@ -596,7 +596,7 @@ namespace Simulators
       //! Update forward distance value taking into account
       //! obstacles and the bottom
       inline void
-      updateForwardDistance(void)
+      updateForwardDistance()
       {
         // define a random error
         double error = m_prng->gaussian() * m_args.fd_std_dev;
@@ -704,7 +704,7 @@ namespace Simulators
       //! and intersect them with lower beam part of the echo sounder.
       //! @return range after intersection
       double
-      bottomIntersection(void)
+      bottomIntersection()
       {
         double intersect_range = m_args.max_range;
 

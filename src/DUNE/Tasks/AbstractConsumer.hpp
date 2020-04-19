@@ -43,14 +43,14 @@ namespace DUNE
     class AbstractConsumer
     {
     public:
-      AbstractConsumer(void)
+      AbstractConsumer()
       { }
 
       virtual void
       consume(const IMC::Message*) = 0;
 
       virtual
-      ~AbstractConsumer(void)
+      ~AbstractConsumer()
       { }
     };
   }

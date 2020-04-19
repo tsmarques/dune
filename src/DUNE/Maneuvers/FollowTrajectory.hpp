@@ -57,10 +57,10 @@ namespace DUNE
 
       //! Destructor.
       
-      ~FollowTrajectory(void) override;
+      ~FollowTrajectory() override;
 
       void
-      onUpdateParameters(void) override;
+      onUpdateParameters() override;
 
       //! Consumer for IMC::FollowTrajectory message.
       //! @param msg maneuver message
@@ -95,7 +95,7 @@ namespace DUNE
       //! Abstract method called upon path completion.
       //! This will not be called in approach stage (see isApproaching()).
       virtual void
-      onPathCompletion(void) = 0;
+      onPathCompletion() = 0;
 
       //! Inherited from Maneuver class.
       //! @param pcs path control state message
@@ -104,12 +104,12 @@ namespace DUNE
 
       //! Method called upon maneuver deactivation.
       void
-      onManeuverDeactivation(void) override;
+      onManeuverDeactivation() override;
 
       //! Method invoked on maneuver reset.
       //! By default the base class implementation does nothing.
       virtual void
-      onReset(void)
+      onReset()
       { }
 
       //! Trajectory point.
@@ -138,7 +138,7 @@ namespace DUNE
 
       //! Get number of points in the trajetory.
       inline size_t
-      trajectory_points(void) const
+      trajectory_points() const
       {
         return m_traj.size();
       }
@@ -146,7 +146,7 @@ namespace DUNE
       //! Get control step period.
       //! @return control step period.
       inline double
-      controlPeriod(void) const
+      controlPeriod() const
       {
         return m_cstep_period;
       }
@@ -154,7 +154,7 @@ namespace DUNE
       //! Check if maneuver is still in approach stage (i.e. moving to the initial point).
       //! @return control step period.
       inline bool
-      isApproaching(void) const
+      isApproaching() const
       {
         return m_approach;
       }

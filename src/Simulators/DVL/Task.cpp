@@ -110,21 +110,21 @@ namespace Simulators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
 
       //! Update internal parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.ir_prob))
           m_args.ir_prob *= 0.01;
@@ -143,7 +143,7 @@ namespace Simulators
       }
 
       void
-      task(void) override
+      task() override
       {
         if (!isActive())
           return;

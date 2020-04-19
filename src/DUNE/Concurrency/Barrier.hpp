@@ -52,10 +52,10 @@ namespace DUNE
       Barrier(int count);
 
       //! Destructor.
-      ~Barrier(void);
+      ~Barrier();
 
       void
-      wait(void);
+      wait();
 
     private:
 #if defined(DUNE_SYS_HAS_PTHREAD_BARRIER)

@@ -94,7 +94,7 @@ namespace DUNE
       //! Check if loitering
       //! @return true if loitering, false otherwise
       bool
-      isLoitering(void) const override;
+      isLoitering() const override;
 
     private:
       //! Left or right loop properties
@@ -144,13 +144,13 @@ namespace DUNE
         //! Amount of arc travelled in radians
         float accum;
 
-        ArcProgress(void):
+        ArcProgress():
           valid(false),
           accum(0.0)
         { };
 
         void
-        invalidate(void)
+        invalidate()
         {
           valid = false;
         }
@@ -171,7 +171,7 @@ namespace DUNE
         }
 
         inline float
-        get(void) const
+        get() const
         {
           return accum;
         }
@@ -184,11 +184,11 @@ namespace DUNE
 
       //! Compute loop centers
       void
-      computeLoopCenters(void);
+      computeLoopCenters();
 
       //! Compute loop exit points
       void
-      computeLoopExits(void);
+      computeLoopExits();
 
       //! Displace a latitude and longitude point according to 2D bearing
       void

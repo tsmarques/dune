@@ -60,7 +60,7 @@ struct Vehicle
   double distance;
   std::vector<Log> logs;
 
-  Vehicle(void):
+  Vehicle():
     duration(0),
     distance(0)
   { }

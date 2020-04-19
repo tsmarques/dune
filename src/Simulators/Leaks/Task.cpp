@@ -69,21 +69,21 @@ namespace Simulators
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         // Initialize entity state.
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (m_leaks.size() > 0 && m_leaks.size() != m_args.leak_ents.size())
           throw std::runtime_error("attempted to change the number of reserved entities");
       }
 
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < m_args.leak_ents.size(); ++i)
         {
@@ -94,7 +94,7 @@ namespace Simulators
       }
 
       void
-      onReportEntityState(void) override
+      onReportEntityState() override
       {
         for (LeakSet::iterator itr = m_leaks.begin(); itr != m_leaks.end(); ++itr)
           (*itr)->reportState();
@@ -152,7 +152,7 @@ namespace Simulators
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

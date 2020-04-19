@@ -143,7 +143,7 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.usbl_lat))
           m_args.usbl_lat = Angles::radians(m_args.usbl_lat);
@@ -166,13 +166,13 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
@@ -215,7 +215,7 @@ namespace Simulators
       }
 
       void
-      task(void) override
+      task() override
       {
         if (m_ent.state != IMC::EntityState::ESTA_NORMAL)
           return;  // Home ref not setup

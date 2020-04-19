@@ -74,7 +74,7 @@ namespace DUNE
         getFlashInfo();
       }
 
-      Bootloader::~Bootloader(void)
+      Bootloader::~Bootloader()
       {
         print("\nJumping to application... ");
         try
@@ -192,7 +192,7 @@ namespace DUNE
       }
 
       void
-      Bootloader::getFlashInfo(void)
+      Bootloader::getFlashInfo()
       {
         m_frame.setId(PKT_ID_BOOT_FLASH_INFO);
         m_frame.setPayloadSize(0);
@@ -217,19 +217,19 @@ namespace DUNE
       }
 
       void
-      Bootloader::printOK(void) const
+      Bootloader::printOK() const
       {
         print("OK\n");
       }
 
       void
-      Bootloader::printFailed(void) const
+      Bootloader::printFailed() const
       {
         print("FAILED\n");
       }
 
       void
-      Bootloader::printSuccess(void) const
+      Bootloader::printSuccess() const
       {
         print("\nSuccess!\n\n");
       }

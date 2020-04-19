@@ -52,13 +52,13 @@ namespace Sensors
       }
 
       const IMC::EstimatedState*
-      getEstimatedState(void) const
+      getEstimatedState() const
       {
         return &m_state;
       }
 
       int64_t
-      getTime(void) const
+      getTime() const
       {
         return m_time;
       }

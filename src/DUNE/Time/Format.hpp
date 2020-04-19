@@ -50,19 +50,19 @@ namespace DUNE
     {
     public:
       static std::string
-      getTimeDate(void);
+      getTimeDate();
 
       static std::string
       getTimeDate(double tstamp, bool utc = true);
 
       static std::string
-      getDateSafe(void);
+      getDateSafe();
 
       static std::string
       getDateSafe(double tstamp, bool utc = true);
 
       static std::string
-      getTimeSafe(void);
+      getTimeSafe();
 
       static std::string
       getTimeSafe(double tstamp, bool utc = true);

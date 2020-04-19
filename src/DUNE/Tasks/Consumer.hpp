@@ -55,7 +55,7 @@ namespace DUNE
         ((m_obj).*(m_fun))(reinterpret_cast<const M*>(msg));
       }
 
-      ~Consumer(void) override
+      ~Consumer() override
       { }
 
     private:

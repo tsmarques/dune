@@ -47,13 +47,13 @@ namespace DUNE
                    " systems allowed to pass EstimatedState messages");
     }
 
-    ProxyPathController::~ProxyPathController(void)
+    ProxyPathController::~ProxyPathController()
     {
       Memory::clear(m_state_filter);
     }
 
     void
-    ProxyPathController::onEntityResolution(void)
+    ProxyPathController::onEntityResolution()
     {
       PathController::onEntityResolution();
 

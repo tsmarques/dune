@@ -58,15 +58,15 @@ namespace DUNE
       //! Retrieve list with all active network interfaces.
       //! @return list with all currently active network interfaces.
       static std::vector<Interface>
-      get(void);
+      get();
 
       //! Constructor.
-      Interface(void);
+      Interface();
 
       //! Retrieve interface's name.
       //! @return interface's name.
       const std::string&
-      name(void) const
+      name() const
       {
         return m_name;
       }
@@ -81,7 +81,7 @@ namespace DUNE
       //! Retrieve interface's address.
       //! @return interface's address.
       const Address&
-      address(void) const
+      address() const
       {
         return m_addr;
       }
@@ -89,7 +89,7 @@ namespace DUNE
       //! Retrieve interface's broadcast address.
       //! @return interface's broadcast address.
       const Address&
-      broadcast(void) const
+      broadcast() const
       {
         return m_bcast;
       }

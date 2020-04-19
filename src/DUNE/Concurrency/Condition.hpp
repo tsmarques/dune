@@ -49,27 +49,27 @@ namespace DUNE
     class Condition
     {
     public:
-      Condition(void);
+      Condition();
 
-      ~Condition(void);
+      ~Condition();
 
       void
-      destroy(void);
+      destroy();
 
       bool
       wait(double t = -1);
 
       void
-      lock(void);
+      lock();
 
       void
-      unlock(void);
+      unlock();
 
       void
-      broadcast(void);
+      broadcast();
 
       void
-      signal(void);
+      signal();
 
     private:
 #if defined(DUNE_SYS_HAS_PTHREAD_COND)

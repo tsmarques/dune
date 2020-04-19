@@ -122,7 +122,7 @@ namespace DUNE
     }
 
     void
-    Task::reserveEntities(void)
+    Task::reserveEntities()
     {
       if (m_entity->getLabel().empty())
         throw std::runtime_error(DTR("entity label is not configured"));
@@ -133,13 +133,13 @@ namespace DUNE
     }
 
     void
-    Task::resolveEntities(void)
+    Task::resolveEntities()
     {
       onEntityResolution();
     }
 
     void
-    Task::reportEntityState(void)
+    Task::reportEntityState()
     {
       m_entity->reportState();
       onReportEntityState();
@@ -154,7 +154,7 @@ namespace DUNE
     }
 
     void
-    Task::acquireResources(void)
+    Task::acquireResources()
     {
       std::map<std::string, Parameter*>::iterator aitr = m_params.find("Active");
       if (aitr != m_params.end())
@@ -171,13 +171,13 @@ namespace DUNE
     }
 
     void
-    Task::releaseResources(void)
+    Task::releaseResources()
     {
       onResourceRelease();
     }
 
     void
-    Task::initializeResources(void)
+    Task::initializeResources()
     {
       while (!stopping())
       {
@@ -271,7 +271,7 @@ namespace DUNE
     }
 
     void
-    Task::requestActivation(void)
+    Task::requestActivation()
     {
       spew("request activation");
       m_entity->requestActivation();
@@ -284,7 +284,7 @@ namespace DUNE
     }
 
     void
-    Task::activate(void)
+    Task::activate()
     {
       if (m_entity->getActivationState() != IMC::EntityActivationState::EAS_ACT_IP)
         throw std::runtime_error(DTR("activation is not in progress"));
@@ -311,7 +311,7 @@ namespace DUNE
     }
 
     void
-    Task::requestDeactivation(void)
+    Task::requestDeactivation()
     {
       spew("request deactivation");
       m_entity->requestDeactivation();
@@ -324,7 +324,7 @@ namespace DUNE
     }
 
     void
-    Task::deactivate(void)
+    Task::deactivate()
     {
       if (m_entity->getActivationState() != IMC::EntityActivationState::EAS_DEACT_IP)
         throw std::runtime_error(DTR("deactivation is not in progress"));
@@ -350,7 +350,7 @@ namespace DUNE
     }
 
     void
-    Task::run(void)
+    Task::run()
     {
 #if defined(DUNE_OS_LINUX)
       prctl(PR_SET_NAME, getName(), 0, 0, 0);
@@ -689,7 +689,7 @@ namespace DUNE
     }
 
     void
-    Task::loadConfig(void)
+    Task::loadConfig()
     {
       std::map<std::string, Parameter*>::const_iterator itr = m_params.begin();
       for (; itr != m_params.end(); ++itr)

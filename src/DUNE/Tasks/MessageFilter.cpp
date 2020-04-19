@@ -40,10 +40,10 @@ namespace DUNE
 {
   namespace Tasks
   {
-    MessageFilter::MessageFilter(void)
+    MessageFilter::MessageFilter()
     { }
 
-    MessageFilter::~MessageFilter(void)
+    MessageFilter::~MessageFilter()
     { }
 
     //! Filter message

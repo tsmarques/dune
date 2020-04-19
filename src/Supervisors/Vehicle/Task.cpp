@@ -131,19 +131,19 @@ namespace Supervisors
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_man_sup = new ManeuverSupervisor(this, m_args.handle_timeout);
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_man_sup);
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setInitialState();
         m_err_timer.setTop(c_error_period);
@@ -152,7 +152,7 @@ namespace Supervisors
       }
 
       void
-      reset(void)
+      reset()
       {
         m_man_sup->addStop();
 
@@ -166,7 +166,7 @@ namespace Supervisors
       }
 
       void
-      setInitialState(void)
+      setInitialState()
       {
         // Initialize entity state.
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -251,7 +251,7 @@ namespace Supervisors
       }
 
       void
-      onEnabledControlLoops(void)
+      onEnabledControlLoops()
       {
         debug("some control loops are enabled now");
 
@@ -273,7 +273,7 @@ namespace Supervisors
       }
 
       void
-      onDisabledControlLoops(void)
+      onDisabledControlLoops()
       {
         debug("no control loops are enabled now");
 
@@ -609,7 +609,7 @@ namespace Supervisors
       }
 
       void
-      disableLoops(void)
+      disableLoops()
       {
         IMC::ControlLoops cloops;
         cloops.enable = IMC::ControlLoops::CL_DISABLE;
@@ -619,7 +619,7 @@ namespace Supervisors
       }
 
       void
-      task(void) override
+      task() override
       {
         dispatch(m_vs);
 
@@ -663,7 +663,7 @@ namespace Supervisors
       //! Check if the entities in error are relevant for performing an emergency plan
       //! @return true if entity error is relevant for current state, false otherwise
       bool
-      entityError(void)
+      entityError()
       {
         // no errors found.
         if (!m_vs.error_count)
@@ -695,37 +695,37 @@ namespace Supervisors
       }
 
       inline bool
-      serviceMode(void) const
+      serviceMode() const
       {
         return modeIs(IMC::VehicleState::VS_SERVICE);
       }
 
       inline bool
-      maneuverMode(void) const
+      maneuverMode() const
       {
         return modeIs(IMC::VehicleState::VS_MANEUVER);
       }
 
       inline bool
-      errorMode(void) const
+      errorMode() const
       {
         return modeIs(IMC::VehicleState::VS_ERROR);
       }
 
       inline bool
-      externalMode(void) const
+      externalMode() const
       {
         return modeIs(IMC::VehicleState::VS_EXTERNAL);
       }
 
       inline bool
-      calibrationMode(void) const
+      calibrationMode() const
       {
         return modeIs(IMC::VehicleState::VS_CALIBRATION);
       }
 
       inline bool
-      bootMode(void) const
+      bootMode() const
       {
         return modeIs(IMC::VehicleState::VS_BOOT);
       }
@@ -737,7 +737,7 @@ namespace Supervisors
       }
 
       inline bool
-      teleoperationOn(void) const
+      teleoperationOn() const
       {
         return maneuverIs(DUNE_IMC_TELEOPERATION);
       }
@@ -749,7 +749,7 @@ namespace Supervisors
       }
 
       inline bool
-      nonOverridableLoops(void) const
+      nonOverridableLoops() const
       {
         return (m_vs.control_loops & (IMC::CL_TELEOPERATION | IMC::CL_NO_OVERRIDE)) != 0;
       }

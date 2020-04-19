@@ -70,7 +70,7 @@ namespace DUNE
 {
   namespace Network
   {
-    Address::Address(void):
+    Address::Address():
       m_resolved(false)
     {
       std::memset(&m_ia, 0, sizeof(in_addr));
@@ -165,19 +165,19 @@ namespace DUNE
     }
 
     uint32_t
-    Address::toInteger(void) const
+    Address::toInteger() const
     {
       return m_ia.s_addr;
     }
 
     uint32_t
-    Address::toIntegerNative(void) const
+    Address::toIntegerNative() const
     {
       return Utils::ByteCopy::fromBE((uint32_t)m_ia.s_addr);
     }
 
     std::string
-    Address::str(void) const
+    Address::str() const
     {
 #if defined(DUNE_SYS_HAS_INET_NTOP)
       char bfr[INET_ADDRSTRLEN] = {0};
@@ -190,7 +190,7 @@ namespace DUNE
     }
 
     const char*
-    Address::c_str(void)
+    Address::c_str()
     {
 #if defined(DUNE_SYS_HAS_INET_NTOP)
       inet_ntop(AF_INET, &m_ia, m_buffer, sizeof(m_buffer));
@@ -228,7 +228,7 @@ namespace DUNE
     }
 
     bool
-    Address::resolve(void)
+    Address::resolve()
     {
       if (m_resolved)
         return true;
@@ -271,13 +271,13 @@ namespace DUNE
     }
 
     bool
-    Address::isLoopback(void) const
+    Address::isLoopback() const
     {
       return (toIntegerNative() & 0xff000000) == 0x7f000000;
     }
 
     bool
-    Address::isAny(void) const
+    Address::isAny() const
     {
       return (toIntegerNative() & 0xffffff00) == 0x00000000;
     }

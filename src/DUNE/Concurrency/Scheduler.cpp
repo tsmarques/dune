@@ -61,14 +61,14 @@ namespace DUNE
     }
 
     Scheduler::Policy
-    Scheduler::get(void)
+    Scheduler::get()
     {
       ScopedMutex m(g_policy_mtx);
       return g_policy;
     }
 
     unsigned
-    Scheduler::native(void)
+    Scheduler::native()
     {
       ScopedMutex m(g_policy_mtx);
       return native(g_policy);
@@ -91,7 +91,7 @@ namespace DUNE
     }
 
     unsigned
-    Scheduler::minimumPriority(void)
+    Scheduler::minimumPriority()
     {
 #if defined(DUNE_SYS_HAS_SCHED_GET_PRIORITY_MIN)
       int policy = native();
@@ -102,7 +102,7 @@ namespace DUNE
     }
 
     unsigned
-    Scheduler::maximumPriority(void)
+    Scheduler::maximumPriority()
     {
 #if defined(DUNE_SYS_HAS_SCHED_GET_PRIORITY_MAX)
       int policy = native();
@@ -113,7 +113,7 @@ namespace DUNE
     }
 
     void
-    Scheduler::yield(void)
+    Scheduler::yield()
     {
 #if defined(DUNE_SYS_HAS_SCHED_YIELD)
       sched_yield();

@@ -58,7 +58,7 @@ namespace Sensors
         m_bfr.resize(c_max_size);
       }
 
-      ~CommandLink(void)
+      ~CommandLink()
       {
       }
 
@@ -263,13 +263,13 @@ namespace Sensors
       }
 
       int64_t
-      getEstimatedTimeDelta(void)
+      getEstimatedTimeDelta()
       {
         return m_time_delta;
       }
 
       void
-      shutdown(void)
+      shutdown()
       {
         m_pkt.setMessageType(MSG_ID_SYSTEM_SHUTDOWN);
         m_pkt.setSubsystemNumber(0);

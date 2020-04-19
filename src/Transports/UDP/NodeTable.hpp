@@ -51,7 +51,7 @@ namespace Transports
     class NodeTable
     {
     public:
-      NodeTable(void):
+      NodeTable():
         m_active_count(0),
         m_lcomms(NULL)
       { }
@@ -91,7 +91,7 @@ namespace Transports
       }
 
       unsigned
-      getActiveCount(void)
+      getActiveCount()
       {
         return m_active_count;
       }

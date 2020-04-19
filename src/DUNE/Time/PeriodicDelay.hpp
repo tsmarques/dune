@@ -74,7 +74,7 @@ namespace DUNE
       }
 
       void
-      reset(void)
+      reset()
       {
         // Microsoft Windows.
 #if defined(DUNE_SYS_HAS_GET_SYSTEM_TIME_AS_FILE_TIME)
@@ -99,7 +99,7 @@ namespace DUNE
       }
 
       void
-      wait(void)
+      wait()
       {
         // Microsoft Windows.
 #if defined(DUNE_SYS_HAS_CREATE_WAITABLE_TIMER)

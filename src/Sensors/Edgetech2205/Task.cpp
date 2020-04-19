@@ -260,7 +260,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (m_args.power_channel.empty())
           m_powered = true;
@@ -305,13 +305,13 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         closeLog();
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -327,19 +327,19 @@ namespace Sensors
       //! Test if state queue has pending state transitions.
       //! @return true if state queue has pending states, false otherwise.
       bool
-      hasQueuedStates(void) const
+      hasQueuedStates() const
       {
         return !m_sm_state_queue.empty();
       }
 
       StateMachineStates
-      getCurrentState(void) const
+      getCurrentState() const
       {
         return m_sm_state;
       }
 
       StateMachineStates
-      dequeueState(void)
+      dequeueState()
       {
         if (hasQueuedStates())
         {
@@ -351,13 +351,13 @@ namespace Sensors
       }
 
       void
-      onRequestActivation(void) override
+      onRequestActivation() override
       {
         queueState(SM_ACT_BEGIN);
       }
 
       bool
-      connect(void)
+      connect()
       {
         Counter<double> timer(1.0);
         try
@@ -385,13 +385,13 @@ namespace Sensors
       }
 
       void
-      onRequestDeactivation(void) override
+      onRequestDeactivation() override
       {
         queueState(SM_DEACT_BEGIN);
       }
 
       void
-      disconnect(void)
+      disconnect()
       {
         debug("disconnecting");
         setDataActive(SUBSYS_SSL, "None");
@@ -405,14 +405,14 @@ namespace Sensors
       }
 
       void
-      onDeactivation(void) override
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         debug("deactivation complete");
       }
 
       void
-      onActivation(void) override
+      onActivation() override
       {
         debug("activation took %0.2f s", m_wdog.getElapsed());
 
@@ -435,7 +435,7 @@ namespace Sensors
       }
 
       void
-      requestLogName(void)
+      requestLogName()
       {
         debug("requesting current log path");
         IMC::LoggingControl lc;
@@ -494,14 +494,14 @@ namespace Sensors
       }
 
       void
-      setPingAutoSelectMode(void)
+      setPingAutoSelectMode()
       {
         m_cmd->setPingAutoselectMode(SUBSYS_SSH, m_args.autosel_mode);
         m_cmd->setPingAutoselectMode(SUBSYS_SSL, m_args.autosel_mode);
       }
 
       void
-      setTriggerCoupling(void)
+      setTriggerCoupling()
       {
         if ((m_args.channels_lf != "None") && (m_args.channels_hf != "None"))
         {
@@ -516,7 +516,7 @@ namespace Sensors
 
       //! Initialize sidescan configuration.
       void
-      initConfig(void)
+      initConfig()
       {
         setDataActive(SUBSYS_SSH, m_args.channels_hf);
         setDataActive(SUBSYS_SSL, m_args.channels_lf);
@@ -601,7 +601,7 @@ namespace Sensors
       }
 
       void
-      handleSonarData(void)
+      handleSonarData()
       {
         if (m_log == NULL || m_packet == NULL)
           return;
@@ -768,14 +768,14 @@ namespace Sensors
       }
 
       void
-      handlePacket(void)
+      handlePacket()
       {
         if (m_packet->getMessageType() == MSG_ID_SONAR_DATA)
           handleSonarData();
       }
 
       bool
-      readData(void)
+      readData()
       {
         if (!Poll::poll(*m_sock_dat, 1.0))
           return false;
@@ -846,7 +846,7 @@ namespace Sensors
       }
 
       void
-      logPacket(void)
+      logPacket()
       {
         if (m_log != NULL)
         {
@@ -856,7 +856,7 @@ namespace Sensors
       }
 
       void
-      closeLog(void)
+      closeLog()
       {
         if (m_log == NULL)
           return;
@@ -881,14 +881,14 @@ namespace Sensors
       }
 
       void
-      turnPowerOn(void)
+      turnPowerOn()
       {
         trace("turning power on");
         controlPower(IMC::PowerChannelControl::PCC_OP_TURN_ON);
       }
 
       void
-      turnPowerOff(void)
+      turnPowerOff()
       {
         trace("turning power off");
         controlPower(IMC::PowerChannelControl::PCC_OP_TURN_OFF);
@@ -897,13 +897,13 @@ namespace Sensors
       //! Test if power channel is on.
       //! @return true if power channel is on, false otherwise.
       bool
-      isPowered(void)
+      isPowered()
       {
         return m_powered;
       }
 
       void
-      updateStateMachine(void)
+      updateStateMachine()
       {
         switch (dequeueState())
         {
@@ -1026,7 +1026,7 @@ namespace Sensors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

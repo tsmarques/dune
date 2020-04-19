@@ -62,14 +62,14 @@ namespace DUNE
       // Instance methods
 
       //! Constructor.
-      MD5(void);
+      MD5();
 
       //! Destructor.
-      ~MD5(void);
+      ~MD5();
 
       //! Reset to an initial state.
       void
-      reset(void);
+      reset();
 
       //! Update MD5 hash with input data.
       //! @param data data buffer

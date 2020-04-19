@@ -104,7 +104,7 @@ namespace Vision
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (m_args.standard == "NTSC")
           m_standard = Media::VideoCapture::STANDARD_NTSC;
@@ -113,13 +113,13 @@ namespace Vision
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_video = new VideoCapture(m_args.vid_dev, m_args.pic_w, m_args.pic_h);
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_jpeg.setInputDimensions(m_video->frameWidth(), m_video->frameHeight());
         m_jpeg.setInputColorSpace(m_jpeg.CS_RGB);
@@ -129,7 +129,7 @@ namespace Vision
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_video);
       }
@@ -142,7 +142,7 @@ namespace Vision
       }
 
       void
-      task(void) override
+      task() override
       {
         m_video->frameCapture();
         m_jpeg.compress(m_video->frameData(), m_args.jpeg_quality);

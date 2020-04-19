@@ -111,7 +111,7 @@ namespace Control
         }
 
         void
-        reset(void) override
+        reset() override
         {
           BasicAutopilot::reset();
 
@@ -125,13 +125,13 @@ namespace Control
         }
 
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           BasicAutopilot::onResourceInitialization();
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           reset();
 
@@ -153,7 +153,7 @@ namespace Control
         }
 
         void
-        onEntityReservation(void) override
+        onEntityReservation() override
         {
           if (m_args.log_parcels)
           {

@@ -51,7 +51,7 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      Message(void)
+      Message()
       {
         m_header.src = AddressResolver::invalid();
         m_header.src_ent = DUNE_IMC_CONST_UNK_EID;
@@ -62,34 +62,34 @@ namespace DUNE
 
       //! Default destructor.
       virtual
-      ~Message(void)
+      ~Message()
       { }
 
       //! Retrieve a copy of the message.
       //! @return message copy.
       virtual Message*
-      clone(void) const = 0;
+      clone() const = 0;
 
       //! Reset message's fields.
       virtual void
-      clear(void) = 0;
+      clear() = 0;
 
       //! Validate the message's contents.
       //! @return negative value in case of a valid message or a
       //! positive value indicating the position of the invalid
       //! message field.
       virtual int
-      validate(void) const = 0;
+      validate() const = 0;
 
       //! Retrieve message's name.
       //! @return message's name.
       virtual const char*
-      getName(void) const = 0;
+      getName() const = 0;
 
       //! Retrieve message's identification number.
       //! @return message's identification number.
       virtual uint16_t
-      getId(void) const = 0;
+      getId() const = 0;
 
       //! Set the message's time stamp to a given value.
       //! @param ts time stamp.
@@ -105,7 +105,7 @@ namespace DUNE
       //! Set the message's time stamp to current time.
       //! @return time stamp.
       double
-      setTimeStamp(void)
+      setTimeStamp()
       {
         return setTimeStamp(Time::Clock::getSinceEpoch());
       }
@@ -113,7 +113,7 @@ namespace DUNE
       //! Retrieve the message's time stamp.
       //! @return time stamp.
       double
-      getTimeStamp(void) const
+      getTimeStamp() const
       {
         return m_header.timestamp;
       }
@@ -121,7 +121,7 @@ namespace DUNE
       //! Get message's source.
       //! @return message's source.
       uint16_t
-      getSource(void) const
+      getSource() const
       {
         return m_header.src;
       }
@@ -138,7 +138,7 @@ namespace DUNE
       //! Get message's source entity.
       //! @return message's source entity.
       uint8_t
-      getSourceEntity(void) const
+      getSourceEntity() const
       {
         return m_header.src_ent;
       }
@@ -155,7 +155,7 @@ namespace DUNE
       //! Retrieve message's destination.
       //! @return message's destination.
       uint16_t
-      getDestination(void) const
+      getDestination() const
       {
         return m_header.dst;
       }
@@ -172,7 +172,7 @@ namespace DUNE
       //! Get message's destination entity.
       //! @return message's destination entity.
       uint8_t
-      getDestinationEntity(void) const
+      getDestinationEntity() const
       {
         return m_header.dst_ent;
       }
@@ -189,7 +189,7 @@ namespace DUNE
       //! Retrieve message's sub identification number (id field).
       //! @return message's sub identification number.
       virtual uint16_t
-      getSubId(void) const
+      getSubId() const
       {
         return 0;
       }
@@ -206,7 +206,7 @@ namespace DUNE
       //! such an abbreviation with floating point type.
       //! @return value of field 'value', 0.0 otherwise.
       virtual fp64_t
-      getValueFP(void) const
+      getValueFP() const
       {
         return 0.0;
       }
@@ -224,7 +224,7 @@ namespace DUNE
       //! the message.
       //! @return amount of bytes required to serialize the message.
       unsigned
-      getSerializationSize(void) const
+      getSerializationSize() const
       {
         return DUNE_IMC_CONST_HEADER_SIZE
         + DUNE_IMC_CONST_FOOTER_SIZE
@@ -235,7 +235,7 @@ namespace DUNE
       //! the payload of the message.
       //! @return amount of bytes required to serialize message's payload.
       unsigned
-      getPayloadSerializationSize(void) const
+      getPayloadSerializationSize() const
       {
         return getFixedSerializationSize() + getVariableSerializationSize();
       }
@@ -244,7 +244,7 @@ namespace DUNE
       //! this message (variable length fields are not included).
       //! @return amount of variable bytes required to serialize the message.
       virtual unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const
       {
         return 0;
       }
@@ -253,7 +253,7 @@ namespace DUNE
       //! this message (only the variable fields are included).
       //! @return amount of variable bytes required to serialize the message.
       virtual unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const
       {
         return 0;
       }

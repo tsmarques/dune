@@ -92,7 +92,7 @@ handleTerminate(DWORD type)
 #endif
 
 void
-setLauncherSignalHandlers(void)
+setLauncherSignalHandlers()
 {
 #if defined(DUNE_SYS_HAS_SIGACTION)
   struct sigaction actions;

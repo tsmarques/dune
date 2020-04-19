@@ -65,7 +65,7 @@ namespace DUNE
       //! Check if elevator has finished
       //! @return true if finished
       inline bool
-      isDone(void) const
+      isDone() const
       {
         return (m_els == ST_DONE);
       }
@@ -73,7 +73,7 @@ namespace DUNE
       //! Get the elevator's direction
       //! @return positive if going up, negative going down, zero for undefined
       inline int
-      getElevatorDirection(void) const
+      getElevatorDirection() const
       {
         return m_dir;
       }
@@ -128,7 +128,7 @@ namespace DUNE
       //! Check if current position should be used
       //! @return true if current position should be used, false otherwise
       inline bool
-      useCurr(void) const
+      useCurr() const
       {
         return (m_elevator.flags & IMC::Elevator::FLG_CURR_POS);
       }

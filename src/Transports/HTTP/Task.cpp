@@ -107,7 +107,7 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         bind(this, m_args.messages);
 
@@ -149,13 +149,13 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_server);
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         m_msg_mon.setEntities(m_ctx.entities.entries());
       }
@@ -449,7 +449,7 @@ namespace Transports
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

@@ -83,13 +83,13 @@ namespace Power
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_power_state.name = m_args.pwr_chn;
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -115,7 +115,7 @@ namespace Power
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_psu_ctl != NULL)
         {
@@ -166,7 +166,7 @@ namespace Power
       //! Dispatch raw board state
       //! @return true if successfully dispatched state
       bool
-      dispatchState(void)
+      dispatchState()
       {
         UCTK::Frame frame;
         frame.setId(c_pkt_state);
@@ -194,7 +194,7 @@ namespace Power
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         Counter<double> timer(1.0);
 

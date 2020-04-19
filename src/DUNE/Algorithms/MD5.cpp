@@ -85,19 +85,19 @@ namespace DUNE
       ::MD5_CTX ctx;
     };
 
-    MD5::MD5(void):
+    MD5::MD5():
       m_handle(new MD5_HANDLE)
     {
       reset();
     }
 
-    MD5::~MD5(void)
+    MD5::~MD5()
     {
       delete m_handle;
     }
 
     void
-    MD5::reset(void)
+    MD5::reset()
     {
       MD5Init(&m_handle->ctx);
     }

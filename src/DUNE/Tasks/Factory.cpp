@@ -105,13 +105,13 @@ namespace DUNE
     }
 
     int
-    Factory::getRegisteredCount(void)
+    Factory::getRegisteredCount()
     {
       return c_table.size();
     }
 
     Factory::Table&
-    Factory::getTable(void)
+    Factory::getTable()
     {
       return c_table;
     }

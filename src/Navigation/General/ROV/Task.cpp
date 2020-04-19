@@ -124,7 +124,7 @@ namespace Navigation
 
         //! Update internal state with new parameter values.
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           BasicNavigation::onUpdateParameters();
 
@@ -145,20 +145,20 @@ namespace Navigation
 
         //! Initialize resources.
         void
-        onResourceInitialization(void) override
+        onResourceInitialization() override
         {
           BasicNavigation::onResourceInitialization();
         }
 
         //! Release resources.
         void
-        onResourceRelease(void) override
+        onResourceRelease() override
         {
           BasicNavigation::onResourceRelease();
         }
 
         void
-        onConsumeLblConfig(void) override
+        onConsumeLblConfig() override
         {
           if (m_kal.resize(NUM_OUT + m_ranging.getSize()))
             Task::onUpdateParameters();
@@ -175,7 +175,7 @@ namespace Navigation
         }
 
         unsigned
-        getNumberOutputs(void) override
+        getNumberOutputs() override
         {
           return NUM_OUT;
         }
@@ -188,7 +188,7 @@ namespace Navigation
         }
 
         bool
-        setup(void) override
+        setup() override
         {
           BasicNavigation::setup();
 
@@ -201,7 +201,7 @@ namespace Navigation
         }
 
         void
-        reset(void) override
+        reset() override
         {
           BasicNavigation::reset();
           m_gps_reading = false;
@@ -227,7 +227,7 @@ namespace Navigation
 
         // Reinitialize Extended Kalman Filter output matrix function.
         void
-        resetKalman(void)
+        resetKalman()
         {
           m_kal.resetOutputs();
           m_kal.setObservation(OUT_U, STATE_U, 1.0);
@@ -237,7 +237,7 @@ namespace Navigation
         }
 
         void
-        logData(void)
+        logData()
         {
           m_estate.psi = Angles::normalizeRadian(getEuler(AXIS_Z));
           m_estate.r = Angles::normalizeRadian(getAngularVelocity(AXIS_Z));
@@ -261,7 +261,7 @@ namespace Navigation
 
         //! Main loop.
         void
-        task(void) override
+        task() override
         {
           if(!BasicNavigation::isActive())
             return;

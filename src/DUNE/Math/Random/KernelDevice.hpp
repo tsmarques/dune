@@ -64,7 +64,7 @@ namespace DUNE
         //! Indicates if facility is available.
         //! It will return 'true' is the operating system device file '/dev/urandom' exists.
         static bool
-        available(void);
+        available();
 
         //! Constructor.
         KernelDevice();
@@ -74,11 +74,11 @@ namespace DUNE
 
         //! Generate random integer number, as per the general contract of the base class.
         int32_t
-        random(void) override;
+        random() override;
 
         //! Generate random floating point number, as per the general contract of the base class.
         double
-        uniform(void) override;
+        uniform() override;
 
         //! Seed method, with no effect for this class.
         //! It is only provided to comply with general contract of base class.

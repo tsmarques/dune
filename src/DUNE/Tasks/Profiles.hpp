@@ -50,7 +50,7 @@ namespace DUNE
     {
     public:
       //! Destructor.
-      ~Profiles(void)
+      ~Profiles()
       {
         clear();
       }
@@ -63,7 +63,7 @@ namespace DUNE
 
       //! Clear all profiles.
       void
-      clear(void);
+      clear();
 
       //! Select a given profile or comma separated list of profiles.
       //! @param name profile name or comma separated list of profile names.
@@ -84,7 +84,7 @@ namespace DUNE
       //! profiles.
       //! @return comma separated list of currently selected profiles.
       std::string
-      getSelected(void);
+      getSelected();
 
     private:
       // Forward declarations.

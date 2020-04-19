@@ -59,17 +59,17 @@ namespace DUNE
       StreamBuffer(std::istream* stream, Methods method);
 
       
-      ~StreamBuffer(void) override;
+      ~StreamBuffer() override;
 
     protected:
       int_type
       overflow(int_type c) override;
 
       int_type
-      underflow(void) override;
+      underflow() override;
 
       int
-      sync(void) override;
+      sync() override;
 
       std::streamsize
       xsputn(const char* bfr, std::streamsize bfr_len) override;

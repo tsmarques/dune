@@ -109,7 +109,7 @@ namespace Navigation
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           if (!m_args.convert_msl)
           {
@@ -119,7 +119,7 @@ namespace Navigation
         }
 
         void
-        onEntityResolution(void) override
+        onEntityResolution() override
         {
           try
           {
@@ -233,7 +233,7 @@ namespace Navigation
         }
 
         void
-        onMain(void) override
+        onMain() override
         {
           while (!stopping())
           {

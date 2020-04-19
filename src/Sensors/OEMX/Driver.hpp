@@ -73,7 +73,7 @@ namespace Sensors
         m_timeout_uart = 1.0f;;
       }
 
-      ~DriverOEMX(void)
+      ~DriverOEMX()
       {}
 
       bool

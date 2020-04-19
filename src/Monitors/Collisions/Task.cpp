@@ -180,7 +180,7 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.t_error))
           m_twindow.setTop(m_args.t_error);
@@ -193,7 +193,7 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         m_tground.setTop(c_time_ground);
 
@@ -204,7 +204,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         try
         {
@@ -218,7 +218,7 @@ namespace Monitors
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_avg_x_innov);
         Memory::clear(m_avg_z_innov);
@@ -335,7 +335,7 @@ namespace Monitors
       //! Check if the collision should be ignored
       //! @return true if collision should be ignored, false otherwise.
       bool
-      ignore(void)
+      ignore()
       {
         if (!m_tground.overflow())
           return true;
@@ -354,7 +354,7 @@ namespace Monitors
 
       //! This routine is called when a collision is detected.
       void
-      collided(void)
+      collided()
       {
         // Reset counter.
         m_twindow.reset();
@@ -375,7 +375,7 @@ namespace Monitors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

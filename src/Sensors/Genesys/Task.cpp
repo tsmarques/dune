@@ -95,7 +95,7 @@ namespace Sensors
 
       //! Update task parameters.
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         m_wdog.setTop(3 / getFrequency());
 
@@ -114,7 +114,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         try
         {
@@ -132,14 +132,14 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_sock);
       }
 
       //! Send node address to establish communication.
       void
-      setAddress(void)
+      setAddress()
       {
         char packet[c_addr_size];
         String::format(packet, c_addr_size, "ADR %u\r", m_args.addr);
@@ -150,7 +150,7 @@ namespace Sensors
 
       //! Extract data from device.
       void
-      getData(void)
+      getData()
       {
         // Request data.
         m_sock->write("STT?\r", c_data_size);
@@ -188,7 +188,7 @@ namespace Sensors
       }
 
       void
-      task(void) override
+      task() override
       {
         consumeMessages();
 

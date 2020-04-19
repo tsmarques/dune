@@ -72,7 +72,7 @@ namespace Maneuver
       }
 
       void
-      onStateReport(void) override
+      onStateReport() override
       {
         if (m_end_time < 0)
         {
@@ -88,7 +88,7 @@ namespace Maneuver
           m_task->signalProgress((uint16_t)time_left);
       }
 
-      ~Idle(void) override
+      ~Idle() override
       { }
 
     private:

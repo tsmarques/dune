@@ -35,16 +35,16 @@ namespace DUNE
 {
   namespace IMC
   {
-    Parser::Parser(void)
+    Parser::Parser()
     {
       reset();
     }
 
-    Parser::~Parser(void)
+    Parser::~Parser()
     { }
 
     void
-    Parser::reset(void)
+    Parser::reset()
     {
       m_stage = c_sync;
       m_pos = 0;

@@ -154,14 +154,14 @@ namespace Maneuver
         }
 
         void
-        onUpdateParameters(void) override
+        onUpdateParameters() override
         {
           VehicleFormation::onUpdateParameters();
         }
 
         //! Close matlab logged vectors
         void
-        onReset(void) override
+        onReset() override
         {
           if (m_args.debug)
           {
@@ -392,7 +392,7 @@ namespace Maneuver
         }
 
         void
-        onPathCompletion(void) override
+        onPathCompletion() override
         {
           TPoint next;
 

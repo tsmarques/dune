@@ -197,13 +197,13 @@ namespace Transports
         bind<IMC::UsblConfig>(this);
       }
 
-      ~Task(void) override
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_reporter = new Supervisors::Reporter::Client(this, Supervisors::Reporter::IS_ACOUSTIC,
                                                        2.0, false);
@@ -213,7 +213,7 @@ namespace Transports
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://acoustic/operation/")
@@ -228,7 +228,7 @@ namespace Transports
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         clearLastOp();
         Memory::clear(m_reporter);
@@ -559,7 +559,7 @@ namespace Transports
 
       //! Announce USBL service.
       void
-      announceUSBL(void)
+      announceUSBL()
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://acoustic/usbl/")
@@ -569,7 +569,7 @@ namespace Transports
 
       //! Clear last operation.
       void
-      clearLastOp(void)
+      clearLastOp()
       {
         Memory::clear(m_last_acop);
       }
@@ -791,7 +791,7 @@ namespace Transports
       }
 
       void
-      sendReport(void)
+      sendReport()
       {
         double lat = 0;
         double lon = 0;
@@ -845,7 +845,7 @@ namespace Transports
 
       //! Main loop of USBL modem.
       void
-      onUsblModem(void)
+      onUsblModem()
       {
         if (m_usbl_modem != NULL)
         {
@@ -858,7 +858,7 @@ namespace Transports
 
       //! Main loop of USBL node.
       void
-      onUsblNode(void)
+      onUsblNode()
       {
         if (m_usbl_node != NULL)
         {
@@ -871,7 +871,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

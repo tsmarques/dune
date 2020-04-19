@@ -54,7 +54,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~Rows(void) override
+      ~Rows() override
       {
         Memory::clear(m_parser);
       }

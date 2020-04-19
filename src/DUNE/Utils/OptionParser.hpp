@@ -48,10 +48,10 @@ namespace DUNE
     class OptionParser
     {
     public:
-      OptionParser(void);
+      OptionParser();
 
       //! Destructor.
-      ~OptionParser(void);
+      ~OptionParser();
 
       bool
       parse(int argc, char** argv);
@@ -149,16 +149,16 @@ namespace DUNE
                          const char *argument = nullptr);
 
       void
-      usage(void);
+      usage();
 
       bool
-      bad(void)
+      bad()
       {
         return m_error != "";
       }
 
       const char*
-      error(void)
+      error()
       {
         return m_error.c_str();
       }

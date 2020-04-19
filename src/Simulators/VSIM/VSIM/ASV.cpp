@@ -40,7 +40,7 @@ namespace Simulators
 {
   namespace VSIM
   {
-    ASV::ASV(void):
+    ASV::ASV():
       m_volume(NULL)
     { }
 
@@ -60,7 +60,7 @@ namespace Simulators
       m_volume = new Volume(x, y, z);
     }
 
-    ASV::~ASV(void)
+    ASV::~ASV()
     {
       if (m_volume != NULL)
       {
@@ -70,7 +70,7 @@ namespace Simulators
     }
 
     void
-    ASV::applyForces(void)
+    ASV::applyForces()
     {
       applyDragForces();
       applyAsvActuation();
@@ -89,7 +89,7 @@ namespace Simulators
     }
 
     void
-    ASV::applyAsvActuation(void)
+    ASV::applyAsvActuation()
     {
       // Original parameters.
       double T2CLeft[] = {-0.7428, 1.6420, 4.0325, -0.769};

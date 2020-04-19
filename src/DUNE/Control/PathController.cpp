@@ -208,13 +208,13 @@ namespace DUNE
       bind<IMC::DesiredSpeed>(this);
     }
 
-    PathController::~PathController(void)
+    PathController::~PathController()
     {
       Memory::clear(m_btrack);
     }
 
     void
-    PathController::onUpdateParameters(void)
+    PathController::onUpdateParameters()
     {
       if (paramChanged(m_cperiod))
         m_cperiod = 1.0 / m_cperiod;
@@ -264,17 +264,17 @@ namespace DUNE
     }
 
     void
-    PathController::onResourceInitialization(void)
+    PathController::onResourceInitialization()
     {
       requestDeactivation();
     }
 
     void
-    PathController::onResourceRelease(void)
+    PathController::onResourceRelease()
     { }
 
     void
-    PathController::onEntityReservation(void)
+    PathController::onEntityReservation()
     {
       m_bt_entity = reserveEntity<DUNE::Entities::BasicEntity>(Utils::String::str("%s - Bottom Track", getEntityLabel()));
       m_btd.args.entity = m_bt_entity;
@@ -725,7 +725,7 @@ namespace DUNE
     }
 
     void
-    PathController::updateTrackingState(void)
+    PathController::updateTrackingState()
     {
       // Range and LOS angle to destination
       getBearingAndRange(m_estate, m_ts.end, &m_ts.los_angle, &m_ts.range);
@@ -804,7 +804,7 @@ namespace DUNE
     }
 
     void
-    PathController::monitorAlongTrackError(void)
+    PathController::monitorAlongTrackError()
     {
       if (m_ts.now < m_atm.time)
         return;
@@ -869,7 +869,7 @@ namespace DUNE
     }
 
     void
-    PathController::monitorCrossTrackError(void)
+    PathController::monitorCrossTrackError()
     {
       double d = std::fabs(m_ts.track_pos.y);
 
@@ -923,7 +923,7 @@ namespace DUNE
     }
 
     void
-    PathController::onActivation(void)
+    PathController::onActivation()
     {
       m_error = false;
       m_tracking = false;
@@ -937,7 +937,7 @@ namespace DUNE
     }
 
     void
-    PathController::onDeactivation(void)
+    PathController::onDeactivation()
     {
       if (m_ts.z_control)
         disableControlLoops(m_ts.end.z < 0 ? IMC::CL_ALTITUDE : IMC::CL_DEPTH);
@@ -1068,7 +1068,7 @@ namespace DUNE
     }
 
     void
-    PathController::deactivateBottomTracker(void)
+    PathController::deactivateBottomTracker()
     {
       if (m_btrack == NULL)
         return;
@@ -1087,7 +1087,7 @@ namespace DUNE
     }
 
     void
-    PathController::onMain(void)
+    PathController::onMain()
     {
       while (!stopping())
       {

@@ -41,20 +41,20 @@ namespace DUNE
     class Delta
     {
     public:
-      Delta(void):
+      Delta():
         m_last(-1.0)
       { }
 
       //! Clear delta time clock.
       inline void
-      clear(void)
+      clear()
       {
         m_last = -1.0;
       }
 
       //! Reset time now.
       inline void
-      reset(void)
+      reset()
       {
         m_last = Time::Clock::get();
       }
@@ -62,7 +62,7 @@ namespace DUNE
       //! Get current delta and reset clock.
       //! @return delta time.
       inline double
-      getDelta(void)
+      getDelta()
       {
         if (m_last < 0.0)
         {
@@ -80,7 +80,7 @@ namespace DUNE
       //! Check time since last reset.
       //! @return delta time.
       inline double
-      check(void)
+      check()
       {
         if (m_last < 0.0)
         {

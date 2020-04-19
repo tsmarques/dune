@@ -54,18 +54,18 @@ namespace Sensors
     {
     public:
       //! Constructor.
-      EstimatedStateList(void)
+      EstimatedStateList()
       { }
 
       //! Destructor.
-      ~EstimatedStateList(void)
+      ~EstimatedStateList()
       {
         clear();
       }
 
       //! Clear list contents.
       void
-      clear(void)
+      clear()
       {
         while (!m_list.empty())
         {
@@ -85,7 +85,7 @@ namespace Sensors
       //! Test if list is empty.
       //! @return true if list is empty, false otherwise.
       bool
-      empty(void) const
+      empty() const
       {
         return m_list.empty();
       }

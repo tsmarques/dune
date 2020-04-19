@@ -52,7 +52,7 @@ namespace UserInterfaces
         m_port = new IOPort(addr, 1);
       }
 
-      ~ParallelPort(void) override
+      ~ParallelPort() override
       {
         if (m_port)
           delete m_port;

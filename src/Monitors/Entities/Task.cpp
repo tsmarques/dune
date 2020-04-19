@@ -132,14 +132,14 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         // Initialize entity state.
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onEntityResolution(void) override
+      onEntityResolution() override
       {
         // Mark default settings, so we can get back to them.
         m_args.defmon.push_back("Daemon");
@@ -244,7 +244,7 @@ namespace Monitors
       }
 
       void
-      onReportEntityState(void) override
+      onReportEntityState() override
       {
         onTimeoutCheck();
         reportState();
@@ -383,7 +383,7 @@ namespace Monitors
 
       //! Dispatch Entity Monitoring State
       void
-      reportState(void)
+      reportState()
       {
         m_ems.mcount = m_ems.ecount = m_ems.ccount = 0;
         m_ems.mnames = m_ems.enames = m_ems.cnames = "";
@@ -420,7 +420,7 @@ namespace Monitors
 
       //! Check if any entity has timedout
       void
-      onTimeoutCheck(void)
+      onTimeoutCheck()
       {
         double now = Clock::get();
 
@@ -455,7 +455,7 @@ namespace Monitors
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

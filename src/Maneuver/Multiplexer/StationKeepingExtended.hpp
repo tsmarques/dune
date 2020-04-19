@@ -66,7 +66,7 @@ namespace Maneuver
         m_ks(KS_UNKNOWN)
       { }
 
-      ~StationKeepingExtended(void) override
+      ~StationKeepingExtended() override
       {
         Memory::clear(m_skeep);
         Memory::clear(m_elevate);
@@ -156,7 +156,7 @@ namespace Maneuver
 
       //! On state report function
       void
-      onStateReport(void) override
+      onStateReport() override
       {
         if (m_skeep == NULL)
           return;
@@ -186,14 +186,14 @@ namespace Maneuver
       //! Must adopt safe behavior (loiter underwater and popup periodically to report position)
       //! @return true if KEEP_SAFE option is enabled
       bool
-      keepSafe(void)
+      keepSafe()
       {
         return (m_maneuver.flags & IMC::StationKeepingExtended::FLG_KEEP_SAFE) != 0;
       }
 
       //! Starts Loiter on current position
       void
-      startLoiter(void)
+      startLoiter()
       {
         m_task->debug("\n\tStart LOITER!");
         m_task->setControl(IMC::CL_PATH);
@@ -216,7 +216,7 @@ namespace Maneuver
 
       //! Surfaces to report position
       void
-      doPopUp(void)
+      doPopUp()
       {
         m_task->debug("\n\tStart ELEVATOR!");
         m_task->setControl(IMC::CL_PATH);

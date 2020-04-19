@@ -44,11 +44,11 @@ namespace Simulators
     {
     public:
       //! Constructor.
-      Force(void);
+      Force();
 
       //! Destructor.
       virtual
-      ~Force(void)
+      ~Force()
       { }
 
       //! Defines force vector.
@@ -71,17 +71,17 @@ namespace Simulators
       //! Is force in inertial referencial.
       //! @return true if it is, false otherwise.
       bool
-      isInertial(void);
+      isInertial();
 
       //! Is a torque.
       //! @return true if it is, false otherwise.
       bool
-      isTorque(void);
+      isTorque();
 
       //! Is position in inertial referencial.
       //! @return true if it is, false otherwise.
       bool
-      isPosInertial(void);
+      isPosInertial();
 
       //! Apply this force to body with id ident.
       //! @param[in] speed speed reference.
@@ -103,7 +103,7 @@ namespace Simulators
       //! Retrieve current force actuation value.
       //! @return force actuation value.
       virtual double
-      getActuation(void);
+      getActuation();
 
     protected:
       //! Max force.

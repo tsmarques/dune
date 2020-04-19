@@ -91,7 +91,7 @@ namespace DUNE
         }
 
         //! Destructor.
-        ~Encoder(void)
+        ~Encoder()
         {
           m_idx1->write(m_ofs);
           m_tstp->write(m_ofs);

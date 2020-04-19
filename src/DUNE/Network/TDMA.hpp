@@ -50,7 +50,7 @@ namespace DUNE
     {
     public:
       //! Empty Constructor.
-      TDMA(void)
+      TDMA()
       { }
 
       //! Constructor.
@@ -116,7 +116,7 @@ namespace DUNE
 
       //! Reset TDMA slots.
       void
-      reset(void)
+      reset()
       {
         setup();
       }
@@ -137,7 +137,7 @@ namespace DUNE
     private:
       //! Setup slots.
       void
-      setup(void)
+      setup()
       {
         m_seconds.clear();
 

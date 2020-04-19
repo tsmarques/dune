@@ -62,7 +62,7 @@ namespace DUNE
       RawTLS (dune_concurrency_raw_tls_dtr_t dtor = nullptr);
 
       //! Destructor.
-      ~RawTLS(void);
+      ~RawTLS();
 
       //! Set data for calling thread.
       //! Previous data set, if any, is released using key destructor,
@@ -74,7 +74,7 @@ namespace DUNE
 
       //! Get data set for calling thread.
       void*
-      get(void);
+      get();
 
       // Non - copyable.
       RawTLS(RawTLS const&);

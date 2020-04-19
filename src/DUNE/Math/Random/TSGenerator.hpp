@@ -46,7 +46,7 @@ namespace DUNE
       class TSGenerator: public Generator
       {
       public:
-        TSGenerator(void):
+        TSGenerator():
           m_rng()
         { }
 
@@ -62,14 +62,14 @@ namespace DUNE
         }
 
         int32_t
-        random(void) override
+        random() override
         {
           Concurrency::ScopedMutex lock(m_mtx);
           return m_rng.random();
         }
 
         double
-        uniform(void) override
+        uniform() override
         {
           Concurrency::ScopedMutex lock(m_mtx);
           return m_rng.uniform();

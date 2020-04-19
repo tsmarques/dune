@@ -53,12 +53,12 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~FollowPath(void) override
+      ~FollowPath() override
       { }
 
       //! Reset function
       void
-      reset(void)
+      reset()
       {
         m_wpts.clear();
         m_curr = 0;
@@ -130,7 +130,7 @@ namespace Maneuver
 
       //! Routine to throw next waypoint
       void
-      gotoNextPoint(void)
+      gotoNextPoint()
       {
         Waypoint& w = m_wpts[m_curr];
         m_path.end_lat = w.lat;

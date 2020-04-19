@@ -131,7 +131,7 @@ namespace Simulators
 
       //! Update parameters
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.max_angle))
           m_args.max_angle = Angles::radians(m_args.max_angle);
@@ -142,21 +142,21 @@ namespace Simulators
 
       //! Acquire resources
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
 
       //! Initialize resources.
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         // Initialize position values.
         for (unsigned i = 0; i < c_servo_count; ++i)
@@ -240,7 +240,7 @@ namespace Simulators
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         while (!stopping())
         {

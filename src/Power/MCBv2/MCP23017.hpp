@@ -56,14 +56,14 @@ namespace Power
         m_gpios |= getPortValue(1) << 8;
       }
 
-      ~MCP23017(void)
+      ~MCP23017()
       {
         if (m_i2c)
           delete m_i2c;
       }
 
       uint16_t
-      getGPIOs(void)
+      getGPIOs()
       {
         return m_gpios;
       }

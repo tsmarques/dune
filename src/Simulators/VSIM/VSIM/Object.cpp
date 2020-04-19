@@ -41,7 +41,7 @@ namespace Simulators
 {
   namespace VSIM
   {
-    Object::Object(void)
+    Object::Object()
     {
       std::memset(m_inertia, 0, sizeof(m_inertia));
       std::memset(m_linear_drag_coef, 0, sizeof(m_linear_drag_coef));
@@ -101,7 +101,7 @@ namespace Simulators
     }
 
     void
-    Object::insertInWorld(void)
+    Object::insertInWorld()
     {
       m_body_id = 0;
       setOrientation(m_orientation[0], m_orientation[1], m_orientation[2]);
@@ -109,7 +109,7 @@ namespace Simulators
     }
 
     void
-    Object::applyDragForces(void)
+    Object::applyDragForces()
     {
       double xf = m_linear_drag_coef[0] * m_linear_velocity[0];
       double yf = (m_linear_drag_coef[1] * m_linear_velocity[1] +
@@ -141,7 +141,7 @@ namespace Simulators
     }
 
     void
-    Object::applyForces(void)
+    Object::applyForces()
     {
       applyDragForces();
     }
@@ -158,7 +158,7 @@ namespace Simulators
     }
 
     void
-    Object::resetForces(void)
+    Object::resetForces()
     {
       for (unsigned i = 0; i < 6; i++)
         m_forces[i] = 0.0;

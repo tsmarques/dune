@@ -81,7 +81,7 @@ namespace DUNE
       m_trollback_stmt = new Statement("rollback", *this);
     }
 
-    Connection::~Connection(void)
+    Connection::~Connection()
     {
       if (m_handle)
       {
@@ -109,25 +109,25 @@ namespace DUNE
     }
 
     const char*
-    Connection::lastError(void)
+    Connection::lastError()
     {
       return sqlite3_errmsg(m_handle);
     }
 
     void
-    Connection::beginTransaction(void)
+    Connection::beginTransaction()
     {
       m_tbegin_stmt->execute();
     }
 
     void
-    Connection::commit(void)
+    Connection::commit()
     {
       m_tcommit_stmt->execute();
     }
 
     void
-    Connection::rollback(void)
+    Connection::rollback()
     {
       m_trollback_stmt->execute();
     }

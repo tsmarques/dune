@@ -153,13 +153,13 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         debug("initializing");
         // Send execute immediatly command.
@@ -193,7 +193,7 @@ namespace Actuators
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (m_args.model == "D48")
         {
@@ -214,7 +214,7 @@ namespace Actuators
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
@@ -267,7 +267,7 @@ namespace Actuators
       }
 
       void
-      task(void) override
+      task() override
       {
         // PAN
         float pan_rad = Angles::normalizeRadian(m_pan);

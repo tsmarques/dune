@@ -52,7 +52,7 @@ namespace DUNE
       }
 
       //! Destruct the object, unlocking the associated mutex.
-      ~ScopedMutex(void)
+      ~ScopedMutex()
       {
         m_lock.unlock();
       }

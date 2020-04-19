@@ -53,7 +53,7 @@ namespace DUNE
       typedef typename std::vector<Type*>::const_iterator const_iterator;
 
       //! Default constructor.
-      MessageList (void) : m_parent (nullptr) {}
+      MessageList () : m_parent (nullptr) {}
 
       //! Copy constructor. Copy the contents of other to this
       //! instance.
@@ -64,7 +64,7 @@ namespace DUNE
       }
 
       //! Default destructor.
-      ~MessageList(void)
+      ~MessageList()
       {
         clear();
       }
@@ -83,7 +83,7 @@ namespace DUNE
       //! are called, and then they are removed from the vector
       //! container, leaving the container with a size of 0.
       void
-      clear(void)
+      clear()
       {
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
@@ -100,7 +100,7 @@ namespace DUNE
       //! Retrieve the number of elements in this list.
       //! @return number of elements in the list.
       size_t
-      size(void) const
+      size() const
       {
         return m_list.size();
       }
@@ -109,7 +109,7 @@ namespace DUNE
       //! list container.
       //! @return iterator.
       const_iterator
-      begin(void) const
+      begin() const
       {
         return m_list.begin();
       }
@@ -118,7 +118,7 @@ namespace DUNE
       //! the list container.
       //! @return iterator.
       const_iterator
-      end(void) const
+      end() const
       {
         return m_list.end();
       }
@@ -157,7 +157,7 @@ namespace DUNE
       //! Retrieve the amount of bytes needed to serialize the object.
       //! @return amount of bytes needed for serialization.
       unsigned
-      getSerializationSize(void) const
+      getSerializationSize() const
       {
         int nbytes = 2;
 

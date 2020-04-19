@@ -336,7 +336,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void) override
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.yoyo.variation))
           m_args.yoyo.variation = Angles::radians(m_args.yoyo.variation);
@@ -366,7 +366,7 @@ namespace Maneuver
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         Maneuver::onResourceInitialization();
 
@@ -383,14 +383,14 @@ namespace Maneuver
 
       template <typename Type>
       AbstractMux*
-      create(void)
+      create()
       {
         Type* mux = new Type(static_cast<Maneuvers::Maneuver*>(this));
         return static_cast<AbstractMux*>(mux);
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         m_maneuvers[TYPE_IDLE] = create<Idle>();
         m_maneuvers[TYPE_GOTO] = create<Goto>();
@@ -412,14 +412,14 @@ namespace Maneuver
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         for (unsigned i = 0; i < TYPE_TOTAL; ++i)
           Memory::clear(m_maneuvers[i]);
       }
 
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         Maneuver::onEntityReservation();
 
@@ -428,13 +428,13 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void) override
+      onManeuverDeactivation() override
       {
         setEntityId(getEntityId());
       }
 
       void
-      changeEntity(void)
+      changeEntity()
       {
         setEntityId(m_ents[m_type]);
       }
@@ -501,7 +501,7 @@ namespace Maneuver
       }
 
       void
-      onStateReport(void) override
+      onStateReport() override
       {
         m_maneuvers[m_type]->onStateReport();
       }

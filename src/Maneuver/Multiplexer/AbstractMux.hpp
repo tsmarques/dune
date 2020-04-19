@@ -50,7 +50,7 @@ namespace Maneuver
 
       //! Destructor
       virtual
-      ~AbstractMux(void)
+      ~AbstractMux()
       { }
 
       //! Start function
@@ -80,7 +80,7 @@ namespace Maneuver
 
       //! On StateReport function
       virtual void
-      onStateReport(void)
+      onStateReport()
       { }
 
       //! On VehicleMedium message

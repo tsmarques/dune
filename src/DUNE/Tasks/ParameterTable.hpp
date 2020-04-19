@@ -48,10 +48,10 @@ namespace DUNE
     class ParameterTable
     {
     public:
-      ParameterTable(void)
+      ParameterTable()
       { }
 
-      ~ParameterTable(void);
+      ~ParameterTable();
 
       Parameter&
       add(const std::string& name, void* ptr, AbstractParameterParser* reader)
@@ -95,16 +95,16 @@ namespace DUNE
       //! Retrieve the list of registered parameters.
       //! @return list with the labels of registered parameters.
       std::vector<std::string>
-      getParameterList(void);
+      getParameterList();
 
       std::map<std::string, Parameter*>::const_iterator
-      begin(void) const
+      begin() const
       {
         return m_names.begin();
       }
 
       std::map<std::string, Parameter*>::const_iterator
-      end(void) const
+      end() const
       {
         return m_names.end();
       }

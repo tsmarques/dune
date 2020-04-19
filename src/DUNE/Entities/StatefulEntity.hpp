@@ -86,14 +86,14 @@ namespace DUNE
       //! Retrieve the current entity state.
       //! @return entity state.
       IMC::EntityState::StateEnum
-      getState(void) const
+      getState() const
       {
         return static_cast<IMC::EntityState::StateEnum>(m_entity_state.state);
       }
 
       //! Report the entity state.
       void
-      reportState(void);
+      reportState();
 
       //! Set the expected activation and deactivation times to be included in the EntityInfo message.
       //! @param[in] act_time expected activation time.
@@ -107,12 +107,12 @@ namespace DUNE
 
       //! Report the activation state.
       void
-      reportActivationState(void);
+      reportActivationState();
 
       //! Test if entity is active.
       //! @return true if entity is active, false otherwise.
       bool
-      isActive(void) const
+      isActive() const
       {
         return m_act_state.state == IMC::EntityActivationState::EAS_ACTIVE;
       }
@@ -120,7 +120,7 @@ namespace DUNE
       //! Test if entity is activating.
       //! @return true if entity is activating, false otherwise.
       bool
-      isActivating(void) const
+      isActivating() const
       {
         return m_act_state.state == IMC::EntityActivationState::EAS_ACT_IP;
       }
@@ -128,7 +128,7 @@ namespace DUNE
       //! Test if entity is deactivating.
       //! @return true if entity is deactivating, false otherwise.
       bool
-      isDeactivating(void) const
+      isDeactivating() const
       {
         return m_act_state.state == IMC::EntityActivationState::EAS_DEACT_IP;
       }
@@ -136,18 +136,18 @@ namespace DUNE
       //! Get the current entity activation state.
       //! @return current entity activation state.
       IMC::EntityActivationState::StateEnum
-      getActivationState(void) const
+      getActivationState() const
       {
         return static_cast<IMC::EntityActivationState::StateEnum>(m_act_state.state);
       }
 
       //! Request entity activation
       void
-      requestActivation(void);
+      requestActivation();
 
       //! Request entity deactivation
       void
-      requestDeactivation(void);
+      requestDeactivation();
 
       //! Mark the activation as unsuccessful.
       //! @param[in] reason message to the user explaining why the activation failed.
@@ -156,7 +156,7 @@ namespace DUNE
 
       //! Mark the activation as successful.
       void
-      succeedActivation(void);
+      succeedActivation();
 
       //! Mark the deactivation as unsuccessful.
       //! @param[in] reason message to the user explaining why the deactivation failed.
@@ -165,7 +165,7 @@ namespace DUNE
 
       //! Mark the deactivation as successful.
       void
-      succeedDeactivation(void);
+      succeedDeactivation();
 
       //! Consume QueryEntityState messages andreply accordingly.
       //! @param[in] msg QueryEntityState message.
@@ -182,7 +182,7 @@ namespace DUNE
       //! @return true if an activation request is pending, false
       //! otherwise.
       bool
-      hasPendingActivation(void) const
+      hasPendingActivation() const
       {
         return m_next_act_state == NAS_ACTIVE;
       }
@@ -192,7 +192,7 @@ namespace DUNE
       //! @return true if a deactivation request is pending, false
       //! otherwise.
       bool
-      hasPendingDeactivation(void) const
+      hasPendingDeactivation() const
       {
         return m_next_act_state == NAS_INACTIVE;
       }

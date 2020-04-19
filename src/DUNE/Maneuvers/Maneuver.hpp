@@ -60,23 +60,23 @@ namespace DUNE
 
       //! On entity reservation
       void
-      onEntityReservation(void) override;
+      onEntityReservation() override;
 
       //! On resource initialization
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       //! On maneuver activation
       virtual void
-      onManeuverActivation(void)
+      onManeuverActivation()
       { }
 
       //! On maneuver deactivation
       virtual void
-      onManeuverDeactivation(void)
+      onManeuverDeactivation()
       { }
 
       //! On Path Control State
@@ -89,12 +89,12 @@ namespace DUNE
       //! On task activation
       //! Should be used only by parent class Maneuver
       void
-      onActivation(void) override;
+      onActivation() override;
 
       //! On task deactivation
       //! Should be used only by parent class Maneuver
       void
-      onDeactivation(void) override;
+      onDeactivation() override;
 
       //! Method fired on maneuver startup.
       //! It performs some initialization, then delegates handling on
@@ -114,7 +114,7 @@ namespace DUNE
 
       template <typename T, typename M>
       void
-      bindToManeuver(void)
+      bindToManeuver()
       {
         void (Maneuver::* startfunc)(const M*) = &Maneuver::startManeuver<T, M>;
         Task::bind<M>(this, startfunc);
@@ -228,7 +228,7 @@ namespace DUNE
       //! convenient to do so in time-triggered manner
       //! rather than in response to a particular message.
       virtual void
-      onStateReport(void)
+      onStateReport()
       { }
 
       //! Update active control loops
@@ -245,12 +245,12 @@ namespace DUNE
       //! Signal invalid Z reference
       //! This method should be used by subclasses to signal an error condition.
       void
-      signalInvalidZ(void);
+      signalInvalidZ();
 
       //! Signal no altitude error.
       //! This method should be used by subclasses to signal an error condition.
       void
-      signalNoAltitude(void);
+      signalNoAltitude();
 
       //! Signal an error.
       //! This method should be used by subclasses to signal maneuver completion.
@@ -282,24 +282,24 @@ namespace DUNE
 
       //! Signal maneuver progress.
       inline void
-      signalProgress(void)
+      signalProgress()
       {
         signalProgress("");
       }
 
       void
-      onMain(void) override;
+      onMain() override;
 
     private:
       //! Update the scope reference
       //! @return new sequence number for the scope
       uint32_t
-      changeScopeRef(void);
+      changeScopeRef();
 
       //! Update path reference
       //! @return new sequence number for the desired path
       uint32_t
-      changePathRef(void);
+      changePathRef();
 
       //! Entity to use when dispatching message
       unsigned m_eid;

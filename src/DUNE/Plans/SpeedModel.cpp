@@ -86,7 +86,7 @@ namespace DUNE
     }
 
     void
-    SpeedModel::validate(void) const
+    SpeedModel::validate() const
     {
       unsigned psize = m_models[IMC::SUNITS_PERCENTAGE].size();
       unsigned rsize = m_models[IMC::SUNITS_RPM].size();

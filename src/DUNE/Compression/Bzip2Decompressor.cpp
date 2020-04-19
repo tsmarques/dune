@@ -44,21 +44,21 @@ namespace DUNE
       bz_stream stream;
     };
 
-    Bzip2Decompressor::Bzip2Decompressor(void):
+    Bzip2Decompressor::Bzip2Decompressor():
       Decompressor()
     {
       m_private = new PrivateData;
       clear();
     }
 
-    Bzip2Decompressor::~Bzip2Decompressor(void)
+    Bzip2Decompressor::~Bzip2Decompressor()
     {
       BZ2_bzDecompressEnd(&m_private->stream);
       delete m_private;
     }
 
     void
-    Bzip2Decompressor::clear(void)
+    Bzip2Decompressor::clear()
     {
       m_clear = false;
 

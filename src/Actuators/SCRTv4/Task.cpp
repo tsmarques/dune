@@ -134,7 +134,7 @@ namespace Actuators
       }
 
       void
-      onEntityReservation(void) override
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -146,7 +146,7 @@ namespace Actuators
       }
 
       void
-      onResourceRelease(void) override
+      onResourceRelease() override
       {
         if (m_listener != NULL)
         {
@@ -159,7 +159,7 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void) override
+      onResourceAcquisition() override
       {
         try
         {
@@ -174,7 +174,7 @@ namespace Actuators
       }
 
       void
-      onResourceInitialization(void) override
+      onResourceInitialization() override
       {
         clearStats();
 
@@ -214,7 +214,7 @@ namespace Actuators
       }
 
       bool
-      readConstantParameters(void)
+      readConstantParameters()
       {
         LUCL::ProtocolParser::sendCommand(CMD_PARAMS_CON, 0, 0, m_uart);
         LUCL::Command* cmd = waitForReply(CMD_PARAMS_CON, 1.0);
@@ -227,7 +227,7 @@ namespace Actuators
       }
 
       bool
-      readEffectiveParameters(void)
+      readEffectiveParameters()
       {
         LUCL::ProtocolParser::sendCommand(CMD_PARAMS_EFF, 0, 0, m_uart);
         LUCL::Command* cmd = waitForReply(CMD_PARAMS_EFF, 1.0);
@@ -253,14 +253,14 @@ namespace Actuators
       }
 
       bool
-      startContinuous(void)
+      startContinuous()
       {
         LUCL::ProtocolParser::sendCommand(CMD_STATE, CONT_OUT_RATE_10HZ, m_uart);
         return waitForReplyAndDiscard(CMD_STATE, 1.0);
       }
 
       bool
-      stopContinuous(void)
+      stopContinuous()
       {
         LUCL::ProtocolParser::sendCommand(CMD_STATE, CONT_OUT_RATE_0HZ, m_uart);
         LUCL::ProtocolParser::sendCommand(CMD_CHECK_FUSES, 0, 0, m_uart);
@@ -382,7 +382,7 @@ namespace Actuators
       }
 
       void
-      dispatchStats(void)
+      dispatchStats()
       {
         IMC::DevDataText msg;
         msg.value = String::str("invalid: %u, error: %u, timeout: %u",
@@ -393,7 +393,7 @@ namespace Actuators
       }
 
       void
-      clearStats(void)
+      clearStats()
       {
         m_stat_invalid = 0;
         m_stat_error = 0;
@@ -402,7 +402,7 @@ namespace Actuators
       }
 
       void
-      onMain(void) override
+      onMain() override
       {
         LUCL::Command* cmd = NULL;
 
