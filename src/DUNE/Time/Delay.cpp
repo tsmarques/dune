@@ -34,7 +34,7 @@
 
 // Platform headers.
 #if defined(DUNE_SYS_HAS_TIME_H)
-#  include <time.h>
+#  include <ctime>
 #endif
 
 #if defined(DUNE_SYS_HAS_WINDOWS_H)

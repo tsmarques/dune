@@ -51,7 +51,7 @@
 #endif
 
 #if defined(DUNE_SYS_HAS_SIGNAL_H)
-#  include <signal.h>
+#  include <csignal>
 #endif
 
 namespace DUNE

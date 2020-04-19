@@ -32,7 +32,7 @@
 #include <stdexcept>
 
 // ISO C 99 headers / POSIX headers.
-#include <stdio.h>
+#include <cstdio>
 
 // DUNE headers.
 #include <DUNE/DUNE.hpp>

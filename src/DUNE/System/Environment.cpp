@@ -32,7 +32,7 @@
 #include <cstdlib>
 
 // Required by Sun Studio.
-#include <stdlib.h>
+#include <cstdlib>
 
 // Local headers.
 #include <DUNE/System/Environment.hpp>

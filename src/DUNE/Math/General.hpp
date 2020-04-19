@@ -44,12 +44,12 @@
 
 // C99/POSIX headers.
 #if defined(DUNE_SYS_HAS_MATH_H)
-#  include <math.h>
+#  include <cmath>
 #endif
 
 // Microsoft Windows headers.
 #if defined(DUNE_SYS_HAS_FLOAT_H)
-#  include <float.h>
+#  include <cfloat>
 #endif
 
 namespace DUNE

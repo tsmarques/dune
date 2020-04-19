@@ -47,7 +47,7 @@
 #endif
 
 #if defined(DUNE_SYS_HAS_SIGNAL_H)
-#  include <signal.h>
+#  include <csignal>
 #endif
 
 #if defined(DUNE_SYS_HAS_SYS_SIGNAL_H)

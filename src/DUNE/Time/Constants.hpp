@@ -35,7 +35,7 @@
 
 // Platform headers.
 #if defined(DUNE_SYS_HAS_TIME_H)
-#  include <time.h>
+#  include <ctime>
 #endif
 
 // For those systems without CLOCK_MONOTONIC.

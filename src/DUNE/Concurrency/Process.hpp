@@ -38,7 +38,7 @@
 
 // POSIX headers.
 #if defined(DUNE_SYS_HAS_SIGNAL_H)
-#  include <signal.h>
+#  include <csignal>
 #endif
 
 #if defined(DUNE_SYS_HAS_SEMAPHORE_H)

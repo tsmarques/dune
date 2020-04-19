@@ -49,7 +49,7 @@
 
 // POSIX headers.
 #if defined(DUNE_SYS_HAS_STRING_H)
-#  include <string.h>
+#  include <cstring>
 #endif
 
 namespace DUNE
