@@ -315,7 +315,7 @@ namespace Control
 
         //! Acquire resources.
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition(void) override
         {
           openConnection();
 
@@ -361,14 +361,14 @@ namespace Control
 
         //! Release resources.
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           Memory::clear(m_TCP_sock);
           Memory::clear(m_UDP_sock);
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           // Mavlink Phototrigger
           if(paramChanged(m_args.mavlink_phototrigger))
@@ -734,7 +734,7 @@ namespace Control
 
         //! Main loop.
         void
-        onMain(void)
+        onMain(void) override
         {
           while (!stopping())
           {

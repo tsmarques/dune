@@ -82,8 +82,7 @@ namespace DUNE
       //! Dispatches a message to registered listeners.
       //! @param msg message to dispatch.
       //! @param task do not deliver message to this task.
-      void
-      dispatch(const Message* msg, Tasks::AbstractTask* task = NULL);
+      void dispatch (const Message *msg, Tasks::AbstractTask *task = nullptr);
 
       inline void
       pause(void)

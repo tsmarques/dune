@@ -98,15 +98,15 @@ namespace Maneuver
       }
 
       //! Destructor
-      virtual
-      ~Task(void)
+      
+      ~Task(void) override
       {
         Memory::clear(m_stages_parser);
         Memory::clear(m_alt_avrg);
       }
 
       void
-      onManeuverDeactivation(void)
+      onManeuverDeactivation(void) override
       {
         Memory::clear(m_stages_parser);
         Memory::clear(m_alt_avrg);
@@ -195,7 +195,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if (m_alt_avrg == NULL)
           return;

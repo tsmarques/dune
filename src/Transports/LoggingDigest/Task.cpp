@@ -96,7 +96,7 @@ namespace Transports
         bind<IMC::EntityInfo>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         stopLog();
 
@@ -108,7 +108,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Initialize entity state.
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -116,7 +116,7 @@ namespace Transports
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.sample_interval))
           m_sample_timer.setTop(m_args.sample_interval);
@@ -277,7 +277,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

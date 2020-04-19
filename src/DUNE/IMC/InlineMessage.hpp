@@ -51,10 +51,7 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      InlineMessage(void):
-        m_parent(NULL),
-        m_msg(NULL)
-      { }
+      InlineMessage (void) : m_parent (nullptr), m_msg (NULL) {}
 
       //! Copy constructor.
       InlineMessage(const InlineMessage& other):

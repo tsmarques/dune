@@ -119,13 +119,13 @@ namespace Transports
         bind<IMC::EntityInfo>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         bind(this, m_args.messages);
 
@@ -134,13 +134,13 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_lsf);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_compression = Compression::Factory::method(m_args.lsf_compression);
         if (m_args.lsf_volumes.empty())
@@ -429,7 +429,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         changeVolumeDirectory();
 

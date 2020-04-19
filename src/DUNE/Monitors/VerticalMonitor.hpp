@@ -54,10 +54,8 @@ namespace DUNE
       //! Constructor.
       //! @param[in] timeout amount of time before triggering condition as met
       //! @param[in] min_speed minimum speed for triggering condition
-      VerticalMonitor(float timeout, float min_speed):
-        m_min_speed(min_speed),
-        m_slow_progress(false),
-        m_mave(NULL)
+      VerticalMonitor (float timeout, float min_speed)
+          : m_min_speed (min_speed), m_slow_progress (false), m_mave (nullptr)
       {
         m_timer.setTop(timeout);
         m_mave = new Math::MovingAverage<float>(c_vsamples);

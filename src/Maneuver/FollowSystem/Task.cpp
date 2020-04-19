@@ -124,7 +124,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.timeout))
           m_last_update.setTop(m_args.timeout);
@@ -134,7 +134,7 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void)
+      onManeuverDeactivation(void) override
       {
         m_first_announce = true;
         m_has_estimated_state = false;
@@ -286,14 +286,14 @@ namespace Maneuver
 
       //! Function to check if the vehicle is getting near to the next waypoint
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if (pcs->flags & IMC::PathControlState::FL_NEAR)
           enableMovement(false);
       }
 
       void
-      onStateReport(void)
+      onStateReport(void) override
       {
         if (!m_maneuver.duration)
           return;

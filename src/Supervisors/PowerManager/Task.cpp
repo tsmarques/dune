@@ -72,38 +72,38 @@ namespace Supervisors
 
             //! Update internal state with new parameter values.
             void
-            onUpdateParameters(void)
+            onUpdateParameters(void) override
             {
             }
 
             //! Reserve entity identifiers.
             void
-            onEntityReservation(void)
+            onEntityReservation(void) override
             {
             }
 
             //! Resolve entity names.
             void
-            onEntityResolution(void)
+            onEntityResolution(void) override
             {
             }
 
             //! Acquire resources.
             void
-            onResourceAcquisition(void)
+            onResourceAcquisition(void) override
             {
             }
 
             //! Initialize resources.
             void
-            onResourceInitialization(void)
+            onResourceInitialization(void) override
             {
                 setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
             }
 
             //! Release resources.
             void
-            onResourceRelease(void)
+            onResourceRelease(void) override
             {
             }
             
@@ -159,7 +159,7 @@ namespace Supervisors
 
             //! Main loop.
             void
-            onMain(void)
+            onMain(void) override
             {
                 IMC::PowerChannelControl power_control_channel;
                 power_control_channel.name = "Radio";

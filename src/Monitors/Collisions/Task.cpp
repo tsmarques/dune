@@ -180,7 +180,7 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.t_error))
           m_twindow.setTop(m_args.t_error);
@@ -193,7 +193,7 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_tground.setTop(c_time_ground);
 
@@ -204,7 +204,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         try
         {
@@ -218,7 +218,7 @@ namespace Monitors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_avg_x_innov);
         Memory::clear(m_avg_z_innov);
@@ -375,7 +375,7 @@ namespace Monitors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

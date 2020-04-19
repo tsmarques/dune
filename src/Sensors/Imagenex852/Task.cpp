@@ -279,7 +279,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_switch.setRange(m_args.range);
         m_switch.setStartGain(m_args.start_gain);
@@ -321,7 +321,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -346,7 +346,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_trigger.isRunning() || m_trigger.isStopping())
         {
@@ -359,7 +359,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_trigger.setActive(isActive());
         m_trigger.setUART(m_uart);
@@ -370,14 +370,14 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         m_wdog.reset();
         m_trigger.setActive(true);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         if (m_hand.isKnown())
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -440,7 +440,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         uint8_t bfr[1024];
 

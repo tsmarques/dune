@@ -166,7 +166,7 @@ namespace Actuators
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         unsigned eid = 0;
 
@@ -197,7 +197,7 @@ namespace Actuators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
@@ -205,7 +205,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_parse = new Parser();
         m_poll.add(*m_uart);
@@ -219,7 +219,7 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_uart != NULL)
         {
@@ -488,7 +488,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      task(void)
+      task(void) override
       {
         setRpmValues();
 

@@ -59,7 +59,7 @@ namespace Supervisors
       }
 
       void
-      run(void)
+      run(void) override
       {
         if (std::system(m_cmd.c_str()) == 0)
         {

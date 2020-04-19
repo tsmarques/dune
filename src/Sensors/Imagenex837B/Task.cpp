@@ -385,7 +385,7 @@ namespace Sensors
 
       //! Update task parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (isActive())
         {
@@ -517,7 +517,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         requestDeactivation();
         closeLog();
@@ -525,7 +525,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_frame837);
         Memory::clear(m_frame83P);
@@ -535,7 +535,7 @@ namespace Sensors
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation(void) override
       {
         m_power_channel_control.op = IMC::PowerChannelControl::PCC_OP_TURN_ON;
         dispatch(m_power_channel_control);
@@ -544,7 +544,7 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         inf("%s", DTR(Status::getString(Status::CODE_ACTIVE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -557,7 +557,7 @@ namespace Sensors
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         closeLog();
 
@@ -1050,7 +1050,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

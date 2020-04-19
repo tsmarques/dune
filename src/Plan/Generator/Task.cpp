@@ -120,7 +120,7 @@ namespace Plan
 
       //! Frees memory associated with stored messages.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_estate);
         Memory::clear(m_last_lbl_config);
@@ -261,7 +261,7 @@ namespace Plan
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         // Generate plans at boot
         if (!m_args.generate_at_boot.empty())

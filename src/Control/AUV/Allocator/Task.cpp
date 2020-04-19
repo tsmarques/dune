@@ -211,7 +211,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.max_fin_rot))
             m_args.max_fin_rot = Angles::radians(m_args.max_fin_rot);
@@ -221,13 +221,13 @@ namespace Control
         }
 
         void
-        onActivation(void)
+        onActivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
@@ -240,7 +240,7 @@ namespace Control
         }
         //! Release resources.
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
             Memory::clear(m_last_estimated_state);
             Memory::clear(m_last_rpm);
@@ -249,7 +249,7 @@ namespace Control
           
         }
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           reset();
 
@@ -276,7 +276,7 @@ namespace Control
 
         //! Resolve entities for messages
         void
-        onEntityResolution(void)
+        onEntityResolution(void) override
         {
           try
           {
@@ -721,7 +721,7 @@ namespace Control
         }
 
         void
-        onMain(void)
+        onMain(void) override
         {
           while (!stopping())
           {

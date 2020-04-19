@@ -45,12 +45,12 @@ namespace DUNE
     public:
       ZlibDecompressor(bool gzip = false);
 
-      virtual
-      ~ZlibDecompressor(void);
+      
+      ~ZlibDecompressor(void) override;
 
     protected:
-      virtual unsigned long
-      decompressBlock(char* dst, unsigned long dst_len, char* src, unsigned long src_len, unsigned long& unprocessed_len);
+      unsigned long
+      decompressBlock(char* dst, unsigned long dst_len, char* src, unsigned long src_len, unsigned long& unprocessed_len) override;
 
     private:
       // Forward declaration of private data.

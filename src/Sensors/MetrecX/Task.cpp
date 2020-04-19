@@ -263,7 +263,7 @@ namespace Sensors
         bind<IMC::Temperature>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         // To clear uart if an exception is thrown.
         onResourceRelease();
@@ -273,7 +273,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         try
         {
@@ -308,7 +308,7 @@ namespace Sensors
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_need_setup = true;
 
@@ -363,7 +363,7 @@ namespace Sensors
 
       //! Reserve entities.
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         for (unsigned i = 0; i < c_channels; ++i)
         {
@@ -396,7 +396,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         try
@@ -413,13 +413,13 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_uart->writeString("\r");
         Delay::wait(1.0);
@@ -726,7 +726,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         char bfr[255];
         double values[c_total];

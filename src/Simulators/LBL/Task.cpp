@@ -149,7 +149,7 @@ namespace Simulators
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.ping_delay))
           m_pinger.setTop(m_args.ping_delay);
@@ -157,7 +157,7 @@ namespace Simulators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_WAIT_GPS_FIX);
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
@@ -165,7 +165,7 @@ namespace Simulators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_prng);
         Memory::clear(m_gps);
@@ -276,14 +276,14 @@ namespace Simulators
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         m_pinger.reset();
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -353,7 +353,7 @@ namespace Simulators
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

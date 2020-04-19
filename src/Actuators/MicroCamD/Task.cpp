@@ -145,19 +145,19 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud, SerialPort::SP_PARITY_EVEN);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setMode(MODE_RATE);
         setOSD(OSD_NONE);
@@ -391,7 +391,7 @@ namespace Actuators
       }
 
       void
-      task(void)
+      task(void) override
       {
         sendCommand();
 

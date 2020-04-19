@@ -188,7 +188,7 @@ namespace Sensors
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         unsigned eid = 0;
 
@@ -216,7 +216,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -230,7 +230,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVATING);
         m_is_correct_conf = true;
@@ -250,7 +250,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_uart != NULL)
         {
@@ -482,7 +482,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

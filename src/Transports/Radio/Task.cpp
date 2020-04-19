@@ -365,7 +365,7 @@ namespace Transports
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
          if (m_args.power_channel.empty())
           m_powered = true;
@@ -374,13 +374,13 @@ namespace Transports
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
       }
 
       //! Resolve entity names.
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
           try
           {
@@ -395,7 +395,7 @@ namespace Transports
       //! @return true if socket was opened, false otherwise.
 
       void
-      onRequestActivation(void)
+      onRequestActivation(void) override
       {
 
         int m_addr = 0;
@@ -458,7 +458,7 @@ namespace Transports
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation(void) override
       {
         m_sm_state = SM_DEACT_BEGIN;
         hardwareUpdateStateMachine();
@@ -466,7 +466,7 @@ namespace Transports
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         m_reporter = new Supervisors::Reporter::Client(this, Supervisors::Reporter::IS_RADIO,
@@ -657,7 +657,7 @@ namespace Transports
       }
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
          std::vector<std::string> addrs = m_ctx.config.options(m_args.addr_section);
         for (unsigned i = 0; i < addrs.size(); ++i)
@@ -679,7 +679,7 @@ namespace Transports
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_reporter);
         Memory::clear(m_telemetry);
@@ -721,7 +721,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

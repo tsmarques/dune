@@ -119,19 +119,19 @@ namespace Sensors
         bind<IMC::Pulse>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         delete [] m_bfr;
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
@@ -401,7 +401,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!setup())
           ;

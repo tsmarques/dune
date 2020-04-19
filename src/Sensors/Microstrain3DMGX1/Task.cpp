@@ -193,7 +193,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
 
@@ -213,13 +213,13 @@ namespace Sensors
         }
       }
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_wdog.setTop(m_args.data_tout);
       }
@@ -260,7 +260,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
@@ -764,7 +764,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!setup())
         {

@@ -300,7 +300,7 @@ namespace Navigation
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           BasicNavigation::onUpdateParameters();
 
@@ -338,7 +338,7 @@ namespace Navigation
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           BasicNavigation::onResourceInitialization();
           m_avg_speed = new MovingAverage<double>(m_args.navg_speed);
@@ -346,7 +346,7 @@ namespace Navigation
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           BasicNavigation::onResourceRelease();
           Memory::clear(m_avg_speed);
@@ -354,7 +354,7 @@ namespace Navigation
         }
 
         void
-        onEntityResolution(void)
+        onEntityResolution(void) override
         {
           BasicNavigation::onEntityResolution();
           try
@@ -368,7 +368,7 @@ namespace Navigation
         }
 
         void
-        onReportEntityState(void)
+        onReportEntityState(void) override
         {
           IMC::AlignmentState as;
 
@@ -443,7 +443,7 @@ namespace Navigation
         }
 
         bool
-        setup(void)
+        setup(void) override
         {
           BasicNavigation::setup();
 
@@ -466,7 +466,7 @@ namespace Navigation
         }
 
         void
-        reset(void)
+        reset(void) override
         {
           BasicNavigation::reset();
           m_gps_reading = false;
@@ -480,14 +480,14 @@ namespace Navigation
         }
 
         void
-        onConsumeLblConfig(void)
+        onConsumeLblConfig(void) override
         {
           if (m_kal.resize(NUM_OUT + m_ranging.getSize()))
             Task::onUpdateParameters();
         }
 
         void
-        updateKalmanGpsParameters(double hacc)
+        updateKalmanGpsParameters(double hacc) override
         {
           if (hacc > GPS_BAD)
           {
@@ -512,7 +512,7 @@ namespace Navigation
         }
 
         void
-        runKalmanGPS(double x, double y)
+        runKalmanGPS(double x, double y) override
         {
           m_gps_reading = true;
 
@@ -522,7 +522,7 @@ namespace Navigation
         }
 
         void
-        runKalmanUSBL(double x, double y)
+        runKalmanUSBL(double x, double y) override
         {
           // if there's gps, ignore usbl.
           if (!m_time_without_gps.overflow())
@@ -539,20 +539,20 @@ namespace Navigation
         }
 
         void
-        getSpeedOutputStates(unsigned* u, unsigned* v)
+        getSpeedOutputStates(unsigned* u, unsigned* v) override
         {
           *u = OUT_U;
           *v = OUT_V;
         }
 
         unsigned
-        getNumberOutputs(void)
+        getNumberOutputs(void) override
         {
           return NUM_OUT;
         }
 
         void
-        task(void)
+        task(void) override
         {
           if(!BasicNavigation::isActive())
             return;

@@ -56,7 +56,7 @@ namespace DUNE
         //! Write chunk data to output stream.
         //! @param[in] os output stream.
         void
-        writeData(std::ostream& os)
+        writeData(std::ostream& os) override
         {
           uint32_t usec_per_frame = (uint32_t)(1e6 / m_properties.fps);
 

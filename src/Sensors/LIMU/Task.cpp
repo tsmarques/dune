@@ -196,7 +196,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_rotation.fill(c_axes_count, c_axes_count, &m_args.rotation_mx[0]);
 
@@ -220,7 +220,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         if (!m_args.pwr_name.empty())
         {
@@ -250,7 +250,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_ctl);
         Memory::clear(m_uart);
@@ -258,7 +258,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         setHardIronFactors();
@@ -574,7 +574,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

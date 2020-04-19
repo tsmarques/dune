@@ -56,7 +56,7 @@ namespace DUNE
         //! Write chunk data to output stream.
         //! @param[in] os output stream.
         void
-        writeData(std::ostream& os)
+        writeData(std::ostream& os) override
         {
           // biSize.
           writeWord(getDataSize(), os);

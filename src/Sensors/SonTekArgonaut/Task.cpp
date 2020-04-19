@@ -117,13 +117,13 @@ namespace Sensors
         .description("Device orientation");
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.wdog_tout))
           m_wdog.setTop(m_args.wdog_tout);
@@ -150,7 +150,7 @@ namespace Sensors
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         for (unsigned i = 0; i < c_beam_count; ++i)
         {
@@ -162,7 +162,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud,
                                 SerialPort::SP_PARITY_NONE,
@@ -175,7 +175,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
         Memory::clear(m_filter);
@@ -208,7 +208,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_uart->flushInput();
         m_uart->sendBreak(0);
@@ -347,7 +347,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

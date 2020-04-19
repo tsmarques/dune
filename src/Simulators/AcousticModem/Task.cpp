@@ -98,7 +98,7 @@ namespace Simulators
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (isActive())
         {
@@ -112,7 +112,7 @@ namespace Simulators
 
       //! Acquire resources by binding to the local UDP port.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_sock = new UDPSocket;
         m_sock->bind(m_args.local_port, Address::Any, false);
@@ -121,7 +121,7 @@ namespace Simulators
 
       //! Release resources. Clears UDP socket.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_sock);
       }
@@ -192,7 +192,7 @@ namespace Simulators
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

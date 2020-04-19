@@ -85,16 +85,16 @@ namespace DUNE
       //! Update behavior with path control state
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs);
+      onPathControlState(const IMC::PathControlState* pcs) override;
 
       //! Update behavior with EstimatedState
       //! @param[in] msg pointer to EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg);
+      onEstimatedState(const IMC::EstimatedState* msg) override;
       //! Check if loitering
       //! @return true if loitering, false otherwise
       bool
-      isLoitering(void) const;
+      isLoitering(void) const override;
 
     private:
       //! Left or right loop properties

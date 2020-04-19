@@ -55,16 +55,16 @@ namespace DUNE
       Maneuver(const std::string& name, Tasks::Context& ctx);
 
       //! Destructor.
-      virtual
-      ~Maneuver();
+      
+      ~Maneuver() override;
 
       //! On entity reservation
       void
-      onEntityReservation(void);
+      onEntityReservation(void) override;
 
       //! On resource initialization
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -89,12 +89,12 @@ namespace DUNE
       //! On task activation
       //! Should be used only by parent class Maneuver
       void
-      onActivation(void);
+      onActivation(void) override;
 
       //! On task deactivation
       //! Should be used only by parent class Maneuver
       void
-      onDeactivation(void);
+      onDeactivation(void) override;
 
       //! Method fired on maneuver startup.
       //! It performs some initialization, then delegates handling on
@@ -288,7 +288,7 @@ namespace DUNE
       }
 
       void
-      onMain(void);
+      onMain(void) override;
 
     private:
       //! Update the scope reference

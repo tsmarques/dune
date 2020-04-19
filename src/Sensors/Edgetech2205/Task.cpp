@@ -260,7 +260,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (m_args.power_channel.empty())
           m_powered = true;
@@ -305,13 +305,13 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         closeLog();
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -351,7 +351,7 @@ namespace Sensors
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation(void) override
       {
         queueState(SM_ACT_BEGIN);
       }
@@ -385,7 +385,7 @@ namespace Sensors
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation(void) override
       {
         queueState(SM_DEACT_BEGIN);
       }
@@ -405,14 +405,14 @@ namespace Sensors
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         debug("deactivation complete");
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         debug("activation took %0.2f s", m_wdog.getElapsed());
 
@@ -1026,7 +1026,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

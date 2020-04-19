@@ -56,7 +56,7 @@ namespace Simulators
       UUV(const UUV*);
 
       //! Destructor.
-      ~UUV(void);
+      ~UUV(void) override;
 
       //! Add a fin to vehicle's configuration.
       //! @param[in] fin vehicle new fin.
@@ -78,17 +78,17 @@ namespace Simulators
 
       //! Apply all forces for UUV vehicle.
       void
-      applyForces(void);
+      applyForces(void) override;
 
       //! Set added mass coefficient (useful for Coriolis matrix.
       //! @param[in] coefs added mass matrix coefficients.
-      virtual void
-      setAddedMassCoef(double coefs[6]);
+      void
+      setAddedMassCoef(double coefs[6]) override;
 
       //! Set body lift matrix.
       //! @param[in] coefs body lift matrix coefficients.
-      virtual void
-      setBodyLiftCoef(double coefs[8]);
+      void
+      setBodyLiftCoef(double coefs[8]) override;
 
       //! Apply Coriolis Force (and Body Lift) to the UUV
       //! Coriolis Matrices equations from:

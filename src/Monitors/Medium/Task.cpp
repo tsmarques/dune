@@ -196,7 +196,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         try
         {
@@ -209,7 +209,7 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_init.setTop(m_args.init_time);
         m_in_water.setTop(m_args.water_timeout);
@@ -454,7 +454,7 @@ namespace Monitors
       }
 
       void
-      task(void)
+      task(void) override
       {
         // Wait to stabilize at beginning.
         if (!m_init.overflow())

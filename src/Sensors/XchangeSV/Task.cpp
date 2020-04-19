@@ -83,7 +83,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
 
@@ -100,7 +100,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
@@ -123,7 +123,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_uart->writeString("\r");
         Delay::wait(1.0);
@@ -142,7 +142,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         char bfr[32];
 

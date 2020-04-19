@@ -84,13 +84,13 @@ namespace Transports
           .description("Set to true to announce the service");
         }
 
-        ~Task(void)
+        ~Task(void) override
         {
           onResourceRelease();
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition(void) override
         {
           int port_limit = m_args.port + c_port_retries;
 
@@ -176,7 +176,7 @@ namespace Transports
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           for (ClientList::iterator itr = m_clients.begin(); itr != m_clients.end(); ++itr)
           {
@@ -195,7 +195,7 @@ namespace Transports
         }
 
         void
-        onDataTransmission(const uint8_t* p, unsigned int n)
+        onDataTransmission(const uint8_t* p, unsigned int n) override
         {
           ClientList::iterator itr = m_clients.begin();
 
@@ -216,7 +216,7 @@ namespace Transports
         }
 
         void
-        onDataReception(uint8_t* buf, unsigned int cap, double timeout)
+        onDataReception(uint8_t* buf, unsigned int cap, double timeout) override
         {
           // Poll for connections and client data
           if (!m_poll.poll(timeout))

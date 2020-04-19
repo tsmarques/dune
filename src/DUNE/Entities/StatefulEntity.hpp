@@ -62,7 +62,7 @@ namespace DUNE
       //! Set the IMC bindings using the provided recipient object.
       //! @param[in] recipient pointer to the recipient object to use for binding to IMC messages.
       void
-      setBindings(Tasks::Recipient* recipient)
+      setBindings(Tasks::Recipient* recipient) override
       {
         BasicEntity::setBindings(recipient);
         bind<IMC::QueryEntityState, StatefulEntity>(recipient, this);

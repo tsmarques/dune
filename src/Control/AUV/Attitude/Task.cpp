@@ -326,7 +326,7 @@ namespace Control
 
         //! Initialize resources.
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           BasicAutopilot::onResourceInitialization();
 
@@ -334,7 +334,7 @@ namespace Control
 
         //! Acquire resources.
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition(void) override
         {
           BasicAutopilot::onResourceAcquisition();
 
@@ -344,7 +344,7 @@ namespace Control
 
         //! Release Resources.
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           Memory::clear(m_ca);
 
@@ -353,7 +353,7 @@ namespace Control
 
         //! On activation.
         void
-        onAutopilotActivation(void)
+        onAutopilotActivation(void) override
         {
           if (m_ca != NULL)
             m_ca->activate();
@@ -361,7 +361,7 @@ namespace Control
 
         //! On deactivation.
         void
-        onAutopilotDeactivation(void)
+        onAutopilotDeactivation(void) override
         {
           if (m_ca != NULL)
             m_ca->deactivate();
@@ -369,7 +369,7 @@ namespace Control
 
         //! Update internal parameters.
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           reset();
 
@@ -445,7 +445,7 @@ namespace Control
 
         //! Member variable reset function.
         void
-        reset(void)
+        reset(void) override
         {
           BasicAutopilot::reset();
 
@@ -455,7 +455,7 @@ namespace Control
 
         //! Reserve entities for messages.
         void
-        onEntityReservation(void)
+        onEntityReservation(void) override
         {
           if (m_args.log_parcels)
           {
@@ -470,7 +470,7 @@ namespace Control
         //! @param[in] timestep time interval to use in pid controller.
         //! @param[in] msg pointer to EstimatedState message.
         void
-        onEstimatedState(const double timestep, const IMC::EstimatedState* msg)
+        onEstimatedState(const double timestep, const IMC::EstimatedState* msg) override
         {
           // Desired actuation torque vector.
           IMC::DesiredControl torques;

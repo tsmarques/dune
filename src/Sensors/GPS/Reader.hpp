@@ -99,7 +99,7 @@ namespace Sensors
       }
 
       void
-      run(void)
+      run(void) override
       {
         while (!isStopping())
         {

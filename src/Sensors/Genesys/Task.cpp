@@ -95,7 +95,7 @@ namespace Sensors
 
       //! Update task parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_wdog.setTop(3 / getFrequency());
 
@@ -114,7 +114,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         try
         {
@@ -132,7 +132,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_sock);
       }
@@ -188,7 +188,7 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task(void) override
       {
         consumeMessages();
 

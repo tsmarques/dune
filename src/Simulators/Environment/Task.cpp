@@ -344,14 +344,14 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
         m_pb = new PencilBeam(&m_args.pb);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_prng);
         Memory::clear(m_qtree);
@@ -359,7 +359,7 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.bottom_width))
           m_args.bottom_width = Angles::radians(m_args.bottom_width);
@@ -398,7 +398,7 @@ namespace Simulators
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         Utils::String::toLowerCase(m_args.location);
         Path path = m_ctx.dir_cfg / "simulation" / ("bathymetry-" + m_args.location + ".ini");
@@ -486,7 +486,7 @@ namespace Simulators
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         m_bd.setSourceEntity(reserveEntity(m_args.label_bd));
         m_fd.setSourceEntity(reserveEntity(m_args.label_fd));
@@ -524,7 +524,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task(void) override
       {
         if (getEntityState() != IMC::EntityState::ESTA_NORMAL)
           return;  // Home ref not setup

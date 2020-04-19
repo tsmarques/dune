@@ -91,13 +91,13 @@ namespace Supervisors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_elabels_all.clear();
 
@@ -144,7 +144,7 @@ namespace Supervisors
       }
 
       void
-      task(void)
+      task(void) override
       {
         if (m_new_mode == MODE_NONE)
           return;

@@ -155,20 +155,20 @@ namespace Transports
         bind<IMC::AnnounceService>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         if (m_estate)
           delete m_estate;
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         // Initialize announce messages.
         m_announce_loc.setSource(getSystemId());
@@ -431,7 +431,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

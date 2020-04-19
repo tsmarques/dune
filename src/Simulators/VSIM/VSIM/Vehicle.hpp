@@ -51,8 +51,8 @@ namespace Simulators
       Vehicle(void);
 
       //! Destructor
-      virtual
-      ~Vehicle(void);
+      
+      ~Vehicle(void) override;
 
       //! Add a force.
       //! @param[in] force new force.
@@ -70,7 +70,7 @@ namespace Simulators
 
       //! Applies all vehicle's forces.
       void
-      applyForces(void);
+      applyForces(void) override;
 
       //! Updates actuation.
       //! @param[in] id actuation id.

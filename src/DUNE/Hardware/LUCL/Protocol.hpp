@@ -170,8 +170,8 @@ namespace DUNE
           }
         }
 
-        void
-        sendCommand(uint8_t cmd, const uint8_t* data = 0, int data_size = 0);
+        void sendCommand (uint8_t cmd, const uint8_t *data = nullptr,
+                          int data_size = 0);
 
         void
         requestVersion(void);

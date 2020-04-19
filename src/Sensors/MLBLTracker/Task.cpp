@@ -253,13 +253,13 @@ namespace Sensors
         bind<IMC::EstimatedState>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if ((m_gpio_txd != NULL) && paramChanged(m_args.gpio_txd) && !m_ignore_gpio)
           throw RestartNeeded(DTR("restarting to change transducer detection GPIO"), 1);
@@ -289,7 +289,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         // Configure transducer GPIO (if any).
         if (m_args.gpio_txd > 0)
@@ -352,7 +352,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_pc);
         Memory::clear(m_gpio_txd);
@@ -360,7 +360,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://acoustic/operation/")
@@ -992,7 +992,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

@@ -124,20 +124,20 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_driver = new Driver(this, *m_uart);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_wdog.setTop(m_args.data_timeout);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
         Memory::clear(m_driver);
@@ -162,7 +162,7 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task(void) override
       {
         if (m_wdog.overflow())
         {

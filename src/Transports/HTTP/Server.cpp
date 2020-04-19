@@ -60,7 +60,7 @@ namespace Transports
       Concurrency::TSQueue<TCPSocket*>& m_queue;
 
       void
-      run(void)
+      run(void) override
       {
         while (!isStopping())
         {

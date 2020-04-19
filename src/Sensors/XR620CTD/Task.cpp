@@ -160,7 +160,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         // Initialize timer.
         if (paramChanged(m_args.output_freq))
@@ -169,7 +169,7 @@ namespace Sensors
 
       //! Release allocated resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
         Memory::clear(m_avg_sspeed);
@@ -177,7 +177,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_wdog.setTop(2);
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
@@ -185,7 +185,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_wait_sample = false;
         m_avg_sspeed = new MovingAverage<double>(m_args.avg_ss_samples);
@@ -392,7 +392,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

@@ -177,7 +177,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         setFrequency(m_args.frequency);
         setRange(m_args.range);
@@ -192,20 +192,20 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_sock = new TCPSocket();
         m_sock->setNoDelay(true);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_sock);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         try
         {
@@ -220,13 +220,13 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -319,7 +319,7 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task(void) override
       {
         if (!isActive())
           return;

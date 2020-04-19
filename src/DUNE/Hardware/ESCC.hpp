@@ -45,7 +45,7 @@ namespace DUNE
     public:
       ESCC(const std::string& dev);
 
-      ~ESCC(void);
+      ~ESCC(void) override;
 
     private:
       //! Device name.
@@ -54,7 +54,7 @@ namespace DUNE
       int m_handle;
 
       IO::NativeHandle
-      doGetNative(void) const
+      doGetNative(void) const override
       {
 #if defined(DUNE_OS_POSIX)
         return m_handle;
@@ -64,13 +64,13 @@ namespace DUNE
       }
 
       size_t
-      doRead(uint8_t* bfr, size_t size);
+      doRead(uint8_t* bfr, size_t size) override;
 
       size_t
-      doWrite(const uint8_t* bfr, size_t size);
+      doWrite(const uint8_t* bfr, size_t size) override;
 
       void
-      doFlush(void);
+      doFlush(void) override;
     };
   }
 }

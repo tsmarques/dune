@@ -135,7 +135,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.pitch_ref))
             m_args.pitch_ref = Angles::radians(m_args.pitch_ref);
@@ -162,7 +162,7 @@ namespace Control
         }
 
         void
-        onActivation(void)
+        onActivation(void) override
         {
           if (!m_torque_control)
             enableControlLoops(IMC::CL_YAW_RATE | IMC::CL_PITCH | IMC::CL_SPEED);
@@ -180,7 +180,7 @@ namespace Control
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           // for torque control
           m_verfin = 0;
@@ -192,7 +192,7 @@ namespace Control
         }
 
         void
-        onRemoteActions(const IMC::RemoteActions* msg)
+        onRemoteActions(const IMC::RemoteActions* msg) override
         {
           TupleList tuples(msg->actions);
 
@@ -239,7 +239,7 @@ namespace Control
         }
 
         void
-        onConnectionTimeout(void)
+        onConnectionTimeout(void) override
         {
           // for torque control
           m_verfin = 0.0;
@@ -290,7 +290,7 @@ namespace Control
 
         //! Compute and dispatch control commands
         void
-        actuate(void)
+        actuate(void) override
         {
           if (m_args.force_torque_control && !m_torque_control)
           {

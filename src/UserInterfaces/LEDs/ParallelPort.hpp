@@ -52,14 +52,14 @@ namespace UserInterfaces
         m_port = new IOPort(addr, 1);
       }
 
-      ~ParallelPort(void)
+      ~ParallelPort(void) override
       {
         if (m_port)
           delete m_port;
       }
 
       void
-      setValue(bool value)
+      setValue(bool value) override
       {
         uint8_t data = m_port->read();
 

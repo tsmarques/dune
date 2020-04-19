@@ -178,19 +178,19 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
         m_edelta.timestep = 1.0 / m_args.trigger_frq;
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -214,7 +214,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_psu_ctl != NULL)
         {
@@ -228,7 +228,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         if (!setTriggerFrequency(m_args.trigger_frq))
           throw RestartNeeded(DTR("failed to configure trigger frequency"), 5);
@@ -238,14 +238,14 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         if (!setPower(true))
           throw RestartNeeded(DTR("failed to turn on device"), 5);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setPower(false);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -329,7 +329,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         uint8_t bfr[c_frame_size];
 

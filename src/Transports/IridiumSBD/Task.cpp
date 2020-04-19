@@ -115,7 +115,7 @@ namespace Transports
       }
 
       //! Destructor.
-      ~Task(void)
+      ~Task(void) override
       {
         Memory::clear(m_tx_request);
 
@@ -131,7 +131,7 @@ namespace Transports
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.mbox_check_per))
           m_mbox_check_timer.setTop(m_args.mbox_check_per);
@@ -142,7 +142,7 @@ namespace Transports
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -162,27 +162,27 @@ namespace Transports
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         m_mbox_check_timer.reset();
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_driver)
         {
@@ -396,7 +396,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

@@ -95,14 +95,14 @@ namespace Simulators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_avg_motor);
       }
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Initialize RPM values.
         m_rpm.value = 0;
@@ -128,7 +128,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task(void) override
       {
         // Compute filtered RPM value.
         // This value is computed using a moving average filter.

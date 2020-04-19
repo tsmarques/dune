@@ -49,11 +49,11 @@ namespace DUNE
       { }
 
     protected:
-      virtual unsigned long
-      compressBlock(char* dst, unsigned long dst_len, char* src, unsigned long src_len);
+      unsigned long
+      compressBlock(char* dst, unsigned long dst_len, char* src, unsigned long src_len) override;
 
-      virtual unsigned long
-      compressBound(unsigned long length) const;
+      unsigned long
+      compressBound(unsigned long length) const override;
     };
   }
 }

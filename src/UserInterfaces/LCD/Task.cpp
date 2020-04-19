@@ -155,20 +155,20 @@ namespace UserInterfaces
         bind<IMC::LcdControl>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         setDisplay(false);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_blight);
         Memory::clear(m_i2c);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_i2c = new I2C(m_args.i2c_dev);
         m_i2c->connect(c_addr);
@@ -181,7 +181,7 @@ namespace UserInterfaces
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Initialize GPIOS
         sendByte(REG_IODIR, 0x00);
@@ -363,7 +363,7 @@ namespace UserInterfaces
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

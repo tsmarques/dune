@@ -50,33 +50,33 @@ namespace Control
         { }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           PathController::onUpdateParameters();
         }
 
         void
-        onEntityReservation(void)
+        onEntityReservation(void) override
         {
           PathController::onEntityReservation();
         }
 
         void
-        onPathActivation(void)
+        onPathActivation(void) override
         {
           // Activate heading controller.
           enableControlLoops(IMC::CL_YAW);
         }
 
         void
-        onPathDeactivation(void)
+        onPathDeactivation(void) override
         {
           // Deactivate heading controller.
           disableControlLoops(IMC::CL_YAW);
         }
 
         void
-        step(const IMC::EstimatedState& state, const TrackingState& ts)
+        step(const IMC::EstimatedState& state, const TrackingState& ts) override
         {
           // Head straight to target
           m_heading.value = ts.los_angle;

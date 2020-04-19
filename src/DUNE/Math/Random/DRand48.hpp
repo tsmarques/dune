@@ -55,13 +55,13 @@ namespace DUNE
 
         DRand48(int32_t seed_value);
 
-        ~DRand48();
+        ~DRand48() override;
 
         int32_t
-        random(void);
+        random(void) override;
 
         void
-        seed(int32_t value);
+        seed(int32_t value) override;
 
       private:
         int64_t m_seed;

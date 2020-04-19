@@ -96,7 +96,7 @@ namespace DUNE
             }
           }
 
-          return NULL;
+          return nullptr;
         }
 
         //! Get payload size by number of Reference messages

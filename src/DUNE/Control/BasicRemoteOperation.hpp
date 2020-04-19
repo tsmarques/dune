@@ -50,8 +50,8 @@ namespace DUNE
     public:
       BasicRemoteOperation(const std::string& name, Tasks::Context& ctx);
 
-      virtual
-      ~BasicRemoteOperation(void)
+      
+      ~BasicRemoteOperation(void) override
       { }
 
       void
@@ -103,8 +103,8 @@ namespace DUNE
       actuate(void)
       { }
 
-      virtual void
-      onResourceInitialization(void);
+      void
+      onResourceInitialization(void) override;
 
       //! Enable control loops.
       //! @param mask control loop mask
@@ -125,7 +125,7 @@ namespace DUNE
 
     private:
       void
-      task(void);
+      task(void) override;
 
       void
       updateConnectionState(bool active = true);

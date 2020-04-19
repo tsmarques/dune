@@ -125,24 +125,24 @@ namespace DUNE
       BasicNavigation(const std::string& name, Tasks::Context& ctx);
 
       //! Destructor.
-      virtual
-      ~BasicNavigation(void);
+      
+      ~BasicNavigation(void) override;
 
       //! Update internal parameters.
-      virtual void
-      onUpdateParameters(void);
+      void
+      onUpdateParameters(void) override;
 
       //! Resolve entities.
-      virtual void
-      onEntityResolution(void);
+      void
+      onEntityResolution(void) override;
 
       //! Initialize resources.
-      virtual void
-      onResourceInitialization(void);
+      void
+      onResourceInitialization(void) override;
 
       //! Release allocated resources.
-      virtual void
-      onResourceRelease(void);
+      void
+      onResourceRelease(void) override;
 
       void
       consume(const IMC::Acceleration* msg);

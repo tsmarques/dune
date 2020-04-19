@@ -54,7 +54,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver goto maneuver message
       void
-      onStart(const IMC::Land* maneuver)
+      onStart(const IMC::Land* maneuver) override
       {
         // Local variables
         float dist;
@@ -89,7 +89,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         // Maneuver doesn't complete until vehicle reports vehicle medium as ground
         if (pcs->flags & IMC::PathControlState::FL_NEAR)
@@ -107,7 +107,7 @@ namespace Maneuver
       //! On message VehicleMedium
       //! @param[in] msg pointer to VehicleMedium message
       void
-      onVehicleMedium(const IMC::VehicleMedium* msg)
+      onVehicleMedium(const IMC::VehicleMedium* msg) override
       {
         m_ground = (msg->medium == IMC::VehicleMedium::VM_GROUND);
 
@@ -137,7 +137,7 @@ namespace Maneuver
         m_task->dispatch(m_land);
       }
 
-      ~Land(void)
+      ~Land(void) override
       { }
 
     private:

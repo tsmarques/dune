@@ -55,8 +55,8 @@ namespace DUNE
       HayesModem(Tasks::Task* task, IO::Handle* handle);
 
       //! Destructor.
-      virtual
-      ~HayesModem(void)
+      
+      ~HayesModem(void) override
       { }
 
       void
@@ -86,12 +86,12 @@ namespace DUNE
       getRSSI(void);
 
     protected:
-      virtual void
-      sendInitialization(void)
+      void
+      sendInitialization(void) override
       { }
 
-      virtual void
-      sendReset(void)
+      void
+      sendReset(void) override
       { }
 
       virtual void

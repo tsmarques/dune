@@ -181,7 +181,7 @@ namespace Maneuver
         }
 
         void
-        onPathControlState(const IMC::PathControlState* pcs)
+        onPathControlState(const IMC::PathControlState* pcs) override
         {
           m_pcs = *pcs;
           updateFollowRefStateFlags();
@@ -456,7 +456,7 @@ namespace Maneuver
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           m_fref_state.state = IMC::FollowRefState::FR_WAIT;
           dispatch(m_fref_state);

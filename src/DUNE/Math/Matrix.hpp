@@ -142,8 +142,7 @@ namespace DUNE
       //! @param[in] r number of rows of resized matrix
       //! @param[in] c number of columns of resized matrix
       //! @param[in] data pointer to data to be copied to resized matrix
-      void
-      fill(size_t r, size_t c, const double* data = 0);
+      void fill (size_t r, size_t c, const double *data = nullptr);
 
       //! Turns the Matrix into an identity matrix if it is squared.
       void

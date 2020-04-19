@@ -53,15 +53,12 @@ namespace DUNE
       typedef typename std::vector<Type*>::const_iterator const_iterator;
 
       //! Default constructor.
-      MessageList(void):
-        m_parent(NULL)
-      { }
+      MessageList (void) : m_parent (nullptr) {}
 
       //! Copy constructor. Copy the contents of other to this
       //! instance.
       //! @param[in] other message.
-      MessageList(const MessageList& other):
-        m_parent(NULL)
+      MessageList (const MessageList &other) : m_parent (nullptr)
       {
         copy(other);
       }

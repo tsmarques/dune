@@ -124,7 +124,7 @@ namespace Navigation
 
         //! Update internal state with new parameter values.
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           BasicNavigation::onUpdateParameters();
 
@@ -145,27 +145,27 @@ namespace Navigation
 
         //! Initialize resources.
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           BasicNavigation::onResourceInitialization();
         }
 
         //! Release resources.
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           BasicNavigation::onResourceRelease();
         }
 
         void
-        onConsumeLblConfig(void)
+        onConsumeLblConfig(void) override
         {
           if (m_kal.resize(NUM_OUT + m_ranging.getSize()))
             Task::onUpdateParameters();
         }
 
         void
-        runKalmanGPS(double x, double y)
+        runKalmanGPS(double x, double y) override
         {
           m_gps_reading = true;
 
@@ -175,20 +175,20 @@ namespace Navigation
         }
 
         unsigned
-        getNumberOutputs(void)
+        getNumberOutputs(void) override
         {
           return NUM_OUT;
         }
 
         void
-        getSpeedOutputStates(unsigned* u, unsigned* v)
+        getSpeedOutputStates(unsigned* u, unsigned* v) override
         {
           *u = OUT_U;
           *v = OUT_V;
         }
 
         bool
-        setup(void)
+        setup(void) override
         {
           BasicNavigation::setup();
 
@@ -201,7 +201,7 @@ namespace Navigation
         }
 
         void
-        reset(void)
+        reset(void) override
         {
           BasicNavigation::reset();
           m_gps_reading = false;
@@ -261,7 +261,7 @@ namespace Navigation
 
         //! Main loop.
         void
-        task(void)
+        task(void) override
         {
           if(!BasicNavigation::isActive())
             return;

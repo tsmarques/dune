@@ -132,7 +132,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.variation))
           m_args.variation = Angles::radians(m_args.variation);
@@ -145,13 +145,13 @@ namespace Maneuver
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_yoyo);
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         try
         {
@@ -166,7 +166,7 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void)
+      onManeuverDeactivation(void) override
       {
         // Do not calibrate.
         if (!m_args.compass_calib)
@@ -291,7 +291,7 @@ namespace Maneuver
       }
 
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if ((pcs->flags & IMC::PathControlState::FL_LOITERING) && !m_yoyo_ing)
         {

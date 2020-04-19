@@ -70,7 +70,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~Elevator(void)
+      ~Elevator(void) override
       {
         Memory::clear(m_vmon);
         Memory::clear(m_elevate);
@@ -79,7 +79,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver rows maneuver message
       void
-      onStart(const IMC::Elevator* maneuver)
+      onStart(const IMC::Elevator* maneuver) override
       {
         m_maneuver = *maneuver;
 
@@ -96,7 +96,7 @@ namespace Maneuver
       //! On message EstimatedState
       //! @param[in] msg pointer to EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         m_vz = msg->vz;
         m_depth = msg->depth;
@@ -109,7 +109,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         m_elevate->updatePathControl(pcs);
 

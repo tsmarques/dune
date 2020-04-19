@@ -233,7 +233,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.yaw_max))
             m_args.yaw_max = Angles::radians(m_args.yaw_max);
@@ -253,7 +253,7 @@ namespace Control
 
         //! Reserve entities.
         void
-        onEntityReservation(void)
+        onEntityReservation(void) override
         {
           if (m_args.log_parcels)
           {
@@ -266,7 +266,7 @@ namespace Control
 
         //! Resolve entities.
         void
-        onEntityResolution(void)
+        onEntityResolution(void) override
         {
           try
           {
@@ -289,14 +289,14 @@ namespace Control
 
         //! On activation
         void
-        onActivation(void)
+        onActivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         //! On deactivation
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
@@ -344,7 +344,7 @@ namespace Control
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           reset();
         }
@@ -596,7 +596,7 @@ namespace Control
         }
 
         void
-        onMain(void)
+        onMain(void) override
         {
           while (!stopping())
           {

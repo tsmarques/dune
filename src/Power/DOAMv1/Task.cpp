@@ -170,7 +170,7 @@ namespace Power
         bind<IMC::Heartbeat>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         for (unsigned i = 0; i < c_adcs_max; ++i)
         {
@@ -180,7 +180,7 @@ namespace Power
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_slave_id = resolveSystemName(m_args.slave_system);
 
@@ -204,7 +204,7 @@ namespace Power
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         for (unsigned i = 0; i < c_adcs_max; ++i)
         {
@@ -222,21 +222,21 @@ namespace Power
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_proto.setUART(m_args.uart_dev);
         m_proto.open();
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_proto.isOpen())
           setStrobeMode(STROBE_MODE_MCU);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_proto.requestVersion();
         setPowerChannelState(0);
@@ -380,7 +380,7 @@ namespace Power
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation(void) override
       {
         m_slave_alive = false;
         setPowerChannelState(1);
@@ -389,7 +389,7 @@ namespace Power
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation(void) override
       {
         // NOTE: some CPUs may require proper shutdown, which is not implemented yet.
         setPowerChannelState(0);
@@ -397,14 +397,14 @@ namespace Power
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         setStrobeMode(STROBE_MODE_CAM);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setStrobeMode(STROBE_MODE_MCU);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -475,7 +475,7 @@ namespace Power
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

@@ -62,7 +62,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         m_incoming.clear();
       }
@@ -114,7 +114,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

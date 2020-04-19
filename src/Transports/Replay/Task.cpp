@@ -114,7 +114,7 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         for (unsigned i = 0; i < m_args.msgs.size(); ++i)
           m_replay[m_args.msgs[i]] = true;
@@ -125,13 +125,13 @@ namespace Transports
         reset();
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         reset();
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         // Reserve configured entities so that other tasks to know about them.
         for (unsigned int i = 0; i < m_args.ents.size(); ++i)
@@ -327,7 +327,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         if (!m_args.startup_file.empty())
           startReplay(m_args.startup_file);

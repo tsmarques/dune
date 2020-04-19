@@ -208,10 +208,10 @@ namespace DUNE
       unsigned m_timeout_count;
 
       void
-      onResourceRelease(void);
+      onResourceRelease(void) override;
 
       void
-      onResourceInitialization(void);
+      onResourceInitialization(void) override;
 
       //! Push a new state to the state queue.
       //! @param[in] state state machine state.
@@ -237,7 +237,7 @@ namespace DUNE
       initializeDevice(void);
 
       void
-      onRequestActivation(void);
+      onRequestActivation(void) override;
 
       bool
       connect(void);
@@ -246,16 +246,16 @@ namespace DUNE
       failActivation(const std::string& message);
 
       void
-      onRequestDeactivation(void);
+      onRequestDeactivation(void) override;
 
       void
       disconnect(void);
 
       void
-      onDeactivation(void);
+      onDeactivation(void) override;
 
       void
-      onActivation(void);
+      onActivation(void) override;
 
       //! Request the name of the current log file.
       void
@@ -297,7 +297,7 @@ namespace DUNE
       updateStateMachine(void);
 
       void
-      onMain(void);
+      onMain(void) override;
     };
   }
 }

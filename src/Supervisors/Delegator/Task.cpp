@@ -98,7 +98,7 @@ namespace Supervisors
       }
 
       bool
-      onWriteParamsXML(std::ostream& os) const
+      onWriteParamsXML(std::ostream& os) const override
       {
         if (m_args.task_name.empty())
           return false;
@@ -124,13 +124,13 @@ namespace Supervisors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_sid = resolveSystemName(m_args.system_name);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -148,7 +148,7 @@ namespace Supervisors
       }
 
       void
-      onQueryEntityParameters(const IMC::QueryEntityParameters* msg)
+      onQueryEntityParameters(const IMC::QueryEntityParameters* msg) override
       {
         if (msg->name != getEntityLabel())
           return;
@@ -157,7 +157,7 @@ namespace Supervisors
       }
 
       void
-      onSetEntityParameters(const IMC::SetEntityParameters* msg)
+      onSetEntityParameters(const IMC::SetEntityParameters* msg) override
       {
         if (msg->name != getEntityLabel())
           return;
@@ -166,7 +166,7 @@ namespace Supervisors
       }
 
       void
-      onPopEntityParameters(const IMC::PopEntityParameters* msg)
+      onPopEntityParameters(const IMC::PopEntityParameters* msg) override
       {
         if (msg->name != getEntityLabel())
           return;
@@ -175,7 +175,7 @@ namespace Supervisors
       }
 
       void
-      onPushEntityParameters(const IMC::PushEntityParameters* msg)
+      onPushEntityParameters(const IMC::PushEntityParameters* msg) override
       {
         if (msg->name != getEntityLabel())
           return;
@@ -197,13 +197,13 @@ namespace Supervisors
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation(void) override
       {
         sendActiveParameter("true");
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation(void) override
       {
         sendActiveParameter("false");
       }
@@ -280,7 +280,7 @@ namespace Supervisors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

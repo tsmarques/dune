@@ -84,13 +84,13 @@ namespace Transports
         bind<IMC::CacheControl>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         delete [] m_buffer;
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
@@ -288,7 +288,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         loadSnapshot();
 

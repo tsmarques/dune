@@ -69,15 +69,12 @@ namespace DUNE
       //! @param[in] min_range minimum admissible forward range for bottom tracking
       //! @param[in] safe_pitch max admissible pitch angle to perform bottom tracking
       //! @param[in] slope_hyst slope angle hysteresis value for safeness detection
-      SlopeData(unsigned fsamples, float min_range, float safe_pitch, float slope_hyst):
-        m_frange(NULL),
-        m_min_range(min_range),
-        m_safe_pitch(safe_pitch),
-        m_fsamples(fsamples),
-        m_slope_hyst(slope_hyst),
-        m_too_steep(false),
-        m_sonar_conf(false)
-      { };
+      SlopeData (unsigned fsamples, float min_range, float safe_pitch,
+                 float slope_hyst)
+          : m_frange (nullptr), m_min_range (min_range),
+            m_safe_pitch (safe_pitch), m_fsamples (fsamples),
+            m_slope_hyst (slope_hyst), m_too_steep (false),
+            m_sonar_conf (false){};
 
       //! Deconstructor
       ~SlopeData(void)
@@ -172,7 +169,7 @@ namespace DUNE
       inline float
       getDistanceToSlope(void) const
       {
-        if (m_slope_top.dist == NULL)
+        if (m_slope_top.dist == nullptr)
           return -1.0;
 
         return m_slope_top.dist->mean();
@@ -223,7 +220,7 @@ namespace DUNE
       inline bool
       isTopCleared(void) const
       {
-        if (m_slope_top.dist == NULL)
+        if (m_slope_top.dist == nullptr)
           return true;
 
         return (m_slope_top.trend >= c_stdist_samples) || (m_slope_top.dist->mean() < c_dist_tol);
@@ -271,13 +268,13 @@ namespace DUNE
       inline bool
       isRangeValid(void)
       {
-        if (m_frange != NULL)
-        {
-          if (m_delta.check() < c_timeout)
-            return true;
-          else
-            reset();
-        }
+        if (m_frange != nullptr)
+          {
+            if (m_delta.check () < c_timeout)
+              return true;
+            else
+              reset ();
+          }
 
         return false;
       }
@@ -329,8 +326,7 @@ namespace DUNE
         //! Validity.
         bool valid;
 
-        SlopeTop(void) : dist(NULL)
-        { };
+        SlopeTop (void) : dist (nullptr){};
 
         ~SlopeTop(void)
         {
@@ -360,11 +356,11 @@ namespace DUNE
 
           bool update_trend = true;
 
-          if (dist == NULL)
-          {
-            dist = new MovingAverage<float>(c_stdist_samples);
-            update_trend = false;
-          }
+          if (dist == nullptr)
+            {
+              dist = new MovingAverage<float> (c_stdist_samples);
+              update_trend = false;
+            }
 
           if (!valid)
           {

@@ -66,7 +66,7 @@ namespace Maneuver
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         resetVar();
       }
@@ -409,7 +409,7 @@ namespace Maneuver
 
       // Function to check if the vehicle is getting near to the next waypoint
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if (pcs->flags & IMC::PathControlState::FL_NEAR)
         {

@@ -77,7 +77,7 @@ namespace Navigation
 
         //! Update internal state with new parameter values.
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.ping_period))
             m_timer.setTop(m_args.ping_period);
@@ -85,20 +85,20 @@ namespace Navigation
 
         //! Initialize resources.
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         void
-        onActivation(void)
+        onActivation(void) override
         {
           m_timer.reset();
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
@@ -194,7 +194,7 @@ namespace Navigation
 
         //! Main loop.
         void
-        onMain(void)
+        onMain(void) override
         {
           while (!stopping())
           {

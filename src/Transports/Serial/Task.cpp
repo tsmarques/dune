@@ -70,32 +70,32 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.device, m_args.baud_rate);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
 
         m_parser.reset();
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onDataTransmission(const uint8_t* p, unsigned int n)
+      onDataTransmission(const uint8_t* p, unsigned int n) override
       {
         m_uart->write(p, n);
       }
 
       void
-      onDataReception(uint8_t* p, unsigned int n, double timeout)
+      onDataReception(uint8_t* p, unsigned int n, double timeout) override
       {
         if (!Poll::poll(*m_uart, timeout))
           return;

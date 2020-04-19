@@ -55,21 +55,21 @@ namespace DUNE
         { }
 
         void
-        seed(int32_t seed_value)
+        seed(int32_t seed_value) override
         {
           Concurrency::ScopedMutex lock(m_mtx);
           m_rng.seed(seed_value);
         }
 
         int32_t
-        random(void)
+        random(void) override
         {
           Concurrency::ScopedMutex lock(m_mtx);
           return m_rng.random();
         }
 
         double
-        uniform(void)
+        uniform(void) override
         {
           Concurrency::ScopedMutex lock(m_mtx);
           return m_rng.uniform();

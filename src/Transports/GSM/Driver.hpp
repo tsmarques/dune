@@ -65,7 +65,7 @@ namespace Transports
       }
 
       //! Destructor.
-      ~Driver(void)
+      ~Driver(void) override
       { }
 
       void
@@ -187,7 +187,7 @@ namespace Transports
       std::string m_pin;
 
       void
-      queryRSSI(void)
+      queryRSSI(void) override
       {
         sendAT("+CSQ");
         std::string line = readLine();
@@ -201,13 +201,13 @@ namespace Transports
       }
 
       void
-      sendReset(void)
+      sendReset(void) override
       {
         sendAT("Z");
       }
 
       void
-      sendInitialization(void)
+      sendInitialization(void) override
       {
         setEcho(false);
         setErrorVerbosity(2);
@@ -238,7 +238,7 @@ namespace Transports
       }
 
       bool
-      handleUnsolicited(const std::string& str)
+      handleUnsolicited(const std::string& str) override
       {
         if (String::startsWith(str, "^SYSSTART"))
           return true;

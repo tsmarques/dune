@@ -79,7 +79,7 @@ namespace Control
         }
 
         void
-        onActivation(void)
+        onActivation(void) override
         {
           m_thrust[0].value = 0;
           m_thrust[1].value = 0;
@@ -88,7 +88,7 @@ namespace Control
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           m_thrust[0].value = 0;
           m_thrust[1].value = 0;
@@ -97,7 +97,7 @@ namespace Control
         }
 
         void
-        onConnectionTimeout(void)
+        onConnectionTimeout(void) override
         {
           m_thrust[0].value = 0;
           m_thrust[1].value = 0;
@@ -112,7 +112,7 @@ namespace Control
         }
 
         void
-        onRemoteActions(const IMC::RemoteActions* msg)
+        onRemoteActions(const IMC::RemoteActions* msg) override
         {
           TupleList tuples(msg->actions);
 
@@ -144,7 +144,7 @@ namespace Control
         }
 
         void
-        actuate(void)
+        actuate(void) override
         {
           debug("%0.2f %0.2f", m_thrust[0].value, m_thrust[1].value);
 

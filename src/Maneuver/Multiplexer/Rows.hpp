@@ -54,7 +54,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~Rows(void)
+      ~Rows(void) override
       {
         Memory::clear(m_parser);
       }
@@ -62,7 +62,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver rows maneuver message
       void
-      onStart(const IMC::Rows* maneuver)
+      onStart(const IMC::Rows* maneuver) override
       {
         Memory::clear(m_parser);
 
@@ -98,7 +98,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         std::stringstream ss;
         ss << "waypoint=" << m_parser->getIndex();

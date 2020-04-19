@@ -139,27 +139,27 @@ namespace Simulators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
         m_heading_offset = m_prng->gaussian() * Angles::radians(m_args.stdev_heading_offset);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_prng);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -233,7 +233,7 @@ namespace Simulators
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
           waitForMessages(1.0);

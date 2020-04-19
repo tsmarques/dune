@@ -104,14 +104,11 @@ namespace DUNE
       typedef ProfileMap::const_iterator const_iterator;
 
       //! Constructor
-      TimeProfile(const SpeedModel* speed_model):
-        m_accum_dur(NULL),
-        m_speed_model(speed_model),
-        m_speed_vec(NULL),
-        m_valid_model(true),
-        m_finite_duration(false)
+      TimeProfile (const SpeedModel *speed_model)
+          : m_accum_dur (nullptr), m_speed_model (speed_model),
+            m_speed_vec (NULL), m_valid_model (true), m_finite_duration (false)
       {
-        if (m_speed_model == NULL)
+        if (m_speed_model == nullptr)
           m_valid_model = false;
       };
 

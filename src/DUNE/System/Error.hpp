@@ -117,13 +117,13 @@ namespace DUNE
       }
 
       //! Destructor.
-      ~Error(void) throw()
+      ~Error(void) throw() override
       { }
 
       //! Get the full description of the exception.
       //! @return description c string.
       const char*
-      what(void) const throw()
+      what(void) const throw() override
       {
         return m_full_msg.c_str();
       }

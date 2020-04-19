@@ -56,11 +56,11 @@ namespace Simulators
       ASV(const ASV*);
 
       //! Destructor.
-      ~ASV(void);
+      ~ASV(void) override;
 
       //! Apply forces to ASV.
       void
-      applyForces(void);
+      applyForces(void) override;
 
       //! Apply ASV specific actuation.
       void

@@ -214,7 +214,7 @@ namespace Power
         bind<IMC::QueryPowerChannelState>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -230,7 +230,7 @@ namespace Power
 
       //! Update task parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -275,7 +275,7 @@ namespace Power
 
       //! Reserve entities.
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -297,7 +297,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_proto.setI2C(m_args.i2c_dev, c_addr);
         m_proto.setName("MCB");
@@ -309,7 +309,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         try
         {
@@ -668,7 +668,7 @@ namespace Power
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

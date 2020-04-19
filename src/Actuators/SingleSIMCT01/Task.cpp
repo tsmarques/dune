@@ -121,7 +121,7 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_uart->setCanonicalInput(true);
@@ -129,13 +129,13 @@ namespace Actuators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (m_args.motor_id < 0)
           throw std::runtime_error(DTR("invalid value for 'Motor Id'"));
@@ -227,7 +227,7 @@ namespace Actuators
       }
 
       void
-      task(void)
+      task(void) override
       {
         demand();
         queryCurrent();

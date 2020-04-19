@@ -129,7 +129,7 @@ namespace Sensors
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_period.setTop(m_args.period);
         m_keyfile = Path(m_ctx.dir_cfg) / m_args.private_key;
@@ -138,7 +138,7 @@ namespace Sensors
 
       //! Initialize entity state to NORMAL
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
@@ -200,7 +200,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

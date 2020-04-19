@@ -132,14 +132,14 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Initialize entity state.
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         // Mark default settings, so we can get back to them.
         m_args.defmon.push_back("Daemon");
@@ -244,7 +244,7 @@ namespace Monitors
       }
 
       void
-      onReportEntityState(void)
+      onReportEntityState(void) override
       {
         onTimeoutCheck();
         reportState();
@@ -455,7 +455,7 @@ namespace Monitors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

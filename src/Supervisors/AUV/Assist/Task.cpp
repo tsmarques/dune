@@ -145,26 +145,26 @@ namespace Supervisors
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.trigger_time))
             m_ltimer.setTop(m_args.trigger_time);
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition(void) override
         {
           m_vmon = new VerticalMonitor(c_vertical_timeout, m_args.min_ascent_rate);
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           Memory::clear(m_vmon);
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           // Initialize entity state.
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -430,7 +430,7 @@ namespace Supervisors
         }
 
         void
-        task(void)
+        task(void) override
         {
           switch (m_astate)
           {

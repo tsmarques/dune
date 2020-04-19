@@ -61,7 +61,7 @@ namespace Maneuver
         m_end_time(-1.0)
       { }
 
-      ~StationKeeping(void)
+      ~StationKeeping(void) override
       {
         Memory::clear(m_skeep);
       }
@@ -69,7 +69,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver stationkeeping maneuver message
       void
-      onStart(const IMC::StationKeeping* maneuver)
+      onStart(const IMC::StationKeeping* maneuver) override
       {
         m_duration = maneuver->duration;
 
@@ -83,7 +83,7 @@ namespace Maneuver
       //! On EstimatedState message
       //! @param[in] msg EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         if (m_skeep == NULL)
           return;
@@ -97,7 +97,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         m_pcs = *pcs;
 
@@ -109,7 +109,7 @@ namespace Maneuver
 
       //! On state report function
       void
-      onStateReport(void)
+      onStateReport(void) override
       {
         if (m_skeep == NULL)
           return;

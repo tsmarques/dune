@@ -116,8 +116,8 @@ namespace DUNE
       Task(const std::string& name, Context& context);
 
       //! Destructor.
-      virtual
-      ~Task(void)
+      
+      ~Task(void) override
       {
         while (!m_entities.empty())
         {
@@ -131,7 +131,7 @@ namespace DUNE
       //! Retrieve the task's name.
       //! @return name of the task.
       const char*
-      getName(void) const
+      getName(void) const override
       {
         return m_name.c_str();
       }
@@ -250,28 +250,28 @@ namespace DUNE
       //! @param format string format (similar to printf(3)).
       //! @param ... arguments.
       void
-      inf(const char* format, ...) DUNE_PRINTF_FORMAT(2, 3);
+      inf(const char* format, ...) override DUNE_PRINTF_FORMAT(2, 3);
 
       //! Send an human-readable warning message to all
       //! configured output channels and files.
       //! @param format string format (similar to printf(3)).
       //! @param ... arguments.
       void
-      war(const char* format, ...) DUNE_PRINTF_FORMAT(2, 3);
+      war(const char* format, ...) override DUNE_PRINTF_FORMAT(2, 3);
 
       //! Send an human-readable error message to all
       //! configured output channels and files.
       //! @param format string format (similar to printf(3)).
       //! @param ... arguments.
       void
-      err(const char* format, ...) DUNE_PRINTF_FORMAT(2, 3);
+      err(const char* format, ...) override DUNE_PRINTF_FORMAT(2, 3);
 
       //! Send an human-readable critical error message to all
       //! configured output channels and files.
       //! @param format string format (similar to printf(3)).
       //! @param ... arguments.
       void
-      cri(const char* format, ...) DUNE_PRINTF_FORMAT(2, 3);
+      cri(const char* format, ...) override DUNE_PRINTF_FORMAT(2, 3);
 
       //! Send an human-readable debug message to all configured
       //! output channels and files. The message will only be
@@ -280,7 +280,7 @@ namespace DUNE
       //! @param format string format (similar to printf(3)).
       //! @param ... arguments.
       void
-      debug(const char* format, ...) DUNE_PRINTF_FORMAT(2, 3);
+      debug(const char* format, ...) override DUNE_PRINTF_FORMAT(2, 3);
 
       //! Send a verbose or frequent human-readable debug message to
       //! all configured output channels and files. The message will
@@ -289,7 +289,7 @@ namespace DUNE
       //! @param format string format (similar to printf(3)).
       //! @param ... arguments.
       void
-      trace(const char* format, ...) DUNE_PRINTF_FORMAT(2, 3);
+      trace(const char* format, ...) override DUNE_PRINTF_FORMAT(2, 3);
 
       //! Send a very verbose or frequent human-readable debug message
       //! to all configured output channels and files. The message
@@ -298,7 +298,7 @@ namespace DUNE
       //! @param format string format (similar to printf(3)).
       //! @param ... arguments.
       void
-      spew(const char* format, ...) DUNE_PRINTF_FORMAT(2, 3);
+      spew(const char* format, ...) override DUNE_PRINTF_FORMAT(2, 3);
 
       //! Dispatch message to the message bus.
       //! @param[in] msg message pointer.
@@ -331,7 +331,7 @@ namespace DUNE
       //! Queue a message for later consumption.
       //! @param msg message object.
       void
-      receive(const IMC::Message* msg)
+      receive(const IMC::Message* msg) override
       {
         m_recipient->put(msg);
       }
@@ -807,7 +807,7 @@ namespace DUNE
       log(IMC::LogBookEntry::TypeEnum type, const char* format, std::va_list arg_list);
 
       void
-      run(void);
+      run(void) override;
 
       //! Register a consumer for a given message identifier.
       //! @param[in] message_id message identifier.

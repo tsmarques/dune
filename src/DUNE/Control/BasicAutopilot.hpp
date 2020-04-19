@@ -55,18 +55,18 @@ namespace DUNE
                      const uint32_t controllable_loops, const uint32_t required_loops);
 
       //! Destructor.
-      virtual
-      ~BasicAutopilot(void);
+      
+      ~BasicAutopilot(void) override;
 
-      virtual void
-      onResourceInitialization(void);
+      void
+      onResourceInitialization(void) override;
 
-      virtual void
-      onResourceAcquisition(void)
+      void
+      onResourceAcquisition(void) override
       { }
 
-      virtual void
-      onResourceRelease(void)
+      void
+      onResourceRelease(void) override
       { }
 
       //! Reset to initial values
@@ -99,7 +99,7 @@ namespace DUNE
       consume(const IMC::DesiredVelocity* msg);
 
       void
-      onMain(void);
+      onMain(void) override;
 
     protected:
       //! Available vertical modes
@@ -149,7 +149,7 @@ namespace DUNE
       //! On deactivation leave error or active entity state
       //! Method from parent class
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         reset();
@@ -159,7 +159,7 @@ namespace DUNE
       //! On activation enter active entity state
       //! Method from parent class
       void
-      onActivation(void)
+      onActivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         reset();

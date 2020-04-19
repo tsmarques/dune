@@ -108,7 +108,7 @@ namespace Sensors
       }
 
       void
-      run(void)
+      run(void) override
       {
         PeriodicDelay delay(m_delay);
 

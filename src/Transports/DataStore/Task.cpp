@@ -143,7 +143,7 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_priorities.clear();
         std::vector<std::string> consumed;
@@ -187,7 +187,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -379,7 +379,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

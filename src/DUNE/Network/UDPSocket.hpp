@@ -55,7 +55,7 @@ namespace DUNE
       UDPSocket(void);
 
       //! Destroy an UDP socket.
-      ~UDPSocket(void);
+      ~UDPSocket(void) override;
 
       void
       enableBroadcast(bool value);
@@ -94,8 +94,8 @@ namespace DUNE
       //! @param size destination buffer length.
       //! @param addr system specific host address.
       //! @param port system specific host port.
-      size_t
-      read(uint8_t* buffer, size_t size, Address* addr = NULL, uint16_t* port = NULL);
+      size_t read (uint8_t *buffer, size_t size, Address *addr = nullptr,
+                   uint16_t *port = nullptr);
 
     private:
       //! Platform specific handle.
@@ -112,7 +112,7 @@ namespace DUNE
       unsigned m_con_port;
 
       IO::NativeHandle
-      doGetNative(void) const
+      doGetNative(void) const override
       {
 #if defined(DUNE_OS_WINDOWS)
         return m_event_handle;
@@ -122,13 +122,13 @@ namespace DUNE
       }
 
       size_t
-      doWrite(const uint8_t* data, size_t data_size)
+      doWrite(const uint8_t* data, size_t data_size) override
       {
         return write(data, data_size, m_con_addr, m_con_port);
       }
 
       size_t
-      doRead(uint8_t* data, size_t data_size)
+      doRead(uint8_t* data, size_t data_size) override
       {
         return read(data, data_size, NULL, NULL);
       }

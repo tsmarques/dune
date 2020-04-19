@@ -111,7 +111,7 @@ namespace Control
         }
 
         void
-        reset(void)
+        reset(void) override
         {
           BasicAutopilot::reset();
 
@@ -125,13 +125,13 @@ namespace Control
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           BasicAutopilot::onResourceInitialization();
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           reset();
 
@@ -153,7 +153,7 @@ namespace Control
         }
 
         void
-        onEntityReservation(void)
+        onEntityReservation(void) override
         {
           if (m_args.log_parcels)
           {
@@ -163,7 +163,7 @@ namespace Control
         }
 
         void
-        onEstimatedState(const double timestep, const IMC::EstimatedState* msg)
+        onEstimatedState(const double timestep, const IMC::EstimatedState* msg) override
         {
           m_thrust.id = m_args.vmotor_id; // CHANGE TO VERTICAL MOTOR ID
           m_thrust.value = depthControl(timestep, msg);

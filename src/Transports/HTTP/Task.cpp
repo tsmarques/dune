@@ -107,7 +107,7 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         bind(this, m_args.messages);
 
@@ -149,13 +149,13 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_server);
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         m_msg_mon.setEntities(m_ctx.entities.entries());
       }
@@ -192,7 +192,7 @@ namespace Transports
       }
 
       void
-      handleGET(TCPSocket* sock, TupleList& headers, const char* uri)
+      handleGET(TCPSocket* sock, TupleList& headers, const char* uri) override
       {
         debug("GET request: %s", uri);
 
@@ -226,7 +226,7 @@ namespace Transports
       }
 
       void
-      handlePOST(TCPSocket* sock, TupleList& headers, const char* uri)
+      handlePOST(TCPSocket* sock, TupleList& headers, const char* uri) override
       {
         debug("POST request: %s", uri);
 
@@ -244,7 +244,7 @@ namespace Transports
       }
 
       void
-      handlePUT(TCPSocket* sock, TupleList& headers, const char* uri)
+      handlePUT(TCPSocket* sock, TupleList& headers, const char* uri) override
       {
         debug("PUT request: %s", uri);
 
@@ -449,7 +449,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

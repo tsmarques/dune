@@ -69,13 +69,13 @@ namespace Transports
           .description("Remote server port");
         }
 
-        ~Task(void)
+        ~Task(void) override
         {
           onResourceRelease();
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition(void) override
         {
           try
           {
@@ -93,7 +93,7 @@ namespace Transports
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           if (m_sock)
           {
@@ -105,7 +105,7 @@ namespace Transports
         }
 
         void
-        onDataTransmission(const uint8_t* p, unsigned int len)
+        onDataTransmission(const uint8_t* p, unsigned int len) override
         {
           try
           {
@@ -118,7 +118,7 @@ namespace Transports
         }
 
         void
-        onDataReception(uint8_t* p, unsigned int n, double timeout)
+        onDataReception(uint8_t* p, unsigned int n, double timeout) override
         {
           if (!Poll::poll(*m_sock, timeout))
             return;

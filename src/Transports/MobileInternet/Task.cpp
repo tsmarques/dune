@@ -223,13 +223,13 @@ namespace Transports
         m_conn_watchdog.setTop(60);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         disconnect();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (m_args.power_channel.empty())
           m_powered = true;
@@ -248,20 +248,20 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation(void) override
       {
         m_sm_state = SM_ACT_BEGIN;
         updateStateMachine();
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation(void) override
       {
         m_sm_state = SM_DEACT_BEGIN;
         updateStateMachine();
@@ -525,7 +525,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

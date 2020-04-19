@@ -173,7 +173,7 @@ namespace UserInterfaces
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.systems))
         {
@@ -201,7 +201,7 @@ namespace UserInterfaces
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         if (!m_args.banner.empty())
         {
@@ -524,7 +524,7 @@ namespace UserInterfaces
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

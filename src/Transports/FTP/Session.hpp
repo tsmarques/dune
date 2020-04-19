@@ -53,7 +53,7 @@ namespace Transports
               const DUNE::Network::Address& local_addr,
               double timeout);
 
-      ~Session(void);
+      ~Session(void) override;
 
     private:
       //! Parent task.
@@ -171,7 +171,7 @@ namespace Transports
       handleCommandSocket(void);
 
       void
-      run(void);
+      run(void) override;
     };
   }
 }

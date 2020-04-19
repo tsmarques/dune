@@ -92,12 +92,12 @@ namespace Transports
       { }
 
       //! Destructor.
-      ~Driver(void)
+      ~Driver(void) override
       { }
 
       //! Reset device.
       void
-      sendReset(void)
+      sendReset(void) override
       {
         sendAT("Z1");
         sendAT("Z3");
@@ -507,7 +507,7 @@ namespace Transports
       double m_declination;
 
       void
-      sendInitialization(void)
+      sendInitialization(void) override
       {
         // Get firmware version.
         sendAT("I0");
@@ -547,7 +547,7 @@ namespace Transports
       }
 
       bool
-      isFragment(const std::string& str)
+      isFragment(const std::string& str) override
       {
         int last_comma = -1;
         unsigned length = 0;
@@ -581,7 +581,7 @@ namespace Transports
       }
 
       bool
-      handleUnsolicited(const std::string& str)
+      handleUnsolicited(const std::string& str) override
       {
         for (size_t i = 0; i < sizeof(c_async_msgs) / sizeof(char*); ++i)
         {
@@ -606,7 +606,7 @@ namespace Transports
       }
 
       void
-      expectOK(void)
+      expectOK(void) override
       {
         std::string rv = readLine();
         if ((rv != "OK") && (rv != "[*]OK"))

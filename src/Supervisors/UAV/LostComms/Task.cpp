@@ -107,7 +107,7 @@ namespace Supervisors
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.tout_heartbeat))
             m_tout_heartbeat.setTop(m_args.tout_heartbeat);
@@ -239,7 +239,7 @@ namespace Supervisors
         }
 
         void
-        task(void)
+        task(void) override
         {
           if (!isActive())
             return;

@@ -55,7 +55,7 @@ namespace DUNE
         {  }
 
         //! Destructor.
-        ~IDX1(void)
+        ~IDX1(void) override
         {
           std::list<uint8_t*>::const_iterator itr = m_index.begin();
           for (; itr != m_index.end(); ++itr)
@@ -83,7 +83,7 @@ namespace DUNE
         //! Write chunk data to output stream.
         //! @param[in] os output stream.
         void
-        writeData(std::ostream& os)
+        writeData(std::ostream& os) override
         {
           std::list<uint8_t*>::const_iterator itr = m_index.begin();
           for (; itr != m_index.end(); ++itr)

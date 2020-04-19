@@ -124,14 +124,14 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_driver = new Driver(m_args.base_addr, m_args.range, m_args.diff_mode);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         std::memset(m_means, 0, sizeof(m_means));
 
@@ -154,7 +154,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_driver);
 
@@ -163,7 +163,7 @@ namespace Sensors
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         for (unsigned i = 0; i < c_max_channels; ++i)
         {
@@ -175,7 +175,7 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task(void) override
       {
         ++m_samples;
 

@@ -49,12 +49,12 @@ namespace DUNE
         m_var(var)
       { }
 
-      virtual
-      ~BasicStringWriter(void)
+      
+      ~BasicStringWriter(void) override
       { }
 
-      virtual std::string
-      write(void)
+      std::string
+      write(void) override
       {
         return uncastLexical(m_var);
       }

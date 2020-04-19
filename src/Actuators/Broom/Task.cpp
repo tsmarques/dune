@@ -345,7 +345,7 @@ namespace Actuators
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_motor_id = m_args.motor_id;
 
@@ -367,13 +367,13 @@ namespace Actuators
           throw std::runtime_error(DTR("Motor control mode must be one of 'none', 'voltage', 'current', 'rpm'"));
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         // Stop the motor.
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         m_motor_ent = reserveEntity<Entities::BasicEntity>(m_args.motor_elabel);
         m_bridge_ent = reserveEntity<Entities::BasicEntity>(m_args.bridge_elabel);
@@ -381,7 +381,7 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -892,7 +892,7 @@ namespace Actuators
       }
 
       void
-      task(void)
+      task(void) override
       {
         if (m_setup_state != SS_DONE)
         {

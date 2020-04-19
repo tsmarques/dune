@@ -87,7 +87,7 @@ namespace Transports
         .description("Timeout period of a session");
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
@@ -115,7 +115,7 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         // Initialize and dispatch AnnounceService.
         std::vector<Interface> itfs = Interface::get();
@@ -152,7 +152,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         while (!m_busy_list.empty())
         {
@@ -211,7 +211,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

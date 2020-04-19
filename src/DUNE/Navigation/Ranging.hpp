@@ -70,7 +70,7 @@ namespace DUNE
         lon = longitude;
         depth = z;
 
-        if (origin == NULL)
+        if (origin == nullptr)
           return;
 
         update(origin);
@@ -81,7 +81,7 @@ namespace DUNE
       void
       update(const IMC::GpsFix* origin)
       {
-        if (origin == NULL)
+        if (origin == nullptr)
           return;
 
         Coordinates::WGS84::displacement(origin->lat, origin->lon, 0.0,
@@ -110,13 +110,12 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      Ranging(void):
-        m_origin(NULL)
+      Ranging (void) : m_origin (nullptr)
       {
         m_num_transponders = 0;
 
         for (unsigned i = 0; i < c_max_transponders; ++i)
-          m_transponders[i] = NULL;
+          m_transponders[i] = nullptr;
       }
 
       //! Destructor.
@@ -138,7 +137,7 @@ namespace DUNE
         // Correct transponders positions.
         for (unsigned i = 0; i < c_max_transponders; i++)
         {
-          if (m_transponders[i] != NULL)
+          if (m_transponders[i] != nullptr)
             m_transponders[i]->update(msg);
         }
       }
@@ -169,7 +168,7 @@ namespace DUNE
       bool
       exists(unsigned id)
       {
-        return m_transponders[id] != NULL;
+        return m_transponders[id] != nullptr;
       }
 
       //! Get 3D location of transponder.
@@ -180,7 +179,7 @@ namespace DUNE
       void
       getLocation(unsigned id, double* i, double* j, double* k)
       {
-        if (m_transponders[id] == NULL)
+        if (m_transponders[id] == nullptr)
           return;
 
         *i =  m_transponders[id]->x;
@@ -194,7 +193,7 @@ namespace DUNE
       double
       getLat(unsigned id)
       {
-        if (m_transponders[id] == NULL)
+        if (m_transponders[id] == nullptr)
           return 0.0;
 
         return m_transponders[id]->lat;
@@ -206,7 +205,7 @@ namespace DUNE
       double
       getLon(unsigned id)
       {
-        if (m_transponders[id] == NULL)
+        if (m_transponders[id] == nullptr)
           return 0.0;
 
         return m_transponders[id]->lon;
@@ -218,7 +217,7 @@ namespace DUNE
       double
       getDepth(unsigned id)
       {
-        if (m_transponders[id] == NULL)
+        if (m_transponders[id] == nullptr)
           return 0.0;
 
         return m_transponders[id]->depth;
@@ -236,7 +235,7 @@ namespace DUNE
 
         Memory::clear(m_transponders[id]);
 
-        if (msg == NULL)
+        if (msg == nullptr)
           return;
 
         if (id + 1 > m_num_transponders)

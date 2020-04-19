@@ -336,7 +336,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.yoyo.variation))
           m_args.yoyo.variation = Angles::radians(m_args.yoyo.variation);
@@ -366,7 +366,7 @@ namespace Maneuver
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         Maneuver::onResourceInitialization();
 
@@ -390,7 +390,7 @@ namespace Maneuver
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_maneuvers[TYPE_IDLE] = create<Idle>();
         m_maneuvers[TYPE_GOTO] = create<Goto>();
@@ -412,14 +412,14 @@ namespace Maneuver
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         for (unsigned i = 0; i < TYPE_TOTAL; ++i)
           Memory::clear(m_maneuvers[i]);
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         Maneuver::onEntityReservation();
 
@@ -428,7 +428,7 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void)
+      onManeuverDeactivation(void) override
       {
         setEntityId(getEntityId());
       }
@@ -495,13 +495,13 @@ namespace Maneuver
       }
 
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         m_maneuvers[m_type]->onPathControlState(pcs);
       }
 
       void
-      onStateReport(void)
+      onStateReport(void) override
       {
         m_maneuvers[m_type]->onStateReport();
       }

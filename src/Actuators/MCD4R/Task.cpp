@@ -300,11 +300,11 @@ namespace Actuators
         bind<IMC::RemoteActionsRequest>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       { }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         for (unsigned i = 0; i < SV_TOTAL; ++i)
         {
@@ -323,14 +323,14 @@ namespace Actuators
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_wdog.setTop(m_args.wdog_tout);
       }
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -352,7 +352,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_actions.op = IMC::RemoteActionsRequest::OP_REPORT;
         m_laser_cnt.setTop(c_laser_debounce);
@@ -366,7 +366,7 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_ctl);
         Memory::clear(m_uart);
@@ -566,7 +566,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

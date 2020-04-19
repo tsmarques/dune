@@ -52,14 +52,14 @@ namespace UserInterfaces
         m_gpio->setDirection(Hardware::GPIO::GPIO_DIR_OUTPUT);
       }
 
-      ~GPIO(void)
+      ~GPIO(void) override
       {
         if (m_gpio)
           delete m_gpio;
       }
 
       void
-      setValue(bool value)
+      setValue(bool value) override
       {
         m_gpio->setValue(value);
       }

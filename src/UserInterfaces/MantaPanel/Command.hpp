@@ -59,7 +59,7 @@ namespace UserInterfaces
       }
 
       void
-      run(void)
+      run(void) override
       {
         while (!isStopping())
         {

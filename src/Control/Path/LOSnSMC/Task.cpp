@@ -127,7 +127,7 @@ namespace Control
        }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           PathController::onUpdateParameters();
 
@@ -137,7 +137,7 @@ namespace Control
         }
 
         void
-        onPathActivation(void)
+        onPathActivation(void) override
         {
           if (!m_args.use_controller)
             return;
@@ -159,7 +159,7 @@ namespace Control
         }
 
         void
-        step(const IMC::EstimatedState& state, const TrackingState& ts)
+        step(const IMC::EstimatedState& state, const TrackingState& ts) override
         {
           spew("Step start");
 

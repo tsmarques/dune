@@ -97,7 +97,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_ctd_counter.setTop(m_args.ctd_period);
         m_tel_counter.setTop(m_args.telemetry_period);
@@ -120,7 +120,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
     	  try
     	  {
@@ -135,7 +135,7 @@ namespace Sensors
 
       //! On resource initialization
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -274,7 +274,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

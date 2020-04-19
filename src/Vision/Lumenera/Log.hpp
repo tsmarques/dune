@@ -95,7 +95,7 @@ namespace Vision
         preAllocateFrames();
       }
 
-      ~Log(void)
+      ~Log(void) override
       {
         while (!m_queue.empty())
         {
@@ -218,7 +218,7 @@ namespace Vision
       }
 
       void
-      run(void)
+      run(void) override
       {
         while (!isStopping())
         {

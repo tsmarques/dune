@@ -55,16 +55,16 @@ namespace DUNE
 
         MT19937(int32_t seed);
 
-        ~MT19937(void);
+        ~MT19937(void) override;
 
         int32_t
-        random(void);
+        random(void) override;
 
         double
-        uniform(void);
+        uniform(void) override;
 
         void
-        seed(int32_t);
+        seed(int32_t) override;
 
       private:
         uint32_t

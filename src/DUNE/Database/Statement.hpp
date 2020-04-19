@@ -76,8 +76,7 @@ namespace DUNE
       //! @param count for INSERT, UPDATE or DELETE statements, may return
       //! the number of rows affected by the operation
       //! @return true if there are more rows to process.
-      bool
-      execute(int* count = 0);
+      bool execute (int *count = nullptr);
 
       //! Reset.
       //! The statement will not be bound to any arguments

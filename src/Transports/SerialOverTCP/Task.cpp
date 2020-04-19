@@ -83,13 +83,13 @@ namespace Transports
         .description("TCP port to listen on");
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -104,7 +104,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_sock != NULL)
         {
@@ -131,7 +131,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_sock->bind(m_args.tcp_port);
         m_sock->listen(1024);
@@ -231,7 +231,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

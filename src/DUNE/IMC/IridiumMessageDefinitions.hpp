@@ -86,9 +86,9 @@ namespace DUNE
     public:
       ImcIridiumMessage();
       ImcIridiumMessage(DUNE::IMC::Message * msg);
-      int serialize(uint8_t * buffer);
-      int deserialize(uint8_t* data, uint16_t len);
-      ~ImcIridiumMessage();
+      int serialize(uint8_t * buffer) override;
+      int deserialize(uint8_t* data, uint16_t len) override;
+      ~ImcIridiumMessage() override;
       DUNE::IMC::Message * msg;
     };
 
@@ -97,10 +97,10 @@ namespace DUNE
     {
     public:
       std::vector<DevicePosition> positions;
-      int serialize(uint8_t * buffer);
-      int deserialize(uint8_t* data, uint16_t len);
+      int serialize(uint8_t * buffer) override;
+      int deserialize(uint8_t* data, uint16_t len) override;
       DeviceUpdate();
-      ~DeviceUpdate(){};
+      ~DeviceUpdate() override{};
     };
 
     //! Extension to the IMC protocol used to report a set of device positions (including predicted error)
@@ -108,20 +108,20 @@ namespace DUNE
     {
     public:
       std::vector<DevicePosition> positions;
-      int serialize(uint8_t * buffer);
-      int deserialize(uint8_t* data, uint16_t len);
+      int serialize(uint8_t * buffer) override;
+      int deserialize(uint8_t* data, uint16_t len) override;
       ExtendedDeviceUpdate();
-      ~ExtendedDeviceUpdate(){};
+      ~ExtendedDeviceUpdate() override{};
     };
 
     //! Extension to the IMC protocol used request reception of device position updates
     class ActivateSpotSubscription : public IridiumMessage
     {
     public:
-      int serialize(uint8_t * buffer);
-      int deserialize(uint8_t* data, uint16_t len);
+      int serialize(uint8_t * buffer) override;
+      int deserialize(uint8_t* data, uint16_t len) override;
       ActivateSpotSubscription();
-      ~ActivateSpotSubscription(){};
+      ~ActivateSpotSubscription() override{};
     };
 
     //! Extension to the IMC protocol used to stop receiving device position updates
@@ -129,9 +129,9 @@ namespace DUNE
     {
     public:
       DeactivateSpotSubscription();
-      int serialize(uint8_t * buffer);
-      int deserialize(uint8_t* data, uint16_t len);
-      ~DeactivateSpotSubscription(){};
+      int serialize(uint8_t * buffer) override;
+      int deserialize(uint8_t* data, uint16_t len) override;
+      ~DeactivateSpotSubscription() override{};
     };
 
     //! Extension to the IMC protocol used to send text commands to DUNE vehicles (these messages are reported as received SMS)
@@ -139,10 +139,10 @@ namespace DUNE
     {
     public:
       IridiumCommand();
-      int serialize(uint8_t * buffer);
-      int deserialize(uint8_t* data, uint16_t len);
+      int serialize(uint8_t * buffer) override;
+      int deserialize(uint8_t* data, uint16_t len) override;
       std::string command;
-      ~IridiumCommand(){};
+      ~IridiumCommand() override{};
     };
 
   } /* namespace IMC */

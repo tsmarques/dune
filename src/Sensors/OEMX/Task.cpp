@@ -177,7 +177,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         resetStateDataSensor();
@@ -224,7 +224,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         resetStateDataSensor();
         Delay::wait(c_delay_startup);
@@ -239,7 +239,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_uart != NULL)
         {
@@ -408,7 +408,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

@@ -78,7 +78,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver idle maneuver message
       void
-      onStart(const IMC::Dislodge* maneuver)
+      onStart(const IMC::Dislodge* maneuver) override
       {
         m_task->setControl(IMC::CL_SPEED);
 
@@ -96,7 +96,7 @@ namespace Maneuver
       //! On EstimatedState message
       //! @param[in] msg EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         m_estate = *msg;
 
@@ -161,7 +161,7 @@ namespace Maneuver
         }
       }
 
-      ~Dislodge(void)
+      ~Dislodge(void) override
       { }
 
     private:

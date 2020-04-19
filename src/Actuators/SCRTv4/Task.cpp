@@ -134,7 +134,7 @@ namespace Actuators
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -146,7 +146,7 @@ namespace Actuators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_listener != NULL)
         {
@@ -159,7 +159,7 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -174,7 +174,7 @@ namespace Actuators
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         clearStats();
 
@@ -402,7 +402,7 @@ namespace Actuators
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         LUCL::Command* cmd = NULL;
 

@@ -57,8 +57,8 @@ namespace DUNE
       Periodic(const std::string& name, Context& ctx);
 
       //! Destructor.
-      virtual
-      ~Periodic(void)
+      
+      ~Periodic(void) override
       { }
 
       //! Set the task frequency programmatically. The frequency of a
@@ -109,7 +109,7 @@ namespace DUNE
 
       //! Task entry point.
       void
-      onMain(void);
+      onMain(void) override;
     };
   }
 }

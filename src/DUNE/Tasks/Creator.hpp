@@ -48,9 +48,7 @@ namespace DUNE
 
     struct Creator
     {
-      Creator(void):
-        m_creator(0)
-      { }
+      Creator (void) : m_creator (nullptr) {}
 
       Creator(const task_creator_t& c):
         m_creator(c)

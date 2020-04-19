@@ -63,7 +63,7 @@ namespace Actuators
         }
 
         //! Destructor.
-        ~ServoPwm(void)
+        ~ServoPwm(void) override
         {
           closeConfigServo();
         }
@@ -86,7 +86,7 @@ namespace Actuators
 
       private:
         void
-        run(void)
+        run(void) override
         {
           c_time_delayms = 19500;
           wdog_tout = 0.02;

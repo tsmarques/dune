@@ -220,13 +220,13 @@ namespace Transports
         bind<IMC::VehicleMedium>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         try
         {
@@ -240,13 +240,13 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_sound_speed = m_args.sound_speed_def;
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -272,7 +272,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_driver)
         {
@@ -286,7 +286,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Process modem addresses.
         std::string system = getSystemName();
@@ -724,7 +724,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

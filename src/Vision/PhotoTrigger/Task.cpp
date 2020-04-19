@@ -127,7 +127,7 @@ namespace Vision
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_period = 1.0 / m_args.freq;
 
@@ -191,7 +191,7 @@ namespace Vision
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

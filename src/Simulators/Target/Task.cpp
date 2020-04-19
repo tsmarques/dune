@@ -94,20 +94,20 @@ namespace Simulators
 
       //! Acquire resources
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_prng = Random::Factory::create(Random::Factory::c_default, -1);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_prng);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_lat = Angles::radians(m_args.lat);
         m_lon = Angles::radians(m_args.lon);
@@ -142,7 +142,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task(void) override
       {
         sendTarget();
       }

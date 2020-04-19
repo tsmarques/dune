@@ -278,7 +278,7 @@ namespace Maneuver
         }
 
         void
-        onPathControlState(const IMC::PathControlState* pcs)
+        onPathControlState(const IMC::PathControlState* pcs) override
         {
           m_pcs = *pcs;
         }

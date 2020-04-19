@@ -472,13 +472,13 @@ namespace Control
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           Memory::clear(m_TCP_sock);
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition(void) override
         {
           openConnection();
 
@@ -492,7 +492,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           //! Minimum value for bank (RC1) and vertical rate (R2)
           //! are simetrical to maximum values, no need to input them manually
@@ -1471,7 +1471,7 @@ namespace Control
         }
 
         void
-        onMain(void)
+        onMain(void) override
         {
           while (!stopping())
           {

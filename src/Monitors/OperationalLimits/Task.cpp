@@ -198,7 +198,7 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (m_use_cfg)
         {
@@ -347,7 +347,7 @@ namespace Monitors
       }
 
       void
-      task(void)
+      task(void) override
       {
         double speed = std::sqrt(m_estate.vx * m_estate.vx + m_estate.vy * m_estate.vy + m_estate.vz * m_estate.vz);
         uint8_t omask = m_emask;

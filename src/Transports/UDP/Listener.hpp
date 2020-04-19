@@ -96,7 +96,7 @@ namespace Transports
       LimitedComms* m_lcomms;
 
       void
-      run(void)
+      run(void) override
       {
         Address addr;
         uint8_t* bfr = new uint8_t[c_bfr_size];

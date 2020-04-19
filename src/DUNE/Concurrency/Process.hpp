@@ -60,30 +60,30 @@ namespace DUNE
     public:
       Process(void);
 
-      virtual
-      ~Process(void);
+      
+      ~Process(void) override;
 
     private:
       ProcessPrivate* m_pvt;
       SharedMemory m_smem;
 
       void
-      startImpl(void);
+      startImpl(void) override;
 
       void
-      stopImpl(void);
+      stopImpl(void) override;
 
       void
-      joinImpl(void);
+      joinImpl(void) override;
 
       void
-      setPriorityImpl(Scheduler::Policy policy, unsigned priority);
+      setPriorityImpl(Scheduler::Policy policy, unsigned priority) override;
 
       Runnable::State
-      getStateImpl(void);
+      getStateImpl(void) override;
 
       void
-      setStateImpl(Runnable::State value);
+      setStateImpl(Runnable::State value) override;
     };
   }
 }

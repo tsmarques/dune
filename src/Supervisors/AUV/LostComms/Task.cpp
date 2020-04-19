@@ -120,14 +120,14 @@ namespace Supervisors
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           // Initialize entity state.
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
@@ -284,7 +284,7 @@ namespace Supervisors
         }
 
         void
-        task(void)
+        task(void) override
         {
           if (!isActive())
             return;

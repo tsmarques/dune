@@ -131,19 +131,19 @@ namespace Supervisors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_man_sup = new ManeuverSupervisor(this, m_args.handle_timeout);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_man_sup);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setInitialState();
         m_err_timer.setTop(c_error_period);
@@ -619,7 +619,7 @@ namespace Supervisors
       }
 
       void
-      task(void)
+      task(void) override
       {
         dispatch(m_vs);
 

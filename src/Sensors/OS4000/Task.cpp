@@ -183,14 +183,14 @@ namespace Sensors
 
       //! Release allocated resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_uart->setCanonicalInput(true);
@@ -199,7 +199,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_accumulator = 0;
         m_state = STA_BOOT;
@@ -222,7 +222,7 @@ namespace Sensors
 
       //! Update %Task parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.data_tout))
           m_wdog.setTop(m_args.data_tout);
@@ -395,7 +395,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

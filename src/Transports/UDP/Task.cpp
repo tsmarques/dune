@@ -191,14 +191,14 @@ namespace Transports
         bind<IMC::Announce>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         if (m_bfr != NULL)
           delete[] m_bfr;
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.contact_refresh_per))
           m_contacts_refresh_counter.setTop(m_args.contact_refresh_per);
@@ -232,7 +232,7 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         // Register normal messages.
         bind(this, m_args.messages);
@@ -306,7 +306,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_listener != NULL)
         {
@@ -405,7 +405,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

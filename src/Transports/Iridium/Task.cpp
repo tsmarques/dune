@@ -107,13 +107,13 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_rnd = Random::Factory::create("drand48", -1);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://iridium");
@@ -122,19 +122,19 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_rnd);
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -420,7 +420,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

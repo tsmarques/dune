@@ -153,14 +153,10 @@ namespace Sensors
       //! Task arguments.
       Arguments m_args;
 
-      Task(const std::string& name, Tasks::Context& ctx):
-        DUNE::Tasks::Periodic(name, ctx),
-        m_uart(NULL),
-        m_tstamp(0),
-        m_state_timer(1.0),
-        m_sample_count(0),
-        m_faults_count(0),
-        m_timeout_count(0)
+      Task (const std::string &name, Tasks::Context &ctx)
+          : DUNE::Tasks::Periodic (name, ctx), m_uart (nullptr), m_tstamp (0),
+            m_state_timer (1.0), m_sample_count (0), m_faults_count (0),
+            m_timeout_count (0)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")
@@ -214,7 +210,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
 
@@ -230,23 +226,23 @@ namespace Sensors
         if (paramChanged(m_args.timeout_error))
           m_wdog.setTop(m_args.timeout_error);
 
-        if (m_uart != NULL)
-        {
-          if (paramChanged(m_args.hard_iron))
-            runCalibration();
-        }
+        if (m_uart != nullptr)
+          {
+            if (paramChanged (m_args.hard_iron))
+              runCalibration ();
+          }
       }
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
 
@@ -263,7 +259,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         while (!stopping())
         {
@@ -327,7 +323,7 @@ namespace Sensors
       inline bool
       poll(Commands cmd, Sizes cmd_size, uint16_t addr, uint16_t value)
       {
-        if (m_uart == NULL)
+        if (m_uart == nullptr)
           return false;
 
         // Request data.
@@ -429,7 +425,7 @@ namespace Sensors
       void
       runCalibration(void)
       {
-        if (m_uart == NULL)
+        if (m_uart == nullptr)
           return;
 
         // See if vehicle has same hard iron calibration parameters.
@@ -635,7 +631,7 @@ namespace Sensors
 
       //! Main task.
       void
-      task(void)
+      task(void) override
       {
         // Check for incoming messages.
         consumeMessages();

@@ -206,7 +206,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         // Depth conversion (bar to meters of fluid).
         if (paramChanged(m_args.depth_conv))
@@ -230,7 +230,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         onResourceRelease();
 
@@ -264,7 +264,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         try
         {
@@ -277,13 +277,13 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_handle);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         m_crc_err_count = 0;
         initialize();
@@ -590,7 +590,7 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task(void) override
       {
         // Query pressure.
         if (write(m_msg_read_pressure, sizeof(m_msg_read_pressure)))

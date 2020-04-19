@@ -130,7 +130,7 @@ namespace DUNE
       SerialPort(const std::string& device, int baudrate = 38400, Parity parity = SP_PARITY_NONE, StopBits stopbits = SP_STOPBITS_1, DataBits databits = SP_DATABITS_8, bool block = false);
 
       //! Serial port destructor.
-      ~SerialPort(void);
+      ~SerialPort(void) override;
 
       void
       setMinimumRead(int value);
@@ -196,7 +196,7 @@ namespace DUNE
 #endif
 
       IO::NativeHandle
-      doGetNative(void) const
+      doGetNative(void) const override
       {
         return m_handle;
       }
@@ -206,26 +206,26 @@ namespace DUNE
       //! @param size amount of bytes to write.
       //! @return amount of bytes actually written.
       size_t
-      doWrite(const uint8_t* bfr, size_t size);
+      doWrite(const uint8_t* bfr, size_t size) override;
 
       //! Read an amount of bytes from the serial port.
       //! @param bfr destination buffer.
       //! @param size amount of bytes to read.
       //! @return amount of bytes actually read.
       size_t
-      doRead(uint8_t* bfr, size_t size);
+      doRead(uint8_t* bfr, size_t size) override;
 
       //! Flush input buffer, discarding all of it's contents.
       void
-      doFlushInput(void);
+      doFlushInput(void) override;
 
       //! Flush output buffer, aborting output.
       void
-      doFlushOutput(void);
+      doFlushOutput(void) override;
 
       //! Flush both input and output buffers.
       void
-      doFlush(void);
+      doFlush(void) override;
     };
   }
 }

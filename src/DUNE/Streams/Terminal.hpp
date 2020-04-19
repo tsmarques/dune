@@ -98,9 +98,7 @@ namespace DUNE
       class Flusher
       { };
 
-      Terminal(void):
-        m_out(NULL)
-      { }
+      Terminal (void) : m_out (nullptr) {}
 
       ~Terminal(void)
       {

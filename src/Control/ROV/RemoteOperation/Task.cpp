@@ -228,20 +228,20 @@ namespace Control
         }
 
         void
-        onEntityResolution(void)
+        onEntityResolution(void) override
         {
           m_wdist_ent = resolveEntity(m_args.wdist_label);
         }
 
         void
-        onEntityReservation(void)
+        onEntityReservation(void) override
         {
           m_wdist_des_ent = reserveEntity(m_args.wdist_des_label);
           m_filt_wdist_ent = reserveEntity(m_args.filt_wdist_label);
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           BasicRemoteOperation::onResourceInitialization();
 
@@ -249,20 +249,20 @@ namespace Control
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           Memory::clear(m_wdist_mav);
           Memory::clear(m_dt);
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition(void) override
         {
           m_wdist_mav = new MovingAverage<float>(m_args.wdist_mav_size);
         }
 
         void
-        onActivation(void)
+        onActivation(void) override
         {
           m_thruster.fill(0);
 
@@ -283,7 +283,7 @@ namespace Control
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           if (m_args.dh_control)
             disableControlLoops(IMC::CL_DEPTH | IMC::CL_YAW | IMC::CL_SPEED);
@@ -294,7 +294,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.heading_rate))
             m_args.heading_rate = Math::Angles::radians(m_args.heading_rate);
@@ -394,7 +394,7 @@ namespace Control
         }
 
         void
-        onRemoteActions(const IMC::RemoteActions* msg)
+        onRemoteActions(const IMC::RemoteActions* msg) override
         {
           TupleList tuples(msg->actions);
 
@@ -447,7 +447,7 @@ namespace Control
         }
 
         void
-        onConnectionTimeout(void)
+        onConnectionTimeout(void) override
         {
           m_thruster.fill(0);
 
@@ -475,7 +475,7 @@ namespace Control
         }
 
         void
-        actuate(void)
+        actuate(void) override
         {
           if (m_args.dh_control && m_dh_data)
           {

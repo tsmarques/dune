@@ -44,20 +44,17 @@ namespace DUNE
     class FilterOutput: public std::ostream
     {
     public:
-      FilterOutput(Methods method):
-        std::ostream(0),
-        m_method(method),
-        m_buffer(0)
+      FilterOutput (Methods method)
+          : std::ostream (0), m_method (method), m_buffer (nullptr)
       { }
 
-      FilterOutput(std::ostream& stream, Methods method):
-        std::ostream(0),
-        m_buffer(0)
+      FilterOutput (std::ostream &stream, Methods method)
+          : std::ostream (0), m_buffer (nullptr)
       {
         setStream(stream, method);
       }
 
-      ~FilterOutput(void)
+      ~FilterOutput(void) override
       {
         delete m_buffer;
       }

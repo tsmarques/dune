@@ -59,7 +59,7 @@ namespace Sensors
         m_path = path;
       }
 
-      ~Log(void)
+      ~Log(void) override
       {
         processDirtyQueue();
         m_stream.close();
@@ -126,7 +126,7 @@ namespace Sensors
       }
 
       void
-      run(void)
+      run(void) override
       {
         while (isRunning())
         {

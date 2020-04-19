@@ -50,28 +50,28 @@ namespace DUNE
 
       OutputMultiplexerBuffer(std::ostream* stream);
 
-      virtual
-      ~OutputMultiplexerBuffer(void);
+      
+      ~OutputMultiplexerBuffer(void) override;
 
       void
       add(std::ostream* stream);
 
     protected:
-      virtual int
-      sync(void);
+      int
+      sync(void) override;
 
-      virtual int_type
-      overflow(int_type c);
+      int_type
+      overflow(int_type c) override;
 
-      virtual int_type
-      underflow(void)
+      int_type
+      underflow(void) override
       {
         std::cerr << "underflow" << std::endl;
         return 1;
       }
 
-      virtual std::streamsize
-      xsputn(const char* bfr, std::streamsize length);
+      std::streamsize
+      xsputn(const char* bfr, std::streamsize length) override;
 
     private:
       //! Associated output streams.

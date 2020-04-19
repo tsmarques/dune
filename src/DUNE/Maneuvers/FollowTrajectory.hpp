@@ -56,11 +56,11 @@ namespace DUNE
       FollowTrajectory(const std::string& name, Tasks::Context& ctx);
 
       //! Destructor.
-      virtual
-      ~FollowTrajectory(void);
+      
+      ~FollowTrajectory(void) override;
 
-      virtual void
-      onUpdateParameters(void);
+      void
+      onUpdateParameters(void) override;
 
       //! Consumer for IMC::FollowTrajectory message.
       //! @param msg maneuver message
@@ -100,11 +100,11 @@ namespace DUNE
       //! Inherited from Maneuver class.
       //! @param pcs path control state message
       void
-      onPathControlState(const IMC::PathControlState* pcs);
+      onPathControlState(const IMC::PathControlState* pcs) override;
 
       //! Method called upon maneuver deactivation.
       void
-      onManeuverDeactivation(void);
+      onManeuverDeactivation(void) override;
 
       //! Method invoked on maneuver reset.
       //! By default the base class implementation does nothing.

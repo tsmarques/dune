@@ -45,16 +45,15 @@ namespace DUNE
     class FileOutput: public std::ostream
     {
     public:
-      FileOutput(const char* filename, Methods method):
-        std::ostream(0),
-        m_method(method),
-        m_stream(filename, std::ios::binary | std::ios::out),
-        m_buffer(0)
+      FileOutput (const char *filename, Methods method)
+          : std::ostream (0), m_method (method),
+            m_stream (filename, std::ios::binary | std::ios::out),
+            m_buffer (nullptr)
       {
         attach(m_stream);
       }
 
-      ~FileOutput(void)
+      ~FileOutput(void) override
       {
         delete m_buffer;
       }

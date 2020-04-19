@@ -479,7 +479,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setAndSendState(STA_BOOT);
 
@@ -499,14 +499,14 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
         Memory::clear(m_reporter);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_sound_speed = m_args.sound_speed_def;
 
@@ -515,7 +515,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Process micro-modem addresses.
         std::vector<std::string> addrs = m_ctx.config.options(m_args.addr_section);
@@ -621,7 +621,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         try
         {
@@ -1347,7 +1347,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

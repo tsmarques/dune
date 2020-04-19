@@ -108,7 +108,7 @@ namespace Simulators
 
       //! Release allocated resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_vehicle);
         Memory::clear(m_world);
@@ -116,7 +116,7 @@ namespace Simulators
 
       //! Initialize resources and add vehicle to the world.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Initialize simulation world.
         m_world = Factory::produceWorld(m_ctx.config);
@@ -174,7 +174,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task(void) override
       {
         if (!isActive())
           return;

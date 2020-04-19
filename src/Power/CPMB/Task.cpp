@@ -152,7 +152,7 @@ namespace Power
         std::memset(m_adcs, 0, sizeof(m_adcs));
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
         clearADCs();
@@ -170,7 +170,7 @@ namespace Power
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         // Produces ADC messages.
         for (unsigned i = 0; i < c_adcs_count; ++i)
@@ -205,7 +205,7 @@ namespace Power
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -227,7 +227,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -249,7 +249,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         std::map<unsigned, PowerChannel*>::const_iterator itr = m_channels.begin();
         for ( ; itr != m_channels.end(); ++itr)
@@ -260,7 +260,7 @@ namespace Power
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_ctl != NULL)
         {
@@ -365,7 +365,7 @@ namespace Power
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

@@ -59,7 +59,7 @@ namespace DUNE
     public:
       //! Constructor.
       //! @param dtor optional TLS data destructor.
-      RawTLS(dune_concurrency_raw_tls_dtr_t dtor = NULL);
+      RawTLS (dune_concurrency_raw_tls_dtr_t dtor = nullptr);
 
       //! Destructor.
       ~RawTLS(void);

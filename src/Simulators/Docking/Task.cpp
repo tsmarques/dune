@@ -168,7 +168,7 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         debug("dock coordinates lat: %0.6f, lon: %0.6f", m_args.lat, m_args.lon);
 
@@ -195,13 +195,13 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_prng);
       }
@@ -279,7 +279,7 @@ namespace Simulators
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

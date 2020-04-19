@@ -161,7 +161,7 @@ namespace Control
 
         //! Release resources.
         void
-        onResourceRelease(void)
+        onResourceRelease(void) override
         {
           Memory::clear(m_counter_solo);
           Memory::clear(m_counter_step);
@@ -169,7 +169,7 @@ namespace Control
 
         //! Acquire resources.
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition(void) override
         {
           m_counter_solo = new Time::Counter<float>(m_args.time_solo);
           m_counter_step = new Time::Counter<float>(m_args.time_step);
@@ -177,7 +177,7 @@ namespace Control
 
         //! Initialize resources.
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           requestDeactivation();
           reset();
@@ -185,14 +185,14 @@ namespace Control
 
         //! On activation
         void
-        onActivation(void)
+        onActivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         //! On deactivation
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
@@ -331,7 +331,7 @@ namespace Control
         }
 
         void
-        task(void)
+        task(void) override
         {
           if (!isActive())
             return;

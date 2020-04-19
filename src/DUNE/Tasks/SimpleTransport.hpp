@@ -52,11 +52,11 @@ namespace DUNE
     public:
       SimpleTransport(const std::string& name, Tasks::Context& ctx);
 
-      virtual
-      ~SimpleTransport(void);
+      
+      ~SimpleTransport(void) override;
 
       void
-      onMain(void);
+      onMain(void) override;
 
       void
       consume(const IMC::Message* msg);

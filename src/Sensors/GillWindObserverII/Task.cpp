@@ -72,20 +72,20 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_uart->setCanonicalInput(true);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         char line[128];
         int rv = 0;

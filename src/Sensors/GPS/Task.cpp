@@ -160,7 +160,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         if (m_args.pwr_channels.size() > 0)
         {
@@ -207,7 +207,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_reader != NULL)
         {
@@ -220,7 +220,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         for (unsigned i = 0; i < c_max_init_cmds; ++i)
         {
@@ -747,7 +747,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

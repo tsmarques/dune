@@ -201,7 +201,7 @@ namespace Plan
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         try
         {
@@ -223,7 +223,7 @@ namespace Plan
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.speriod))
           m_args.speriod = 1.0 / m_args.speriod;
@@ -234,20 +234,20 @@ namespace Plan
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_plan);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_plan = new Plan(&m_spec, m_args.progress, m_args.fpredict, m_args.max_depth,
                           this, m_args.calibration_time, &m_ctx.config);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         debug("database file: '%s'", m_db_file.c_str());
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -1079,7 +1079,7 @@ namespace Plan
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         setInitialState();
 

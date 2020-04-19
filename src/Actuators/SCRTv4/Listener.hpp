@@ -49,7 +49,7 @@ namespace Actuators
         m_uart(uart)
       { }
 
-      ~Listener(void)
+      ~Listener(void) override
       {
         while (!m_queue.empty())
         {
@@ -72,7 +72,7 @@ namespace Actuators
       }
 
       void
-      run(void)
+      run(void) override
       {
         uint8_t bfr[128];
         LUCL::ProtocolParser parser;

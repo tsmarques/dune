@@ -104,7 +104,7 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void)
+      onManeuverDeactivation(void) override
       {
         // stop moving
         setControl(0);
@@ -112,7 +112,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (m_args.z_mode == "Depth")
           m_control = IMC::CL_DEPTH | IMC::CL_SPEED | IMC::CL_PATH;
@@ -165,7 +165,7 @@ namespace Maneuver
       }
 
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         // Verify maneuver completion
         double delta = Clock::get() - m_start_time - m_maneuver.duration;

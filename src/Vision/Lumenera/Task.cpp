@@ -292,7 +292,7 @@ namespace Vision
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         updateSlaveEntities();
 
@@ -318,7 +318,7 @@ namespace Vision
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         if (m_args.pwr_gpio > 0)
         {
@@ -340,7 +340,7 @@ namespace Vision
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         trace("releasing");
         requestDeactivation();
@@ -377,7 +377,7 @@ namespace Vision
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation(void) override
       {
         trace("received activation request");
 
@@ -434,7 +434,7 @@ namespace Vision
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation(void) override
       {
         trace("received deactivation request");
         m_slave_entities->deactivate();
@@ -455,7 +455,7 @@ namespace Vision
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         inf(DTR("activated"));
@@ -463,7 +463,7 @@ namespace Vision
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         stopVideo();
         inf(DTR("stopped video stream"));
@@ -986,7 +986,7 @@ namespace Vision
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

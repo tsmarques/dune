@@ -52,8 +52,8 @@ namespace DUNE
       { }
 
       //! Destructor.
-      virtual
-      ~AbstractTask(void)
+      
+      ~AbstractTask(void) override
       { }
 
       //! Queue a message for later consumption.

@@ -53,8 +53,8 @@ namespace DUNE
       //! @param[in] handle I/O handle.
       BasicModem(Tasks::Task* task, IO::Handle* handle);
 
-      virtual
-      ~BasicModem(void)
+      
+      ~BasicModem(void) override
       { }
 
       void
@@ -226,7 +226,7 @@ namespace DUNE
       processInput(std::string& str);
 
       void
-      run(void);
+      run(void) override;
     };
   }
 }

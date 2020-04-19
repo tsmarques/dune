@@ -115,13 +115,13 @@ namespace Simulators
         bind<IMC::UASimulation>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (m_args.location.size() == 2)
         {
@@ -139,7 +139,7 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_sock = new DUNE::Network::UDPSocket();
         m_sock->setMulticastTTL(1);
@@ -149,7 +149,7 @@ namespace Simulators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_pending)
         {
@@ -323,7 +323,7 @@ namespace Simulators
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         double last_pos_update = 0;
 

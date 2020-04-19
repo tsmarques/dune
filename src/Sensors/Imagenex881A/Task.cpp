@@ -342,7 +342,7 @@ namespace Sensors
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.uart_dev) && (m_uart != NULL))
           throw RestartNeeded(DTR("restarting to change UART device"), 1);
@@ -389,7 +389,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
 
@@ -406,21 +406,21 @@ namespace Sensors
 
       //! Release resources
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_uart);
         requestDeactivation();
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         requestDeactivation();
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation(void) override
       {
         m_power_channel_control.op = IMC::PowerChannelControl::PCC_OP_TURN_ON;
         dispatch(m_power_channel_control);
@@ -429,14 +429,14 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         inf("%s", DTR(Status::getString(Status::CODE_ACTIVE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         inf("%s", DTR(Status::getString(Status::CODE_IDLE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -629,7 +629,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         uint8_t bfr[c_max_rdata_size];
 

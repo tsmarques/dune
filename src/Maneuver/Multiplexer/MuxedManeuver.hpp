@@ -61,14 +61,14 @@ namespace Maneuver
       { }
 
       //! Destructor
-      virtual
-      ~MuxedManeuver(void)
+      
+      ~MuxedManeuver(void) override
       { }
 
       //! Start maneuver function
       //! @param[in] maneuver rows maneuver message
       void
-      start(const IMC::Maneuver* maneuver)
+      start(const IMC::Maneuver* maneuver) override
       {
         onStart(static_cast<const Msg*>(maneuver));
       }

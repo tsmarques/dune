@@ -80,7 +80,7 @@ namespace Simulators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setEntityState(EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
@@ -149,7 +149,7 @@ namespace Simulators
 
       //! @publish DUNE::IMC::IridiumMsgRx
       void
-      task(void)
+      task(void) override
       {
         if (m_send_empty)
         {

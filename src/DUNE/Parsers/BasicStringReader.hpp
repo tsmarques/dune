@@ -49,12 +49,12 @@ namespace DUNE
         m_var(var)
       { }
 
-      virtual
-      ~BasicStringReader(void)
+      
+      ~BasicStringReader(void) override
       { }
 
-      virtual bool
-      read(const std::string& value)
+      bool
+      read(const std::string& value) override
       {
         return castLexical(value, m_var);
       }

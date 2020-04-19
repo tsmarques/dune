@@ -114,7 +114,7 @@ namespace Autonomy
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         reserveEntity("TREX (External)");
       }
@@ -255,13 +255,13 @@ namespace Autonomy
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_pwr_cpu.name = m_args.aux_pwr_channel;
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         inf("%s", DTR(Status::getString(Status::CODE_ACTIVE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -274,7 +274,7 @@ namespace Autonomy
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         inf("%s", DTR(Status::getString(Status::CODE_IDLE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -364,7 +364,7 @@ namespace Autonomy
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         std::map<unsigned int, double>::iterator it;
         std::map<unsigned int, double> oldMap;

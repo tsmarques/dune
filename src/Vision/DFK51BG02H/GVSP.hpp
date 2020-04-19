@@ -64,7 +64,7 @@ namespace Vision
       }
 
       //! Destructor.
-      ~GVSP(void)
+      ~GVSP(void) override
       {
         delete [] m_buffer;
       }
@@ -153,7 +153,7 @@ namespace Vision
       std::queue<Frame*> m_clean;
 
       void
-      run(void)
+      run(void) override
       {
         Frame* frame = NULL;
 

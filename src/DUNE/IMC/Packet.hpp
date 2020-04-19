@@ -76,8 +76,8 @@ namespace DUNE
       static uint16_t
       serialize(const Message* msg, std::ostream& ofs);
 
-      static Message*
-      deserialize(const uint8_t* bfr, uint16_t bfr_len, Message* msg = NULL);
+      static Message *deserialize (const uint8_t *bfr, uint16_t bfr_len,
+                                   Message *msg = nullptr);
 
       static Message*
       deserialize(std::istream& ifs);

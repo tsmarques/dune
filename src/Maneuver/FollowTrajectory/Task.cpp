@@ -98,13 +98,13 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         Maneuvers::FollowTrajectory::onUpdateParameters();
       }
 
       bool
-      canInit(const IMC::FollowTrajectory* maneuver)
+      canInit(const IMC::FollowTrajectory* maneuver) override
       {
         m_maneuver_speed.value = maneuver->speed;
         m_maneuver_speed.speed_units = maneuver->speed_units;
@@ -133,13 +133,13 @@ namespace Maneuver
       }
 
       void
-      onPathCompletion(void)
+      onPathCompletion(void) override
       {
         m_done = true;
       }
 
       void
-      step(const IMC::EstimatedState& estate)
+      step(const IMC::EstimatedState& estate) override
       {
         (void)estate;
 

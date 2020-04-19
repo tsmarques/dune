@@ -89,27 +89,27 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.max_bank))
             m_args.max_bank = Angles::radians(m_args.max_bank);
         }
 
         void
-        onActivation(void)
+        onActivation(void) override
         {
           enableControlLoops(IMC::CL_VERTICAL_RATE | IMC::CL_SPEED | IMC::CL_ROLL);
           normalize();
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           normalize();
         }
 
         void
-        onConnectionTimeout(void)
+        onConnectionTimeout(void) override
         {
           normalize();
         }
@@ -134,7 +134,7 @@ namespace Control
         }
 
         void
-        onRemoteActions(const IMC::RemoteActions* msg)
+        onRemoteActions(const IMC::RemoteActions* msg) override
         {
           TupleList tl(msg->actions);
 

@@ -197,13 +197,13 @@ namespace Transports
         bind<IMC::UsblConfig>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_reporter = new Supervisors::Reporter::Client(this, Supervisors::Reporter::IS_ACOUSTIC,
                                                        2.0, false);
@@ -213,7 +213,7 @@ namespace Transports
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://acoustic/operation/")
@@ -228,7 +228,7 @@ namespace Transports
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         clearLastOp();
         Memory::clear(m_reporter);
@@ -871,7 +871,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

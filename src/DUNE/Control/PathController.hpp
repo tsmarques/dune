@@ -58,12 +58,12 @@ namespace DUNE
       PathController(std::string name, Tasks::Context& ctx);
 
       //! Destructor.
-      virtual
-      ~PathController(void);
+      
+      ~PathController(void) override;
 
       //! Entity reservation callback.
       void
-      onEntityReservation(void);
+      onEntityReservation(void) override;
 
       //! Consumer for Brake message.
       //! @param brake message to consume.
@@ -108,20 +108,20 @@ namespace DUNE
       //! Handler for parameter updates.
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
-      virtual void
-      onUpdateParameters(void);
+      void
+      onUpdateParameters(void) override;
 
       //! On resource initialization
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
-      virtual void
-      onResourceInitialization(void);
+      void
+      onResourceInitialization(void) override;
 
       //! On resource aquisition
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
-      virtual void
-      onResourceRelease(void);
+      void
+      onResourceRelease(void) override;
 
       //! Handler for path control activation.
       //! This is called when path control is activated.
@@ -301,7 +301,7 @@ namespace DUNE
 
       //! Task method.
       void
-      onMain(void);
+      onMain(void) override;
 
     private:
       //! Update entity state
@@ -345,11 +345,11 @@ namespace DUNE
 
       //! OnActivation routine from parent class
       void
-      onActivation(void);
+      onActivation(void) override;
 
       //! OnDeactivation routine from parent class
       void
-      onDeactivation(void);
+      onDeactivation(void) override;
 
       //! Update position relatively to track
       //! @param[in] coord current coordinate
@@ -357,7 +357,7 @@ namespace DUNE
       //! @param[out] y y coordinate relatively to path
       template <typename T>
       inline void
-      getTrackPosition(const T& coord, double* x, double* y = 0)
+      getTrackPosition (const T &coord, double *x, double *y = nullptr)
       {
         Coordinates::getTrackPosition(m_ts.start, m_ts.track_bearing, coord, x, y);
       }

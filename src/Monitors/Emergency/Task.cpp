@@ -134,27 +134,27 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.heartbeat_tout))
           m_lost_coms_timer.setTop(m_args.heartbeat_tout);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_reporter);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         m_reporter = new Supervisors::Reporter::Client(this, Supervisors::Reporter::IS_GSM,
                                                        2.0, false);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Initialize entity state.
         if (isActive())
@@ -171,13 +171,13 @@ namespace Monitors
       }
 
       void
-      onActivation(void)
+      onActivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -410,7 +410,7 @@ namespace Monitors
       }
 
       void
-      task(void)
+      task(void) override
       {
         sendScheduled();
         sendDistress();

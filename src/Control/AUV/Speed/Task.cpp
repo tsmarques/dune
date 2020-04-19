@@ -193,19 +193,19 @@ namespace Control
         }
 
         void
-        onActivation(void)
+        onActivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         void
-        onDeactivation(void)
+        onDeactivation(void) override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization(void) override
         {
           requestDeactivation();
 
@@ -215,7 +215,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters(void) override
         {
           if (paramChanged(m_args.rpm_gains) ||
               paramChanged(m_args.mps_gains) ||
@@ -473,7 +473,7 @@ namespace Control
         }
 
         void
-        onMain(void)
+        onMain(void) override
         {
           while (!stopping())
           {

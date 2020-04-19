@@ -69,7 +69,7 @@ namespace DUNE
         //! Write chunk data to output stream.
         //! @param[in] os output stream.
         void
-        writeData(std::ostream& os)
+        writeData(std::ostream& os) override
         {
           std::list<double>::const_iterator itr = m_index.begin();
           for (; itr != m_index.end(); ++itr)

@@ -83,13 +83,13 @@ namespace Power
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_power_state.name = m_args.pwr_chn;
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -115,7 +115,7 @@ namespace Power
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_psu_ctl != NULL)
         {
@@ -194,7 +194,7 @@ namespace Power
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         Counter<double> timer(1.0);
 

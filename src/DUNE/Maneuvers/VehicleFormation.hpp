@@ -55,11 +55,11 @@ namespace DUNE
       VehicleFormation(const std::string& name, Tasks::Context& ctx);
 
       //! Destructor.
-      virtual
-      ~VehicleFormation(void);
+      
+      ~VehicleFormation(void) override;
 
-      virtual void
-      onUpdateParameters(void);
+      void
+      onUpdateParameters(void) override;
 
       //! Consumer for IMC::VehicleFormation message.
       //! @param msg vehicle formation message
@@ -94,7 +94,7 @@ namespace DUNE
       //! Inherited from Maneuver class.
       //! @param pcs path control state message
       void
-      onPathControlState(const IMC::PathControlState* pcs);
+      onPathControlState(const IMC::PathControlState* pcs) override;
 
       //! Abstract method called upon path completion.
       //! This will not be called in approach stage (see isApproaching()).
@@ -110,7 +110,7 @@ namespace DUNE
 
       //! Method called upon maneuver deactivation.
       void
-      onManeuverDeactivation(void);
+      onManeuverDeactivation(void) override;
 
       //! Method invoked on maneuver reset.
       //! By default the base class implementation does nothing.

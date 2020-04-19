@@ -68,11 +68,11 @@ namespace Transports
       }
 
       //! Destructor.
-      ~Driver(void)
+      ~Driver(void) override
       { }
 
       void
-      sendReset(void)
+      sendReset(void) override
       {
         sendAT("Z0");
       }
@@ -270,7 +270,7 @@ namespace Transports
       //! Perform ISU initialization, this function must be called
       //! before any other.
       void
-      sendInitialization(void)
+      sendInitialization(void) override
       {
         setEcho(false);
         setFlowControl(false);
@@ -294,7 +294,7 @@ namespace Transports
       }
 
       bool
-      handleUnsolicited(const std::string& str)
+      handleUnsolicited(const std::string& str) override
       {
         if (String::startsWith(str, "SBDRING"))
           handleSBDRING(str);

@@ -48,13 +48,13 @@ namespace DUNE
 
         FSR256(int32_t seed);
 
-        ~FSR256();
+        ~FSR256() override;
 
         int32_t
-        random(void);
+        random(void) override;
 
         void
-        seed(int32_t value);
+        seed(int32_t value) override;
 
       private:
         void init(int, int32_t);

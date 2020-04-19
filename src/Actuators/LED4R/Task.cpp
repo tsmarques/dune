@@ -183,13 +183,13 @@ namespace Actuators
         bind<IMC::QueryLedBrightness>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         clearLEDs();
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation(void) override
       {
         std::string label = String::str("%s %s", getEntityLabel(), c_vdc_mcu_suffix);
         m_mcu_ent = reserveEntity<Entities::BasicEntity>(label);
@@ -197,7 +197,7 @@ namespace Actuators
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         clearLEDs();
         for (unsigned i = 0; i < m_args.led_names.size(); ++i)
@@ -218,7 +218,7 @@ namespace Actuators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         try
         {
@@ -239,7 +239,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         if (!getConstantParameters())
           throw RestartNeeded(DTR("failed to get constant parameters"), c_restart_delay);
@@ -270,7 +270,7 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         if (m_ctl != NULL)
         {
@@ -435,7 +435,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         Counter<double> m_mon_timer(1.0);
 

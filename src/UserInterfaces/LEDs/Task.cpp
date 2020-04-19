@@ -137,13 +137,13 @@ namespace UserInterfaces
         bind<IMC::EntityState>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         onResourceRelease();
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         std::vector<AbstractOutput*>::iterator itr = m_outs.begin();
         for (; itr != m_outs.end(); ++itr)
@@ -156,7 +156,7 @@ namespace UserInterfaces
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         for (unsigned i = 0; i < m_args.led_ids.size(); ++i)
         {
@@ -189,7 +189,7 @@ namespace UserInterfaces
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         for (unsigned i = 0; i < m_args.critical.size(); ++i)
         {
@@ -204,13 +204,13 @@ namespace UserInterfaces
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
 #define PATTERN(type, string)                   \
         validatePattern(type, string);
@@ -331,7 +331,7 @@ namespace UserInterfaces
       }
 
       void
-      onMain(void)
+      onMain(void) override
       {
         initializeLEDs();
 

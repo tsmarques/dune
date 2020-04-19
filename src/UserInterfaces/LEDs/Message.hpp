@@ -55,7 +55,7 @@ namespace UserInterfaces
       }
 
       void
-      setValue(bool value)
+      setValue(bool value) override
       {
         m_msg.value = value;
         m_task.dispatch(m_msg);

@@ -78,8 +78,7 @@ namespace DUNE
       //! for (INSERT, UPDATE, and DELETE statements).
       //! @param sql_stmt SQL statement
       //! @param count optional argument to get number of affected rows
-      void
-      execute(const char* sql_stmt, int* count = 0);
+      void execute (const char *sql_stmt, int *count = nullptr);
 
       //! Begin transaction.
       void

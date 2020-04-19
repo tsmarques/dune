@@ -106,13 +106,13 @@ namespace Sensors
       }
 
       //! Destructor
-      ~Frame837(void)
+      ~Frame837(void) override
       { }
 
       //! Get data start address.
       //! @return pointer to address.
       uint8_t*
-      getMessageData(void)
+      getMessageData(void) override
       {
         return &m_data[c_start_data];
       }
@@ -120,7 +120,7 @@ namespace Sensors
       //! Get footer start address.
       //! @return pointer to address.
       uint8_t*
-      getFooterData(void)
+      getFooterData(void) override
       {
         return &m_data[c_hdr_size + c_rhdr_size + getMessageSize()];
       }
@@ -128,7 +128,7 @@ namespace Sensors
       //! Retrieve the size of the frame.
       //! @return frame size.
       size_t
-      getSize(void) const
+      getSize(void) const override
       {
         return c_hdr_size + c_rhdr_size + getMessageSize() + getFooterSize();
       }
@@ -136,7 +136,7 @@ namespace Sensors
       //! Retrieve message size.
       //! @return message size.
       size_t
-      getMessageSize(void) const
+      getMessageSize(void) const override
       {
         return m_ivx_mode ? c_ivx_body_size : c_iux_body_size;
       }
@@ -144,7 +144,7 @@ namespace Sensors
       //! Retrieve footer size.
       //! @return footer size.
       size_t
-      getFooterSize(void) const
+      getFooterSize(void) const override
       {
         return m_ivx_mode ? c_ivx_frame_size : c_iux_frame_size;
       }
@@ -185,7 +185,7 @@ namespace Sensors
 
       //! Change mode according with data points.
       void
-      setExtendedDataPoints(bool mode)
+      setExtendedDataPoints(bool mode) override
       {
         m_ivx_mode = mode;
         setTotalBytes();
@@ -261,91 +261,91 @@ namespace Sensors
 
       //! Get range index.
       unsigned
-      getIndexRange(void)
+      getIndexRange(void) override
       {
         return HDR_IDX_RANGE;
       }
 
       //! Get tilt angle index.
       unsigned
-      getIndexTiltAngle(void)
+      getIndexTiltAngle(void) override
       {
         return HDR_IDX_TILT_ANGLE;
       }
 
       //! Get latitude index.
       unsigned
-      getIndexLatitude(void)
+      getIndexLatitude(void) override
       {
         return HDR_IDX_LATITUDE;
       }
 
       //! Get longitude index.
       unsigned
-      getIndexLongitude(void)
+      getIndexLongitude(void) override
       {
         return HDR_IDX_LONGITUDE;
       }
 
       //! Get speed index.
       unsigned
-      getIndexSpeed(void)
+      getIndexSpeed(void) override
       {
         return HDR_IDX_SPEED;
       }
 
       //! Get speed index.
       unsigned
-      getIndexSoundSpeed(void)
+      getIndexSoundSpeed(void) override
       {
         return HDR_IDX_SOUND_SPEED;
       }
 
       //! Get course index.
       unsigned
-      getIndexCourse(void)
+      getIndexCourse(void) override
       {
         return HDR_IDX_COURSE;
       }
 
       //! Get milliseconds index.
       unsigned
-      getIndexMilli(void)
+      getIndexMilli(void) override
       {
         return HDR_IDX_MILLI;
       }
 
       //! Get roll index.
       unsigned
-      getIndexRoll(void)
+      getIndexRoll(void) override
       {
         return HDR_IDX_ROLL;
       }
 
       //! Get pitch index.
       unsigned
-      getIndexPitch(void)
+      getIndexPitch(void) override
       {
         return HDR_IDX_PITCH;
       }
 
       //! Get heading index.
       unsigned
-      getIndexHeading(void)
+      getIndexHeading(void) override
       {
         return HDR_IDX_HEADING;
       }
 
       //! Get repetition rate index.
       unsigned
-      getIndexRepRate(void)
+      getIndexRepRate(void) override
       {
         return HDR_IDX_REP_RATE;
       }
 
       //! Get frequency index.
       unsigned
-      getIndexFrequency(void)
+      getIndexFrequency(void) override
       {
         return HDR_IDX_FREQUENCY;
       }

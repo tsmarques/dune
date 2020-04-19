@@ -144,8 +144,9 @@ namespace DUNE
       //! @param description option description.
       //! @param argument a label for describing the option argument.
       //! @return object.
-      OptionParser&
-      add(const char* short_opt, const char* long_opt, const char* description, const char* argument = 0);
+      OptionParser &add (const char *short_opt, const char *long_opt,
+                         const char *description,
+                         const char *argument = nullptr);
 
       void
       usage(void);

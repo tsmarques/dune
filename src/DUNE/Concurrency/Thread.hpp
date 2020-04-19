@@ -63,8 +63,8 @@ namespace DUNE
       Thread(void);
 
       //! Destructor.
-      virtual
-      ~Thread(void);
+      
+      ~Thread(void) override;
 
       //! Retrieve the percentage of CPU time used by this thread
       //! since the last call to this function or object creation. On
@@ -76,19 +76,19 @@ namespace DUNE
 
     protected:
       void
-      startImpl(void);
+      startImpl(void) override;
 
       void
-      stopImpl(void);
+      stopImpl(void) override;
 
       void
-      joinImpl(void);
+      joinImpl(void) override;
 
       void
-      setPriorityImpl(Scheduler::Policy policy, unsigned priority);
+      setPriorityImpl(Scheduler::Policy policy, unsigned priority) override;
 
       unsigned
-      getPriorityImpl(void);
+      getPriorityImpl(void) override;
 
     private:
       //! Thread state.
@@ -118,10 +118,10 @@ namespace DUNE
 #endif
 
       void
-      setStateImpl(Runnable::State state);
+      setStateImpl(Runnable::State state) override;
 
       Runnable::State
-      getStateImpl(void);
+      getStateImpl(void) override;
 
       //! Non - copyable.
       Thread(const Thread&);

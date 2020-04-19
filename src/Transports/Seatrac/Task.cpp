@@ -388,7 +388,7 @@ namespace Transports
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         setAndSendState(STA_BOOT);
         try
@@ -409,7 +409,7 @@ namespace Transports
 
       //! Initialize resources and configure modem
       void
-      onResourceInitialization(void)
+      onResourceInitialization(void) override
       {
         // Process modem addresses.
         std::string agent = getSystemName();
@@ -513,7 +513,7 @@ namespace Transports
       }
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
 
@@ -628,7 +628,7 @@ namespace Transports
       }
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         clearTicket(IMC::UamTxStatus::UTS_CANCELED);
         Memory::clear(m_handle);
@@ -1190,7 +1190,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void)
+      onMain(void) override
       {
         while (!stopping())
         {

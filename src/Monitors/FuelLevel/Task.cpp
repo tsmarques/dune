@@ -223,13 +223,13 @@ namespace Monitors
         bind<IMC::EntityActivationState>(this);
       }
 
-      ~Task(void)
+      ~Task(void) override
       {
         delete m_power_model;
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters(void) override
       {
         if (paramChanged(m_args.filter_args.decay_factor))
           m_args.filter_args.decay_factor *= 0.01f;
@@ -248,13 +248,13 @@ namespace Monitors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease(void) override
       {
         Memory::clear(m_fuel_filter);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition(void) override
       {
         for (unsigned i = 0; i < FuelFilter::MDL_TOTAL; ++i)
         {
@@ -266,7 +266,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution(void) override
       {
         for (unsigned i = 0; i < BatteryData::BM_TOTAL; ++i)
         {
@@ -340,7 +340,7 @@ namespace Monitors
       }
 
       void
-      task(void)
+      task(void) override
       {
         // Update fuel filter
         if (!m_fuel_filter->update())
