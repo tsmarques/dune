@@ -60,7 +60,7 @@ struct Vehicle
   double distance;
   std::vector<Log> logs;
 
-  Vehicle(void):
+  Vehicle():
     duration(0),
     distance(0)
   { }
@@ -87,14 +87,14 @@ main(int32_t argc, char** argv)
 
   for (int32_t i = 1; i < argc; ++i)
   {
-    std::istream* is = 0;
+    std::istream* is = nullptr;
     Compression::Methods method = Compression::Factory::detect(argv[i]);
     if (method == METHOD_UNKNOWN)
       is = new std::ifstream(argv[i], std::ios::binary);
     else
       is = new Compression::FileInput(argv[i], method);
 
-    IMC::Message* msg = NULL;
+    IMC::Message* msg = nullptr;
 
     uint16_t curr_rpm = 0;
 
@@ -117,7 +117,7 @@ main(int32_t argc, char** argv)
 
     try
     {
-      while ((msg = IMC::Packet::deserialize(*is)) != 0)
+      while ((msg = IMC::Packet::deserialize(*is)) != nullptr)
       {
         if (msg->getId() == DUNE_IMC_ANNOUNCE)
         {

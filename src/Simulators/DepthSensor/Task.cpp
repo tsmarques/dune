@@ -68,7 +68,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_prng(NULL)
+        m_prng(nullptr)
       {
         // Retrieve configuration values.
         param("Standard Deviation", m_args.std_dev)
@@ -87,14 +87,14 @@ namespace Simulators
 
       //! Acquire resources. Initializes random number generator.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
@@ -117,7 +117,7 @@ namespace Simulators
       //! stored in #m_sstate plus some gaussian noise (according to parametrized
       //! standard deviation). If task is not active, returns immediately.
       void
-      task(void)
+      task() override
       {
         // Return if task is not active.
         if (!isActive())

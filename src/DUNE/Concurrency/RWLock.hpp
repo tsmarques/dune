@@ -49,25 +49,25 @@ namespace DUNE
     class RWLock
     {
     public:
-      RWLock(void);
+      RWLock();
 
-      ~RWLock(void);
+      ~RWLock();
 
       //! Apply a read lock.
       void
-      lockRead(void);
+      lockRead();
 
       //! Apply a write lock.
       void
-      lockWrite(void);
+      lockWrite();
 
       //! Release the lock held.
       void
-      unlock(void);
+      unlock();
 
       //! Release the lock held.
       void
-      destroy(void);
+      destroy();
 
     private:
 #if defined(DUNE_SYS_HAS_PTHREAD_RWLOCK)
@@ -75,11 +75,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      RWLock(RWLock const&);
+      RWLock (RWLock const &) = delete;
 
       // Non - assignable
-      RWLock&
-      operator=(RWLock const&);
+      RWLock &operator= (RWLock const &) = delete;
     };
   }
 }

@@ -58,14 +58,14 @@ namespace DUNE
       RawFifo(uint8_t* data, uint32_t size);
 
       //! Class destructor.
-      ~RawFifo(void)
+      ~RawFifo()
       {
         delete[] m_data;
       }
 
       //! Resets the FIFO contents.
       void
-      reset(void)
+      reset()
       {
         m_in = m_out = 0;
       }
@@ -73,7 +73,7 @@ namespace DUNE
       //! Computes the FIFO size.
       //! @return FIFO size in bytes.
       uint32_t
-      size(void)
+      size()
       {
         return m_in - m_out;
       }

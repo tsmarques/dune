@@ -65,7 +65,7 @@ main(int argc, char** argv)
   }
 
   std::FILE* bin = std::fopen(bin_name.c_str(), "wb");
-  if (bin == NULL)
+  if (bin == nullptr)
   {
     std::cerr << "ERROR: failed to open file '" << bin_name << "'" << std::endl;
     return 1;

@@ -98,13 +98,13 @@ namespace Supervisors
       }
 
       bool
-      onWriteParamsXML(std::ostream& os) const
+      onWriteParamsXML(std::ostream& os) const override
       {
         if (m_args.task_name.empty())
           return false;
 
         Tasks::Task* task = Tasks::Factory::produce(m_args.task_name, "Surrogate", m_ctx);
-        if (task == NULL)
+        if (task == nullptr)
           throw std::invalid_argument(Utils::String::str(DTR("invalid task name '%s'"), m_args.task_name.c_str()));
 
         try
@@ -124,13 +124,13 @@ namespace Supervisors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_sid = resolveSystemName(m_args.system_name);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -148,7 +148,7 @@ namespace Supervisors
       }
 
       void
-      onQueryEntityParameters(const IMC::QueryEntityParameters* msg)
+      onQueryEntityParameters(const IMC::QueryEntityParameters* msg) override
       {
         if (msg->name != getEntityLabel())
           return;
@@ -157,7 +157,7 @@ namespace Supervisors
       }
 
       void
-      onSetEntityParameters(const IMC::SetEntityParameters* msg)
+      onSetEntityParameters(const IMC::SetEntityParameters* msg) override
       {
         if (msg->name != getEntityLabel())
           return;
@@ -166,7 +166,7 @@ namespace Supervisors
       }
 
       void
-      onPopEntityParameters(const IMC::PopEntityParameters* msg)
+      onPopEntityParameters(const IMC::PopEntityParameters* msg) override
       {
         if (msg->name != getEntityLabel())
           return;
@@ -175,7 +175,7 @@ namespace Supervisors
       }
 
       void
-      onPushEntityParameters(const IMC::PushEntityParameters* msg)
+      onPushEntityParameters(const IMC::PushEntityParameters* msg) override
       {
         if (msg->name != getEntityLabel())
           return;
@@ -197,13 +197,13 @@ namespace Supervisors
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation() override
       {
         sendActiveParameter("true");
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation() override
       {
         sendActiveParameter("false");
       }
@@ -252,7 +252,7 @@ namespace Supervisors
       }
 
       void
-      queryEntityInfo(void)
+      queryEntityInfo()
       {
         IMC::QueryEntityInfo msg;
         msg.setDestination(m_sid);
@@ -280,7 +280,7 @@ namespace Supervisors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

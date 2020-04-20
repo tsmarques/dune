@@ -168,7 +168,7 @@ namespace DUNE
 #endif
     }
 
-    VideoCapture::~VideoCapture(void)
+    VideoCapture::~VideoCapture()
     {
       // Video 4 Linux library implementation.
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
@@ -186,7 +186,7 @@ namespace DUNE
     }
 
     void
-    VideoCapture::start(void)
+    VideoCapture::start()
     {
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
       v4l2_buf_type type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
@@ -202,7 +202,7 @@ namespace DUNE
     }
 
     void
-    VideoCapture::stop(void)
+    VideoCapture::stop()
     {
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
       v4l2_buf_type type = V4L2_BUF_TYPE_VIDEO_CAPTURE;
@@ -241,7 +241,7 @@ namespace DUNE
     }
 
     bool
-    VideoCapture::frameCapture(void)
+    VideoCapture::frameCapture()
     {
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
       fd_set fds;
@@ -270,7 +270,7 @@ namespace DUNE
     }
 
     uint32_t
-    VideoCapture::frameWidth(void) const
+    VideoCapture::frameWidth() const
     {
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
       return m_fmt->fmt.pix.width;
@@ -280,7 +280,7 @@ namespace DUNE
     }
 
     uint32_t
-    VideoCapture::frameHeight(void) const
+    VideoCapture::frameHeight() const
     {
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
       return m_fmt->fmt.pix.height;
@@ -290,17 +290,17 @@ namespace DUNE
     }
 
     uint8_t*
-    VideoCapture::frameData(void) const
+    VideoCapture::frameData() const
     {
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
       return (uint8_t*)m_bfrs[m_bfr->index].start;
 #else
-      return 0;
+      return nullptr;
 #endif
     }
 
     uint32_t
-    VideoCapture::frameSize(void) const
+    VideoCapture::frameSize() const
     {
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
       return m_bfr->bytesused;

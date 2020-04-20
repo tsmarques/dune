@@ -170,23 +170,23 @@ namespace Power
         bind<IMC::Heartbeat>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         for (unsigned i = 0; i < c_adcs_max; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
         }
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_slave_id = resolveSystemName(m_args.slave_system);
 
         for (unsigned i = 0; i < c_adcs_max; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
 
           m_adcs[i] = IMC::Factory::produce(m_args.adc_messages[i]);
@@ -204,7 +204,7 @@ namespace Power
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_adcs_max; ++i)
         {
@@ -222,21 +222,21 @@ namespace Power
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_proto.setUART(m_args.uart_dev);
         m_proto.open();
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         if (m_proto.isOpen())
           setStrobeMode(STROBE_MODE_MCU);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_proto.requestVersion();
         setPowerChannelState(0);
@@ -356,7 +356,7 @@ namespace Power
       }
 
       void
-      checkActivation(void)
+      checkActivation()
       {
         if (m_act_timer.overflow())
         {
@@ -380,7 +380,7 @@ namespace Power
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation() override
       {
         m_slave_alive = false;
         setPowerChannelState(1);
@@ -389,7 +389,7 @@ namespace Power
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation() override
       {
         // NOTE: some CPUs may require proper shutdown, which is not implemented yet.
         setPowerChannelState(0);
@@ -397,14 +397,14 @@ namespace Power
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         setStrobeMode(STROBE_MODE_CAM);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setStrobeMode(STROBE_MODE_MCU);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -475,7 +475,7 @@ namespace Power
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

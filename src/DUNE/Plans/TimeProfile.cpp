@@ -81,7 +81,7 @@ namespace DUNE
     float
     TimeProfile::convertSpeed(const Type* maneuver)
     {
-      if (m_speed_model == NULL)
+      if (m_speed_model == nullptr)
         return 0.0;
 
       float value = m_speed_model->toMPS(maneuver->speed, maneuver->speed_units);
@@ -95,7 +95,7 @@ namespace DUNE
     inline float
     TimeProfile::compensate(float distance, float speed)
     {
-      if (m_speed_model == NULL)
+      if (m_speed_model == nullptr)
         return distance;
       else
         return std::max(0.0f, distance - m_speed_model->getTimeFactor() * speed);
@@ -252,10 +252,10 @@ namespace DUNE
       if (speed == 0.0)
         return false;
 
-      Maneuvers::RowsStages* rstages = NULL;
+      Maneuvers::RowsStages* rstages = nullptr;
       try
       {
-        rstages = new Maneuvers::RowsStages(maneuver, NULL);
+        rstages = new Maneuvers::RowsStages(maneuver, nullptr);
       }
       catch (std::runtime_error& e)
       {
@@ -284,13 +284,13 @@ namespace DUNE
       else
         hstep = 2 * maneuver->range * std::sin(maneuver->angaperture / 2);
 
-      Maneuvers::RowsStages* rstages = NULL;
+      Maneuvers::RowsStages* rstages = nullptr;
       try
       {
         rstages = new Maneuvers::RowsStages(maneuver->lat, maneuver->lon, maneuver->bearing,
                                             maneuver->cross_angle, maneuver->width,
                                             maneuver->length, hstep, maneuver->coff, 100,
-                                            maneuver->flags, NULL);
+                                            maneuver->flags, nullptr);
       }
       catch (std::runtime_error& e)
       {
@@ -478,7 +478,7 @@ namespace DUNE
         IMC::Message* msg = (*itr)->data.get();
 
         float last_duration = -1.0;
-        if (m_accum_dur != NULL)
+        if (m_accum_dur != nullptr)
         {
           if (m_accum_dur->size())
             last_duration = m_accum_dur->getLastDuration();

@@ -54,18 +54,17 @@ namespace Sensors
     {
     public:
       //! Constructor.
-      EstimatedStateList(void)
-      { }
+      EstimatedStateList () = default;
 
       //! Destructor.
-      ~EstimatedStateList(void)
+      ~EstimatedStateList()
       {
         clear();
       }
 
       //! Clear list contents.
       void
-      clear(void)
+      clear()
       {
         while (!m_list.empty())
         {
@@ -85,7 +84,7 @@ namespace Sensors
       //! Test if list is empty.
       //! @return true if list is empty, false otherwise.
       bool
-      empty(void) const
+      empty() const
       {
         return m_list.empty();
       }
@@ -101,7 +100,7 @@ namespace Sensors
         delta = std::numeric_limits<int>::max();
 
         // Find closest.
-        EstimatedStateEntry* entry = NULL;
+        EstimatedStateEntry* entry = nullptr;
         for (std::list<EstimatedStateEntry*>::iterator itr = m_list.begin(); itr != m_list.end(); ++itr)
         {
           entry = *itr;
@@ -127,8 +126,8 @@ namespace Sensors
           m_list.pop_front();
         }
 
-        if (entry == NULL)
-          return NULL;
+        if (entry == nullptr)
+          return nullptr;
 
         return (*itr_min)->getEstimatedState();
       }

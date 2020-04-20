@@ -166,7 +166,7 @@ namespace Control
         //! Task arguments.
         Arguments m_args;
         //! Type definition for Arduino packet handler.
-        typedef void (Task::* PktHandler)(const mavlink_message_t* msg);
+        using PktHandler = void (Task::*)(const mavlink_message_t *);
         typedef std::map<int, PktHandler> PktHandlerMap;
         //! Arduino packet handling
         PktHandlerMap m_mlh;
@@ -244,7 +244,7 @@ namespace Control
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::Task(name, ctx),
-          m_TCP_sock(NULL),
+          m_TCP_sock(nullptr),
           m_sysid(1),
           m_lat(0.0),
           m_lon(0.0),
@@ -472,13 +472,13 @@ namespace Control
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           Memory::clear(m_TCP_sock);
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition() override
         {
           openConnection();
 
@@ -492,7 +492,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           //! Minimum value for bank (RC1) and vertical rate (R2)
           //! are simetrical to maximum values, no need to input them manually
@@ -501,7 +501,7 @@ namespace Control
         }
 
         void
-        openConnection(void)
+        openConnection()
         {
           try
           {
@@ -691,7 +691,7 @@ namespace Control
 
         //! Messages for FBWB control (using DUNE's controllers)
         void
-        activateFBW(void)
+        activateFBW()
         {
           if (m_vehicle_type == VEHICLE_FIXEDWING)
           {
@@ -1280,7 +1280,7 @@ namespace Control
         }
 
         void
-        loiterHere(void)
+        loiterHere()
         {
 
           if ((getEntityState() != IMC::EntityState::ESTA_NORMAL) || m_external || m_ground)
@@ -1471,7 +1471,7 @@ namespace Control
         }
 
         void
-        onMain(void)
+        onMain() override
         {
           while (!stopping())
           {
@@ -1511,7 +1511,7 @@ namespace Control
         bool
         poll(double timeout)
         {
-          if (m_TCP_sock != NULL)
+          if (m_TCP_sock != nullptr)
             return Poll::poll(*m_TCP_sock, timeout);
 
           return false;
@@ -1552,7 +1552,7 @@ namespace Control
         }
 
         void
-        handleArdupilotData(void)
+        handleArdupilotData()
         {
           mavlink_status_t status;
 
@@ -1844,7 +1844,7 @@ namespace Control
         }
 
         float
-        getHeight(void)
+        getHeight()
         {
           return m_hae_msl + m_hae_offset;
         }

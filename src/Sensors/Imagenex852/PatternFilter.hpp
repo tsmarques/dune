@@ -64,7 +64,7 @@ namespace Sensors
 
       //! Reset filter
       inline void
-      reset(void)
+      reset()
       {
         m_best_pattern = m_patterns.end();
       }

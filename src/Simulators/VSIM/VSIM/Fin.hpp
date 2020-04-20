@@ -49,23 +49,23 @@ namespace Simulators
       //! @param[in] finid fin id.
       //! @param[in] coef fin coeficients.
       //! @param[in] pos fin position.
-      Fin(unsigned int finid, double[3] = 0, double[3] = 0);
+      Fin(unsigned int finid, double[3] = nullptr, double[3] = nullptr);
 
       //! Update fin's actuation.
       //! @param[in] value fin actuation.
       void
-      updateAct(double value);
+      updateAct(double value) override;
 
       //! Apply fin's force
       //! @param[in] speed speed reference.
       //! @param[out] forces forces to be applied by the fin.
       void
-      applyForce(double speed, double forces[6]);
+      applyForce(double speed, double forces[6]) override;
 
       //! Check fin's id.
       //! @return true if id matches, false otherwise.
       bool
-      checkId(unsigned int testid);
+      checkId(unsigned int testid) override;
 
       //! Fin id encoding.
       inline static int
@@ -80,7 +80,7 @@ namespace Simulators
       //! @param[in] coefficient fin coeficients.
       //! @param[in] position fin position.
       void
-      setFin(unsigned int id = 0, double coefficient[3] = 0, double position[3] = 0);
+      setFin(unsigned int id = 0, double coefficient[3] = nullptr, double position[3] = nullptr);
 
       //! Gets fin produced force.
       //! @param[out] f fin produced force.

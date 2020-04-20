@@ -53,16 +53,16 @@ namespace DUNE
     public:
       Semaphore(int value = 1);
 
-      ~Semaphore(void);
+      ~Semaphore();
 
       void
-      lock(void);
+      lock();
 
       void
-      unlock(void);
+      unlock();
 
       int
-      getValue(void);
+      getValue();
 
     private:
       //! Semaphore's handle.
@@ -71,11 +71,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      Semaphore(const Semaphore&);
+      Semaphore (const Semaphore &) = delete;
 
       // Non - assignable
-      Semaphore&
-      operator=(const Semaphore&);
+      Semaphore &operator= (const Semaphore &) = delete;
     };
   }
 }

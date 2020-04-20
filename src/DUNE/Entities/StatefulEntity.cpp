@@ -66,19 +66,19 @@ namespace DUNE
     }
 
     void
-    StatefulEntity::reportState(void)
+    StatefulEntity::reportState()
     {
       dispatch(m_entity_state);
     }
 
     void
-    StatefulEntity::reportActivationState(void)
+    StatefulEntity::reportActivationState()
     {
       dispatch(m_act_state);
     }
 
     void
-    StatefulEntity::requestActivation(void)
+    StatefulEntity::requestActivation()
     {
       if (m_act_state.state != IMC::EntityActivationState::EAS_INACTIVE)
       {
@@ -108,7 +108,7 @@ namespace DUNE
     }
 
     void
-    StatefulEntity::requestDeactivation(void)
+    StatefulEntity::requestDeactivation()
     {
       if (m_act_state.state != IMC::EntityActivationState::EAS_ACTIVE)
       {
@@ -150,7 +150,7 @@ namespace DUNE
     }
 
     void
-    StatefulEntity::succeedActivation(void)
+    StatefulEntity::succeedActivation()
     {
       m_act_state.state = IMC::EntityActivationState::EAS_ACT_DONE;
       dispatch(m_act_state);
@@ -160,7 +160,7 @@ namespace DUNE
     }
 
     void
-    StatefulEntity::succeedDeactivation(void)
+    StatefulEntity::succeedDeactivation()
     {
       m_act_state.state = IMC::EntityActivationState::EAS_DEACT_DONE;
       dispatch(m_act_state);

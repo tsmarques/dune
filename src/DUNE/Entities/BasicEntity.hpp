@@ -72,8 +72,7 @@ namespace DUNE
       { }
 
       //! Destructor.
-      virtual ~BasicEntity()
-      { }
+      virtual ~BasicEntity () = default;
 
       //! Set the IMC bindings using the provided recipient object.
       //! @param[in] recipient pointer to the recipient object to use for binding to IMC messages.
@@ -86,7 +85,7 @@ namespace DUNE
       //! Retrieve the entity label.
       //! @return entity label.
       const std::string&
-      getLabel(void) const
+      getLabel() const
       {
         return m_label;
       }
@@ -99,7 +98,7 @@ namespace DUNE
       //! Retrieve the entity identifier.
       //! @return entity identifier.
       unsigned int
-      getId(void) const
+      getId() const
       {
         return m_id;
       }
@@ -115,7 +114,7 @@ namespace DUNE
 
       //! Report the entity information by broadcasting an EntityInfo message.
       void
-      reportInfo(void);
+      reportInfo();
 
       //! Compare label against a string.
       //! @param[in] label string to be compared against.

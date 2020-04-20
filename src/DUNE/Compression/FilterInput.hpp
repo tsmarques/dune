@@ -44,21 +44,17 @@ namespace DUNE
     class FilterInput: public std::istream
     {
     public:
-      FilterInput(Methods method):
-        std::istream(0),
-        m_method(method),
-        m_buffer(0)
+      FilterInput (Methods method)
+          : std::istream (nullptr), m_method (method), m_buffer (nullptr)
       { }
 
-      FilterInput(std::istream& stream, Methods method):
-        std::istream(0),
-        m_method(method),
-        m_buffer(0)
+      FilterInput (std::istream &stream, Methods method)
+          : std::istream (nullptr), m_method (method), m_buffer (nullptr)
       {
         setStream(stream, m_method);
       }
 
-      ~FilterInput(void)
+      ~FilterInput() override
       {
         delete m_buffer;
       }

@@ -62,31 +62,31 @@ namespace DUNE
 
       VideoCapture(const std::string& dev, uint32_t width, uint32_t height);
 
-      ~VideoCapture(void);
+      ~VideoCapture();
 
       void
-      start(void);
+      start();
 
       void
-      stop(void);
+      stop();
 
       void
       setStandard(Standard standard);
 
       bool
-      frameCapture(void);
+      frameCapture();
 
       uint32_t
-      frameWidth(void) const;
+      frameWidth() const;
 
       uint32_t
-      frameHeight(void) const;
+      frameHeight() const;
 
       uint8_t*
-      frameData(void) const;
+      frameData() const;
 
       uint32_t
-      frameSize(void) const;
+      frameSize() const;
 
     private:
       struct Buffer

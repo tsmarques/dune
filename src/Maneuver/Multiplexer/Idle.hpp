@@ -55,7 +55,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver idle maneuver message
       void
-      onStart(const IMC::IdleManeuver* maneuver)
+      onStart(const IMC::IdleManeuver* maneuver) override
       {
         m_task->setControl(0); // maneuver does not enable any control
 
@@ -72,7 +72,7 @@ namespace Maneuver
       }
 
       void
-      onStateReport(void)
+      onStateReport() override
       {
         if (m_end_time < 0)
         {
@@ -88,8 +88,7 @@ namespace Maneuver
           m_task->signalProgress((uint16_t)time_left);
       }
 
-      ~Idle(void)
-      { }
+      ~Idle () override = default;
 
     private:
       //! End time of the loiter

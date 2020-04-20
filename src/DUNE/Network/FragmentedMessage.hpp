@@ -42,13 +42,13 @@ namespace DUNE
     class FragmentedMessage
     {
     public:
-      FragmentedMessage(void);
+      FragmentedMessage();
 
       double
-      getAge(void);
+      getAge();
 
       int
-      getFragmentsMissing(void);
+      getFragmentsMissing();
 
       IMC::Message*
       setFragment(const IMC::MessagePart* part);
@@ -56,7 +56,7 @@ namespace DUNE
       void
       setParentTask(Tasks::Task* parent);
 
-      ~FragmentedMessage(void);
+      ~FragmentedMessage();
 
     private:
       int m_src;

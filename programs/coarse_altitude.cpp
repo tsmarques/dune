@@ -72,14 +72,14 @@ main(int32_t argc, char** argv)
     return 1;
   }
 
-  std::istream* is = 0;
+  std::istream* is = nullptr;
   Compression::Methods method = Compression::Factory::detect(argv[1]);
   if (method == METHOD_UNKNOWN)
     is = new std::ifstream(argv[1], std::ios::binary);
   else
     is = new Compression::FileInput(argv[1], method);
 
-  IMC::Message* msg = NULL;
+  IMC::Message* msg = nullptr;
 
   std::ofstream lsf("Data.lsf", std::ios::binary);
 
@@ -102,7 +102,7 @@ main(int32_t argc, char** argv)
 
   try
   {
-    while ((msg = IMC::Packet::deserialize(*is)) != 0)
+    while ((msg = IMC::Packet::deserialize(*is)) != nullptr)
     {
       if (msg->getId() == DUNE_IMC_ESTIMATEDSTATE)
       {

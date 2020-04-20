@@ -107,7 +107,7 @@ namespace Supervisors
       //! Trigger a report.
       //! @return true if report was requested, false otherwise.
       bool
-      trigger(void)
+      trigger()
       {
         // Positive request.
         if (m_ticket.start)
@@ -150,7 +150,7 @@ namespace Supervisors
       //! Get current communication interface.
       //! @return communication interface index.
       uint8_t
-      getInterface(void) const
+      getInterface() const
       {
         return m_ticket.interface;
       }
@@ -158,7 +158,7 @@ namespace Supervisors
       //! Get current ticket destination.
       //! @return ticket destination.
       std::string
-      getDestination(void) const
+      getDestination() const
       {
         return m_ticket.destination;
       }
@@ -166,7 +166,7 @@ namespace Supervisors
       //! Check if this ticket is a start report request.
       //! @return true if it's a start request, false otherwise.
       bool
-      isOperationStart(void) const
+      isOperationStart() const
       {
         return m_ticket.start;
       }
@@ -174,7 +174,7 @@ namespace Supervisors
       //! Get current peridicity.
       //! @return periodicity value.
       uint16_t
-      getPeriod(void) const
+      getPeriod() const
       {
         return m_ticket.period;
       }

@@ -196,7 +196,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         try
         {
@@ -209,7 +209,7 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_init.setTop(m_args.init_time);
         m_in_water.setTop(m_args.water_timeout);
@@ -293,7 +293,7 @@ namespace Monitors
       //! Routine to check if we have recent wet sensor measurements.
       //! @return true if we have recent measurements, false otherwise.
       bool
-      inWater(void)
+      inWater()
       {
         return (!m_in_water.overflow());
       }
@@ -301,14 +301,14 @@ namespace Monitors
       //! Routine to check if we have recent valid GPS measurements.
       //! @return true if we have recent fixes, false otherwise.
       bool
-      isGpsAvailable(void)
+      isGpsAvailable()
       {
         return (!m_gps_status.overflow());
       }
 
       //! Check presence of water sensors.
       void
-      checkWater(void)
+      checkWater()
       {
         spew("Water check.");
 
@@ -328,7 +328,7 @@ namespace Monitors
 
       //! Check data input. Only for water going vehicles.
       void
-      checkUUV(void)
+      checkUUV()
       {
         if (isUAV())
           return;
@@ -344,7 +344,7 @@ namespace Monitors
 
       //! Check data input. Only for aerial vehicles.
       void
-      checkUAV(void)
+      checkUAV()
       {
         if (!isUAV())
           return;
@@ -369,7 +369,7 @@ namespace Monitors
       //! Check if vehicle is a copter.
       //! @return true if vehicle is a UAV of sub-type Copter.
       bool
-      isCopter(void)
+      isCopter()
       {
         if (isUAV() && m_args.stype == "Copter")
           return true;
@@ -380,7 +380,7 @@ namespace Monitors
       //! Check if vehicle is a UAV.
       //! @return true if vehicle is a UAV.
       bool
-      isUAV(void)
+      isUAV()
       {
         if (m_args.vtype == "UAV")
           return true;
@@ -391,7 +391,7 @@ namespace Monitors
       //! Check water medium presence.
       //! @return true if water medium can be detected or if it can be ignored.
       bool
-      waterMediumCheck(void)
+      waterMediumCheck()
       {
         if (isUAV())
           return true;
@@ -414,7 +414,7 @@ namespace Monitors
 
       //! Update state machine.
       void
-      updateStateMachine(void)
+      updateStateMachine()
       {
         // Task state machine.
         switch (m_vm.medium)
@@ -454,7 +454,7 @@ namespace Monitors
       }
 
       void
-      task(void)
+      task() override
       {
         // Wait to stabilize at beginning.
         if (!m_init.overflow())

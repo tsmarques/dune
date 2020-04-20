@@ -38,7 +38,7 @@
 
 // POSIX headers.
 #if defined(DUNE_SYS_HAS_SIGNAL_H)
-#  include <signal.h>
+#  include <csignal>
 #endif
 
 #if defined(DUNE_SYS_HAS_SEMAPHORE_H)
@@ -58,32 +58,32 @@ namespace DUNE
     class Process: public Runnable
     {
     public:
-      Process(void);
+      Process();
 
-      virtual
-      ~Process(void);
+      
+      ~Process() override;
 
     private:
       ProcessPrivate* m_pvt;
       SharedMemory m_smem;
 
       void
-      startImpl(void);
+      startImpl() override;
 
       void
-      stopImpl(void);
+      stopImpl() override;
 
       void
-      joinImpl(void);
+      joinImpl() override;
 
       void
-      setPriorityImpl(Scheduler::Policy policy, unsigned priority);
+      setPriorityImpl(Scheduler::Policy policy, unsigned priority) override;
 
       Runnable::State
-      getStateImpl(void);
+      getStateImpl() override;
 
       void
-      setStateImpl(Runnable::State value);
+      setStateImpl(Runnable::State value) override;
     };
   }
 }

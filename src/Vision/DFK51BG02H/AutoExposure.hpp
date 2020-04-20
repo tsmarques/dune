@@ -48,8 +48,7 @@ namespace Vision
     {
     public:
       //! Constructor.
-      AutoExposure(void)
-      { }
+      AutoExposure () = default;
 
       //! Calculate the gain update
       //! @param[in] data RGB24 image.

@@ -94,7 +94,7 @@ namespace Autonomy
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_sampler(NULL),
+        m_sampler(nullptr),
         m_trigger(false)
       {
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -160,7 +160,7 @@ namespace Autonomy
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.comms_delta))
           m_delta.setTop(m_args.comms_delta);
@@ -182,25 +182,25 @@ namespace Autonomy
         }
       }
 
-     ~Task(void)
+     ~Task() override
       {
         Memory::clear(m_sampler);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         bind(this, m_args.message);
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -208,7 +208,7 @@ namespace Autonomy
       void
       consume(const IMC::Message* msg)
       {
-        if (m_sampler == NULL)
+        if (m_sampler == nullptr)
           return;
 
         double reading = msg->getValueFP();
@@ -265,7 +265,7 @@ namespace Autonomy
 
       //! Action was triggered.
       void
-      fire(void)
+      fire()
       {
         // No actions if not active.
         if (!isActive())
@@ -316,7 +316,7 @@ namespace Autonomy
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

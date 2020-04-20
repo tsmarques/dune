@@ -138,8 +138,8 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_ctl(NULL),
+        m_uart(nullptr),
+        m_ctl(nullptr),
         m_state_timer(1.0),
         m_sample_count(0),
         m_faults_count(0),
@@ -196,7 +196,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_rotation.fill(c_axes_count, c_axes_count, &m_args.rotation_mx[0]);
 
@@ -220,7 +220,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         if (!m_args.pwr_name.empty())
         {
@@ -250,7 +250,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_ctl);
         Memory::clear(m_uart);
@@ -258,7 +258,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         setHardIronFactors();
@@ -301,7 +301,7 @@ namespace Sensors
       void
       setOutputFrequency(uint8_t frequency)
       {
-        if (m_ctl == NULL)
+        if (m_ctl == nullptr)
           return;
 
         if (m_args.raw_data)
@@ -318,9 +318,9 @@ namespace Sensors
 
       //! Get current Hard-Iron calibration parameters.
       void
-      getHardIronFactors(void)
+      getHardIronFactors()
       {
-        if (m_ctl == NULL)
+        if (m_ctl == nullptr)
           return;
 
         UCTK::Frame frame;
@@ -345,9 +345,9 @@ namespace Sensors
 
       //! Set Hard-Iron calibration parameters.
       void
-      setHardIronFactors(void)
+      setHardIronFactors()
       {
-        if (m_ctl == NULL)
+        if (m_ctl == nullptr)
           return;
 
         double factors[c_axes_count];
@@ -514,7 +514,7 @@ namespace Sensors
 
       //! Read input from sensor.
       void
-      readInput(void)
+      readInput()
       {
         size_t rv = m_uart->read(m_buffer, sizeof(m_buffer));
         for (size_t i = 0; i < rv; ++i)
@@ -539,7 +539,7 @@ namespace Sensors
       }
 
       void
-      reportEntityState(void)
+      reportEntityState()
       {
         if (m_wdog.overflow())
         {
@@ -574,7 +574,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

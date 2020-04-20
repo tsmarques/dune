@@ -77,7 +77,7 @@ namespace Navigation
 
         //! Update internal state with new parameter values.
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.ping_period))
             m_timer.setTop(m_args.ping_period);
@@ -85,20 +85,20 @@ namespace Navigation
 
         //! Initialize resources.
         void
-        onResourceInitialization(void)
+        onResourceInitialization() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         void
-        onActivation(void)
+        onActivation() override
         {
           m_timer.reset();
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
 
         void
-        onDeactivation(void)
+        onDeactivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
@@ -157,7 +157,7 @@ namespace Navigation
         }
 
         const IMC::LblBeacon*
-        getNextBeacon(void)
+        getNextBeacon()
         {
           for (size_t i = 0; i < m_lbl_config.beacons.size(); ++i)
           {
@@ -170,21 +170,21 @@ namespace Navigation
             }
           }
 
-          return NULL;
+          return nullptr;
         }
 
         void
-        pingNextBeacon(void)
+        pingNextBeacon()
         {
           const IMC::LblBeacon* beacon = getNextBeacon();
-          if (beacon == NULL)
+          if (beacon == nullptr)
             return;
 
           ping(beacon->beacon);
         }
 
         void
-        wait(void)
+        wait()
         {
           double delay = m_timer.getRemaining();
           if (delay < 0 || delay > 1.0)
@@ -194,7 +194,7 @@ namespace Navigation
 
         //! Main loop.
         void
-        onMain(void)
+        onMain() override
         {
           while (!stopping())
           {

@@ -60,21 +60,21 @@ namespace Transports
       //! Actual data gathered at these coords
       IMC::Message* sample;
 
-      DataSample(void)
+      DataSample()
       {
         latDegs = lonDegs = zMeters = timestamp = 0;
         priority = source = -1;
-        sample = NULL;
+        sample = nullptr;
       }
 
-      ~DataSample(void)
+      ~DataSample()
       {
-        if (sample != NULL)
+        if (sample != nullptr)
           delete sample;
       }
 
       int
-      serializationSize(void)
+      serializationSize()
       {
         return sample->getPayloadSerializationSize() + MINIMUM_SAMPLE_SIZE;
       }
@@ -154,7 +154,7 @@ namespace Transports
         m_task(task)
     { }
 
-      ~DataStore(void)
+      ~DataStore()
       {
         Concurrency::ScopedRWLock(m_lock, true);
         while (!m_samples.empty())
@@ -242,7 +242,7 @@ namespace Transports
         }
 
         if (ret->data.size() == 0)
-          return NULL;
+          return nullptr;
         else
           return ret;
       }
@@ -286,7 +286,7 @@ namespace Transports
 
         // no data can be added
         if (added.empty())
-          return NULL;
+          return nullptr;
 
         ret->base_lat = added.at(0)->latDegs;
         ret->base_lon = added.at(0)->lonDegs;

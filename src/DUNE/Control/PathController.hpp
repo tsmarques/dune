@@ -58,12 +58,12 @@ namespace DUNE
       PathController(std::string name, Tasks::Context& ctx);
 
       //! Destructor.
-      virtual
-      ~PathController(void);
+      
+      ~PathController() override;
 
       //! Entity reservation callback.
       void
-      onEntityReservation(void);
+      onEntityReservation() override;
 
       //! Consumer for Brake message.
       //! @param brake message to consume.
@@ -108,33 +108,33 @@ namespace DUNE
       //! Handler for parameter updates.
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
-      virtual void
-      onUpdateParameters(void);
+      void
+      onUpdateParameters() override;
 
       //! On resource initialization
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
-      virtual void
-      onResourceInitialization(void);
+      void
+      onResourceInitialization() override;
 
       //! On resource aquisition
       //! This can be overriden but in that case this parent
       //! class implementation MUST be called.
-      virtual void
-      onResourceRelease(void);
+      void
+      onResourceRelease() override;
 
       //! Handler for path control activation.
       //! This is called when path control is activated.
       //! By default it does nothing.
       virtual void
-      onPathActivation(void)
+      onPathActivation()
       { }
 
       //! Handler for path control deactivation.
       //! This is called when path control is deactivated.
       //! By default it does nothing.
       virtual void
-      onPathDeactivation(void)
+      onPathDeactivation()
       { }
 
       //! All data regarding the vehicle's state while tracking the path
@@ -238,7 +238,7 @@ namespace DUNE
       //! altitude references will be fired at the start of a path.
       //! @return false (at the base class level)
       virtual bool
-      hasSpecificZControl(void) const
+      hasSpecificZControl() const
       {
         return false;
       }
@@ -253,13 +253,13 @@ namespace DUNE
       getEta(const TrackingState& ts);
 
       float
-      getSpeed(void)
+      getSpeed()
       { 
         return std::max((double)m_eta_min_speed, m_ts.speed);
       }
 
       float
-      getTimeFactor(void)
+      getTimeFactor()
       {
         return m_time_factor;
       }
@@ -301,7 +301,7 @@ namespace DUNE
 
       //! Task method.
       void
-      onMain(void);
+      onMain() override;
 
     private:
       //! Update entity state
@@ -316,7 +316,7 @@ namespace DUNE
 
       //! Update tracking state variable
       void
-      updateTrackingState(void);
+      updateTrackingState();
 
       //! Test if there has been a jump in navigation
       //! @param[in] new_state newly received EstimatedState
@@ -331,11 +331,11 @@ namespace DUNE
 
       //! Monitor along track error and update variables
       void
-      monitorAlongTrackError(void);
+      monitorAlongTrackError();
 
       //! Monitor cross track error and update variables
       void
-      monitorCrossTrackError(void);
+      monitorCrossTrackError();
 
       //! Dispatch new control loops
       //! @param[in] enable control loops message enable field
@@ -345,11 +345,11 @@ namespace DUNE
 
       //! OnActivation routine from parent class
       void
-      onActivation(void);
+      onActivation() override;
 
       //! OnDeactivation routine from parent class
       void
-      onDeactivation(void);
+      onDeactivation() override;
 
       //! Update position relatively to track
       //! @param[in] coord current coordinate
@@ -357,21 +357,21 @@ namespace DUNE
       //! @param[out] y y coordinate relatively to path
       template <typename T>
       inline void
-      getTrackPosition(const T& coord, double* x, double* y = 0)
+      getTrackPosition (const T &coord, double *x, double *y = nullptr)
       {
         Coordinates::getTrackPosition(m_ts.start, m_ts.track_bearing, coord, x, y);
       }
 
       //! Deactivate bottom tracker
       void
-      deactivateBottomTracker(void);
+      deactivateBottomTracker();
 
       //! Is the system performing bottom tracking ?
       //! @return true if it is bottom tracking, false otherwise.
       bool
-      isTrackingBottom(void)
+      isTrackingBottom()
       {
-        return m_btd.enabled && (m_btrack != NULL);
+        return m_btd.enabled && (m_btrack != nullptr);
       }
 
       //! Data for along-track error monitoring.

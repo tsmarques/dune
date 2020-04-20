@@ -40,9 +40,7 @@ namespace UserInterfaces
     class AbstractOutput
     {
     public:
-      virtual
-      ~AbstractOutput(void)
-      { }
+      virtual ~AbstractOutput () = default;
 
       virtual void
       setValue(bool value) = 0;

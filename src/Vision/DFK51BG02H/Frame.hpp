@@ -51,7 +51,7 @@ namespace Vision
       //! @param[in] capacity frame capacity in bytes.
       Frame(unsigned capacity):
         m_capacity(capacity),
-        m_data(NULL),
+        m_data(nullptr),
         m_tstamp(-1),
         m_pkt_count(0)
       {
@@ -61,14 +61,14 @@ namespace Vision
       }
 
       //! Destructor.
-      ~Frame(void)
+      ~Frame()
       {
         delete [] m_data;
       }
 
       //! Set frame timestamp to current time.
       void
-      setTimeStamp(void)
+      setTimeStamp()
       {
         m_tstamp = Clock::getSinceEpoch();
         m_pkt_count = 0;
@@ -76,7 +76,7 @@ namespace Vision
 
       //! Retrieve frame timestamp.
       double
-      getTimeStamp(void)
+      getTimeStamp()
       {
         return m_tstamp;
       }
@@ -84,7 +84,7 @@ namespace Vision
       //! Get data pointer.
       //! @return data pointer.
       uint8_t*
-      getData(void)
+      getData()
       {
         return m_data;
       }
@@ -106,7 +106,7 @@ namespace Vision
       //! count can be inflated due to duplicated packets.
       //! @return packets in the frame.
       unsigned
-      getPacketCount(void)
+      getPacketCount()
       {
         return m_pkt_count;
       }

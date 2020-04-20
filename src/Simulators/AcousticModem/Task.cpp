@@ -73,7 +73,7 @@ namespace Simulators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_sock(NULL)
+        m_sock(nullptr)
       {
         param("Local Port", m_args.local_port)
         .defaultValue("6021")
@@ -98,7 +98,7 @@ namespace Simulators
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (isActive())
         {
@@ -112,7 +112,7 @@ namespace Simulators
 
       //! Acquire resources by binding to the local UDP port.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_sock = new UDPSocket;
         m_sock->bind(m_args.local_port, Address::Any, false);
@@ -121,7 +121,7 @@ namespace Simulators
 
       //! Release resources. Clears UDP socket.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_sock);
       }
@@ -158,7 +158,7 @@ namespace Simulators
       //! and contains a DUNE::IMC::UamTxFrame (inline) it gets translated to a
       //! @publish DUNE::IMC::UamRxFrame and gets posted to the local bus.
       void
-      readData(void)
+      readData()
       {
         if (!Poll::poll(*m_sock, 1.0))
           return;
@@ -192,13 +192,13 @@ namespace Simulators
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {
           consumeMessages();
 
-          if (m_sock != NULL)
+          if (m_sock != nullptr)
             readData();
         }
       }

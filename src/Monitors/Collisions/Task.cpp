@@ -107,10 +107,10 @@ namespace Monitors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_avg_x_innov(NULL),
-        m_avg_z_innov(NULL),
-        m_avg_x_abs(NULL),
-        m_avg_z_abs(NULL),
+        m_avg_x_innov(nullptr),
+        m_avg_z_innov(nullptr),
+        m_avg_x_abs(nullptr),
+        m_avg_z_abs(nullptr),
         m_braking(false),
         m_rpms(0)
       {
@@ -180,7 +180,7 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.t_error))
           m_twindow.setTop(m_args.t_error);
@@ -193,7 +193,7 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_tground.setTop(c_time_ground);
 
@@ -204,7 +204,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         try
         {
@@ -218,7 +218,7 @@ namespace Monitors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_avg_x_innov);
         Memory::clear(m_avg_z_innov);
@@ -335,7 +335,7 @@ namespace Monitors
       //! Check if the collision should be ignored
       //! @return true if collision should be ignored, false otherwise.
       bool
-      ignore(void)
+      ignore()
       {
         if (!m_tground.overflow())
           return true;
@@ -354,7 +354,7 @@ namespace Monitors
 
       //! This routine is called when a collision is detected.
       void
-      collided(void)
+      collided()
       {
         // Reset counter.
         m_twindow.reset();
@@ -375,7 +375,7 @@ namespace Monitors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

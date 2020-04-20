@@ -90,14 +90,14 @@ namespace Supervisors
       //! @param[out] destination destination system.
       //! @return true if there are reports to be sent, false otherwise.
       bool
-      trigger(std::string* destination = NULL)
+      trigger(std::string* destination = nullptr)
       {
         if (!m_timer.overflow())
           return false;
 
         if (m_list.size() > 0)
         {
-          if (destination != NULL)
+          if (destination != nullptr)
             *destination = m_list.front().sys_dst;
 
           if (m_wait_ack)

@@ -76,7 +76,7 @@ namespace Sensors
       };
 
       //! Constructor.
-      ExternalControl(void)
+      ExternalControl()
       {
         // Resize frame and fill with data.
         m_data.resize(c_size, 0);
@@ -106,13 +106,12 @@ namespace Sensors
       }
 
       //! Destructor.
-      ~ExternalControl(void)
-      { }
+      ~ExternalControl () = default;
 
       //! Get frame start address.
       //! @return pointer to address.
       uint8_t*
-      getData(void)
+      getData()
       {
         return &m_data[0];
       }
@@ -120,7 +119,7 @@ namespace Sensors
       //! Get size of frame.
       //! @return size of external control frame.
       size_t
-      getSize(void)
+      getSize()
       {
         return c_size;
       }

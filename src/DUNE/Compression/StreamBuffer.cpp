@@ -51,17 +51,17 @@ namespace DUNE
     StreamBuffer::StreamBuffer(std::ostream* stream, Methods method):
       m_method(method),
       m_ostream(stream),
-      m_istream(0),
-      m_dec(0)
+      m_istream(nullptr),
+      m_dec(nullptr)
     {
       m_com = Factory::compressor(method);
     }
 
     StreamBuffer::StreamBuffer(std::istream* stream, Methods method):
       m_method(method),
-      m_ostream(0),
+      m_ostream(nullptr),
       m_istream(stream),
-      m_com(0),
+      m_com(nullptr),
       m_get_bfr_idx(0),
       m_get_bfr_rem(0)
     {
@@ -69,7 +69,7 @@ namespace DUNE
       m_bfr.setSize(c_get_bfr_size);
     }
 
-    StreamBuffer::~StreamBuffer(void)
+    StreamBuffer::~StreamBuffer()
     {
       sync();
 
@@ -81,7 +81,7 @@ namespace DUNE
     }
 
     int
-    StreamBuffer::sync(void)
+    StreamBuffer::sync()
     {
       if (m_ostream)
       {
@@ -102,7 +102,7 @@ namespace DUNE
     }
 
     StreamBuffer::int_type
-    StreamBuffer::underflow(void)
+    StreamBuffer::underflow()
     {
       return EOF;
     }

@@ -42,7 +42,7 @@ namespace Sensors
     class Parser
     {
     public:
-      Parser(void)
+      Parser()
       {
         reset();
       }
@@ -133,7 +133,7 @@ namespace Sensors
       }
 
       void
-      reset(void)
+      reset()
       {
         m_data_len = 0;
         m_state = STATE_00;

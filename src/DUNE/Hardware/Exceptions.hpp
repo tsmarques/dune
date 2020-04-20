@@ -55,7 +55,7 @@ namespace DUNE
       { }
 
       //! Constructor.
-      UnexpectedReply(void):
+      UnexpectedReply():
         std::runtime_error(DTR("unexpected reply"))
       { }
     };
@@ -65,7 +65,7 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      ReadTimeout(void):
+      ReadTimeout():
         std::runtime_error(DTR("timeout while reading reply"))
       { }
     };

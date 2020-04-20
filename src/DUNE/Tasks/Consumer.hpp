@@ -41,7 +41,7 @@ namespace DUNE
     class Consumer: public AbstractConsumer
     {
     public:
-      typedef void (T::* Routine)(const M*);
+      using Routine = void (T::*)(const M *);
 
       //! Constructor.
       Consumer(T& o, Routine f):
@@ -50,13 +50,12 @@ namespace DUNE
       { }
 
       void
-      consume(const IMC::Message* msg)
+      consume(const IMC::Message* msg) override
       {
         ((m_obj).*(m_fun))(reinterpret_cast<const M*>(msg));
       }
 
-      ~Consumer(void)
-      { }
+      ~Consumer () override = default;
 
     private:
       T& m_obj;

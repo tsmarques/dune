@@ -49,7 +49,7 @@
 
 // POSIX headers.
 #if defined(DUNE_SYS_HAS_STRING_H)
-#  include <string.h>
+#  include <cstring>
 #endif
 
 namespace DUNE
@@ -117,13 +117,12 @@ namespace DUNE
       }
 
       //! Destructor.
-      ~Error(void) throw()
-      { }
+      ~Error () noexcept override = default;
 
       //! Get the full description of the exception.
       //! @return description c string.
-      const char*
-      what(void) const throw()
+      const char *
+      what () const noexcept override
       {
         return m_full_msg.c_str();
       }
@@ -131,7 +130,7 @@ namespace DUNE
       //! Retrieve the message of the last error.
       //! @return last error message.
       static std::string
-      getLastMessage(void)
+      getLastMessage()
       {
 #if defined(DUNE_SYS_HAS_GET_LAST_ERROR)
         return getMessage(GetLastError());

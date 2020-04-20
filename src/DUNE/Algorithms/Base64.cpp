@@ -74,7 +74,7 @@ namespace DUNE
     		regfree(&base64R);
     		return false;
     	}
-    	if(regexec(&base64R,str,0,NULL,0) == REG_NOMATCH)
+    	if(regexec(&base64R,str,0,nullptr,0) == REG_NOMATCH)
     	{
     		regfree(&base64R);
     		return false;
@@ -130,7 +130,7 @@ namespace DUNE
     std::string
     Base64::decode(const unsigned char* bytes, size_t len)
     {
-      if (len % 4 != 0) return NULL;
+      if (len % 4 != 0) return nullptr;
 
       size_t msg_len = 0;
       msg_len = len / 4 * 3;

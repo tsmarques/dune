@@ -67,11 +67,11 @@ namespace Maneuver
       //! @param[in] args yoyo arguments
       YoYo(Maneuvers::Maneuver* task, YoYoArgs* args):
         MuxedManeuver<IMC::YoYo, YoYoArgs>(task, args),
-        m_yoyo(NULL)
+        m_yoyo(nullptr)
       { }
 
       //! Destructor
-      ~YoYo(void)
+      ~YoYo() override
       {
         Memory::clear(m_yoyo);
       }
@@ -79,7 +79,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver yoyo maneuver message
       void
-      onStart(const IMC::YoYo* maneuver)
+      onStart(const IMC::YoYo* maneuver) override
       {
         // Enable path, pitch and speed control
         m_task->setControl(IMC::CL_PATH | IMC::CL_PITCH);
@@ -128,7 +128,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if (pcs->flags & IMC::PathControlState::FL_NEAR)
         {
@@ -159,7 +159,7 @@ namespace Maneuver
       //! On EstimatedState message
       //! @param[in] msg EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         if (msg->alt < 0 && m_zunits == IMC::Z_ALTITUDE)
         {
@@ -171,9 +171,9 @@ namespace Maneuver
       }
 
       void
-      onBrake(const IMC::Brake* msg)
+      onBrake(const IMC::Brake* msg) override
       {
-        if (m_yoyo == NULL)
+        if (m_yoyo == nullptr)
           return;
 
         if (msg->op == IMC::Brake::OP_START)

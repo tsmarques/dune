@@ -190,7 +190,7 @@ namespace Navigation
 
         Task(const std::string& name, Tasks::Context& ctx):
           DUNE::Navigation::BasicNavigation(name, ctx),
-          m_avg_speed(NULL)
+          m_avg_speed(nullptr)
         {
           // Declare configuration parameters.
           param("Position Noise Covariance with IMU", m_args.pos_noise)
@@ -300,7 +300,7 @@ namespace Navigation
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           BasicNavigation::onUpdateParameters();
 
@@ -338,7 +338,7 @@ namespace Navigation
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization() override
         {
           BasicNavigation::onResourceInitialization();
           m_avg_speed = new MovingAverage<double>(m_args.navg_speed);
@@ -346,7 +346,7 @@ namespace Navigation
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           BasicNavigation::onResourceRelease();
           Memory::clear(m_avg_speed);
@@ -354,7 +354,7 @@ namespace Navigation
         }
 
         void
-        onEntityResolution(void)
+        onEntityResolution() override
         {
           BasicNavigation::onEntityResolution();
           try
@@ -368,7 +368,7 @@ namespace Navigation
         }
 
         void
-        onReportEntityState(void)
+        onReportEntityState() override
         {
           IMC::AlignmentState as;
 
@@ -443,7 +443,7 @@ namespace Navigation
         }
 
         bool
-        setup(void)
+        setup() override
         {
           BasicNavigation::setup();
 
@@ -466,7 +466,7 @@ namespace Navigation
         }
 
         void
-        reset(void)
+        reset() override
         {
           BasicNavigation::reset();
           m_gps_reading = false;
@@ -474,20 +474,20 @@ namespace Navigation
         }
 
         double
-        getBiasedHeading(void)
+        getBiasedHeading()
         {
           return m_kal.getState(STATE_PSI) + m_kal.getState(STATE_PSI_BIAS);
         }
 
         void
-        onConsumeLblConfig(void)
+        onConsumeLblConfig() override
         {
           if (m_kal.resize(NUM_OUT + m_ranging.getSize()))
             Task::onUpdateParameters();
         }
 
         void
-        updateKalmanGpsParameters(double hacc)
+        updateKalmanGpsParameters(double hacc) override
         {
           if (hacc > GPS_BAD)
           {
@@ -512,7 +512,7 @@ namespace Navigation
         }
 
         void
-        runKalmanGPS(double x, double y)
+        runKalmanGPS(double x, double y) override
         {
           m_gps_reading = true;
 
@@ -522,7 +522,7 @@ namespace Navigation
         }
 
         void
-        runKalmanUSBL(double x, double y)
+        runKalmanUSBL(double x, double y) override
         {
           // if there's gps, ignore usbl.
           if (!m_time_without_gps.overflow())
@@ -539,20 +539,20 @@ namespace Navigation
         }
 
         void
-        getSpeedOutputStates(unsigned* u, unsigned* v)
+        getSpeedOutputStates(unsigned* u, unsigned* v) override
         {
           *u = OUT_U;
           *v = OUT_V;
         }
 
         unsigned
-        getNumberOutputs(void)
+        getNumberOutputs() override
         {
           return NUM_OUT;
         }
 
         void
-        task(void)
+        task() override
         {
           if(!BasicNavigation::isActive())
             return;
@@ -728,7 +728,7 @@ namespace Navigation
         }
 
         void
-        sendDeActiveIMU(void)
+        sendDeActiveIMU()
         {
           IMC::EntityParameter p;
           p.name = "Active";
@@ -757,7 +757,7 @@ namespace Navigation
         double
         getRpmToMs(double rpm)
         {
-          if(m_speed_model != NULL)
+          if(m_speed_model != nullptr)
           return m_speed_model->toMPS(rpm,IMC::SUNITS_RPM);
         return m_args.rpm_ini*rpm;
         }
@@ -793,7 +793,7 @@ namespace Navigation
 
         // Reinitialize Extended Kalman Filter output matrix function.
         void
-        resetKalman(void)
+        resetKalman()
         {
           m_kal.resetOutputs();
           m_kal.setObservation(OUT_U, STATE_U, 1.0);
@@ -807,7 +807,7 @@ namespace Navigation
         }
 
         void
-        logData(void)
+        logData()
         {
           m_estate.psi = Angles::normalizeRadian(m_kal.getState(STATE_PSI));
           m_estate.r = m_kal.getState(STATE_R);

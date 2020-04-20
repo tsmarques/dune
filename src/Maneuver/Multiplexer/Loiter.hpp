@@ -66,11 +66,11 @@ namespace Maneuver
       //! @param[in] args loiter arguments
       Loiter(Maneuvers::Maneuver* task, LoiterArgs* args):
         MuxedManeuver<IMC::Loiter, LoiterArgs>(task, args),
-        m_ltr(NULL)
+        m_ltr(nullptr)
       { }
 
       //! Destructor
-      ~Loiter(void)
+      ~Loiter() override
       {
         Memory::clear(m_ltr);
       }
@@ -97,7 +97,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver loiter maneuver message
       void
-      onStart(const IMC::Loiter* maneuver)
+      onStart(const IMC::Loiter* maneuver) override
       {
         Memory::clear(m_ltr);
 
@@ -124,7 +124,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         m_ltr->onPathControlState(pcs);
 
@@ -161,7 +161,7 @@ namespace Maneuver
       //! On EstimatedState message
       //! @param[in] msg pointer to EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         m_ltr->onEstimatedState(msg);
       }

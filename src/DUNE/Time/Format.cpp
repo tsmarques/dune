@@ -45,9 +45,9 @@ namespace DUNE
   namespace Time
   {
     std::string
-    Format::getTimeDate(void)
+    Format::getTimeDate()
     {
-      return getTimeDate(static_cast<double>(std::time(0)));
+      return getTimeDate(static_cast<double>(std::time(nullptr)));
     }
 
     std::string
@@ -63,7 +63,7 @@ namespace DUNE
       std::tm* tmp = utc ? std::gmtime(&t) : std::localtime(&t);
 #endif
 
-      if (tmp == 0)
+      if (tmp == nullptr)
         return "unknown time";
 
       if (std::strftime(bfr, sizeof(bfr), "%Y/%m/%d %H:%M:%S", tmp) == 0)
@@ -73,9 +73,9 @@ namespace DUNE
     }
 
     std::string
-    Format::getDateSafe(void)
+    Format::getDateSafe()
     {
-      return getDateSafe(static_cast<double>(std::time(0)));
+      return getDateSafe(static_cast<double>(std::time(nullptr)));
     }
 
     std::string
@@ -91,7 +91,7 @@ namespace DUNE
       std::tm* tmp = utc ? std::gmtime(&t) : std::localtime(&t);
 #endif
 
-      if (tmp == 0)
+      if (tmp == nullptr)
         return "unknown date";
 
       if (std::strftime(bfr, sizeof(bfr), "%Y%m%d", tmp) == 0)
@@ -101,9 +101,9 @@ namespace DUNE
     }
 
     std::string
-    Format::getTimeSafe(void)
+    Format::getTimeSafe()
     {
-      return getTimeSafe(static_cast<double>(std::time(0)));
+      return getTimeSafe(static_cast<double>(std::time(nullptr)));
     }
 
     std::string
@@ -119,7 +119,7 @@ namespace DUNE
       std::tm* tmp = utc ? std::gmtime(&t) : std::localtime(&t);
 #endif
 
-      if (tmp == 0)
+      if (tmp == nullptr)
         return "unknown time";
 
       if (std::strftime(bfr, sizeof(bfr), "%H%M%S", tmp) == 0)
@@ -131,7 +131,7 @@ namespace DUNE
     std::string
     Format::getRFC1123(bool utc)
     {
-      std::time_t t = std::time(0);
+      std::time_t t = std::time(nullptr);
 
 #if defined(DUNE_SYS_HAS_GMTIME_R) && defined(DUNE_SYS_HAS_LOCALTIME_R)
       std::tm tm_bfr = {0};

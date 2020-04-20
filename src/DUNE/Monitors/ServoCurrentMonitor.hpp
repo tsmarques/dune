@@ -60,8 +60,7 @@ namespace DUNE
       }
 
       //! Destructor
-      ~ServoCurrentMonitor(void)
-      { }
+      ~ServoCurrentMonitor () = default;
 
       //! Update function
       //! @param value current measurement to be used in the detection

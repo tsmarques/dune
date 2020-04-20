@@ -57,11 +57,11 @@ namespace DUNE
       Manager(Context& ctx);
 
       //! Destructor.
-      ~Manager(void);
+      ~Manager();
 
       //! Start all tasks.
       void
-      start(void);
+      start();
 
       //! Start a task with a given name.
       //! @param name task name.
@@ -87,13 +87,13 @@ namespace DUNE
       writeParamsXML(std::ostream& os) const;
 
       std::map<std::string, Task*>::iterator
-      begin(void)
+      begin()
       {
         return m_tasks.begin();
       }
 
       std::map<std::string, Task*>::iterator
-      end(void)
+      end()
       {
         return m_tasks.end();
       }
@@ -105,10 +105,10 @@ namespace DUNE
       }
 
       void
-      measureCpuUsage(void);
+      measureCpuUsage();
 
       void
-      adjustPriorities(void);
+      adjustPriorities();
 
     private:
       struct TaskCpuUsage

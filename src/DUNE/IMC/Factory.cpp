@@ -46,11 +46,11 @@ namespace DUNE
 {
   namespace IMC
   {
-    typedef Message* (*Creator) (void);
+    using Creator = Message *(*)();
 
     template <typename Type>
     static Message*
-    create(void)
+    create()
     {
       return new Type();
     }
@@ -87,7 +87,7 @@ namespace DUNE
         return creators_by_id[id]();
 
       DUNE_DBG("IMC Message Factory", "unknown message " << id);
-      return 0;
+      return nullptr;
     }
 
     Message*

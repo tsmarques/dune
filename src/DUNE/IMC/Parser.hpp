@@ -48,14 +48,14 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      Parser(void);
+      Parser();
 
       //! Destructor.
-      ~Parser(void);
+      ~Parser();
 
       //! Reset parser.
       void
-      reset(void);
+      reset();
 
       //! Parse byte and return message if parsing of one message is done.
       //! @param byte data byte

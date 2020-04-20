@@ -46,7 +46,7 @@ namespace DUNE
 #endif
     }
 
-    Semaphore::~Semaphore(void)
+    Semaphore::~Semaphore()
     {
 #if defined(DUNE_SYS_HAS_SEMAPHORE_H)
       sem_post(&m_handle);
@@ -55,7 +55,7 @@ namespace DUNE
     }
 
     void
-    Semaphore::lock(void)
+    Semaphore::lock()
     {
       //      std::cerr << "in lock" << std::endl;
 #if defined(DUNE_SYS_HAS_SEMAPHORE_H)
@@ -65,7 +65,7 @@ namespace DUNE
     }
 
     void
-    Semaphore::unlock(void)
+    Semaphore::unlock()
     {
       //      std::cerr << "in unlock" << std::endl;
 #if defined(DUNE_SYS_HAS_SEMAPHORE_H)
@@ -75,7 +75,7 @@ namespace DUNE
     }
 
     int
-    Semaphore::getValue(void)
+    Semaphore::getValue()
     {
       int value = 0;
 

@@ -65,7 +65,7 @@ namespace Autonomy
       };
 
       //! Constructor.
-      Sampler(void)
+      Sampler()
       {
         // Start state machine and use "standard" set of parameters.
         m_state = ST_NOT_DETECTED;
@@ -109,7 +109,7 @@ namespace Autonomy
 
       //! Reset state machine.
       void
-      reset(void)
+      reset()
       {
         m_state = ST_NOT_DETECTED;
         m_counter = 0;
@@ -189,7 +189,7 @@ namespace Autonomy
 
       //! Confirm positive detection.
       void
-      confirmPositive(void)
+      confirmPositive()
       {
         if (m_counter >= (int)m_pos_samples)
         {
@@ -200,7 +200,7 @@ namespace Autonomy
 
       //! Confirm negative detection.
       void
-      confirmNegative(void)
+      confirmNegative()
       {
         if (m_counter <= -(int)m_neg_samples)
         {

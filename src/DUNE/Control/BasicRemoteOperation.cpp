@@ -144,7 +144,7 @@ namespace DUNE
     }
 
     void
-    BasicRemoteOperation::onResourceInitialization(void)
+    BasicRemoteOperation::onResourceInitialization()
     {
       setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
     }
@@ -200,7 +200,7 @@ namespace DUNE
     }
 
     void
-    BasicRemoteOperation::task(void)
+    BasicRemoteOperation::task()
     {
       fp64_t delta = Time::Clock::get() - m_last_action;
 

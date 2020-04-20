@@ -44,13 +44,13 @@ namespace DUNE
     class Bzip2Decompressor: public Decompressor
     {
     public:
-      Bzip2Decompressor(void);
+      Bzip2Decompressor();
 
-      ~Bzip2Decompressor(void);
+      ~Bzip2Decompressor() override;
 
     protected:
-      virtual unsigned long
-      decompressBlock(char* dst, unsigned long dst_len, char* src, unsigned long src_len, unsigned long& unprocessed_len);
+      unsigned long
+      decompressBlock(char* dst, unsigned long dst_len, char* src, unsigned long src_len, unsigned long& unprocessed_len) override;
 
     private:
       // Forward declaration of private data.
@@ -61,7 +61,7 @@ namespace DUNE
       bool m_clear;
 
       void
-      clear(void);
+      clear();
     };
   }
 }

@@ -88,7 +88,7 @@ namespace Transports
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
         m_last_flush(0),
-        m_lsf(NULL),
+        m_lsf(nullptr),
         m_active(true)
       {
         // Define configuration parameters.
@@ -119,13 +119,13 @@ namespace Transports
         bind<IMC::EntityInfo>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         bind(this, m_args.messages);
 
@@ -134,13 +134,13 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_lsf);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_compression = Compression::Factory::method(m_args.lsf_compression);
         if (m_args.lsf_volumes.empty())
@@ -223,7 +223,7 @@ namespace Transports
       }
 
       bool
-      changeVolumeDirectory(void)
+      changeVolumeDirectory()
       {
         if (m_args.lsf_volumes.empty())
           return false;
@@ -303,7 +303,7 @@ namespace Transports
         if (!m_active)
           return;
 
-        if (m_lsf == NULL)
+        if (m_lsf == nullptr)
           return;
 
         m_active = keep_logging;
@@ -370,7 +370,7 @@ namespace Transports
       }
 
       void
-      tryFlush(void)
+      tryFlush()
       {
         double now = Clock::get();
 
@@ -382,9 +382,9 @@ namespace Transports
       }
 
       void
-      tryRotate(void)
+      tryRotate()
       {
-        if (m_lsf == NULL)
+        if (m_lsf == nullptr)
           return;
 
         int64_t mib = Path(m_lsf_file).size();
@@ -421,7 +421,7 @@ namespace Transports
       void
       logMessage(const IMC::Message* msg)
       {
-        if (m_lsf == NULL)
+        if (m_lsf == nullptr)
           return;
 
         IMC::Packet::serialize(msg, m_buffer);
@@ -429,7 +429,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         changeVolumeDirectory();
 

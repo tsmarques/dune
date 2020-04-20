@@ -57,9 +57,8 @@ namespace DUNE
       Periodic(const std::string& name, Context& ctx);
 
       //! Destructor.
-      virtual
-      ~Periodic(void)
-      { }
+
+      ~Periodic () override = default;
 
       //! Set the task frequency programmatically. The frequency of a
       //! task might change when configuration parameters are updated.
@@ -74,7 +73,7 @@ namespace DUNE
       //! change when configuration parameters are updated.
       //! @return task frequency in Hertz.
       inline double
-      getFrequency(void) const
+      getFrequency() const
       {
         return m_frequency;
       }
@@ -82,7 +81,7 @@ namespace DUNE
       //! Retrieve the time of the last run (monotonic clock).
       //! @return time of last run.
       inline double
-      getRunTime(void) const
+      getRunTime() const
       {
         return m_run_time;
       }
@@ -90,14 +89,14 @@ namespace DUNE
       //! Retrieve the number of times the task ran.
       //! @return run count.
       inline unsigned
-      getRunCount(void) const
+      getRunCount() const
       {
         return m_run_count;
       }
 
       //! The task to be executed on each cycle.
       virtual void
-      task(void) = 0;
+      task() = 0;
 
     private:
       //! Number of executions thus far.
@@ -109,7 +108,7 @@ namespace DUNE
 
       //! Task entry point.
       void
-      onMain(void);
+      onMain() override;
     };
   }
 }

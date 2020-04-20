@@ -54,7 +54,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver goto maneuver message
       void
-      onStart(const IMC::Takeoff* maneuver)
+      onStart(const IMC::Takeoff* maneuver) override
       {
         // Enable Path Control
         m_task->setControl(IMC::CL_PATH);
@@ -73,7 +73,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if (pcs->flags & IMC::PathControlState::FL_NEAR)
         {
@@ -87,7 +87,7 @@ namespace Maneuver
       //! On message EstimatedState
       //! @param[in] msg pointer to EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         m_height = msg->height;
       }
@@ -95,7 +95,7 @@ namespace Maneuver
       //! On message VehicleMedium
       //! @param[in] msg pointer to VehicleMedium message
       void
-      onVehicleMedium(const IMC::VehicleMedium* msg)
+      onVehicleMedium(const IMC::VehicleMedium* msg) override
       {
         // Dispatch DesiredPath after launch
         if(msg->medium == IMC::VehicleMedium::VM_AIR && !m_status)
@@ -110,8 +110,7 @@ namespace Maneuver
         }
       }
 
-      ~Takeoff(void)
-      { }
+      ~Takeoff () override = default;
 
     private:
       //! Desired Path message

@@ -53,12 +53,12 @@ namespace Supervisors
     public:
       ManeuverSupervisor(Tasks::Task* task, double timeout):
         m_task(task),
-        m_curr_req(NULL),
+        m_curr_req(nullptr),
         m_timeout(timeout),
         m_valid_state(false)
       { }
 
-      ~ManeuverSupervisor(void)
+      ~ManeuverSupervisor()
       {
         clearCurrent();
 
@@ -71,7 +71,7 @@ namespace Supervisors
 
       //! Add a request for stopping a maneuver
       void
-      addStop(void)
+      addStop()
       {
         Request* req = new Request(RT_STOP);
         m_reqs.push(req);
@@ -132,7 +132,7 @@ namespace Supervisors
 
       //! Update without using
       void
-      update(void)
+      update()
       {
         checkExpiration();
 
@@ -142,7 +142,7 @@ namespace Supervisors
     private:
       //! Check if current request hasn't expired
       void
-      checkExpiration(void)
+      checkExpiration()
       {
         if (!isExpired())
           return;
@@ -156,7 +156,7 @@ namespace Supervisors
 
       //! Process requests in the queue
       void
-      processRequests(void)
+      processRequests()
       {
         if (isProcessing())
           return;
@@ -255,14 +255,14 @@ namespace Supervisors
 
       //! Check if a request is being processed
       bool
-      isProcessing(void)
+      isProcessing()
       {
-        return (m_curr_req != NULL);
+        return (m_curr_req != nullptr);
       }
 
       //! Check if current request has expired
       bool
-      isExpired(void)
+      isExpired()
       {
         if (isProcessing())
         {
@@ -279,7 +279,7 @@ namespace Supervisors
 
       //! Clear current request
       void
-      clearCurrent(void)
+      clearCurrent()
       {
         if (isProcessing())
         {

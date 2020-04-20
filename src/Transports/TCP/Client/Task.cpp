@@ -58,7 +58,7 @@ namespace Transports
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::SimpleTransport(name, ctx),
-          m_sock(NULL)
+          m_sock(nullptr)
         {
           param("Server - Address", m_args.address)
           .defaultValue("127.0.0.1")
@@ -69,13 +69,13 @@ namespace Transports
           .description("Remote server port");
         }
 
-        ~Task(void)
+        ~Task() override
         {
           onResourceRelease();
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition() override
         {
           try
           {
@@ -93,19 +93,19 @@ namespace Transports
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           if (m_sock)
           {
             delete m_sock;
-            m_sock = NULL;
+            m_sock = nullptr;
           }
 
           m_parser.reset();
         }
 
         void
-        onDataTransmission(const uint8_t* p, unsigned int len)
+        onDataTransmission(const uint8_t* p, unsigned int len) override
         {
           try
           {
@@ -118,7 +118,7 @@ namespace Transports
         }
 
         void
-        onDataReception(uint8_t* p, unsigned int n, double timeout)
+        onDataReception(uint8_t* p, unsigned int n, double timeout) override
         {
           if (!Poll::poll(*m_sock, timeout))
             return;

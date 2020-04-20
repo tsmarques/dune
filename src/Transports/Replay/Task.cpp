@@ -96,7 +96,7 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_is(0)
+        m_is(nullptr)
       {
         param("Load At Start", m_args.startup_file)
         .defaultValue("")
@@ -114,7 +114,7 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         for (unsigned i = 0; i < m_args.msgs.size(); ++i)
           m_replay[m_args.msgs[i]] = true;
@@ -125,13 +125,13 @@ namespace Transports
         reset();
       }
 
-      ~Task(void)
+      ~Task() override
       {
         reset();
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         // Reserve configured entities so that other tasks to know about them.
         for (unsigned int i = 0; i < m_args.ents.size(); ++i)
@@ -221,7 +221,7 @@ namespace Transports
           return;
         }
 
-        IMC::Message* m = 0;
+        IMC::Message* m = nullptr;
 
         try
         {
@@ -272,7 +272,7 @@ namespace Transports
       }
 
       void
-      stopReplay(void)
+      stopReplay()
       {
         war(DTR("stopped replay"));
 
@@ -287,7 +287,7 @@ namespace Transports
       }
 
       void
-      displayStats(void)
+      displayStats()
       {
         displayStats(m_tgstats, "Globally", "ms", 1e+03);
 
@@ -312,14 +312,14 @@ namespace Transports
       }
 
       void
-      reset(void)
+      reset()
       {
         requestDeactivation();
 
         if (m_is)
         {
           delete m_is;
-          m_is = 0;
+          m_is = nullptr;
         }
         m_eid2eid.clear();
         m_tstats.clear();
@@ -327,7 +327,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         if (!m_args.startup_file.empty())
           startReplay(m_args.startup_file);
@@ -345,9 +345,9 @@ namespace Transports
           if (!isActive())
             continue;
 
-          IMC::Message* m = 0;
+          IMC::Message* m = nullptr;
 
-          while (!stopping() && (m = DUNE::IMC::Packet::deserialize(*m_is)) != 0 && !m_is->eof())
+          while (!stopping() && (m = DUNE::IMC::Packet::deserialize(*m_is)) != nullptr && !m_is->eof())
           {
             consumeMessages();
 

@@ -99,14 +99,14 @@ main(int32_t argc, char** argv)
 
   for (int32_t i = start_index; i < argc; ++i)
   {
-    std::istream* is = 0;
+    std::istream* is = nullptr;
     DUNE::Compression::Methods method = DUNE::Compression::Factory::detect(argv[i]);
     if (method == DUNE::Compression::METHOD_UNKNOWN)
       is = new std::ifstream(argv[i], std::ios::binary);
     else
       is = new DUNE::Compression::FileInput(argv[i], method);
 
-    DUNE::IMC::Message* msg = NULL;
+    DUNE::IMC::Message* msg = nullptr;
 
     bool got_name = false;
     std::string log_name = "unknown";
@@ -129,7 +129,7 @@ main(int32_t argc, char** argv)
 
     try
     {
-      while ((msg = DUNE::IMC::Packet::deserialize(*is)) != 0)
+      while ((msg = DUNE::IMC::Packet::deserialize(*is)) != nullptr)
       {
 
         if (msg->getId() == DUNE_IMC_LOGGINGCONTROL)

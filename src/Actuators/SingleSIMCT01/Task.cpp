@@ -84,7 +84,7 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_demand(0),
         m_err_count(0),
         m_err_wdog(5)
@@ -121,7 +121,7 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_uart->setCanonicalInput(true);
@@ -129,13 +129,13 @@ namespace Actuators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (m_args.motor_id < 0)
           throw std::runtime_error(DTR("invalid value for 'Motor Id'"));
@@ -171,7 +171,7 @@ namespace Actuators
       }
 
       void
-      demand(void)
+      demand()
       {
         // Remember that the + eats a digit.
         std::sprintf(m_scratch, "u%d_%+03d\r", m_args.motor_id, m_demand);
@@ -184,7 +184,7 @@ namespace Actuators
       }
 
       void
-      queryCurrent(void)
+      queryCurrent()
       {
         char bfr[32];
         if (sendCommand(m_cmd_query_amp.c_str(), bfr, sizeof(bfr)))
@@ -202,7 +202,7 @@ namespace Actuators
       }
 
       void
-      queryRPM(void)
+      queryRPM()
       {
         char bfr[32];
         if (sendCommand(m_cmd_query_rpm.c_str(), bfr, sizeof(bfr)))
@@ -227,7 +227,7 @@ namespace Actuators
       }
 
       void
-      task(void)
+      task() override
       {
         demand();
         queryCurrent();

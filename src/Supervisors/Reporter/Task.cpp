@@ -99,7 +99,7 @@ namespace Supervisors
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.acoustic) || paramChanged(m_args.acoustic_period))
         {
@@ -192,7 +192,7 @@ namespace Supervisors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

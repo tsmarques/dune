@@ -100,7 +100,7 @@ namespace UserInterfaces
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_current(NULL),
+        m_current(nullptr),
         m_cursor(0),
         m_current_id(PAT_NORMAL),
         m_next_id(-1),
@@ -137,13 +137,13 @@ namespace UserInterfaces
         bind<IMC::EntityState>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         std::vector<AbstractOutput*>::iterator itr = m_outs.begin();
         for (; itr != m_outs.end(); ++itr)
@@ -156,11 +156,11 @@ namespace UserInterfaces
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         for (unsigned i = 0; i < m_args.led_ids.size(); ++i)
         {
-          AbstractOutput* out = NULL;
+          AbstractOutput* out = nullptr;
 
           if (m_args.interface == "Message")
           {
@@ -189,7 +189,7 @@ namespace UserInterfaces
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         for (unsigned i = 0; i < m_args.critical.size(); ++i)
         {
@@ -204,13 +204,13 @@ namespace UserInterfaces
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
 #define PATTERN(type, string)                   \
         validatePattern(type, string);
@@ -301,7 +301,7 @@ namespace UserInterfaces
       }
 
       void
-      initializeLEDs(void)
+      initializeLEDs()
       {
         Delay::wait(1.0);
 
@@ -320,7 +320,7 @@ namespace UserInterfaces
       }
 
       void
-      switchPattern(void)
+      switchPattern()
       {
         if (m_next_id >= 0)
         {
@@ -331,7 +331,7 @@ namespace UserInterfaces
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         initializeLEDs();
 

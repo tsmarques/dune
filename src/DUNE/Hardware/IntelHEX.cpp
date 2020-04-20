@@ -55,7 +55,7 @@ namespace DUNE
     }
 
     void
-    IntelHEX::load(void)
+    IntelHEX::load()
     {
       std::ifstream ifs(m_file_name.c_str());
       if (ifs.fail())

@@ -154,7 +154,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_handle(NULL),
+        m_handle(nullptr),
         m_crc_err_count(0),
         m_state_timer(1),
         m_sample_count(0),
@@ -206,7 +206,7 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         // Depth conversion (bar to meters of fluid).
         if (paramChanged(m_args.depth_conv))
@@ -230,7 +230,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         onResourceRelease();
 
@@ -249,7 +249,7 @@ namespace Sensors
       }
 
       bool
-      openSocket(void)
+      openSocket()
       {
         char addr[128] = {0};
         unsigned port = 0;
@@ -264,7 +264,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         try
         {
@@ -277,13 +277,13 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_handle);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_crc_err_count = 0;
         initialize();
@@ -308,7 +308,7 @@ namespace Sensors
 
       //! Calibrate device.
       void
-      calibrate(void)
+      calibrate()
       {
         if (!m_calibrated)
         {
@@ -370,7 +370,7 @@ namespace Sensors
       }
 
       bool
-      read(void)
+      read()
       {
         uint8_t bfr[10];
 
@@ -468,7 +468,7 @@ namespace Sensors
       }
 
       bool
-      interpret(void)
+      interpret()
       {
         uint32_t tmp = 0;
 
@@ -513,7 +513,7 @@ namespace Sensors
       }
 
       void
-      initialize(void)
+      initialize()
       {
         m_handle->flush();
 
@@ -540,7 +540,7 @@ namespace Sensors
       }
 
       void
-      zero(void)
+      zero()
       {
         uint16_t crc = 0;
         uint8_t bfr[10] =
@@ -558,7 +558,7 @@ namespace Sensors
       }
 
       void
-      reportEntityState(void)
+      reportEntityState()
       {
         if (m_wdog.overflow())
         {
@@ -590,7 +590,7 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task() override
       {
         // Query pressure.
         if (write(m_msg_read_pressure, sizeof(m_msg_read_pressure)))

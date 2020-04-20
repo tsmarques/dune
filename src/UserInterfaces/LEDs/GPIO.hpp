@@ -46,20 +46,20 @@ namespace UserInterfaces
     {
     public:
       GPIO(unsigned nr):
-        m_gpio(0)
+        m_gpio(nullptr)
       {
         m_gpio = new Hardware::GPIO(nr);
         m_gpio->setDirection(Hardware::GPIO::GPIO_DIR_OUTPUT);
       }
 
-      ~GPIO(void)
+      ~GPIO() override
       {
         if (m_gpio)
           delete m_gpio;
       }
 
       void
-      setValue(bool value)
+      setValue(bool value) override
       {
         m_gpio->setValue(value);
       }

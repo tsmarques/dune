@@ -130,8 +130,8 @@ namespace UserInterfaces
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_i2c(NULL),
-        m_blight(NULL),
+        m_i2c(nullptr),
+        m_blight(nullptr),
         m_blight_time(0),
         m_blight_state(false),
         m_display_state(false)
@@ -155,20 +155,20 @@ namespace UserInterfaces
         bind<IMC::LcdControl>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         setDisplay(false);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_blight);
         Memory::clear(m_i2c);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_i2c = new I2C(m_args.i2c_dev);
         m_i2c->connect(c_addr);
@@ -181,7 +181,7 @@ namespace UserInterfaces
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Initialize GPIOS
         sendByte(REG_IODIR, 0x00);
@@ -215,7 +215,7 @@ namespace UserInterfaces
 
         if (m_args.blight_gpio > 0)
         {
-          if (m_blight != NULL)
+          if (m_blight != nullptr)
             m_blight->setValue(state);
         }
 
@@ -245,14 +245,14 @@ namespace UserInterfaces
       }
 
       void
-      checkBacklight(void)
+      checkBacklight()
       {
         if ((Clock::get() - m_blight_time) > m_args.blight_tout)
           setBackLight(false);
       }
 
       void
-      enableBacklight(void)
+      enableBacklight()
       {
         setBackLight(true);
         m_blight_time = Clock::get();
@@ -268,7 +268,7 @@ namespace UserInterfaces
       }
 
       void
-      clear(void)
+      clear()
       {
         writeByte(INST_CLEAR, 0x00);
       }
@@ -326,7 +326,7 @@ namespace UserInterfaces
       }
 
       void
-      refresh(void)
+      refresh()
       {
         if (m_lines[0] != m_last_lines[0])
         {
@@ -363,7 +363,7 @@ namespace UserInterfaces
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

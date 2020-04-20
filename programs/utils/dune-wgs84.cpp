@@ -47,7 +47,7 @@ using namespace DUNE::Coordinates;
 using namespace DUNE::FileSystem;
 
 static bool deg = true;
-static WMM* wmm = 0; // create only if necessary
+static WMM* wmm = nullptr; // create only if necessary
 
 void
 helpC(std::istream& is)
@@ -149,7 +149,7 @@ wmmC(std::istream& is)
 int
 main(int argc, char** argv)
 {
-  typedef void cfunc (std::istream &);
+  using cfunc = void (std::istream &);
   typedef std::map<std::string, cfunc*> CmdMap;
   CmdMap commands;
 

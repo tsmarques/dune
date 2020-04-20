@@ -87,7 +87,7 @@ namespace Monitors
         Tasks::Periodic(name, ctx),
         m_in_mission(false),
         m_req(0),
-        m_reporter(NULL)
+        m_reporter(nullptr)
       {
         paramActive(Tasks::Parameter::SCOPE_IDLE,
                     Tasks::Parameter::VISIBILITY_USER);
@@ -134,27 +134,27 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.heartbeat_tout))
           m_lost_coms_timer.setTop(m_args.heartbeat_tout);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_reporter);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_reporter = new Supervisors::Reporter::Client(this, Supervisors::Reporter::IS_GSM,
                                                        2.0, false);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Initialize entity state.
         if (isActive())
@@ -171,13 +171,13 @@ namespace Monitors
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -210,7 +210,7 @@ namespace Monitors
       void
       consume(const IMC::ReportControl* msg)
       {
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->consume(msg);
       }
 
@@ -377,10 +377,10 @@ namespace Monitors
 
       //! Send all scheduled reports.
       void
-      sendScheduled(void)
+      sendScheduled()
       {
         std::string number;
-        if (m_reporter != NULL && m_reporter->trigger(&number))
+        if (m_reporter != nullptr && m_reporter->trigger(&number))
         {
           if (!m_hand.isUnderwater())
           {
@@ -397,7 +397,7 @@ namespace Monitors
       //! Send distress messages if active and not underwater, or,
       //! if not executing mission and waiting at water surface.
       void
-      sendDistress(void)
+      sendDistress()
       {
         if (m_lost_coms_timer.overflow())
         {
@@ -410,7 +410,7 @@ namespace Monitors
       }
 
       void
-      task(void)
+      task() override
       {
         sendScheduled();
         sendDistress();

@@ -52,25 +52,25 @@ namespace Simulators
       //! of the vehicle.
       //! @param[in] orientation orientation of the engine.
       //! @param[in] force maximum force of the engine.
-      Engine(unsigned int id = 0, double aforce[3] = 0, double pos[3] = 0,
-             double orientation[3] = 0, float force = 0);
+      Engine(unsigned int id = 0, double aforce[3] = nullptr, double pos[3] = nullptr,
+             double orientation[3] = nullptr, float force = 0);
 
       //! Update engine's actuation.
       //! @param[in] value actuation value.
       void
-      updateAct(double value);
+      updateAct(double value) override;
 
       //! Apply engine's force
       //! @param[in] speed speed reference of the vehicle.
       //! @param[out] forces control forces to be added to the vehicle.
       void
-      applyForce(double speed, double forces[6]);
+      applyForce(double speed, double forces[6]) override;
 
       //! Check engine's id.
       //! @param[in] testid engine id.
       //! @return true if id matches, false otherwise.
       bool
-      checkId(unsigned int testid);
+      checkId(unsigned int testid) override;
 
       //! Encode id function.
       inline static int
@@ -82,7 +82,7 @@ namespace Simulators
       //! Return vehicle actuation.
       //! @return vehicle actuation.
       double
-      getActuation(void);
+      getActuation() override;
 
     private:
       //! Sets engine's max force and position.

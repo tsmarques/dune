@@ -70,7 +70,7 @@ namespace Transports
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_log(NULL)
+        m_log(nullptr)
       {
         param("Sample Interval", m_args.sample_interval)
         .defaultValue("1.0")
@@ -96,7 +96,7 @@ namespace Transports
         bind<IMC::EntityInfo>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         stopLog();
 
@@ -108,7 +108,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Initialize entity state.
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -116,7 +116,7 @@ namespace Transports
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.sample_interval))
           m_sample_timer.setTop(m_args.sample_interval);
@@ -176,7 +176,7 @@ namespace Transports
       }
 
       void
-      stopLog(void)
+      stopLog()
       {
         Memory::clear(m_log);
       }
@@ -198,7 +198,7 @@ namespace Transports
               throw RestartNeeded(e.what(), 5);
             }
 
-            if (m_log != NULL)
+            if (m_log != nullptr)
               logMessage(msg);
             break;
           case IMC::LoggingControl::COP_STOPPED:
@@ -233,9 +233,9 @@ namespace Transports
       }
 
       void
-      writeSample(void)
+      writeSample()
       {
-        if (m_log == NULL)
+        if (m_log == nullptr)
           return;
 
         if (!m_sample_timer.overflow())
@@ -253,9 +253,9 @@ namespace Transports
       }
 
       void
-      flush(void)
+      flush()
       {
-        if (m_log == NULL)
+        if (m_log == nullptr)
           return;
 
         if (!m_flush_timer.overflow())
@@ -268,7 +268,7 @@ namespace Transports
       void
       logMessage(const IMC::Message* msg)
       {
-        if (m_log == NULL)
+        if (m_log == nullptr)
           return;
 
         IMC::Packet::serialize(msg, m_buffer);
@@ -277,7 +277,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

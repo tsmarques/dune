@@ -99,7 +99,7 @@ namespace Supervisors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_slave_id = resolveSystemName(m_args.slave_system);
       }
@@ -132,7 +132,7 @@ namespace Supervisors
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation() override
       {
         trace("on request activation");
 
@@ -142,7 +142,7 @@ namespace Supervisors
       }
 
       void
-      checkActivation(void)
+      checkActivation()
       {
         if (!isActivating())
           return;
@@ -162,13 +162,13 @@ namespace Supervisors
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation() override
       {
         trace("on request deactivation");
 
@@ -184,7 +184,7 @@ namespace Supervisors
       }
 
       void
-      checkDeactivation(void)
+      checkDeactivation()
       {
         if (!isDeactivating())
           return;
@@ -194,14 +194,14 @@ namespace Supervisors
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         sendPowerChannelControl(m_args.pwr_chn, false);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

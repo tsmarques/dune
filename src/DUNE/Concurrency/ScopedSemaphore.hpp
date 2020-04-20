@@ -52,7 +52,7 @@ namespace DUNE
       }
 
       //! Destruct the object, unlocking the associated semaphore.
-      ~ScopedSemaphore(void)
+      ~ScopedSemaphore()
       {
         m_lock.unlock();
       }
@@ -62,11 +62,10 @@ namespace DUNE
       Semaphore& m_lock;
 
       //! This class is non - copyable.
-      ScopedSemaphore(const ScopedSemaphore&);
+      ScopedSemaphore (const ScopedSemaphore &) = delete;
 
       //! This class is non - assignable.
-      ScopedSemaphore&
-      operator=(const ScopedSemaphore&);
+      ScopedSemaphore &operator= (const ScopedSemaphore &) = delete;
     };
   }
 }

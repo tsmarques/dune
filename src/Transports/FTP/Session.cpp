@@ -104,11 +104,11 @@ namespace Transports
       m_sock_data->listen(5);
     }
 
-    Session::~Session(void)
+    Session::~Session()
     {
       closeControlConnection();
 
-      if (m_sock_data != NULL)
+      if (m_sock_data != nullptr)
         delete m_sock_data;
     }
 
@@ -121,9 +121,9 @@ namespace Transports
     }
 
     void
-    Session::closeControlConnection(void)
+    Session::closeControlConnection()
     {
-      if (m_sock == NULL)
+      if (m_sock == nullptr)
         return;
 
       try
@@ -134,7 +134,7 @@ namespace Transports
       { }
 
       delete m_sock;
-      m_sock = NULL;
+      m_sock = nullptr;
     }
 
     void
@@ -167,7 +167,7 @@ namespace Transports
     {
       Path::Type type = path.type();
       int64_t size = 0;
-      const char* perm = NULL;
+      const char* perm = nullptr;
 
       if (type == Path::PT_FILE)
       {
@@ -223,15 +223,15 @@ namespace Transports
     }
 
     void
-    Session::sendOK(void)
+    Session::sendOK()
     {
       sendReply(200, "OK");
     }
 
     TCPSocket*
-    Session::openDataConnection(void)
+    Session::openDataConnection()
     {
-      TCPSocket* sock = NULL;
+      TCPSocket* sock = nullptr;
 
       if (m_data_pasv)
       {
@@ -297,7 +297,7 @@ namespace Transports
       else
       {
         Directory dir(path);
-        const char* entry = NULL;
+        const char* entry = nullptr;
         while ((entry = dir.readEntry(Directory::RD_FULL_NAME)))
         {
           sendFileInfo(entry, data, time_ref);
@@ -494,7 +494,7 @@ namespace Transports
       else
       {
         Directory dir(path);
-        const char* entry = NULL;
+        const char* entry = nullptr;
         while ((entry = dir.readEntry(Directory::RD_FULL_NAME)))
         {
           sendFileInfoMLSD(entry, data);
@@ -596,7 +596,7 @@ namespace Transports
     }
 
     void
-    Session::run(void)
+    Session::run()
     {
       try
       {

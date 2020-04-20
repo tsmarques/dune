@@ -89,13 +89,13 @@ namespace Sensors
       //! True if subsystem is active.
       bool active;
 
-      SubsystemData(void)
+      SubsystemData()
       {
         clear();
       }
 
       void
-      clear(void)
+      clear()
       {
         estates.clear();
         ping_number = 0;

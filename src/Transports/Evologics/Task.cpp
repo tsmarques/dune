@@ -117,13 +117,13 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_sock(NULL),
+        m_sock(nullptr),
         m_address(0),
-        m_driver(NULL),
+        m_driver(nullptr),
         m_sound_speed(0),
         m_sound_speed_eid(-1),
         m_declination(false),
-        m_ticket(NULL)
+        m_ticket(nullptr)
       {
         param("IPv4 Address", m_args.address)
         .defaultValue("192.168.0.147")
@@ -220,13 +220,13 @@ namespace Transports
         bind<IMC::VehicleMedium>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         try
         {
@@ -240,13 +240,13 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_sound_speed = m_args.sound_speed_def;
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -272,13 +272,13 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         if (m_driver)
         {
           m_driver->stopAndJoin();
           delete m_driver;
-          m_driver = NULL;
+          m_driver = nullptr;
         }
 
         Memory::clear(m_sock);
@@ -286,7 +286,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Process modem addresses.
         std::string system = getSystemName();
@@ -355,7 +355,7 @@ namespace Transports
         if (m_declination)
           return;
 
-        if (m_driver == NULL)
+        if (m_driver == nullptr)
           return;
 
         if (msg->type == IMC::GpsFix::GFT_MANUAL_INPUT)
@@ -464,11 +464,11 @@ namespace Transports
       void
       clearTicket(IMC::UamTxStatus::ValueEnum reason, const std::string& error = "")
       {
-        if (m_ticket != NULL)
+        if (m_ticket != nullptr)
         {
           sendTxStatus(*m_ticket, reason, error);
           delete m_ticket;
-          m_ticket = NULL;
+          m_ticket = nullptr;
         }
       }
 
@@ -589,7 +589,7 @@ namespace Transports
             {
               IMC::UamRxRange range;
               range.sys = lookupSystemName(dst);
-              if (m_ticket != NULL)
+              if (m_ticket != nullptr)
                 range.seq = m_ticket->seq;
               range.value = (ptime * m_sound_speed) / 1000000.0;
               dispatch(range);
@@ -611,7 +611,7 @@ namespace Transports
       {
         (void)str;
 
-        if (m_ticket == NULL)
+        if (m_ticket == nullptr)
           return;
 
         if (!m_ticket->ack)
@@ -703,7 +703,7 @@ namespace Transports
       }
 
       void
-      keepAlive(void)
+      keepAlive()
       {
         if (m_driver->isBusy())
           return;
@@ -724,7 +724,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

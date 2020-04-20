@@ -139,7 +139,7 @@ namespace DUNE
 #endif
     }
 
-    VideoIIDC1394::~VideoIIDC1394(void)
+    VideoIIDC1394::~VideoIIDC1394()
     {
 #if defined(DUNE_WITH_DC1394)
       dc1394_video_set_transmission(camera, DC1394_OFF);
@@ -149,11 +149,11 @@ namespace DUNE
     }
 
     void
-    VideoIIDC1394::start(void)
+    VideoIIDC1394::start()
     { }
 
     void
-    VideoIIDC1394::stop(void)
+    VideoIIDC1394::stop()
     {
 #if defined(DUNE_WITH_DC1394)
       dc1394error_t error_code;
@@ -176,7 +176,7 @@ namespace DUNE
     }
 
     bool
-    VideoIIDC1394::frameCapture(void)
+    VideoIIDC1394::frameCapture()
     {
 #if defined(DUNE_WITH_DC1394)
       dc1394error_t error_code;
@@ -192,19 +192,19 @@ namespace DUNE
     }
 
     uint32_t
-    VideoIIDC1394::frameWidth(void) const
+    VideoIIDC1394::frameWidth() const
     {
       return width;
     }
 
     uint32_t
-    VideoIIDC1394::frameHeight(void) const
+    VideoIIDC1394::frameHeight() const
     {
       return height;
     }
 
     uint8_t*
-    VideoIIDC1394::rgbFrameData(void)
+    VideoIIDC1394::rgbFrameData()
     {
 #if defined(DUNE_WITH_DC1394)
       std::cout << "Starting conversion to RGB8" << std::endl;
@@ -218,12 +218,12 @@ namespace DUNE
       return converted_frame->image;
 
 #else
-      return NULL;
+      return nullptr;
 #endif
     }
 
     uint8_t*
-    VideoIIDC1394::rawFrameData(void)
+    VideoIIDC1394::rawFrameData()
     {
    #if defined(DUNE_WITH_DC1394)
       frameCapture();
@@ -238,12 +238,12 @@ namespace DUNE
       return converted_frame->image;
 
    #else
-      return NULL;
+      return nullptr;
    #endif
     }
 
     uint8_t*
-    VideoIIDC1394::yuvFrameData(void)
+    VideoIIDC1394::yuvFrameData()
     {
 #if defined(DUNE_WITH_DC1394)
       std::cout << "Starting conversion to YUV 422" << std::endl;
@@ -257,7 +257,7 @@ namespace DUNE
       return converted_frame->image;
 
 #else
-      return NULL;
+      return nullptr;
 #endif
     }
 
@@ -302,7 +302,7 @@ namespace DUNE
     { }
 
     uint32_t
-    VideoIIDC1394::frameSize(void) const
+    VideoIIDC1394::frameSize() const
     {
 #if defined(DUNE_WITH_DC1394)
       return converted_frame->image_bytes;

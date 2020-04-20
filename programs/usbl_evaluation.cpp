@@ -62,14 +62,14 @@ main(int32_t argc, char** argv)
     std::vector<float> m_bearings;
     float m_sum_ranges = 0.0;
     float m_sum_bearings = 0.0;
-    std::istream* is = 0;
+    std::istream* is = nullptr;
     DUNE::Compression::Methods method = DUNE::Compression::Factory::detect(argv[i]);
     if (method == DUNE::Compression::METHOD_UNKNOWN)
       is = new std::ifstream(argv[i], std::ios::binary);
     else
       is = new DUNE::Compression::FileInput(argv[i], method);
 
-    DUNE::IMC::Message* msg = NULL;
+    DUNE::IMC::Message* msg = nullptr;
 
     bool got_name = false;
     bool got_state = false;
@@ -78,7 +78,7 @@ main(int32_t argc, char** argv)
 
     try
     {
-      while ((msg = DUNE::IMC::Packet::deserialize(*is)) != 0)
+      while ((msg = DUNE::IMC::Packet::deserialize(*is)) != nullptr)
       {
         if (msg->getId() == DUNE_IMC_LOGGINGCONTROL)
         {

@@ -65,14 +65,14 @@ namespace DUNE
       //! Get top value.
       //! @return counter's top value.
       inline T
-      getTop(void) const
+      getTop() const
       {
         return m_top;
       }
 
       //! Reset counter.
       inline T
-      reset(void)
+      reset()
       {
         m_last = static_cast<T>(Clock::get());
         m_overflow = false;
@@ -82,7 +82,7 @@ namespace DUNE
       //! Check if the counter has reached the top value.
       //! @return true if an overflow occured, false otherwise.
       inline bool
-      overflow(void)
+      overflow()
       {
         if (!m_overflow)
           m_overflow = (Clock::get() >= (m_last + m_top));
@@ -93,7 +93,7 @@ namespace DUNE
       //! Get remaining time.
       //! @return time remaining (s).
       inline T
-      getRemaining(void) const
+      getRemaining() const
       {
         if (m_overflow)
           return 0;
@@ -104,7 +104,7 @@ namespace DUNE
       //! Get elapsed time.
       //! @return elapsed time (s).
       inline T
-      getElapsed(void) const
+      getElapsed() const
       {
         return Clock::get() - m_last;
       }

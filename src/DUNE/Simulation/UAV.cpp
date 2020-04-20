@@ -454,7 +454,7 @@ namespace DUNE
     }
 
     void
-    UAVSimulation::resetModel(void)
+    UAVSimulation::resetModel()
     {
       // Environment parameters
       // Wind state vector
@@ -717,7 +717,7 @@ namespace DUNE
     }
 
     void
-    UAVSimulation::updateVelocity(void)
+    UAVSimulation::updateVelocity()
     {
       // UAV velocity components relative to the wind over the ground reference frame
       m_uav2wind_gnd_frm(0) = m_airspeed * m_cos_yaw * m_cos_pitch;
@@ -1021,42 +1021,42 @@ namespace DUNE
     }
 
     Math::Matrix
-    UAVSimulation::getPosition(void)
+    UAVSimulation::getPosition()
     {
       // Vehicle position
       return m_position;
     }
 
     Math::Matrix
-    UAVSimulation::getVelocity(void)
+    UAVSimulation::getVelocity()
     {
       // Vehicle velocity vector, relative to the ground, in the ground reference frame
       return m_velocity;
     }
 
     double
-    UAVSimulation::getAirspeed(void)
+    UAVSimulation::getAirspeed()
     {
       // Aircraft total airspeed
       return m_airspeed;
     }
 
     double
-    UAVSimulation::getBankCmd(void)
+    UAVSimulation::getBankCmd()
     {
       // Aircraft Bank
       return m_bank_cmd;
     }
 
     double
-    UAVSimulation::getAirspeedCmd(void)
+    UAVSimulation::getAirspeedCmd()
     {
       // Aircraft airspeed
       return m_airspeed_cmd;
     }
 
     double
-    UAVSimulation::getAltCmd(void)
+    UAVSimulation::getAltCmd()
     {
       // Aircraft altitude
       return m_altitude_cmd;

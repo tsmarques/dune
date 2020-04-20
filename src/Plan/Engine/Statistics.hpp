@@ -195,7 +195,7 @@ namespace Plan
 
       //! Clear the message
       void
-      clear(void)
+      clear()
       {
         m_ps->clear();
         m_ps->type = IMC::PlanStatistics::TP_POSTPLAN;
@@ -222,14 +222,14 @@ namespace Plan
 
       //! Flag the plan as started
       void
-      planStarted(void)
+      planStarted()
       {
         m_plan_start = Time::Clock::get();
       }
 
       //! Flag the plan as stopped
       void
-      planStopped(void)
+      planStopped()
       {
         if (m_plan_start < 0.0)
           return;
@@ -249,7 +249,7 @@ namespace Plan
 
       //! Flag a maneuver as stopped
       void
-      maneuverStopped(void)
+      maneuverStopped()
       {
         if (m_man_start < 0.0)
           return;

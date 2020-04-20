@@ -66,13 +66,13 @@ namespace Transports
       }
 
       void
-      lockContacts(void)
+      lockContacts()
       {
         m_contacts_lock.lockRead();
       }
 
       void
-      unlockContacts(void)
+      unlockContacts()
       {
         m_contacts_lock.unlock();
       }
@@ -96,7 +96,7 @@ namespace Transports
       LimitedComms* m_lcomms;
 
       void
-      run(void)
+      run() override
       {
         Address addr;
         uint8_t* bfr = new uint8_t[c_bfr_size];

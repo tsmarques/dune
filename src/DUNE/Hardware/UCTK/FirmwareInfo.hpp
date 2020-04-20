@@ -56,7 +56,7 @@ namespace DUNE
         //! Test if firmware is a development version.
         //! @return true if firmware is a development version.
         bool
-        isDevelopment(void) const
+        isDevelopment() const
         {
           return (major == 0) && (minor == 0) && (patch == 0);
         }

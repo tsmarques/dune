@@ -96,7 +96,7 @@ namespace DUNE
       size_t section_count = 0;
       std::FILE* fd = std::fopen(fname, "r");
 
-      if (fd == 0)
+      if (fd == nullptr)
         throw FileOpenError(fname, System::Error::getLastMessage());
 
       while (std::fscanf(fd, " %1023[^\n] ", line) == 1)
@@ -207,7 +207,7 @@ namespace DUNE
     }
 
     std::vector<std::string>
-    Config::sections(void)
+    Config::sections()
     {
       Concurrency::ScopedRWLock(m_data_lock, false);
 

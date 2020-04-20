@@ -49,7 +49,7 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      TSQueue(void):
+      TSQueue():
         m_closed(false)
       { }
 
@@ -68,7 +68,7 @@ namespace DUNE
       //! the queue.
       //! @return first element of the queue.
       inline T
-      pop(void)
+      pop()
       {
         ScopedCondition l(m_cond);
         if (m_queue.size() > 0)
@@ -77,7 +77,22 @@ namespace DUNE
           m_queue.pop();
           return v;
         }
-        return 0;
+        return nullptr;
+      }
+
+      //! @return true if an element was popped, false otherwise.
+      bool
+      pop(T& value)
+      {
+        ScopedCondition l(m_cond);
+        if (m_queue.size() > 0)
+        {
+          value = m_queue.front();
+          m_queue.pop();
+          return true;
+        }
+
+        return false;
       }
 
       //! Wait for items to be available.
@@ -99,7 +114,7 @@ namespace DUNE
       //! Verify if the queue has elements.
       //! @return true if the queue has no elements, false otherwise.
       inline bool
-      empty(void)
+      empty()
       {
         ScopedCondition l(m_cond);
         return m_queue.empty();
@@ -108,14 +123,14 @@ namespace DUNE
       //! Retrieve the number of elements currently in the queue.
       //! @return number of elements of the queue.
       inline unsigned
-      size(void)
+      size()
       {
         ScopedCondition l(m_cond);
         return m_queue.size();
       }
 
       inline void
-      close(void)
+      close()
       {
         ScopedCondition l(m_cond);
         ScopedMutex m(m_closed_mutex);
@@ -124,7 +139,7 @@ namespace DUNE
       }
 
       inline bool
-      closed(void)
+      closed()
       {
         ScopedMutex m(m_closed_mutex);
         return m_closed;

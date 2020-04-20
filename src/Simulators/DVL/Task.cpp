@@ -79,7 +79,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_prng(NULL)
+        m_prng(nullptr)
       {
         param("Standard Deviation - Ground Velocity", m_args.stdev_gvel)
         .units(Units::MeterPerSecond)
@@ -110,21 +110,21 @@ namespace Simulators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
 
       //! Update internal parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.ir_prob))
           m_args.ir_prob *= 0.01;
@@ -143,7 +143,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task() override
       {
         if (!isActive())
           return;

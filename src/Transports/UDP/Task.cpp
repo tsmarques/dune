@@ -118,9 +118,9 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_bfr(NULL),
-        m_listener(NULL),
-        m_lcomms(NULL)
+        m_bfr(nullptr),
+        m_listener(nullptr),
+        m_lcomms(nullptr)
       {
         param("Local Port", m_args.port)
         .defaultValue("6002")
@@ -191,14 +191,14 @@ namespace Transports
         bind<IMC::Announce>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
-        if (m_bfr != NULL)
+        if (m_bfr != nullptr)
           delete[] m_bfr;
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.contact_refresh_per))
           m_contacts_refresh_counter.setTop(m_args.contact_refresh_per);
@@ -232,7 +232,7 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         // Register normal messages.
         bind(this, m_args.messages);
@@ -306,13 +306,13 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_listener != NULL)
+        if (m_listener != nullptr)
         {
           m_listener->stopAndJoin();
           delete m_listener;
-          m_listener = NULL;
+          m_listener = nullptr;
         }
 
         Memory::clear(m_lcomms);
@@ -377,7 +377,7 @@ namespace Transports
       }
 
       void
-      refreshContacts(void)
+      refreshContacts()
       {
         m_listener->lockContacts();
 
@@ -405,7 +405,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

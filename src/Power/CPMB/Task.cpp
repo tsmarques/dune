@@ -107,8 +107,8 @@ namespace Power
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_ctl(NULL)
+        m_uart(nullptr),
+        m_ctl(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -152,7 +152,7 @@ namespace Power
         std::memset(m_adcs, 0, sizeof(m_adcs));
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
         clearADCs();
@@ -163,19 +163,19 @@ namespace Power
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             Memory::clear(m_adcs[i]);
         }
       }
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         // Produces ADC messages.
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
 
           m_adcs[i] = IMC::Factory::produce(m_args.adc_messages[i]);
@@ -205,7 +205,7 @@ namespace Power
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -227,7 +227,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -249,7 +249,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         std::map<unsigned, PowerChannel*>::const_iterator itr = m_channels.begin();
         for ( ; itr != m_channels.end(); ++itr)
@@ -260,12 +260,12 @@ namespace Power
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_ctl != NULL)
+        if (m_ctl != nullptr)
         {
           delete m_ctl;
-          m_ctl = NULL;
+          m_ctl = nullptr;
         }
 
         Memory::clear(m_uart);
@@ -314,7 +314,7 @@ namespace Power
 
       //! Dispatches power channel states to IMC bus.
       void
-      dispatchPowerChannelStates(void)
+      dispatchPowerChannelStates()
       {
         std::map<unsigned, PowerChannel*>::const_iterator itr = m_channels.begin();
 
@@ -325,7 +325,7 @@ namespace Power
       }
 
       bool
-      getMonitors(void)
+      getMonitors()
       {
         UCTK::Frame frame;
         frame.setId(PKT_ID_STATE);
@@ -342,7 +342,7 @@ namespace Power
           uint16_t value = 0;
           frame.get(value, i*2);
 
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
           {
             float tmp = m_args.adc_factors[i][0] * ((value / 4096.0) - m_args.adc_vdelta) + m_args.adc_factors[i][1];
             m_adcs[i]->setValueFP(tmp);
@@ -365,7 +365,7 @@ namespace Power
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

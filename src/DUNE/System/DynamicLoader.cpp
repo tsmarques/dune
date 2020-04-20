@@ -56,13 +56,13 @@ namespace DUNE
 {
   namespace System
   {
-    DynamicLoader::DynamicLoader(void):
-      m_handle(NULL)
+    DynamicLoader::DynamicLoader():
+      m_handle(nullptr)
     { }
 
-    DynamicLoader::~DynamicLoader(void)
+    DynamicLoader::~DynamicLoader()
     {
-      if (m_handle == NULL)
+      if (m_handle == nullptr)
         return;
 
       // Don't throw here.
@@ -87,12 +87,12 @@ namespace DUNE
 
 #endif
 
-      if (m_handle == NULL)
+      if (m_handle == nullptr)
         throw Error(GET_LAST_ERROR, "unable to load library", m_path);
     }
 
     void
-    DynamicLoader::unload(void)
+    DynamicLoader::unload()
     {
       int rv = 0;
 
@@ -107,13 +107,13 @@ namespace DUNE
       if (rv != 0)
         throw Error(GET_LAST_ERROR, "unable to unload library", m_path);
 
-      m_handle = NULL;
+      m_handle = nullptr;
     }
 
     void*
     DynamicLoader::getSymbol(const char* name)
     {
-      void* symbol = NULL;
+      void* symbol = nullptr;
 
 #if defined(DUNE_SYS_HAS_LOAD_LIBRARY)
       symbol = castUnsafe<void*, FARPROC>(GetProcAddress(m_handle, name));
@@ -123,7 +123,7 @@ namespace DUNE
 
 #endif
 
-      if (symbol == NULL)
+      if (symbol == nullptr)
         throw Error(GET_LAST_ERROR, "unable to load symbol", name);
 
       return symbol;

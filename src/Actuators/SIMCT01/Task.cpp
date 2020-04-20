@@ -85,7 +85,7 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_reply_tout(c_reply_tout)
       {
         param("Entity Label - Motors", m_args.motor_enames)
@@ -133,20 +133,20 @@ namespace Actuators
         bind<IMC::SetThrusterActuation>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < m_args.motor_enames.size(); ++i)
           m_ents.push_back(reserveEntity<Entities::BasicEntity>(m_args.motor_enames[i]));
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         unsigned motor_count = m_args.motor_enames.size();
         if (m_ents.size() != motor_count && m_ents.size() > 0)
@@ -170,7 +170,7 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_uart->setCanonicalInput(true);
@@ -178,7 +178,7 @@ namespace Actuators
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setReplyTimeout(1.0);
 
@@ -195,7 +195,7 @@ namespace Actuators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
@@ -342,7 +342,7 @@ namespace Actuators
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

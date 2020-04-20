@@ -62,14 +62,14 @@ namespace Transports
       };
 
       //! Default constructor, initializes parser to a sane state.
-      CommandParser(void)
+      CommandParser()
       {
         clear();
       }
 
       //! Reset the parser's internal state.
       void
-      clear(void)
+      clear()
       {
         m_state = STATE_CODE;
         m_code.clear();
@@ -79,7 +79,7 @@ namespace Transports
       //! Retrieve the code of the last parsed command.
       //! @return command code.
       const std::string&
-      getCode(void) const
+      getCode() const
       {
         return m_code;
       }
@@ -87,7 +87,7 @@ namespace Transports
       //! Retrieve the parameters of the last parsed command.
       //! @return command parameters.
       const std::string&
-      getParameters(void) const
+      getParameters() const
       {
         return m_parm;
       }

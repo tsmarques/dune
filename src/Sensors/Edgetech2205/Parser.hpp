@@ -48,12 +48,12 @@ namespace Sensors
     {
     public:
       //! Constructor.
-      Parser(void):
+      Parser():
         m_state(ST_MARKER0)
       { }
 
       Packet*
-      getPacket(void)
+      getPacket()
       {
         return &m_pkt;
       }

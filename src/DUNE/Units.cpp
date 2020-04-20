@@ -41,7 +41,7 @@ namespace DUNE
     {
 #define UNIT(t, a) a,
 #include <DUNE/Units.def>
-      NULL
+      nullptr
     };
 
     const char*

@@ -73,18 +73,15 @@ namespace Sensors
       };
 
       //! Constructor.
-      Frame(void)
-      { }
+      Frame () = default;
 
       //! Destructor.
-      virtual
-      ~Frame(void)
-      { }
+      virtual ~Frame () = default;
 
       //! Get frame start address.
       //! @return pointer to address.
       uint8_t*
-      getData(void)
+      getData()
       {
         return &m_data[0];
       }
@@ -92,23 +89,23 @@ namespace Sensors
       //! Get data start address.
       //! @return pointer to address.
       virtual uint8_t*
-      getMessageData(void)
+      getMessageData()
       {
-        return NULL;
+        return nullptr;
       }
 
       //! Get footer start address.
       //! @return pointer to address.
       virtual uint8_t*
-      getFooterData(void)
+      getFooterData()
       {
-        return NULL;
+        return nullptr;
       }
 
       //! Retrieve the size of the frame.
       //! @return frame size.
       virtual size_t
-      getSize(void) const
+      getSize() const
       {
         return 0;
       }
@@ -116,7 +113,7 @@ namespace Sensors
       //! Retrieve message size.
       //! @return message size.
       virtual size_t
-      getMessageSize(void) const
+      getMessageSize() const
       {
         return 0;
       }
@@ -124,7 +121,7 @@ namespace Sensors
       //! Retrieve footer size.
       //! @return footer size.
       virtual size_t
-      getFooterSize(void) const
+      getFooterSize() const
       {
         return 0;
       }
@@ -192,7 +189,7 @@ namespace Sensors
         ByteCopy::toBE((uint16_t)(((uint16_t)(roll * 10 + 900) & 0x7fff) | 0x8000),
                        getData() + getIndexRoll());
 
-        if (getFooterData() != NULL)
+        if (getFooterData() != nullptr)
           ByteCopy::toLE((uint16_t)(roll * c_euler_factor),
                          getFooterData() + FTR_IDX_ROLL);
       }
@@ -207,7 +204,7 @@ namespace Sensors
         ByteCopy::toBE((uint16_t)(((uint16_t)(pitch * 10 + 900) & 0x7fff) | 0x8000),
                        getData() + getIndexPitch());
 
-        if (getFooterData() != NULL)
+        if (getFooterData() != nullptr)
           ByteCopy::toLE((uint16_t)(pitch * c_euler_factor),
                          getFooterData() + FTR_IDX_PITCH);
       }
@@ -225,7 +222,7 @@ namespace Sensors
         ByteCopy::toBE((uint16_t)(((uint16_t)(heading * 10) & 0x7fff) | 0x8000),
                        getData() + getIndexHeading());
 
-        if (getFooterData() != NULL)
+        if (getFooterData() != nullptr)
           ByteCopy::toLE((uint16_t)(heading * c_euler_factor),
                          getFooterData() + FTR_IDX_HEADING);
       }
@@ -334,7 +331,7 @@ namespace Sensors
       std::vector<uint8_t> m_data;
 
       void
-      setFrequency(void)
+      setFrequency()
       {
         // Operating Frequency 260 kHz.
         m_data[getIndexFrequency()] = (uint8_t)(c_frequency >> 8);
@@ -343,55 +340,55 @@ namespace Sensors
 
       //! Get range index.
       virtual unsigned
-      getIndexRange(void) = 0;
+      getIndexRange() = 0;
 
       //! Get tilt angle index.
       virtual unsigned
-      getIndexTiltAngle(void) = 0;
+      getIndexTiltAngle() = 0;
 
       //! Get latitude index.
       virtual unsigned
-      getIndexLatitude(void) = 0;
+      getIndexLatitude() = 0;
 
       //! Get longitude index.
       virtual unsigned
-      getIndexLongitude(void) = 0;
+      getIndexLongitude() = 0;
 
       //! Get speed index.
       virtual unsigned
-      getIndexSpeed(void) = 0;
+      getIndexSpeed() = 0;
 
       //! Get speed index.
       virtual unsigned
-      getIndexSoundSpeed(void) = 0;
+      getIndexSoundSpeed() = 0;
 
       //! Get course index.
       virtual unsigned
-      getIndexCourse(void) = 0;
+      getIndexCourse() = 0;
 
       //! Get milliseconds index.
       virtual unsigned
-      getIndexMilli(void) = 0;
+      getIndexMilli() = 0;
 
       //! Get roll index.
       virtual unsigned
-      getIndexRoll(void) = 0;
+      getIndexRoll() = 0;
 
       //! Get pitch index.
       virtual unsigned
-      getIndexPitch(void) = 0;
+      getIndexPitch() = 0;
 
       //! Get heading index.
       virtual unsigned
-      getIndexHeading(void) = 0;
+      getIndexHeading() = 0;
 
       //! Get repetition rate index.
       virtual unsigned
-      getIndexRepRate(void) = 0;
+      getIndexRepRate() = 0;
 
       //! Get frequency index.
       virtual unsigned
-      getIndexFrequency(void) = 0;
+      getIndexFrequency() = 0;
 
     private:
       //! Operating frequency.

@@ -82,28 +82,28 @@ namespace DUNE
         waitForCommandCode(uint8_t code, Command& cmd, double timeout = 1.0);
 
         void
-        open(void);
+        open();
 
         bool
-        enter(void);
+        enter();
 
         bool
-        leave(void);
+        leave();
 
         bool
-        requestName(void);
+        requestName();
 
         bool
-        requestReset(void);
+        requestReset();
 
         bool
-        requestHalt(void);
+        requestHalt();
 
         bool
-        requestBootJump(void);
+        requestBootJump();
 
         bool
-        requestPageSize(void);
+        requestPageSize();
 
         bool
         fillPage(const uint8_t* data, unsigned data_size);
@@ -112,10 +112,10 @@ namespace DUNE
         writePage(const uint8_t* data, unsigned data_size);
 
         bool
-        startUpgrade(void);
+        startUpgrade();
 
         bool
-        endUpgrade(void);
+        endUpgrade();
 
         void
         loadIHEX(const std::string& ihex);

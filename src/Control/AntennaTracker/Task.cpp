@@ -95,7 +95,7 @@ namespace Control
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_trg_id = resolveSystemName(m_args.target);
         inf(DTR("Target name is %s, with ID %d"), m_args.target.c_str(), m_trg_id);
@@ -156,7 +156,7 @@ namespace Control
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

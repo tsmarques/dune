@@ -62,7 +62,7 @@ namespace DUNE
 #endif
     }
 
-    GPIO::~GPIO(void)
+    GPIO::~GPIO()
     {
       // Linux 2.6 implementation.
 #if defined(DUNE_OS_LINUX)
@@ -121,14 +121,14 @@ namespace DUNE
     }
 
     bool
-    GPIO::getValue(void)
+    GPIO::getValue()
     {
       if (m_direction != GPIO_DIR_INPUT)
         throw Error("GPIO is not configured as input", String::str(m_number));
 
 #if defined(DUNE_OS_LINUX)
       std::FILE* fd = std::fopen(m_file_val.c_str(), "r");
-      if (fd == 0)
+      if (fd == nullptr)
         throw Error(errno, "unable to read GPIO value");
       unsigned value = std::fgetc(fd);
       std::fclose(fd);
@@ -149,7 +149,7 @@ namespace DUNE
     GPIO::writeToFile(const std::string& file, const std::string& value)
     {
       std::FILE* fd = std::fopen(file.c_str(), "w");
-      if (fd == 0)
+      if (fd == nullptr)
         throw Error(errno, "unable to export GPIO", value);
       std::fputs(value.c_str(), fd);
       std::fclose(fd);

@@ -55,7 +55,7 @@ namespace DUNE
 
       //! Validate the model
       void
-      validate(void) const;
+      validate() const;
 
       //! Compute energy consumed by motor for some RPM value
       //! @param[in] rpm value of rpms to convert from
@@ -86,19 +86,19 @@ namespace DUNE
       //! Get the battery capacity
       //! @return battery energy capacity in Wh
       inline float
-      getBatteryCapacity(void) const
+      getBatteryCapacity() const
       {
         return m_capacity;
       }
 
       inline float
-      getPowerConsumptionHotel(void) const
+      getPowerConsumptionHotel() const
       {
         return m_power_hotel;
       }
 
       inline float
-      getPowerConsumptionFull(void) const
+      getPowerConsumptionFull() const
       {
         return m_power_full;
       }

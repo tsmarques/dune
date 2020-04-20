@@ -64,26 +64,26 @@ namespace DUNE
         //! Indicates if facility is available.
         //! It will return 'true' is the operating system device file '/dev/urandom' exists.
         static bool
-        available(void);
+        available();
 
         //! Constructor.
         KernelDevice();
 
         //! Destructor.
-        ~KernelDevice();
+        ~KernelDevice() override;
 
         //! Generate random integer number, as per the general contract of the base class.
         int32_t
-        random(void);
+        random() override;
 
         //! Generate random floating point number, as per the general contract of the base class.
         double
-        uniform(void);
+        uniform() override;
 
         //! Seed method, with no effect for this class.
         //! It is only provided to comply with general contract of base class.
         void
-        seed(int32_t value);
+        seed(int32_t value) override;
 
       private:
         std::FILE* m_fp; //!< File handle associated to '/dev/urandom'.

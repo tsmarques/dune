@@ -76,7 +76,7 @@ namespace Transports
         m_announce_pool_empty(true),
         m_dev_update_req_id(10),
         m_announce_req_id(75),
-        m_rnd(NULL)
+        m_rnd(nullptr)
       {
         paramActive(Tasks::Parameter::SCOPE_GLOBAL,
                     Tasks::Parameter::VISIBILITY_USER);
@@ -107,13 +107,13 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_rnd = Random::Factory::create("drand48", -1);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://iridium");
@@ -122,19 +122,19 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_rnd);
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -221,7 +221,7 @@ namespace Transports
       {
 
         DUNE::IMC::IridiumMessage * m = DUNE::IMC::IridiumMessage::deserialize(msg);
-        if (m == NULL)
+        if (m == nullptr)
         {
           war(DTR("Parsing unrecognized iridium message as text"));
           std::string text(msg->data.begin(), msg->data.end());
@@ -328,7 +328,7 @@ namespace Transports
       }
 
       bool
-      sendAnnounce(void)
+      sendAnnounce()
       {
         if (!m_announce_pool_empty)
         {
@@ -373,7 +373,7 @@ namespace Transports
       }
 
       bool
-      sendDeviceUpdates(void)
+      sendDeviceUpdates()
       {
         if (!m_update_pool_empty)
         {
@@ -420,7 +420,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

@@ -44,7 +44,7 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      MediumHandler(void)
+      MediumHandler()
       {
         m_no_medium = true;
         m_new_medium = false;
@@ -71,7 +71,7 @@ namespace DUNE
       //! This functions checks if medium is known.
       //! @return true if medium is known, false otherwise.
       bool
-      isKnown(void)
+      isKnown()
       {
         return !m_no_medium;
       }
@@ -79,7 +79,7 @@ namespace DUNE
       //! This functions checks if medium has changed.
       //! @return true if medium has changed, false otherwise.
       bool
-      changed(void)
+      changed()
       {
         return m_new_medium;
       }
@@ -87,7 +87,7 @@ namespace DUNE
       //! This functions checks if medium is water.
       //! @return true if medium is water, false otherwise.
       bool
-      inWater(void)
+      inWater()
       {
         return (isWaterSurface() || isUnderwater());
       }
@@ -95,7 +95,7 @@ namespace DUNE
       //! This functions checks if system is out of water.
       //! @return true if system is out of water, false otherwise.
       bool
-      outWater(void)
+      outWater()
       {
         return (m_vm.medium == IMC::VehicleMedium::VM_AIR ||
                 m_vm.medium == IMC::VehicleMedium::VM_GROUND);
@@ -104,7 +104,7 @@ namespace DUNE
       //! This functions checks if system is underwater.
       //! @return true if system is underwater, false otherwise.
       bool
-      isUnderwater(void)
+      isUnderwater()
       {
         return m_vm.medium == IMC::VehicleMedium::VM_UNDERWATER;
       }
@@ -112,7 +112,7 @@ namespace DUNE
       //! This functions checks if system is on water surface.
       //! @return true if system is on water surface, false otherwise.
       bool
-      isWaterSurface(void)
+      isWaterSurface()
       {
         return m_vm.medium == IMC::VehicleMedium::VM_WATER;
       }

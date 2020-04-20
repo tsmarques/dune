@@ -68,12 +68,12 @@ namespace Transports
         };
 
         // Client list.
-        typedef std::list<Client> ClientList;
+        using ClientList = std::list<Client>;
         ClientList m_clients;
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::SimpleTransport(name, ctx),
-          m_sock(0)
+          m_sock(nullptr)
         {
           param("Port", m_args.port)
           .defaultValue("7001")
@@ -84,13 +84,13 @@ namespace Transports
           .description("Set to true to announce the service");
         }
 
-        ~Task(void)
+        ~Task() override
         {
           onResourceRelease();
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition() override
         {
           int port_limit = m_args.port + c_port_retries;
 
@@ -176,7 +176,7 @@ namespace Transports
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           for (ClientList::iterator itr = m_clients.begin(); itr != m_clients.end(); ++itr)
           {
@@ -190,12 +190,12 @@ namespace Transports
           {
             m_poll.remove(*m_sock);
             delete m_sock;
-            m_sock = 0;
+            m_sock = nullptr;
           }
         }
 
         void
-        onDataTransmission(const uint8_t* p, unsigned int n)
+        onDataTransmission(const uint8_t* p, unsigned int n) override
         {
           ClientList::iterator itr = m_clients.begin();
 
@@ -216,7 +216,7 @@ namespace Transports
         }
 
         void
-        onDataReception(uint8_t* buf, unsigned int cap, double timeout)
+        onDataReception(uint8_t* buf, unsigned int cap, double timeout) override
         {
           // Poll for connections and client data
           if (!m_poll.poll(timeout))
@@ -231,10 +231,10 @@ namespace Transports
         }
 
         void
-        acceptNewClient(void)
+        acceptNewClient()
         {
           Client c;
-          c.socket = 0;
+          c.socket = nullptr;
           try
           {
             c.socket = m_sock->accept(&c.address, &c.port);

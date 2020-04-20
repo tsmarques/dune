@@ -61,8 +61,7 @@ namespace DUNE
     }
 
     //! Destructor.
-    AUVModel::~AUVModel(void)
-    { }
+    AUVModel::~AUVModel () = default;
 
     Matrix
     AUVModel::step(const Matrix& nu_dot, const Matrix& nu, const Matrix& eta)
@@ -101,7 +100,7 @@ namespace DUNE
 
     //! Computes matrix of added mass and inertia
     Matrix
-    AUVModel::computeM(void)
+    AUVModel::computeM()
     {
       // added mass matrix
       Matrix Ma = -Matrix(&m_addedmass(0), 6);

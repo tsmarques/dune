@@ -44,7 +44,7 @@ namespace DUNE
     {
     public:
       //! Typedef for handles of functions to optimize.
-      typedef double math_fun_t (double, const void*);
+      using math_fun_t = double (double, const void *);
 
       //! Return code enumeration.
       enum Result

@@ -54,7 +54,7 @@ namespace DUNE
     }
 
     void
-    BasicEntity::reportInfo(void)
+    BasicEntity::reportInfo()
     {
       dispatch(m_ent_info);
     }

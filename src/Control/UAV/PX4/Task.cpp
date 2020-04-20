@@ -129,7 +129,7 @@ namespace Control
         //! Task arguments.
         Arguments m_args;
         //! Type definition for PX4 packet handler.
-        typedef void (Task::* PktHandler)(const mavlink_message_t* msg);
+        using PktHandler = void (Task::*)(const mavlink_message_t *);
         typedef std::map<int, PktHandler> PktHandlerMap;
         //! PX4 packet handling
         PktHandlerMap m_mlh;
@@ -189,8 +189,8 @@ namespace Control
           m_offset(false),
           m_duration(0),
           m_maneuver(false),
-          m_TCP_sock(NULL),
-          m_UDP_sock(NULL),
+          m_TCP_sock(nullptr),
+          m_UDP_sock(nullptr),
           m_sysid(1),
           m_vtol_state(MAV_VTOL_STATE_UNDEFINED),
           m_error_missing(false),
@@ -315,7 +315,7 @@ namespace Control
 
         //! Acquire resources.
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition() override
         {
           openConnection();
 
@@ -330,7 +330,7 @@ namespace Control
         }
 
         void
-        openConnection(void)
+        openConnection()
         {
           try
           {
@@ -361,14 +361,14 @@ namespace Control
 
         //! Release resources.
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           Memory::clear(m_TCP_sock);
           Memory::clear(m_UDP_sock);
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           // Mavlink Phototrigger
           if(paramChanged(m_args.mavlink_phototrigger))
@@ -409,7 +409,7 @@ namespace Control
         }
 
         void
-        clearMission(void)
+        clearMission()
         {
           // Clear previous mission on PX4
           mavlink_msg_mission_clear_all_pack(255, 0, &m_msg, m_sysid, 0);
@@ -734,7 +734,7 @@ namespace Control
 
         //! Main loop.
         void
-        onMain(void)
+        onMain() override
         {
           while (!stopping())
           {
@@ -759,7 +759,7 @@ namespace Control
 
 
         void
-        handleArdupilotData(void)
+        handleArdupilotData()
         {
           mavlink_status_t status;
 
@@ -870,10 +870,10 @@ namespace Control
         bool
         poll(double timeout)
         {
-          if (m_TCP_sock != NULL)
+          if (m_TCP_sock != nullptr)
             return Poll::poll(*m_TCP_sock, timeout);
 
-          if (m_UDP_sock != NULL)
+          if (m_UDP_sock != nullptr)
             return Poll::poll(*m_UDP_sock, timeout);
 
           return false;

@@ -228,12 +228,12 @@ namespace Sensors
       //! Constructor.
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_tcp(NULL),
-        m_udp(NULL),
-        m_frame837(NULL),
-        m_frame83P(NULL),
-        m_data(NULL),
-        m_ec(NULL)
+        m_tcp(nullptr),
+        m_udp(nullptr),
+        m_frame837(nullptr),
+        m_frame83P(nullptr),
+        m_data(nullptr),
+        m_ec(nullptr)
       {
         // Define configuration parameters.
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -385,7 +385,7 @@ namespace Sensors
 
       //! Update task parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (isActive())
         {
@@ -410,7 +410,7 @@ namespace Sensors
 
         if (m_args.output_format == "837")
         {
-          if (m_frame837 == NULL)
+          if (m_frame837 == nullptr)
             m_frame837 = new Frame837();
 
           m_frame837->setProfileTiltAngle(m_args.tilt_angle);
@@ -422,12 +422,12 @@ namespace Sensors
 
         if (m_args.output_format == "83P")
         {
-          if (m_ec == NULL)
+          if (m_ec == nullptr)
             m_ec = new ExternalControl();
 
           m_ec->setProfileTiltAngle(m_args.tilt_angle);
 
-          if (m_frame83P == NULL)
+          if (m_frame83P == nullptr)
             m_frame83P = new Frame83P();
 
           m_frame83P->setProfileTiltAngle(m_args.tilt_angle);
@@ -440,7 +440,7 @@ namespace Sensors
         {
           initializeSonarData(c_rdata_dat_size * m_args.data_points);
 
-          if (m_frame837 == NULL)
+          if (m_frame837 == nullptr)
             m_frame837 = new Frame837();
 
           m_frame837->setProfileTiltAngle(m_args.tilt_angle);
@@ -451,12 +451,12 @@ namespace Sensors
 
         if (m_args.output_format == "IMC and 83P")
         {
-          if (m_ec == NULL)
+          if (m_ec == nullptr)
             m_ec = new ExternalControl();
 
           m_ec->setProfileTiltAngle(m_args.tilt_angle);
 
-          if (m_frame83P == NULL)
+          if (m_frame83P == nullptr)
             m_frame83P = new Frame83P();
 
           m_frame83P->setProfileTiltAngle(m_args.tilt_angle);
@@ -498,7 +498,7 @@ namespace Sensors
       void
       initializeSonarData(unsigned data_size)
       {
-        if (m_data == NULL)
+        if (m_data == nullptr)
           m_data = new IMC::SonarData();
 
         IMC::BeamConfig bc;
@@ -517,7 +517,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         requestDeactivation();
         closeLog();
@@ -525,7 +525,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_frame837);
         Memory::clear(m_frame83P);
@@ -535,7 +535,7 @@ namespace Sensors
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation() override
       {
         m_power_channel_control.op = IMC::PowerChannelControl::PCC_OP_TURN_ON;
         dispatch(m_power_channel_control);
@@ -544,7 +544,7 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         inf("%s", DTR(Status::getString(Status::CODE_ACTIVE)));
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -557,7 +557,7 @@ namespace Sensors
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         closeLog();
 
@@ -572,7 +572,7 @@ namespace Sensors
       }
 
       void
-      checkActivationProgress(void)
+      checkActivationProgress()
       {
         if (m_countdown.overflow())
         {
@@ -582,7 +582,7 @@ namespace Sensors
 
         try
         {
-          if (m_ec == NULL)
+          if (m_ec == nullptr)
           {
             m_tcp = new TCPSocket;
             m_tcp->setNoDelay(true);
@@ -619,7 +619,7 @@ namespace Sensors
 
       //! Close current log file.
       void
-      closeLog(void)
+      closeLog()
       {
         if (m_log_file.is_open())
         {
@@ -649,17 +649,17 @@ namespace Sensors
         if (msg->getSource() != getSystemId())
           return;
 
-        if (m_frame837 == NULL && m_frame83P == NULL)
+        if (m_frame837 == nullptr && m_frame83P == nullptr)
           return;
 
         switch (msg->op)
         {
           case IMC::LoggingControl::COP_STARTED:
           case IMC::LoggingControl::COP_CURRENT_NAME:
-            if (m_frame83P != NULL)
+            if (m_frame83P != nullptr)
               openLog(m_ctx.dir_log / msg->name / String::str("%s.83P", m_args.file_name.c_str()));
 
-            if (m_frame837 != NULL)
+            if (m_frame837 != nullptr)
               openLog(m_ctx.dir_log / msg->name / String::str("%s.837", m_args.file_name.c_str()));
             break;
 
@@ -676,13 +676,13 @@ namespace Sensors
         if (msg->value < 0)
           return;
 
-        if (m_frame837 != NULL)
+        if (m_frame837 != nullptr)
           m_frame837->setSoundVelocity(msg->value);
 
-        if (m_frame83P != NULL)
+        if (m_frame83P != nullptr)
           m_frame83P->setSoundVelocity(msg->value);
 
-        if (m_ec != NULL)
+        if (m_ec != nullptr)
           m_ec->setSoundVelocity(msg->value);
       }
 
@@ -715,19 +715,19 @@ namespace Sensors
 
         trace("new range: %d m", (uint8_t)c_ranges[idx]);
 
-        if (m_data != NULL)
+        if (m_data != nullptr)
           m_data->max_range = c_ranges[idx];
 
-        if (m_frame837 != NULL)
+        if (m_frame837 != nullptr)
         {
           m_frame837->setRange((uint8_t)c_ranges[idx]);
           m_frame837->setPulseLength((uint8_t)(c_pulse_len[idx] / 10));
         }
 
-        if (m_frame83P != NULL)
+        if (m_frame83P != nullptr)
           m_frame83P->setRange((uint8_t)c_ranges[idx]);
 
-        if (m_ec != NULL)
+        if (m_ec != nullptr)
           m_ec->setRange(idx + 2);
       }
 
@@ -738,10 +738,10 @@ namespace Sensors
       {
         m_sdata[SD_START_GAIN] = (uint8_t) Math::trimValue(value, 0u, 20u);
 
-        if (m_frame837 != NULL)
+        if (m_frame837 != nullptr)
           m_frame837->setStartGain(value);
 
-        if (m_ec != NULL)
+        if (m_ec != nullptr)
           m_ec->setGain(value);
       }
 
@@ -768,7 +768,7 @@ namespace Sensors
       {
         m_sdata[SD_DATA_POINTS] = (uint8_t)value;
 
-        if (m_frame837 != NULL)
+        if (m_frame837 != nullptr)
         {
           if (value == 16)
             m_frame837->setExtendedDataPoints(true);
@@ -803,10 +803,10 @@ namespace Sensors
         m_sdata[SD_NADIR_HI] = (uint8_t)((value & 0xff00) >> 8);
         m_sdata[SD_NADIR_LO] = (uint8_t)(value & 0x00ff);
 
-        if (m_frame837 != NULL)
+        if (m_frame837 != nullptr)
           m_frame837->setDisplayMode(m_args.xdcr);
 
-        if (m_ec != NULL)
+        if (m_ec != nullptr)
           m_ec->setDisplayMode(m_args.xdcr);
       }
 
@@ -832,16 +832,16 @@ namespace Sensors
 
         unsigned dat_idx = data_point * c_rdata_dat_size;
 
-        if (m_frame837 != NULL)
+        if (m_frame837 != nullptr)
         {
           rv = m_tcp->read((char*)(m_frame837->getMessageData() + dat_idx), c_rdata_dat_size);
-          if (m_data != NULL)
+          if (m_data != nullptr)
           {
             std::memcpy((char*)(m_frame837->getMessageData() + dat_idx),
                         &m_data->data[dat_idx], c_rdata_dat_size);
           }
         }
-        else if (m_data != NULL)
+        else if (m_data != nullptr)
         {
           rv = m_tcp->read(&m_data->data[dat_idx], c_rdata_dat_size);
         }
@@ -874,9 +874,9 @@ namespace Sensors
 
       //! Request get echo using External Control frame.
       bool
-      getEcho(void)
+      getEcho()
       {
-        if (m_frame83P == NULL)
+        if (m_frame83P == nullptr)
           return false;
 
         if (!Poll::poll(*m_udp, 1.0))
@@ -910,7 +910,7 @@ namespace Sensors
           return false;
         }
 
-        if (m_data != NULL)
+        if (m_data != nullptr)
         {
           m_data->data.resize(m_frame83P->getMessageSize());
           std::memcpy((char*)(m_frame83P->getMessageData()),
@@ -922,12 +922,12 @@ namespace Sensors
 
       //! Handle sonar data to 837/83P file formats.
       void
-      writeToFile(void)
+      writeToFile()
       {
         // Update information.
         update();
 
-        if (m_frame837 != NULL)
+        if (m_frame837 != nullptr)
         {
           m_frame837->setDateTime(Clock::getSinceEpochMsec());
           m_frame837->setSerialStatus(m_rdata_hdr[4]);
@@ -937,21 +937,21 @@ namespace Sensors
 
         if (m_log_file.is_open())
         {
-          if (m_frame837 != NULL)
+          if (m_frame837 != nullptr)
             m_log_file.write((const char*)m_frame837->getData(), m_frame837->getSize());
 
-          if (m_frame83P != NULL)
+          if (m_frame83P != nullptr)
             m_log_file.write((const char*)m_frame83P->getData(), m_frame83P->getSize());
         }
       }
 
       //! Update state (to be logged in 837/83P file formats).
       void
-      update(void)
+      update()
       {
         setNadirAngle(m_args.nadir + Angles::degrees(m_estate.phi));
 
-        if (m_frame837 == NULL && m_frame83P == NULL)
+        if (m_frame837 == nullptr && m_frame83P == nullptr)
           return;
 
         if (m_estate.lat == 0 && m_estate.lon == 0)
@@ -968,7 +968,7 @@ namespace Sensors
           Coordinates::WGS84::displace(x, y, &lat, &lon);
         }
 
-        if (m_frame837 != NULL)
+        if (m_frame837 != nullptr)
         {
           m_frame837->setGpsData(lat, lon);
           m_frame837->setSpeed(m_estate.u);
@@ -978,7 +978,7 @@ namespace Sensors
           m_frame837->setHeading(m_estate.psi);
         }
 
-        if (m_frame83P != NULL)
+        if (m_frame83P != nullptr)
         {
           m_frame83P->setGpsData(lat, lon);
           m_frame83P->setSpeed(m_estate.u);
@@ -991,7 +991,7 @@ namespace Sensors
 
       //! Check current water column.
       void
-      checkAltitude(void)
+      checkAltitude()
       {
         if (m_estate.alt > c_min_alt)
           setRange((unsigned)(m_estate.alt * m_args.mod_mul + m_args.mod_add));
@@ -1000,9 +1000,9 @@ namespace Sensors
       //! Request sonar data.
       //! @return true if return is successful, false otherwise.
       bool
-      request(void)
+      request()
       {
-        if (m_ec != NULL)
+        if (m_ec != nullptr)
         {
           // Use external binary.
           return getEcho();
@@ -1022,13 +1022,13 @@ namespace Sensors
 
       //! Process return data.
       void
-      process(void)
+      process()
       {
         // Store data or dispatch to bus.
-        if (m_frame837 != NULL || m_frame83P != NULL)
+        if (m_frame837 != nullptr || m_frame83P != nullptr)
           writeToFile();
 
-        if (m_data != NULL)
+        if (m_data != nullptr)
           dispatch(m_data);
 
         m_wdog.reset();
@@ -1036,7 +1036,7 @@ namespace Sensors
 
       //! Check sonar range.
       void
-      checkRange(void)
+      checkRange()
       {
         // Modify range if needed.
         if (m_args.mod)
@@ -1050,13 +1050,13 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {
           consumeMessages();
 
-          if (isActive() && (m_tcp != NULL || m_udp != NULL))
+          if (isActive() && (m_tcp != nullptr || m_udp != nullptr))
           {
             if (request())
               process();

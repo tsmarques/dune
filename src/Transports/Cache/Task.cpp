@@ -84,13 +84,13 @@ namespace Transports
         bind<IMC::CacheControl>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         delete [] m_buffer;
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
@@ -122,7 +122,7 @@ namespace Transports
       getMessageFiles(std::vector<std::string>& files)
       {
         std::vector<std::string> msgs = m_args.order;
-        const char* fname = 0;
+        const char* fname = nullptr;
 
         // Retrieve the name of all cached messages that are not in the
         // loading order list.
@@ -192,7 +192,7 @@ namespace Transports
       }
 
       void
-      loadSnapshot(void)
+      loadSnapshot()
       {
         if (m_snapshot.type() != Path::PT_FILE)
         {
@@ -217,7 +217,7 @@ namespace Transports
       }
 
       void
-      storeSnapshot(void)
+      storeSnapshot()
       {
         // Retrieve file list.
         std::vector<std::string> files;
@@ -262,7 +262,7 @@ namespace Transports
       }
 
       void
-      load(void)
+      load()
       {
         std::vector<std::string> files;
         getMessageFiles(files);
@@ -280,7 +280,7 @@ namespace Transports
       }
 
       void
-      clear(void)
+      clear()
       {
         // Remove cache directory and create a new one.
         m_path.remove(Path::MODE_RECURSIVE);
@@ -288,7 +288,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         loadSnapshot();
 

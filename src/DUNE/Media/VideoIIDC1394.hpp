@@ -46,44 +46,44 @@ namespace DUNE
     public:
       VideoIIDC1394(int source, uint8_t iso, uint8_t vid_mode, uint8_t f_rate, uint32_t w, uint32_t h);
 
-      ~VideoIIDC1394(void);
+      ~VideoIIDC1394();
 
       void
-      start(void);
+      start();
 
       void
-      stop(void);
+      stop();
 
       bool
-      frameCapture(void);
+      frameCapture();
 
       bool
-      doOneShotFocus(void);
+      doOneShotFocus();
 
       uint32_t
-      frameWidth(void) const;
+      frameWidth() const;
 
       uint32_t
-      frameHeight(void) const;
+      frameHeight() const;
 
       uint8_t*
-      rawFrameData(void);
+      rawFrameData();
 
       uint32_t
-      frameSize(void) const;
+      frameSize() const;
 
       uint8_t*
-      yuvFrameData(void);
+      yuvFrameData();
 
       uint8_t*
-      rgbFrameData(void);
+      rgbFrameData();
 
     private:
       void
-      updateZoomStatus(void);
+      updateZoomStatus();
 
       void
-      updateFocusStatus(void);
+      updateFocusStatus();
 
 #if defined(DUNE_SYS_HAS_DC1394_CAMERA_H)
 

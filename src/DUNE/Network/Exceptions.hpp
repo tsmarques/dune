@@ -99,7 +99,7 @@ namespace DUNE
     class ConnectionClosed: public ConnectionError
     {
     public:
-      ConnectionClosed(void):
+      ConnectionClosed():
         ConnectionError(DTR("connection closed"))
       { }
     };
@@ -107,7 +107,7 @@ namespace DUNE
     class ConnectionTimeout: public ConnectionError
     {
     public:
-      ConnectionTimeout(void):
+      ConnectionTimeout():
         ConnectionError(DTR("connection timeout"))
       { }
     };

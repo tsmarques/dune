@@ -59,7 +59,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL)
+        m_uart(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -72,20 +72,20 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_uart->setCanonicalInput(true);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         char line[128];
         int rv = 0;

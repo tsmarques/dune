@@ -137,8 +137,8 @@ namespace Transports
 
         Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_driver(NULL),
+        m_uart(nullptr),
+        m_driver(nullptr),
         m_req_id(1560),
         m_success_balance(false),
         m_rssi(0)
@@ -193,7 +193,7 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.rsms_per))
           m_rsms_timer.setTop(m_args.rsms_per);
@@ -211,7 +211,7 @@ namespace Transports
 
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -230,7 +230,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL , getMessage(Status::CODE_IDLE).c_str());
           if (m_args.request_balance) {
@@ -243,13 +243,13 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         if (m_driver)
         {
           m_driver->stopAndJoin();
           delete m_driver;
-          m_driver = NULL;
+          m_driver = nullptr;
         }
 
         Memory::clear(m_uart);
@@ -324,7 +324,7 @@ namespace Transports
       }
 
       void
-      processQueue(void)
+      processQueue()
       {
         if (m_queue.empty())
         {
@@ -362,7 +362,7 @@ namespace Transports
       }
 
       void
-      pollStatus(void)
+      pollStatus()
       {
         try
         {
@@ -387,7 +387,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

@@ -54,7 +54,7 @@ namespace DUNE
     }
 
     void
-    Periodic::onMain(void)
+    Periodic::onMain()
     {
       double now = Time::Clock::get();
       double delay = (1 / m_frequency);

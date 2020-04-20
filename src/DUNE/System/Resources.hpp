@@ -47,7 +47,7 @@ namespace DUNE
     {
     public:
       //! Initialize resource monitor.
-      Resources(void);
+      Resources();
 
       //! Retrieve the percentage of CPU time used by the calling
       //! process since the last call to this function or object
@@ -55,17 +55,17 @@ namespace DUNE
       //! @return percentage of the CPU time used or -1 if not
       //! implemented in the current platform.
       int
-      getProcessorUsage(void);
+      getProcessorUsage();
 
       //! Make all memory pages mapped by the address space of the
       //! current process to be memory-resident until unlocked or until
       //! the process exits.
       static void
-      lockMemory(void);
+      lockMemory();
 
       //! Unlock memory pages.
       static void
-      unlockMemory(void);
+      unlockMemory();
 
       //! Make those whole pages containing any part of the address
       //! space of the process starting at address 'addr' and

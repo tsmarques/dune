@@ -80,11 +80,11 @@ namespace Plan
            uint16_t min_cal_time, Parsers::Config* cfg);
 
       //! Destructor
-      ~Plan(void);
+      ~Plan();
 
       //! Reset data
       void
-      clear(void);
+      clear();
 
       //! Parse a given plan
       //! @param[in] supported_maneuvers list of supported maneuvers
@@ -96,19 +96,19 @@ namespace Plan
       parse(const std::set<uint16_t>* supported_maneuvers,
             const std::map<std::string, IMC::EntityInfo>& cinfo,
             IMC::PlanStatistics& ps, bool imu_enabled = false,
-            const IMC::EstimatedState* state = NULL);
+            const IMC::EstimatedState* state = nullptr);
 
       //! Signal that the plan has started
       void
-      planStarted(void);
+      planStarted();
 
       //! Signal that the plan has stopped
       void
-      planStopped(void);
+      planStopped();
 
       //! Signal that calibration has started
       void
-      calibrationStarted(void);
+      calibrationStarted();
 
       //! Signal that a maneuver has started
       //! @param[in] id name of the started maneuver
@@ -117,32 +117,32 @@ namespace Plan
 
       //! Signal that current maneuver is done
       void
-      maneuverDone(void);
+      maneuverDone();
 
       //! Get necessary calibration time
       //! @return necessary calibration time
       uint16_t
-      getEstimatedCalibrationTime(void) const;
+      getEstimatedCalibrationTime() const;
 
       //! Check if plan has been completed
       //! @return true if plan is done
       bool
-      isDone(void) const;
+      isDone() const;
 
       //! Get start maneuver message
       //! @return NULL if start maneuver id is invalid
       IMC::PlanManeuver*
-      loadStartManeuver(void);
+      loadStartManeuver();
 
       //! Get next maneuver message
       //! @return NULL if maneuver id is invalid
       IMC::PlanManeuver*
-      loadNextManeuver(void);
+      loadNextManeuver();
 
       //! Get current maneuver id
       //! @return current id string
       inline std::string
-      getCurrentId(void) const
+      getCurrentId() const
       {
         return m_last_id;
       }
@@ -150,7 +150,7 @@ namespace Plan
       //! Get calibration info string
       //! @return calibration info string
       inline const std::string
-      getCalibrationInfo(void) const
+      getCalibrationInfo() const
       {
         return m_calib->getInfo();
       }
@@ -158,7 +158,7 @@ namespace Plan
       //! Is calibration done
       //! @return true if so, false otherwise
       inline bool
-      isCalibrationDone(void) const
+      isCalibrationDone() const
       {
         return m_calib->isDone();
       }
@@ -166,7 +166,7 @@ namespace Plan
       //! Has calibration failed
       //! @return true if so, false otherwise
       inline bool
-      hasCalibrationFailed(void) const
+      hasCalibrationFailed() const
       {
         return m_calib->hasFailed();
       }
@@ -196,7 +196,7 @@ namespace Plan
       //! Get current estimated time of arrival
       //! @return ETA
       float
-      getETA(void) const;
+      getETA() const;
 
     private:
       //! Check if depth is within limits.
@@ -209,12 +209,12 @@ namespace Plan
       //! (total of maneuver accumulated duration)
       //! @return duration of the execution phase of the plan
       float
-      getExecutionDuration(void) const;
+      getExecutionDuration() const;
 
       //! Get total duration of the plan
       //! @return total duration of the plan
       inline float
-      getTotalDuration(void) const
+      getTotalDuration() const
       {
         return getExecutionDuration() + getEstimatedCalibrationTime();
       }
@@ -222,7 +222,7 @@ namespace Plan
       //! Get execution percentage
       //! @return percentage of the plan represented by the execution
       inline float
-      getExecutionPercentage(void) const
+      getExecutionPercentage() const
       {
         return getExecutionDuration() / getTotalDuration() * 100.0;
       }
@@ -230,12 +230,12 @@ namespace Plan
       //! Check if scheduler is waiting for a device
       //! @return true if waiting for device
       bool
-      waitingForDevice(void);
+      waitingForDevice();
 
       //! Returns calibration time left according to scheduler
       //! @return calibration time left or -1 if no scheduler is active
       float
-      scheduledTimeLeft(void) const;
+      scheduledTimeLeft() const;
 
       //! Check if a maneuver exists in the sequential nodes
       //! @param[in] id string id of the maneuver
@@ -263,7 +263,7 @@ namespace Plan
 
       //! Sequence plan nodes if possible
       void
-      sequenceNodes(void);
+      sequenceNodes();
 
       //! Get maneuver from id
       //! @param[in] id name of the maneuver to load
@@ -284,7 +284,7 @@ namespace Plan
 
       //! Test if plan is linear
       inline bool
-      isLinear(void) const
+      isLinear() const
       {
         return !(m_properties & IMC::PlanStatistics::PRP_NONLINEAR);
       }

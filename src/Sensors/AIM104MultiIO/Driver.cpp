@@ -97,7 +97,7 @@ namespace Sensors
       setInputRange(input_range);
     }
 
-    Driver::~Driver(void)
+    Driver::~Driver()
     {
       delete m_io;
     }

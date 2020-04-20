@@ -136,13 +136,13 @@ namespace Control
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization() override
         {
           BasicAutopilot::onResourceInitialization();
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           // Validate gain matrix
           if ((m_args.k_gain.rows() != 3) || (m_args.k_gain.columns() != 12))
@@ -164,13 +164,13 @@ namespace Control
         }
 
         void
-        reset(void)
+        reset() override
         {
           BasicAutopilot::reset();
         }
 
         void
-        onEstimatedState(const double timestep, const IMC::EstimatedState* msg)
+        onEstimatedState(const double timestep, const IMC::EstimatedState* msg) override
         {
           (void)timestep;
 

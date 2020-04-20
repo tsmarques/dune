@@ -99,7 +99,7 @@ namespace Monitors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Periodic(name, ctx),
-        m_fuel_filter(NULL),
+        m_fuel_filter(nullptr),
         m_volt_error_level(false),
         m_volt_bat(0),
         m_filter_ready(false)
@@ -223,13 +223,13 @@ namespace Monitors
         bind<IMC::EntityActivationState>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         delete m_power_model;
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.filter_args.decay_factor))
           m_args.filter_args.decay_factor *= 0.01f;
@@ -248,13 +248,13 @@ namespace Monitors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_fuel_filter);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         for (unsigned i = 0; i < FuelFilter::MDL_TOTAL; ++i)
         {
@@ -266,7 +266,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         for (unsigned i = 0; i < BatteryData::BM_TOTAL; ++i)
         {
@@ -340,7 +340,7 @@ namespace Monitors
       }
 
       void
-      task(void)
+      task() override
       {
         // Update fuel filter
         if (!m_fuel_filter->update())

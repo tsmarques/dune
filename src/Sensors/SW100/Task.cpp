@@ -91,8 +91,8 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Periodic(name, ctx),
-        m_driver(NULL),
-        m_uart(NULL),
+        m_driver(nullptr),
+        m_uart(nullptr),
         m_depth_avg(10),
         m_at_surface(false),
         m_maneuvering(false),
@@ -124,20 +124,20 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         m_driver = new Driver(this, *m_uart);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_wdog.setTop(m_args.data_timeout);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
         Memory::clear(m_driver);
@@ -156,13 +156,13 @@ namespace Sensors
       }
 
       bool
-      ableToCalibrate(void)
+      ableToCalibrate()
       {
         return (m_at_surface && !m_maneuvering);
       }
 
       void
-      task(void)
+      task() override
       {
         if (m_wdog.overflow())
         {

@@ -77,7 +77,7 @@ namespace DUNE
 #endif
       }
 
-      ~FileLock(void)
+      ~FileLock()
       {
 #if defined(DUNE_SYS_HAS_STRUCT_FLOCK)
         close(m_fd);
@@ -85,7 +85,7 @@ namespace DUNE
       }
 
       bool
-      lock(void)
+      lock()
       {
 #if defined(DUNE_SYS_HAS_STRUCT_FLOCK)
         struct flock fl;
@@ -100,7 +100,7 @@ namespace DUNE
       }
 
       bool
-      tryLock(void)
+      tryLock()
       {
 #if defined(DUNE_SYS_HAS_STRUCT_FLOCK)
         struct flock fl;

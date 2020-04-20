@@ -107,7 +107,7 @@ namespace Supervisors
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.tout_heartbeat))
             m_tout_heartbeat.setTop(m_args.tout_heartbeat);
@@ -117,7 +117,7 @@ namespace Supervisors
         }
 
         void
-        checkPlan(void)
+        checkPlan()
         {
           m_check_plan = true;
           IMC::PlanDB db;
@@ -184,14 +184,14 @@ namespace Supervisors
         }
 
         void
-        resetTimers(void)
+        resetTimers()
         {
           m_tout_heartbeat.reset();
           m_tout_mission.reset();
         }
 
         void
-        startLostComms(void)
+        startLostComms()
         {
           IMC::PlanControl p_control;
           p_control.plan_id = m_args.plan;
@@ -221,7 +221,7 @@ namespace Supervisors
 
           const IMC::PlanSpecification* spec = static_cast<const IMC::PlanSpecification*>(msg->get());
 
-          if (spec == NULL)
+          if (spec == nullptr)
           {
             m_got_plan = false;
             return;
@@ -239,7 +239,7 @@ namespace Supervisors
         }
 
         void
-        task(void)
+        task() override
         {
           if (!isActive())
             return;

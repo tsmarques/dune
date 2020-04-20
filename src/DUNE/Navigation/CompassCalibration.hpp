@@ -52,14 +52,14 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      CompassCalibration(void)
+      CompassCalibration()
       {
         clear();
       }
 
       //! Clear calibration.
       void
-      clear(void)
+      clear()
       {
         m_dcm.resizeAndFill(3, 1, 0.0);
         m_max.resizeAndFill(1, 3, -std::numeric_limits<double>::max());
@@ -102,7 +102,7 @@ namespace DUNE
       //! Get calibration parameters.
       //! @return calibration parameters.
       Math::Matrix
-      getCalibrationParams(void)
+      getCalibrationParams()
       {
         // Compute calibration parameters.
         Math::Matrix params = (m_max + m_min) / 2;

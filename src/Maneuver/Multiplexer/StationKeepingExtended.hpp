@@ -60,13 +60,13 @@ namespace Maneuver
       //! @param[in] args stationkeepingextended arguments
       StationKeepingExtended(Maneuvers::Maneuver* task, StationKeepingExtendedArgs* args):
         MuxedManeuver<IMC::StationKeepingExtended, StationKeepingExtendedArgs>(task, args),
-        m_skeep(NULL),
-        m_elevate(NULL),
+        m_skeep(nullptr),
+        m_elevate(nullptr),
         m_end_time(-1.0),
         m_ks(KS_UNKNOWN)
       { }
 
-      ~StationKeepingExtended(void)
+      ~StationKeepingExtended() override
       {
         Memory::clear(m_skeep);
         Memory::clear(m_elevate);
@@ -75,7 +75,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver stationkeepingextended maneuver message
       void
-      onStart(const IMC::StationKeepingExtended* maneuver)
+      onStart(const IMC::StationKeepingExtended* maneuver) override
       {
         m_maneuver = *maneuver;
         m_duration = maneuver->duration;
@@ -100,9 +100,9 @@ namespace Maneuver
       //! On EstimatedState message
       //! @param[in] msg EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         if (m_skeep->isInside() && (m_end_time < 0))
@@ -133,11 +133,11 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         m_pcs = *pcs;
 
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         if (m_ks != KS_POPUP)
@@ -156,9 +156,9 @@ namespace Maneuver
 
       //! On state report function
       void
-      onStateReport(void)
+      onStateReport() override
       {
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         if (m_duration > 0 && m_end_time > 0)
@@ -186,14 +186,14 @@ namespace Maneuver
       //! Must adopt safe behavior (loiter underwater and popup periodically to report position)
       //! @return true if KEEP_SAFE option is enabled
       bool
-      keepSafe(void)
+      keepSafe()
       {
         return (m_maneuver.flags & IMC::StationKeepingExtended::FLG_KEEP_SAFE) != 0;
       }
 
       //! Starts Loiter on current position
       void
-      startLoiter(void)
+      startLoiter()
       {
         m_task->debug("\n\tStart LOITER!");
         m_task->setControl(IMC::CL_PATH);
@@ -216,7 +216,7 @@ namespace Maneuver
 
       //! Surfaces to report position
       void
-      doPopUp(void)
+      doPopUp()
       {
         m_task->debug("\n\tStart ELEVATOR!");
         m_task->setControl(IMC::CL_PATH);

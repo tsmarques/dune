@@ -55,7 +55,7 @@ namespace DUNE
 
       //! Destruct the object, unlocking the associated read/write
       //! lock.
-      ~ScopedRWLock(void)
+      ~ScopedRWLock()
       {
         m_lock.unlock();
       }
@@ -65,11 +65,10 @@ namespace DUNE
       RWLock& m_lock;
 
       //! This class is non - copyable.
-      ScopedRWLock(const ScopedRWLock&);
+      ScopedRWLock (const ScopedRWLock &) = delete;
 
       //! This class is non - assignable.
-      ScopedRWLock&
-      operator=(const ScopedRWLock&);
+      ScopedRWLock &operator= (const ScopedRWLock &) = delete;
     };
   }
 }

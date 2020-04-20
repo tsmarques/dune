@@ -139,7 +139,7 @@ namespace DUNE
       }
 
       bool
-      BootLoader::enter(void)
+      BootLoader::enter()
       {
         open();
         DO(requestName(), "request firmware name");
@@ -155,7 +155,7 @@ namespace DUNE
       }
 
       bool
-      BootLoader::leave(void)
+      BootLoader::leave()
       {
         requestReset();
 
@@ -168,14 +168,14 @@ namespace DUNE
       }
 
       void
-      BootLoader::open(void)
+      BootLoader::open()
       {
         print("* Opening device...");
         m_proto.open(m_baud);
       }
 
       bool
-      BootLoader::requestName(void)
+      BootLoader::requestName()
       {
         print("* Requesting firmware name...", false);
         m_name.clear();
@@ -192,7 +192,7 @@ namespace DUNE
       }
 
       bool
-      BootLoader::requestBootJump(void)
+      BootLoader::requestBootJump()
       {
         print("* Requesting jump to bootloader...", false);
         m_proto.requestBootJump();
@@ -207,7 +207,7 @@ namespace DUNE
       }
 
       bool
-      BootLoader::requestReset(void)
+      BootLoader::requestReset()
       {
         print("* Requesting device reset...", false);
         m_proto.requestReset();
@@ -222,7 +222,7 @@ namespace DUNE
       }
 
       bool
-      BootLoader::requestHalt(void)
+      BootLoader::requestHalt()
       {
         uint8_t data[] = {CMD_HALT_BYTE0, CMD_HALT_BYTE1};
         m_proto.sendCommand(CMD_HALT, data, sizeof(data));
@@ -230,7 +230,7 @@ namespace DUNE
       }
 
       bool
-      BootLoader::requestPageSize(void)
+      BootLoader::requestPageSize()
       {
         print("* Requesting page size...", false);
 
@@ -271,7 +271,7 @@ namespace DUNE
       }
 
       bool
-      BootLoader::startUpgrade(void)
+      BootLoader::startUpgrade()
       {
         print("* Starting upgrade...");
         uint8_t data[] = {CMD_UPGRADE_START_BYTE0, CMD_UPGRADE_START_BYTE1};
@@ -280,7 +280,7 @@ namespace DUNE
       }
 
       bool
-      BootLoader::endUpgrade(void)
+      BootLoader::endUpgrade()
       {
         print("* Finishing upgrade...");
         m_proto.sendCommand(CMD_UPGRADE_END);

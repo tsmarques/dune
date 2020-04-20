@@ -66,8 +66,8 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_sock(NULL),
-        m_uart(NULL)
+        m_sock(nullptr),
+        m_uart(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -83,13 +83,13 @@ namespace Transports
         .description("TCP port to listen on");
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -104,20 +104,20 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_sock != NULL)
+        if (m_sock != nullptr)
         {
           m_poll.remove(*m_sock);
           delete m_sock;
-          m_sock = NULL;
+          m_sock = nullptr;
         }
 
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_poll.remove(*m_uart);
           delete m_uart;
-          m_uart = NULL;
+          m_uart = nullptr;
         }
 
         std::list<TCPSocket*>::iterator itr = m_clients.begin();
@@ -131,7 +131,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_sock->bind(m_args.tcp_port);
         m_sock->listen(1024);
@@ -162,7 +162,7 @@ namespace Transports
       }
 
       void
-      checkMainSocket(void)
+      checkMainSocket()
       {
         if (m_poll.wasTriggered(*m_sock))
         {
@@ -181,7 +181,7 @@ namespace Transports
       }
 
       void
-      checkClientSockets(void)
+      checkClientSockets()
       {
         char bfr[1024];
 
@@ -214,7 +214,7 @@ namespace Transports
       }
 
       void
-      checkSerialPort(void)
+      checkSerialPort()
       {
         if (m_poll.wasTriggered(*m_uart))
         {
@@ -231,7 +231,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

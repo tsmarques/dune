@@ -121,7 +121,7 @@ namespace Actuators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_tstamp(0)
       {
         // Define configuration parameters.
@@ -166,7 +166,7 @@ namespace Actuators
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         unsigned eid = 0;
 
@@ -197,7 +197,7 @@ namespace Actuators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
@@ -205,7 +205,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_parse = new Parser();
         m_poll.add(*m_uart);
@@ -219,13 +219,13 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_poll.remove(*m_uart);
           delete m_uart;
-          m_uart = NULL;
+          m_uart = nullptr;
         }
 
         Memory::clear(m_parse);
@@ -240,7 +240,7 @@ namespace Actuators
 
       //! Read data send by AMC board.
       bool
-      checkSerialPort(void)
+      checkSerialPort()
       {
         if (m_poll.wasTriggered(*m_uart))
         {
@@ -393,7 +393,7 @@ namespace Actuators
 
       //! Stop all motors
       void
-      stopAllMotor(void)
+      stopAllMotor()
       {
         for (uint8_t i = 0; i < c_max_motors; i++)
         {
@@ -475,7 +475,7 @@ namespace Actuators
 
       //! Set rpm for all motors
       void
-      setRpmValues(void)
+      setRpmValues()
       {
         for (uint8_t i = 0; i < c_max_motors; i++)
         {
@@ -488,7 +488,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      task(void)
+      task() override
       {
         setRpmValues();
 

@@ -94,7 +94,7 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_pan(0),
         m_tilt(Math::c_half_pi)
       {
@@ -153,13 +153,13 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         debug("initializing");
         // Send execute immediatly command.
@@ -193,7 +193,7 @@ namespace Actuators
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (m_args.model == "D48")
         {
@@ -214,7 +214,7 @@ namespace Actuators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
@@ -267,7 +267,7 @@ namespace Actuators
       }
 
       void
-      task(void)
+      task() override
       {
         // PAN
         float pan_rad = Angles::normalizeRadian(m_pan);

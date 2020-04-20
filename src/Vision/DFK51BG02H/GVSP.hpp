@@ -64,7 +64,7 @@ namespace Vision
       }
 
       //! Destructor.
-      ~GVSP(void)
+      ~GVSP() override
       {
         delete [] m_buffer;
       }
@@ -83,11 +83,11 @@ namespace Vision
       //! Dequeue dirty frame.
       //! @return frame dirty frame or NULL if none is available.
       Frame*
-      dequeueDirty(void)
+      dequeueDirty()
       {
         ScopedMutex l(m_lock);
         if (m_dirty.empty())
-          return NULL;
+          return nullptr;
 
         Frame* frame = m_dirty.front();
         m_dirty.pop();
@@ -117,11 +117,11 @@ namespace Vision
       //! Dequeue clean frame.
       //! @return clean frame or NULL if none is available.
       Frame*
-      dequeueClean(void)
+      dequeueClean()
       {
         ScopedMutex l(m_lock);
         if (m_clean.empty())
-          return NULL;
+          return nullptr;
 
         Frame* frame = m_clean.front();
         m_clean.pop();
@@ -153,9 +153,9 @@ namespace Vision
       std::queue<Frame*> m_clean;
 
       void
-      run(void)
+      run() override
       {
-        Frame* frame = NULL;
+        Frame* frame = nullptr;
 
         while (!isStopping())
         {
@@ -168,7 +168,7 @@ namespace Vision
           {
             m_count = 0;
             frame = dequeueClean();
-            if (frame == NULL)
+            if (frame == nullptr)
             {
               m_task->err(DTR("buffer overrun"));
               break;
@@ -179,11 +179,11 @@ namespace Vision
           else if (rv == c_footer_size)
           {
             enqueueDirty(frame);
-            frame = NULL;
+            frame = nullptr;
           }
           else
           {
-            if (frame != NULL)
+            if (frame != nullptr)
             {
               uint16_t packet_number = 0;
               ByteCopy::fromBE(packet_number, m_buffer + 6);

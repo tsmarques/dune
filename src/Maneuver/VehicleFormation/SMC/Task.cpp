@@ -154,14 +154,14 @@ namespace Maneuver
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           VehicleFormation::onUpdateParameters();
         }
 
         //! Close matlab logged vectors
         void
-        onReset(void)
+        onReset() override
         {
           if (m_args.debug)
           {
@@ -189,7 +189,7 @@ namespace Maneuver
         }
 
         void
-        onInit(const IMC::VehicleFormation* maneuver)
+        onInit(const IMC::VehicleFormation* maneuver) override
         {
           (void)maneuver;
 
@@ -249,7 +249,7 @@ namespace Maneuver
         }
 
         void
-        onUpdate(int f_index, const IMC::RemoteState& rstate)
+        onUpdate(int f_index, const IMC::RemoteState& rstate) override
         {
           // does not make sense to use f_index since this maneuver assumes that
           // only two vehicles are involved
@@ -373,7 +373,7 @@ namespace Maneuver
         }
 
         void
-        step(const IMC::EstimatedState& estate)
+        step(const IMC::EstimatedState& estate) override
         {
           // save Estimated States into queue everytime formation_control runs
           // ... queue is assumed to be a collection of Estimated States of the present vehicle with 1.0 sec step between timestamps
@@ -392,7 +392,7 @@ namespace Maneuver
         }
 
         void
-        onPathCompletion(void)
+        onPathCompletion() override
         {
           TPoint next;
 

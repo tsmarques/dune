@@ -108,13 +108,13 @@ namespace DUNE
       m_code = m_bfr;
     }
 
-    NMEAReader::~NMEAReader(void)
+    NMEAReader::~NMEAReader()
     {
       delete [] m_bfr;
     }
 
     NMEAReader&
-    NMEAReader::skip(void)
+    NMEAReader::skip()
     {
       checkFieldStart();
 
@@ -252,13 +252,13 @@ namespace DUNE
     }
 
     bool
-    NMEAReader::eos(void)
+    NMEAReader::eos()
     {
       return (m_stream.eof() || m_stream.peek() == EOF);
     }
 
     void
-    NMEAReader::checkFieldStart(void)
+    NMEAReader::checkFieldStart()
     {
       int c = m_stream.get();
 

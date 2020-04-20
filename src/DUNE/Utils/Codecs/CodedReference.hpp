@@ -96,7 +96,7 @@ namespace DUNE
             }
           }
 
-          return NULL;
+          return nullptr;
         }
 
         //! Get payload size by number of Reference messages
@@ -189,7 +189,7 @@ namespace DUNE
         //! Get payload size.
         //! @return size of payload.
         static size_t
-        getSize(void)
+        getSize()
         {
           // Size of lat, lon, dst, z, z_ref and radius.
           return 2 * sizeof(fp64_t) + 4 * sizeof(uint8_t);

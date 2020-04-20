@@ -71,12 +71,12 @@ namespace DUNE
       //! Update behavior with path control state
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs);
+      onPathControlState(const IMC::PathControlState* pcs) override;
 
       //! Check if loitering
       //! @return true if loitering, false otherwise
       bool
-      isLoitering(void) const;
+      isLoitering() const override;
 
     private:
       //! @param[in] task pointer to task object (debug and inf)

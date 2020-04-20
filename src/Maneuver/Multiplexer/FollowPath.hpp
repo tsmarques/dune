@@ -53,12 +53,11 @@ namespace Maneuver
       { }
 
       //! Destructor
-      ~FollowPath(void)
-      { }
+      ~FollowPath () override = default;
 
       //! Reset function
       void
-      reset(void)
+      reset()
       {
         m_wpts.clear();
         m_curr = 0;
@@ -67,7 +66,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver followpath maneuver message
       void
-      onStart(const IMC::FollowPath* maneuver)
+      onStart(const IMC::FollowPath* maneuver) override
       {
         reset();
 
@@ -107,7 +106,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         std::stringstream ss;
         ss << "waypoint=" << m_curr;
@@ -130,7 +129,7 @@ namespace Maneuver
 
       //! Routine to throw next waypoint
       void
-      gotoNextPoint(void)
+      gotoNextPoint()
       {
         Waypoint& w = m_wpts[m_curr];
         m_path.end_lat = w.lat;

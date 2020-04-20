@@ -104,7 +104,7 @@ namespace Sensors
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
         m_state(PS_NONE),
-        m_uart(NULL)
+        m_uart(nullptr)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")
@@ -119,19 +119,19 @@ namespace Sensors
         bind<IMC::Pulse>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         delete [] m_bfr;
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
@@ -323,19 +323,19 @@ namespace Sensors
       }
 
       bool
-      sendGoToConfig(void)
+      sendGoToConfig()
       {
-        return sendMessageWithAck(0x30, 0, 0);
+        return sendMessageWithAck(0x30, nullptr, 0);
       }
 
       bool
-      sendGoToMeasurement(void)
+      sendGoToMeasurement()
       {
-        return sendMessageWithAck(0x10, 0, 0);
+        return sendMessageWithAck(0x10, nullptr, 0);
       }
 
       bool
-      sendSetOutputMode(void)
+      sendSetOutputMode()
       {
         uint8_t settings[2] = {0};
 
@@ -345,14 +345,14 @@ namespace Sensors
       }
 
       bool
-      sendSetOutputSettings(void)
+      sendSetOutputSettings()
       {
         uint8_t settings[] = {0x00, 0x00, 0x04, 0x45};
         return sendMessageWithAck(0xD2, settings, sizeof(settings));
       }
 
       bool
-      sendSyncInSettings(void)
+      sendSyncInSettings()
       {
         // SyncIn, Trigger Rising Edge, ADC Sampling.
         uint8_t settings[] = {0x00, 0x00, 0x01};
@@ -360,7 +360,7 @@ namespace Sensors
       }
 
       bool
-      setup(void)
+      setup()
       {
         // Stop measurement mode and flush pending data.
         sendGoToConfig();
@@ -401,7 +401,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!setup())
           ;

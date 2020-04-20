@@ -89,7 +89,7 @@ namespace DUNE
       //! Parsed datareturns true.
       //! @return data.
       const Data*
-      data(void)
+      data()
       {
         return &m_data;
       }
@@ -127,7 +127,7 @@ namespace DUNE
 
       //! Clear current state.
       void
-      clear(void);
+      clear();
     };
   }
 }

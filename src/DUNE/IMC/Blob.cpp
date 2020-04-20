@@ -2822,13 +2822,13 @@ namespace DUNE
     };
 
     const unsigned char*
-    Blob::getData(void)
+    Blob::getData()
     {
       return c_imc_blob;
     }
 
     unsigned int
-    Blob::getSize(void)
+    Blob::getSize()
     {
       return sizeof(c_imc_blob);
     }

@@ -48,7 +48,7 @@ namespace DUNE
       public:
         Bootloader(Interface* itf, bool verbose = false);
 
-        ~Bootloader(void);
+        ~Bootloader();
 
         void
         program(const std::string& file_name);
@@ -76,19 +76,19 @@ namespace DUNE
         title(const char* str) const;
 
         void
-        getFlashInfo(void);
+        getFlashInfo();
 
         void
         printFirmwareInfo(const FirmwareInfo& info) const;
 
         void
-        printOK(void) const;
+        printOK() const;
 
         void
-        printFailed(void) const;
+        printFailed() const;
 
         void
-        printSuccess(void) const;
+        printSuccess() const;
       };
     }
   }

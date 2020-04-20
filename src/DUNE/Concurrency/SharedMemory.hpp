@@ -55,18 +55,18 @@ namespace DUNE
 
       SharedMemory(unsigned size);
 
-      ~SharedMemory(void);
+      ~SharedMemory();
 
       void
-      create(void);
+      create();
 
       void
-      open(void);
+      open();
 
       //! Get name of memory area.
       //! @return memory area's name.
       const char*
-      getName(void)
+      getName()
       {
         return m_name;
       }
@@ -74,7 +74,7 @@ namespace DUNE
       //! Get pointer to shared memory area.
       //! @return pointer to shared memory area.
       void*
-      operator*(void)
+      operator*()
       {
         return m_ptr;
       }
@@ -91,14 +91,13 @@ namespace DUNE
 
       //! Generate an unique name.
       void
-      generateName(void);
+      generateName();
 
       //! Non-copyable.
-      SharedMemory(const SharedMemory&);
+      SharedMemory (const SharedMemory &) = delete;
 
       //! Non - assignable
-      SharedMemory&
-      operator=(const SharedMemory&);
+      SharedMemory &operator= (const SharedMemory &) = delete;
     };
   }
 }

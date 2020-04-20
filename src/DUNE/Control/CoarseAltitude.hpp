@@ -65,23 +65,23 @@ namespace DUNE
       CoarseAltitude(const Arguments* args);
 
       //! Destructor.
-      ~CoarseAltitude(void);
+      ~CoarseAltitude();
 
       //! Reset variables
       void
-      reset(void);
+      reset();
 
       //! Activate coarse altitude control
       void
-      activate(void);
+      activate();
 
       //! Deactivate coarse altitude control
       void
-      deactivate(void);
+      deactivate();
 
       //! Get current corridor number
       inline unsigned
-      getCorridor(void)
+      getCorridor()
       {
         return m_corridor;
       };
@@ -130,7 +130,7 @@ namespace DUNE
 
       //! Measure performace using current corridor and change it if necessary
       void
-      measurePerformance(void);
+      measurePerformance();
 
       //! True if coarse altitude control is active
       bool m_active;

@@ -50,14 +50,14 @@ namespace DUNE
 {
   namespace IMC
   {
-    EntityState::EntityState(void)
+    EntityState::EntityState()
     {
       m_header.mgid = 1;
       clear();
     }
 
     void
-    EntityState::clear(void)
+    EntityState::clear()
     {
       state = 0;
       flags = 0;
@@ -75,7 +75,7 @@ namespace DUNE
     }
 
     int
-    EntityState::validate(void) const
+    EntityState::validate() const
     {
       return true;
     }
@@ -118,19 +118,19 @@ namespace DUNE
       IMC::toJSON(os__, "description", description, nindent__);
     }
 
-    QueryEntityState::QueryEntityState(void)
+    QueryEntityState::QueryEntityState()
     {
       m_header.mgid = 2;
       clear();
     }
 
     void
-    QueryEntityState::clear(void)
+    QueryEntityState::clear()
     {
     }
 
     int
-    QueryEntityState::validate(void) const
+    QueryEntityState::validate() const
     {
       return true;
     }
@@ -157,14 +157,14 @@ namespace DUNE
       return 0;
     }
 
-    EntityInfo::EntityInfo(void)
+    EntityInfo::EntityInfo()
     {
       m_header.mgid = 3;
       clear();
     }
 
     void
-    EntityInfo::clear(void)
+    EntityInfo::clear()
     {
       id = 0;
       label.clear();
@@ -186,7 +186,7 @@ namespace DUNE
     }
 
     int
-    EntityInfo::validate(void) const
+    EntityInfo::validate() const
     {
       return true;
     }
@@ -228,7 +228,7 @@ namespace DUNE
     }
 
     uint16_t
-    EntityInfo::getSubId(void) const
+    EntityInfo::getSubId() const
     {
       return id;
     }
@@ -249,14 +249,14 @@ namespace DUNE
       IMC::toJSON(os__, "deact_time", deact_time, nindent__);
     }
 
-    QueryEntityInfo::QueryEntityInfo(void)
+    QueryEntityInfo::QueryEntityInfo()
     {
       m_header.mgid = 4;
       clear();
     }
 
     void
-    QueryEntityInfo::clear(void)
+    QueryEntityInfo::clear()
     {
       id = 0;
     }
@@ -270,7 +270,7 @@ namespace DUNE
     }
 
     int
-    QueryEntityInfo::validate(void) const
+    QueryEntityInfo::validate() const
     {
       return true;
     }
@@ -300,7 +300,7 @@ namespace DUNE
     }
 
     uint16_t
-    QueryEntityInfo::getSubId(void) const
+    QueryEntityInfo::getSubId() const
     {
       return id;
     }
@@ -317,14 +317,14 @@ namespace DUNE
       IMC::toJSON(os__, "id", id, nindent__);
     }
 
-    EntityList::EntityList(void)
+    EntityList::EntityList()
     {
       m_header.mgid = 5;
       clear();
     }
 
     void
-    EntityList::clear(void)
+    EntityList::clear()
     {
       op = 0;
       list.clear();
@@ -340,7 +340,7 @@ namespace DUNE
     }
 
     int
-    EntityList::validate(void) const
+    EntityList::validate() const
     {
       return true;
     }
@@ -379,14 +379,14 @@ namespace DUNE
       IMC::toJSON(os__, "list", list, nindent__);
     }
 
-    CpuUsage::CpuUsage(void)
+    CpuUsage::CpuUsage()
     {
       m_header.mgid = 7;
       clear();
     }
 
     void
-    CpuUsage::clear(void)
+    CpuUsage::clear()
     {
       value = 0;
     }
@@ -400,7 +400,7 @@ namespace DUNE
     }
 
     int
-    CpuUsage::validate(void) const
+    CpuUsage::validate() const
     {
       if (value > 100) return false;
       return true;
@@ -431,7 +431,7 @@ namespace DUNE
     }
 
     fp64_t
-    CpuUsage::getValueFP(void) const
+    CpuUsage::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -448,14 +448,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    TransportBindings::TransportBindings(void)
+    TransportBindings::TransportBindings()
     {
       m_header.mgid = 8;
       clear();
     }
 
     void
-    TransportBindings::clear(void)
+    TransportBindings::clear()
     {
       consumer.clear();
       message_id = 0;
@@ -471,7 +471,7 @@ namespace DUNE
     }
 
     int
-    TransportBindings::validate(void) const
+    TransportBindings::validate() const
     {
       return true;
     }
@@ -510,14 +510,14 @@ namespace DUNE
       IMC::toJSON(os__, "message_id", message_id, nindent__);
     }
 
-    RestartSystem::RestartSystem(void)
+    RestartSystem::RestartSystem()
     {
       m_header.mgid = 9;
       clear();
     }
 
     void
-    RestartSystem::clear(void)
+    RestartSystem::clear()
     {
       type = 0;
     }
@@ -531,7 +531,7 @@ namespace DUNE
     }
 
     int
-    RestartSystem::validate(void) const
+    RestartSystem::validate() const
     {
       return true;
     }
@@ -566,14 +566,14 @@ namespace DUNE
       IMC::toJSON(os__, "type", type, nindent__);
     }
 
-    DevCalibrationControl::DevCalibrationControl(void)
+    DevCalibrationControl::DevCalibrationControl()
     {
       m_header.mgid = 12;
       clear();
     }
 
     void
-    DevCalibrationControl::clear(void)
+    DevCalibrationControl::clear()
     {
       op = 0;
     }
@@ -587,7 +587,7 @@ namespace DUNE
     }
 
     int
-    DevCalibrationControl::validate(void) const
+    DevCalibrationControl::validate() const
     {
       return true;
     }
@@ -622,14 +622,14 @@ namespace DUNE
       IMC::toJSON(os__, "op", op, nindent__);
     }
 
-    DevCalibrationState::DevCalibrationState(void)
+    DevCalibrationState::DevCalibrationState()
     {
       m_header.mgid = 13;
       clear();
     }
 
     void
-    DevCalibrationState::clear(void)
+    DevCalibrationState::clear()
     {
       total_steps = 0;
       step_number = 0;
@@ -649,7 +649,7 @@ namespace DUNE
     }
 
     int
-    DevCalibrationState::validate(void) const
+    DevCalibrationState::validate() const
     {
       return true;
     }
@@ -696,14 +696,14 @@ namespace DUNE
       IMC::toJSON(os__, "flags", flags, nindent__);
     }
 
-    EntityActivationState::EntityActivationState(void)
+    EntityActivationState::EntityActivationState()
     {
       m_header.mgid = 14;
       clear();
     }
 
     void
-    EntityActivationState::clear(void)
+    EntityActivationState::clear()
     {
       state = 0;
       error.clear();
@@ -719,7 +719,7 @@ namespace DUNE
     }
 
     int
-    EntityActivationState::validate(void) const
+    EntityActivationState::validate() const
     {
       return true;
     }
@@ -758,19 +758,19 @@ namespace DUNE
       IMC::toJSON(os__, "error", error, nindent__);
     }
 
-    QueryEntityActivationState::QueryEntityActivationState(void)
+    QueryEntityActivationState::QueryEntityActivationState()
     {
       m_header.mgid = 15;
       clear();
     }
 
     void
-    QueryEntityActivationState::clear(void)
+    QueryEntityActivationState::clear()
     {
     }
 
     int
-    QueryEntityActivationState::validate(void) const
+    QueryEntityActivationState::validate() const
     {
       return true;
     }
@@ -797,14 +797,14 @@ namespace DUNE
       return 0;
     }
 
-    VehicleOperationalLimits::VehicleOperationalLimits(void)
+    VehicleOperationalLimits::VehicleOperationalLimits()
     {
       m_header.mgid = 16;
       clear();
     }
 
     void
-    VehicleOperationalLimits::clear(void)
+    VehicleOperationalLimits::clear()
     {
       op = 0;
       speed_min = 0;
@@ -852,7 +852,7 @@ namespace DUNE
     }
 
     int
-    VehicleOperationalLimits::validate(void) const
+    VehicleOperationalLimits::validate() const
     {
       if (speed_min < 0) return false;
       if (speed_max < 0) return false;
@@ -970,7 +970,7 @@ namespace DUNE
       IMC::toJSON(os__, "rpm_rate_max", rpm_rate_max, nindent__);
     }
 
-    MsgList::MsgList(void)
+    MsgList::MsgList()
     {
       m_header.mgid = 20;
       clear();
@@ -978,7 +978,7 @@ namespace DUNE
     }
 
     void
-    MsgList::clear(void)
+    MsgList::clear()
     {
       msgs.clear();
     }
@@ -992,7 +992,7 @@ namespace DUNE
     }
 
     int
-    MsgList::validate(void) const
+    MsgList::validate() const
     {
       return true;
     }
@@ -1057,14 +1057,14 @@ namespace DUNE
       msgs.setDestinationEntity(value__);
     }
 
-    SimulatedState::SimulatedState(void)
+    SimulatedState::SimulatedState()
     {
       m_header.mgid = 50;
       clear();
     }
 
     void
-    SimulatedState::clear(void)
+    SimulatedState::clear()
     {
       lat = 0;
       lon = 0;
@@ -1112,7 +1112,7 @@ namespace DUNE
     }
 
     int
-    SimulatedState::validate(void) const
+    SimulatedState::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -1223,14 +1223,14 @@ namespace DUNE
       IMC::toJSON(os__, "svz", svz, nindent__);
     }
 
-    LeakSimulation::LeakSimulation(void)
+    LeakSimulation::LeakSimulation()
     {
       m_header.mgid = 51;
       clear();
     }
 
     void
-    LeakSimulation::clear(void)
+    LeakSimulation::clear()
     {
       op = 0;
       entities.clear();
@@ -1246,7 +1246,7 @@ namespace DUNE
     }
 
     int
-    LeakSimulation::validate(void) const
+    LeakSimulation::validate() const
     {
       return true;
     }
@@ -1285,14 +1285,14 @@ namespace DUNE
       IMC::toJSON(os__, "entities", entities, nindent__);
     }
 
-    UASimulation::UASimulation(void)
+    UASimulation::UASimulation()
     {
       m_header.mgid = 52;
       clear();
     }
 
     void
-    UASimulation::clear(void)
+    UASimulation::clear()
     {
       type = 0;
       speed = 0;
@@ -1310,7 +1310,7 @@ namespace DUNE
     }
 
     int
-    UASimulation::validate(void) const
+    UASimulation::validate() const
     {
       return true;
     }
@@ -1353,14 +1353,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    DynamicsSimParam::DynamicsSimParam(void)
+    DynamicsSimParam::DynamicsSimParam()
     {
       m_header.mgid = 53;
       clear();
     }
 
     void
-    DynamicsSimParam::clear(void)
+    DynamicsSimParam::clear()
     {
       op = 0;
       tas2acc_pgain = 0;
@@ -1378,7 +1378,7 @@ namespace DUNE
     }
 
     int
-    DynamicsSimParam::validate(void) const
+    DynamicsSimParam::validate() const
     {
       return true;
     }
@@ -1421,14 +1421,14 @@ namespace DUNE
       IMC::toJSON(os__, "bank2p_pgain", bank2p_pgain, nindent__);
     }
 
-    StorageUsage::StorageUsage(void)
+    StorageUsage::StorageUsage()
     {
       m_header.mgid = 100;
       clear();
     }
 
     void
-    StorageUsage::clear(void)
+    StorageUsage::clear()
     {
       available = 0;
       value = 0;
@@ -1444,7 +1444,7 @@ namespace DUNE
     }
 
     int
-    StorageUsage::validate(void) const
+    StorageUsage::validate() const
     {
       if (value > 100) return false;
       return true;
@@ -1478,7 +1478,7 @@ namespace DUNE
     }
 
     fp64_t
-    StorageUsage::getValueFP(void) const
+    StorageUsage::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -1496,7 +1496,7 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    CacheControl::CacheControl(void)
+    CacheControl::CacheControl()
     {
       m_header.mgid = 101;
       clear();
@@ -1504,7 +1504,7 @@ namespace DUNE
     }
 
     void
-    CacheControl::clear(void)
+    CacheControl::clear()
     {
       op = 0;
       snapshot.clear();
@@ -1522,7 +1522,7 @@ namespace DUNE
     }
 
     int
-    CacheControl::validate(void) const
+    CacheControl::validate() const
     {
       return true;
     }
@@ -1610,14 +1610,14 @@ namespace DUNE
       }
     }
 
-    LoggingControl::LoggingControl(void)
+    LoggingControl::LoggingControl()
     {
       m_header.mgid = 102;
       clear();
     }
 
     void
-    LoggingControl::clear(void)
+    LoggingControl::clear()
     {
       op = 0;
       name.clear();
@@ -1633,7 +1633,7 @@ namespace DUNE
     }
 
     int
-    LoggingControl::validate(void) const
+    LoggingControl::validate() const
     {
       return true;
     }
@@ -1672,14 +1672,14 @@ namespace DUNE
       IMC::toJSON(os__, "name", name, nindent__);
     }
 
-    LogBookEntry::LogBookEntry(void)
+    LogBookEntry::LogBookEntry()
     {
       m_header.mgid = 103;
       clear();
     }
 
     void
-    LogBookEntry::clear(void)
+    LogBookEntry::clear()
     {
       type = 0;
       htime = 0;
@@ -1699,7 +1699,7 @@ namespace DUNE
     }
 
     int
-    LogBookEntry::validate(void) const
+    LogBookEntry::validate() const
     {
       return true;
     }
@@ -1746,7 +1746,7 @@ namespace DUNE
       IMC::toJSON(os__, "text", text, nindent__);
     }
 
-    LogBookControl::LogBookControl(void)
+    LogBookControl::LogBookControl()
     {
       m_header.mgid = 104;
       clear();
@@ -1754,7 +1754,7 @@ namespace DUNE
     }
 
     void
-    LogBookControl::clear(void)
+    LogBookControl::clear()
     {
       command = 0;
       htime = 0;
@@ -1772,7 +1772,7 @@ namespace DUNE
     }
 
     int
-    LogBookControl::validate(void) const
+    LogBookControl::validate() const
     {
       return true;
     }
@@ -1845,14 +1845,14 @@ namespace DUNE
       msg.setDestinationEntity(value__);
     }
 
-    ReplayControl::ReplayControl(void)
+    ReplayControl::ReplayControl()
     {
       m_header.mgid = 105;
       clear();
     }
 
     void
-    ReplayControl::clear(void)
+    ReplayControl::clear()
     {
       op = 0;
       file.clear();
@@ -1868,7 +1868,7 @@ namespace DUNE
     }
 
     int
-    ReplayControl::validate(void) const
+    ReplayControl::validate() const
     {
       return true;
     }
@@ -1907,14 +1907,14 @@ namespace DUNE
       IMC::toJSON(os__, "file", file, nindent__);
     }
 
-    ClockControl::ClockControl(void)
+    ClockControl::ClockControl()
     {
       m_header.mgid = 106;
       clear();
     }
 
     void
-    ClockControl::clear(void)
+    ClockControl::clear()
     {
       op = 0;
       clock = 0;
@@ -1932,7 +1932,7 @@ namespace DUNE
     }
 
     int
-    ClockControl::validate(void) const
+    ClockControl::validate() const
     {
       if (tz < -23 || tz > 23) return false;
       return true;
@@ -1976,14 +1976,14 @@ namespace DUNE
       IMC::toJSON(os__, "tz", tz, nindent__);
     }
 
-    HistoricCTD::HistoricCTD(void)
+    HistoricCTD::HistoricCTD()
     {
       m_header.mgid = 107;
       clear();
     }
 
     void
-    HistoricCTD::clear(void)
+    HistoricCTD::clear()
     {
       conductivity = 0;
       temperature = 0;
@@ -2001,7 +2001,7 @@ namespace DUNE
     }
 
     int
-    HistoricCTD::validate(void) const
+    HistoricCTD::validate() const
     {
       return true;
     }
@@ -2044,14 +2044,14 @@ namespace DUNE
       IMC::toJSON(os__, "depth", depth, nindent__);
     }
 
-    HistoricTelemetry::HistoricTelemetry(void)
+    HistoricTelemetry::HistoricTelemetry()
     {
       m_header.mgid = 108;
       clear();
     }
 
     void
-    HistoricTelemetry::clear(void)
+    HistoricTelemetry::clear()
     {
       altitude = 0;
       roll = 0;
@@ -2073,7 +2073,7 @@ namespace DUNE
     }
 
     int
-    HistoricTelemetry::validate(void) const
+    HistoricTelemetry::validate() const
     {
       return true;
     }
@@ -2124,14 +2124,14 @@ namespace DUNE
       IMC::toJSON(os__, "speed", speed, nindent__);
     }
 
-    HistoricSonarData::HistoricSonarData(void)
+    HistoricSonarData::HistoricSonarData()
     {
       m_header.mgid = 109;
       clear();
     }
 
     void
-    HistoricSonarData::clear(void)
+    HistoricSonarData::clear()
     {
       altitude = 0;
       width = 0;
@@ -2157,7 +2157,7 @@ namespace DUNE
     }
 
     int
-    HistoricSonarData::validate(void) const
+    HistoricSonarData::validate() const
     {
       return true;
     }
@@ -2216,14 +2216,14 @@ namespace DUNE
       IMC::toJSON(os__, "sonar_data", sonar_data, nindent__);
     }
 
-    HistoricEvent::HistoricEvent(void)
+    HistoricEvent::HistoricEvent()
     {
       m_header.mgid = 110;
       clear();
     }
 
     void
-    HistoricEvent::clear(void)
+    HistoricEvent::clear()
     {
       text.clear();
       type = 0;
@@ -2239,7 +2239,7 @@ namespace DUNE
     }
 
     int
-    HistoricEvent::validate(void) const
+    HistoricEvent::validate() const
     {
       return true;
     }
@@ -2278,14 +2278,14 @@ namespace DUNE
       IMC::toJSON(os__, "type", type, nindent__);
     }
 
-    ProfileSample::ProfileSample(void)
+    ProfileSample::ProfileSample()
     {
       m_header.mgid = 112;
       clear();
     }
 
     void
-    ProfileSample::clear(void)
+    ProfileSample::clear()
     {
       depth = 0;
       avg = 0;
@@ -2301,7 +2301,7 @@ namespace DUNE
     }
 
     int
-    ProfileSample::validate(void) const
+    ProfileSample::validate() const
     {
       return true;
     }
@@ -2340,7 +2340,7 @@ namespace DUNE
       IMC::toJSON(os__, "avg", avg, nindent__);
     }
 
-    VerticalProfile::VerticalProfile(void)
+    VerticalProfile::VerticalProfile()
     {
       m_header.mgid = 111;
       clear();
@@ -2348,7 +2348,7 @@ namespace DUNE
     }
 
     void
-    VerticalProfile::clear(void)
+    VerticalProfile::clear()
     {
       parameter = 0;
       numsamples = 0;
@@ -2370,7 +2370,7 @@ namespace DUNE
     }
 
     int
-    VerticalProfile::validate(void) const
+    VerticalProfile::validate() const
     {
       return true;
     }
@@ -2451,19 +2451,19 @@ namespace DUNE
       samples.setDestinationEntity(value__);
     }
 
-    Heartbeat::Heartbeat(void)
+    Heartbeat::Heartbeat()
     {
       m_header.mgid = 150;
       clear();
     }
 
     void
-    Heartbeat::clear(void)
+    Heartbeat::clear()
     {
     }
 
     int
-    Heartbeat::validate(void) const
+    Heartbeat::validate() const
     {
       return true;
     }
@@ -2490,14 +2490,14 @@ namespace DUNE
       return 0;
     }
 
-    Announce::Announce(void)
+    Announce::Announce()
     {
       m_header.mgid = 151;
       clear();
     }
 
     void
-    Announce::clear(void)
+    Announce::clear()
     {
       sys_name.clear();
       sys_type = 0;
@@ -2523,7 +2523,7 @@ namespace DUNE
     }
 
     int
-    Announce::validate(void) const
+    Announce::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -2584,14 +2584,14 @@ namespace DUNE
       IMC::toJSON(os__, "services", services, nindent__);
     }
 
-    AnnounceService::AnnounceService(void)
+    AnnounceService::AnnounceService()
     {
       m_header.mgid = 152;
       clear();
     }
 
     void
-    AnnounceService::clear(void)
+    AnnounceService::clear()
     {
       service.clear();
       service_type = 0;
@@ -2607,7 +2607,7 @@ namespace DUNE
     }
 
     int
-    AnnounceService::validate(void) const
+    AnnounceService::validate() const
     {
       return true;
     }
@@ -2646,14 +2646,14 @@ namespace DUNE
       IMC::toJSON(os__, "service_type", service_type, nindent__);
     }
 
-    RSSI::RSSI(void)
+    RSSI::RSSI()
     {
       m_header.mgid = 153;
       clear();
     }
 
     void
-    RSSI::clear(void)
+    RSSI::clear()
     {
       value = 0;
     }
@@ -2667,7 +2667,7 @@ namespace DUNE
     }
 
     int
-    RSSI::validate(void) const
+    RSSI::validate() const
     {
       if (value > 100) return false;
       return true;
@@ -2698,7 +2698,7 @@ namespace DUNE
     }
 
     fp64_t
-    RSSI::getValueFP(void) const
+    RSSI::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -2715,14 +2715,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    VSWR::VSWR(void)
+    VSWR::VSWR()
     {
       m_header.mgid = 154;
       clear();
     }
 
     void
-    VSWR::clear(void)
+    VSWR::clear()
     {
       value = 0;
     }
@@ -2736,7 +2736,7 @@ namespace DUNE
     }
 
     int
-    VSWR::validate(void) const
+    VSWR::validate() const
     {
       return true;
     }
@@ -2766,7 +2766,7 @@ namespace DUNE
     }
 
     fp64_t
-    VSWR::getValueFP(void) const
+    VSWR::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -2783,14 +2783,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    LinkLevel::LinkLevel(void)
+    LinkLevel::LinkLevel()
     {
       m_header.mgid = 155;
       clear();
     }
 
     void
-    LinkLevel::clear(void)
+    LinkLevel::clear()
     {
       value = 0;
     }
@@ -2804,7 +2804,7 @@ namespace DUNE
     }
 
     int
-    LinkLevel::validate(void) const
+    LinkLevel::validate() const
     {
       return true;
     }
@@ -2834,7 +2834,7 @@ namespace DUNE
     }
 
     fp64_t
-    LinkLevel::getValueFP(void) const
+    LinkLevel::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -2851,14 +2851,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Sms::Sms(void)
+    Sms::Sms()
     {
       m_header.mgid = 156;
       clear();
     }
 
     void
-    Sms::clear(void)
+    Sms::clear()
     {
       number.clear();
       timeout = 0;
@@ -2876,7 +2876,7 @@ namespace DUNE
     }
 
     int
-    Sms::validate(void) const
+    Sms::validate() const
     {
       return true;
     }
@@ -2919,14 +2919,14 @@ namespace DUNE
       IMC::toJSON(os__, "contents", contents, nindent__);
     }
 
-    SmsTx::SmsTx(void)
+    SmsTx::SmsTx()
     {
       m_header.mgid = 157;
       clear();
     }
 
     void
-    SmsTx::clear(void)
+    SmsTx::clear()
     {
       seq = 0;
       destination.clear();
@@ -2946,7 +2946,7 @@ namespace DUNE
     }
 
     int
-    SmsTx::validate(void) const
+    SmsTx::validate() const
     {
       return true;
     }
@@ -2993,14 +2993,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    SmsRx::SmsRx(void)
+    SmsRx::SmsRx()
     {
       m_header.mgid = 158;
       clear();
     }
 
     void
-    SmsRx::clear(void)
+    SmsRx::clear()
     {
       source.clear();
       data.clear();
@@ -3016,7 +3016,7 @@ namespace DUNE
     }
 
     int
-    SmsRx::validate(void) const
+    SmsRx::validate() const
     {
       return true;
     }
@@ -3055,14 +3055,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    SmsState::SmsState(void)
+    SmsState::SmsState()
     {
       m_header.mgid = 159;
       clear();
     }
 
     void
-    SmsState::clear(void)
+    SmsState::clear()
     {
       seq = 0;
       state = 0;
@@ -3080,7 +3080,7 @@ namespace DUNE
     }
 
     int
-    SmsState::validate(void) const
+    SmsState::validate() const
     {
       return true;
     }
@@ -3123,14 +3123,14 @@ namespace DUNE
       IMC::toJSON(os__, "error", error, nindent__);
     }
 
-    TextMessage::TextMessage(void)
+    TextMessage::TextMessage()
     {
       m_header.mgid = 160;
       clear();
     }
 
     void
-    TextMessage::clear(void)
+    TextMessage::clear()
     {
       origin.clear();
       text.clear();
@@ -3146,7 +3146,7 @@ namespace DUNE
     }
 
     int
-    TextMessage::validate(void) const
+    TextMessage::validate() const
     {
       return true;
     }
@@ -3185,14 +3185,14 @@ namespace DUNE
       IMC::toJSON(os__, "text", text, nindent__);
     }
 
-    IridiumMsgRx::IridiumMsgRx(void)
+    IridiumMsgRx::IridiumMsgRx()
     {
       m_header.mgid = 170;
       clear();
     }
 
     void
-    IridiumMsgRx::clear(void)
+    IridiumMsgRx::clear()
     {
       origin.clear();
       htime = 0;
@@ -3214,7 +3214,7 @@ namespace DUNE
     }
 
     int
-    IridiumMsgRx::validate(void) const
+    IridiumMsgRx::validate() const
     {
       return true;
     }
@@ -3265,14 +3265,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    IridiumMsgTx::IridiumMsgTx(void)
+    IridiumMsgTx::IridiumMsgTx()
     {
       m_header.mgid = 171;
       clear();
     }
 
     void
-    IridiumMsgTx::clear(void)
+    IridiumMsgTx::clear()
     {
       req_id = 0;
       ttl = 0;
@@ -3292,7 +3292,7 @@ namespace DUNE
     }
 
     int
-    IridiumMsgTx::validate(void) const
+    IridiumMsgTx::validate() const
     {
       return true;
     }
@@ -3339,14 +3339,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    IridiumTxStatus::IridiumTxStatus(void)
+    IridiumTxStatus::IridiumTxStatus()
     {
       m_header.mgid = 172;
       clear();
     }
 
     void
-    IridiumTxStatus::clear(void)
+    IridiumTxStatus::clear()
     {
       req_id = 0;
       status = 0;
@@ -3364,7 +3364,7 @@ namespace DUNE
     }
 
     int
-    IridiumTxStatus::validate(void) const
+    IridiumTxStatus::validate() const
     {
       return true;
     }
@@ -3407,14 +3407,14 @@ namespace DUNE
       IMC::toJSON(os__, "text", text, nindent__);
     }
 
-    GroupMembershipState::GroupMembershipState(void)
+    GroupMembershipState::GroupMembershipState()
     {
       m_header.mgid = 180;
       clear();
     }
 
     void
-    GroupMembershipState::clear(void)
+    GroupMembershipState::clear()
     {
       group_name.clear();
       links = 0;
@@ -3430,7 +3430,7 @@ namespace DUNE
     }
 
     int
-    GroupMembershipState::validate(void) const
+    GroupMembershipState::validate() const
     {
       return true;
     }
@@ -3469,14 +3469,14 @@ namespace DUNE
       IMC::toJSON(os__, "links", links, nindent__);
     }
 
-    SystemGroup::SystemGroup(void)
+    SystemGroup::SystemGroup()
     {
       m_header.mgid = 181;
       clear();
     }
 
     void
-    SystemGroup::clear(void)
+    SystemGroup::clear()
     {
       groupname.clear();
       action = 0;
@@ -3494,7 +3494,7 @@ namespace DUNE
     }
 
     int
-    SystemGroup::validate(void) const
+    SystemGroup::validate() const
     {
       return true;
     }
@@ -3537,14 +3537,14 @@ namespace DUNE
       IMC::toJSON(os__, "grouplist", grouplist, nindent__);
     }
 
-    LinkLatency::LinkLatency(void)
+    LinkLatency::LinkLatency()
     {
       m_header.mgid = 182;
       clear();
     }
 
     void
-    LinkLatency::clear(void)
+    LinkLatency::clear()
     {
       value = 0;
       sys_src = 0;
@@ -3560,7 +3560,7 @@ namespace DUNE
     }
 
     int
-    LinkLatency::validate(void) const
+    LinkLatency::validate() const
     {
       if (value < 0) return false;
       return true;
@@ -3594,7 +3594,7 @@ namespace DUNE
     }
 
     fp64_t
-    LinkLatency::getValueFP(void) const
+    LinkLatency::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -3612,14 +3612,14 @@ namespace DUNE
       IMC::toJSON(os__, "sys_src", sys_src, nindent__);
     }
 
-    ExtendedRSSI::ExtendedRSSI(void)
+    ExtendedRSSI::ExtendedRSSI()
     {
       m_header.mgid = 183;
       clear();
     }
 
     void
-    ExtendedRSSI::clear(void)
+    ExtendedRSSI::clear()
     {
       value = 0;
       units = 0;
@@ -3635,7 +3635,7 @@ namespace DUNE
     }
 
     int
-    ExtendedRSSI::validate(void) const
+    ExtendedRSSI::validate() const
     {
       return true;
     }
@@ -3668,7 +3668,7 @@ namespace DUNE
     }
 
     fp64_t
-    ExtendedRSSI::getValueFP(void) const
+    ExtendedRSSI::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -3686,7 +3686,7 @@ namespace DUNE
       IMC::toJSON(os__, "units", units, nindent__);
     }
 
-    HistoricData::HistoricData(void)
+    HistoricData::HistoricData()
     {
       m_header.mgid = 184;
       clear();
@@ -3694,7 +3694,7 @@ namespace DUNE
     }
 
     void
-    HistoricData::clear(void)
+    HistoricData::clear()
     {
       base_lat = 0;
       base_lon = 0;
@@ -3714,7 +3714,7 @@ namespace DUNE
     }
 
     int
-    HistoricData::validate(void) const
+    HistoricData::validate() const
     {
       return true;
     }
@@ -3791,14 +3791,14 @@ namespace DUNE
       data.setDestinationEntity(value__);
     }
 
-    CompressedHistory::CompressedHistory(void)
+    CompressedHistory::CompressedHistory()
     {
       m_header.mgid = 185;
       clear();
     }
 
     void
-    CompressedHistory::clear(void)
+    CompressedHistory::clear()
     {
       base_lat = 0;
       base_lon = 0;
@@ -3818,7 +3818,7 @@ namespace DUNE
     }
 
     int
-    CompressedHistory::validate(void) const
+    CompressedHistory::validate() const
     {
       return true;
     }
@@ -3865,7 +3865,7 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    HistoricSample::HistoricSample(void)
+    HistoricSample::HistoricSample()
     {
       m_header.mgid = 186;
       clear();
@@ -3873,7 +3873,7 @@ namespace DUNE
     }
 
     void
-    HistoricSample::clear(void)
+    HistoricSample::clear()
     {
       sys_id = 0;
       priority = 0;
@@ -3899,7 +3899,7 @@ namespace DUNE
     }
 
     int
-    HistoricSample::validate(void) const
+    HistoricSample::validate() const
     {
       return true;
     }
@@ -4003,7 +4003,7 @@ namespace DUNE
       }
     }
 
-    HistoricDataQuery::HistoricDataQuery(void)
+    HistoricDataQuery::HistoricDataQuery()
     {
       m_header.mgid = 187;
       clear();
@@ -4011,7 +4011,7 @@ namespace DUNE
     }
 
     void
-    HistoricDataQuery::clear(void)
+    HistoricDataQuery::clear()
     {
       req_id = 0;
       type = 0;
@@ -4031,7 +4031,7 @@ namespace DUNE
     }
 
     int
-    HistoricDataQuery::validate(void) const
+    HistoricDataQuery::validate() const
     {
       return true;
     }
@@ -4123,7 +4123,7 @@ namespace DUNE
       }
     }
 
-    RemoteCommand::RemoteCommand(void)
+    RemoteCommand::RemoteCommand()
     {
       m_header.mgid = 188;
       clear();
@@ -4131,7 +4131,7 @@ namespace DUNE
     }
 
     void
-    RemoteCommand::clear(void)
+    RemoteCommand::clear()
     {
       original_source = 0;
       destination = 0;
@@ -4151,7 +4151,7 @@ namespace DUNE
     }
 
     int
-    RemoteCommand::validate(void) const
+    RemoteCommand::validate() const
     {
       return true;
     }
@@ -4243,14 +4243,14 @@ namespace DUNE
       }
     }
 
-    CommSystemsQuery::CommSystemsQuery(void)
+    CommSystemsQuery::CommSystemsQuery()
     {
       m_header.mgid = 189;
       clear();
     }
 
     void
-    CommSystemsQuery::clear(void)
+    CommSystemsQuery::clear()
     {
       type = 0;
       comm_interface = 0;
@@ -4270,7 +4270,7 @@ namespace DUNE
     }
 
     int
-    CommSystemsQuery::validate(void) const
+    CommSystemsQuery::validate() const
     {
       return true;
     }
@@ -4317,14 +4317,14 @@ namespace DUNE
       IMC::toJSON(os__, "list", list, nindent__);
     }
 
-    TelemetryMsg::TelemetryMsg(void)
+    TelemetryMsg::TelemetryMsg()
     {
       m_header.mgid = 190;
       clear();
     }
 
     void
-    TelemetryMsg::clear(void)
+    TelemetryMsg::clear()
     {
       type = 0;
       req_id = 0;
@@ -4354,7 +4354,7 @@ namespace DUNE
     }
 
     int
-    TelemetryMsg::validate(void) const
+    TelemetryMsg::validate() const
     {
       return true;
     }
@@ -4421,14 +4421,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    LblRange::LblRange(void)
+    LblRange::LblRange()
     {
       m_header.mgid = 200;
       clear();
     }
 
     void
-    LblRange::clear(void)
+    LblRange::clear()
     {
       id = 0;
       range = 0;
@@ -4444,7 +4444,7 @@ namespace DUNE
     }
 
     int
-    LblRange::validate(void) const
+    LblRange::validate() const
     {
       return true;
     }
@@ -4477,7 +4477,7 @@ namespace DUNE
     }
 
     uint16_t
-    LblRange::getSubId(void) const
+    LblRange::getSubId() const
     {
       return id;
     }
@@ -4495,14 +4495,14 @@ namespace DUNE
       IMC::toJSON(os__, "range", range, nindent__);
     }
 
-    LblBeacon::LblBeacon(void)
+    LblBeacon::LblBeacon()
     {
       m_header.mgid = 202;
       clear();
     }
 
     void
-    LblBeacon::clear(void)
+    LblBeacon::clear()
     {
       beacon.clear();
       lat = 0;
@@ -4528,7 +4528,7 @@ namespace DUNE
     }
 
     int
-    LblBeacon::validate(void) const
+    LblBeacon::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -4589,7 +4589,7 @@ namespace DUNE
       IMC::toJSON(os__, "transponder_delay", transponder_delay, nindent__);
     }
 
-    LblConfig::LblConfig(void)
+    LblConfig::LblConfig()
     {
       m_header.mgid = 203;
       clear();
@@ -4597,7 +4597,7 @@ namespace DUNE
     }
 
     void
-    LblConfig::clear(void)
+    LblConfig::clear()
     {
       op = 0;
       beacons.clear();
@@ -4613,7 +4613,7 @@ namespace DUNE
     }
 
     int
-    LblConfig::validate(void) const
+    LblConfig::validate() const
     {
       return true;
     }
@@ -4682,7 +4682,7 @@ namespace DUNE
       beacons.setDestinationEntity(value__);
     }
 
-    AcousticMessage::AcousticMessage(void)
+    AcousticMessage::AcousticMessage()
     {
       m_header.mgid = 206;
       clear();
@@ -4690,7 +4690,7 @@ namespace DUNE
     }
 
     void
-    AcousticMessage::clear(void)
+    AcousticMessage::clear()
     {
       message.clear();
     }
@@ -4704,7 +4704,7 @@ namespace DUNE
     }
 
     int
-    AcousticMessage::validate(void) const
+    AcousticMessage::validate() const
     {
       return true;
     }
@@ -4784,7 +4784,7 @@ namespace DUNE
       }
     }
 
-    AcousticOperation::AcousticOperation(void)
+    AcousticOperation::AcousticOperation()
     {
       m_header.mgid = 211;
       clear();
@@ -4792,7 +4792,7 @@ namespace DUNE
     }
 
     void
-    AcousticOperation::clear(void)
+    AcousticOperation::clear()
     {
       op = 0;
       system.clear();
@@ -4812,7 +4812,7 @@ namespace DUNE
     }
 
     int
-    AcousticOperation::validate(void) const
+    AcousticOperation::validate() const
     {
       return true;
     }
@@ -4904,19 +4904,19 @@ namespace DUNE
       }
     }
 
-    AcousticSystemsQuery::AcousticSystemsQuery(void)
+    AcousticSystemsQuery::AcousticSystemsQuery()
     {
       m_header.mgid = 212;
       clear();
     }
 
     void
-    AcousticSystemsQuery::clear(void)
+    AcousticSystemsQuery::clear()
     {
     }
 
     int
-    AcousticSystemsQuery::validate(void) const
+    AcousticSystemsQuery::validate() const
     {
       return true;
     }
@@ -4943,14 +4943,14 @@ namespace DUNE
       return 0;
     }
 
-    AcousticSystems::AcousticSystems(void)
+    AcousticSystems::AcousticSystems()
     {
       m_header.mgid = 213;
       clear();
     }
 
     void
-    AcousticSystems::clear(void)
+    AcousticSystems::clear()
     {
       list.clear();
     }
@@ -4964,7 +4964,7 @@ namespace DUNE
     }
 
     int
-    AcousticSystems::validate(void) const
+    AcousticSystems::validate() const
     {
       return true;
     }
@@ -4999,14 +4999,14 @@ namespace DUNE
       IMC::toJSON(os__, "list", list, nindent__);
     }
 
-    AcousticLink::AcousticLink(void)
+    AcousticLink::AcousticLink()
     {
       m_header.mgid = 214;
       clear();
     }
 
     void
-    AcousticLink::clear(void)
+    AcousticLink::clear()
     {
       peer.clear();
       rssi = 0;
@@ -5024,7 +5024,7 @@ namespace DUNE
     }
 
     int
-    AcousticLink::validate(void) const
+    AcousticLink::validate() const
     {
       return true;
     }
@@ -5067,14 +5067,14 @@ namespace DUNE
       IMC::toJSON(os__, "integrity", integrity, nindent__);
     }
 
-    Rpm::Rpm(void)
+    Rpm::Rpm()
     {
       m_header.mgid = 250;
       clear();
     }
 
     void
-    Rpm::clear(void)
+    Rpm::clear()
     {
       value = 0;
     }
@@ -5088,7 +5088,7 @@ namespace DUNE
     }
 
     int
-    Rpm::validate(void) const
+    Rpm::validate() const
     {
       return true;
     }
@@ -5118,7 +5118,7 @@ namespace DUNE
     }
 
     fp64_t
-    Rpm::getValueFP(void) const
+    Rpm::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -5135,14 +5135,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Voltage::Voltage(void)
+    Voltage::Voltage()
     {
       m_header.mgid = 251;
       clear();
     }
 
     void
-    Voltage::clear(void)
+    Voltage::clear()
     {
       value = 0;
     }
@@ -5156,7 +5156,7 @@ namespace DUNE
     }
 
     int
-    Voltage::validate(void) const
+    Voltage::validate() const
     {
       return true;
     }
@@ -5186,7 +5186,7 @@ namespace DUNE
     }
 
     fp64_t
-    Voltage::getValueFP(void) const
+    Voltage::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -5203,14 +5203,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Current::Current(void)
+    Current::Current()
     {
       m_header.mgid = 252;
       clear();
     }
 
     void
-    Current::clear(void)
+    Current::clear()
     {
       value = 0;
     }
@@ -5224,7 +5224,7 @@ namespace DUNE
     }
 
     int
-    Current::validate(void) const
+    Current::validate() const
     {
       return true;
     }
@@ -5254,7 +5254,7 @@ namespace DUNE
     }
 
     fp64_t
-    Current::getValueFP(void) const
+    Current::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -5271,14 +5271,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    GpsFix::GpsFix(void)
+    GpsFix::GpsFix()
     {
       m_header.mgid = 253;
       clear();
     }
 
     void
-    GpsFix::clear(void)
+    GpsFix::clear()
     {
       validity = 0;
       type = 0;
@@ -5322,7 +5322,7 @@ namespace DUNE
     }
 
     int
-    GpsFix::validate(void) const
+    GpsFix::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -5419,14 +5419,14 @@ namespace DUNE
       IMC::toJSON(os__, "vacc", vacc, nindent__);
     }
 
-    EulerAngles::EulerAngles(void)
+    EulerAngles::EulerAngles()
     {
       m_header.mgid = 254;
       clear();
     }
 
     void
-    EulerAngles::clear(void)
+    EulerAngles::clear()
     {
       time = 0;
       phi = 0;
@@ -5448,7 +5448,7 @@ namespace DUNE
     }
 
     int
-    EulerAngles::validate(void) const
+    EulerAngles::validate() const
     {
       if (phi < -3.141592653589793 || phi > 3.141592653589793) return false;
       if (theta < -1.57079632679490 || theta > 1.57079632679490) return false;
@@ -5503,14 +5503,14 @@ namespace DUNE
       IMC::toJSON(os__, "psi_magnetic", psi_magnetic, nindent__);
     }
 
-    EulerAnglesDelta::EulerAnglesDelta(void)
+    EulerAnglesDelta::EulerAnglesDelta()
     {
       m_header.mgid = 255;
       clear();
     }
 
     void
-    EulerAnglesDelta::clear(void)
+    EulerAnglesDelta::clear()
     {
       time = 0;
       x = 0;
@@ -5532,7 +5532,7 @@ namespace DUNE
     }
 
     int
-    EulerAnglesDelta::validate(void) const
+    EulerAnglesDelta::validate() const
     {
       return true;
     }
@@ -5583,14 +5583,14 @@ namespace DUNE
       IMC::toJSON(os__, "timestep", timestep, nindent__);
     }
 
-    AngularVelocity::AngularVelocity(void)
+    AngularVelocity::AngularVelocity()
     {
       m_header.mgid = 256;
       clear();
     }
 
     void
-    AngularVelocity::clear(void)
+    AngularVelocity::clear()
     {
       time = 0;
       x = 0;
@@ -5610,7 +5610,7 @@ namespace DUNE
     }
 
     int
-    AngularVelocity::validate(void) const
+    AngularVelocity::validate() const
     {
       return true;
     }
@@ -5657,14 +5657,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    Acceleration::Acceleration(void)
+    Acceleration::Acceleration()
     {
       m_header.mgid = 257;
       clear();
     }
 
     void
-    Acceleration::clear(void)
+    Acceleration::clear()
     {
       time = 0;
       x = 0;
@@ -5684,7 +5684,7 @@ namespace DUNE
     }
 
     int
-    Acceleration::validate(void) const
+    Acceleration::validate() const
     {
       return true;
     }
@@ -5731,14 +5731,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    MagneticField::MagneticField(void)
+    MagneticField::MagneticField()
     {
       m_header.mgid = 258;
       clear();
     }
 
     void
-    MagneticField::clear(void)
+    MagneticField::clear()
     {
       time = 0;
       x = 0;
@@ -5758,7 +5758,7 @@ namespace DUNE
     }
 
     int
-    MagneticField::validate(void) const
+    MagneticField::validate() const
     {
       return true;
     }
@@ -5805,14 +5805,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    GroundVelocity::GroundVelocity(void)
+    GroundVelocity::GroundVelocity()
     {
       m_header.mgid = 259;
       clear();
     }
 
     void
-    GroundVelocity::clear(void)
+    GroundVelocity::clear()
     {
       validity = 0;
       x = 0;
@@ -5832,7 +5832,7 @@ namespace DUNE
     }
 
     int
-    GroundVelocity::validate(void) const
+    GroundVelocity::validate() const
     {
       return true;
     }
@@ -5879,14 +5879,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    WaterVelocity::WaterVelocity(void)
+    WaterVelocity::WaterVelocity()
     {
       m_header.mgid = 260;
       clear();
     }
 
     void
-    WaterVelocity::clear(void)
+    WaterVelocity::clear()
     {
       validity = 0;
       x = 0;
@@ -5906,7 +5906,7 @@ namespace DUNE
     }
 
     int
-    WaterVelocity::validate(void) const
+    WaterVelocity::validate() const
     {
       return true;
     }
@@ -5953,14 +5953,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    VelocityDelta::VelocityDelta(void)
+    VelocityDelta::VelocityDelta()
     {
       m_header.mgid = 261;
       clear();
     }
 
     void
-    VelocityDelta::clear(void)
+    VelocityDelta::clear()
     {
       time = 0;
       x = 0;
@@ -5980,7 +5980,7 @@ namespace DUNE
     }
 
     int
-    VelocityDelta::validate(void) const
+    VelocityDelta::validate() const
     {
       return true;
     }
@@ -6027,14 +6027,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    DeviceState::DeviceState(void)
+    DeviceState::DeviceState()
     {
       m_header.mgid = 282;
       clear();
     }
 
     void
-    DeviceState::clear(void)
+    DeviceState::clear()
     {
       x = 0;
       y = 0;
@@ -6058,7 +6058,7 @@ namespace DUNE
     }
 
     int
-    DeviceState::validate(void) const
+    DeviceState::validate() const
     {
       return true;
     }
@@ -6113,14 +6113,14 @@ namespace DUNE
       IMC::toJSON(os__, "psi", psi, nindent__);
     }
 
-    BeamConfig::BeamConfig(void)
+    BeamConfig::BeamConfig()
     {
       m_header.mgid = 283;
       clear();
     }
 
     void
-    BeamConfig::clear(void)
+    BeamConfig::clear()
     {
       beam_width = 0;
       beam_height = 0;
@@ -6136,7 +6136,7 @@ namespace DUNE
     }
 
     int
-    BeamConfig::validate(void) const
+    BeamConfig::validate() const
     {
       if (beam_width < 0 || beam_width > 3.141592653589793) return false;
       if (beam_height < 0 || beam_height > 3.141592653589793) return false;
@@ -6177,7 +6177,7 @@ namespace DUNE
       IMC::toJSON(os__, "beam_height", beam_height, nindent__);
     }
 
-    Distance::Distance(void)
+    Distance::Distance()
     {
       m_header.mgid = 262;
       clear();
@@ -6186,7 +6186,7 @@ namespace DUNE
     }
 
     void
-    Distance::clear(void)
+    Distance::clear()
     {
       validity = 0;
       location.clear();
@@ -6206,7 +6206,7 @@ namespace DUNE
     }
 
     int
-    Distance::validate(void) const
+    Distance::validate() const
     {
       return true;
     }
@@ -6245,7 +6245,7 @@ namespace DUNE
     }
 
     fp64_t
-    Distance::getValueFP(void) const
+    Distance::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6305,14 +6305,14 @@ namespace DUNE
       beam_config.setDestinationEntity(value__);
     }
 
-    Temperature::Temperature(void)
+    Temperature::Temperature()
     {
       m_header.mgid = 263;
       clear();
     }
 
     void
-    Temperature::clear(void)
+    Temperature::clear()
     {
       value = 0;
     }
@@ -6326,7 +6326,7 @@ namespace DUNE
     }
 
     int
-    Temperature::validate(void) const
+    Temperature::validate() const
     {
       return true;
     }
@@ -6356,7 +6356,7 @@ namespace DUNE
     }
 
     fp64_t
-    Temperature::getValueFP(void) const
+    Temperature::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6373,14 +6373,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Pressure::Pressure(void)
+    Pressure::Pressure()
     {
       m_header.mgid = 264;
       clear();
     }
 
     void
-    Pressure::clear(void)
+    Pressure::clear()
     {
       value = 0;
     }
@@ -6394,7 +6394,7 @@ namespace DUNE
     }
 
     int
-    Pressure::validate(void) const
+    Pressure::validate() const
     {
       return true;
     }
@@ -6424,7 +6424,7 @@ namespace DUNE
     }
 
     fp64_t
-    Pressure::getValueFP(void) const
+    Pressure::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6441,14 +6441,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Depth::Depth(void)
+    Depth::Depth()
     {
       m_header.mgid = 265;
       clear();
     }
 
     void
-    Depth::clear(void)
+    Depth::clear()
     {
       value = 0;
     }
@@ -6462,7 +6462,7 @@ namespace DUNE
     }
 
     int
-    Depth::validate(void) const
+    Depth::validate() const
     {
       return true;
     }
@@ -6492,7 +6492,7 @@ namespace DUNE
     }
 
     fp64_t
-    Depth::getValueFP(void) const
+    Depth::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6509,14 +6509,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DepthOffset::DepthOffset(void)
+    DepthOffset::DepthOffset()
     {
       m_header.mgid = 266;
       clear();
     }
 
     void
-    DepthOffset::clear(void)
+    DepthOffset::clear()
     {
       value = 0;
     }
@@ -6530,7 +6530,7 @@ namespace DUNE
     }
 
     int
-    DepthOffset::validate(void) const
+    DepthOffset::validate() const
     {
       return true;
     }
@@ -6560,7 +6560,7 @@ namespace DUNE
     }
 
     fp64_t
-    DepthOffset::getValueFP(void) const
+    DepthOffset::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6577,14 +6577,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    SoundSpeed::SoundSpeed(void)
+    SoundSpeed::SoundSpeed()
     {
       m_header.mgid = 267;
       clear();
     }
 
     void
-    SoundSpeed::clear(void)
+    SoundSpeed::clear()
     {
       value = 0;
     }
@@ -6598,7 +6598,7 @@ namespace DUNE
     }
 
     int
-    SoundSpeed::validate(void) const
+    SoundSpeed::validate() const
     {
       return true;
     }
@@ -6628,7 +6628,7 @@ namespace DUNE
     }
 
     fp64_t
-    SoundSpeed::getValueFP(void) const
+    SoundSpeed::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6645,14 +6645,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    WaterDensity::WaterDensity(void)
+    WaterDensity::WaterDensity()
     {
       m_header.mgid = 268;
       clear();
     }
 
     void
-    WaterDensity::clear(void)
+    WaterDensity::clear()
     {
       value = 0;
     }
@@ -6666,7 +6666,7 @@ namespace DUNE
     }
 
     int
-    WaterDensity::validate(void) const
+    WaterDensity::validate() const
     {
       return true;
     }
@@ -6696,7 +6696,7 @@ namespace DUNE
     }
 
     fp64_t
-    WaterDensity::getValueFP(void) const
+    WaterDensity::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6713,14 +6713,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Conductivity::Conductivity(void)
+    Conductivity::Conductivity()
     {
       m_header.mgid = 269;
       clear();
     }
 
     void
-    Conductivity::clear(void)
+    Conductivity::clear()
     {
       value = 0;
     }
@@ -6734,7 +6734,7 @@ namespace DUNE
     }
 
     int
-    Conductivity::validate(void) const
+    Conductivity::validate() const
     {
       return true;
     }
@@ -6764,7 +6764,7 @@ namespace DUNE
     }
 
     fp64_t
-    Conductivity::getValueFP(void) const
+    Conductivity::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6781,14 +6781,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Salinity::Salinity(void)
+    Salinity::Salinity()
     {
       m_header.mgid = 270;
       clear();
     }
 
     void
-    Salinity::clear(void)
+    Salinity::clear()
     {
       value = 0;
     }
@@ -6802,7 +6802,7 @@ namespace DUNE
     }
 
     int
-    Salinity::validate(void) const
+    Salinity::validate() const
     {
       return true;
     }
@@ -6832,7 +6832,7 @@ namespace DUNE
     }
 
     fp64_t
-    Salinity::getValueFP(void) const
+    Salinity::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6849,14 +6849,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    WindSpeed::WindSpeed(void)
+    WindSpeed::WindSpeed()
     {
       m_header.mgid = 271;
       clear();
     }
 
     void
-    WindSpeed::clear(void)
+    WindSpeed::clear()
     {
       direction = 0;
       speed = 0;
@@ -6874,7 +6874,7 @@ namespace DUNE
     }
 
     int
-    WindSpeed::validate(void) const
+    WindSpeed::validate() const
     {
       return true;
     }
@@ -6917,14 +6917,14 @@ namespace DUNE
       IMC::toJSON(os__, "turbulence", turbulence, nindent__);
     }
 
-    RelativeHumidity::RelativeHumidity(void)
+    RelativeHumidity::RelativeHumidity()
     {
       m_header.mgid = 272;
       clear();
     }
 
     void
-    RelativeHumidity::clear(void)
+    RelativeHumidity::clear()
     {
       value = 0;
     }
@@ -6938,7 +6938,7 @@ namespace DUNE
     }
 
     int
-    RelativeHumidity::validate(void) const
+    RelativeHumidity::validate() const
     {
       if (value < 0 || value > 100) return false;
       return true;
@@ -6969,7 +6969,7 @@ namespace DUNE
     }
 
     fp64_t
-    RelativeHumidity::getValueFP(void) const
+    RelativeHumidity::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -6986,14 +6986,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DevDataText::DevDataText(void)
+    DevDataText::DevDataText()
     {
       m_header.mgid = 273;
       clear();
     }
 
     void
-    DevDataText::clear(void)
+    DevDataText::clear()
     {
       value.clear();
     }
@@ -7007,7 +7007,7 @@ namespace DUNE
     }
 
     int
-    DevDataText::validate(void) const
+    DevDataText::validate() const
     {
       return true;
     }
@@ -7042,14 +7042,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DevDataBinary::DevDataBinary(void)
+    DevDataBinary::DevDataBinary()
     {
       m_header.mgid = 274;
       clear();
     }
 
     void
-    DevDataBinary::clear(void)
+    DevDataBinary::clear()
     {
       value.clear();
     }
@@ -7063,7 +7063,7 @@ namespace DUNE
     }
 
     int
-    DevDataBinary::validate(void) const
+    DevDataBinary::validate() const
     {
       return true;
     }
@@ -7098,14 +7098,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Force::Force(void)
+    Force::Force()
     {
       m_header.mgid = 275;
       clear();
     }
 
     void
-    Force::clear(void)
+    Force::clear()
     {
       value = 0;
     }
@@ -7119,7 +7119,7 @@ namespace DUNE
     }
 
     int
-    Force::validate(void) const
+    Force::validate() const
     {
       return true;
     }
@@ -7149,7 +7149,7 @@ namespace DUNE
     }
 
     fp64_t
-    Force::getValueFP(void) const
+    Force::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -7166,7 +7166,7 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    SonarData::SonarData(void)
+    SonarData::SonarData()
     {
       m_header.mgid = 276;
       clear();
@@ -7174,7 +7174,7 @@ namespace DUNE
     }
 
     void
-    SonarData::clear(void)
+    SonarData::clear()
     {
       type = 0;
       frequency = 0;
@@ -7202,7 +7202,7 @@ namespace DUNE
     }
 
     int
-    SonarData::validate(void) const
+    SonarData::validate() const
     {
       return true;
     }
@@ -7295,19 +7295,19 @@ namespace DUNE
       beam_config.setDestinationEntity(value__);
     }
 
-    Pulse::Pulse(void)
+    Pulse::Pulse()
     {
       m_header.mgid = 277;
       clear();
     }
 
     void
-    Pulse::clear(void)
+    Pulse::clear()
     {
     }
 
     int
-    Pulse::validate(void) const
+    Pulse::validate() const
     {
       return true;
     }
@@ -7334,14 +7334,14 @@ namespace DUNE
       return 0;
     }
 
-    PulseDetectionControl::PulseDetectionControl(void)
+    PulseDetectionControl::PulseDetectionControl()
     {
       m_header.mgid = 278;
       clear();
     }
 
     void
-    PulseDetectionControl::clear(void)
+    PulseDetectionControl::clear()
     {
       op = 0;
     }
@@ -7355,7 +7355,7 @@ namespace DUNE
     }
 
     int
-    PulseDetectionControl::validate(void) const
+    PulseDetectionControl::validate() const
     {
       return true;
     }
@@ -7390,14 +7390,14 @@ namespace DUNE
       IMC::toJSON(os__, "op", op, nindent__);
     }
 
-    FuelLevel::FuelLevel(void)
+    FuelLevel::FuelLevel()
     {
       m_header.mgid = 279;
       clear();
     }
 
     void
-    FuelLevel::clear(void)
+    FuelLevel::clear()
     {
       value = 0;
       confidence = 0;
@@ -7415,7 +7415,7 @@ namespace DUNE
     }
 
     int
-    FuelLevel::validate(void) const
+    FuelLevel::validate() const
     {
       if (value < 0 || value > 100) return false;
       if (confidence < 0 || confidence > 100) return false;
@@ -7453,7 +7453,7 @@ namespace DUNE
     }
 
     fp64_t
-    FuelLevel::getValueFP(void) const
+    FuelLevel::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -7472,14 +7472,14 @@ namespace DUNE
       IMC::toJSON(os__, "opmodes", opmodes, nindent__);
     }
 
-    GpsNavData::GpsNavData(void)
+    GpsNavData::GpsNavData()
     {
       m_header.mgid = 280;
       clear();
     }
 
     void
-    GpsNavData::clear(void)
+    GpsNavData::clear()
     {
       itow = 0;
       lat = 0;
@@ -7521,7 +7521,7 @@ namespace DUNE
     }
 
     int
-    GpsNavData::validate(void) const
+    GpsNavData::validate() const
     {
       return true;
     }
@@ -7612,14 +7612,14 @@ namespace DUNE
       IMC::toJSON(os__, "cacc", cacc, nindent__);
     }
 
-    ServoPosition::ServoPosition(void)
+    ServoPosition::ServoPosition()
     {
       m_header.mgid = 281;
       clear();
     }
 
     void
-    ServoPosition::clear(void)
+    ServoPosition::clear()
     {
       id = 0;
       value = 0;
@@ -7635,7 +7635,7 @@ namespace DUNE
     }
 
     int
-    ServoPosition::validate(void) const
+    ServoPosition::validate() const
     {
       if (value < -1.5707963267948966 || value > 1.5707963267948966) return false;
       return true;
@@ -7669,7 +7669,7 @@ namespace DUNE
     }
 
     uint16_t
-    ServoPosition::getSubId(void) const
+    ServoPosition::getSubId() const
     {
       return id;
     }
@@ -7681,7 +7681,7 @@ namespace DUNE
     }
 
     fp64_t
-    ServoPosition::getValueFP(void) const
+    ServoPosition::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -7699,14 +7699,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DataSanity::DataSanity(void)
+    DataSanity::DataSanity()
     {
       m_header.mgid = 284;
       clear();
     }
 
     void
-    DataSanity::clear(void)
+    DataSanity::clear()
     {
       sane = 0;
     }
@@ -7720,7 +7720,7 @@ namespace DUNE
     }
 
     int
-    DataSanity::validate(void) const
+    DataSanity::validate() const
     {
       return true;
     }
@@ -7755,14 +7755,14 @@ namespace DUNE
       IMC::toJSON(os__, "sane", sane, nindent__);
     }
 
-    RhodamineDye::RhodamineDye(void)
+    RhodamineDye::RhodamineDye()
     {
       m_header.mgid = 285;
       clear();
     }
 
     void
-    RhodamineDye::clear(void)
+    RhodamineDye::clear()
     {
       value = 0;
     }
@@ -7776,7 +7776,7 @@ namespace DUNE
     }
 
     int
-    RhodamineDye::validate(void) const
+    RhodamineDye::validate() const
     {
       return true;
     }
@@ -7806,7 +7806,7 @@ namespace DUNE
     }
 
     fp64_t
-    RhodamineDye::getValueFP(void) const
+    RhodamineDye::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -7823,14 +7823,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    CrudeOil::CrudeOil(void)
+    CrudeOil::CrudeOil()
     {
       m_header.mgid = 286;
       clear();
     }
 
     void
-    CrudeOil::clear(void)
+    CrudeOil::clear()
     {
       value = 0;
     }
@@ -7844,7 +7844,7 @@ namespace DUNE
     }
 
     int
-    CrudeOil::validate(void) const
+    CrudeOil::validate() const
     {
       return true;
     }
@@ -7874,7 +7874,7 @@ namespace DUNE
     }
 
     fp64_t
-    CrudeOil::getValueFP(void) const
+    CrudeOil::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -7891,14 +7891,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    FineOil::FineOil(void)
+    FineOil::FineOil()
     {
       m_header.mgid = 287;
       clear();
     }
 
     void
-    FineOil::clear(void)
+    FineOil::clear()
     {
       value = 0;
     }
@@ -7912,7 +7912,7 @@ namespace DUNE
     }
 
     int
-    FineOil::validate(void) const
+    FineOil::validate() const
     {
       return true;
     }
@@ -7942,7 +7942,7 @@ namespace DUNE
     }
 
     fp64_t
-    FineOil::getValueFP(void) const
+    FineOil::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -7959,14 +7959,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Turbidity::Turbidity(void)
+    Turbidity::Turbidity()
     {
       m_header.mgid = 288;
       clear();
     }
 
     void
-    Turbidity::clear(void)
+    Turbidity::clear()
     {
       value = 0;
     }
@@ -7980,7 +7980,7 @@ namespace DUNE
     }
 
     int
-    Turbidity::validate(void) const
+    Turbidity::validate() const
     {
       return true;
     }
@@ -8010,7 +8010,7 @@ namespace DUNE
     }
 
     fp64_t
-    Turbidity::getValueFP(void) const
+    Turbidity::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8027,14 +8027,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Chlorophyll::Chlorophyll(void)
+    Chlorophyll::Chlorophyll()
     {
       m_header.mgid = 289;
       clear();
     }
 
     void
-    Chlorophyll::clear(void)
+    Chlorophyll::clear()
     {
       value = 0;
     }
@@ -8048,7 +8048,7 @@ namespace DUNE
     }
 
     int
-    Chlorophyll::validate(void) const
+    Chlorophyll::validate() const
     {
       return true;
     }
@@ -8078,7 +8078,7 @@ namespace DUNE
     }
 
     fp64_t
-    Chlorophyll::getValueFP(void) const
+    Chlorophyll::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8095,14 +8095,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Fluorescein::Fluorescein(void)
+    Fluorescein::Fluorescein()
     {
       m_header.mgid = 290;
       clear();
     }
 
     void
-    Fluorescein::clear(void)
+    Fluorescein::clear()
     {
       value = 0;
     }
@@ -8116,7 +8116,7 @@ namespace DUNE
     }
 
     int
-    Fluorescein::validate(void) const
+    Fluorescein::validate() const
     {
       return true;
     }
@@ -8146,7 +8146,7 @@ namespace DUNE
     }
 
     fp64_t
-    Fluorescein::getValueFP(void) const
+    Fluorescein::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8163,14 +8163,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Phycocyanin::Phycocyanin(void)
+    Phycocyanin::Phycocyanin()
     {
       m_header.mgid = 291;
       clear();
     }
 
     void
-    Phycocyanin::clear(void)
+    Phycocyanin::clear()
     {
       value = 0;
     }
@@ -8184,7 +8184,7 @@ namespace DUNE
     }
 
     int
-    Phycocyanin::validate(void) const
+    Phycocyanin::validate() const
     {
       return true;
     }
@@ -8214,7 +8214,7 @@ namespace DUNE
     }
 
     fp64_t
-    Phycocyanin::getValueFP(void) const
+    Phycocyanin::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8231,14 +8231,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Phycoerythrin::Phycoerythrin(void)
+    Phycoerythrin::Phycoerythrin()
     {
       m_header.mgid = 292;
       clear();
     }
 
     void
-    Phycoerythrin::clear(void)
+    Phycoerythrin::clear()
     {
       value = 0;
     }
@@ -8252,7 +8252,7 @@ namespace DUNE
     }
 
     int
-    Phycoerythrin::validate(void) const
+    Phycoerythrin::validate() const
     {
       return true;
     }
@@ -8282,7 +8282,7 @@ namespace DUNE
     }
 
     fp64_t
-    Phycoerythrin::getValueFP(void) const
+    Phycoerythrin::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8299,14 +8299,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    GpsFixRtk::GpsFixRtk(void)
+    GpsFixRtk::GpsFixRtk()
     {
       m_header.mgid = 293;
       clear();
     }
 
     void
-    GpsFixRtk::clear(void)
+    GpsFixRtk::clear()
     {
       validity = 0;
       type = 0;
@@ -8348,7 +8348,7 @@ namespace DUNE
     }
 
     int
-    GpsFixRtk::validate(void) const
+    GpsFixRtk::validate() const
     {
       if (base_lat < -1.5707963267948966 || base_lat > 1.5707963267948966) return false;
       if (base_lon < -3.141592653589793 || base_lon > 3.141592653589793) return false;
@@ -8441,14 +8441,14 @@ namespace DUNE
       IMC::toJSON(os__, "iar_ratio", iar_ratio, nindent__);
     }
 
-    EstimatedState::EstimatedState(void)
+    EstimatedState::EstimatedState()
     {
       m_header.mgid = 350;
       clear();
     }
 
     void
-    EstimatedState::clear(void)
+    EstimatedState::clear()
     {
       lat = 0;
       lon = 0;
@@ -8500,7 +8500,7 @@ namespace DUNE
     }
 
     int
-    EstimatedState::validate(void) const
+    EstimatedState::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -8619,7 +8619,7 @@ namespace DUNE
       IMC::toJSON(os__, "alt", alt, nindent__);
     }
 
-    ExternalNavData::ExternalNavData(void)
+    ExternalNavData::ExternalNavData()
     {
       m_header.mgid = 294;
       clear();
@@ -8627,7 +8627,7 @@ namespace DUNE
     }
 
     void
-    ExternalNavData::clear(void)
+    ExternalNavData::clear()
     {
       state.clear();
       type = 0;
@@ -8643,7 +8643,7 @@ namespace DUNE
     }
 
     int
-    ExternalNavData::validate(void) const
+    ExternalNavData::validate() const
     {
       return true;
     }
@@ -8727,14 +8727,14 @@ namespace DUNE
       }
     }
 
-    DissolvedOxygen::DissolvedOxygen(void)
+    DissolvedOxygen::DissolvedOxygen()
     {
       m_header.mgid = 295;
       clear();
     }
 
     void
-    DissolvedOxygen::clear(void)
+    DissolvedOxygen::clear()
     {
       value = 0;
     }
@@ -8748,7 +8748,7 @@ namespace DUNE
     }
 
     int
-    DissolvedOxygen::validate(void) const
+    DissolvedOxygen::validate() const
     {
       return true;
     }
@@ -8778,7 +8778,7 @@ namespace DUNE
     }
 
     fp64_t
-    DissolvedOxygen::getValueFP(void) const
+    DissolvedOxygen::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8795,14 +8795,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    AirSaturation::AirSaturation(void)
+    AirSaturation::AirSaturation()
     {
       m_header.mgid = 296;
       clear();
     }
 
     void
-    AirSaturation::clear(void)
+    AirSaturation::clear()
     {
       value = 0;
     }
@@ -8816,7 +8816,7 @@ namespace DUNE
     }
 
     int
-    AirSaturation::validate(void) const
+    AirSaturation::validate() const
     {
       return true;
     }
@@ -8846,7 +8846,7 @@ namespace DUNE
     }
 
     fp64_t
-    AirSaturation::getValueFP(void) const
+    AirSaturation::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8863,14 +8863,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Throttle::Throttle(void)
+    Throttle::Throttle()
     {
       m_header.mgid = 297;
       clear();
     }
 
     void
-    Throttle::clear(void)
+    Throttle::clear()
     {
       value = 0;
     }
@@ -8884,7 +8884,7 @@ namespace DUNE
     }
 
     int
-    Throttle::validate(void) const
+    Throttle::validate() const
     {
       return true;
     }
@@ -8914,7 +8914,7 @@ namespace DUNE
     }
 
     fp64_t
-    Throttle::getValueFP(void) const
+    Throttle::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8931,14 +8931,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    PH::PH(void)
+    PH::PH()
     {
       m_header.mgid = 298;
       clear();
     }
 
     void
-    PH::clear(void)
+    PH::clear()
     {
       value = 0;
     }
@@ -8952,7 +8952,7 @@ namespace DUNE
     }
 
     int
-    PH::validate(void) const
+    PH::validate() const
     {
       return true;
     }
@@ -8982,7 +8982,7 @@ namespace DUNE
     }
 
     fp64_t
-    PH::getValueFP(void) const
+    PH::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -8999,14 +8999,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Redox::Redox(void)
+    Redox::Redox()
     {
       m_header.mgid = 299;
       clear();
     }
 
     void
-    Redox::clear(void)
+    Redox::clear()
     {
       value = 0;
     }
@@ -9020,7 +9020,7 @@ namespace DUNE
     }
 
     int
-    Redox::validate(void) const
+    Redox::validate() const
     {
       return true;
     }
@@ -9050,7 +9050,7 @@ namespace DUNE
     }
 
     fp64_t
-    Redox::getValueFP(void) const
+    Redox::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -9067,14 +9067,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    CameraZoom::CameraZoom(void)
+    CameraZoom::CameraZoom()
     {
       m_header.mgid = 300;
       clear();
     }
 
     void
-    CameraZoom::clear(void)
+    CameraZoom::clear()
     {
       id = 0;
       zoom = 0;
@@ -9092,7 +9092,7 @@ namespace DUNE
     }
 
     int
-    CameraZoom::validate(void) const
+    CameraZoom::validate() const
     {
       return true;
     }
@@ -9128,7 +9128,7 @@ namespace DUNE
     }
 
     uint16_t
-    CameraZoom::getSubId(void) const
+    CameraZoom::getSubId() const
     {
       return id;
     }
@@ -9147,14 +9147,14 @@ namespace DUNE
       IMC::toJSON(os__, "action", action, nindent__);
     }
 
-    SetThrusterActuation::SetThrusterActuation(void)
+    SetThrusterActuation::SetThrusterActuation()
     {
       m_header.mgid = 301;
       clear();
     }
 
     void
-    SetThrusterActuation::clear(void)
+    SetThrusterActuation::clear()
     {
       id = 0;
       value = 0;
@@ -9170,7 +9170,7 @@ namespace DUNE
     }
 
     int
-    SetThrusterActuation::validate(void) const
+    SetThrusterActuation::validate() const
     {
       if (value < -1 || value > 1) return false;
       return true;
@@ -9204,7 +9204,7 @@ namespace DUNE
     }
 
     uint16_t
-    SetThrusterActuation::getSubId(void) const
+    SetThrusterActuation::getSubId() const
     {
       return id;
     }
@@ -9216,7 +9216,7 @@ namespace DUNE
     }
 
     fp64_t
-    SetThrusterActuation::getValueFP(void) const
+    SetThrusterActuation::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -9234,14 +9234,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    SetServoPosition::SetServoPosition(void)
+    SetServoPosition::SetServoPosition()
     {
       m_header.mgid = 302;
       clear();
     }
 
     void
-    SetServoPosition::clear(void)
+    SetServoPosition::clear()
     {
       id = 0;
       value = 0;
@@ -9257,7 +9257,7 @@ namespace DUNE
     }
 
     int
-    SetServoPosition::validate(void) const
+    SetServoPosition::validate() const
     {
       if (value < -1.5707963267948966 || value > 1.5707963267948966) return false;
       return true;
@@ -9291,7 +9291,7 @@ namespace DUNE
     }
 
     uint16_t
-    SetServoPosition::getSubId(void) const
+    SetServoPosition::getSubId() const
     {
       return id;
     }
@@ -9303,7 +9303,7 @@ namespace DUNE
     }
 
     fp64_t
-    SetServoPosition::getValueFP(void) const
+    SetServoPosition::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -9321,14 +9321,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    SetControlSurfaceDeflection::SetControlSurfaceDeflection(void)
+    SetControlSurfaceDeflection::SetControlSurfaceDeflection()
     {
       m_header.mgid = 303;
       clear();
     }
 
     void
-    SetControlSurfaceDeflection::clear(void)
+    SetControlSurfaceDeflection::clear()
     {
       id = 0;
       angle = 0;
@@ -9344,7 +9344,7 @@ namespace DUNE
     }
 
     int
-    SetControlSurfaceDeflection::validate(void) const
+    SetControlSurfaceDeflection::validate() const
     {
       return true;
     }
@@ -9377,7 +9377,7 @@ namespace DUNE
     }
 
     uint16_t
-    SetControlSurfaceDeflection::getSubId(void) const
+    SetControlSurfaceDeflection::getSubId() const
     {
       return id;
     }
@@ -9395,14 +9395,14 @@ namespace DUNE
       IMC::toJSON(os__, "angle", angle, nindent__);
     }
 
-    RemoteActionsRequest::RemoteActionsRequest(void)
+    RemoteActionsRequest::RemoteActionsRequest()
     {
       m_header.mgid = 304;
       clear();
     }
 
     void
-    RemoteActionsRequest::clear(void)
+    RemoteActionsRequest::clear()
     {
       op = 0;
       actions.clear();
@@ -9418,7 +9418,7 @@ namespace DUNE
     }
 
     int
-    RemoteActionsRequest::validate(void) const
+    RemoteActionsRequest::validate() const
     {
       return true;
     }
@@ -9457,14 +9457,14 @@ namespace DUNE
       IMC::toJSON(os__, "actions", actions, nindent__);
     }
 
-    RemoteActions::RemoteActions(void)
+    RemoteActions::RemoteActions()
     {
       m_header.mgid = 305;
       clear();
     }
 
     void
-    RemoteActions::clear(void)
+    RemoteActions::clear()
     {
       actions.clear();
     }
@@ -9478,7 +9478,7 @@ namespace DUNE
     }
 
     int
-    RemoteActions::validate(void) const
+    RemoteActions::validate() const
     {
       return true;
     }
@@ -9513,14 +9513,14 @@ namespace DUNE
       IMC::toJSON(os__, "actions", actions, nindent__);
     }
 
-    ButtonEvent::ButtonEvent(void)
+    ButtonEvent::ButtonEvent()
     {
       m_header.mgid = 306;
       clear();
     }
 
     void
-    ButtonEvent::clear(void)
+    ButtonEvent::clear()
     {
       button = 0;
       value = 0;
@@ -9536,7 +9536,7 @@ namespace DUNE
     }
 
     int
-    ButtonEvent::validate(void) const
+    ButtonEvent::validate() const
     {
       return true;
     }
@@ -9569,7 +9569,7 @@ namespace DUNE
     }
 
     fp64_t
-    ButtonEvent::getValueFP(void) const
+    ButtonEvent::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -9587,14 +9587,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    LcdControl::LcdControl(void)
+    LcdControl::LcdControl()
     {
       m_header.mgid = 307;
       clear();
     }
 
     void
-    LcdControl::clear(void)
+    LcdControl::clear()
     {
       op = 0;
       text.clear();
@@ -9610,7 +9610,7 @@ namespace DUNE
     }
 
     int
-    LcdControl::validate(void) const
+    LcdControl::validate() const
     {
       return true;
     }
@@ -9649,14 +9649,14 @@ namespace DUNE
       IMC::toJSON(os__, "text", text, nindent__);
     }
 
-    PowerOperation::PowerOperation(void)
+    PowerOperation::PowerOperation()
     {
       m_header.mgid = 308;
       clear();
     }
 
     void
-    PowerOperation::clear(void)
+    PowerOperation::clear()
     {
       op = 0;
       time_remain = 0;
@@ -9674,7 +9674,7 @@ namespace DUNE
     }
 
     int
-    PowerOperation::validate(void) const
+    PowerOperation::validate() const
     {
       return true;
     }
@@ -9717,14 +9717,14 @@ namespace DUNE
       IMC::toJSON(os__, "sched_time", sched_time, nindent__);
     }
 
-    PowerChannelControl::PowerChannelControl(void)
+    PowerChannelControl::PowerChannelControl()
     {
       m_header.mgid = 309;
       clear();
     }
 
     void
-    PowerChannelControl::clear(void)
+    PowerChannelControl::clear()
     {
       name.clear();
       op = 0;
@@ -9742,7 +9742,7 @@ namespace DUNE
     }
 
     int
-    PowerChannelControl::validate(void) const
+    PowerChannelControl::validate() const
     {
       if (op > 6) return false;
       return true;
@@ -9786,19 +9786,19 @@ namespace DUNE
       IMC::toJSON(os__, "sched_time", sched_time, nindent__);
     }
 
-    QueryPowerChannelState::QueryPowerChannelState(void)
+    QueryPowerChannelState::QueryPowerChannelState()
     {
       m_header.mgid = 310;
       clear();
     }
 
     void
-    QueryPowerChannelState::clear(void)
+    QueryPowerChannelState::clear()
     {
     }
 
     int
-    QueryPowerChannelState::validate(void) const
+    QueryPowerChannelState::validate() const
     {
       return true;
     }
@@ -9825,14 +9825,14 @@ namespace DUNE
       return 0;
     }
 
-    PowerChannelState::PowerChannelState(void)
+    PowerChannelState::PowerChannelState()
     {
       m_header.mgid = 311;
       clear();
     }
 
     void
-    PowerChannelState::clear(void)
+    PowerChannelState::clear()
     {
       name.clear();
       state = 0;
@@ -9848,7 +9848,7 @@ namespace DUNE
     }
 
     int
-    PowerChannelState::validate(void) const
+    PowerChannelState::validate() const
     {
       return true;
     }
@@ -9887,14 +9887,14 @@ namespace DUNE
       IMC::toJSON(os__, "state", state, nindent__);
     }
 
-    LedBrightness::LedBrightness(void)
+    LedBrightness::LedBrightness()
     {
       m_header.mgid = 312;
       clear();
     }
 
     void
-    LedBrightness::clear(void)
+    LedBrightness::clear()
     {
       name.clear();
       value = 0;
@@ -9910,7 +9910,7 @@ namespace DUNE
     }
 
     int
-    LedBrightness::validate(void) const
+    LedBrightness::validate() const
     {
       return true;
     }
@@ -9943,7 +9943,7 @@ namespace DUNE
     }
 
     fp64_t
-    LedBrightness::getValueFP(void) const
+    LedBrightness::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -9961,14 +9961,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    QueryLedBrightness::QueryLedBrightness(void)
+    QueryLedBrightness::QueryLedBrightness()
     {
       m_header.mgid = 313;
       clear();
     }
 
     void
-    QueryLedBrightness::clear(void)
+    QueryLedBrightness::clear()
     {
       name.clear();
     }
@@ -9982,7 +9982,7 @@ namespace DUNE
     }
 
     int
-    QueryLedBrightness::validate(void) const
+    QueryLedBrightness::validate() const
     {
       return true;
     }
@@ -10017,14 +10017,14 @@ namespace DUNE
       IMC::toJSON(os__, "name", name, nindent__);
     }
 
-    SetLedBrightness::SetLedBrightness(void)
+    SetLedBrightness::SetLedBrightness()
     {
       m_header.mgid = 314;
       clear();
     }
 
     void
-    SetLedBrightness::clear(void)
+    SetLedBrightness::clear()
     {
       name.clear();
       value = 0;
@@ -10040,7 +10040,7 @@ namespace DUNE
     }
 
     int
-    SetLedBrightness::validate(void) const
+    SetLedBrightness::validate() const
     {
       return true;
     }
@@ -10073,7 +10073,7 @@ namespace DUNE
     }
 
     fp64_t
-    SetLedBrightness::getValueFP(void) const
+    SetLedBrightness::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -10091,14 +10091,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    SetPWM::SetPWM(void)
+    SetPWM::SetPWM()
     {
       m_header.mgid = 315;
       clear();
     }
 
     void
-    SetPWM::clear(void)
+    SetPWM::clear()
     {
       id = 0;
       period = 0;
@@ -10116,7 +10116,7 @@ namespace DUNE
     }
 
     int
-    SetPWM::validate(void) const
+    SetPWM::validate() const
     {
       return true;
     }
@@ -10152,7 +10152,7 @@ namespace DUNE
     }
 
     uint16_t
-    SetPWM::getSubId(void) const
+    SetPWM::getSubId() const
     {
       return id;
     }
@@ -10171,14 +10171,14 @@ namespace DUNE
       IMC::toJSON(os__, "duty_cycle", duty_cycle, nindent__);
     }
 
-    PWM::PWM(void)
+    PWM::PWM()
     {
       m_header.mgid = 316;
       clear();
     }
 
     void
-    PWM::clear(void)
+    PWM::clear()
     {
       id = 0;
       period = 0;
@@ -10196,7 +10196,7 @@ namespace DUNE
     }
 
     int
-    PWM::validate(void) const
+    PWM::validate() const
     {
       return true;
     }
@@ -10232,7 +10232,7 @@ namespace DUNE
     }
 
     uint16_t
-    PWM::getSubId(void) const
+    PWM::getSubId() const
     {
       return id;
     }
@@ -10251,14 +10251,14 @@ namespace DUNE
       IMC::toJSON(os__, "duty_cycle", duty_cycle, nindent__);
     }
 
-    EstimatedStreamVelocity::EstimatedStreamVelocity(void)
+    EstimatedStreamVelocity::EstimatedStreamVelocity()
     {
       m_header.mgid = 351;
       clear();
     }
 
     void
-    EstimatedStreamVelocity::clear(void)
+    EstimatedStreamVelocity::clear()
     {
       x = 0;
       y = 0;
@@ -10276,7 +10276,7 @@ namespace DUNE
     }
 
     int
-    EstimatedStreamVelocity::validate(void) const
+    EstimatedStreamVelocity::validate() const
     {
       return true;
     }
@@ -10319,14 +10319,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    IndicatedSpeed::IndicatedSpeed(void)
+    IndicatedSpeed::IndicatedSpeed()
     {
       m_header.mgid = 352;
       clear();
     }
 
     void
-    IndicatedSpeed::clear(void)
+    IndicatedSpeed::clear()
     {
       value = 0;
     }
@@ -10340,7 +10340,7 @@ namespace DUNE
     }
 
     int
-    IndicatedSpeed::validate(void) const
+    IndicatedSpeed::validate() const
     {
       return true;
     }
@@ -10370,7 +10370,7 @@ namespace DUNE
     }
 
     fp64_t
-    IndicatedSpeed::getValueFP(void) const
+    IndicatedSpeed::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -10387,14 +10387,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    TrueSpeed::TrueSpeed(void)
+    TrueSpeed::TrueSpeed()
     {
       m_header.mgid = 353;
       clear();
     }
 
     void
-    TrueSpeed::clear(void)
+    TrueSpeed::clear()
     {
       value = 0;
     }
@@ -10408,7 +10408,7 @@ namespace DUNE
     }
 
     int
-    TrueSpeed::validate(void) const
+    TrueSpeed::validate() const
     {
       return true;
     }
@@ -10438,7 +10438,7 @@ namespace DUNE
     }
 
     fp64_t
-    TrueSpeed::getValueFP(void) const
+    TrueSpeed::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -10455,14 +10455,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    NavigationUncertainty::NavigationUncertainty(void)
+    NavigationUncertainty::NavigationUncertainty()
     {
       m_header.mgid = 354;
       clear();
     }
 
     void
-    NavigationUncertainty::clear(void)
+    NavigationUncertainty::clear()
     {
       x = 0;
       y = 0;
@@ -10502,7 +10502,7 @@ namespace DUNE
     }
 
     int
-    NavigationUncertainty::validate(void) const
+    NavigationUncertainty::validate() const
     {
       return true;
     }
@@ -10589,14 +10589,14 @@ namespace DUNE
       IMC::toJSON(os__, "bias_r", bias_r, nindent__);
     }
 
-    NavigationData::NavigationData(void)
+    NavigationData::NavigationData()
     {
       m_header.mgid = 355;
       clear();
     }
 
     void
-    NavigationData::clear(void)
+    NavigationData::clear()
     {
       bias_psi = 0;
       bias_r = 0;
@@ -10626,7 +10626,7 @@ namespace DUNE
     }
 
     int
-    NavigationData::validate(void) const
+    NavigationData::validate() const
     {
       return true;
     }
@@ -10693,14 +10693,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom_z", custom_z, nindent__);
     }
 
-    GpsFixRejection::GpsFixRejection(void)
+    GpsFixRejection::GpsFixRejection()
     {
       m_header.mgid = 356;
       clear();
     }
 
     void
-    GpsFixRejection::clear(void)
+    GpsFixRejection::clear()
     {
       utc_time = 0;
       reason = 0;
@@ -10716,7 +10716,7 @@ namespace DUNE
     }
 
     int
-    GpsFixRejection::validate(void) const
+    GpsFixRejection::validate() const
     {
       return true;
     }
@@ -10755,14 +10755,14 @@ namespace DUNE
       IMC::toJSON(os__, "reason", reason, nindent__);
     }
 
-    LblRangeAcceptance::LblRangeAcceptance(void)
+    LblRangeAcceptance::LblRangeAcceptance()
     {
       m_header.mgid = 357;
       clear();
     }
 
     void
-    LblRangeAcceptance::clear(void)
+    LblRangeAcceptance::clear()
     {
       id = 0;
       range = 0;
@@ -10780,7 +10780,7 @@ namespace DUNE
     }
 
     int
-    LblRangeAcceptance::validate(void) const
+    LblRangeAcceptance::validate() const
     {
       return true;
     }
@@ -10816,7 +10816,7 @@ namespace DUNE
     }
 
     uint16_t
-    LblRangeAcceptance::getSubId(void) const
+    LblRangeAcceptance::getSubId() const
     {
       return id;
     }
@@ -10835,14 +10835,14 @@ namespace DUNE
       IMC::toJSON(os__, "acceptance", acceptance, nindent__);
     }
 
-    DvlRejection::DvlRejection(void)
+    DvlRejection::DvlRejection()
     {
       m_header.mgid = 358;
       clear();
     }
 
     void
-    DvlRejection::clear(void)
+    DvlRejection::clear()
     {
       type = 0;
       reason = 0;
@@ -10862,7 +10862,7 @@ namespace DUNE
     }
 
     int
-    DvlRejection::validate(void) const
+    DvlRejection::validate() const
     {
       return true;
     }
@@ -10901,7 +10901,7 @@ namespace DUNE
     }
 
     fp64_t
-    DvlRejection::getValueFP(void) const
+    DvlRejection::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -10921,7 +10921,7 @@ namespace DUNE
       IMC::toJSON(os__, "timestep", timestep, nindent__);
     }
 
-    LblEstimate::LblEstimate(void)
+    LblEstimate::LblEstimate()
     {
       m_header.mgid = 360;
       clear();
@@ -10929,7 +10929,7 @@ namespace DUNE
     }
 
     void
-    LblEstimate::clear(void)
+    LblEstimate::clear()
     {
       beacon.clear();
       x = 0;
@@ -10953,7 +10953,7 @@ namespace DUNE
     }
 
     int
-    LblEstimate::validate(void) const
+    LblEstimate::validate() const
     {
       return true;
     }
@@ -11053,14 +11053,14 @@ namespace DUNE
       }
     }
 
-    AlignmentState::AlignmentState(void)
+    AlignmentState::AlignmentState()
     {
       m_header.mgid = 361;
       clear();
     }
 
     void
-    AlignmentState::clear(void)
+    AlignmentState::clear()
     {
       state = 0;
     }
@@ -11074,7 +11074,7 @@ namespace DUNE
     }
 
     int
-    AlignmentState::validate(void) const
+    AlignmentState::validate() const
     {
       return true;
     }
@@ -11109,14 +11109,14 @@ namespace DUNE
       IMC::toJSON(os__, "state", state, nindent__);
     }
 
-    GroupStreamVelocity::GroupStreamVelocity(void)
+    GroupStreamVelocity::GroupStreamVelocity()
     {
       m_header.mgid = 362;
       clear();
     }
 
     void
-    GroupStreamVelocity::clear(void)
+    GroupStreamVelocity::clear()
     {
       x = 0;
       y = 0;
@@ -11134,7 +11134,7 @@ namespace DUNE
     }
 
     int
-    GroupStreamVelocity::validate(void) const
+    GroupStreamVelocity::validate() const
     {
       return true;
     }
@@ -11177,14 +11177,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    Airflow::Airflow(void)
+    Airflow::Airflow()
     {
       m_header.mgid = 363;
       clear();
     }
 
     void
-    Airflow::clear(void)
+    Airflow::clear()
     {
       va = 0;
       aoa = 0;
@@ -11202,7 +11202,7 @@ namespace DUNE
     }
 
     int
-    Airflow::validate(void) const
+    Airflow::validate() const
     {
       return true;
     }
@@ -11245,14 +11245,14 @@ namespace DUNE
       IMC::toJSON(os__, "ssa", ssa, nindent__);
     }
 
-    DesiredHeading::DesiredHeading(void)
+    DesiredHeading::DesiredHeading()
     {
       m_header.mgid = 400;
       clear();
     }
 
     void
-    DesiredHeading::clear(void)
+    DesiredHeading::clear()
     {
       value = 0;
     }
@@ -11266,7 +11266,7 @@ namespace DUNE
     }
 
     int
-    DesiredHeading::validate(void) const
+    DesiredHeading::validate() const
     {
       return true;
     }
@@ -11296,7 +11296,7 @@ namespace DUNE
     }
 
     fp64_t
-    DesiredHeading::getValueFP(void) const
+    DesiredHeading::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -11313,14 +11313,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DesiredZ::DesiredZ(void)
+    DesiredZ::DesiredZ()
     {
       m_header.mgid = 401;
       clear();
     }
 
     void
-    DesiredZ::clear(void)
+    DesiredZ::clear()
     {
       value = 0;
       z_units = 0;
@@ -11336,7 +11336,7 @@ namespace DUNE
     }
 
     int
-    DesiredZ::validate(void) const
+    DesiredZ::validate() const
     {
       return true;
     }
@@ -11369,7 +11369,7 @@ namespace DUNE
     }
 
     fp64_t
-    DesiredZ::getValueFP(void) const
+    DesiredZ::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -11387,14 +11387,14 @@ namespace DUNE
       IMC::toJSON(os__, "z_units", z_units, nindent__);
     }
 
-    DesiredSpeed::DesiredSpeed(void)
+    DesiredSpeed::DesiredSpeed()
     {
       m_header.mgid = 402;
       clear();
     }
 
     void
-    DesiredSpeed::clear(void)
+    DesiredSpeed::clear()
     {
       value = 0;
       speed_units = 0;
@@ -11410,7 +11410,7 @@ namespace DUNE
     }
 
     int
-    DesiredSpeed::validate(void) const
+    DesiredSpeed::validate() const
     {
       return true;
     }
@@ -11443,7 +11443,7 @@ namespace DUNE
     }
 
     fp64_t
-    DesiredSpeed::getValueFP(void) const
+    DesiredSpeed::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -11461,14 +11461,14 @@ namespace DUNE
       IMC::toJSON(os__, "speed_units", speed_units, nindent__);
     }
 
-    DesiredRoll::DesiredRoll(void)
+    DesiredRoll::DesiredRoll()
     {
       m_header.mgid = 403;
       clear();
     }
 
     void
-    DesiredRoll::clear(void)
+    DesiredRoll::clear()
     {
       value = 0;
     }
@@ -11482,7 +11482,7 @@ namespace DUNE
     }
 
     int
-    DesiredRoll::validate(void) const
+    DesiredRoll::validate() const
     {
       return true;
     }
@@ -11512,7 +11512,7 @@ namespace DUNE
     }
 
     fp64_t
-    DesiredRoll::getValueFP(void) const
+    DesiredRoll::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -11529,14 +11529,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DesiredPitch::DesiredPitch(void)
+    DesiredPitch::DesiredPitch()
     {
       m_header.mgid = 404;
       clear();
     }
 
     void
-    DesiredPitch::clear(void)
+    DesiredPitch::clear()
     {
       value = 0;
     }
@@ -11550,7 +11550,7 @@ namespace DUNE
     }
 
     int
-    DesiredPitch::validate(void) const
+    DesiredPitch::validate() const
     {
       return true;
     }
@@ -11580,7 +11580,7 @@ namespace DUNE
     }
 
     fp64_t
-    DesiredPitch::getValueFP(void) const
+    DesiredPitch::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -11597,14 +11597,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DesiredVerticalRate::DesiredVerticalRate(void)
+    DesiredVerticalRate::DesiredVerticalRate()
     {
       m_header.mgid = 405;
       clear();
     }
 
     void
-    DesiredVerticalRate::clear(void)
+    DesiredVerticalRate::clear()
     {
       value = 0;
     }
@@ -11618,7 +11618,7 @@ namespace DUNE
     }
 
     int
-    DesiredVerticalRate::validate(void) const
+    DesiredVerticalRate::validate() const
     {
       return true;
     }
@@ -11648,7 +11648,7 @@ namespace DUNE
     }
 
     fp64_t
-    DesiredVerticalRate::getValueFP(void) const
+    DesiredVerticalRate::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -11665,14 +11665,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DesiredPath::DesiredPath(void)
+    DesiredPath::DesiredPath()
     {
       m_header.mgid = 406;
       clear();
     }
 
     void
-    DesiredPath::clear(void)
+    DesiredPath::clear()
     {
       path_ref = 0;
       start_lat = 0;
@@ -11710,7 +11710,7 @@ namespace DUNE
     }
 
     int
-    DesiredPath::validate(void) const
+    DesiredPath::validate() const
     {
       if (start_lat < -1.5707963267948966 || start_lat > 1.5707963267948966) return false;
       if (start_lon < -3.141592653589793 || start_lon > 3.141592653589793) return false;
@@ -11797,14 +11797,14 @@ namespace DUNE
       IMC::toJSON(os__, "flags", flags, nindent__);
     }
 
-    DesiredControl::DesiredControl(void)
+    DesiredControl::DesiredControl()
     {
       m_header.mgid = 407;
       clear();
     }
 
     void
-    DesiredControl::clear(void)
+    DesiredControl::clear()
     {
       x = 0;
       y = 0;
@@ -11830,7 +11830,7 @@ namespace DUNE
     }
 
     int
-    DesiredControl::validate(void) const
+    DesiredControl::validate() const
     {
       return true;
     }
@@ -11889,14 +11889,14 @@ namespace DUNE
       IMC::toJSON(os__, "flags", flags, nindent__);
     }
 
-    DesiredHeadingRate::DesiredHeadingRate(void)
+    DesiredHeadingRate::DesiredHeadingRate()
     {
       m_header.mgid = 408;
       clear();
     }
 
     void
-    DesiredHeadingRate::clear(void)
+    DesiredHeadingRate::clear()
     {
       value = 0;
     }
@@ -11910,7 +11910,7 @@ namespace DUNE
     }
 
     int
-    DesiredHeadingRate::validate(void) const
+    DesiredHeadingRate::validate() const
     {
       return true;
     }
@@ -11940,7 +11940,7 @@ namespace DUNE
     }
 
     fp64_t
-    DesiredHeadingRate::getValueFP(void) const
+    DesiredHeadingRate::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -11957,14 +11957,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    DesiredVelocity::DesiredVelocity(void)
+    DesiredVelocity::DesiredVelocity()
     {
       m_header.mgid = 409;
       clear();
     }
 
     void
-    DesiredVelocity::clear(void)
+    DesiredVelocity::clear()
     {
       u = 0;
       v = 0;
@@ -11990,7 +11990,7 @@ namespace DUNE
     }
 
     int
-    DesiredVelocity::validate(void) const
+    DesiredVelocity::validate() const
     {
       return true;
     }
@@ -12049,14 +12049,14 @@ namespace DUNE
       IMC::toJSON(os__, "flags", flags, nindent__);
     }
 
-    PathControlState::PathControlState(void)
+    PathControlState::PathControlState()
     {
       m_header.mgid = 410;
       clear();
     }
 
     void
-    PathControlState::clear(void)
+    PathControlState::clear()
     {
       path_ref = 0;
       start_lat = 0;
@@ -12106,7 +12106,7 @@ namespace DUNE
     }
 
     int
-    PathControlState::validate(void) const
+    PathControlState::validate() const
     {
       if (start_lat < -1.5707963267948966 || start_lat > 1.5707963267948966) return false;
       if (start_lon < -3.141592653589793 || start_lon > 3.141592653589793) return false;
@@ -12217,14 +12217,14 @@ namespace DUNE
       IMC::toJSON(os__, "eta", eta, nindent__);
     }
 
-    AllocatedControlTorques::AllocatedControlTorques(void)
+    AllocatedControlTorques::AllocatedControlTorques()
     {
       m_header.mgid = 411;
       clear();
     }
 
     void
-    AllocatedControlTorques::clear(void)
+    AllocatedControlTorques::clear()
     {
       k = 0;
       m = 0;
@@ -12242,7 +12242,7 @@ namespace DUNE
     }
 
     int
-    AllocatedControlTorques::validate(void) const
+    AllocatedControlTorques::validate() const
     {
       return true;
     }
@@ -12285,14 +12285,14 @@ namespace DUNE
       IMC::toJSON(os__, "n", n, nindent__);
     }
 
-    ControlParcel::ControlParcel(void)
+    ControlParcel::ControlParcel()
     {
       m_header.mgid = 412;
       clear();
     }
 
     void
-    ControlParcel::clear(void)
+    ControlParcel::clear()
     {
       p = 0;
       i = 0;
@@ -12312,7 +12312,7 @@ namespace DUNE
     }
 
     int
-    ControlParcel::validate(void) const
+    ControlParcel::validate() const
     {
       return true;
     }
@@ -12359,14 +12359,14 @@ namespace DUNE
       IMC::toJSON(os__, "a", a, nindent__);
     }
 
-    Brake::Brake(void)
+    Brake::Brake()
     {
       m_header.mgid = 413;
       clear();
     }
 
     void
-    Brake::clear(void)
+    Brake::clear()
     {
       op = 0;
     }
@@ -12380,7 +12380,7 @@ namespace DUNE
     }
 
     int
-    Brake::validate(void) const
+    Brake::validate() const
     {
       return true;
     }
@@ -12415,14 +12415,14 @@ namespace DUNE
       IMC::toJSON(os__, "op", op, nindent__);
     }
 
-    DesiredLinearState::DesiredLinearState(void)
+    DesiredLinearState::DesiredLinearState()
     {
       m_header.mgid = 414;
       clear();
     }
 
     void
-    DesiredLinearState::clear(void)
+    DesiredLinearState::clear()
     {
       x = 0;
       y = 0;
@@ -12454,7 +12454,7 @@ namespace DUNE
     }
 
     int
-    DesiredLinearState::validate(void) const
+    DesiredLinearState::validate() const
     {
       return true;
     }
@@ -12525,14 +12525,14 @@ namespace DUNE
       IMC::toJSON(os__, "flags", flags, nindent__);
     }
 
-    DesiredThrottle::DesiredThrottle(void)
+    DesiredThrottle::DesiredThrottle()
     {
       m_header.mgid = 415;
       clear();
     }
 
     void
-    DesiredThrottle::clear(void)
+    DesiredThrottle::clear()
     {
       value = 0;
     }
@@ -12546,7 +12546,7 @@ namespace DUNE
     }
 
     int
-    DesiredThrottle::validate(void) const
+    DesiredThrottle::validate() const
     {
       return true;
     }
@@ -12576,7 +12576,7 @@ namespace DUNE
     }
 
     fp64_t
-    DesiredThrottle::getValueFP(void) const
+    DesiredThrottle::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -12593,14 +12593,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Goto::Goto(void)
+    Goto::Goto()
     {
       m_header.mgid = 450;
       clear();
     }
 
     void
-    Goto::clear(void)
+    Goto::clear()
     {
       timeout = 0;
       lat = 0;
@@ -12634,7 +12634,7 @@ namespace DUNE
     }
 
     int
-    Goto::validate(void) const
+    Goto::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -12714,14 +12714,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    PopUp::PopUp(void)
+    PopUp::PopUp()
     {
       m_header.mgid = 451;
       clear();
     }
 
     void
-    PopUp::clear(void)
+    PopUp::clear()
     {
       timeout = 0;
       lat = 0;
@@ -12755,7 +12755,7 @@ namespace DUNE
     }
 
     int
-    PopUp::validate(void) const
+    PopUp::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -12833,14 +12833,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Teleoperation::Teleoperation(void)
+    Teleoperation::Teleoperation()
     {
       m_header.mgid = 452;
       clear();
     }
 
     void
-    Teleoperation::clear(void)
+    Teleoperation::clear()
     {
       custom.clear();
     }
@@ -12854,7 +12854,7 @@ namespace DUNE
     }
 
     int
-    Teleoperation::validate(void) const
+    Teleoperation::validate() const
     {
       return true;
     }
@@ -12889,14 +12889,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Loiter::Loiter(void)
+    Loiter::Loiter()
     {
       m_header.mgid = 453;
       clear();
     }
 
     void
-    Loiter::clear(void)
+    Loiter::clear()
     {
       timeout = 0;
       lat = 0;
@@ -12936,7 +12936,7 @@ namespace DUNE
     }
 
     int
-    Loiter::validate(void) const
+    Loiter::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -13030,14 +13030,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    IdleManeuver::IdleManeuver(void)
+    IdleManeuver::IdleManeuver()
     {
       m_header.mgid = 454;
       clear();
     }
 
     void
-    IdleManeuver::clear(void)
+    IdleManeuver::clear()
     {
       duration = 0;
       custom.clear();
@@ -13053,7 +13053,7 @@ namespace DUNE
     }
 
     int
-    IdleManeuver::validate(void) const
+    IdleManeuver::validate() const
     {
       return true;
     }
@@ -13092,7 +13092,7 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    LowLevelControl::LowLevelControl(void)
+    LowLevelControl::LowLevelControl()
     {
       m_header.mgid = 455;
       clear();
@@ -13100,7 +13100,7 @@ namespace DUNE
     }
 
     void
-    LowLevelControl::clear(void)
+    LowLevelControl::clear()
     {
       control.clear();
       duration = 0;
@@ -13118,7 +13118,7 @@ namespace DUNE
     }
 
     int
-    LowLevelControl::validate(void) const
+    LowLevelControl::validate() const
     {
       return true;
     }
@@ -13206,14 +13206,14 @@ namespace DUNE
       }
     }
 
-    Rows::Rows(void)
+    Rows::Rows()
     {
       m_header.mgid = 456;
       clear();
     }
 
     void
-    Rows::clear(void)
+    Rows::clear()
     {
       timeout = 0;
       lat = 0;
@@ -13257,7 +13257,7 @@ namespace DUNE
     }
 
     int
-    Rows::validate(void) const
+    Rows::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -13360,14 +13360,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    PathPoint::PathPoint(void)
+    PathPoint::PathPoint()
     {
       m_header.mgid = 458;
       clear();
     }
 
     void
-    PathPoint::clear(void)
+    PathPoint::clear()
     {
       x = 0;
       y = 0;
@@ -13385,7 +13385,7 @@ namespace DUNE
     }
 
     int
-    PathPoint::validate(void) const
+    PathPoint::validate() const
     {
       return true;
     }
@@ -13428,7 +13428,7 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    FollowPath::FollowPath(void)
+    FollowPath::FollowPath()
     {
       m_header.mgid = 457;
       clear();
@@ -13436,7 +13436,7 @@ namespace DUNE
     }
 
     void
-    FollowPath::clear(void)
+    FollowPath::clear()
     {
       timeout = 0;
       lat = 0;
@@ -13466,7 +13466,7 @@ namespace DUNE
     }
 
     int
-    FollowPath::validate(void) const
+    FollowPath::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -13565,14 +13565,14 @@ namespace DUNE
       points.setDestinationEntity(value__);
     }
 
-    YoYo::YoYo(void)
+    YoYo::YoYo()
     {
       m_header.mgid = 459;
       clear();
     }
 
     void
-    YoYo::clear(void)
+    YoYo::clear()
     {
       timeout = 0;
       lat = 0;
@@ -13604,7 +13604,7 @@ namespace DUNE
     }
 
     int
-    YoYo::validate(void) const
+    YoYo::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -13678,19 +13678,19 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    TeleoperationDone::TeleoperationDone(void)
+    TeleoperationDone::TeleoperationDone()
     {
       m_header.mgid = 460;
       clear();
     }
 
     void
-    TeleoperationDone::clear(void)
+    TeleoperationDone::clear()
     {
     }
 
     int
-    TeleoperationDone::validate(void) const
+    TeleoperationDone::validate() const
     {
       return true;
     }
@@ -13717,14 +13717,14 @@ namespace DUNE
       return 0;
     }
 
-    StationKeeping::StationKeeping(void)
+    StationKeeping::StationKeeping()
     {
       m_header.mgid = 461;
       clear();
     }
 
     void
-    StationKeeping::clear(void)
+    StationKeeping::clear()
     {
       lat = 0;
       lon = 0;
@@ -13754,7 +13754,7 @@ namespace DUNE
     }
 
     int
-    StationKeeping::validate(void) const
+    StationKeeping::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -13823,14 +13823,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Elevator::Elevator(void)
+    Elevator::Elevator()
     {
       m_header.mgid = 462;
       clear();
     }
 
     void
-    Elevator::clear(void)
+    Elevator::clear()
     {
       timeout = 0;
       flags = 0;
@@ -13866,7 +13866,7 @@ namespace DUNE
     }
 
     int
-    Elevator::validate(void) const
+    Elevator::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -13948,14 +13948,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    TrajectoryPoint::TrajectoryPoint(void)
+    TrajectoryPoint::TrajectoryPoint()
     {
       m_header.mgid = 464;
       clear();
     }
 
     void
-    TrajectoryPoint::clear(void)
+    TrajectoryPoint::clear()
     {
       x = 0;
       y = 0;
@@ -13975,7 +13975,7 @@ namespace DUNE
     }
 
     int
-    TrajectoryPoint::validate(void) const
+    TrajectoryPoint::validate() const
     {
       return true;
     }
@@ -14022,7 +14022,7 @@ namespace DUNE
       IMC::toJSON(os__, "t", t, nindent__);
     }
 
-    FollowTrajectory::FollowTrajectory(void)
+    FollowTrajectory::FollowTrajectory()
     {
       m_header.mgid = 463;
       clear();
@@ -14030,7 +14030,7 @@ namespace DUNE
     }
 
     void
-    FollowTrajectory::clear(void)
+    FollowTrajectory::clear()
     {
       timeout = 0;
       lat = 0;
@@ -14060,7 +14060,7 @@ namespace DUNE
     }
 
     int
-    FollowTrajectory::validate(void) const
+    FollowTrajectory::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -14159,14 +14159,14 @@ namespace DUNE
       points.setDestinationEntity(value__);
     }
 
-    CustomManeuver::CustomManeuver(void)
+    CustomManeuver::CustomManeuver()
     {
       m_header.mgid = 465;
       clear();
     }
 
     void
-    CustomManeuver::clear(void)
+    CustomManeuver::clear()
     {
       timeout = 0;
       name.clear();
@@ -14184,7 +14184,7 @@ namespace DUNE
     }
 
     int
-    CustomManeuver::validate(void) const
+    CustomManeuver::validate() const
     {
       return true;
     }
@@ -14227,14 +14227,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    VehicleFormationParticipant::VehicleFormationParticipant(void)
+    VehicleFormationParticipant::VehicleFormationParticipant()
     {
       m_header.mgid = 467;
       clear();
     }
 
     void
-    VehicleFormationParticipant::clear(void)
+    VehicleFormationParticipant::clear()
     {
       vid = 0;
       off_x = 0;
@@ -14254,7 +14254,7 @@ namespace DUNE
     }
 
     int
-    VehicleFormationParticipant::validate(void) const
+    VehicleFormationParticipant::validate() const
     {
       return true;
     }
@@ -14301,7 +14301,7 @@ namespace DUNE
       IMC::toJSON(os__, "off_z", off_z, nindent__);
     }
 
-    VehicleFormation::VehicleFormation(void)
+    VehicleFormation::VehicleFormation()
     {
       m_header.mgid = 466;
       clear();
@@ -14310,7 +14310,7 @@ namespace DUNE
     }
 
     void
-    VehicleFormation::clear(void)
+    VehicleFormation::clear()
     {
       lat = 0;
       lon = 0;
@@ -14342,7 +14342,7 @@ namespace DUNE
     }
 
     int
-    VehicleFormation::validate(void) const
+    VehicleFormation::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -14455,19 +14455,19 @@ namespace DUNE
       participants.setDestinationEntity(value__);
     }
 
-    StopManeuver::StopManeuver(void)
+    StopManeuver::StopManeuver()
     {
       m_header.mgid = 468;
       clear();
     }
 
     void
-    StopManeuver::clear(void)
+    StopManeuver::clear()
     {
     }
 
     int
-    StopManeuver::validate(void) const
+    StopManeuver::validate() const
     {
       return true;
     }
@@ -14494,14 +14494,14 @@ namespace DUNE
       return 0;
     }
 
-    RegisterManeuver::RegisterManeuver(void)
+    RegisterManeuver::RegisterManeuver()
     {
       m_header.mgid = 469;
       clear();
     }
 
     void
-    RegisterManeuver::clear(void)
+    RegisterManeuver::clear()
     {
       mid = 0;
     }
@@ -14515,7 +14515,7 @@ namespace DUNE
     }
 
     int
-    RegisterManeuver::validate(void) const
+    RegisterManeuver::validate() const
     {
       return true;
     }
@@ -14550,14 +14550,14 @@ namespace DUNE
       IMC::toJSON(os__, "mid", mid, nindent__);
     }
 
-    ManeuverControlState::ManeuverControlState(void)
+    ManeuverControlState::ManeuverControlState()
     {
       m_header.mgid = 470;
       clear();
     }
 
     void
-    ManeuverControlState::clear(void)
+    ManeuverControlState::clear()
     {
       state = 0;
       eta = 0;
@@ -14575,7 +14575,7 @@ namespace DUNE
     }
 
     int
-    ManeuverControlState::validate(void) const
+    ManeuverControlState::validate() const
     {
       return true;
     }
@@ -14618,14 +14618,14 @@ namespace DUNE
       IMC::toJSON(os__, "info", info, nindent__);
     }
 
-    FollowSystem::FollowSystem(void)
+    FollowSystem::FollowSystem()
     {
       m_header.mgid = 471;
       clear();
     }
 
     void
-    FollowSystem::clear(void)
+    FollowSystem::clear()
     {
       system = 0;
       duration = 0;
@@ -14653,7 +14653,7 @@ namespace DUNE
     }
 
     int
-    FollowSystem::validate(void) const
+    FollowSystem::validate() const
     {
       return true;
     }
@@ -14716,14 +14716,14 @@ namespace DUNE
       IMC::toJSON(os__, "z_units", z_units, nindent__);
     }
 
-    CommsRelay::CommsRelay(void)
+    CommsRelay::CommsRelay()
     {
       m_header.mgid = 472;
       clear();
     }
 
     void
-    CommsRelay::clear(void)
+    CommsRelay::clear()
     {
       lat = 0;
       lon = 0;
@@ -14751,7 +14751,7 @@ namespace DUNE
     }
 
     int
-    CommsRelay::validate(void) const
+    CommsRelay::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -14816,14 +14816,14 @@ namespace DUNE
       IMC::toJSON(os__, "move_threshold", move_threshold, nindent__);
     }
 
-    PolygonVertex::PolygonVertex(void)
+    PolygonVertex::PolygonVertex()
     {
       m_header.mgid = 474;
       clear();
     }
 
     void
-    PolygonVertex::clear(void)
+    PolygonVertex::clear()
     {
       lat = 0;
       lon = 0;
@@ -14839,7 +14839,7 @@ namespace DUNE
     }
 
     int
-    PolygonVertex::validate(void) const
+    PolygonVertex::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -14880,7 +14880,7 @@ namespace DUNE
       IMC::toJSON(os__, "lon", lon, nindent__);
     }
 
-    CoverArea::CoverArea(void)
+    CoverArea::CoverArea()
     {
       m_header.mgid = 473;
       clear();
@@ -14888,7 +14888,7 @@ namespace DUNE
     }
 
     void
-    CoverArea::clear(void)
+    CoverArea::clear()
     {
       lat = 0;
       lon = 0;
@@ -14916,7 +14916,7 @@ namespace DUNE
     }
 
     int
-    CoverArea::validate(void) const
+    CoverArea::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -15011,14 +15011,14 @@ namespace DUNE
       polygon.setDestinationEntity(value__);
     }
 
-    CompassCalibration::CompassCalibration(void)
+    CompassCalibration::CompassCalibration()
     {
       m_header.mgid = 475;
       clear();
     }
 
     void
-    CompassCalibration::clear(void)
+    CompassCalibration::clear()
     {
       timeout = 0;
       lat = 0;
@@ -15056,7 +15056,7 @@ namespace DUNE
     }
 
     int
-    CompassCalibration::validate(void) const
+    CompassCalibration::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -15144,7 +15144,7 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    FormationParameters::FormationParameters(void)
+    FormationParameters::FormationParameters()
     {
       m_header.mgid = 476;
       clear();
@@ -15152,7 +15152,7 @@ namespace DUNE
     }
 
     void
-    FormationParameters::clear(void)
+    FormationParameters::clear()
     {
       formation_name.clear();
       reference_frame = 0;
@@ -15172,7 +15172,7 @@ namespace DUNE
     }
 
     int
-    FormationParameters::validate(void) const
+    FormationParameters::validate() const
     {
       return true;
     }
@@ -15249,14 +15249,14 @@ namespace DUNE
       participants.setDestinationEntity(value__);
     }
 
-    FormationPlanExecution::FormationPlanExecution(void)
+    FormationPlanExecution::FormationPlanExecution()
     {
       m_header.mgid = 477;
       clear();
     }
 
     void
-    FormationPlanExecution::clear(void)
+    FormationPlanExecution::clear()
     {
       group_name.clear();
       formation_name.clear();
@@ -15296,7 +15296,7 @@ namespace DUNE
     }
 
     int
-    FormationPlanExecution::validate(void) const
+    FormationPlanExecution::validate() const
     {
       return true;
     }
@@ -15383,14 +15383,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    FollowReference::FollowReference(void)
+    FollowReference::FollowReference()
     {
       m_header.mgid = 478;
       clear();
     }
 
     void
-    FollowReference::clear(void)
+    FollowReference::clear()
     {
       control_src = 0;
       control_ent = 0;
@@ -15412,7 +15412,7 @@ namespace DUNE
     }
 
     int
-    FollowReference::validate(void) const
+    FollowReference::validate() const
     {
       return true;
     }
@@ -15463,7 +15463,7 @@ namespace DUNE
       IMC::toJSON(os__, "altitude_interval", altitude_interval, nindent__);
     }
 
-    Reference::Reference(void)
+    Reference::Reference()
     {
       m_header.mgid = 479;
       clear();
@@ -15472,7 +15472,7 @@ namespace DUNE
     }
 
     void
-    Reference::clear(void)
+    Reference::clear()
     {
       flags = 0;
       speed.clear();
@@ -15496,7 +15496,7 @@ namespace DUNE
     }
 
     int
-    Reference::validate(void) const
+    Reference::validate() const
     {
       return true;
     }
@@ -15621,7 +15621,7 @@ namespace DUNE
       }
     }
 
-    FollowRefState::FollowRefState(void)
+    FollowRefState::FollowRefState()
     {
       m_header.mgid = 480;
       clear();
@@ -15629,7 +15629,7 @@ namespace DUNE
     }
 
     void
-    FollowRefState::clear(void)
+    FollowRefState::clear()
     {
       control_src = 0;
       control_ent = 0;
@@ -15651,7 +15651,7 @@ namespace DUNE
     }
 
     int
-    FollowRefState::validate(void) const
+    FollowRefState::validate() const
     {
       return true;
     }
@@ -15747,14 +15747,14 @@ namespace DUNE
       }
     }
 
-    RelativeState::RelativeState(void)
+    RelativeState::RelativeState()
     {
       m_header.mgid = 482;
       clear();
     }
 
     void
-    RelativeState::clear(void)
+    RelativeState::clear()
     {
       s_id.clear();
       dist = 0;
@@ -15810,7 +15810,7 @@ namespace DUNE
     }
 
     int
-    RelativeState::validate(void) const
+    RelativeState::validate() const
     {
       return true;
     }
@@ -15929,7 +15929,7 @@ namespace DUNE
       IMC::toJSON(os__, "virt_err_z", virt_err_z, nindent__);
     }
 
-    FormationMonitor::FormationMonitor(void)
+    FormationMonitor::FormationMonitor()
     {
       m_header.mgid = 481;
       clear();
@@ -15937,7 +15937,7 @@ namespace DUNE
     }
 
     void
-    FormationMonitor::clear(void)
+    FormationMonitor::clear()
     {
       ax_cmd = 0;
       ay_cmd = 0;
@@ -15987,7 +15987,7 @@ namespace DUNE
     }
 
     int
-    FormationMonitor::validate(void) const
+    FormationMonitor::validate() const
     {
       return true;
     }
@@ -16124,14 +16124,14 @@ namespace DUNE
       rel_state.setDestinationEntity(value__);
     }
 
-    Dislodge::Dislodge(void)
+    Dislodge::Dislodge()
     {
       m_header.mgid = 483;
       clear();
     }
 
     void
-    Dislodge::clear(void)
+    Dislodge::clear()
     {
       timeout = 0;
       rpm = 0;
@@ -16151,7 +16151,7 @@ namespace DUNE
     }
 
     int
-    Dislodge::validate(void) const
+    Dislodge::validate() const
     {
       return true;
     }
@@ -16198,7 +16198,7 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Formation::Formation(void)
+    Formation::Formation()
     {
       m_header.mgid = 484;
       clear();
@@ -16206,7 +16206,7 @@ namespace DUNE
     }
 
     void
-    Formation::clear(void)
+    Formation::clear()
     {
       formation_name.clear();
       type = 0;
@@ -16260,7 +16260,7 @@ namespace DUNE
     }
 
     int
-    Formation::validate(void) const
+    Formation::validate() const
     {
       return true;
     }
@@ -16405,14 +16405,14 @@ namespace DUNE
       participants.setDestinationEntity(value__);
     }
 
-    Launch::Launch(void)
+    Launch::Launch()
     {
       m_header.mgid = 485;
       clear();
     }
 
     void
-    Launch::clear(void)
+    Launch::clear()
     {
       timeout = 0;
       lat = 0;
@@ -16440,7 +16440,7 @@ namespace DUNE
     }
 
     int
-    Launch::validate(void) const
+    Launch::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -16505,14 +16505,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Drop::Drop(void)
+    Drop::Drop()
     {
       m_header.mgid = 486;
       clear();
     }
 
     void
-    Drop::clear(void)
+    Drop::clear()
     {
       timeout = 0;
       lat = 0;
@@ -16540,7 +16540,7 @@ namespace DUNE
     }
 
     int
-    Drop::validate(void) const
+    Drop::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -16605,14 +16605,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    ScheduledGoto::ScheduledGoto(void)
+    ScheduledGoto::ScheduledGoto()
     {
       m_header.mgid = 487;
       clear();
     }
 
     void
-    ScheduledGoto::clear(void)
+    ScheduledGoto::clear()
     {
       arrival_time = 0;
       lat = 0;
@@ -16640,7 +16640,7 @@ namespace DUNE
     }
 
     int
-    ScheduledGoto::validate(void) const
+    ScheduledGoto::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -16705,14 +16705,14 @@ namespace DUNE
       IMC::toJSON(os__, "delayed", delayed, nindent__);
     }
 
-    RowsCoverage::RowsCoverage(void)
+    RowsCoverage::RowsCoverage()
     {
       m_header.mgid = 488;
       clear();
     }
 
     void
-    RowsCoverage::clear(void)
+    RowsCoverage::clear()
     {
       lat = 0;
       lon = 0;
@@ -16756,7 +16756,7 @@ namespace DUNE
     }
 
     int
-    RowsCoverage::validate(void) const
+    RowsCoverage::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -16859,14 +16859,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Sample::Sample(void)
+    Sample::Sample()
     {
       m_header.mgid = 489;
       clear();
     }
 
     void
-    Sample::clear(void)
+    Sample::clear()
     {
       timeout = 0;
       lat = 0;
@@ -16900,7 +16900,7 @@ namespace DUNE
     }
 
     int
-    Sample::validate(void) const
+    Sample::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -16977,19 +16977,19 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    ImageTracking::ImageTracking(void)
+    ImageTracking::ImageTracking()
     {
       m_header.mgid = 490;
       clear();
     }
 
     void
-    ImageTracking::clear(void)
+    ImageTracking::clear()
     {
     }
 
     int
-    ImageTracking::validate(void) const
+    ImageTracking::validate() const
     {
       return true;
     }
@@ -17016,14 +17016,14 @@ namespace DUNE
       return 0;
     }
 
-    Takeoff::Takeoff(void)
+    Takeoff::Takeoff()
     {
       m_header.mgid = 491;
       clear();
     }
 
     void
-    Takeoff::clear(void)
+    Takeoff::clear()
     {
       lat = 0;
       lon = 0;
@@ -17051,7 +17051,7 @@ namespace DUNE
     }
 
     int
-    Takeoff::validate(void) const
+    Takeoff::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -17117,14 +17117,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Land::Land(void)
+    Land::Land()
     {
       m_header.mgid = 492;
       clear();
     }
 
     void
-    Land::clear(void)
+    Land::clear()
     {
       lat = 0;
       lon = 0;
@@ -17158,7 +17158,7 @@ namespace DUNE
     }
 
     int
-    Land::validate(void) const
+    Land::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -17237,7 +17237,7 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    AutonomousSection::AutonomousSection(void)
+    AutonomousSection::AutonomousSection()
     {
       m_header.mgid = 493;
       clear();
@@ -17245,7 +17245,7 @@ namespace DUNE
     }
 
     void
-    AutonomousSection::clear(void)
+    AutonomousSection::clear()
     {
       lat = 0;
       lon = 0;
@@ -17279,7 +17279,7 @@ namespace DUNE
     }
 
     int
-    AutonomousSection::validate(void) const
+    AutonomousSection::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -17386,14 +17386,14 @@ namespace DUNE
       area_limits.setDestinationEntity(value__);
     }
 
-    FollowPoint::FollowPoint(void)
+    FollowPoint::FollowPoint()
     {
       m_header.mgid = 494;
       clear();
     }
 
     void
-    FollowPoint::clear(void)
+    FollowPoint::clear()
     {
       target.clear();
       max_speed = 0;
@@ -17421,7 +17421,7 @@ namespace DUNE
     }
 
     int
-    FollowPoint::validate(void) const
+    FollowPoint::validate() const
     {
       if (max_speed < 0) return false;
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
@@ -17487,14 +17487,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Alignment::Alignment(void)
+    Alignment::Alignment()
     {
       m_header.mgid = 495;
       clear();
     }
 
     void
-    Alignment::clear(void)
+    Alignment::clear()
     {
       timeout = 0;
       lat = 0;
@@ -17518,7 +17518,7 @@ namespace DUNE
     }
 
     int
-    Alignment::validate(void) const
+    Alignment::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -17575,14 +17575,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    StationKeepingExtended::StationKeepingExtended(void)
+    StationKeepingExtended::StationKeepingExtended()
     {
       m_header.mgid = 496;
       clear();
     }
 
     void
-    StationKeepingExtended::clear(void)
+    StationKeepingExtended::clear()
     {
       lat = 0;
       lon = 0;
@@ -17618,7 +17618,7 @@ namespace DUNE
     }
 
     int
-    StationKeepingExtended::validate(void) const
+    StationKeepingExtended::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -17699,14 +17699,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    Magnetometer::Magnetometer(void)
+    Magnetometer::Magnetometer()
     {
       m_header.mgid = 499;
       clear();
     }
 
     void
-    Magnetometer::clear(void)
+    Magnetometer::clear()
     {
       timeout = 0;
       lat = 0;
@@ -17740,7 +17740,7 @@ namespace DUNE
     }
 
     int
-    Magnetometer::validate(void) const
+    Magnetometer::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -17820,14 +17820,14 @@ namespace DUNE
       IMC::toJSON(os__, "custom", custom, nindent__);
     }
 
-    VehicleState::VehicleState(void)
+    VehicleState::VehicleState()
     {
       m_header.mgid = 500;
       clear();
     }
 
     void
-    VehicleState::clear(void)
+    VehicleState::clear()
     {
       op_mode = 0;
       error_count = 0;
@@ -17859,7 +17859,7 @@ namespace DUNE
     }
 
     int
-    VehicleState::validate(void) const
+    VehicleState::validate() const
     {
       return true;
     }
@@ -17930,7 +17930,7 @@ namespace DUNE
       IMC::toJSON(os__, "last_error_time", last_error_time, nindent__);
     }
 
-    VehicleCommand::VehicleCommand(void)
+    VehicleCommand::VehicleCommand()
     {
       m_header.mgid = 501;
       clear();
@@ -17938,7 +17938,7 @@ namespace DUNE
     }
 
     void
-    VehicleCommand::clear(void)
+    VehicleCommand::clear()
     {
       type = 0;
       request_id = 0;
@@ -17962,7 +17962,7 @@ namespace DUNE
     }
 
     int
-    VehicleCommand::validate(void) const
+    VehicleCommand::validate() const
     {
       return true;
     }
@@ -18062,14 +18062,14 @@ namespace DUNE
       }
     }
 
-    MonitorEntityState::MonitorEntityState(void)
+    MonitorEntityState::MonitorEntityState()
     {
       m_header.mgid = 502;
       clear();
     }
 
     void
-    MonitorEntityState::clear(void)
+    MonitorEntityState::clear()
     {
       command = 0;
       entities.clear();
@@ -18085,7 +18085,7 @@ namespace DUNE
     }
 
     int
-    MonitorEntityState::validate(void) const
+    MonitorEntityState::validate() const
     {
       return true;
     }
@@ -18124,14 +18124,14 @@ namespace DUNE
       IMC::toJSON(os__, "entities", entities, nindent__);
     }
 
-    EntityMonitoringState::EntityMonitoringState(void)
+    EntityMonitoringState::EntityMonitoringState()
     {
       m_header.mgid = 503;
       clear();
     }
 
     void
-    EntityMonitoringState::clear(void)
+    EntityMonitoringState::clear()
     {
       mcount = 0;
       mnames.clear();
@@ -18159,7 +18159,7 @@ namespace DUNE
     }
 
     int
-    EntityMonitoringState::validate(void) const
+    EntityMonitoringState::validate() const
     {
       return true;
     }
@@ -18222,14 +18222,14 @@ namespace DUNE
       IMC::toJSON(os__, "last_error_time", last_error_time, nindent__);
     }
 
-    OperationalLimits::OperationalLimits(void)
+    OperationalLimits::OperationalLimits()
     {
       m_header.mgid = 504;
       clear();
     }
 
     void
-    OperationalLimits::clear(void)
+    OperationalLimits::clear()
     {
       mask = 0;
       max_depth = 0;
@@ -18265,7 +18265,7 @@ namespace DUNE
     }
 
     int
-    OperationalLimits::validate(void) const
+    OperationalLimits::validate() const
     {
       if (max_depth < 0) return false;
       if (min_altitude < 0) return false;
@@ -18352,19 +18352,19 @@ namespace DUNE
       IMC::toJSON(os__, "length", length, nindent__);
     }
 
-    GetOperationalLimits::GetOperationalLimits(void)
+    GetOperationalLimits::GetOperationalLimits()
     {
       m_header.mgid = 505;
       clear();
     }
 
     void
-    GetOperationalLimits::clear(void)
+    GetOperationalLimits::clear()
     {
     }
 
     int
-    GetOperationalLimits::validate(void) const
+    GetOperationalLimits::validate() const
     {
       return true;
     }
@@ -18391,14 +18391,14 @@ namespace DUNE
       return 0;
     }
 
-    Calibration::Calibration(void)
+    Calibration::Calibration()
     {
       m_header.mgid = 506;
       clear();
     }
 
     void
-    Calibration::clear(void)
+    Calibration::clear()
     {
       duration = 0;
     }
@@ -18412,7 +18412,7 @@ namespace DUNE
     }
 
     int
-    Calibration::validate(void) const
+    Calibration::validate() const
     {
       return true;
     }
@@ -18447,14 +18447,14 @@ namespace DUNE
       IMC::toJSON(os__, "duration", duration, nindent__);
     }
 
-    ControlLoops::ControlLoops(void)
+    ControlLoops::ControlLoops()
     {
       m_header.mgid = 507;
       clear();
     }
 
     void
-    ControlLoops::clear(void)
+    ControlLoops::clear()
     {
       enable = 0;
       mask = 0;
@@ -18472,7 +18472,7 @@ namespace DUNE
     }
 
     int
-    ControlLoops::validate(void) const
+    ControlLoops::validate() const
     {
       return true;
     }
@@ -18515,14 +18515,14 @@ namespace DUNE
       IMC::toJSON(os__, "scope_ref", scope_ref, nindent__);
     }
 
-    VehicleMedium::VehicleMedium(void)
+    VehicleMedium::VehicleMedium()
     {
       m_header.mgid = 508;
       clear();
     }
 
     void
-    VehicleMedium::clear(void)
+    VehicleMedium::clear()
     {
       medium = 0;
     }
@@ -18536,7 +18536,7 @@ namespace DUNE
     }
 
     int
-    VehicleMedium::validate(void) const
+    VehicleMedium::validate() const
     {
       return true;
     }
@@ -18571,14 +18571,14 @@ namespace DUNE
       IMC::toJSON(os__, "medium", medium, nindent__);
     }
 
-    Collision::Collision(void)
+    Collision::Collision()
     {
       m_header.mgid = 509;
       clear();
     }
 
     void
-    Collision::clear(void)
+    Collision::clear()
     {
       value = 0;
       type = 0;
@@ -18594,7 +18594,7 @@ namespace DUNE
     }
 
     int
-    Collision::validate(void) const
+    Collision::validate() const
     {
       return true;
     }
@@ -18627,7 +18627,7 @@ namespace DUNE
     }
 
     fp64_t
-    Collision::getValueFP(void) const
+    Collision::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -18645,14 +18645,14 @@ namespace DUNE
       IMC::toJSON(os__, "type", type, nindent__);
     }
 
-    FormState::FormState(void)
+    FormState::FormState()
     {
       m_header.mgid = 510;
       clear();
     }
 
     void
-    FormState::clear(void)
+    FormState::clear()
     {
       possimerr = 0;
       converg = 0;
@@ -18676,7 +18676,7 @@ namespace DUNE
     }
 
     int
-    FormState::validate(void) const
+    FormState::validate() const
     {
       return true;
     }
@@ -18731,14 +18731,14 @@ namespace DUNE
       IMC::toJSON(os__, "convergmon", convergmon, nindent__);
     }
 
-    AutopilotMode::AutopilotMode(void)
+    AutopilotMode::AutopilotMode()
     {
       m_header.mgid = 511;
       clear();
     }
 
     void
-    AutopilotMode::clear(void)
+    AutopilotMode::clear()
     {
       autonomy = 0;
       mode.clear();
@@ -18754,7 +18754,7 @@ namespace DUNE
     }
 
     int
-    AutopilotMode::validate(void) const
+    AutopilotMode::validate() const
     {
       return true;
     }
@@ -18793,14 +18793,14 @@ namespace DUNE
       IMC::toJSON(os__, "mode", mode, nindent__);
     }
 
-    FormationState::FormationState(void)
+    FormationState::FormationState()
     {
       m_header.mgid = 512;
       clear();
     }
 
     void
-    FormationState::clear(void)
+    FormationState::clear()
     {
       type = 0;
       op = 0;
@@ -18828,7 +18828,7 @@ namespace DUNE
     }
 
     int
-    FormationState::validate(void) const
+    FormationState::validate() const
     {
       return true;
     }
@@ -18891,14 +18891,14 @@ namespace DUNE
       IMC::toJSON(os__, "convergmon", convergmon, nindent__);
     }
 
-    ReportControl::ReportControl(void)
+    ReportControl::ReportControl()
     {
       m_header.mgid = 513;
       clear();
     }
 
     void
-    ReportControl::clear(void)
+    ReportControl::clear()
     {
       op = 0;
       comm_interface = 0;
@@ -18918,7 +18918,7 @@ namespace DUNE
     }
 
     int
-    ReportControl::validate(void) const
+    ReportControl::validate() const
     {
       return true;
     }
@@ -18965,14 +18965,14 @@ namespace DUNE
       IMC::toJSON(os__, "sys_dst", sys_dst, nindent__);
     }
 
-    StateReport::StateReport(void)
+    StateReport::StateReport()
     {
       m_header.mgid = 514;
       clear();
     }
 
     void
-    StateReport::clear(void)
+    StateReport::clear()
     {
       stime = 0;
       latitude = 0;
@@ -19004,7 +19004,7 @@ namespace DUNE
     }
 
     int
-    StateReport::validate(void) const
+    StateReport::validate() const
     {
       return true;
     }
@@ -19075,7 +19075,7 @@ namespace DUNE
       IMC::toJSON(os__, "plan_checksum", plan_checksum, nindent__);
     }
 
-    TransmissionRequest::TransmissionRequest(void)
+    TransmissionRequest::TransmissionRequest()
     {
       m_header.mgid = 515;
       clear();
@@ -19083,7 +19083,7 @@ namespace DUNE
     }
 
     void
-    TransmissionRequest::clear(void)
+    TransmissionRequest::clear()
     {
       req_id = 0;
       comm_mean = 0;
@@ -19111,7 +19111,7 @@ namespace DUNE
     }
 
     int
-    TransmissionRequest::validate(void) const
+    TransmissionRequest::validate() const
     {
       return true;
     }
@@ -19219,14 +19219,14 @@ namespace DUNE
       }
     }
 
-    TransmissionStatus::TransmissionStatus(void)
+    TransmissionStatus::TransmissionStatus()
     {
       m_header.mgid = 516;
       clear();
     }
 
     void
-    TransmissionStatus::clear(void)
+    TransmissionStatus::clear()
     {
       req_id = 0;
       status = 0;
@@ -19244,7 +19244,7 @@ namespace DUNE
     }
 
     int
-    TransmissionStatus::validate(void) const
+    TransmissionStatus::validate() const
     {
       return true;
     }
@@ -19287,14 +19287,14 @@ namespace DUNE
       IMC::toJSON(os__, "info", info, nindent__);
     }
 
-    SmsRequest::SmsRequest(void)
+    SmsRequest::SmsRequest()
     {
       m_header.mgid = 517;
       clear();
     }
 
     void
-    SmsRequest::clear(void)
+    SmsRequest::clear()
     {
       req_id = 0;
       destination.clear();
@@ -19314,7 +19314,7 @@ namespace DUNE
     }
 
     int
-    SmsRequest::validate(void) const
+    SmsRequest::validate() const
     {
       return true;
     }
@@ -19361,14 +19361,14 @@ namespace DUNE
       IMC::toJSON(os__, "sms_text", sms_text, nindent__);
     }
 
-    SmsStatus::SmsStatus(void)
+    SmsStatus::SmsStatus()
     {
       m_header.mgid = 518;
       clear();
     }
 
     void
-    SmsStatus::clear(void)
+    SmsStatus::clear()
     {
       req_id = 0;
       status = 0;
@@ -19386,7 +19386,7 @@ namespace DUNE
     }
 
     int
-    SmsStatus::validate(void) const
+    SmsStatus::validate() const
     {
       return true;
     }
@@ -19429,14 +19429,14 @@ namespace DUNE
       IMC::toJSON(os__, "info", info, nindent__);
     }
 
-    VtolState::VtolState(void)
+    VtolState::VtolState()
     {
       m_header.mgid = 519;
       clear();
     }
 
     void
-    VtolState::clear(void)
+    VtolState::clear()
     {
       state = 0;
     }
@@ -19450,7 +19450,7 @@ namespace DUNE
     }
 
     int
-    VtolState::validate(void) const
+    VtolState::validate() const
     {
       return true;
     }
@@ -19485,14 +19485,14 @@ namespace DUNE
       IMC::toJSON(os__, "state", state, nindent__);
     }
 
-    ArmingState::ArmingState(void)
+    ArmingState::ArmingState()
     {
       m_header.mgid = 520;
       clear();
     }
 
     void
-    ArmingState::clear(void)
+    ArmingState::clear()
     {
       state = 0;
     }
@@ -19506,7 +19506,7 @@ namespace DUNE
     }
 
     int
-    ArmingState::validate(void) const
+    ArmingState::validate() const
     {
       return true;
     }
@@ -19541,19 +19541,19 @@ namespace DUNE
       IMC::toJSON(os__, "state", state, nindent__);
     }
 
-    Abort::Abort(void)
+    Abort::Abort()
     {
       m_header.mgid = 550;
       clear();
     }
 
     void
-    Abort::clear(void)
+    Abort::clear()
     {
     }
 
     int
-    Abort::validate(void) const
+    Abort::validate() const
     {
       return true;
     }
@@ -19580,14 +19580,14 @@ namespace DUNE
       return 0;
     }
 
-    PlanVariable::PlanVariable(void)
+    PlanVariable::PlanVariable()
     {
       m_header.mgid = 561;
       clear();
     }
 
     void
-    PlanVariable::clear(void)
+    PlanVariable::clear()
     {
       name.clear();
       value.clear();
@@ -19607,7 +19607,7 @@ namespace DUNE
     }
 
     int
-    PlanVariable::validate(void) const
+    PlanVariable::validate() const
     {
       return true;
     }
@@ -19654,7 +19654,7 @@ namespace DUNE
       IMC::toJSON(os__, "access", access, nindent__);
     }
 
-    PlanManeuver::PlanManeuver(void)
+    PlanManeuver::PlanManeuver()
     {
       m_header.mgid = 552;
       clear();
@@ -19664,7 +19664,7 @@ namespace DUNE
     }
 
     void
-    PlanManeuver::clear(void)
+    PlanManeuver::clear()
     {
       maneuver_id.clear();
       data.clear();
@@ -19684,7 +19684,7 @@ namespace DUNE
     }
 
     int
-    PlanManeuver::validate(void) const
+    PlanManeuver::validate() const
     {
       return true;
     }
@@ -19796,7 +19796,7 @@ namespace DUNE
       end_actions.setDestinationEntity(value__);
     }
 
-    PlanTransition::PlanTransition(void)
+    PlanTransition::PlanTransition()
     {
       m_header.mgid = 553;
       clear();
@@ -19804,7 +19804,7 @@ namespace DUNE
     }
 
     void
-    PlanTransition::clear(void)
+    PlanTransition::clear()
     {
       source_man.clear();
       dest_man.clear();
@@ -19824,7 +19824,7 @@ namespace DUNE
     }
 
     int
-    PlanTransition::validate(void) const
+    PlanTransition::validate() const
     {
       return true;
     }
@@ -19901,7 +19901,7 @@ namespace DUNE
       actions.setDestinationEntity(value__);
     }
 
-    PlanSpecification::PlanSpecification(void)
+    PlanSpecification::PlanSpecification()
     {
       m_header.mgid = 551;
       clear();
@@ -19913,7 +19913,7 @@ namespace DUNE
     }
 
     void
-    PlanSpecification::clear(void)
+    PlanSpecification::clear()
     {
       plan_id.clear();
       description.clear();
@@ -19943,7 +19943,7 @@ namespace DUNE
     }
 
     int
-    PlanSpecification::validate(void) const
+    PlanSpecification::validate() const
     {
       return true;
     }
@@ -20080,7 +20080,7 @@ namespace DUNE
       end_actions.setDestinationEntity(value__);
     }
 
-    EmergencyControl::EmergencyControl(void)
+    EmergencyControl::EmergencyControl()
     {
       m_header.mgid = 554;
       clear();
@@ -20088,7 +20088,7 @@ namespace DUNE
     }
 
     void
-    EmergencyControl::clear(void)
+    EmergencyControl::clear()
     {
       command = 0;
       plan.clear();
@@ -20104,7 +20104,7 @@ namespace DUNE
     }
 
     int
-    EmergencyControl::validate(void) const
+    EmergencyControl::validate() const
     {
       return true;
     }
@@ -20188,14 +20188,14 @@ namespace DUNE
       }
     }
 
-    EmergencyControlState::EmergencyControlState(void)
+    EmergencyControlState::EmergencyControlState()
     {
       m_header.mgid = 555;
       clear();
     }
 
     void
-    EmergencyControlState::clear(void)
+    EmergencyControlState::clear()
     {
       state = 0;
       plan_id.clear();
@@ -20213,7 +20213,7 @@ namespace DUNE
     }
 
     int
-    EmergencyControlState::validate(void) const
+    EmergencyControlState::validate() const
     {
       if (comm_level > 100) return false;
       return true;
@@ -20257,7 +20257,7 @@ namespace DUNE
       IMC::toJSON(os__, "comm_level", comm_level, nindent__);
     }
 
-    PlanDB::PlanDB(void)
+    PlanDB::PlanDB()
     {
       m_header.mgid = 556;
       clear();
@@ -20265,7 +20265,7 @@ namespace DUNE
     }
 
     void
-    PlanDB::clear(void)
+    PlanDB::clear()
     {
       type = 0;
       op = 0;
@@ -20289,7 +20289,7 @@ namespace DUNE
     }
 
     int
-    PlanDB::validate(void) const
+    PlanDB::validate() const
     {
       return true;
     }
@@ -20389,14 +20389,14 @@ namespace DUNE
       }
     }
 
-    PlanDBInformation::PlanDBInformation(void)
+    PlanDBInformation::PlanDBInformation()
     {
       m_header.mgid = 558;
       clear();
     }
 
     void
-    PlanDBInformation::clear(void)
+    PlanDBInformation::clear()
     {
       plan_id.clear();
       plan_size = 0;
@@ -20420,7 +20420,7 @@ namespace DUNE
     }
 
     int
-    PlanDBInformation::validate(void) const
+    PlanDBInformation::validate() const
     {
       return true;
     }
@@ -20475,7 +20475,7 @@ namespace DUNE
       IMC::toJSON(os__, "md5", md5, nindent__);
     }
 
-    PlanDBState::PlanDBState(void)
+    PlanDBState::PlanDBState()
     {
       m_header.mgid = 557;
       clear();
@@ -20483,7 +20483,7 @@ namespace DUNE
     }
 
     void
-    PlanDBState::clear(void)
+    PlanDBState::clear()
     {
       plan_count = 0;
       plan_size = 0;
@@ -20509,7 +20509,7 @@ namespace DUNE
     }
 
     int
-    PlanDBState::validate(void) const
+    PlanDBState::validate() const
     {
       return true;
     }
@@ -20598,7 +20598,7 @@ namespace DUNE
       plans_info.setDestinationEntity(value__);
     }
 
-    PlanControl::PlanControl(void)
+    PlanControl::PlanControl()
     {
       m_header.mgid = 559;
       clear();
@@ -20606,7 +20606,7 @@ namespace DUNE
     }
 
     void
-    PlanControl::clear(void)
+    PlanControl::clear()
     {
       type = 0;
       op = 0;
@@ -20632,7 +20632,7 @@ namespace DUNE
     }
 
     int
-    PlanControl::validate(void) const
+    PlanControl::validate() const
     {
       return true;
     }
@@ -20736,14 +20736,14 @@ namespace DUNE
       }
     }
 
-    PlanControlState::PlanControlState(void)
+    PlanControlState::PlanControlState()
     {
       m_header.mgid = 560;
       clear();
     }
 
     void
-    PlanControlState::clear(void)
+    PlanControlState::clear()
     {
       state = 0;
       plan_id.clear();
@@ -20771,7 +20771,7 @@ namespace DUNE
     }
 
     int
-    PlanControlState::validate(void) const
+    PlanControlState::validate() const
     {
       return true;
     }
@@ -20834,14 +20834,14 @@ namespace DUNE
       IMC::toJSON(os__, "last_outcome", last_outcome, nindent__);
     }
 
-    PlanGeneration::PlanGeneration(void)
+    PlanGeneration::PlanGeneration()
     {
       m_header.mgid = 562;
       clear();
     }
 
     void
-    PlanGeneration::clear(void)
+    PlanGeneration::clear()
     {
       cmd = 0;
       op = 0;
@@ -20861,7 +20861,7 @@ namespace DUNE
     }
 
     int
-    PlanGeneration::validate(void) const
+    PlanGeneration::validate() const
     {
       return true;
     }
@@ -20908,14 +20908,14 @@ namespace DUNE
       IMC::toJSON(os__, "params", params, nindent__);
     }
 
-    LeaderState::LeaderState(void)
+    LeaderState::LeaderState()
     {
       m_header.mgid = 563;
       clear();
     }
 
     void
-    LeaderState::clear(void)
+    LeaderState::clear()
     {
       group_name.clear();
       op = 0;
@@ -20967,7 +20967,7 @@ namespace DUNE
     }
 
     int
-    LeaderState::validate(void) const
+    LeaderState::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -21086,14 +21086,14 @@ namespace DUNE
       IMC::toJSON(os__, "svz", svz, nindent__);
     }
 
-    PlanStatistics::PlanStatistics(void)
+    PlanStatistics::PlanStatistics()
     {
       m_header.mgid = 564;
       clear();
     }
 
     void
-    PlanStatistics::clear(void)
+    PlanStatistics::clear()
     {
       plan_id.clear();
       type = 0;
@@ -21119,7 +21119,7 @@ namespace DUNE
     }
 
     int
-    PlanStatistics::validate(void) const
+    PlanStatistics::validate() const
     {
       return true;
     }
@@ -21178,14 +21178,14 @@ namespace DUNE
       IMC::toJSON(os__, "fuel", fuel, nindent__);
     }
 
-    ReportedState::ReportedState(void)
+    ReportedState::ReportedState()
     {
       m_header.mgid = 600;
       clear();
     }
 
     void
-    ReportedState::clear(void)
+    ReportedState::clear()
     {
       lat = 0;
       lon = 0;
@@ -21215,7 +21215,7 @@ namespace DUNE
     }
 
     int
-    ReportedState::validate(void) const
+    ReportedState::validate() const
     {
       return true;
     }
@@ -21282,14 +21282,14 @@ namespace DUNE
       IMC::toJSON(os__, "s_type", s_type, nindent__);
     }
 
-    RemoteSensorInfo::RemoteSensorInfo(void)
+    RemoteSensorInfo::RemoteSensorInfo()
     {
       m_header.mgid = 601;
       clear();
     }
 
     void
-    RemoteSensorInfo::clear(void)
+    RemoteSensorInfo::clear()
     {
       id.clear();
       sensor_class.clear();
@@ -21315,7 +21315,7 @@ namespace DUNE
     }
 
     int
-    RemoteSensorInfo::validate(void) const
+    RemoteSensorInfo::validate() const
     {
       return true;
     }
@@ -21374,14 +21374,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    MapPoint::MapPoint(void)
+    MapPoint::MapPoint()
     {
       m_header.mgid = 604;
       clear();
     }
 
     void
-    MapPoint::clear(void)
+    MapPoint::clear()
     {
       lat = 0;
       lon = 0;
@@ -21399,7 +21399,7 @@ namespace DUNE
     }
 
     int
-    MapPoint::validate(void) const
+    MapPoint::validate() const
     {
       return true;
     }
@@ -21442,7 +21442,7 @@ namespace DUNE
       IMC::toJSON(os__, "alt", alt, nindent__);
     }
 
-    MapFeature::MapFeature(void)
+    MapFeature::MapFeature()
     {
       m_header.mgid = 603;
       clear();
@@ -21450,7 +21450,7 @@ namespace DUNE
     }
 
     void
-    MapFeature::clear(void)
+    MapFeature::clear()
     {
       id.clear();
       feature_type = 0;
@@ -21474,7 +21474,7 @@ namespace DUNE
     }
 
     int
-    MapFeature::validate(void) const
+    MapFeature::validate() const
     {
       return true;
     }
@@ -21559,7 +21559,7 @@ namespace DUNE
       feature.setDestinationEntity(value__);
     }
 
-    Map::Map(void)
+    Map::Map()
     {
       m_header.mgid = 602;
       clear();
@@ -21567,7 +21567,7 @@ namespace DUNE
     }
 
     void
-    Map::clear(void)
+    Map::clear()
     {
       id.clear();
       features.clear();
@@ -21583,7 +21583,7 @@ namespace DUNE
     }
 
     int
-    Map::validate(void) const
+    Map::validate() const
     {
       return true;
     }
@@ -21652,7 +21652,7 @@ namespace DUNE
       features.setDestinationEntity(value__);
     }
 
-    CcuEvent::CcuEvent(void)
+    CcuEvent::CcuEvent()
     {
       m_header.mgid = 606;
       clear();
@@ -21660,7 +21660,7 @@ namespace DUNE
     }
 
     void
-    CcuEvent::clear(void)
+    CcuEvent::clear()
     {
       type = 0;
       id.clear();
@@ -21678,7 +21678,7 @@ namespace DUNE
     }
 
     int
-    CcuEvent::validate(void) const
+    CcuEvent::validate() const
     {
       return true;
     }
@@ -21766,7 +21766,7 @@ namespace DUNE
       }
     }
 
-    VehicleLinks::VehicleLinks(void)
+    VehicleLinks::VehicleLinks()
     {
       m_header.mgid = 650;
       clear();
@@ -21774,7 +21774,7 @@ namespace DUNE
     }
 
     void
-    VehicleLinks::clear(void)
+    VehicleLinks::clear()
     {
       localname.clear();
       links.clear();
@@ -21790,7 +21790,7 @@ namespace DUNE
     }
 
     int
-    VehicleLinks::validate(void) const
+    VehicleLinks::validate() const
     {
       return true;
     }
@@ -21859,14 +21859,14 @@ namespace DUNE
       links.setDestinationEntity(value__);
     }
 
-    TrexObservation::TrexObservation(void)
+    TrexObservation::TrexObservation()
     {
       m_header.mgid = 651;
       clear();
     }
 
     void
-    TrexObservation::clear(void)
+    TrexObservation::clear()
     {
       timeline.clear();
       predicate.clear();
@@ -21884,7 +21884,7 @@ namespace DUNE
     }
 
     int
-    TrexObservation::validate(void) const
+    TrexObservation::validate() const
     {
       return true;
     }
@@ -21927,14 +21927,14 @@ namespace DUNE
       IMC::toJSON(os__, "attributes", attributes, nindent__);
     }
 
-    TrexCommand::TrexCommand(void)
+    TrexCommand::TrexCommand()
     {
       m_header.mgid = 652;
       clear();
     }
 
     void
-    TrexCommand::clear(void)
+    TrexCommand::clear()
     {
       command = 0;
       goal_id.clear();
@@ -21952,7 +21952,7 @@ namespace DUNE
     }
 
     int
-    TrexCommand::validate(void) const
+    TrexCommand::validate() const
     {
       return true;
     }
@@ -21995,14 +21995,14 @@ namespace DUNE
       IMC::toJSON(os__, "goal_xml", goal_xml, nindent__);
     }
 
-    TrexAttribute::TrexAttribute(void)
+    TrexAttribute::TrexAttribute()
     {
       m_header.mgid = 656;
       clear();
     }
 
     void
-    TrexAttribute::clear(void)
+    TrexAttribute::clear()
     {
       name.clear();
       attr_type = 0;
@@ -22022,7 +22022,7 @@ namespace DUNE
     }
 
     int
-    TrexAttribute::validate(void) const
+    TrexAttribute::validate() const
     {
       return true;
     }
@@ -22069,7 +22069,7 @@ namespace DUNE
       IMC::toJSON(os__, "max", max, nindent__);
     }
 
-    TrexToken::TrexToken(void)
+    TrexToken::TrexToken()
     {
       m_header.mgid = 657;
       clear();
@@ -22077,7 +22077,7 @@ namespace DUNE
     }
 
     void
-    TrexToken::clear(void)
+    TrexToken::clear()
     {
       timeline.clear();
       predicate.clear();
@@ -22095,7 +22095,7 @@ namespace DUNE
     }
 
     int
-    TrexToken::validate(void) const
+    TrexToken::validate() const
     {
       return true;
     }
@@ -22168,7 +22168,7 @@ namespace DUNE
       attributes.setDestinationEntity(value__);
     }
 
-    TrexOperation::TrexOperation(void)
+    TrexOperation::TrexOperation()
     {
       m_header.mgid = 655;
       clear();
@@ -22176,7 +22176,7 @@ namespace DUNE
     }
 
     void
-    TrexOperation::clear(void)
+    TrexOperation::clear()
     {
       op = 0;
       goal_id.clear();
@@ -22194,7 +22194,7 @@ namespace DUNE
     }
 
     int
-    TrexOperation::validate(void) const
+    TrexOperation::validate() const
     {
       return true;
     }
@@ -22282,7 +22282,7 @@ namespace DUNE
       }
     }
 
-    TrexPlan::TrexPlan(void)
+    TrexPlan::TrexPlan()
     {
       m_header.mgid = 658;
       clear();
@@ -22290,7 +22290,7 @@ namespace DUNE
     }
 
     void
-    TrexPlan::clear(void)
+    TrexPlan::clear()
     {
       reactor.clear();
       tokens.clear();
@@ -22306,7 +22306,7 @@ namespace DUNE
     }
 
     int
-    TrexPlan::validate(void) const
+    TrexPlan::validate() const
     {
       return true;
     }
@@ -22375,14 +22375,14 @@ namespace DUNE
       tokens.setDestinationEntity(value__);
     }
 
-    Event::Event(void)
+    Event::Event()
     {
       m_header.mgid = 660;
       clear();
     }
 
     void
-    Event::clear(void)
+    Event::clear()
     {
       topic.clear();
       data.clear();
@@ -22398,7 +22398,7 @@ namespace DUNE
     }
 
     int
-    Event::validate(void) const
+    Event::validate() const
     {
       return true;
     }
@@ -22437,14 +22437,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    CompressedImage::CompressedImage(void)
+    CompressedImage::CompressedImage()
     {
       m_header.mgid = 702;
       clear();
     }
 
     void
-    CompressedImage::clear(void)
+    CompressedImage::clear()
     {
       frameid = 0;
       data.clear();
@@ -22460,7 +22460,7 @@ namespace DUNE
     }
 
     int
-    CompressedImage::validate(void) const
+    CompressedImage::validate() const
     {
       return true;
     }
@@ -22499,14 +22499,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    ImageTxSettings::ImageTxSettings(void)
+    ImageTxSettings::ImageTxSettings()
     {
       m_header.mgid = 703;
       clear();
     }
 
     void
-    ImageTxSettings::clear(void)
+    ImageTxSettings::clear()
     {
       fps = 0;
       quality = 0;
@@ -22526,7 +22526,7 @@ namespace DUNE
     }
 
     int
-    ImageTxSettings::validate(void) const
+    ImageTxSettings::validate() const
     {
       return true;
     }
@@ -22573,14 +22573,14 @@ namespace DUNE
       IMC::toJSON(os__, "tsize", tsize, nindent__);
     }
 
-    RemoteState::RemoteState(void)
+    RemoteState::RemoteState()
     {
       m_header.mgid = 750;
       clear();
     }
 
     void
-    RemoteState::clear(void)
+    RemoteState::clear()
     {
       lat = 0;
       lon = 0;
@@ -22602,7 +22602,7 @@ namespace DUNE
     }
 
     int
-    RemoteState::validate(void) const
+    RemoteState::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -22655,14 +22655,14 @@ namespace DUNE
       IMC::toJSON(os__, "psi", psi, nindent__);
     }
 
-    Target::Target(void)
+    Target::Target()
     {
       m_header.mgid = 800;
       clear();
     }
 
     void
-    Target::clear(void)
+    Target::clear()
     {
       label.clear();
       lat = 0;
@@ -22688,7 +22688,7 @@ namespace DUNE
     }
 
     int
-    Target::validate(void) const
+    Target::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -22749,14 +22749,14 @@ namespace DUNE
       IMC::toJSON(os__, "sog", sog, nindent__);
     }
 
-    EntityParameter::EntityParameter(void)
+    EntityParameter::EntityParameter()
     {
       m_header.mgid = 801;
       clear();
     }
 
     void
-    EntityParameter::clear(void)
+    EntityParameter::clear()
     {
       name.clear();
       value.clear();
@@ -22772,7 +22772,7 @@ namespace DUNE
     }
 
     int
-    EntityParameter::validate(void) const
+    EntityParameter::validate() const
     {
       return true;
     }
@@ -22811,7 +22811,7 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    EntityParameters::EntityParameters(void)
+    EntityParameters::EntityParameters()
     {
       m_header.mgid = 802;
       clear();
@@ -22819,7 +22819,7 @@ namespace DUNE
     }
 
     void
-    EntityParameters::clear(void)
+    EntityParameters::clear()
     {
       name.clear();
       params.clear();
@@ -22835,7 +22835,7 @@ namespace DUNE
     }
 
     int
-    EntityParameters::validate(void) const
+    EntityParameters::validate() const
     {
       return true;
     }
@@ -22904,14 +22904,14 @@ namespace DUNE
       params.setDestinationEntity(value__);
     }
 
-    QueryEntityParameters::QueryEntityParameters(void)
+    QueryEntityParameters::QueryEntityParameters()
     {
       m_header.mgid = 803;
       clear();
     }
 
     void
-    QueryEntityParameters::clear(void)
+    QueryEntityParameters::clear()
     {
       name.clear();
       visibility.clear();
@@ -22929,7 +22929,7 @@ namespace DUNE
     }
 
     int
-    QueryEntityParameters::validate(void) const
+    QueryEntityParameters::validate() const
     {
       return true;
     }
@@ -22972,7 +22972,7 @@ namespace DUNE
       IMC::toJSON(os__, "scope", scope, nindent__);
     }
 
-    SetEntityParameters::SetEntityParameters(void)
+    SetEntityParameters::SetEntityParameters()
     {
       m_header.mgid = 804;
       clear();
@@ -22980,7 +22980,7 @@ namespace DUNE
     }
 
     void
-    SetEntityParameters::clear(void)
+    SetEntityParameters::clear()
     {
       name.clear();
       params.clear();
@@ -22996,7 +22996,7 @@ namespace DUNE
     }
 
     int
-    SetEntityParameters::validate(void) const
+    SetEntityParameters::validate() const
     {
       return true;
     }
@@ -23065,14 +23065,14 @@ namespace DUNE
       params.setDestinationEntity(value__);
     }
 
-    SaveEntityParameters::SaveEntityParameters(void)
+    SaveEntityParameters::SaveEntityParameters()
     {
       m_header.mgid = 805;
       clear();
     }
 
     void
-    SaveEntityParameters::clear(void)
+    SaveEntityParameters::clear()
     {
       name.clear();
     }
@@ -23086,7 +23086,7 @@ namespace DUNE
     }
 
     int
-    SaveEntityParameters::validate(void) const
+    SaveEntityParameters::validate() const
     {
       return true;
     }
@@ -23121,14 +23121,14 @@ namespace DUNE
       IMC::toJSON(os__, "name", name, nindent__);
     }
 
-    CreateSession::CreateSession(void)
+    CreateSession::CreateSession()
     {
       m_header.mgid = 806;
       clear();
     }
 
     void
-    CreateSession::clear(void)
+    CreateSession::clear()
     {
       timeout = 0;
     }
@@ -23142,7 +23142,7 @@ namespace DUNE
     }
 
     int
-    CreateSession::validate(void) const
+    CreateSession::validate() const
     {
       return true;
     }
@@ -23177,14 +23177,14 @@ namespace DUNE
       IMC::toJSON(os__, "timeout", timeout, nindent__);
     }
 
-    CloseSession::CloseSession(void)
+    CloseSession::CloseSession()
     {
       m_header.mgid = 807;
       clear();
     }
 
     void
-    CloseSession::clear(void)
+    CloseSession::clear()
     {
       sessid = 0;
     }
@@ -23198,7 +23198,7 @@ namespace DUNE
     }
 
     int
-    CloseSession::validate(void) const
+    CloseSession::validate() const
     {
       return true;
     }
@@ -23233,14 +23233,14 @@ namespace DUNE
       IMC::toJSON(os__, "sessid", sessid, nindent__);
     }
 
-    SessionSubscription::SessionSubscription(void)
+    SessionSubscription::SessionSubscription()
     {
       m_header.mgid = 808;
       clear();
     }
 
     void
-    SessionSubscription::clear(void)
+    SessionSubscription::clear()
     {
       sessid = 0;
       messages.clear();
@@ -23256,7 +23256,7 @@ namespace DUNE
     }
 
     int
-    SessionSubscription::validate(void) const
+    SessionSubscription::validate() const
     {
       return true;
     }
@@ -23295,14 +23295,14 @@ namespace DUNE
       IMC::toJSON(os__, "messages", messages, nindent__);
     }
 
-    SessionKeepAlive::SessionKeepAlive(void)
+    SessionKeepAlive::SessionKeepAlive()
     {
       m_header.mgid = 809;
       clear();
     }
 
     void
-    SessionKeepAlive::clear(void)
+    SessionKeepAlive::clear()
     {
       sessid = 0;
     }
@@ -23316,7 +23316,7 @@ namespace DUNE
     }
 
     int
-    SessionKeepAlive::validate(void) const
+    SessionKeepAlive::validate() const
     {
       return true;
     }
@@ -23351,14 +23351,14 @@ namespace DUNE
       IMC::toJSON(os__, "sessid", sessid, nindent__);
     }
 
-    SessionStatus::SessionStatus(void)
+    SessionStatus::SessionStatus()
     {
       m_header.mgid = 810;
       clear();
     }
 
     void
-    SessionStatus::clear(void)
+    SessionStatus::clear()
     {
       sessid = 0;
       status = 0;
@@ -23374,7 +23374,7 @@ namespace DUNE
     }
 
     int
-    SessionStatus::validate(void) const
+    SessionStatus::validate() const
     {
       return true;
     }
@@ -23413,14 +23413,14 @@ namespace DUNE
       IMC::toJSON(os__, "status", status, nindent__);
     }
 
-    PushEntityParameters::PushEntityParameters(void)
+    PushEntityParameters::PushEntityParameters()
     {
       m_header.mgid = 811;
       clear();
     }
 
     void
-    PushEntityParameters::clear(void)
+    PushEntityParameters::clear()
     {
       name.clear();
     }
@@ -23434,7 +23434,7 @@ namespace DUNE
     }
 
     int
-    PushEntityParameters::validate(void) const
+    PushEntityParameters::validate() const
     {
       return true;
     }
@@ -23469,14 +23469,14 @@ namespace DUNE
       IMC::toJSON(os__, "name", name, nindent__);
     }
 
-    PopEntityParameters::PopEntityParameters(void)
+    PopEntityParameters::PopEntityParameters()
     {
       m_header.mgid = 812;
       clear();
     }
 
     void
-    PopEntityParameters::clear(void)
+    PopEntityParameters::clear()
     {
       name.clear();
     }
@@ -23490,7 +23490,7 @@ namespace DUNE
     }
 
     int
-    PopEntityParameters::validate(void) const
+    PopEntityParameters::validate() const
     {
       return true;
     }
@@ -23525,14 +23525,14 @@ namespace DUNE
       IMC::toJSON(os__, "name", name, nindent__);
     }
 
-    IoEvent::IoEvent(void)
+    IoEvent::IoEvent()
     {
       m_header.mgid = 813;
       clear();
     }
 
     void
-    IoEvent::clear(void)
+    IoEvent::clear()
     {
       type = 0;
       error.clear();
@@ -23548,7 +23548,7 @@ namespace DUNE
     }
 
     int
-    IoEvent::validate(void) const
+    IoEvent::validate() const
     {
       return true;
     }
@@ -23587,14 +23587,14 @@ namespace DUNE
       IMC::toJSON(os__, "error", error, nindent__);
     }
 
-    UamTxFrame::UamTxFrame(void)
+    UamTxFrame::UamTxFrame()
     {
       m_header.mgid = 814;
       clear();
     }
 
     void
-    UamTxFrame::clear(void)
+    UamTxFrame::clear()
     {
       seq = 0;
       sys_dst.clear();
@@ -23614,7 +23614,7 @@ namespace DUNE
     }
 
     int
-    UamTxFrame::validate(void) const
+    UamTxFrame::validate() const
     {
       return true;
     }
@@ -23661,14 +23661,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    UamRxFrame::UamRxFrame(void)
+    UamRxFrame::UamRxFrame()
     {
       m_header.mgid = 815;
       clear();
     }
 
     void
-    UamRxFrame::clear(void)
+    UamRxFrame::clear()
     {
       sys_src.clear();
       sys_dst.clear();
@@ -23688,7 +23688,7 @@ namespace DUNE
     }
 
     int
-    UamRxFrame::validate(void) const
+    UamRxFrame::validate() const
     {
       return true;
     }
@@ -23735,14 +23735,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    UamTxStatus::UamTxStatus(void)
+    UamTxStatus::UamTxStatus()
     {
       m_header.mgid = 816;
       clear();
     }
 
     void
-    UamTxStatus::clear(void)
+    UamTxStatus::clear()
     {
       seq = 0;
       value = 0;
@@ -23760,7 +23760,7 @@ namespace DUNE
     }
 
     int
-    UamTxStatus::validate(void) const
+    UamTxStatus::validate() const
     {
       return true;
     }
@@ -23796,7 +23796,7 @@ namespace DUNE
     }
 
     fp64_t
-    UamTxStatus::getValueFP(void) const
+    UamTxStatus::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -23815,14 +23815,14 @@ namespace DUNE
       IMC::toJSON(os__, "error", error, nindent__);
     }
 
-    UamRxRange::UamRxRange(void)
+    UamRxRange::UamRxRange()
     {
       m_header.mgid = 817;
       clear();
     }
 
     void
-    UamRxRange::clear(void)
+    UamRxRange::clear()
     {
       seq = 0;
       sys.clear();
@@ -23840,7 +23840,7 @@ namespace DUNE
     }
 
     int
-    UamRxRange::validate(void) const
+    UamRxRange::validate() const
     {
       return true;
     }
@@ -23876,7 +23876,7 @@ namespace DUNE
     }
 
     fp64_t
-    UamRxRange::getValueFP(void) const
+    UamRxRange::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -23895,14 +23895,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    FormCtrlParam::FormCtrlParam(void)
+    FormCtrlParam::FormCtrlParam()
     {
       m_header.mgid = 820;
       clear();
     }
 
     void
-    FormCtrlParam::clear(void)
+    FormCtrlParam::clear()
     {
       action = 0;
       longain = 0;
@@ -23926,7 +23926,7 @@ namespace DUNE
     }
 
     int
-    FormCtrlParam::validate(void) const
+    FormCtrlParam::validate() const
     {
       return true;
     }
@@ -23981,14 +23981,14 @@ namespace DUNE
       IMC::toJSON(os__, "deconflgain", deconflgain, nindent__);
     }
 
-    FormationEval::FormationEval(void)
+    FormationEval::FormationEval()
     {
       m_header.mgid = 821;
       clear();
     }
 
     void
-    FormationEval::clear(void)
+    FormationEval::clear()
     {
       err_mean = 0;
       dist_min_abs = 0;
@@ -24006,7 +24006,7 @@ namespace DUNE
     }
 
     int
-    FormationEval::validate(void) const
+    FormationEval::validate() const
     {
       return true;
     }
@@ -24049,14 +24049,14 @@ namespace DUNE
       IMC::toJSON(os__, "dist_min_mean", dist_min_mean, nindent__);
     }
 
-    FormationControlParams::FormationControlParams(void)
+    FormationControlParams::FormationControlParams()
     {
       m_header.mgid = 822;
       clear();
     }
 
     void
-    FormationControlParams::clear(void)
+    FormationControlParams::clear()
     {
       action = 0;
       lon_gain = 0;
@@ -24090,7 +24090,7 @@ namespace DUNE
     }
 
     int
-    FormationControlParams::validate(void) const
+    FormationControlParams::validate() const
     {
       return true;
     }
@@ -24165,7 +24165,7 @@ namespace DUNE
       IMC::toJSON(os__, "accel_lim_x", accel_lim_x, nindent__);
     }
 
-    FormationEvaluation::FormationEvaluation(void)
+    FormationEvaluation::FormationEvaluation()
     {
       m_header.mgid = 823;
       clear();
@@ -24173,7 +24173,7 @@ namespace DUNE
     }
 
     void
-    FormationEvaluation::clear(void)
+    FormationEvaluation::clear()
     {
       type = 0;
       op = 0;
@@ -24201,7 +24201,7 @@ namespace DUNE
     }
 
     int
-    FormationEvaluation::validate(void) const
+    FormationEvaluation::validate() const
     {
       return true;
     }
@@ -24309,14 +24309,14 @@ namespace DUNE
       }
     }
 
-    SoiWaypoint::SoiWaypoint(void)
+    SoiWaypoint::SoiWaypoint()
     {
       m_header.mgid = 850;
       clear();
     }
 
     void
-    SoiWaypoint::clear(void)
+    SoiWaypoint::clear()
     {
       lat = 0;
       lon = 0;
@@ -24336,7 +24336,7 @@ namespace DUNE
     }
 
     int
-    SoiWaypoint::validate(void) const
+    SoiWaypoint::validate() const
     {
       return true;
     }
@@ -24383,7 +24383,7 @@ namespace DUNE
       IMC::toJSON(os__, "duration", duration, nindent__);
     }
 
-    SoiPlan::SoiPlan(void)
+    SoiPlan::SoiPlan()
     {
       m_header.mgid = 851;
       clear();
@@ -24391,7 +24391,7 @@ namespace DUNE
     }
 
     void
-    SoiPlan::clear(void)
+    SoiPlan::clear()
     {
       plan_id = 0;
       waypoints.clear();
@@ -24407,7 +24407,7 @@ namespace DUNE
     }
 
     int
-    SoiPlan::validate(void) const
+    SoiPlan::validate() const
     {
       return true;
     }
@@ -24476,7 +24476,7 @@ namespace DUNE
       waypoints.setDestinationEntity(value__);
     }
 
-    SoiCommand::SoiCommand(void)
+    SoiCommand::SoiCommand()
     {
       m_header.mgid = 852;
       clear();
@@ -24484,7 +24484,7 @@ namespace DUNE
     }
 
     void
-    SoiCommand::clear(void)
+    SoiCommand::clear()
     {
       type = 0;
       command = 0;
@@ -24506,7 +24506,7 @@ namespace DUNE
     }
 
     int
-    SoiCommand::validate(void) const
+    SoiCommand::validate() const
     {
       return true;
     }
@@ -24602,14 +24602,14 @@ namespace DUNE
       }
     }
 
-    SoiState::SoiState(void)
+    SoiState::SoiState()
     {
       m_header.mgid = 853;
       clear();
     }
 
     void
-    SoiState::clear(void)
+    SoiState::clear()
     {
       state = 0;
       plan_id = 0;
@@ -24629,7 +24629,7 @@ namespace DUNE
     }
 
     int
-    SoiState::validate(void) const
+    SoiState::validate() const
     {
       return true;
     }
@@ -24676,14 +24676,14 @@ namespace DUNE
       IMC::toJSON(os__, "settings_chk", settings_chk, nindent__);
     }
 
-    MessagePart::MessagePart(void)
+    MessagePart::MessagePart()
     {
       m_header.mgid = 877;
       clear();
     }
 
     void
-    MessagePart::clear(void)
+    MessagePart::clear()
     {
       uid = 0;
       frag_number = 0;
@@ -24703,7 +24703,7 @@ namespace DUNE
     }
 
     int
-    MessagePart::validate(void) const
+    MessagePart::validate() const
     {
       return true;
     }
@@ -24750,14 +24750,14 @@ namespace DUNE
       IMC::toJSON(os__, "data", data, nindent__);
     }
 
-    NeptusBlob::NeptusBlob(void)
+    NeptusBlob::NeptusBlob()
     {
       m_header.mgid = 888;
       clear();
     }
 
     void
-    NeptusBlob::clear(void)
+    NeptusBlob::clear()
     {
       content_type.clear();
       content.clear();
@@ -24773,7 +24773,7 @@ namespace DUNE
     }
 
     int
-    NeptusBlob::validate(void) const
+    NeptusBlob::validate() const
     {
       return true;
     }
@@ -24812,19 +24812,19 @@ namespace DUNE
       IMC::toJSON(os__, "content", content, nindent__);
     }
 
-    Aborted::Aborted(void)
+    Aborted::Aborted()
     {
       m_header.mgid = 889;
       clear();
     }
 
     void
-    Aborted::clear(void)
+    Aborted::clear()
     {
     }
 
     int
-    Aborted::validate(void) const
+    Aborted::validate() const
     {
       return true;
     }
@@ -24851,14 +24851,14 @@ namespace DUNE
       return 0;
     }
 
-    UsblAngles::UsblAngles(void)
+    UsblAngles::UsblAngles()
     {
       m_header.mgid = 890;
       clear();
     }
 
     void
-    UsblAngles::clear(void)
+    UsblAngles::clear()
     {
       target = 0;
       bearing = 0;
@@ -24876,7 +24876,7 @@ namespace DUNE
     }
 
     int
-    UsblAngles::validate(void) const
+    UsblAngles::validate() const
     {
       return true;
     }
@@ -24919,14 +24919,14 @@ namespace DUNE
       IMC::toJSON(os__, "elevation", elevation, nindent__);
     }
 
-    UsblPosition::UsblPosition(void)
+    UsblPosition::UsblPosition()
     {
       m_header.mgid = 891;
       clear();
     }
 
     void
-    UsblPosition::clear(void)
+    UsblPosition::clear()
     {
       target = 0;
       x = 0;
@@ -24946,7 +24946,7 @@ namespace DUNE
     }
 
     int
-    UsblPosition::validate(void) const
+    UsblPosition::validate() const
     {
       return true;
     }
@@ -24993,14 +24993,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    UsblFix::UsblFix(void)
+    UsblFix::UsblFix()
     {
       m_header.mgid = 892;
       clear();
     }
 
     void
-    UsblFix::clear(void)
+    UsblFix::clear()
     {
       target = 0;
       lat = 0;
@@ -25022,7 +25022,7 @@ namespace DUNE
     }
 
     int
-    UsblFix::validate(void) const
+    UsblFix::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -25075,14 +25075,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    ParametersXml::ParametersXml(void)
+    ParametersXml::ParametersXml()
     {
       m_header.mgid = 893;
       clear();
     }
 
     void
-    ParametersXml::clear(void)
+    ParametersXml::clear()
     {
       locale.clear();
       config.clear();
@@ -25098,7 +25098,7 @@ namespace DUNE
     }
 
     int
-    ParametersXml::validate(void) const
+    ParametersXml::validate() const
     {
       return true;
     }
@@ -25137,19 +25137,19 @@ namespace DUNE
       IMC::toJSON(os__, "config", config, nindent__);
     }
 
-    GetParametersXml::GetParametersXml(void)
+    GetParametersXml::GetParametersXml()
     {
       m_header.mgid = 894;
       clear();
     }
 
     void
-    GetParametersXml::clear(void)
+    GetParametersXml::clear()
     {
     }
 
     int
-    GetParametersXml::validate(void) const
+    GetParametersXml::validate() const
     {
       return true;
     }
@@ -25176,14 +25176,14 @@ namespace DUNE
       return 0;
     }
 
-    SetImageCoords::SetImageCoords(void)
+    SetImageCoords::SetImageCoords()
     {
       m_header.mgid = 895;
       clear();
     }
 
     void
-    SetImageCoords::clear(void)
+    SetImageCoords::clear()
     {
       camid = 0;
       x = 0;
@@ -25201,7 +25201,7 @@ namespace DUNE
     }
 
     int
-    SetImageCoords::validate(void) const
+    SetImageCoords::validate() const
     {
       return true;
     }
@@ -25244,14 +25244,14 @@ namespace DUNE
       IMC::toJSON(os__, "y", y, nindent__);
     }
 
-    GetImageCoords::GetImageCoords(void)
+    GetImageCoords::GetImageCoords()
     {
       m_header.mgid = 896;
       clear();
     }
 
     void
-    GetImageCoords::clear(void)
+    GetImageCoords::clear()
     {
       camid = 0;
       x = 0;
@@ -25269,7 +25269,7 @@ namespace DUNE
     }
 
     int
-    GetImageCoords::validate(void) const
+    GetImageCoords::validate() const
     {
       return true;
     }
@@ -25312,14 +25312,14 @@ namespace DUNE
       IMC::toJSON(os__, "y", y, nindent__);
     }
 
-    GetWorldCoordinates::GetWorldCoordinates(void)
+    GetWorldCoordinates::GetWorldCoordinates()
     {
       m_header.mgid = 897;
       clear();
     }
 
     void
-    GetWorldCoordinates::clear(void)
+    GetWorldCoordinates::clear()
     {
       tracking = 0;
       lat = 0;
@@ -25343,7 +25343,7 @@ namespace DUNE
     }
 
     int
-    GetWorldCoordinates::validate(void) const
+    GetWorldCoordinates::validate() const
     {
       return true;
     }
@@ -25398,14 +25398,14 @@ namespace DUNE
       IMC::toJSON(os__, "z", z, nindent__);
     }
 
-    UsblAnglesExtended::UsblAnglesExtended(void)
+    UsblAnglesExtended::UsblAnglesExtended()
     {
       m_header.mgid = 898;
       clear();
     }
 
     void
-    UsblAnglesExtended::clear(void)
+    UsblAnglesExtended::clear()
     {
       target.clear();
       lbearing = 0;
@@ -25435,7 +25435,7 @@ namespace DUNE
     }
 
     int
-    UsblAnglesExtended::validate(void) const
+    UsblAnglesExtended::validate() const
     {
       if (phi < -3.141592653589793 || phi > 3.141592653589793) return false;
       if (theta < -1.57079632679490 || theta > 1.57079632679490) return false;
@@ -25506,14 +25506,14 @@ namespace DUNE
       IMC::toJSON(os__, "accuracy", accuracy, nindent__);
     }
 
-    UsblPositionExtended::UsblPositionExtended(void)
+    UsblPositionExtended::UsblPositionExtended()
     {
       m_header.mgid = 899;
       clear();
     }
 
     void
-    UsblPositionExtended::clear(void)
+    UsblPositionExtended::clear()
     {
       target.clear();
       x = 0;
@@ -25547,7 +25547,7 @@ namespace DUNE
     }
 
     int
-    UsblPositionExtended::validate(void) const
+    UsblPositionExtended::validate() const
     {
       if (phi < -3.141592653589793 || phi > 3.141592653589793) return false;
       if (theta < -1.57079632679490 || theta > 1.57079632679490) return false;
@@ -25626,14 +25626,14 @@ namespace DUNE
       IMC::toJSON(os__, "accuracy", accuracy, nindent__);
     }
 
-    UsblFixExtended::UsblFixExtended(void)
+    UsblFixExtended::UsblFixExtended()
     {
       m_header.mgid = 900;
       clear();
     }
 
     void
-    UsblFixExtended::clear(void)
+    UsblFixExtended::clear()
     {
       target.clear();
       lat = 0;
@@ -25657,7 +25657,7 @@ namespace DUNE
     }
 
     int
-    UsblFixExtended::validate(void) const
+    UsblFixExtended::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -25715,14 +25715,14 @@ namespace DUNE
       IMC::toJSON(os__, "accuracy", accuracy, nindent__);
     }
 
-    UsblModem::UsblModem(void)
+    UsblModem::UsblModem()
     {
       m_header.mgid = 901;
       clear();
     }
 
     void
-    UsblModem::clear(void)
+    UsblModem::clear()
     {
       name.clear();
       lat = 0;
@@ -25744,7 +25744,7 @@ namespace DUNE
     }
 
     int
-    UsblModem::validate(void) const
+    UsblModem::validate() const
     {
       if (lat < -1.5707963267948966 || lat > 1.5707963267948966) return false;
       if (lon < -3.141592653589793 || lon > 3.141592653589793) return false;
@@ -25797,7 +25797,7 @@ namespace DUNE
       IMC::toJSON(os__, "z_units", z_units, nindent__);
     }
 
-    UsblConfig::UsblConfig(void)
+    UsblConfig::UsblConfig()
     {
       m_header.mgid = 902;
       clear();
@@ -25805,7 +25805,7 @@ namespace DUNE
     }
 
     void
-    UsblConfig::clear(void)
+    UsblConfig::clear()
     {
       op = 0;
       modems.clear();
@@ -25821,7 +25821,7 @@ namespace DUNE
     }
 
     int
-    UsblConfig::validate(void) const
+    UsblConfig::validate() const
     {
       return true;
     }
@@ -25890,14 +25890,14 @@ namespace DUNE
       modems.setDestinationEntity(value__);
     }
 
-    DissolvedOrganicMatter::DissolvedOrganicMatter(void)
+    DissolvedOrganicMatter::DissolvedOrganicMatter()
     {
       m_header.mgid = 903;
       clear();
     }
 
     void
-    DissolvedOrganicMatter::clear(void)
+    DissolvedOrganicMatter::clear()
     {
       value = 0;
       type = 0;
@@ -25913,7 +25913,7 @@ namespace DUNE
     }
 
     int
-    DissolvedOrganicMatter::validate(void) const
+    DissolvedOrganicMatter::validate() const
     {
       return true;
     }
@@ -25946,7 +25946,7 @@ namespace DUNE
     }
 
     fp64_t
-    DissolvedOrganicMatter::getValueFP(void) const
+    DissolvedOrganicMatter::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -25964,14 +25964,14 @@ namespace DUNE
       IMC::toJSON(os__, "type", type, nindent__);
     }
 
-    OpticalBackscatter::OpticalBackscatter(void)
+    OpticalBackscatter::OpticalBackscatter()
     {
       m_header.mgid = 904;
       clear();
     }
 
     void
-    OpticalBackscatter::clear(void)
+    OpticalBackscatter::clear()
     {
       value = 0;
     }
@@ -25985,7 +25985,7 @@ namespace DUNE
     }
 
     int
-    OpticalBackscatter::validate(void) const
+    OpticalBackscatter::validate() const
     {
       return true;
     }
@@ -26015,7 +26015,7 @@ namespace DUNE
     }
 
     fp64_t
-    OpticalBackscatter::getValueFP(void) const
+    OpticalBackscatter::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -26032,14 +26032,14 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
 
-    Tachograph::Tachograph(void)
+    Tachograph::Tachograph()
     {
       m_header.mgid = 905;
       clear();
     }
 
     void
-    Tachograph::clear(void)
+    Tachograph::clear()
     {
       timestamp_last_service = 0;
       time_next_service = 0;
@@ -26083,7 +26083,7 @@ namespace DUNE
     }
 
     int
-    Tachograph::validate(void) const
+    Tachograph::validate() const
     {
       return true;
     }
@@ -26178,14 +26178,14 @@ namespace DUNE
       IMC::toJSON(os__, "depth_max", depth_max, nindent__);
     }
 
-    ApmStatus::ApmStatus(void)
+    ApmStatus::ApmStatus()
     {
       m_header.mgid = 906;
       clear();
     }
 
     void
-    ApmStatus::clear(void)
+    ApmStatus::clear()
     {
       severity = 0;
       text.clear();
@@ -26201,7 +26201,7 @@ namespace DUNE
     }
 
     int
-    ApmStatus::validate(void) const
+    ApmStatus::validate() const
     {
       return true;
     }
@@ -26240,14 +26240,14 @@ namespace DUNE
       IMC::toJSON(os__, "text", text, nindent__);
     }
 
-    SadcReadings::SadcReadings(void)
+    SadcReadings::SadcReadings()
     {
       m_header.mgid = 907;
       clear();
     }
 
     void
-    SadcReadings::clear(void)
+    SadcReadings::clear()
     {
       channel = 0;
       value = 0;
@@ -26265,7 +26265,7 @@ namespace DUNE
     }
 
     int
-    SadcReadings::validate(void) const
+    SadcReadings::validate() const
     {
       if (channel < 1 || channel > 4) return false;
       return true;
@@ -26302,7 +26302,7 @@ namespace DUNE
     }
 
     fp64_t
-    SadcReadings::getValueFP(void) const
+    SadcReadings::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }
@@ -26321,14 +26321,14 @@ namespace DUNE
       IMC::toJSON(os__, "gain", gain, nindent__);
     }
 
-    DmsDetection::DmsDetection(void)
+    DmsDetection::DmsDetection()
     {
       m_header.mgid = 908;
       clear();
     }
 
     void
-    DmsDetection::clear(void)
+    DmsDetection::clear()
     {
       ch01 = 0;
       ch02 = 0;
@@ -26372,7 +26372,7 @@ namespace DUNE
     }
 
     int
-    DmsDetection::validate(void) const
+    DmsDetection::validate() const
     {
       return true;
     }
@@ -26467,14 +26467,14 @@ namespace DUNE
       IMC::toJSON(os__, "ch16", ch16, nindent__);
     }
 
-    TotalMagIntensity::TotalMagIntensity(void)
+    TotalMagIntensity::TotalMagIntensity()
     {
       m_header.mgid = 2006;
       clear();
     }
 
     void
-    TotalMagIntensity::clear(void)
+    TotalMagIntensity::clear()
     {
       value = 0;
     }
@@ -26488,7 +26488,7 @@ namespace DUNE
     }
 
     int
-    TotalMagIntensity::validate(void) const
+    TotalMagIntensity::validate() const
     {
       return true;
     }
@@ -26518,7 +26518,7 @@ namespace DUNE
     }
 
     fp64_t
-    TotalMagIntensity::getValueFP(void) const
+    TotalMagIntensity::getValueFP() const
     {
       return static_cast<fp64_t>(value);
     }

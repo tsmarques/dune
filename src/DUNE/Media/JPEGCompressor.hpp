@@ -62,10 +62,10 @@ namespace DUNE
       };
 
       //! Construct a JPEGCompressor object.
-      JPEGCompressor(void);
+      JPEGCompressor();
 
       //! Destroy a JPEGCompressor object.
-      ~JPEGCompressor(void);
+      ~JPEGCompressor();
 
       //! Set entropy encoding optimization.
       //! @param optimize true enables optimization.
@@ -102,12 +102,12 @@ namespace DUNE
       //! Retrieve the compressed image.
       //! @return compressed image.
       const uint8_t*
-      imageData(void) const;
+      imageData() const;
 
       //! Retrieve the size of the compressed image.
       //! @return size in bytes of the compressed image.
       uint32_t
-      imageSize(void) const;
+      imageSize() const;
 
     private:
       // JPEG destination manager.

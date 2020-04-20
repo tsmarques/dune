@@ -49,12 +49,12 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      AddressResolver(void);
+      AddressResolver();
 
       //! Retrieve the address name of this instance.
       //! @return the address name of this instance.
       const char*
-      name(void);
+      name();
 
       //! Set the address name of this instance.
       //! @return the address name of this instance.
@@ -64,7 +64,7 @@ namespace DUNE
       //! Retrieve the address id of this instance.
       //! @return the address id of this instance.
       unsigned
-      id(void);
+      id();
 
       //! Set the address id of this instance.
       //! @param id the address id of this instance.
@@ -94,7 +94,7 @@ namespace DUNE
       isUnknown(unsigned a_id);
 
       static unsigned
-      invalid(void)
+      invalid()
       {
         return 0xffff;
       }

@@ -71,7 +71,7 @@ namespace DUNE
       }
 
       //! Destructor.
-      ~MotorCurrentMonitor(void)
+      ~MotorCurrentMonitor()
       {
         Memory::clear(m_trigger);
       }
@@ -93,7 +93,7 @@ namespace DUNE
     private:
       //! Validate the points vector for linear interpolation
       inline void
-      validatePoints(void)
+      validatePoints()
       {
         if (c_lin_points.size() % 2)
           throw Error(DTR("number of linear points is not even"));

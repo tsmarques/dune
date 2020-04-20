@@ -125,7 +125,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Periodic(name, ctx),
-        m_model(NULL),
+        m_model(nullptr),
         m_start_time(-1.0),
         m_last_update(-1.0),
         m_last_time_debug(std::min(-1.0, Clock::get())),
@@ -135,7 +135,7 @@ namespace Simulators
         m_position(6, 1, 0.0),
         m_velocity(6, 1, 0.0),
         m_wind(3, 1, 0.0),
-        m_cmd_flt(NULL),
+        m_cmd_flt(nullptr),
         m_alias_id(UINT_MAX)
       {
         // Definition of configuration parameters.
@@ -291,10 +291,10 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         // Application of the wind vector
-        if (m_model != NULL)
+        if (m_model != nullptr)
         {
           m_model->m_wind(0) = m_args.wx;
           m_model->m_wind(1) = m_args.wy;
@@ -331,7 +331,7 @@ namespace Simulators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         spew("do 'onResourceRelease'");
 
@@ -340,7 +340,7 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         spew("onResourceAquisition - start");
 
@@ -727,7 +727,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task() override
       {
         // Handle IMC messages from bus
         consumeMessages();

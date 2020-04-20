@@ -71,7 +71,7 @@ namespace DUNE
     class UnsupportedFormat: public std::runtime_error
     {
     public:
-      UnsupportedFormat(void):
+      UnsupportedFormat():
         std::runtime_error("unsupported message format")
       { }
     };
@@ -79,7 +79,7 @@ namespace DUNE
     class UnknownStandard: public std::runtime_error
     {
     public:
-      UnknownStandard(void):
+      UnknownStandard():
         std::runtime_error("unknown message standard")
       { }
     };
@@ -88,7 +88,7 @@ namespace DUNE
     class InvalidCrc: public std::runtime_error
     {
     public:
-      InvalidCrc(void):
+      InvalidCrc():
         std::runtime_error("invalid CRC")
       { }
     };
@@ -97,7 +97,7 @@ namespace DUNE
     class BufferTooShort: public std::runtime_error
     {
     public:
-      BufferTooShort(void):
+      BufferTooShort():
         std::runtime_error("buffer is too short to be unpacked")
       { }
     };
@@ -106,7 +106,7 @@ namespace DUNE
     class InternalBufferTooShort: public std::runtime_error
     {
     public:
-      InternalBufferTooShort(void):
+      InternalBufferTooShort():
         std::runtime_error("internal buffer is too short to hold the message")
       { }
     };
@@ -115,7 +115,7 @@ namespace DUNE
     class InvalidFormat: public std::runtime_error
     {
     public:
-      InvalidFormat(void):
+      InvalidFormat():
         std::runtime_error("invalid format")
       { }
     };

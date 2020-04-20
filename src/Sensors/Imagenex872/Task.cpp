@@ -116,7 +116,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_sock(NULL)
+        m_sock(nullptr)
       {
         // Define configuration parameters.
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -177,35 +177,35 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         setFrequency(m_args.frequency);
         setRange(m_args.range);
         setDataGain(m_args.dat_gain);
         setBalanceGain(m_args.bal_gain);
 
-        if (paramChanged(m_args.addr) && m_sock != NULL)
+        if (paramChanged(m_args.addr) && m_sock != nullptr)
           throw RestartNeeded(DTR("restarting to change IPv4 address"), 1);
 
-        if (paramChanged(m_args.port) && m_sock != NULL)
+        if (paramChanged(m_args.port) && m_sock != nullptr)
           throw RestartNeeded(DTR("restarting to change TCP port"), 1);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_sock = new TCPSocket();
         m_sock->setNoDelay(true);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_sock);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         try
         {
@@ -220,13 +220,13 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -311,7 +311,7 @@ namespace Sensors
       }
 
       void
-      pingBoth(void)
+      pingBoth()
       {
         ping(SIDE_PORT);
         ping(SIDE_STARBOARD);
@@ -319,7 +319,7 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task() override
       {
         if (!isActive())
           return;

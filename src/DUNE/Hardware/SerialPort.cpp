@@ -130,7 +130,7 @@ namespace DUNE
   namespace Hardware
   {
     std::vector<std::string>
-    SerialPort::enumerate(void)
+    SerialPort::enumerate()
     {
       std::vector<std::string> devs;
 
@@ -138,10 +138,10 @@ namespace DUNE
       using FileSystem::Path;
 
       char bfr[64];
-      const char* fmts[] = {"/dev/ttyS%d", "/dev/ttyACM%d", "/dev/ttyUSB%d", 0};
+      const char* fmts[] = {"/dev/ttyS%d", "/dev/ttyACM%d", "/dev/ttyUSB%d", nullptr};
       const char** fmt = fmts;
 
-      while (*fmt != 0)
+      while (*fmt != nullptr)
       {
         for (int i = 0; i < 24; ++i)
         {
@@ -284,7 +284,7 @@ namespace DUNE
     }
 
     //! Serial port destructor.
-    SerialPort::~SerialPort(void)
+    SerialPort::~SerialPort()
     {
 #if defined(DUNE_OS_POSIX)
       if (m_handle)
@@ -528,7 +528,7 @@ namespace DUNE
     }
 
     void
-    SerialPort::setNonBlocking(void)
+    SerialPort::setNonBlocking()
     {
 #if defined(DUNE_OS_POSIX)
       m_options.c_cc[VMIN] = 0;
@@ -665,7 +665,7 @@ namespace DUNE
     }
 
     void
-    SerialPort::doFlushInput(void)
+    SerialPort::doFlushInput()
     {
 #if defined(DUNE_OS_POSIX)
       tcflush(m_handle, TCIFLUSH);
@@ -675,7 +675,7 @@ namespace DUNE
     }
 
     void
-    SerialPort::doFlushOutput(void)
+    SerialPort::doFlushOutput()
     {
 #if defined(DUNE_OS_POSIX)
       tcflush(m_handle, TCOFLUSH);
@@ -685,7 +685,7 @@ namespace DUNE
     }
 
     void
-    SerialPort::doFlush(void)
+    SerialPort::doFlush()
     {
 #if defined(DUNE_OS_POSIX)
       tcflush(m_handle, TCIOFLUSH);

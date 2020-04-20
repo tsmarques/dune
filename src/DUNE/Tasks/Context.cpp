@@ -37,7 +37,7 @@ namespace DUNE
 {
   namespace Tasks
   {
-    Context::Context(void)
+    Context::Context()
     {
       using FileSystem::Path;
 

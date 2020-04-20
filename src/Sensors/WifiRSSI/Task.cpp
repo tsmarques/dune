@@ -32,7 +32,7 @@
 #include <stdexcept>
 
 // ISO C 99 headers / POSIX headers.
-#include <stdio.h>
+#include <cstdio>
 
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
@@ -129,7 +129,7 @@ namespace Sensors
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_period.setTop(m_args.period);
         m_keyfile = Path(m_ctx.dir_cfg) / m_args.private_key;
@@ -138,7 +138,7 @@ namespace Sensors
 
       //! Initialize entity state to NORMAL
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
@@ -163,7 +163,7 @@ namespace Sensors
 
         // Execute and open command output for reading
         FILE* fd = popen(ss.str().c_str(), "re");
-        if (fd == NULL)
+        if (fd == nullptr)
         {
           war("Unable to retrieve RSSI. Unable to spawn child process.");
         }
@@ -200,7 +200,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

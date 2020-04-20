@@ -44,13 +44,11 @@ namespace DUNE
 {
   namespace Tasks
   {
-    typedef DUNE::Tasks::Task* (*task_creator_t)(const std::string&, DUNE::Tasks::Context&);
+    using task_creator_t = DUNE::Tasks::Task *(*)(const std::string &, DUNE::Tasks::Context &);
 
     struct Creator
     {
-      Creator(void):
-        m_creator(0)
-      { }
+      Creator () : m_creator (nullptr) {}
 
       Creator(const task_creator_t& c):
         m_creator(c)
@@ -77,7 +75,7 @@ namespace DUNE
       }
 
       task_creator_t
-      getCreatorPointer(void)
+      getCreatorPointer()
       {
         return m_creator;
       }

@@ -91,7 +91,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_prng(NULL)
+        m_prng(nullptr)
       {
         param("PRNG Type", m_args.prng_type)
         .defaultValue(Random::Factory::c_default)
@@ -143,7 +143,7 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.usbl_lat))
           m_args.usbl_lat = Angles::radians(m_args.usbl_lat);
@@ -166,13 +166,13 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
@@ -215,7 +215,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task() override
       {
         if (m_ent.state != IMC::EntityState::ESTA_NORMAL)
           return;  // Home ref not setup

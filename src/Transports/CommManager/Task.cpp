@@ -70,11 +70,11 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_pstate(NULL),
-        m_fuel(NULL),
-        m_estate(NULL),
-        m_vstate(NULL),
-        m_vmedium(NULL),
+        m_pstate(nullptr),
+        m_fuel(nullptr),
+        m_estate(nullptr),
+        m_vstate(nullptr),
+        m_vmedium(nullptr),
         m_plan_chksum(0),
         m_reqid(1)
       {
@@ -96,7 +96,7 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_iridium_timer.setTop(m_args.iridium_period);
       }
@@ -355,7 +355,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_fuel);
         Memory::clear(m_pstate);
@@ -364,15 +364,15 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       IMC::StateReport* produceReport()
       {
-        if (m_vstate == NULL || m_estate == NULL)
-          return NULL;
+        if (m_vstate == nullptr || m_estate == nullptr)
+          return nullptr;
 
         IMC::EstimatedState* estate = new IMC::EstimatedState(*m_estate);
         IMC::VehicleState* vstate = new IMC::VehicleState(*m_vstate);
@@ -406,7 +406,7 @@ namespace Transports
           ang += Math::c_two_pi;
         report->heading = Math::roundToInteger((ang/c_two_pi) * 65535);
 
-        if (m_fuel != NULL)
+        if (m_fuel != nullptr)
           report->fuel = Math::roundToInteger(m_fuel->value);
 
         switch (vstate->op_mode)
@@ -422,7 +422,7 @@ namespace Transports
             report->plan_checksum = m_plan_chksum;
             break;
           default:
-            if (m_pstate != NULL)
+            if (m_pstate != nullptr)
             {
               report->exec_state = Math::roundToInteger(m_pstate->plan_progress);
               report->plan_checksum = m_plan_chksum;
@@ -438,7 +438,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         int req_id = 1;
         while (!stopping())
@@ -453,10 +453,10 @@ namespace Transports
 
           if (m_args.iridium_period > 0 && m_iridium_timer.overflow())
           {
-            if (m_vmedium != NULL && m_vmedium->medium == IMC::VehicleMedium::VM_WATER)
+            if (m_vmedium != nullptr && m_vmedium->medium == IMC::VehicleMedium::VM_WATER)
             {
               IMC::StateReport* msg = produceReport();
-              if(msg != NULL)
+              if(msg != nullptr)
               {
                 dispatch(msg);
                 inf("Requesting report transmission over Iridium.");

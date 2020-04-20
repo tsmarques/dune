@@ -59,7 +59,7 @@ namespace Sensors
         m_path = path;
       }
 
-      ~Log(void)
+      ~Log() override
       {
         processDirtyQueue();
         m_stream.close();
@@ -67,7 +67,7 @@ namespace Sensors
       }
 
       Path
-      getPath(void)
+      getPath()
       {
         return m_path;
       }
@@ -79,10 +79,10 @@ namespace Sensors
       }
 
       Packet*
-      get(void)
+      get()
       {
         Packet* packet = m_clean.pop();
-        if (packet == NULL)
+        if (packet == nullptr)
           packet = new Packet();
 
         return packet;
@@ -101,12 +101,12 @@ namespace Sensors
       std::ofstream m_stream;
 
       void
-      processDirtyQueue(void)
+      processDirtyQueue()
       {
         while (!m_dirty.empty())
         {
           Packet* packet = m_dirty.pop();
-          if (packet != NULL)
+          if (packet != nullptr)
           {
             m_stream.write((const char*)packet->getData(), packet->getSize());
             m_clean.push(packet);
@@ -115,18 +115,18 @@ namespace Sensors
       }
 
       void
-      clearCleanQueue(void)
+      clearCleanQueue()
       {
         while (!m_clean.empty())
         {
           Packet* packet = m_clean.pop();
-          if (packet != NULL)
+          if (packet != nullptr)
             delete packet;
         }
       }
 
       void
-      run(void)
+      run() override
       {
         while (isRunning())
         {

@@ -133,10 +133,10 @@ namespace Monitors
       };
 
       FuelFilter(Arguments* args, unsigned eids[BatteryData::BM_TOTAL],
-                 const EPMap* epower, Tasks::Task* task = NULL,
+                 const EPMap* epower, Tasks::Task* task = nullptr,
                  bool real_clock = false, double start_time = 0.0):
         m_args(args),
-        m_bdata(NULL),
+        m_bdata(nullptr),
         m_epower(epower),
         m_energy_consumed(0.0),
         m_has_initial_estimate(false),
@@ -153,7 +153,7 @@ namespace Monitors
         m_bdata->setEntities(eids);
       }
 
-      ~FuelFilter(void)
+      ~FuelFilter()
       {
         Memory::clear(m_bdata);
       }
@@ -268,7 +268,7 @@ namespace Monitors
       //! Update fuel filter
       //! @return true if the filter has gathered enough data to start estimating, false otherwise
       bool
-      update(void)
+      update()
       {
         // check if we are still waiting for the first measurements
         if (!m_bdata->gotMeasurements())
@@ -290,7 +290,7 @@ namespace Monitors
           dbg = String::str("Initial estimate: %.2f Wh, Optimistic: %.2f Wh, Pessimistic: %.2f Wh.",
                             m_initial_estimate, getModelEstimate(MDL_OPT), getModelEstimate(MDL_PES));
 
-          if (m_task != NULL)
+          if (m_task != nullptr)
             m_task->debug("%s", dbg.c_str());
           else
             std::cerr << dbg << std::endl;
@@ -346,7 +346,7 @@ namespace Monitors
             // Reset energy consumed
             m_energy_consumed = 0.0;
 
-            if (m_task != NULL)
+            if (m_task != nullptr)
               m_task->debug("recomputed estimate");
             else
               std::cerr << "recomputed estimate" << std::endl;
@@ -379,7 +379,7 @@ namespace Monitors
 
         fl.opmodes = ss.str();
 
-        if (m_task != NULL)
+        if (m_task != nullptr)
         {
           m_task->trace("Energy Left %.2f Wh", m_initial_estimate - m_energy_consumed);
 
@@ -560,7 +560,7 @@ namespace Monitors
       //! Compute an initial estimate for the energy left in batteries
       //! @return initial estimate computed
       float
-      computeInitialEstimate(void)
+      computeInitialEstimate()
       {
         float value;
 
@@ -669,7 +669,7 @@ namespace Monitors
       //! Compute a rough estimate of the confidence on the measure of energy (in %)
       //! @return value of confidence computed
       inline float
-      computeConfidence(void)
+      computeConfidence()
       {
         return computeConfidence(m_initial_estimate - m_energy_consumed);
       }
@@ -707,7 +707,7 @@ namespace Monitors
         }
 
         void
-        reset(void)
+        reset()
         {
           if (type_real)
             start = real;
@@ -716,7 +716,7 @@ namespace Monitors
         }
 
         inline bool
-        overflow(void)
+        overflow()
         {
           if (type_real)
             return real - start > top;

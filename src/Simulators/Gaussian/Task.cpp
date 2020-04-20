@@ -77,8 +77,8 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_msg(NULL),
-        m_prng(NULL)
+        m_msg(nullptr),
+        m_prng(nullptr)
       {
         // Retrieve configuration values.
         param("Latitude (degrees) of gaussian peak", m_args.peak_lat)
@@ -119,7 +119,7 @@ namespace Simulators
 
       //! Parse arguments.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.message_name))
         {
@@ -136,7 +136,7 @@ namespace Simulators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         Memory::clear(m_msg);
         m_msg = IMC::Factory::produce(m_args.message_name);
@@ -145,7 +145,7 @@ namespace Simulators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
         Memory::clear(m_msg);
@@ -164,7 +164,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task() override
       {
         // Return if task is not active.
         if (!isActive())

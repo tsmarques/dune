@@ -53,7 +53,7 @@ namespace UserInterfaces
       { }
 
       void
-      setValue(bool value)
+      setValue(bool value) override
       {
         char cmd[6];
         std::sprintf(cmd, "%d %d", m_nr, value ? 1 : 0);

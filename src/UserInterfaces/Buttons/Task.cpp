@@ -58,7 +58,7 @@ namespace UserInterfaces
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_buttons(NULL)
+        m_buttons(nullptr)
       {
         param("Event Device", m_args.event_dev)
         .defaultValue("")
@@ -70,19 +70,19 @@ namespace UserInterfaces
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_buttons = new Hardware::Buttons(m_args.event_dev);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_buttons);
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

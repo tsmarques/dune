@@ -156,13 +156,13 @@ namespace Transports
       IMC::TelemetryMsg telemetry_imc_status;
       //channel max data packaging
 
-      XxMesg(void)
+      XxMesg()
       {
         clear();
       }
 
       void
-      clear(void)
+      clear()
       {
         first_call = true;
         state = MSG_NONE;
@@ -419,7 +419,7 @@ namespace Transports
       }
 
       void
-      rx_to_imc_msg(void)
+      rx_to_imc_msg()
       {
         //todo
       }

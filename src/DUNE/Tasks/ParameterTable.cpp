@@ -52,14 +52,14 @@ namespace DUNE
         parameter->setChanged();
     }
 
-    ParameterTable::~ParameterTable(void)
+    ParameterTable::~ParameterTable()
     {
       for (unsigned i = 0; i < m_params.size(); ++i)
         delete m_params[i];
     }
 
     std::vector<std::string>
-    ParameterTable::getParameterList(void)
+    ParameterTable::getParameterList()
     {
       std::vector<std::string> list;
       std::vector<Parameter*>::iterator itr = m_params.begin();

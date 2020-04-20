@@ -96,7 +96,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_prng(NULL),
+        m_prng(nullptr),
         m_timeref(-1.0)
       {
         param("Latitude of Dock", m_args.lat)
@@ -168,7 +168,7 @@ namespace Simulators
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         debug("dock coordinates lat: %0.6f, lon: %0.6f", m_args.lat, m_args.lon);
 
@@ -195,13 +195,13 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
@@ -279,7 +279,7 @@ namespace Simulators
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

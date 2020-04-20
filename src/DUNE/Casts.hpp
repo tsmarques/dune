@@ -76,7 +76,7 @@ namespace DUNE
   inline bool
   castLongSigned(const std::string& str, T& var)
   {
-    char* endptr = 0;
+    char *endptr = nullptr;
     const char* cstr = str.c_str();
 
     errno = 0;
@@ -105,7 +105,7 @@ namespace DUNE
   inline bool
   castLongUnsigned(const std::string& str, T& var)
   {
-    char* endptr = 0;
+    char *endptr = nullptr;
     const char* cstr = str.c_str();
 
     errno = 0;

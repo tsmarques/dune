@@ -54,31 +54,31 @@ namespace Transports
       }
 
       void
-      update(void)
+      update()
       {
         m_counter.reset();
       }
 
       unsigned
-      getId(void) const
+      getId() const
       {
         return m_id;
       }
 
       const Address&
-      getAddress(void) const
+      getAddress() const
       {
         return m_addr;
       }
 
       bool
-      isInactive(void)
+      isInactive()
       {
         return m_counter.overflow();
       }
 
       bool
-      isActive(void)
+      isActive()
       {
         return !isInactive();
       }

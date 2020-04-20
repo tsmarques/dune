@@ -61,7 +61,7 @@ namespace Sensors
         HDR_IDX_MSG_SIZE = 12
       };
 
-      Packet(void):
+      Packet():
         m_time_stamp(0)
       {
         m_data.resize(c_max_size, 0);
@@ -81,7 +81,7 @@ namespace Sensors
       //! Retrieve protocol version.
       //! @return protocol version.
       uint8_t
-      getProtocolVersion(void) const
+      getProtocolVersion() const
       {
         return m_version;
       }
@@ -97,7 +97,7 @@ namespace Sensors
       //! Retrieve message type.
       //! @return message type.
       uint16_t
-      getMessageType(void) const
+      getMessageType() const
       {
         uint16_t type = 0;
         ByteCopy::fromLE(type, getData() + HDR_IDX_MSG_TYPE);
@@ -115,7 +115,7 @@ namespace Sensors
       //! Retrieve message size.
       //! @return message size.
       uint32_t
-      getMessageSize(void) const
+      getMessageSize() const
       {
         uint32_t size = 0;
         ByteCopy::fromLE(size, getData() + HDR_IDX_MSG_SIZE);
@@ -125,7 +125,7 @@ namespace Sensors
       //! Retrieve message data.
       //! @return message data.
       uint8_t*
-      getMessageData(void)
+      getMessageData()
       {
         return getData() + c_header_size;
       }
@@ -133,7 +133,7 @@ namespace Sensors
       //! Retrieve message data.
       //! @return message data.
       const uint8_t*
-      getMessageData(void) const
+      getMessageData() const
       {
         return getData() + c_header_size;
       }
@@ -149,7 +149,7 @@ namespace Sensors
       //! Retrieve command type.
       //! @return command type.
       uint8_t
-      getCommandType(void) const
+      getCommandType() const
       {
         return m_data[HDR_IDX_CMD_TYPE];
       }
@@ -165,7 +165,7 @@ namespace Sensors
       //! Retrieve channel.
       //! @return channel.
       uint8_t
-      getChannel(void) const
+      getChannel() const
       {
         return m_data[HDR_IDX_CHANNEL];
       }
@@ -181,7 +181,7 @@ namespace Sensors
       //! Retrieve subsystem number.
       //! @return subsystem number.
       uint8_t
-      getSubsystemNumber(void) const
+      getSubsystemNumber() const
       {
         return m_data[HDR_IDX_SUBSYS];
       }
@@ -194,7 +194,7 @@ namespace Sensors
       }
 
       uint32_t
-      getValue(void) const
+      getValue() const
       {
         uint32_t value = 0;
         ByteCopy::fromLE(value, getData() + c_header_size);
@@ -219,19 +219,19 @@ namespace Sensors
       //! Retrieve the size of the packet.
       //! @return packet size.
       unsigned
-      getSize(void) const
+      getSize() const
       {
         return c_header_size + getMessageSize();
       }
 
       uint8_t*
-      getData(void)
+      getData()
       {
         return &m_data[0];
       }
 
       const uint8_t*
-      getData(void) const
+      getData() const
       {
         return &m_data[0];
       }
@@ -251,13 +251,13 @@ namespace Sensors
       }
 
       unsigned
-      getMaximumMessageSize(void) const
+      getMaximumMessageSize() const
       {
         return c_max_size - c_header_size;
       }
 
       void
-      dump(void) const
+      dump() const
       {
         std::fprintf(stderr, "PACKET:");
         for (unsigned i = 0; i < getSize(); ++i)
@@ -270,7 +270,7 @@ namespace Sensors
       //! Get packet's time of reception.
       //! @return milliseconds since Unix Epoch.
       uint64_t
-      getTimeStamp(void) const
+      getTimeStamp() const
       {
         return m_time_stamp;
       }

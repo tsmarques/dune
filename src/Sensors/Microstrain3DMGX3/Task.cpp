@@ -153,14 +153,10 @@ namespace Sensors
       //! Task arguments.
       Arguments m_args;
 
-      Task(const std::string& name, Tasks::Context& ctx):
-        DUNE::Tasks::Periodic(name, ctx),
-        m_uart(NULL),
-        m_tstamp(0),
-        m_state_timer(1.0),
-        m_sample_count(0),
-        m_faults_count(0),
-        m_timeout_count(0)
+      Task (const std::string &name, Tasks::Context &ctx)
+          : DUNE::Tasks::Periodic (name, ctx), m_uart (nullptr), m_tstamp (0),
+            m_state_timer (1.0), m_sample_count (0), m_faults_count (0),
+            m_timeout_count (0)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")
@@ -214,7 +210,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
 
@@ -230,23 +226,23 @@ namespace Sensors
         if (paramChanged(m_args.timeout_error))
           m_wdog.setTop(m_args.timeout_error);
 
-        if (m_uart != NULL)
-        {
-          if (paramChanged(m_args.hard_iron))
-            runCalibration();
-        }
+        if (m_uart != nullptr)
+          {
+            if (paramChanged (m_args.hard_iron))
+              runCalibration ();
+          }
       }
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
 
@@ -263,7 +259,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         while (!stopping())
         {
@@ -327,7 +323,7 @@ namespace Sensors
       inline bool
       poll(Commands cmd, Sizes cmd_size, uint16_t addr, uint16_t value)
       {
-        if (m_uart == NULL)
+        if (m_uart == nullptr)
           return false;
 
         // Request data.
@@ -427,9 +423,9 @@ namespace Sensors
 
       //! Routine to run calibration proceedings.
       void
-      runCalibration(void)
+      runCalibration()
       {
-        if (m_uart == NULL)
+        if (m_uart == nullptr)
           return;
 
         // See if vehicle has same hard iron calibration parameters.
@@ -453,7 +449,7 @@ namespace Sensors
       //! Check if sensor has the same hard iron calibration parameters.
       //! @return true if the parameters are the same, false otherwise.
       bool
-      isCalibrated(void)
+      isCalibrated()
       {
         m_uart->setMinimumRead(CMD_READ_EEPROM_SIZE);
 
@@ -492,7 +488,7 @@ namespace Sensors
 
       //! Soft-reset device.
       void
-      resetDevice(void)
+      resetDevice()
       {
         uint8_t bfr[c_number_axis];
 
@@ -525,7 +521,7 @@ namespace Sensors
       //! Set new hard iron calibration parameters.
       //! @return true if successful, false otherwise.
       bool
-      setHardIron(void)
+      setHardIron()
       {
         inf(DTR("new hard-iron calibration parameters: %f, %f, 0.0"), m_args.hard_iron[0], m_args.hard_iron[1]);
         m_uart->setMinimumRead(CMD_WRITE_EEPROM_SIZE);
@@ -569,7 +565,7 @@ namespace Sensors
 
       //! Correct data according with mounting position.
       void
-      rotateData(void)
+      rotateData()
       {
         Math::Matrix data(3, 1);
 
@@ -602,7 +598,7 @@ namespace Sensors
       }
 
       void
-      reportEntityState(void)
+      reportEntityState()
       {
         if (m_wdog.overflow())
         {
@@ -635,7 +631,7 @@ namespace Sensors
 
       //! Main task.
       void
-      task(void)
+      task() override
       {
         // Check for incoming messages.
         consumeMessages();

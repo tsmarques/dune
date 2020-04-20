@@ -85,7 +85,7 @@ namespace DUNE
     }
 
     std::string
-    NMEAWriter::sentence(void)
+    NMEAWriter::sentence()
     {
       const std::string& stn = m_stream.str();
 

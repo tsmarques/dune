@@ -42,7 +42,7 @@ namespace DUNE
       static const uint32_t c_lower_mask = 0x7fffffffUL;
       static const uint32_t c_mag01[2] = {0x0UL, c_matrix_a};
 
-      MT19937::MT19937(void)
+      MT19937::MT19937()
       {
         seed(arbitrarySeed());
       }
@@ -52,11 +52,10 @@ namespace DUNE
         seed(seed_value);
       }
 
-      MT19937::~MT19937(void)
-      { }
+      MT19937::~MT19937 () = default;
 
       uint32_t
-      MT19937::random32(void)
+      MT19937::random32()
       {
         if (m_pos == N)
           regenerate();
@@ -73,13 +72,13 @@ namespace DUNE
       }
 
       int32_t
-      MT19937::random(void)
+      MT19937::random()
       {
         return random32() >> 1;
       }
 
       double
-      MT19937::uniform(void)
+      MT19937::uniform()
       {
         // 53-bit precision
         uint32_t a = random32() >> 5;
@@ -102,7 +101,7 @@ namespace DUNE
       }
 
       void
-      MT19937::regenerate(void)
+      MT19937::regenerate()
       {
         // Generate new N words
         int i;

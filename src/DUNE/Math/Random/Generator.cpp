@@ -44,7 +44,7 @@ namespace DUNE
       static double c_max_random_d = (double)Generator::c_max_random;
 
       int32_t
-      Generator::arbitrarySeed(void)
+      Generator::arbitrarySeed()
       {
         int32_t seed;
 
@@ -74,13 +74,13 @@ namespace DUNE
       }
 
       double
-      Generator::uniform(void)
+      Generator::uniform()
       {
         return random() / c_max_random_d;
       }
 
       double
-      Generator::gaussian(void)
+      Generator::gaussian()
       {
         // Classic Box-Muller method
         double x, y, r2;

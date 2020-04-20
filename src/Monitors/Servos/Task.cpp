@@ -213,8 +213,8 @@ namespace Monitors
 
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
-          m_pos_monitor[i] = NULL;
-          m_curr_monitor[i] = NULL;
+          m_pos_monitor[i] = nullptr;
+          m_curr_monitor[i] = nullptr;
         }
 
         // Register handler routines.
@@ -224,7 +224,7 @@ namespace Monitors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.max_rotation_rate))
           m_args.max_rotation_rate = Angles::radians(m_args.max_rotation_rate);
@@ -237,7 +237,7 @@ namespace Monitors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -253,7 +253,7 @@ namespace Monitors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -263,7 +263,7 @@ namespace Monitors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         if (m_args.curr_fault_detect)
         {
@@ -280,7 +280,7 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -342,7 +342,7 @@ namespace Monitors
       {
         unsigned i = msg->id;
 
-        if (m_pos_monitor[i] == NULL)
+        if (m_pos_monitor[i] == nullptr)
         {
           m_pos_monitor[i] = new ServoPositionMonitor<float>(m_args.pos_error_threshold,
                                                              m_args.rate_factor,
@@ -447,7 +447,7 @@ namespace Monitors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

@@ -77,7 +77,7 @@ struct PseudoTimer
   //! Time
   double time;
 
-  PseudoTimer(void):
+  PseudoTimer():
     valid(false)
   { }
 
@@ -91,13 +91,13 @@ struct PseudoTimer
   }
 
   bool
-  isValid(void) const
+  isValid() const
   {
     return valid;
   }
 
   double
-  getTime(void) const
+  getTime() const
   {
     return time;
   }
@@ -197,7 +197,7 @@ main(int32_t argc, char** argv)
   unsigned m_eids[BatteryData::BM_TOTAL];
 
   // Filter pointer
-  FuelFilter* m_fuel_filter = NULL;
+  FuelFilter* m_fuel_filter = nullptr;
 
   bool resolved_entities[BatteryData::BM_TOTAL];
   for (unsigned i = 0; i < BatteryData::BM_TOTAL; ++i)
@@ -213,7 +213,7 @@ main(int32_t argc, char** argv)
   ByteBuffer buffer;
   std::ofstream lsf("NewFuel.lsf", std::ios::binary);
 
-  std::istream* is = 0;
+  std::istream* is = nullptr;
   DUNE::Compression::Methods method = DUNE::Compression::Factory::detect(argv[2]);
   if (method == DUNE::Compression::METHOD_UNKNOWN)
     is = new std::ifstream(argv[2], std::ios::binary);
@@ -231,15 +231,15 @@ main(int32_t argc, char** argv)
   is->seekg(0, is->beg);
   Time::Counter<float> prog_timer(5.0);
 
-  DUNE::IMC::Message* msg = NULL;
+  DUNE::IMC::Message* msg = nullptr;
 
-  DUNE::IMC::FuelLevel* ptr = NULL;
+  DUNE::IMC::FuelLevel* ptr = nullptr;
 
   bool got_first = false;
 
   try
   {
-    while ((msg = DUNE::IMC::Packet::deserialize(*is)) != 0)
+    while ((msg = DUNE::IMC::Packet::deserialize(*is)) != nullptr)
     {
       bool log_it = false;
 
@@ -256,7 +256,7 @@ main(int32_t argc, char** argv)
         std::cerr << "got first timestamp" << std::endl;
 
         m_fuel_filter = new FuelFilter(&m_args.filter_args, m_eids, &m_epower,
-                                       NULL, true, msg->getTimeStamp());
+                                       nullptr, true, msg->getTimeStamp());
       }
 
       if (msg->getId() == DUNE_IMC_ENTITYINFO)
@@ -341,7 +341,7 @@ main(int32_t argc, char** argv)
 
           m_fuel_filter->fillMessage(fl, m_args.op_labels, m_args.op_values);
 
-          if (ptr != NULL)
+          if (ptr != nullptr)
           {
             float diff = ptr->value - fl.value;
             char sign = (diff > 0)? '-' : '+';

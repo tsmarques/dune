@@ -89,7 +89,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_prng(NULL),
+        m_prng(nullptr),
         m_fault_timer(-1.0),
         m_faulted(false),
         m_servo_in_fault(-1)
@@ -131,7 +131,7 @@ namespace Simulators
 
       //! Update parameters
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.max_angle))
           m_args.max_angle = Angles::radians(m_args.max_angle);
@@ -142,21 +142,21 @@ namespace Simulators
 
       //! Acquire resources
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
       }
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Initialize position values.
         for (unsigned i = 0; i < c_servo_count; ++i)
@@ -240,7 +240,7 @@ namespace Simulators
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

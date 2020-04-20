@@ -160,10 +160,10 @@ namespace Sensors
       //! %Task constructor.
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_sound_speed(c_sound_speed),
         m_parser(m_profile.data),
-        m_pfilt(NULL),
+        m_pfilt(nullptr),
         m_uam_tx_ip(false)
       {
         paramActive(Tasks::Parameter::SCOPE_IDLE,
@@ -279,7 +279,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_switch.setRange(m_args.range);
         m_switch.setStartGain(m_args.start_gain);
@@ -288,7 +288,7 @@ namespace Sensors
         m_switch.setDataPoints(m_args.data_points);
         m_trigger.setSampleFrequency(m_args.sample_frequency);
 
-        if (paramChanged(m_args.uart_dev) && (m_uart != NULL))
+        if (paramChanged(m_args.uart_dev) && (m_uart != nullptr))
           throw RestartNeeded(DTR("restarting to change UART device"), 1);
 
         m_sound_speed = m_args.sspeed;
@@ -321,7 +321,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -346,7 +346,7 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         if (m_trigger.isRunning() || m_trigger.isStopping())
         {
@@ -359,7 +359,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_trigger.setActive(isActive());
         m_trigger.setUART(m_uart);
@@ -370,14 +370,14 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         m_wdog.reset();
         m_trigger.setActive(true);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         if (m_hand.isKnown())
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -440,7 +440,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         uint8_t bfr[1024];
 

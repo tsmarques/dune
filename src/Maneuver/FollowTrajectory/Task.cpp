@@ -98,13 +98,13 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         Maneuvers::FollowTrajectory::onUpdateParameters();
       }
 
       bool
-      canInit(const IMC::FollowTrajectory* maneuver)
+      canInit(const IMC::FollowTrajectory* maneuver) override
       {
         m_maneuver_speed.value = maneuver->speed;
         m_maneuver_speed.speed_units = maneuver->speed_units;
@@ -133,13 +133,13 @@ namespace Maneuver
       }
 
       void
-      onPathCompletion(void)
+      onPathCompletion() override
       {
         m_done = true;
       }
 
       void
-      step(const IMC::EstimatedState& estate)
+      step(const IMC::EstimatedState& estate) override
       {
         (void)estate;
 
@@ -230,7 +230,7 @@ namespace Maneuver
 
       //! Function for testing the trajectory's feasibility
       bool
-      isFeasible(void)
+      isFeasible()
       {
         size_t n = trajectory_points();
 

@@ -172,12 +172,12 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_handle(NULL),
+        m_handle(nullptr),
         m_op_deadline(-1.0),
-        m_pc(NULL),
+        m_pc(nullptr),
         m_op(OP_NONE),
-        m_gpio_txd(NULL),
-        m_estate(NULL)
+        m_gpio_txd(nullptr),
+        m_estate(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -253,15 +253,15 @@ namespace Sensors
         bind<IMC::EstimatedState>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
-        if ((m_gpio_txd != NULL) && paramChanged(m_args.gpio_txd) && !m_ignore_gpio)
+        if ((m_gpio_txd != nullptr) && paramChanged(m_args.gpio_txd) && !m_ignore_gpio)
           throw RestartNeeded(DTR("restarting to change transducer detection GPIO"), 1);
 
         // Process micro-modem addresses.
@@ -289,7 +289,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         // Configure transducer GPIO (if any).
         if (m_args.gpio_txd > 0)
@@ -335,7 +335,7 @@ namespace Sensors
       //! Check if we have a TCP socket as device input argument.
       //! @return true if it is a TCP socket, false otherwise.
       bool
-      openSocket(void)
+      openSocket()
       {
         char addr[128] = {0};
         unsigned port = 0;
@@ -352,7 +352,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_pc);
         Memory::clear(m_gpio_txd);
@@ -360,7 +360,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://acoustic/operation/")
@@ -369,19 +369,19 @@ namespace Sensors
       }
 
       void
-      resetOp(void)
+      resetOp()
       {
         m_op = OP_NONE;
         m_op_deadline = -1.0;
       }
 
       bool
-      hasTransducer(void)
+      hasTransducer()
       {
         if (m_ignore_gpio)
           return true;
 
-        if (m_gpio_txd == NULL)
+        if (m_gpio_txd == nullptr)
           return true;
 
         if (m_gpio_txd->getValue() == false)
@@ -462,7 +462,7 @@ namespace Sensors
           return;
         }
 
-        const IMC::Message* msg = NULL;
+        const IMC::Message* msg = nullptr;
         std::string command;
 
         try
@@ -514,7 +514,7 @@ namespace Sensors
       reverseRange(const std::string& sys)
       {
         MicroModemMap::iterator itr = m_ummap.find(sys);
-        if (itr == m_ummap.end() || m_estate == NULL)
+        if (itr == m_ummap.end() || m_estate == nullptr)
         {
           m_acop_out.op = IMC::AcousticOperation::AOP_UNSUPPORTED;
           m_acop_out.system = sys;
@@ -897,7 +897,7 @@ namespace Sensors
 
       //! Read sentence.
       void
-      readSentence(void)
+      readSentence()
       {
         char bfr[c_bfr_size];
         size_t rv = m_handle->readString(bfr, sizeof(bfr));
@@ -954,7 +954,7 @@ namespace Sensors
 
       //! Check operation timeouts.
       void
-      checkTimeouts(void)
+      checkTimeouts()
       {
         if (m_op == OP_NONE)
           return;
@@ -992,7 +992,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

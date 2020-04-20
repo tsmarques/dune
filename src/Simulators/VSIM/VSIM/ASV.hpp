@@ -46,7 +46,7 @@ namespace Simulators
     {
     public:
       //! Default Constructor.
-      ASV(void);
+      ASV();
 
       //! Constructor.
       //! @param[in] dimensions of the vehicle.
@@ -56,15 +56,15 @@ namespace Simulators
       ASV(const ASV*);
 
       //! Destructor.
-      ~ASV(void);
+      ~ASV() override;
 
       //! Apply forces to ASV.
       void
-      applyForces(void);
+      applyForces() override;
 
       //! Apply ASV specific actuation.
       void
-      applyAsvActuation(void);
+      applyAsvActuation();
 
       //! Update ASV actiation.
       //! @param[in] id vehicle id.

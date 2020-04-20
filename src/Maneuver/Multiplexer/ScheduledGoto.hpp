@@ -69,7 +69,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver goto maneuver message
       void
-      onStart(const IMC::ScheduledGoto* maneuver)
+      onStart(const IMC::ScheduledGoto* maneuver) override
       {
         m_maneuver = *maneuver;
         m_timer.setTop(c_speed_timer);
@@ -80,7 +80,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         bool timeout = m_maneuver.arrival_time - Clock::getSinceEpoch() <= 0;
         bool nearby = (pcs->flags & IMC::PathControlState::FL_NEAR) != 0;
@@ -117,7 +117,7 @@ namespace Maneuver
       //! On message EstimatedState
       //! @param[in] msg pointer to EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         IMC::DesiredPath path;
 
@@ -203,8 +203,7 @@ namespace Maneuver
         return speed;
       }
 
-      ~ScheduledGoto(void)
-      { }
+      ~ScheduledGoto () override = default;
 
     private:
       //! Timer counter to update speed

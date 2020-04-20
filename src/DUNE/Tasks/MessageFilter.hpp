@@ -45,9 +45,9 @@ namespace DUNE
     class MessageFilter
     {
     public:
-      MessageFilter(void);
+      MessageFilter();
 
-      ~MessageFilter(void);
+      ~MessageFilter();
 
       void
       setupRates(const std::vector<std::string>& spec);
@@ -69,7 +69,7 @@ namespace DUNE
       STimesMap m_stimes;
 
       // List of entities to be passed by given message
-      typedef std::vector<uint32_t> Entities;
+      using Entities = std::vector<uint32_t>;
       std::map<uint32_t, Entities> m_filtered;
     };
   }

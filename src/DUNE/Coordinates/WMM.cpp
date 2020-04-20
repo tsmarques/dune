@@ -56,7 +56,7 @@ namespace DUNE
       MAGtype_MagneticModel* timed_mm;
     };
 
-    WMM::WMM(void)
+    WMM::WMM()
     {
       init(FileSystem::Path::applicationFile().dirname() / "../etc");
     }
@@ -110,7 +110,7 @@ namespace DUNE
       MAG_TimelyModifyMagneticModel(date, m_data->mm, m_data->timed_mm);
     }
 
-    WMM::~WMM(void)
+    WMM::~WMM()
     {
       MAG_FreeMagneticModelMemory(m_data->timed_mm);
       MAG_FreeMagneticModelMemory(m_data->mm);

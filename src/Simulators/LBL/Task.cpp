@@ -98,9 +98,9 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_gps(NULL),
-        m_lbl_cfg(NULL),
-        m_prng(NULL)
+        m_gps(nullptr),
+        m_lbl_cfg(nullptr),
+        m_prng(nullptr)
       {
         // Define configuration parameters.
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -149,7 +149,7 @@ namespace Simulators
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.ping_delay))
           m_pinger.setTop(m_args.ping_delay);
@@ -157,7 +157,7 @@ namespace Simulators
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_WAIT_GPS_FIX);
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
@@ -165,7 +165,7 @@ namespace Simulators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
         Memory::clear(m_gps);
@@ -175,30 +175,30 @@ namespace Simulators
       //! Check LBL is defined.
       //! @return true if LBL is defined, false otherwise.
       bool
-      checkLbl(void) const
+      checkLbl() const
       {
-        return m_lbl_cfg != NULL;
+        return m_lbl_cfg != nullptr;
       }
 
       //! Check GPS is defined.
       //! @return true if GPS is defined, false otherwise.
       bool
-      checkGps(void) const
+      checkGps() const
       {
-        return m_gps != NULL;
+        return m_gps != nullptr;
       }
 
       //! Check if we are ready to simulate LBL.
       //! @return true if we are ready to simulate, false otherwise.
       bool
-      ready(void) const
+      ready() const
       {
         return checkGps() && checkLbl() && (m_lbl_cfg->beacons.size() > 0);
       }
 
       //! Reset ranger.
       void
-      reset(void)
+      reset()
       {
         m_cursor = m_lbl_cfg->beacons.begin();
         m_pinger.reset();
@@ -276,14 +276,14 @@ namespace Simulators
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         m_pinger.reset();
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -296,7 +296,7 @@ namespace Simulators
         if (!checkLbl())
           return;
 
-        IMC::LblBeacon* beacon = NULL;
+        IMC::LblBeacon* beacon = nullptr;
 
         // Find beacon id.
         unsigned id = 0;
@@ -353,7 +353,7 @@ namespace Simulators
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

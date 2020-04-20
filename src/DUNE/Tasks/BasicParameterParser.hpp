@@ -61,24 +61,23 @@ namespace DUNE
         m_var = T();
       }
 
-      ~BasicParameterParser(void)
-      { }
+      ~BasicParameterParser () override = default;
 
       std::string
-      getTypeName(void)
+      getTypeName() override
       {
         return ParameterTypeName::get(m_var);
       }
 
       void
-      read(const std::string& value)
+      read(const std::string& value) override
       {
         if (!castLexical(value, m_copy))
           throw std::runtime_error(DTR("value is not of the correct type"));
       }
 
       bool
-      commit(void)
+      commit() override
       {
         if (m_var == m_copy)
           return false;
@@ -88,14 +87,14 @@ namespace DUNE
       }
 
       void
-      values(const std::string& list)
+      values(const std::string& list) override
       {
         if (!castLexical(list, m_values))
           throw std::runtime_error(DTR("possible values are not of the correct type"));
       }
 
       void
-      minimumValue(const std::string& value)
+      minimumValue(const std::string& value) override
       {
         if(!castLexical(value, m_min))
           throw std::runtime_error(DTR("minimum value is not of the correct type"));
@@ -104,7 +103,7 @@ namespace DUNE
       }
 
       void
-      maximumValue(const std::string& value)
+      maximumValue(const std::string& value) override
       {
         if(!castLexical(value, m_max))
           throw std::runtime_error(DTR("maximum value is not of the correct type"));
@@ -113,7 +112,7 @@ namespace DUNE
       }
 
       void
-      validate(void)
+      validate() override
       {
         if (m_min_set)
         {
@@ -155,18 +154,17 @@ namespace DUNE
         m_max_size(UINT_MAX)
       { }
 
-      ~BasicParameterParser(void)
-      { }
+      ~BasicParameterParser () override = default;
 
       std::string
-      getTypeName(void)
+      getTypeName() override
       {
         T tmp;
         return std::string("list:") + ParameterTypeName::get(tmp);
       }
 
-      virtual void
-      read(const std::string& value)
+      void
+      read(const std::string& value) override
       {
         m_copy.clear();
 
@@ -175,7 +173,7 @@ namespace DUNE
       }
 
       bool
-      commit(void)
+      commit() override
       {
         if (m_var == m_copy)
           return false;
@@ -185,19 +183,19 @@ namespace DUNE
       }
 
       void
-      minimumSize(unsigned value)
+      minimumSize(unsigned value) override
       {
         m_min_size = value;
       }
 
       void
-      maximumSize(unsigned value)
+      maximumSize(unsigned value) override
       {
         m_max_size = value;
       }
 
       void
-      validate(void)
+      validate() override
       {
         if (m_min_size < UINT_MAX)
         {
@@ -228,17 +226,16 @@ namespace DUNE
         m_copy(var)
       { }
 
-      ~BasicParameterParser(void)
-      { }
+      ~BasicParameterParser () override = default;
 
       std::string
-      getTypeName(void)
+      getTypeName() override
       {
         return "matrix";
       }
 
-      virtual void
-      read(const std::string& value)
+      void
+      read(const std::string& value) override
       {
         m_copy = Math::Matrix();
 
@@ -247,7 +244,7 @@ namespace DUNE
       }
 
       bool
-      commit(void)
+      commit() override
       {
         if (m_var == m_copy)
           return false;

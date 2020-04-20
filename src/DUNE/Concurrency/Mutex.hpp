@@ -49,21 +49,21 @@ namespace DUNE
     class Mutex
     {
     public:
-      Mutex(void);
+      Mutex();
 
-      ~Mutex(void);
-
-      void
-      lock(void);
+      ~Mutex();
 
       void
-      unlock(void);
+      lock();
 
       void
-      tryLock(void);
+      unlock();
 
       void
-      destroy(void);
+      tryLock();
+
+      void
+      destroy();
 
     private:
 #if defined(DUNE_SYS_HAS_PTHREAD_MUTEX)
@@ -72,11 +72,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      Mutex(const Mutex&);
+      Mutex (const Mutex &) = delete;
 
       // Non - assignable
-      Mutex&
-      operator=(const Mutex&);
+      Mutex &operator= (const Mutex &) = delete;
     };
   }
 }

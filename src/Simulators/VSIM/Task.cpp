@@ -84,8 +84,8 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Periodic(name, ctx),
-        m_vehicle(NULL),
-        m_world(NULL),
+        m_vehicle(nullptr),
+        m_world(nullptr),
         m_start_time(Clock::get()),
         m_last_time(m_start_time)
       {
@@ -108,7 +108,7 @@ namespace Simulators
 
       //! Release allocated resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_vehicle);
         Memory::clear(m_world);
@@ -116,7 +116,7 @@ namespace Simulators
 
       //! Initialize resources and add vehicle to the world.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Initialize simulation world.
         m_world = Factory::produceWorld(m_ctx.config);
@@ -174,7 +174,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task() override
       {
         if (!isActive())
           return;

@@ -104,20 +104,19 @@ namespace Sensors
       };
 
       //! Constructor.
-      Frame83P(void)
+      Frame83P()
       {
         m_size = 4 * c_beams;
         m_data.resize(getMaxSize(), 0);
       }
 
       //! Destructor
-      ~Frame83P(void)
-      { }
+      ~Frame83P () override = default;
 
       //! Get data start address.
       //! @return pointer to address.
       uint8_t*
-      getMessageData(void)
+      getMessageData() override
       {
         return &m_data[c_hdr_size];
       }
@@ -125,7 +124,7 @@ namespace Sensors
       //! Retrieve the size of the frame.
       //! @return frame size.
       size_t
-      getSize(void) const
+      getSize() const override
       {
         return c_hdr_size + getMessageSize();
       }
@@ -133,7 +132,7 @@ namespace Sensors
       //! Retrieve maximum size of the frame.
       //! @return maximum frame size.
       size_t
-      getMaxSize(void) const
+      getMaxSize() const
       {
         return c_hdr_size + 4 * c_beams;
       }
@@ -141,7 +140,7 @@ namespace Sensors
       //! Retrieve message size.
       //! @return message size.
       size_t
-      getMessageSize(void) const
+      getMessageSize() const override
       {
         return m_size;
       }
@@ -149,7 +148,7 @@ namespace Sensors
       //! Retrieve message header size.
       //! @return message header size.
       size_t
-      getHeaderSize(void) const
+      getHeaderSize() const
       {
         return c_hdr_size;
       }
@@ -157,7 +156,7 @@ namespace Sensors
       //! Get current range.
       //! @return current multibeam range.
       uint16_t
-      getRange(void)
+      getRange()
       {
         uint16_t r;
         r = ((uint16_t)m_data[HDR_IDX_RANGE] << 8) + m_data[HDR_IDX_RANGE + 1];
@@ -175,91 +174,91 @@ namespace Sensors
 
       //! Get range index.
       unsigned
-      getIndexRange(void)
+      getIndexRange() override
       {
         return HDR_IDX_RANGE;
       }
 
       //! Get tilt angle index.
       unsigned
-      getIndexTiltAngle(void)
+      getIndexTiltAngle() override
       {
         return HDR_IDX_TILT_ANGLE;
       }
 
       //! Get latitude index.
       unsigned
-      getIndexLatitude(void)
+      getIndexLatitude() override
       {
         return HDR_IDX_LATITUDE;
       }
 
       //! Get longitude index.
       unsigned
-      getIndexLongitude(void)
+      getIndexLongitude() override
       {
         return HDR_IDX_LONGITUDE;
       }
 
       //! Get speed index.
       unsigned
-      getIndexSpeed(void)
+      getIndexSpeed() override
       {
         return HDR_IDX_SPEED;
       }
 
       //! Get speed index.
       unsigned
-      getIndexSoundSpeed(void)
+      getIndexSoundSpeed() override
       {
         return HDR_IDX_SOUND_SPEED;
       }
 
       //! Get course index.
       unsigned
-      getIndexCourse(void)
+      getIndexCourse() override
       {
         return HDR_IDX_COURSE;
       }
 
       //! Get milliseconds index.
       unsigned
-      getIndexMilli(void)
+      getIndexMilli() override
       {
         return HDR_IDX_MILLI;
       }
 
       //! Get roll index.
       unsigned
-      getIndexRoll(void)
+      getIndexRoll() override
       {
         return HDR_IDX_ROLL;
       }
 
       //! Get pitch index.
       unsigned
-      getIndexPitch(void)
+      getIndexPitch() override
       {
         return HDR_IDX_PITCH;
       }
 
       //! Get heading index.
       unsigned
-      getIndexHeading(void)
+      getIndexHeading() override
       {
         return HDR_IDX_HEADING;
       }
 
       //! Get repetition rate index.
       unsigned
-      getIndexRepRate(void)
+      getIndexRepRate() override
       {
         return HDR_IDX_REP_RATE;
       }
 
       //! Get frequency index.
       unsigned
-      getIndexFrequency(void)
+      getIndexFrequency() override
       {
         return HDR_IDX_FREQUENCY;
       }

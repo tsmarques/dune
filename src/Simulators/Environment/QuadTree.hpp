@@ -66,8 +66,7 @@ namespace Simulators
         virtual void
         process(const Item& item) = 0;
 
-        virtual
-        ~Iteration(){ }
+        virtual ~Iteration () = default;
       };
 
       //! Constructor.
@@ -90,7 +89,7 @@ namespace Simulators
 
       //! Clear entire tree.
       void
-      clear(void);
+      clear();
 
       //! Remove items in a given area.
       void

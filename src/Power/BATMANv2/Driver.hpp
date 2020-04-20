@@ -95,17 +95,17 @@ namespace Power
             resetStateNewData();
           }
 
-          ~DriverBatMan(void){}
+          ~DriverBatMan () = default;
 
           void
-          resetStateNewData(void)
+          resetStateNewData()
           {
             for(uint8_t t = 0; t < 8; t++)
               m_batManData.state_new_data[t] = false;
           }
 
           bool
-          getVersionFirmware(void)
+          getVersionFirmware()
           {
             if(sendCommand("@VERS,*", "$VERS,"))
               return true;
@@ -130,7 +130,7 @@ namespace Power
           }
 
           bool
-          startAcquisition(void)
+          startAcquisition()
           {
             if(sendCommand("@START,*", "$RSP,ACK,,*"))
               return true;
@@ -139,7 +139,7 @@ namespace Power
           }
 
           bool
-          stopAcquisition(void)
+          stopAcquisition()
           {
             if (sendCommand("@STOP,*", ""))
               return true;
@@ -169,7 +169,7 @@ namespace Power
               else if(std::strcmp(reply, "$VERS,") == 0)
               {
                 char* vrs = std::strtok(bfrUart, ",");
-                vrs = std::strtok(NULL, ",");
+                vrs = std::strtok(nullptr, ",");
                 m_batManData.firmVersion = vrs;
                 return true;
               }
@@ -188,7 +188,7 @@ namespace Power
           }
 
           bool
-          haveNewData(void)
+          haveNewData()
           {
             std::size_t rv = m_uart->readString(bfr, sizeof(bfr));
 
@@ -203,59 +203,59 @@ namespace Power
             char* parameter = std::strtok(bfr, ",");
             if(std::strcmp(parameter, "$VOLT") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%f", &m_batManData.voltage);
               m_task->debug("Volt: %.3f V", m_batManData.voltage);
               m_batManData.state_new_data[0] = true;
             }
             else if(std::strcmp(parameter, "$AMPE") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%f", &m_batManData.current);
               m_task->debug("Ampe: %.3f A", m_batManData.current);
               m_batManData.state_new_data[1] = true;
             }
             else if(std::strcmp(parameter, "$TEMP") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%f", &m_batManData.temperature);
               m_task->debug("Temp: %.3f C", m_batManData.temperature);
               m_batManData.state_new_data[2] = true;
             }
             else if(std::strcmp(parameter, "$RCAP") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%f", &m_batManData.r_cap);
               m_task->debug("RCap: %.3f Ah", m_batManData.r_cap);
               m_batManData.state_new_data[3] = true;
             }
             else if(std::strcmp(parameter, "$FCAP") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%f", &m_batManData.f_cap);
               m_task->debug("FCap: %.3f Ah", m_batManData.f_cap);
               m_batManData.state_new_data[4] = true;
             }
             else if(std::strcmp(parameter, "$DCAP") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%f", &m_batManData.d_cap);
               m_task->debug("DCap: %.3f Ah", m_batManData.d_cap);
               m_batManData.state_new_data[5] = true;
             }
             else if (std::strcmp(parameter, "$HEAL") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%d", &m_batManData.health);
               m_task->debug("Health: %d %%", m_batManData.health);
               m_batManData.state_new_data[6] = true;
             }
             else if (std::strcmp(parameter, "$CELL") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               for(int i = 0; i < m_numberCell; i++)
               {
-                parameter = std::strtok(NULL, ",");
+                parameter = std::strtok(nullptr, ",");
                 std::sscanf(parameter, "%f", &m_batManData.cell_volt[i]);
                 m_task->debug("Cell %d: %.3f V", i+1, m_batManData.cell_volt[i]);
               }
@@ -264,13 +264,13 @@ namespace Power
             }
             else if (std::strcmp(parameter, "$BATS") == 0)
             {
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%f", &m_batManData.time_empty);
               if (m_batManData.time_empty == 65535)
                 m_batManData.time_empty = -1;
 
               m_task->debug("Average Time to Empty: %.0f min", m_batManData.time_empty);
-              parameter = std::strtok(NULL, ",");
+              parameter = std::strtok(nullptr, ",");
               std::sscanf(parameter, "%f", &m_batManData.time_full);
               if (m_batManData.time_full == 65535)
                 m_batManData.time_full = -1;
@@ -290,7 +290,7 @@ namespace Power
           }
 
           std::string
-          getFirmwareVersion(void)
+          getFirmwareVersion()
           {
             return m_batManData.firmVersion;
           }

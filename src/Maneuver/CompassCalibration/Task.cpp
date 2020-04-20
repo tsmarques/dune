@@ -98,7 +98,7 @@ namespace Maneuver
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Maneuvers::Maneuver(name, ctx),
-        m_yoyo(NULL),
+        m_yoyo(nullptr),
         m_calibrating(false),
         m_calibrated(false),
         m_yoyo_ing(false)
@@ -132,7 +132,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.variation))
           m_args.variation = Angles::radians(m_args.variation);
@@ -145,13 +145,13 @@ namespace Maneuver
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_yoyo);
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         try
         {
@@ -166,7 +166,7 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void)
+      onManeuverDeactivation() override
       {
         // Do not calibrate.
         if (!m_args.compass_calib)
@@ -291,7 +291,7 @@ namespace Maneuver
       }
 
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if ((pcs->flags & IMC::PathControlState::FL_LOITERING) && !m_yoyo_ing)
         {

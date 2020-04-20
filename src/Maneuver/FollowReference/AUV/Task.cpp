@@ -278,7 +278,7 @@ namespace Maneuver
         }
 
         void
-        onPathControlState(const IMC::PathControlState* pcs)
+        onPathControlState(const IMC::PathControlState* pcs) override
         {
           m_pcs = *pcs;
         }
@@ -316,7 +316,7 @@ namespace Maneuver
           double curlat = state->lat;
           double curlon = state->lon;
           bool near_ref =
-          (pcs == NULL) || pcs->path_ref != m_last_desired_path.path_ref ? false :
+          (pcs == nullptr) || pcs->path_ref != m_last_desired_path.path_ref ? false :
           (pcs->flags & IMC::PathControlState::FL_NEAR) != 0;
 
           WGS84::displace(state->x, state->y, &curlat, &curlon);

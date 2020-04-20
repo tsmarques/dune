@@ -47,11 +47,10 @@ namespace DUNE
       bind<IMC::EstimatedState>(this);
     }
 
-    FollowTrajectory::~FollowTrajectory(void)
-    { }
+    FollowTrajectory::~FollowTrajectory () = default;
 
     void
-    FollowTrajectory::onUpdateParameters(void)
+    FollowTrajectory::onUpdateParameters()
     {
       if (paramChanged(m_cstep_period))
         m_cstep_period = 1.0 / m_cstep_period;
@@ -143,7 +142,7 @@ namespace DUNE
     }
 
     void
-    FollowTrajectory::onManeuverDeactivation(void)
+    FollowTrajectory::onManeuverDeactivation()
     {
       onReset();
 

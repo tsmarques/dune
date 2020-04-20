@@ -41,7 +41,7 @@
 #endif
 
 #if defined(DUNE_SYS_HAS_SIGNAL_H)
-#  include <signal.h>
+#  include <csignal>
 #endif
 
 #if defined(DUNE_SYS_HAS_SYS_WAIT_H)
@@ -92,7 +92,7 @@ handleTerminate(DWORD type)
 #endif
 
 void
-setLauncherSignalHandlers(void)
+setLauncherSignalHandlers()
 {
 #if defined(DUNE_SYS_HAS_SIGACTION)
   struct sigaction actions;
@@ -101,13 +101,13 @@ setLauncherSignalHandlers(void)
   actions.sa_flags = 0;
   actions.sa_handler = SIG_IGN;
 
-  sigaction(SIGALRM, &actions, 0);
-  sigaction(SIGHUP, &actions, 0);
-  sigaction(SIGQUIT, &actions, 0);
+  sigaction(SIGALRM, &actions, nullptr);
+  sigaction(SIGHUP, &actions, nullptr);
+  sigaction(SIGQUIT, &actions, nullptr);
 
   actions.sa_handler = handleTerminate;
-  sigaction(SIGINT, &actions, 0);
-  sigaction(SIGTERM, &actions, 0);
+  sigaction(SIGINT, &actions, nullptr);
+  sigaction(SIGTERM, &actions, nullptr);
 #endif
 }
 

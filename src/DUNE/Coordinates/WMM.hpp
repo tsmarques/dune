@@ -53,7 +53,7 @@ namespace DUNE
       //! By default it looks up WMM 2015 data files
       //! in the '../etc/wmm' directory relative to the location of the current
       //! executable.
-      WMM(void);
+      WMM();
 
       //! Constructor.
       //! WMM 2010 files will be searched within 'root/wmm'.
@@ -61,7 +61,7 @@ namespace DUNE
       WMM(const FileSystem::Path& root);
 
       //! Destructor.
-      ~WMM(void);
+      ~WMM();
 
       //! Returns the height of the EGM96 geoid above or below the WGS84 ellipsoid,
       //! at the specified geodetic coordinates.

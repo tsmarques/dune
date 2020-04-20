@@ -49,7 +49,7 @@ namespace DUNE
 
     public:
       ByteBuffer(uint32_t capacity = 128):
-        m_buffer(NULL),
+        m_buffer(nullptr),
         m_capacity(Math::computeNextPowerOfTwo(capacity)),
         m_size(0)
       {
@@ -57,7 +57,7 @@ namespace DUNE
       }
 
       inline
-      ~ByteBuffer(void)
+      ~ByteBuffer()
       {
         std::free(m_buffer);
       }
@@ -81,7 +81,7 @@ namespace DUNE
       }
 
       void
-      resetBuffer(void)
+      resetBuffer()
       {
         std::memset(m_buffer, 0, m_capacity);
         m_size = 0;
@@ -109,31 +109,31 @@ namespace DUNE
       }
 
       inline uint8_t*
-      getBuffer(void)
+      getBuffer()
       {
         return m_buffer;
       }
 
       inline char*
-      getBufferSigned(void)
+      getBufferSigned()
       {
         return (char*)m_buffer;
       }
 
       inline uint32_t
-      getCapacity(void)
+      getCapacity()
       {
         return m_capacity;
       }
 
       inline uint32_t
-      getSize(void)
+      getSize()
       {
         return m_size;
       }
 
       inline uint32_t
-      getRemaining(void)
+      getRemaining()
       {
         return m_capacity - m_size;
       }

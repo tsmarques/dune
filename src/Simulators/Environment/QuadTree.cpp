@@ -58,7 +58,7 @@ namespace Simulators
         m_leaf = true;
       }
 
-      ~Node(void)
+      ~Node()
       {
         if (!m_leaf)
         {
@@ -89,7 +89,7 @@ namespace Simulators
       }
 
       bool
-      isLeaf(void) const
+      isLeaf() const
       {
         return m_leaf;
       }
@@ -114,7 +114,7 @@ namespace Simulators
           if (area.intersects(cb) && (*c)->remove(area, cb))
           {
             delete *c;
-            * c = 0;
+            * c = nullptr;
             ++cdel;
           }
         }
@@ -140,7 +140,7 @@ namespace Simulators
     };
 
     QuadTree::QuadTree(const Bounds& bounds):
-      m_bounds(bounds), m_root(0)
+      m_bounds(bounds), m_root(nullptr)
     { }
 
     QuadTree::~QuadTree()
@@ -169,7 +169,7 @@ namespace Simulators
       if (m_root)
       {
         delete m_root;
-        m_root = 0;
+        m_root = nullptr;
       }
     }
 
@@ -202,10 +202,10 @@ namespace Simulators
       public:
         Search(std::vector<QuadTree::Item>& vector): m_vector(vector) { }
 
-        ~Search(){ }
+        ~Search () override = default;
 
         void
-        process(const QuadTree::Item& item)
+        process(const QuadTree::Item& item) override
         {
           m_vector.push_back(item);
         }
@@ -231,17 +231,17 @@ namespace Simulators
       public:
         count(): m_elems(0) { }
 
-        ~count(){ }
+        ~count () override = default;
 
         void
-        process(const QuadTree::Item& item)
+        process(const QuadTree::Item& item) override
         {
           (void)item;
           ++m_elems;
         }
 
         uint32_t
-        result(void)
+        result()
         {
           return m_elems;
         }
@@ -262,11 +262,10 @@ namespace Simulators
         m_stream(stream)
       { }
 
-      ~Dump(void)
-      { }
+      ~Dump () override = default;
 
       void
-      process(const QuadTree::Item& item)
+      process(const QuadTree::Item& item) override
       {
         m_stream << item.x << ' ' << item.y << ' ' << item.value << std::endl;
       }

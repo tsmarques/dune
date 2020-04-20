@@ -62,7 +62,7 @@ namespace DUNE
     {
       // POSIX Implementation.
 #if defined(DUNE_SYS_HAS_DIRENT_H)
-      m_handle = 0;
+      m_handle = nullptr;
 
       // Microsoft Windows Implementation.
 #elif defined(DUNE_SYS_HAS_WINDOWS_H)
@@ -72,7 +72,7 @@ namespace DUNE
       open(path);
     }
 
-    Directory::~Directory(void)
+    Directory::~Directory()
     {
       try
       {
@@ -93,7 +93,7 @@ namespace DUNE
 #if defined(DUNE_SYS_HAS_DIRENT_H)
       m_handle = opendir(m_path.c_str());
 
-      if (m_handle == 0)
+      if (m_handle == nullptr)
         throw System::Error(errno, "opening directory", m_path.str());
 
       return true;
@@ -111,11 +111,11 @@ namespace DUNE
     }
 
     bool
-    Directory::isOpen(void)
+    Directory::isOpen()
     {
       // POSIX Implementation.
 #if defined(DUNE_SYS_HAS_DIRENT_H)
-      return m_handle != 0;
+      return m_handle != nullptr;
 
       // Microsoft Windows Implementation.
 #elif defined(DUNE_SYS_HAS_WINDOWS_H)
@@ -125,7 +125,7 @@ namespace DUNE
     }
 
     bool
-    Directory::close(void)
+    Directory::close()
     {
 #if defined(DUNE_SYS_HAS_DIRENT_H)
       if (closedir(m_handle) != 0)
@@ -146,18 +146,18 @@ namespace DUNE
     {
       // POSIX Implementation.
 #if defined(DUNE_SYS_HAS_DIRENT_H)
-      if (m_handle == 0)
-        return 0;
+      if (m_handle == nullptr)
+        return nullptr;
 
-      struct dirent* de = 0;
+      struct dirent* de = nullptr;
 
       // Discard . and ..
       while (1)
       {
         de = readdir(m_handle);
 
-        if (de == 0)
-          return 0;
+        if (de == nullptr)
+          return nullptr;
 
         if ((std::strcmp(de->d_name, ".") != 0) && (std::strcmp(de->d_name, "..") != 0))
           break;
@@ -199,7 +199,7 @@ namespace DUNE
 
 #endif
 
-      return 0;
+      return nullptr;
     }
   }
 }

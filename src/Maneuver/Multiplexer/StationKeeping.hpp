@@ -57,11 +57,11 @@ namespace Maneuver
       //! @param[in] args stationkeeping arguments
       StationKeeping(Maneuvers::Maneuver* task, StationKeepingArgs* args):
         MuxedManeuver<IMC::StationKeeping, StationKeepingArgs>(task, args),
-        m_skeep(NULL),
+        m_skeep(nullptr),
         m_end_time(-1.0)
       { }
 
-      ~StationKeeping(void)
+      ~StationKeeping() override
       {
         Memory::clear(m_skeep);
       }
@@ -69,7 +69,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver stationkeeping maneuver message
       void
-      onStart(const IMC::StationKeeping* maneuver)
+      onStart(const IMC::StationKeeping* maneuver) override
       {
         m_duration = maneuver->duration;
 
@@ -83,9 +83,9 @@ namespace Maneuver
       //! On EstimatedState message
       //! @param[in] msg EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         if (m_skeep->isInside() && (m_end_time < 0))
@@ -97,11 +97,11 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         m_pcs = *pcs;
 
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         m_skeep->updatePathControl(pcs);
@@ -109,9 +109,9 @@ namespace Maneuver
 
       //! On state report function
       void
-      onStateReport(void)
+      onStateReport() override
       {
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         if (m_skeep->isInside())

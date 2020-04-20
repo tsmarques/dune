@@ -80,9 +80,9 @@ namespace Actuators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
       DUNE::Tasks::Task(name, ctx),
-      m_servo_0(NULL),
-      m_servo_1(NULL),
-      m_servo_2(NULL)
+      m_servo_0(nullptr),
+      m_servo_1(nullptr),
+      m_servo_2(nullptr)
       {
         for(unsigned int i = 0; i < c_max_pwm; ++i)
         {
@@ -101,7 +101,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         if ( m_args.operation_mode == c_mode_operation[0])
@@ -134,25 +134,25 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_servo_0 != NULL)
+        if (m_servo_0 != nullptr)
         {
           m_servo_0->stopAndJoin();
           delete m_servo_0;
-          m_servo_0 = NULL;
+          m_servo_0 = nullptr;
         }
-        if (m_servo_1 != NULL)
+        if (m_servo_1 != nullptr)
         {
           m_servo_1->stopAndJoin();
           delete m_servo_1;
-          m_servo_1 = NULL;
+          m_servo_1 = nullptr;
         }
-        if (m_servo_2 != NULL)
+        if (m_servo_2 != nullptr)
         {
           m_servo_2->stopAndJoin();
           delete m_servo_2;
-          m_servo_2 = NULL;
+          m_servo_2 = nullptr;
         }
       }
 
@@ -196,7 +196,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         IMC::ServoPosition msgServoPos;
 

@@ -143,7 +143,7 @@ namespace Transports
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_priorities.clear();
         std::vector<std::string> consumed;
@@ -187,7 +187,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
@@ -295,7 +295,7 @@ namespace Transports
 
           IMC::HistoricDataQuery reply;
           IMC::HistoricData* data = m_store.pollSamples(msg->max_size);
-          if (data != NULL)
+          if (data != nullptr)
           {
             m_sending[source] = static_cast<IMC::HistoricData*>(data->clone());
             reply.data.set(data);
@@ -340,7 +340,7 @@ namespace Transports
       {
         IMC::HistoricData* data = m_store.pollSamples(m_args.acoustic_mtu);
         int size = 0;
-        if (data != NULL)
+        if (data != nullptr)
           size = (int)data->data.size();
         else
           war("Nothing to forward via acoustic modem.");
@@ -365,7 +365,7 @@ namespace Transports
         debug("forwarding to gateway over wifi");
 
         IMC::HistoricData* data = m_store.pollSamples(32 * 1024);
-        if (data == NULL)
+        if (data == nullptr)
           return;
         if (!m_router.routeOverWifi(m_args.wifi_gateway, data))
         {
@@ -379,7 +379,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

@@ -65,7 +65,7 @@ namespace DUNE
     }
 
     void
-    BasicModem::initialize(void)
+    BasicModem::initialize()
     {
       // Reset and flush pending input.
       sendReset();
@@ -87,7 +87,7 @@ namespace DUNE
     }
 
     const std::string&
-    BasicModem::getLineTermIn(void)
+    BasicModem::getLineTermIn()
     {
       Concurrency::ScopedMutex l(m_mutex);
       return m_line_term_in;
@@ -101,7 +101,7 @@ namespace DUNE
     }
 
     const std::string&
-    BasicModem::getLineTermOut(void)
+    BasicModem::getLineTermOut()
     {
       Concurrency::ScopedMutex l(m_mutex);
       return m_line_term_out;
@@ -117,7 +117,7 @@ namespace DUNE
     //! Test if ISU is busy performing an SBD session.
     //! @return true if ISU is busy, false otherwise.
     bool
-    BasicModem::isBusy(void)
+    BasicModem::isBusy()
     {
       Concurrency::ScopedMutex l(m_mutex);
       return m_busy;
@@ -135,7 +135,7 @@ namespace DUNE
     //! Test if ISU is cooling down.
     //! @return true if ISU is cooling down, false otherwise.
     bool
-    BasicModem::isCooling(void)
+    BasicModem::isCooling()
     {
       Concurrency::ScopedMutex l(m_mutex);
       if ((m_tx_rate_max >= 0.0) && (!m_tx_rate_timer.overflow()))
@@ -161,7 +161,7 @@ namespace DUNE
     }
 
     BasicModem::ReadMode
-    BasicModem::getReadMode(void)
+    BasicModem::getReadMode()
     {
       Concurrency::ScopedMutex l(m_mutex);
       return m_read_mode;
@@ -188,7 +188,7 @@ namespace DUNE
     }
 
     double
-    BasicModem::getTimeout(void)
+    BasicModem::getTimeout()
     {
       Concurrency::ScopedMutex l(m_mutex);
       return m_timeout;
@@ -210,7 +210,7 @@ namespace DUNE
     }
 
     std::string
-    BasicModem::readLine(void)
+    BasicModem::readLine()
     {
       Time::Counter<double> timer(getTimeout());
       return readLine(timer);
@@ -224,7 +224,12 @@ namespace DUNE
       while (!timer.overflow())
       {
         if (m_bytes.waitForItems(timer.getRemaining()))
-          data[bytes_read++] = m_bytes.pop();
+        {
+          uint8_t byte = 0;
+          if (m_bytes.pop(byte))
+            data[bytes_read++] = byte;
+        }
+
 
         if (bytes_read == data_size)
           return;
@@ -325,13 +330,13 @@ namespace DUNE
     }
 
     void
-    BasicModem::flushInput(void)
+    BasicModem::flushInput()
     {
       m_handle->flushInput();
     }
 
     void
-    BasicModem::run(void)
+    BasicModem::run()
     {
       char bfr[512];
       std::string line;

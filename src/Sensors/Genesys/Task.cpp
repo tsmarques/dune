@@ -74,7 +74,7 @@ namespace Sensors
       //! Constructor.
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_sock(NULL)
+        m_sock(nullptr)
       {
         param("IPv4 Address", m_args.ip)
         .defaultValue("10.0.10.73")
@@ -95,7 +95,7 @@ namespace Sensors
 
       //! Update task parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_wdog.setTop(3 / getFrequency());
 
@@ -114,7 +114,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         try
         {
@@ -132,14 +132,14 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_sock);
       }
 
       //! Send node address to establish communication.
       void
-      setAddress(void)
+      setAddress()
       {
         char packet[c_addr_size];
         String::format(packet, c_addr_size, "ADR %u\r", m_args.addr);
@@ -150,7 +150,7 @@ namespace Sensors
 
       //! Extract data from device.
       void
-      getData(void)
+      getData()
       {
         // Request data.
         m_sock->write("STT?\r", c_data_size);
@@ -188,11 +188,11 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task() override
       {
         consumeMessages();
 
-        if (m_sock != NULL)
+        if (m_sock != nullptr)
         {
           try
           {

@@ -40,22 +40,20 @@ namespace DUNE
 {
   namespace Tasks
   {
-    MessageFilter::MessageFilter(void)
-    { }
+  MessageFilter::MessageFilter () = default;
 
-    MessageFilter::~MessageFilter(void)
-    { }
+  MessageFilter::~MessageFilter () = default;
 
-    //! Filter message
-    //! @param[in] msg IMC Message.
-    //! @return true if message filtered, false otherwise.
-    bool
-    MessageFilter::filter(const IMC::Message* msg)
-    {
-      uint32_t mid = msg->getId();
+  //! Filter message
+  //! @param[in] msg IMC Message.
+  //! @return true if message filtered, false otherwise.
+  bool
+  MessageFilter::filter (const IMC::Message *msg)
+  {
+    uint32_t mid = msg->getId ();
 
-      // Filter message by entity.
-      if (m_filtered[mid].size() > 0)
+    // Filter message by entity.
+    if (m_filtered[mid].size () > 0)
       {
         bool matched = false;
         std::vector<uint32_t>::iterator itr = m_filtered[mid].begin();

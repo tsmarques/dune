@@ -54,12 +54,10 @@ namespace Simulators
       };
 
       //! Constructor.
-      Object(void);
+      Object();
 
       //! Destructor.
-      virtual
-      ~Object(void)
-      { }
+      virtual ~Object () = default;
 
       //! Sets Mass and Inertial and Added Mass Matrix (diagonal).
       //! @param[in] m mass.
@@ -87,7 +85,7 @@ namespace Simulators
 
       //! Insert object in virtual World.
       virtual void
-      insertInWorld(void);
+      insertInWorld();
 
       //! Define object inertial position.
       //! @param[in] x object position in the x-axis.
@@ -106,7 +104,7 @@ namespace Simulators
       //! Returns position vector [X,Y,Z].
       //! @return pointer to object position.
       double*
-      getPosition(void)
+      getPosition()
       {
         return m_position;
       }
@@ -114,7 +112,7 @@ namespace Simulators
       //! Returns orientation vector [roll, pitch, yaw].
       //! @return pointer to object orientation
       double*
-      getOrientation(void)
+      getOrientation()
       {
         return m_orientation;
       }
@@ -123,7 +121,7 @@ namespace Simulators
       //! referencial 3x1 vector).
       //! @return pointer to object linear velocity.
       double*
-      getLinearVelocity(void)
+      getLinearVelocity()
       {
         return m_linear_velocity;
       }
@@ -132,18 +130,18 @@ namespace Simulators
       //! referencial 3x1 vector).
       //! @return pointer to object angular velocity.
       double*
-      getAngularVelocity(void)
+      getAngularVelocity()
       {
         return m_angular_velocity;
       }
 
       //! Applies drag forces actuacting on the object.
       void
-      applyDragForces(void);
+      applyDragForces();
 
       //! Apply all object's forces.
       virtual void
-      applyForces(void);
+      applyForces();
 
       //! Add Forces to be applied to the Object.
       //! @param[in] X force along the x-axis.
@@ -157,7 +155,7 @@ namespace Simulators
 
       //! Reset Forces applied to Object for the next iteration.
       void
-      resetForces(void);
+      resetForces();
 
       //! Fetch object position, orientation & velocity from physics engine.
       //! @param[in] timestep integration timestep.

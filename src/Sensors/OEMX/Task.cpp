@@ -135,8 +135,8 @@ namespace Sensors
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_driver(0),
+        m_uart(nullptr),
+        m_driver(nullptr),
         m_temperature(0),
         m_salinity(0),
         m_pressure(0),
@@ -177,7 +177,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         resetStateDataSensor();
@@ -224,7 +224,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         resetStateDataSensor();
         Delay::wait(c_delay_startup);
@@ -239,9 +239,9 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_poll.remove(*m_uart);
           Memory::clear(m_driver);
@@ -250,7 +250,7 @@ namespace Sensors
       }
 
       void
-      resetStateDataSensor(void)
+      resetStateDataSensor()
       {
         m_sdstate.haveConductivity = false;
         m_sdstate.havePressure = false;
@@ -276,7 +276,7 @@ namespace Sensors
       }
 
       void
-      formateDataCTD(void)
+      formateDataCTD()
       {
         std::size_t cntIndex = 0;
         for (std::size_t i = 0; i < m_args.primary_mount.size(); i++)
@@ -340,7 +340,7 @@ namespace Sensors
       }
 
       void
-      dispatchData(void)
+      dispatchData()
       {
         if (!m_first_value)
         {
@@ -408,7 +408,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

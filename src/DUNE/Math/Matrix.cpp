@@ -61,12 +61,12 @@ namespace DUNE
     //! The value used to test for zero in matrix inversion
     double Matrix::precision = 1e-10;
 
-    Matrix::Matrix(void):
+    Matrix::Matrix():
       m_nrows(0),
       m_ncols(0),
       m_size(0),
-      m_data(NULL),
-      m_counter(NULL)
+      m_data(nullptr),
+      m_counter(nullptr)
     { }
 
     Matrix::Matrix(size_t r, size_t c)
@@ -113,8 +113,8 @@ namespace DUNE
       }
       else
       {
-        m_data = NULL;
-        m_counter = NULL;
+        m_data = nullptr;
+        m_counter = nullptr;
       }
     }
 
@@ -166,21 +166,21 @@ namespace DUNE
         m_data[i * (n + 1)] = diag[i];
     }
 
-    Matrix::~Matrix(void)
+    Matrix::~Matrix()
     {
       erase();
     }
 
     void
-    Matrix::erase(void)
+    Matrix::erase()
     {
-      if (m_size != 0 && m_counter != NULL)
+      if (m_size != 0 && m_counter != nullptr)
       {
         if (--(*m_counter) == 0)
         {
           std::free(m_data);
-          m_data = NULL;
-          m_counter = NULL;
+          m_data = nullptr;
+          m_counter = nullptr;
           m_nrows = 0;
           m_ncols = 0;
           m_size = 0;
@@ -189,7 +189,7 @@ namespace DUNE
     }
 
     void
-    Matrix::split(void)
+    Matrix::split()
     {
       if (!m_size)
         return;
@@ -207,37 +207,37 @@ namespace DUNE
     }
 
     int
-    Matrix::rows(void) const
+    Matrix::rows() const
     {
       return m_nrows;
     }
 
     int
-    Matrix::columns(void) const
+    Matrix::columns() const
     {
       return m_ncols;
     }
 
     int
-    Matrix::size(void) const
+    Matrix::size() const
     {
       return m_size;
     }
 
     bool
-    Matrix::isSquare(void) const
+    Matrix::isSquare() const
     {
       return m_nrows == m_ncols;
     }
 
     bool
-    Matrix::isVector(void) const
+    Matrix::isVector() const
     {
       return m_nrows == 1 || m_ncols == 1;
     }
 
     bool
-    Matrix::isRowVector(void) const
+    Matrix::isRowVector() const
     {
       return m_nrows == 1;
     }
@@ -249,7 +249,7 @@ namespace DUNE
     }
 
     bool
-    Matrix::isColumnVector(void) const
+    Matrix::isColumnVector() const
     {
       return m_ncols == 1;
     }
@@ -261,7 +261,7 @@ namespace DUNE
     }
 
     bool
-    Matrix::isEmpty(void) const
+    Matrix::isEmpty() const
     {
       return m_size == 0;
     }
@@ -289,7 +289,7 @@ namespace DUNE
     }
 
     void
-    Matrix::identity(void)
+    Matrix::identity()
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -537,7 +537,7 @@ namespace DUNE
     }
 
     double
-    Matrix::get_precision(void)
+    Matrix::get_precision()
     {
       return precision;
     }
@@ -702,7 +702,7 @@ namespace DUNE
     }
 
     void
-    Matrix::to_row(void)
+    Matrix::to_row()
     {
       if (!m_size)
         return;
@@ -714,7 +714,7 @@ namespace DUNE
     }
 
     void
-    Matrix::to_column(void)
+    Matrix::to_column()
     {
       if (!m_size)
         return;
@@ -737,14 +737,14 @@ namespace DUNE
       if (m_ncols != m.m_ncols)
         return false;
 
-      if (m_data == NULL)
+      if (m_data == nullptr)
       {
-        if (m.m_data == NULL)
+        if (m.m_data == nullptr)
           return true;
         else
           return false;
       }
-      else if (m.m_data == NULL)
+      else if (m.m_data == nullptr)
         return false;
 
       return std::memcmp(m_data, m.m_data, m_size * sizeof(double)) == 0;
@@ -847,7 +847,7 @@ namespace DUNE
     }
 
     Matrix
-    Matrix::operator-(void) const
+    Matrix::operator-() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1049,7 +1049,7 @@ namespace DUNE
     }
 
     double
-    Matrix::detr(void) const
+    Matrix::detr() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1080,7 +1080,7 @@ namespace DUNE
     }
 
     double
-    Matrix::det(void) const
+    Matrix::det() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1115,7 +1115,7 @@ namespace DUNE
     }
 
     bool
-    Matrix::Sylvester(void) const
+    Matrix::Sylvester() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1140,7 +1140,7 @@ namespace DUNE
     }
 
     Matrix
-    Matrix::toDCM(void) const
+    Matrix::toDCM() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1187,7 +1187,7 @@ namespace DUNE
     }
 
     Matrix
-    Matrix::toQuaternion(void) const
+    Matrix::toQuaternion() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1232,7 +1232,7 @@ namespace DUNE
     }
 
     Matrix
-    Matrix::toEulerAngles(void) const
+    Matrix::toEulerAngles() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1340,7 +1340,7 @@ namespace DUNE
     }
 
     double
-    Matrix::norm_2(void) const
+    Matrix::norm_2() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1352,7 +1352,7 @@ namespace DUNE
     }
 
     double
-    Matrix::norm_inf(void) const
+    Matrix::norm_inf() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1365,7 +1365,7 @@ namespace DUNE
     }
 
     double
-    Matrix::median(void) const
+    Matrix::median() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1375,7 +1375,7 @@ namespace DUNE
     }
 
     double
-    Matrix::trace(void) const
+    Matrix::trace() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");
@@ -1676,7 +1676,7 @@ namespace DUNE
     }
 
     bool
-    Matrix::isInvertible(void) const
+    Matrix::isInvertible() const
     {
       if (isEmpty())
         throw Error("Trying to access an empty matrix!");

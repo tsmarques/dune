@@ -55,7 +55,7 @@ namespace Transports
       m_meta = os.str();
     }
 
-    MessageMonitor::~MessageMonitor(void)
+    MessageMonitor::~MessageMonitor()
     {
       ScopedMutex l(m_mutex);
 
@@ -84,7 +84,7 @@ namespace Transports
     }
 
     ByteBuffer*
-    MessageMonitor::messagesJSON(void)
+    MessageMonitor::messagesJSON()
     {
       ScopedMutex l(m_mutex);
 
@@ -163,7 +163,7 @@ namespace Transports
     }
 
     ByteBuffer*
-    MessageMonitor::logbookJSON(void)
+    MessageMonitor::logbookJSON()
     {
       ScopedMutex l(m_mutex);
 

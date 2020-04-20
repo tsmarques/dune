@@ -35,7 +35,7 @@
 
 // Platform headers.
 #if defined(DUNE_SYS_HAS_TIME_H)
-#  include <time.h>
+#  include <ctime>
 #endif
 
 // DUNE headers.
@@ -74,7 +74,7 @@ namespace DUNE
       }
 
       void
-      reset(void)
+      reset()
       {
         // Microsoft Windows.
 #if defined(DUNE_SYS_HAS_GET_SYSTEM_TIME_AS_FILE_TIME)
@@ -99,7 +99,7 @@ namespace DUNE
       }
 
       void
-      wait(void)
+      wait()
       {
         // Microsoft Windows.
 #if defined(DUNE_SYS_HAS_CREATE_WAITABLE_TIMER)
@@ -113,7 +113,7 @@ namespace DUNE
         // POSIX clock_nanosleep().
 #elif defined(DUNE_SYS_HAS_CLOCK_NANOSLEEP)
         timespec deadline = {(time_t)(m_deadline / 1000000000), (long)(m_deadline % 1000000000)};
-        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &deadline, NULL);
+        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &deadline, nullptr);
 
         // POSIX nanosleep().
 #elif defined(DUNE_SYS_HAS_NANOSLEEP)

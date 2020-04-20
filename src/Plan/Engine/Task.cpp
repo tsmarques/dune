@@ -133,7 +133,7 @@ namespace Plan
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_plan(NULL),
+        m_plan(nullptr),
         m_imu_enabled(false)
       {
         param("Compute Progress", m_args.progress)
@@ -201,7 +201,7 @@ namespace Plan
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         try
         {
@@ -223,31 +223,31 @@ namespace Plan
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.speriod))
           m_args.speriod = 1.0 / m_args.speriod;
 
-        if ((m_plan != NULL) && (paramChanged(m_args.progress) ||
+        if ((m_plan != nullptr) && (paramChanged(m_args.progress) ||
                                  paramChanged(m_args.calibration_time)))
           throw RestartNeeded(DTR("restarting to relaunch plan parser"), 0, false);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_plan);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_plan = new Plan(&m_spec, m_args.progress, m_args.fpredict, m_args.max_depth,
                           this, m_args.calibration_time, &m_ctx.config);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         debug("database file: '%s'", m_db_file.c_str());
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
@@ -291,7 +291,7 @@ namespace Plan
         if (msg->getSource() != getSystemId())
           return;
 
-        if (m_plan != NULL)
+        if (m_plan != nullptr)
         {
           std::string id;
 
@@ -341,7 +341,7 @@ namespace Plan
       void
       consume(const IMC::FuelLevel* msg)
       {
-        if (m_plan == NULL)
+        if (m_plan == nullptr)
           return;
 
         m_plan->onFuelLevel(msg);
@@ -408,7 +408,7 @@ namespace Plan
         }
 
         // update calibration status
-        if (m_plan != NULL && initMode())
+        if (m_plan != nullptr && initMode())
         {
           m_plan->updateCalibration(vs);
 
@@ -597,14 +597,14 @@ namespace Plan
         switch (pc->op)
         {
           case IMC::PlanControl::PC_START:
-            if (!startPlan(pc->plan_id, pc->arg.isNull() ? 0 : pc->arg.get(), pc->flags))
+            if (!startPlan(pc->plan_id, pc->arg.isNull() ? nullptr : pc->arg.get(), pc->flags))
               vehicleRequest(IMC::VehicleCommand::VC_STOP_MANEUVER);
             break;
           case IMC::PlanControl::PC_STOP:
             stopPlan();
             break;
           case IMC::PlanControl::PC_LOAD:
-            loadPlan(pc->plan_id, pc->arg.isNull() ? 0 : pc->arg.get(), false);
+            loadPlan(pc->plan_id, pc->arg.isNull() ? nullptr : pc->arg.get(), false);
             break;
           case IMC::PlanControl::PC_GET:
             getPlan();
@@ -660,7 +660,7 @@ namespace Plan
 
       //! Get current plan
       void
-      getPlan(void)
+      getPlan()
       {
         if (!initMode() && !execMode())
         {
@@ -888,7 +888,7 @@ namespace Plan
       //! Send a request to start calibration procedures
       //! @return true if request was sent
       bool
-      startCalibration(void)
+      startCalibration()
       {
         if (blockedMode())
         {
@@ -896,7 +896,7 @@ namespace Plan
           return false;
         }
 
-        IMC::Message* m = 0;
+        IMC::Message* m = nullptr;
 
         IMC::StationKeeping sk;
 
@@ -920,7 +920,7 @@ namespace Plan
       void
       startManeuver(IMC::PlanManeuver* pman)
       {
-        if (pman == NULL)
+        if (pman == nullptr)
         {
           changeMode(IMC::PlanControlState::PCS_READY,
                      m_plan->getCurrentId() + DTR(": invalid maneuver ID"));
@@ -1045,12 +1045,12 @@ namespace Plan
       changeMode(IMC::PlanControlState::StateEnum s, const std::string& event_desc,
                  OutputType print = TYPE_WAR)
       {
-        changeMode(s, event_desc, "", NULL, print);
+        changeMode(s, event_desc, "", nullptr, print);
       }
 
       //! Set task's initial state
       void
-      setInitialState(void)
+      setInitialState()
       {
         m_pcs.state = IMC::PlanControlState::PCS_READY;
         m_pcs.plan_id.clear();
@@ -1068,10 +1068,10 @@ namespace Plan
 
       //! Report progress
       void
-      reportProgress(void)
+      reportProgress()
       {
         // Must be executing or calibrating to be able to compute progress
-        if (m_plan == NULL || (!execMode() && !initMode()))
+        if (m_plan == nullptr || (!execMode() && !initMode()))
           return;
 
         m_pcs.plan_progress = m_plan->updateProgress(&m_mcs);
@@ -1079,7 +1079,7 @@ namespace Plan
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         setInitialState();
 
@@ -1137,7 +1137,7 @@ namespace Plan
 
       void
       vehicleRequest(IMC::VehicleCommand::CommandEnum command,
-                     const IMC::Message* arg = 0)
+                     const IMC::Message* arg = nullptr)
       {
         m_vc.type = IMC::VehicleCommand::VC_REQUEST;
         m_vc.request_id = ++m_vreq_ctr;
@@ -1164,31 +1164,31 @@ namespace Plan
       }
 
       inline bool
-      pendingReply(void)
+      pendingReply()
       {
         return m_vc_reply_deadline >= 0;
       }
 
       inline bool
-      blockedMode(void) const
+      blockedMode() const
       {
         return m_pcs.state == IMC::PlanControlState::PCS_BLOCKED;
       }
 
       inline bool
-      readyMode(void) const
+      readyMode() const
       {
         return m_pcs.state == IMC::PlanControlState::PCS_READY;
       }
 
       inline bool
-      initMode(void) const
+      initMode() const
       {
         return m_pcs.state == IMC::PlanControlState::PCS_INITIALIZING;
       }
 
       inline bool
-      execMode(void) const
+      execMode() const
       {
         return m_pcs.state == IMC::PlanControlState::PCS_EXECUTING;
       }

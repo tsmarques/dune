@@ -79,8 +79,8 @@ namespace Control
           m_airspeed(0.0),
           m_target_z(0.0),
           m_first_run(true),
-          m_cmd_flt(NULL),
-          m_state_flt(NULL)
+          m_cmd_flt(nullptr),
+          m_state_flt(nullptr)
         {
           paramActive(Tasks::Parameter::SCOPE_MANEUVER,
                       Tasks::Parameter::VISIBILITY_USER);
@@ -119,7 +119,7 @@ namespace Control
         }
 
         void
-        onActivation(void)
+        onActivation() override
         {
           // Activate vertical rate controller.
           IMC::ControlLoops cloops;
@@ -131,7 +131,7 @@ namespace Control
         }
 
         void
-        onDeactivation(void)
+        onDeactivation() override
         {
           // Deactivate vertical rate controller.
           IMC::ControlLoops cloops;
@@ -158,14 +158,14 @@ namespace Control
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           Memory::clear(m_cmd_flt);
           Memory::clear(m_state_flt);
         }
 
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition() override
         {
           // Process the systems allowed to define DesiredZ
           m_cmd_flt = new Tasks::SourceFilter(*this, true, m_args.cmd_src, "DesiredZ");
@@ -233,7 +233,7 @@ namespace Control
         }
 
         void
-        task(void)
+        task() override
         {
           if (!isActive())
             return;

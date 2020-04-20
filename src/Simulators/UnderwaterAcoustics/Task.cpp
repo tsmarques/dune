@@ -82,8 +82,8 @@ namespace Simulators
         Tasks::Task(name, ctx),
         m_setup(false),
         m_fixed_location(false),
-        m_pending(0),
-        m_sock(0)
+        m_pending(nullptr),
+        m_sock(nullptr)
       {
         param("UDP Communications -- Multicast Address", m_args.udp_maddr)
         .defaultValue("225.0.2.1")
@@ -115,13 +115,13 @@ namespace Simulators
         bind<IMC::UASimulation>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (m_args.location.size() == 2)
         {
@@ -139,7 +139,7 @@ namespace Simulators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_sock = new DUNE::Network::UDPSocket();
         m_sock->setMulticastTTL(1);
@@ -149,18 +149,18 @@ namespace Simulators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         if (m_pending)
         {
           delete m_pending;
-          m_pending = 0;
+          m_pending = nullptr;
         }
 
         if (m_sock)
         {
           delete m_sock;
-          m_sock = 0;
+          m_sock = nullptr;
         }
       }
 
@@ -257,7 +257,7 @@ namespace Simulators
           if (m_pending)
           {
             delete m_pending;
-            m_pending = 0;
+            m_pending = nullptr;
           }
         }
         else if (src != m_local_imc_addr)
@@ -323,7 +323,7 @@ namespace Simulators
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         double last_pos_update = 0;
 
@@ -348,7 +348,7 @@ namespace Simulators
 
             dispatch(m_pending, DF_KEEP_TIME);
             delete m_pending;
-            m_pending = 0;
+            m_pending = nullptr;
           }
 
           checkIncomingData();
@@ -358,7 +358,7 @@ namespace Simulators
       }
 
       void
-      checkIncomingData(void)
+      checkIncomingData()
       {
         Address dummy;
 

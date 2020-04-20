@@ -67,7 +67,7 @@ namespace DUNE
 #endif
     }
 
-    ESCC::~ESCC(void)
+    ESCC::~ESCC()
     {
 #if defined(DUNE_OS_LINUX)
       if (m_handle != -1)
@@ -106,7 +106,7 @@ namespace DUNE
     }
 
     void
-    ESCC::doFlush(void)
+    ESCC::doFlush()
     {
 #if defined(DUNE_OS_LINUX)
       fsync(m_handle);

@@ -84,7 +84,7 @@ namespace Sensors
       {"!A0000000000000000", "!L", "0000000000000000THR\r\n"},
       {"W0100", "X", "0100BST\r\n"},
       {"!141030000", "!2", "41030000STC\r\n"},
-      {0, 0, 0}
+      {nullptr, nullptr, nullptr}
     };
 
     //! %Task arguments.
@@ -135,8 +135,8 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_avg_sspeed(NULL)
+        m_uart(nullptr),
+        m_avg_sspeed(nullptr)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")
@@ -160,7 +160,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         // Initialize timer.
         if (paramChanged(m_args.output_freq))
@@ -169,7 +169,7 @@ namespace Sensors
 
       //! Release allocated resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
         Memory::clear(m_avg_sspeed);
@@ -177,7 +177,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_wdog.setTop(2);
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
@@ -185,7 +185,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_wait_sample = false;
         m_avg_sspeed = new MovingAverage<double>(m_args.avg_ss_samples);
@@ -223,7 +223,7 @@ namespace Sensors
 
       //! Stop sampling device.
       void
-      stopSampling(void)
+      stopSampling()
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
 
@@ -261,7 +261,7 @@ namespace Sensors
 
       //! Get calibration from the device.
       void
-      getCalibration(void)
+      getCalibration()
       {
         while (!stopping())
         {
@@ -308,7 +308,7 @@ namespace Sensors
 
       //! Set device parameters.
       void
-      setParameters(void)
+      setParameters()
       {
         const SetupCommands* ptr = c_setup_cmds;
 
@@ -334,7 +334,7 @@ namespace Sensors
 
       //! Start sampling data.
       void
-      startSampling(void)
+      startSampling()
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_MISSING_DATA);
         m_wait_sample = true;
@@ -358,7 +358,7 @@ namespace Sensors
       //! Compute conductivity.
       //! @return conductivity value.
       double
-      computeConductivity(void)
+      computeConductivity()
       {
         uint32_t raw = m_parser.getDataField(CHN_CONDUCTIVITY);
         double scaled = raw;
@@ -371,7 +371,7 @@ namespace Sensors
       //! Compute temperature.
       //! @return temperature value.
       double
-      computeTemperature(void)
+      computeTemperature()
       {
         uint32_t val = m_parser.getDataField(CHN_TEMPERATURE);
         double v = applyCoefficients(1, std::log(c_full_scale / val - 1));
@@ -381,7 +381,7 @@ namespace Sensors
       //! Compute pressure.
       //! @return pressure value.
       double
-      computePressure(void)
+      computePressure()
       {
         uint32_t raw = m_parser.getDataField(CHN_PRESSURE);
         double scaled = raw;
@@ -392,7 +392,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

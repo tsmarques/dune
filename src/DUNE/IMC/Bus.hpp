@@ -60,10 +60,10 @@ namespace DUNE
     {
     public:
       //! Constructor.
-      Bus(void);
+      Bus();
 
       //! Destructor.
-      ~Bus(void);
+      ~Bus();
 
       //! Register a task as a recipient a given message
       //! identification number.
@@ -82,24 +82,23 @@ namespace DUNE
       //! Dispatches a message to registered listeners.
       //! @param msg message to dispatch.
       //! @param task do not deliver message to this task.
-      void
-      dispatch(const Message* msg, Tasks::AbstractTask* task = NULL);
+      void dispatch (const Message *msg, Tasks::AbstractTask *task = nullptr);
 
       inline void
-      pause(void)
+      pause()
       {
         Concurrency::ScopedMutex lock(m_paused_lock);
         m_paused = true;
       }
 
       void
-      resume(void);
+      resume();
 
       const std::vector<TransportBindings*>
-      getBindings(void);
+      getBindings();
 
     private:
-      typedef std::list<Tasks::AbstractTask*> TransportList;
+      using TransportList = std::list<Tasks::AbstractTask *>;
       //! Table of recipients.
       std::map<uint16_t, TransportList> m_recipients;
       //! Internal list lock.
@@ -114,11 +113,10 @@ namespace DUNE
       Concurrency::TSQueue<BackLogEntry*> m_back_log;
 
       //! Non - copyable.
-      Bus(Bus const&);
+      Bus (Bus const &) = delete;
 
       //! Non - assignable.
-      Bus&
-      operator=(Bus const&);
+      Bus &operator= (Bus const &) = delete;
     };
   }
 }

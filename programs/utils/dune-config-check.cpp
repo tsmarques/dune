@@ -39,7 +39,7 @@ using DUNE_NAMESPACES;
 using namespace std;
 
 void
-registerStaticTasks(void);
+registerStaticTasks();
 
 void
 validateEntityLabels(Parsers::Config& cfg)

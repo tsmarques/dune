@@ -52,9 +52,7 @@ namespace DUNE
         m_processed_total(0)
       { }
 
-      virtual
-      ~Compressor(void)
-      { }
+      virtual ~Compressor () = default;
 
       void
       compress(char* dst, unsigned long dst_len, char* src, unsigned long src_len);
@@ -72,31 +70,31 @@ namespace DUNE
       compress(Utils::ByteBuffer& dst, Utils::ByteBuffer& src);
 
       unsigned long
-      compressed(void) const
+      compressed() const
       {
         return m_compressed;
       }
 
       unsigned long
-      compressedTotal(void) const
+      compressedTotal() const
       {
         return m_compressed_total;
       }
 
       unsigned long
-      processed(void) const
+      processed() const
       {
         return m_processed;
       }
 
       unsigned long
-      processedTotal(void) const
+      processedTotal() const
       {
         return m_processed_total;
       }
 
       int
-      level(void) const
+      level() const
       {
         return m_level;
       }

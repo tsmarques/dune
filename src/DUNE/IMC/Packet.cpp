@@ -116,7 +116,7 @@ namespace DUNE
 
       // If we're at the EOF there's nothing more to do.
       if (ifs.eof())
-        return 0;
+        return nullptr;
 
       if (ifs.gcount() < DUNE_IMC_CONST_HEADER_SIZE)
         throw BufferTooShort();
@@ -132,7 +132,7 @@ namespace DUNE
       if (ifs.gcount() < remaining)
         throw BufferTooShort();
 
-      return deserializePayload(hdr, (uint8_t*)&data[0], DUNE_IMC_CONST_HEADER_SIZE + remaining, 0);
+      return deserializePayload(hdr, (uint8_t*)&data[0], DUNE_IMC_CONST_HEADER_SIZE + remaining, nullptr);
     }
 
     Message*
@@ -144,7 +144,7 @@ namespace DUNE
 
       // If we're at the EOF there's nothing more to do.
       if (ifs.eof())
-        return 0;
+        return nullptr;
 
       if (ifs.gcount() < DUNE_IMC_CONST_HEADER_SIZE)
         throw BufferTooShort();
@@ -160,7 +160,7 @@ namespace DUNE
       if (ifs.gcount() < remaining)
         throw BufferTooShort();
 
-      return deserializePayload(hdr, bfr.getBuffer(), DUNE_IMC_CONST_HEADER_SIZE + remaining, 0);
+      return deserializePayload(hdr, bfr.getBuffer(), DUNE_IMC_CONST_HEADER_SIZE + remaining, nullptr);
     }
 
     uint16_t
@@ -239,10 +239,10 @@ namespace DUNE
         throw InvalidCrc();
 
       // Produce a message of the given type.
-      if (msg == NULL)
+      if (msg == nullptr)
       {
         msg = Factory::produce(hdr.mgid);
-        if (msg == 0)
+        if (msg == nullptr)
           throw InvalidMessageId(hdr.mgid);
       }
       else

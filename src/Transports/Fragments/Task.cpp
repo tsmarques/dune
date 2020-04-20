@@ -62,7 +62,7 @@ namespace Transports
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         m_incoming.clear();
       }
@@ -83,7 +83,7 @@ namespace Transports
               m_incoming[hash].getFragmentsMissing());
 
         IMC::Message * res = m_incoming[hash].setFragment(msg);
-        if (res != NULL)
+        if (res != nullptr)
         {
           dispatch(res);
           m_incoming.erase(hash);
@@ -91,7 +91,7 @@ namespace Transports
       }
 
       void
-      messageRipper(void)
+      messageRipper()
       {
         debug("ripping old messages");
 
@@ -114,7 +114,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

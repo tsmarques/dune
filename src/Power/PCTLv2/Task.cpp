@@ -253,18 +253,18 @@ namespace Power
         bind<IMC::QueryLedBrightness>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
         }
       }
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         // Fill LED map.
         m_led_map.clear();
@@ -277,7 +277,7 @@ namespace Power
 
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
 
           m_adcs[i] = IMC::Factory::produce(m_args.adc_messages[i]);
@@ -307,7 +307,7 @@ namespace Power
 
       //! Reserve entities.
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -337,7 +337,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -354,7 +354,7 @@ namespace Power
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         for (unsigned i = 0; i < c_pwrs_count; ++i)
           setPowerChannelState(i, m_args.pwr_states[i] ? 1 : 0);
@@ -369,7 +369,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_proto.requestVersion();
 
@@ -636,7 +636,7 @@ namespace Power
 
       //! Report leak entities.
       void
-      onReportEntityState(void)
+      onReportEntityState() override
       {
         dispatch(m_leaks[0]);
         dispatch(m_leaks[1]);
@@ -660,7 +660,7 @@ namespace Power
 
           if (msg->op == IMC::PowerChannelControl::PCC_OP_TURN_OFF)
           {
-            m_proto.sendCommand(CMD_PWR_HLT, 0, 0);
+            m_proto.sendCommand(CMD_PWR_HLT, nullptr, 0);
             return;
           }
         }
@@ -733,7 +733,7 @@ namespace Power
 
       //! Dispatch power channel state messages to bus.
       void
-      dispatchPowerChannelStates(void)
+      dispatchPowerChannelStates()
       {
         std::map<unsigned, PowerChannel*>::const_iterator itr = m_channels.begin();
 
@@ -745,7 +745,7 @@ namespace Power
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

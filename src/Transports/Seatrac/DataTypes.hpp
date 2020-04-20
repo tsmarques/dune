@@ -341,7 +341,7 @@ namespace Transports
       uint8_t outputflags_list[4];
 
       void
-      outputFlagsComp(void)
+      outputFlagsComp()
       {
         outputflags_list[0] = (0x01 & flags);
         outputflags_list[1] = (0x02 & flags);

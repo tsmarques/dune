@@ -141,16 +141,16 @@ namespace Vision
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_http(NULL),
+        m_http(nullptr),
         m_boundary(""),
         m_log_dir(ctx.dir_log),
         m_timestamp(-1),
-        m_pwr_gpio(NULL),
-        m_led_gpio(NULL),
+        m_pwr_gpio(nullptr),
+        m_led_gpio(nullptr),
         m_cfg_dirty(false),
-        m_slave_entities(NULL),
+        m_slave_entities(nullptr),
         m_log_dir_updated(false),
-        m_log(NULL),
+        m_log(nullptr),
         m_actual_frame_rate(-1)
       {
         // Retrieve configuration values.
@@ -269,9 +269,9 @@ namespace Vision
       }
 
       void
-      updateSlaveEntities(void)
+      updateSlaveEntities()
       {
-        if (m_slave_entities == NULL)
+        if (m_slave_entities == nullptr)
           return;
 
         m_slave_entities->clear();
@@ -292,7 +292,7 @@ namespace Vision
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         updateSlaveEntities();
 
@@ -306,7 +306,7 @@ namespace Vision
       }
 
       bool
-      checkParameters(void)
+      checkParameters()
       {
         return (paramChanged(m_args.fps) ||
                 paramChanged(m_args.gamma) ||
@@ -318,7 +318,7 @@ namespace Vision
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         if (m_args.pwr_gpio > 0)
         {
@@ -340,7 +340,7 @@ namespace Vision
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         trace("releasing");
         requestDeactivation();
@@ -377,11 +377,11 @@ namespace Vision
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation() override
       {
         trace("received activation request");
 
-        if (m_pwr_gpio != NULL)
+        if (m_pwr_gpio != nullptr)
           m_pwr_gpio->setValue(1);
 
         m_slave_entities->activate();
@@ -389,7 +389,7 @@ namespace Vision
       }
 
       void
-      checkActivationProgress(void)
+      checkActivationProgress()
       {
         trace("checking activation");
 
@@ -434,7 +434,7 @@ namespace Vision
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation() override
       {
         trace("received deactivation request");
         m_slave_entities->deactivate();
@@ -443,7 +443,7 @@ namespace Vision
       }
 
       void
-      checkDeactivationProgress(void)
+      checkDeactivationProgress()
       {
         trace("checking deactivation");
 
@@ -455,7 +455,7 @@ namespace Vision
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         inf(DTR("activated"));
@@ -463,21 +463,21 @@ namespace Vision
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         stopVideo();
         inf(DTR("stopped video stream"));
 
-        if (m_log != NULL)
+        if (m_log != nullptr)
         {
           m_log->stopAndJoin();
           delete m_log;
-          m_log = NULL;
+          m_log = nullptr;
         }
 
         m_log_dir_updated = false;
 
-        if (m_pwr_gpio != NULL)
+        if (m_pwr_gpio != nullptr)
           m_pwr_gpio->setValue(0);
 
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -501,7 +501,7 @@ namespace Vision
       }
 
       void
-      startVideo(void)
+      startVideo()
       {
         debug("starting video stream");
 
@@ -534,23 +534,23 @@ namespace Vision
           }
         }
 
-        if (m_led_gpio != NULL)
+        if (m_led_gpio != nullptr)
           m_led_gpio->setValue(1);
 
         inf(DTR("started video stream"));
       }
 
       void
-      stopVideo(void)
+      stopVideo()
       {
-        if (m_http == NULL)
+        if (m_http == nullptr)
           return;
 
         debug("stopping video stream");
         delete m_http;
-        m_http = NULL;
+        m_http = nullptr;
 
-        if (m_led_gpio != NULL)
+        if (m_led_gpio != nullptr)
           m_led_gpio->setValue(0);
       }
 
@@ -675,7 +675,7 @@ namespace Vision
       }
 
       void
-      setProperties(void)
+      setProperties()
       {
         updateFps();
         updateExposure();
@@ -687,14 +687,14 @@ namespace Vision
       }
 
       void
-      updateFps(void)
+      updateFps()
       {
         debug("setting frames per second to '%u'", m_args.fps);
         setProperty("maximum_framerate", uncastLexical(m_args.fps));
       }
 
       void
-      updateExposure(void)
+      updateExposure()
       {
         if (m_args.auto_exposure)
         {
@@ -715,7 +715,7 @@ namespace Vision
       }
 
       bool
-      checkExposure(void)
+      checkExposure()
       {
         if (paramChanged(m_args.auto_exposure))
           return true;
@@ -736,7 +736,7 @@ namespace Vision
       }
 
       void
-      updateGain(void)
+      updateGain()
       {
         if (m_args.auto_gain)
         {
@@ -757,7 +757,7 @@ namespace Vision
       }
 
       bool
-      checkGain(void)
+      checkGain()
       {
         if (paramChanged(m_args.auto_gain))
           return true;
@@ -778,7 +778,7 @@ namespace Vision
       }
 
       void
-      updateWhiteBalance(void)
+      updateWhiteBalance()
       {
         if (m_args.auto_whitebalance)
         {
@@ -798,7 +798,7 @@ namespace Vision
       }
 
       bool
-      checkWhiteBalance(void)
+      checkWhiteBalance()
       {
         if (paramChanged(m_args.auto_whitebalance))
           return true;
@@ -815,21 +815,21 @@ namespace Vision
       }
 
       void
-      updateGamma(void)
+      updateGamma()
       {
         debug("setting gamma to '%f'", m_args.gamma);
         setProperty("gamma", uncastLexical(m_args.gamma));
       }
 
       void
-      updateMedianFilter(void)
+      updateMedianFilter()
       {
         debug("setting median filtering to '%u'", m_args.median_filter);
         setProperty("median_filter", uncastLexical(m_args.median_filter));
       }
 
       void
-      updateStrobe(void)
+      updateStrobe()
       {
         if (m_args.led_type == "STROBE")
         {
@@ -850,13 +850,13 @@ namespace Vision
       }
 
       void
-      changeLogFile(void)
+      changeLogFile()
       {
-        if (m_log != NULL)
+        if (m_log != nullptr)
         {
           m_log->stopAndJoin();
           delete m_log;
-          m_log = NULL;
+          m_log = nullptr;
         }
 
         m_log = new Log(this, m_log_dir, c_width, c_height, m_actual_frame_rate);
@@ -864,7 +864,7 @@ namespace Vision
       }
 
       void
-      captureAndSave(void)
+      captureAndSave()
       {
         if (m_actual_frame_rate <= 0)
         {
@@ -872,7 +872,7 @@ namespace Vision
             return;
         }
 
-        if (m_log == NULL)
+        if (m_log == nullptr)
           changeLogFile();
 
         Log::Frame* frame = m_log->getFreeFrame();
@@ -907,7 +907,7 @@ namespace Vision
       }
 
       bool
-      checkConfiguration(void)
+      checkConfiguration()
       {
         if (!m_cfg_dirty)
           return true;
@@ -925,9 +925,9 @@ namespace Vision
       }
 
       bool
-      updateActualFrameRate(void)
+      updateActualFrameRate()
       {
-        if (m_http == NULL)
+        if (m_http == nullptr)
           return false;
 
         try
@@ -947,9 +947,9 @@ namespace Vision
       }
 
       bool
-      checkCaptureOk(void)
+      checkCaptureOk()
       {
-        if (m_http != NULL)
+        if (m_http != nullptr)
           return true;
 
         try
@@ -973,7 +973,7 @@ namespace Vision
       }
 
       bool
-      checkLogdirOk(void)
+      checkLogdirOk()
       {
         if (m_log_dir_updated)
           return true;
@@ -986,7 +986,7 @@ namespace Vision
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

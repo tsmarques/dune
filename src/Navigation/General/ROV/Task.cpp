@@ -124,7 +124,7 @@ namespace Navigation
 
         //! Update internal state with new parameter values.
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           BasicNavigation::onUpdateParameters();
 
@@ -145,27 +145,27 @@ namespace Navigation
 
         //! Initialize resources.
         void
-        onResourceInitialization(void)
+        onResourceInitialization() override
         {
           BasicNavigation::onResourceInitialization();
         }
 
         //! Release resources.
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           BasicNavigation::onResourceRelease();
         }
 
         void
-        onConsumeLblConfig(void)
+        onConsumeLblConfig() override
         {
           if (m_kal.resize(NUM_OUT + m_ranging.getSize()))
             Task::onUpdateParameters();
         }
 
         void
-        runKalmanGPS(double x, double y)
+        runKalmanGPS(double x, double y) override
         {
           m_gps_reading = true;
 
@@ -175,20 +175,20 @@ namespace Navigation
         }
 
         unsigned
-        getNumberOutputs(void)
+        getNumberOutputs() override
         {
           return NUM_OUT;
         }
 
         void
-        getSpeedOutputStates(unsigned* u, unsigned* v)
+        getSpeedOutputStates(unsigned* u, unsigned* v) override
         {
           *u = OUT_U;
           *v = OUT_V;
         }
 
         bool
-        setup(void)
+        setup() override
         {
           BasicNavigation::setup();
 
@@ -201,7 +201,7 @@ namespace Navigation
         }
 
         void
-        reset(void)
+        reset() override
         {
           BasicNavigation::reset();
           m_gps_reading = false;
@@ -227,7 +227,7 @@ namespace Navigation
 
         // Reinitialize Extended Kalman Filter output matrix function.
         void
-        resetKalman(void)
+        resetKalman()
         {
           m_kal.resetOutputs();
           m_kal.setObservation(OUT_U, STATE_U, 1.0);
@@ -237,7 +237,7 @@ namespace Navigation
         }
 
         void
-        logData(void)
+        logData()
         {
           m_estate.psi = Angles::normalizeRadian(getEuler(AXIS_Z));
           m_estate.r = Angles::normalizeRadian(getAngularVelocity(AXIS_Z));
@@ -261,7 +261,7 @@ namespace Navigation
 
         //! Main loop.
         void
-        task(void)
+        task() override
         {
           if(!BasicNavigation::isActive())
             return;

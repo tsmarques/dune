@@ -52,21 +52,20 @@ namespace DUNE
       class Parser
       {
       public:
-        Parser(void):
+        Parser():
           m_state(STA_SYNC),
           m_frame_csum(0),
           m_payload_idx(0)
         { }
 
-        ~Parser(void)
-        { }
+        ~Parser () = default;
 
         //! Check if internal finite state machine is waiting for the
         //! synchronization byte.
         //! @return true if state machine is waiting for the
         //! synchronization byte, false otherwise.
         bool
-        stateIsSync(void)
+        stateIsSync()
         {
           return m_state == STA_SYNC;
         }

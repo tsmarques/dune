@@ -184,7 +184,7 @@ namespace Sensors
       // Depth
       float depth;
 
-      Beacon(void):
+      Beacon():
         id(0),
         query_frequency(0),
         reply_frequency(0),
@@ -202,12 +202,12 @@ namespace Sensors
       // Beacons.
       std::vector<Beacon> beacons;
 
-      LBL(void):
+      LBL():
         index(0)
       { }
 
       unsigned
-      next(void)
+      next()
       {
         unsigned it = index;
         if (++index >= beacons.size())
@@ -217,19 +217,19 @@ namespace Sensors
       }
 
       bool
-      empty(void) const
+      empty() const
       {
         return beacons.empty();
       }
 
       void
-      clear(void)
+      clear()
       {
         beacons.clear();
       }
 
       unsigned
-      size(void)
+      size()
       {
         return beacons.size();
       }
@@ -338,11 +338,11 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_result(RS_NONE),
         m_sound_speed_eid(-1),
-        m_reporter(NULL),
-        m_salinity(NULL)
+        m_reporter(nullptr),
+        m_salinity(nullptr)
       {
         // Define configuration parameters.
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -479,7 +479,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setAndSendState(STA_BOOT);
 
@@ -499,14 +499,14 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
         Memory::clear(m_reporter);
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_sound_speed = m_args.sound_speed_def;
 
@@ -515,7 +515,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Process micro-modem addresses.
         std::vector<std::string> addrs = m_ctx.config.options(m_args.addr_section);
@@ -621,7 +621,7 @@ namespace Sensors
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         try
         {
@@ -988,7 +988,7 @@ namespace Sensors
       }
 
       void
-      ping(void)
+      ping()
       {
         unsigned index = m_lbl.next();
 
@@ -1012,7 +1012,7 @@ namespace Sensors
       }
 
       void
-      pingNarrowBand(void)
+      pingNarrowBand()
       {
         std::vector<unsigned> freqs;
         unsigned iterator = 0;
@@ -1057,7 +1057,7 @@ namespace Sensors
       }
 
       void
-      fullAcousticReport(void)
+      fullAcousticReport()
       {
         double lat;
         double lon;
@@ -1074,7 +1074,7 @@ namespace Sensors
         int8_t prog = (int8_t)m_progress;
 
         // in case the vehicle doesn't have altitude
-        if (i_alt == -10 && m_salinity != NULL)
+        if (i_alt == -10 && m_salinity != nullptr)
           i_alt = -(m_salinity->value * 10);
 
         for (uint8_t i = 0; i < std::min(2, (int)m_lbl.size()); i++)
@@ -1119,7 +1119,7 @@ namespace Sensors
         tx_status.value = IMC::UamTxStatus::UTS_DONE;
         dispatch(tx_status);
 
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->ack();
       }
 
@@ -1247,7 +1247,7 @@ namespace Sensors
       void
       consume(const IMC::ReportControl* msg)
       {
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->consume(msg);
       }
 
@@ -1286,7 +1286,7 @@ namespace Sensors
             else
               debug("failed to report range to %s", m_lbl(i).name.c_str());
 
-            if (m_reporter != NULL)
+            if (m_reporter != nullptr)
               m_reporter->ack();
           }
         }
@@ -1347,14 +1347,14 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {
           // Report.
           if (m_args.report != "None" && !m_stop_comms)
           {
-            if (m_reporter != NULL && m_reporter->trigger())
+            if (m_reporter != nullptr && m_reporter->trigger())
             {
               if (m_args.report == "Full")
                 fullAcousticReport();

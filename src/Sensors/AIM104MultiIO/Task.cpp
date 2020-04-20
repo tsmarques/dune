@@ -83,7 +83,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Periodic(name, ctx),
-        m_driver(NULL),
+        m_driver(nullptr),
         m_samples(0)
       {
         // Initialize conversion variables.
@@ -124,14 +124,14 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_driver = new Driver(m_args.base_addr, m_args.range, m_args.diff_mode);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         std::memset(m_means, 0, sizeof(m_means));
 
@@ -154,7 +154,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_driver);
 
@@ -163,7 +163,7 @@ namespace Sensors
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_max_channels; ++i)
         {
@@ -175,7 +175,7 @@ namespace Sensors
       }
 
       void
-      task(void)
+      task() override
       {
         ++m_samples;
 
@@ -183,7 +183,7 @@ namespace Sensors
 
         for (unsigned i = 0; i < c_max_channels; ++i)
         {
-          if (m_messages[i] == NULL)
+          if (m_messages[i] == nullptr)
             continue;
 
           m_driver->setChannel(i);
@@ -201,7 +201,7 @@ namespace Sensors
         {
           for (unsigned i = 0; i < c_max_channels; ++i)
           {
-            if (m_messages[i] == NULL)
+            if (m_messages[i] == nullptr)
               continue;
 
             double mean = m_means[i] / m_args.spl_avg;

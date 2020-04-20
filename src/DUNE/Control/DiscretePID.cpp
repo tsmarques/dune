@@ -36,7 +36,7 @@ namespace DUNE
   namespace Control
   {
     //! Constructor.
-    DiscretePID::DiscretePID(void):
+    DiscretePID::DiscretePID():
       m_kp(0),
       m_ki(0),
       m_kd(0),
@@ -46,15 +46,14 @@ namespace DUNE
       m_lower_limit(0),
       m_upper_limit(0),
       m_debug(false),
-      m_task(NULL),
-      m_parcel(NULL)
+      m_task(nullptr),
+      m_parcel(nullptr)
     {
       reset();
     }
 
     //! Destructor.
-    DiscretePID::~DiscretePID(void)
-    { }
+    DiscretePID::~DiscretePID () = default;
 
     void
     DiscretePID::setGains(const std::vector<float>& gains)
@@ -115,7 +114,7 @@ namespace DUNE
       m_task = t;
       m_parcel = p;
 
-      if ((t != NULL) && (p != NULL))
+      if ((t != nullptr) && (p != nullptr))
         m_debug = true;
     }
 
@@ -154,7 +153,7 @@ namespace DUNE
     }
 
     void
-    DiscretePID::reset(void)
+    DiscretePID::reset()
     {
       m_int_err = 0;
       m_prev_err = 0;

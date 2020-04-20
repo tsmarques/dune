@@ -110,21 +110,21 @@ namespace Transports
       public:
       DeviceReports device_reports;
 
-      RadioDriver( RadioConfParam args , Tasks::Task* taskp = NULL):
+      RadioDriver( RadioConfParam args , Tasks::Task* taskp = nullptr):
       task(taskp),
-      m_handle(NULL),
+      m_handle(nullptr),
       radioParams(args)
       {
       }
 
      //! Default destructor.
       virtual
-     ~RadioDriver(void)
+     ~RadioDriver()
      {
        Memory::clear(m_handle);
      }
 
-      virtual int configDevice (void) = 0;
+      virtual int configDevice () = 0;
       virtual void process(const std::string msg) = 0;
 
       bool
@@ -172,7 +172,7 @@ namespace Transports
       virtual void sendString(std::string& data) = 0;
 
       bool
-      processCrc(void)
+      processCrc()
       {
         bool msg_validity = false;
         uint16_t crc, crc2;
@@ -213,7 +213,7 @@ namespace Transports
 
       //! Read sentence.
       bool
-      readSentence(void)
+      readSentence()
       {
         bool active = false;
         if (Poll::poll(*m_handle, 0.05))
@@ -242,7 +242,7 @@ namespace Transports
       }
 
       bool
-      openSocket(void)
+      openSocket()
       {
         char socket_addr[128] = { 0 };
         unsigned port = 0;

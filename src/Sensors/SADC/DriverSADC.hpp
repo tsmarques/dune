@@ -81,12 +81,11 @@ namespace Sensors
         PS_CS
       };
 
-      DriverSADC(void):
+      DriverSADC():
         m_sadc_state(DriverSADC::PS_PREAMBLE)
       { }
 
-      ~DriverSADC(void)
-      { }
+      ~DriverSADC () = default;
 
       //! Parse message received
       bool
@@ -131,7 +130,7 @@ namespace Sensors
 
       //! Filter data received of SADC board
       bool
-      translate(void)
+      translate()
       {
         if (m_bfr[1] == ',')
         {
@@ -145,7 +144,7 @@ namespace Sensors
       }
 
       std::string
-      translate_feadback(void)
+      translate_feadback()
       {
         //! Feadback message
         char feadback_msg[16];
@@ -179,7 +178,7 @@ namespace Sensors
 
       //! Enable Output data of SADC
       char*
-      enable_output(void)
+      enable_output()
       {
         std::memset(&m_send_bfr, '\0', sizeof(m_send_bfr));
         std::sprintf(m_send_bfr, "#0,E,*");
@@ -190,7 +189,7 @@ namespace Sensors
 
       //! Disable Output data of SADC
       char*
-      disable_output(void)
+      disable_output()
       {
         std::memset(&m_send_bfr, '\0', sizeof(m_send_bfr));
         std::sprintf(m_send_bfr, "#0,D,*");

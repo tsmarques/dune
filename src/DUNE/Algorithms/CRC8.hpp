@@ -63,7 +63,7 @@ namespace DUNE
       //! Retrieve the current CRC8 value.
       //! @return current CRC8 value.
       uint8_t
-      get(void) const
+      get() const
       {
         return m_value;
       }

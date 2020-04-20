@@ -66,9 +66,9 @@ namespace Autonomy
 
       Task(const std::string & name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_pcs(NULL),
-        m_vstate(NULL),
-        m_last(NULL),
+        m_pcs(nullptr),
+        m_vstate(nullptr),
+        m_last(nullptr),
         m_reqid(0)
       {
         param("Reply timeout", m_args.reply_timeout)
@@ -89,7 +89,7 @@ namespace Autonomy
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
@@ -122,7 +122,7 @@ namespace Autonomy
       void
       consume(const IMC::PlanGeneration* msg)
       {
-        if (m_last == NULL)
+        if (m_last == nullptr)
           return;
 
         std::stringstream ss;
@@ -153,7 +153,7 @@ namespace Autonomy
       void
       consume(const IMC::PlanControl* msg)
       {
-        if (m_last == NULL)
+        if (m_last == nullptr)
           return;
 
         std::string last_cmd, args;
@@ -278,7 +278,7 @@ namespace Autonomy
       {
         std::stringstream ss;
 
-        if (m_vstate != NULL)
+        if (m_vstate != nullptr)
         {
           if (m_vstate->error_count > 0) {
             ss << (int) m_vstate->error_count << " errors: " << m_vstate->error_ents;
@@ -324,7 +324,7 @@ namespace Autonomy
       handleInfoCommand(const std::string& origin)
       {
         std::stringstream ss;
-        if (m_pcs == NULL || m_vstate == NULL)
+        if (m_pcs == nullptr || m_vstate == nullptr)
         {
           war("Not replying as no state messages are available.");
           return;
@@ -456,7 +456,7 @@ namespace Autonomy
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

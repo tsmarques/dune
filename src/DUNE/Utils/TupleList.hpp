@@ -59,7 +59,7 @@ namespace DUNE
       }
 
       void
-      clear(void)
+      clear()
       {
         m_data.clear();
       }

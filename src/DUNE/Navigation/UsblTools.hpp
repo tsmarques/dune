@@ -124,7 +124,7 @@ namespace DUNE
         //! Get size of frame.
         //! @return size of fix structure.
         static size_t
-        size(void)
+        size()
         {
           return 2 * (sizeof(fp64_t) + sizeof(fp32_t)) + sizeof(uint8_t);
         }
@@ -182,7 +182,7 @@ namespace DUNE
         //! Get size of frame.
         //! @return size of position structure.
         static size_t
-        size(void)
+        size()
         {
           return (6 * sizeof(fp32_t) + sizeof(uint8_t));
         }
@@ -234,7 +234,7 @@ namespace DUNE
         //! Get size of frame.
         //! @return size of angles structure.
         static size_t
-        size(void)
+        size()
         {
           return 5 * sizeof(fp32_t);
         }
@@ -572,7 +572,7 @@ namespace DUNE
         //! Time to track target.
         //! @return true, if timer has overflown.
         bool
-        trigger(void)
+        trigger()
         {
           if (m_target_timer.overflow())
           {
@@ -610,7 +610,7 @@ namespace DUNE
         //! Get target's name.
         //! @return target's name.
         std::string
-        getName(void)
+        getName()
         {
           return m_name;
         }
@@ -619,7 +619,7 @@ namespace DUNE
         //! @return true if target's wants absolute fix,
         //! false otherwise.
         bool
-        wantsFix(void)
+        wantsFix()
         {
           return m_fix;
         }
@@ -627,7 +627,7 @@ namespace DUNE
         //! Check if the target node has failed.
         //! @return true if target has reached threshold, false otherwise.
         bool
-        hasFailed(void)
+        hasFailed()
         {
           if (++m_comm_errors >= c_max_comm_timeout)
             return true;
@@ -637,7 +637,7 @@ namespace DUNE
 
         //! Reset count of errors.
         void
-        resetErrors(void)
+        resetErrors()
         {
           m_comm_errors = 0;
         }
@@ -660,8 +660,7 @@ namespace DUNE
       {
       public:
         //! Constructor.
-        Modem(void)
-        { }
+        Modem () = default;
 
         //! This function verifies if we are waiting for the target's reply.
         //! @param[in] name name of the target.
@@ -909,7 +908,7 @@ namespace DUNE
 
         //! Clear current list of targets.
         void
-        clear(void)
+        clear()
         {
           m_list.clear();
         }

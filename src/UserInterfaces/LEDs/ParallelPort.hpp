@@ -47,19 +47,19 @@ namespace UserInterfaces
     public:
       ParallelPort(unsigned addr, unsigned nr):
         m_nr(nr),
-        m_port(0)
+        m_port(nullptr)
       {
         m_port = new IOPort(addr, 1);
       }
 
-      ~ParallelPort(void)
+      ~ParallelPort() override
       {
         if (m_port)
           delete m_port;
       }
 
       void
-      setValue(bool value)
+      setValue(bool value) override
       {
         uint8_t data = m_port->read();
 

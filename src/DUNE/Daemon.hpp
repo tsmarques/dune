@@ -63,13 +63,13 @@ namespace DUNE
   public:
     Daemon(Tasks::Context& ctx, const std::string& profiles);
 
-    ~Daemon(void);
+    ~Daemon() override;
 
     bool
-    callReboot(void);
+    callReboot();
 
     void
-    onResourceInitialization(void);
+    onResourceInitialization() override;
 
     void
     consume(const DUNE::IMC::RestartSystem* msg);
@@ -84,7 +84,7 @@ namespace DUNE
     consume(const DUNE::IMC::SaveEntityParameters* msg);
 
     void
-    onMain(void);
+    onMain() override;
 
     void
     writeParamsXML(std::ostream& os) const;
@@ -112,10 +112,10 @@ namespace DUNE
     bool call_reboot;
 
     void
-    measureCpuUsage(void);
+    measureCpuUsage();
 
     void
-    dispatchPeriodic(void);
+    dispatchPeriodic();
   };
 }
 

@@ -124,7 +124,7 @@ namespace Control
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           // Initialize ILOS m_integrator
           m_integrator = m_args.int_init;
@@ -137,20 +137,20 @@ namespace Control
         }
 
         void
-        onEntityReservation(void)
+        onEntityReservation() override
         {
           PathController::onEntityReservation();
         }
 
         void
-        onPathActivation(void)
+        onPathActivation() override
         {
           // Activate heading cotroller.
           enableControlLoops(IMC::CL_YAW);
         }
 
         void
-        reset(void)
+        reset()
         {
           m_integrator = 0.0;
         }
@@ -164,7 +164,7 @@ namespace Control
         //! Execute a path control step
         //! From base class PathController
         void
-        step(const IMC::EstimatedState& state, const TrackingState& ts)
+        step(const IMC::EstimatedState& state, const TrackingState& ts) override
         {
           // Note:
           // cross-track position (lateral error) = ts.track_pos.y
@@ -227,7 +227,7 @@ namespace Control
         //! Execute a loiter control step
         //! From base class PathController & VectorField guidance law
         void
-        loiter(const IMC::EstimatedState& state, const TrackingState& ts)
+        loiter(const IMC::EstimatedState& state, const TrackingState& ts) override
         {
           double ref = DUNE::Math::c_half_pi + std::atan(2 * m_gain * (ts.range - ts.loiter.radius));
 

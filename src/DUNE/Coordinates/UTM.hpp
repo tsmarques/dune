@@ -82,19 +82,19 @@ namespace DUNE
       UTMPoint(double lat, double lon, double z);
 
       double
-      getNorthing(void);
+      getNorthing();
 
       double
-      getEasting(void);
+      getEasting();
 
       double
-      getZ(void);
+      getZ();
 
       int
-      getZone(void);
+      getZone();
 
       bool
-      isNorth(void);
+      isNorth();
 
       void
       translate(double n, double e);

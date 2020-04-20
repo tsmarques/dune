@@ -97,9 +97,9 @@ namespace Sensors
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_tstamp(0),
-        m_driver(NULL),
+        m_driver(nullptr),
         m_is_correct_conf(0)
       {
         param("Serial Port - Device", m_args.uart_dev)
@@ -157,7 +157,7 @@ namespace Sensors
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         unsigned eid = 0;
 
@@ -182,7 +182,7 @@ namespace Sensors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -196,7 +196,7 @@ namespace Sensors
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVATING);
 
@@ -220,15 +220,15 @@ namespace Sensors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_uart->write(m_driver->disable_output(), strlen(m_driver->disable_output()));
 
           m_poll.remove(*m_uart);
           delete m_uart;
-          m_uart = NULL;
+          m_uart = nullptr;
 
           Memory::clear(m_driver);
         }
@@ -236,7 +236,7 @@ namespace Sensors
 
       //! Config board DMS
       void
-      configDMS(void)
+      configDMS()
       {
         m_uart->write(m_driver->disable_output(), strlen(m_driver->disable_output()));
         processFeedback();
@@ -272,7 +272,7 @@ namespace Sensors
 
       //! Check feadback of commands
       void
-      processFeedback(void)
+      processFeedback()
       {
         if(!processInput(m_args.timeout_uart, false))
           m_is_correct_conf = false;
@@ -280,7 +280,7 @@ namespace Sensors
 
       //! Read data send by DMS board.
       bool
-      checkSerialPort(void)
+      checkSerialPort()
       {
         if (m_poll.wasTriggered(*m_uart))
         {
@@ -401,7 +401,7 @@ namespace Sensors
       }
 
       bool
-      checkDataDMS(void)
+      checkDataDMS()
       {
         bool checkEnd = processInput(m_args.timeout_uart, true);
         m_uart->flush();
@@ -418,7 +418,7 @@ namespace Sensors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

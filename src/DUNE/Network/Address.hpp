@@ -78,7 +78,7 @@ namespace DUNE
         Loopback
       };
 
-      Address(void);
+      Address();
 
       Address(StaticAddress address);
 
@@ -110,30 +110,30 @@ namespace DUNE
       operator=(uint32_t ad);
 
       uint32_t
-      toInteger(void) const;
+      toInteger() const;
 
       uint32_t
-      toIntegerNative(void) const;
+      toIntegerNative() const;
 
       std::string
-      str(void) const;
+      str() const;
 
       const char*
-      c_str(void);
+      c_str();
 
       bool
-      resolve(void);
+      resolve();
 
       //! Test if the address is a loopback address (127.0.0.0/8).
       //! @return true if the address is loopback, false otherwise.
       bool
-      isLoopback(void) const;
+      isLoopback() const;
 
       //! Test if the address is a current or any network address
       //! (0.0.0.0/8).
       //! @return true if the address is loopback, false otherwise.
       bool
-      isAny(void) const;
+      isAny() const;
 
     private:
       std::string m_host;

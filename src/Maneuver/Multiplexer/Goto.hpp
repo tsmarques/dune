@@ -55,7 +55,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver goto maneuver message
       void
-      onStart(const IMC::Goto* maneuver)
+      onStart(const IMC::Goto* maneuver) override
       {
         m_task->setControl(IMC::CL_PATH);
 
@@ -73,7 +73,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if (pcs->flags & IMC::PathControlState::FL_NEAR)
           m_task->signalCompletion();
@@ -81,8 +81,7 @@ namespace Maneuver
           m_task->signalProgress(pcs->eta);
       }
 
-      ~Goto(void)
-      { }
+      ~Goto () override = default;
     };
   }
 }

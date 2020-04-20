@@ -55,7 +55,7 @@ namespace DUNE
     void
     Connection::open(const char* path, int flags)
     {
-      m_handle = NULL;
+      m_handle = nullptr;
 
       sqlite3_enable_shared_cache(1);
 
@@ -68,11 +68,11 @@ namespace DUNE
       if (flags & CF_CREATE)
         sl_flags |= SQLITE_OPEN_CREATE;
 
-      if (sqlite3_open_v2(path, &m_handle, sl_flags, 0) != SQLITE_OK)
+      if (sqlite3_open_v2(path, &m_handle, sl_flags, nullptr) != SQLITE_OK)
       {
         Error e(lastError());
         sqlite3_close(m_handle);
-        m_handle = NULL;
+        m_handle = nullptr;
         throw e;
       }
 
@@ -81,7 +81,7 @@ namespace DUNE
       m_trollback_stmt = new Statement("rollback", *this);
     }
 
-    Connection::~Connection(void)
+    Connection::~Connection()
     {
       if (m_handle)
       {
@@ -95,9 +95,9 @@ namespace DUNE
     void
     Connection::execute(const char* sql_stmt, int* count)
     {
-      char* errmsg = 0;
+      char* errmsg = nullptr;
 
-      if (sqlite3_exec(m_handle, sql_stmt, 0, 0, &errmsg) != SQLITE_OK)
+      if (sqlite3_exec(m_handle, sql_stmt, nullptr, nullptr, &errmsg) != SQLITE_OK)
       {
         Error e(errmsg);
         sqlite3_free(errmsg);
@@ -109,25 +109,25 @@ namespace DUNE
     }
 
     const char*
-    Connection::lastError(void)
+    Connection::lastError()
     {
       return sqlite3_errmsg(m_handle);
     }
 
     void
-    Connection::beginTransaction(void)
+    Connection::beginTransaction()
     {
       m_tbegin_stmt->execute();
     }
 
     void
-    Connection::commit(void)
+    Connection::commit()
     {
       m_tcommit_stmt->execute();
     }
 
     void
-    Connection::rollback(void)
+    Connection::rollback()
     {
       m_trollback_stmt->execute();
     }

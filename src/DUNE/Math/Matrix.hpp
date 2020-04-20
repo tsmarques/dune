@@ -66,7 +66,7 @@ namespace DUNE
 
       //! Constructor.
       //! Construct a zero sized matrix.
-      Matrix(void);
+      Matrix();
 
       //! Constructor.
       //! Create a Matrix of the same dimension of another Matrix. It
@@ -110,28 +110,28 @@ namespace DUNE
       //! Destructor.
       //! Decrement the number of copies of a Matrix and frees the
       //! allocated memory if this number reaches zero.
-      ~Matrix(void);
+      ~Matrix();
 
       //! Retrieve the number of rows of the matrix.
       //! @return number of rows of the matrix.
       int
-      rows(void) const;
+      rows() const;
 
       //! Retrieve the number of columns of the matrix.
       //! @return number of columns of the matrix.
       int
-      columns(void) const;
+      columns() const;
 
       //! Retrieve the size of the matrix
       //! @return size of the matrix.
       int
-      size(void) const;
+      size() const;
 
       //! Return true for empty matrices.
       //! @return return true for empty matrices, false
       //! otherwise.
       bool
-      isEmpty(void) const;
+      isEmpty() const;
 
       //! Fill the Matrix with a constant value.
       //! @param[in] value constant value to fill matrix with
@@ -142,12 +142,11 @@ namespace DUNE
       //! @param[in] r number of rows of resized matrix
       //! @param[in] c number of columns of resized matrix
       //! @param[in] data pointer to data to be copied to resized matrix
-      void
-      fill(size_t r, size_t c, const double* data = 0);
+      void fill (size_t r, size_t c, const double *data = nullptr);
 
       //! Turns the Matrix into an identity matrix if it is squared.
       void
-      identity(void);
+      identity();
 
       //! Limit the maximum Matrix elements values
       //! @param[in] max maximum value
@@ -276,7 +275,7 @@ namespace DUNE
       //! This method returns the precision currently in use.
       //! @return value of the precision in use
       static double
-      get_precision(void);
+      get_precision();
 
       //! This method resizes a Matrix to the same dimensions of other matrix.
       //! Note that no data copy is performed.
@@ -371,12 +370,12 @@ namespace DUNE
       //! This method changes the dimensions of a Matrix to a one row Matrix.
       //! The elements are not changed.
       void
-      to_row(void);
+      to_row();
 
       //! This method changes the dimensions of a Matrix to a one column Matrix.
       //! The elements are not changed.
       void
-      to_column(void);
+      to_column();
 
       //! Right-multiply a matrix with given matrix.
       //! @param[in] m matrix to be multiplied
@@ -426,7 +425,7 @@ namespace DUNE
       //! This method implements the unary minus operator.
       //! @return resultant matrix
       Matrix
-      operator-(void) const;
+      operator-() const;
 
       //! This method multiplies a Matrix by a real number.
       //! @param[in] x real number
@@ -475,35 +474,35 @@ namespace DUNE
       //! Recursive technique O(n!).
       //! @return matrix determinant
       double
-      detr(void) const;
+      detr() const;
 
       //! Matrix determinant through LUP decomposition
       //! Iterative technique O(n^3).
       //! @return matrix determinant
       double
-      det(void) const;
+      det() const;
 
       //! Sylvester's criterion implementation
       //! @return true if success, false otherwise
       bool
-      Sylvester(void) const;
+      Sylvester() const;
 
       //! Convert from Euler angles or quaternions to
       //! Direction Cosines Matrix attitude representation.
       //! Used to transform vectors in the body frame to the fixed frame.
       //! @return DCM matrix
       Matrix
-      toDCM(void) const;
+      toDCM() const;
 
       //! Convert from DCM or Euler angles to Quaternion attitude representation.
       //! @return Quaternion representation
       Matrix
-      toQuaternion(void) const;
+      toQuaternion() const;
 
       //! Convert from DCM or Quaternion to Euler angles attitude representation.
       //! @return Euler Angles representation
       Matrix
-      toEulerAngles(void) const;
+      toEulerAngles() const;
 
       //! Compute matrix exponential of a square matrix
       //! through Taylor series expansion technique.
@@ -535,43 +534,43 @@ namespace DUNE
       //! for vectors and Froebnius norm for matrices.
       //! @return resultant norm
       double
-      norm_2(void) const;
+      norm_2() const;
 
       //! This implements the infinity-norm.
       //! @return resultant norm
       double
-      norm_inf(void) const;
+      norm_inf() const;
 
       //! Compute the median value of the ordered data of the matrix.
       //! (does not assume the data is already ordered)
       //! @return median of the matrix
       double
-      median(void) const;
+      median() const;
 
       //! Compute matrix trace (sum of diagonal elements for a square matrix).
       //! @return trace of matrix
       double
-      trace(void) const;
+      trace() const;
 
       //! This routine checks if matrix is invertible.
       //! @return true if it is invertible, false otherwise
       bool
-      isInvertible(void) const;
+      isInvertible() const;
 
       //! This routine checks if matrix is square.
       //! @return true if it is squared, false otherwise
       bool
-      isSquare(void) const;
+      isSquare() const;
 
       //! This routine checks if matrix is a vector.
       //! @return true if it is a vector, false otherwise
       bool
-      isVector(void) const;
+      isVector() const;
 
       //! This routine checks if matrix is a column vector.
       //! @return true if it is a column vector, false otherwise
       bool
-      isColumnVector(void) const;
+      isColumnVector() const;
 
       //! This routine checks if matrix is a column vector with certain size.
       //! @param[in] rows size of the vector
@@ -582,7 +581,7 @@ namespace DUNE
       //! This routine checks if matrix is a row vector.
       //! @return true if it is a row vector, false otherwise
       bool
-      isRowVector(void) const;
+      isRowVector() const;
 
       //! This routine checks if matrix is a row vector with certain size.
       //! @param[in] columns size of the vector
@@ -845,11 +844,11 @@ namespace DUNE
 
       //! This method acts as destructor.
       void
-      erase(void);
+      erase();
 
       //! This method creates a unique copy of the data of a Matrix.
       void
-      split(void);
+      split();
     };
   }
 }

@@ -41,20 +41,20 @@ namespace Plan
                bool fpredict, float max_depth, Tasks::Task* task,
                uint16_t min_cal_time, Parsers::Config* cfg):
       m_spec(spec),
-      m_curr_node(NULL),
+      m_curr_node(nullptr),
       m_compute_progress(compute_progress),
       m_max_depth(max_depth),
       m_predict_fuel(fpredict),
       m_progress(0.0),
       m_est_cal_time(0),
-      m_profiles(NULL),
+      m_profiles(nullptr),
       m_beyond_dur(false),
-      m_sched(NULL),
+      m_sched(nullptr),
       m_started_maneuver(false),
-      m_calib(NULL),
+      m_calib(nullptr),
       m_min_cal_time(min_cal_time),
       m_config(cfg),
-      m_fpred(NULL),
+      m_fpred(nullptr),
       m_task(task),
       m_properties(0)
     {
@@ -85,7 +85,7 @@ namespace Plan
       m_rt_stat = new RunTimeStatistics(&m_post_stat);
     }
 
-    Plan::~Plan(void)
+    Plan::~Plan()
     {
       Memory::clear(m_profiles);
       Memory::clear(m_sched);
@@ -97,22 +97,22 @@ namespace Plan
     }
 
     void
-    Plan::clear(void)
+    Plan::clear()
     {
       // Do not clear m_spec
 
       m_graph.clear();
-      m_curr_node = NULL;
+      m_curr_node = nullptr;
       m_seq_nodes.clear();
       m_progress = -1.0;
       m_beyond_dur = false;
       m_started_maneuver = false;
       m_est_cal_time = m_min_cal_time;
 
-      if (m_profiles != NULL)
+      if (m_profiles != nullptr)
         m_profiles->clear();
 
-      if (m_calib != NULL)
+      if (m_calib != nullptr)
         m_calib->clear();
 
       m_cat.clear();
@@ -138,16 +138,16 @@ namespace Plan
     }
 
     void
-    Plan::planStarted(void)
+    Plan::planStarted()
     {
       // Post statistics
-      if (m_rt_stat != NULL)
+      if (m_rt_stat != nullptr)
         m_rt_stat->clear();
 
       m_post_stat.plan_id = m_spec->plan_id;
       m_rt_stat->planStarted();
 
-      if (m_sched == NULL)
+      if (m_sched == nullptr)
         return;
 
       m_affected_ents.clear();
@@ -156,13 +156,13 @@ namespace Plan
     }
 
     void
-    Plan::planStopped(void)
+    Plan::planStopped()
     {
-      if (m_sched != NULL)
+      if (m_sched != nullptr)
         m_sched->planStopped(m_affected_ents);
 
       if (m_predict_fuel)
-        if (m_fpred != NULL)
+        if (m_fpred != nullptr)
           m_rt_stat->fill(*m_fpred);
 
       m_rt_stat->planStopped();
@@ -170,7 +170,7 @@ namespace Plan
     }
 
     void
-    Plan::calibrationStarted(void)
+    Plan::calibrationStarted()
     {
       m_calib->setTime(m_est_cal_time);
     }
@@ -182,19 +182,19 @@ namespace Plan
 
       m_rt_stat->maneuverStarted(id);
 
-      if (m_sched == NULL)
+      if (m_sched == nullptr)
         return;
 
       m_sched->maneuverStarted(id);
     }
 
     void
-    Plan::maneuverDone(void)
+    Plan::maneuverDone()
     {
       if (!m_started_maneuver)
         return;
 
-      if (m_curr_node == NULL)
+      if (m_curr_node == nullptr)
         return;
 
       m_rt_stat->maneuverStopped();
@@ -207,24 +207,24 @@ namespace Plan
           m_beyond_dur = true;
       }
 
-      if (m_sched == NULL)
+      if (m_sched == nullptr)
         return;
 
       m_sched->maneuverDone(m_last_id);
     }
 
     uint16_t
-    Plan::getEstimatedCalibrationTime(void) const
+    Plan::getEstimatedCalibrationTime() const
     {
       return m_est_cal_time;
     }
 
     bool
-    Plan::isDone(void) const
+    Plan::isDone() const
     {
       // FIXME: we are only fetching a single transition and not all of them
 
-      if (m_curr_node == NULL)
+      if (m_curr_node == nullptr)
         return false;
       else if (!m_curr_node->trans.size())
         return true;
@@ -235,7 +235,7 @@ namespace Plan
     }
 
     IMC::PlanManeuver*
-    Plan::loadStartManeuver(void)
+    Plan::loadStartManeuver()
     {
       m_last_id = m_spec->start_man_id;
 
@@ -243,7 +243,7 @@ namespace Plan
     }
 
     IMC::PlanManeuver*
-    Plan::loadNextManeuver(void)
+    Plan::loadNextManeuver()
     {
       m_last_id = m_curr_node->trans[0]->dest_man;
 
@@ -255,7 +255,7 @@ namespace Plan
     {
       float prog = progress(mcs);
 
-      if (prog >= 0.0 && m_sched != NULL)
+      if (prog >= 0.0 && m_sched != nullptr)
       {
         if (!m_beyond_dur)
           m_sched->updateSchedule(getETA());
@@ -301,7 +301,7 @@ namespace Plan
     bool
     Plan::onEntityActivationState(const std::string& id, const IMC::EntityActivationState* msg)
     {
-      if (m_sched != NULL)
+      if (m_sched != nullptr)
         return m_sched->onEntityActivationState(id, msg);
       else
         return true;
@@ -313,14 +313,14 @@ namespace Plan
       if (!m_predict_fuel)
         return;
 
-      if (m_fpred == NULL)
+      if (m_fpred == nullptr)
         return;
 
       m_fpred->onFuelLevel(msg);
     }
 
     float
-    Plan::getETA(void) const
+    Plan::getETA() const
     {
       if (m_progress >= 0.0)
         return getTotalDuration() * (1.0 - 0.01 * m_progress);
@@ -331,7 +331,7 @@ namespace Plan
     // Private
 
     float
-    Plan::getExecutionDuration(void) const
+    Plan::getExecutionDuration() const
     {
       if (!isLinear() || !m_profiles->size())
         return -1.0;
@@ -349,18 +349,18 @@ namespace Plan
     }
 
     bool
-    Plan::waitingForDevice(void)
+    Plan::waitingForDevice()
     {
-      if (m_sched != NULL)
+      if (m_sched != nullptr)
         return m_sched->waitingForDevice();
 
       return false;
     }
 
     float
-    Plan::scheduledTimeLeft(void) const
+    Plan::scheduledTimeLeft() const
     {
-      if (m_sched != NULL)
+      if (m_sched != nullptr)
         return m_sched->calibTimeLeft();
 
       return -1.0;
@@ -462,7 +462,7 @@ namespace Plan
       {
         sequenceNodes();
 
-        if (isLinear() && state != NULL)
+        if (isLinear() && state != nullptr)
         {
           m_profiles->parse(m_seq_nodes, state);
 
@@ -514,7 +514,7 @@ namespace Plan
     }
 
     void
-    Plan::sequenceNodes(void)
+    Plan::sequenceNodes()
     {
       std::string maneuver_id = m_spec->start_man_id;
       PlanMap::iterator itr = m_graph.find(maneuver_id);
@@ -552,7 +552,7 @@ namespace Plan
 
       if (itr == m_graph.end())
       {
-        return NULL;
+        return nullptr;
       }
       else
       {

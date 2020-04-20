@@ -85,16 +85,16 @@ namespace DUNE
       //! Update behavior with path control state
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs);
+      onPathControlState(const IMC::PathControlState* pcs) override;
 
       //! Update behavior with EstimatedState
       //! @param[in] msg pointer to EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg);
+      onEstimatedState(const IMC::EstimatedState* msg) override;
       //! Check if loitering
       //! @return true if loitering, false otherwise
       bool
-      isLoitering(void) const;
+      isLoitering() const override;
 
     private:
       //! Left or right loop properties
@@ -144,13 +144,13 @@ namespace DUNE
         //! Amount of arc travelled in radians
         float accum;
 
-        ArcProgress(void):
+        ArcProgress():
           valid(false),
           accum(0.0)
         { };
 
         void
-        invalidate(void)
+        invalidate()
         {
           valid = false;
         }
@@ -171,7 +171,7 @@ namespace DUNE
         }
 
         inline float
-        get(void) const
+        get() const
         {
           return accum;
         }
@@ -184,11 +184,11 @@ namespace DUNE
 
       //! Compute loop centers
       void
-      computeLoopCenters(void);
+      computeLoopCenters();
 
       //! Compute loop exit points
       void
-      computeLoopExits(void);
+      computeLoopExits();
 
       //! Displace a latitude and longitude point according to 2D bearing
       void

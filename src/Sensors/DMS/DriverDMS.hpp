@@ -75,12 +75,11 @@ namespace Sensors
         PS_CS
       };
 
-      DriverDMS(void):
+      DriverDMS():
         m_dms_state(DriverDMS::PS_PREAMBLE)
       { }
 
-      ~DriverDMS(void)
-      { }
+      ~DriverDMS () = default;
 
       //! Parse message received
       bool
@@ -125,7 +124,7 @@ namespace Sensors
 
       //! Filter data received of DMS board
       bool
-      translate(void)
+      translate()
       {
         if (m_bfr[1] == ',' || m_bfr[2] == ',')
         {
@@ -137,7 +136,7 @@ namespace Sensors
       }
 
       std::string
-      translate_feadback(void)
+      translate_feadback()
       {
         //! Feadback message
         char feadback_msg[16];
@@ -165,7 +164,7 @@ namespace Sensors
 
       //! Enable Output data of DMS
       char*
-      enable_output(void)
+      enable_output()
       {
         std::memset(&m_send_bfr, '\0', sizeof(m_send_bfr));
         std::sprintf(m_send_bfr, "#0,E,*");
@@ -176,7 +175,7 @@ namespace Sensors
 
       //! Disable Output data of DMS
       char*
-      disable_output(void)
+      disable_output()
       {
         std::memset(&m_send_bfr, '\0', sizeof(m_send_bfr));
         std::sprintf(m_send_bfr, "#0,D,*");

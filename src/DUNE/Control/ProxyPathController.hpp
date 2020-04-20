@@ -55,20 +55,20 @@ namespace DUNE
       ProxyPathController(const std::string& name, Tasks::Context& ctx);
 
       //! Destructor.
-      virtual
-      ~ProxyPathController(void);
+      
+      ~ProxyPathController() override;
 
       //! Entity reservation callback.
       void
-      onEntityResolution(void);
+      onEntityResolution() override;
 
       //! Handler for EstimatedState source id filter. This is called when
       //! an EstimatedState is received. By default it only passes
       //! EstimatedState messages from the system itself.
       //! @param[in] es EstimatedState message.
       //! @return true if the message is NOT allowed to pass.
-      virtual bool
-      sourceFilter(const IMC::EstimatedState* es);
+      bool
+      sourceFilter(const IMC::EstimatedState* es) override;
 
     private:
       //! EstimatedState filter.

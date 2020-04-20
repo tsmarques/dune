@@ -45,7 +45,7 @@ namespace DUNE
     // This header contains defines a few small types for this package.
 
     //! Blob type.
-    typedef std::vector<char> Blob;
+    using Blob = std::vector<char>;
 
     //! Datum to represent a NULL argument when binding statements.
     struct Null

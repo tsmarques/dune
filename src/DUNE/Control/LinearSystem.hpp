@@ -59,7 +59,7 @@ namespace DUNE
       };
 
       //!Default Constructor for a null system
-      LinearSystem(void);
+      LinearSystem();
 
       //! Constructor for continuous system
       LinearSystem(const Math::Matrix& a, const Math::Matrix& b, const Math::Matrix& c, const Math::Matrix& d, double Ts = 0);
@@ -82,70 +82,70 @@ namespace DUNE
 
       //! Retrive A matrix
       inline const Math::Matrix&
-      getA(void) const
+      getA() const
       {
         return m_A;
       }
 
       //! Retrive B matrix
       inline const Math::Matrix&
-      getB(void) const
+      getB() const
       {
         return m_B;
       }
 
       //! Retrive C matrix
       inline const Math::Matrix&
-      getC(void) const
+      getC() const
       {
         return m_C;
       }
 
       //! Retrive D matrix
       inline const Math::Matrix&
-      getD(void) const
+      getD() const
       {
         return m_D;
       }
 
       //! Retrive currrent state vector (X0)
       inline const Math::Matrix&
-      getX0(void) const
+      getX0() const
       {
         return m_X0;
       }
 
       //! Retrive current output vector (Y0)
       inline const Math::Matrix&
-      getY0(void) const
+      getY0() const
       {
         return m_Y0;
       }
 
       //! Retrive number of inputs
       inline short
-      getIn(void) const
+      getIn() const
       {
         return m_n_in;
       }
 
       //! Retrive number of outputs
       inline short
-      getOut(void) const
+      getOut() const
       {
         return m_n_out;
       }
 
       //! Retrive number of states
       inline short
-      getSt(void) const
+      getSt() const
       {
         return m_n_st;
       }
 
       //! Retrive discretization time step
       inline double
-      getTs(void) const
+      getTs() const
       {
         return m_Ts;
       }

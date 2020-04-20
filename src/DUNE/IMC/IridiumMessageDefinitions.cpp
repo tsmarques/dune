@@ -44,7 +44,7 @@ namespace DUNE
       //msg->toText(std::cerr);
 
       uint8_t* ptr = (uint8_t*)&msg->data[0];
-      IridiumMessage * ret = NULL;
+      IridiumMessage * ret = nullptr;
       uint16_t msg_id;
       std::memcpy(&msg_id, ptr+4, sizeof(msg_id));
 
@@ -82,13 +82,13 @@ namespace DUNE
         default:
           std::cerr << "Ignoring unrecognized Iridium message (" << msg_id
               << ")" << std::endl;
-            return NULL;
+            return nullptr;
       }
     }
 
     ImcIridiumMessage::ImcIridiumMessage()
     {
-      msg = NULL;
+      msg = nullptr;
       msg_id = ID_IMCMESSAGE;
     }
 
@@ -100,7 +100,7 @@ namespace DUNE
 
     ImcIridiumMessage::~ImcIridiumMessage()
     {
-      if (msg != NULL)
+      if (msg != nullptr)
         delete msg;
     }
 
@@ -135,7 +135,7 @@ namespace DUNE
       msg = DUNE::IMC::Factory::produce(mgid);
       msg->setTimeStamp(timestamp);
 
-      if (msg == NULL)
+      if (msg == nullptr)
       {
         std::cerr << "ERROR parsing Iridium message: unknown msg id: " << mgid << std::endl;
         return 0;

@@ -82,7 +82,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_prng(NULL)
+        m_prng(nullptr)
       {
         // Retrieve configuration values.
         param("Standard Deviation - Temperature", m_args.std_dev_temp)
@@ -116,14 +116,14 @@ namespace Simulators
       //! is not active by default and will be activated only when
       //! DUNE::IMC::SimulatedState messages are received.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         requestDeactivation();
       }
 
       //! Acquire resources. Initializes the random number generator
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         //! Initialize the random number generator.
         m_prng = Random::Factory::create(m_args.prng_type, m_args.prng_seed);
@@ -131,7 +131,7 @@ namespace Simulators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_prng);
       }
@@ -158,7 +158,7 @@ namespace Simulators
       //! * @publish DUNE::IMC::SoundSpeed
       //! * @publish DUNE::IMC::Pressure
       void
-      task(void)
+      task() override
       {
         // Return if task is not active.
         if (!isActive())

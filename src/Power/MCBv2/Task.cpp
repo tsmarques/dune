@@ -93,13 +93,13 @@ namespace Power
       double sched_on;
       double sched_off;
 
-      PowerChannel(void)
+      PowerChannel()
       {
         resetSchedules();
       }
 
       void
-      resetSchedules(void)
+      resetSchedules()
       {
         sched_on = -1;
         sched_off = -1;
@@ -157,7 +157,7 @@ namespace Power
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
         m_pwr_down(false),
-        m_gpios(NULL),
+        m_gpios(nullptr),
         m_halt(false)
       {
         std::memset(m_adcs, 0, sizeof(m_adcs));
@@ -214,11 +214,11 @@ namespace Power
         bind<IMC::QueryPowerChannelState>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
         }
 
@@ -230,11 +230,11 @@ namespace Power
 
       //! Update task parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
 
           m_adcs[i] = IMC::Factory::produce(m_args.adc_messages[i]);
@@ -264,7 +264,7 @@ namespace Power
       }
 
       void
-      clearPowerChannels(void)
+      clearPowerChannels()
       {
         PowerChannelMap::iterator itr = m_pwr_chs.begin();
         for (; itr != m_pwr_chs.end(); ++itr)
@@ -275,7 +275,7 @@ namespace Power
 
       //! Reserve entities.
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
@@ -297,7 +297,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_proto.setI2C(m_args.i2c_dev, c_addr);
         m_proto.setName("MCB");
@@ -309,7 +309,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         try
         {
@@ -350,7 +350,7 @@ namespace Power
 
       //! Update parameters.
       void
-      updateParams(void)
+      updateParams()
       {
         uint8_t data[PARAMS_COUNT * 2] = {0};
 
@@ -549,7 +549,7 @@ namespace Power
         // Dispatch ADCs
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] == NULL)
+          if (m_adcs[i] == nullptr)
             continue;
 
           fp32_t tmp = m_args.adc_factors[i][0] * ((unpack[i] / 1024.0) * m_args.adc_ref) + m_args.adc_factors[i][1];
@@ -617,7 +617,7 @@ namespace Power
 
       //! Check schedules.
       void
-      checkSchedules(void)
+      checkSchedules()
       {
         double now = Clock::get();
         IMC::PowerChannelControl pcc;
@@ -652,7 +652,7 @@ namespace Power
       }
 
       void
-      updatePowerChannels(void)
+      updatePowerChannels()
       {
         PowerChannelMap::iterator itr = m_pwr_chs.begin();
         for (; itr != m_pwr_chs.end(); ++itr)
@@ -668,7 +668,7 @@ namespace Power
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

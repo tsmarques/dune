@@ -48,24 +48,23 @@ namespace DUNE
       bind<IMC::PathControlState>(this);
     }
 
-    Maneuver::~Maneuver(void)
-    { }
+    Maneuver::~Maneuver () = default;
 
     void
-    Maneuver::onEntityReservation(void)
+    Maneuver::onEntityReservation()
     {
       m_eid = getEntityId();
     }
 
     void
-    Maneuver::onActivation(void)
+    Maneuver::onActivation()
     {
       setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       onManeuverActivation();
     }
 
     void
-    Maneuver::onDeactivation(void)
+    Maneuver::onDeactivation()
     {
       onManeuverDeactivation();
       setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -96,7 +95,7 @@ namespace DUNE
     }
 
     uint32_t
-    Maneuver::changeScopeRef(void)
+    Maneuver::changeScopeRef()
     {
       while (1)
       {
@@ -116,7 +115,7 @@ namespace DUNE
     }
 
     uint32_t
-    Maneuver::changePathRef(void)
+    Maneuver::changePathRef()
     {
       while (1)
       {
@@ -177,13 +176,13 @@ namespace DUNE
     }
 
     void
-    Maneuver::signalInvalidZ(void)
+    Maneuver::signalInvalidZ()
     {
       signalError(DTR("unsupported vertical reference"));
     }
 
     void
-    Maneuver::signalNoAltitude(void)
+    Maneuver::signalNoAltitude()
     {
       signalError(DTR("no valid value for altitude has been received yet,"
                       "maneuver will not proceed"));
@@ -238,7 +237,7 @@ namespace DUNE
     }
 
     void
-    Maneuver::onMain(void)
+    Maneuver::onMain()
     {
       std::set<uint16_t>::const_iterator it;
       for (it = m_reg_man.begin(); it != m_reg_man.end(); it++)

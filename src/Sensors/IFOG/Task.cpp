@@ -138,9 +138,9 @@ namespace Sensors
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
         m_imu_time(0),
-        m_imu_escc(NULL),
-        m_psu_escc(NULL),
-        m_psu_ctl(NULL),
+        m_imu_escc(nullptr),
+        m_psu_escc(nullptr),
+        m_psu_ctl(nullptr),
         m_sta_fail(0),
         m_sta_imu(0)
       {
@@ -178,19 +178,19 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
         m_edelta.timestep = 1.0 / m_args.trigger_frq;
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -214,13 +214,13 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_psu_ctl != NULL)
+        if (m_psu_ctl != nullptr)
         {
           setPower(false);
           delete m_psu_ctl;
-          m_psu_ctl = NULL;
+          m_psu_ctl = nullptr;
         }
 
         Memory::clear(m_psu_escc);
@@ -228,7 +228,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         if (!setTriggerFrequency(m_args.trigger_frq))
           throw RestartNeeded(DTR("failed to configure trigger frequency"), 5);
@@ -238,14 +238,14 @@ namespace Sensors
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         if (!setPower(true))
           throw RestartNeeded(DTR("failed to turn on device"), 5);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setPower(false);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -329,7 +329,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         uint8_t bfr[c_frame_size];
 

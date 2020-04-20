@@ -35,12 +35,11 @@ namespace Simulators
 {
   namespace VSIM
   {
-    Vehicle::Vehicle(void)
-    { }
+  Vehicle::Vehicle () = default;
 
-    Vehicle::~Vehicle(void)
-    {
-      while (!m_vehicle_forces.empty())
+  Vehicle::~Vehicle ()
+  {
+    while (!m_vehicle_forces.empty ())
       {
         Force* f = m_vehicle_forces.front();
         m_vehicle_forces.pop_front();
@@ -61,7 +60,7 @@ namespace Simulators
     }
 
     void
-    Vehicle::applyControlForces(void)
+    Vehicle::applyControlForces()
     {
       double f[6];
       double speed = std::sqrt(std::pow(m_linear_velocity[0], 2) +
@@ -87,7 +86,7 @@ namespace Simulators
     }
 
     void
-    Vehicle::applyForces(void)
+    Vehicle::applyForces()
     {
       applyDragForces();
       applyControlForces();

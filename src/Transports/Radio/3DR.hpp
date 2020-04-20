@@ -123,20 +123,20 @@ namespace Transports
         };
 
         //! Radio 3DR driver.
-        Radio3dr(RadioConfParam args , Tasks::Task* taskp = NULL):
+        Radio3dr(RadioConfParam args , Tasks::Task* taskp = nullptr):
         RadioDriver( args ,taskp ),
         cmd_mode(false)
         {
         }
 
         //! Default destructor.
-        ~Radio3dr(void)
+        ~Radio3dr() override
         {
            Memory::clear(m_handle);
         }
 
         int
-        configDevice(void)
+        configDevice() override
         {
           int status;
           status =DeviceVerifyConf();
@@ -349,7 +349,7 @@ namespace Transports
         }
 
         void
-        sendString(std::string& msg)
+        sendString(std::string& msg) override
         {
           std::string data =  "$"+ msg;
           sendCommand(commandCreate(NO_CMD,data));
@@ -371,7 +371,7 @@ namespace Transports
         //! Process sentence.
         //! @param[in] msg sentence.
         void
-        process(const std::string msg)
+        process(const std::string msg) override
         {
 
           m_dev_data.value.assign("RX: " + sanitize(msg));

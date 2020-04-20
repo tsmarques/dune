@@ -140,7 +140,8 @@ namespace DUNE
     //! @param y optional cross-track position on exit
     template <typename A, typename B>
     void
-    getTrackPosition(const A& origin, double orientation, const B& point, double* x, double* y = 0)
+    getTrackPosition (const A &origin, double orientation, const B &point,
+                      double *x, double *y = nullptr)
     {
       double b, r;
 

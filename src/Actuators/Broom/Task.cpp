@@ -222,9 +222,9 @@ namespace Actuators
         Tasks::Periodic(name, ctx),
         m_actuation(0),
         m_ctl_mode(MODE_NONE),
-        m_motor_ent(NULL),
-        m_bridge_ent(NULL),
-        m_mcu_ent(NULL),
+        m_motor_ent(nullptr),
+        m_bridge_ent(nullptr),
+        m_mcu_ent(nullptr),
         m_dev_errors(ERR_NONE),
         m_motor_id(0),
         m_legacy(false),
@@ -345,7 +345,7 @@ namespace Actuators
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_motor_id = m_args.motor_id;
 
@@ -367,13 +367,13 @@ namespace Actuators
           throw std::runtime_error(DTR("Motor control mode must be one of 'none', 'voltage', 'current', 'rpm'"));
       }
 
-      ~Task(void)
+      ~Task() override
       {
         // Stop the motor.
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         m_motor_ent = reserveEntity<Entities::BasicEntity>(m_args.motor_elabel);
         m_bridge_ent = reserveEntity<Entities::BasicEntity>(m_args.bridge_elabel);
@@ -381,7 +381,7 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -396,7 +396,7 @@ namespace Actuators
       }
 
       void
-      setup(void)
+      setup()
       {
         switch (m_setup_state)
         {
@@ -450,7 +450,7 @@ namespace Actuators
       }
 
       bool
-      getEEPROM(uint8_t command, const uint8_t* data = NULL, size_t data_size = 0)
+      getEEPROM(uint8_t command, const uint8_t* data = nullptr, size_t data_size = 0)
       {
         m_dev_errors = ERR_NONE;
         double deadline = Clock::get() + 2.0;
@@ -513,7 +513,7 @@ namespace Actuators
       }
 
       bool
-      setupConfigGeneral(void)
+      setupConfigGeneral()
       {
         std::vector<uint8_t> cmd;
         cmd.resize(6);
@@ -528,7 +528,7 @@ namespace Actuators
       }
 
       bool
-      setupConfigDCYC(void)
+      setupConfigDCYC()
       {
         std::vector<uint8_t> cmd;
         cmd.resize(9);
@@ -542,7 +542,7 @@ namespace Actuators
       }
 
       bool
-      setupConfigIADC(void)
+      setupConfigIADC()
       {
         std::vector<uint8_t> cmd;
         cmd.resize(9);
@@ -556,7 +556,7 @@ namespace Actuators
       }
 
       bool
-      setupConfigERPM(void)
+      setupConfigERPM()
       {
         std::vector<uint8_t> cmd;
         cmd.resize(9);
@@ -858,7 +858,7 @@ namespace Actuators
       }
 
       void
-      reportEntityState(void)
+      reportEntityState()
       {
         if (m_wdog.overflow() && m_boot_timer.overflow())
         {
@@ -892,7 +892,7 @@ namespace Actuators
       }
 
       void
-      task(void)
+      task() override
       {
         if (m_setup_state != SS_DONE)
         {

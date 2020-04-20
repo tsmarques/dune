@@ -55,7 +55,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver goto maneuver message
       void
-      onStart(const IMC::Launch* maneuver)
+      onStart(const IMC::Launch* maneuver) override
       {
         m_task->setControl(IMC::CL_NONE);
 
@@ -71,7 +71,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         if (m_lstate != ST_THRUST)
           return;
@@ -85,7 +85,7 @@ namespace Maneuver
       //! On message VehicleMedium
       //! @param[in] msg pointer to VehicleMedium message
       void
-      onVehicleMedium(const IMC::VehicleMedium* msg)
+      onVehicleMedium(const IMC::VehicleMedium* msg) override
       {
         switch (m_lstate)
         {
@@ -103,8 +103,7 @@ namespace Maneuver
         }
       }
 
-      ~Launch(void)
-      { }
+      ~Launch () override = default;
 
     private:
       //! Maneuver states for the state machine

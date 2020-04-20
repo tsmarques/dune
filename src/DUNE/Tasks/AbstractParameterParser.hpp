@@ -42,19 +42,17 @@ namespace DUNE
     {
     public:
       //! Destructor.
-      virtual
-      ~AbstractParameterParser(void)
-      { }
+      virtual ~AbstractParameterParser () = default;
 
       virtual void
       read(const std::string& value) = 0;
 
       virtual std::string
-      getTypeName(void) = 0;
+      getTypeName() = 0;
 
       //! @return true if value changed, false otherwise.
       virtual bool
-      commit(void) = 0;
+      commit() = 0;
 
       virtual void
       minimumSize(unsigned value)
@@ -87,7 +85,7 @@ namespace DUNE
       }
 
       virtual void
-      validate(void)
+      validate()
       { }
     };
   }

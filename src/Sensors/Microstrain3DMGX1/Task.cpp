@@ -145,7 +145,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_timer(0),
         m_last_tick(0)
       {
@@ -193,7 +193,7 @@ namespace Sensors
 
       //! Update parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_rotation.fill(3, 3, &m_args.rotation_mx[0]);
 
@@ -206,20 +206,20 @@ namespace Sensors
         for (unsigned i = 0; i < 3; i++)
           m_hard_iron[i] = data(i);
 
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           if (paramChanged(m_args.hard_iron))
             runCalibration();
         }
       }
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_wdog.setTop(m_args.data_tout);
       }
@@ -260,7 +260,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
@@ -288,7 +288,7 @@ namespace Sensors
       }
 
       bool
-      setup(void)
+      setup()
       {
         clear();
 
@@ -369,7 +369,7 @@ namespace Sensors
       }
 
       void
-      clear(void)
+      clear()
       {
         m_state = FSM_STATE_NONE;
         m_togo = 0;
@@ -395,7 +395,7 @@ namespace Sensors
 
             //! Correct data according with mounting position.
       void
-      rotateAcceleration(void)
+      rotateAcceleration()
       {
         Math::Matrix data(3, 1);
 
@@ -410,7 +410,7 @@ namespace Sensors
       }
 
       void
-      rotateAngularVelocity(void)
+      rotateAngularVelocity()
       {
         Math::Matrix data(3, 1);
 
@@ -425,7 +425,7 @@ namespace Sensors
       }
 
       void
-      rotateMagneticField(void)
+      rotateMagneticField()
       {
         Math::Matrix data(3, 1);
         // Magnetic Field.
@@ -439,7 +439,7 @@ namespace Sensors
       }
 
       void
-      rotateEuler(void)
+      rotateEuler()
       {
         Math::Matrix data(3, 1);
 
@@ -643,9 +643,9 @@ namespace Sensors
 
       //! Routine to run calibration proceedings.
       void
-      runCalibration(void)
+      runCalibration()
       {
-        if (m_uart == NULL)
+        if (m_uart == nullptr)
           return;
 
         // See if vehicle has same hard iron calibration parameters.
@@ -668,7 +668,7 @@ namespace Sensors
       //! Check if sensor has the same hard iron calibration parameters.
       //! @return true if the parameters are the same, false otherwise.
       bool
-      isCalibrated(void)
+      isCalibrated()
       {
         // Sensor magnetic calibration.
         int16_t senCal[c_number_axis] = {0};
@@ -711,7 +711,7 @@ namespace Sensors
       //! Set new hard iron calibration parameters.
       //! @return true if successful, false otherwise.
       bool
-      setHardIron(void)
+      setHardIron()
       {
         inf(DTR("new hard-iron calibration parameters: %f, %f, %f"), m_args.hard_iron[0], m_args.hard_iron[1],m_args.hard_iron[2]);
 
@@ -764,7 +764,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!setup())
         {

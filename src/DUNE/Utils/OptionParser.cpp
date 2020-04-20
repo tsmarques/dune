@@ -44,14 +44,14 @@ namespace DUNE
 {
   namespace Utils
   {
-    OptionParser::OptionParser(void)
+    OptionParser::OptionParser()
     {
-      add("-h", "--help", DTR("Print this message and exit"), 0);
-      add("-v", "--version", DTR("Print the version information and exit"), 0);
-      add("-a", "--arch", DTR("Print architecture information and exit"), 0);
+      add("-h", "--help", DTR("Print this message and exit"), nullptr);
+      add("-v", "--version", DTR("Print the version information and exit"), nullptr);
+      add("-a", "--arch", DTR("Print architecture information and exit"), nullptr);
     }
 
-    OptionParser::~OptionParser(void)
+    OptionParser::~OptionParser()
     {
       std::list<std::string>::iterator itr = m_option_lst.begin();
 
@@ -73,7 +73,7 @@ namespace DUNE
       opt->long_opt = long_opt;
       opt->description = desc;
 
-      if (argument != 0)
+      if (argument != nullptr)
         opt->argument_label = argument;
       else
         opt->argument_label = "";
@@ -121,7 +121,7 @@ namespace DUNE
     }
 
     void
-    OptionParser::usage(void)
+    OptionParser::usage()
     {
       using namespace std;
 

@@ -35,16 +35,15 @@ namespace DUNE
 {
   namespace IMC
   {
-    Parser::Parser(void)
+    Parser::Parser()
     {
       reset();
     }
 
-    Parser::~Parser(void)
-    { }
+    Parser::~Parser () = default;
 
     void
-    Parser::reset(void)
+    Parser::reset()
     {
       m_stage = c_sync;
       m_pos = 0;
@@ -54,7 +53,7 @@ namespace DUNE
     Message*
     Parser::parse(uint8_t byte)
     {
-      Message* m = 0;
+      Message* m = nullptr;
       m_buf.push_back(byte);
 
       while (true)
@@ -114,7 +113,7 @@ namespace DUNE
 
         try
         {
-          m = Packet::deserializePayload(m_header, &m_buf[m_pos], n, 0);
+          m = Packet::deserializePayload(m_header, &m_buf[m_pos], n, nullptr);
         }
         catch (...)
         {

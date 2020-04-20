@@ -223,13 +223,13 @@ namespace Transports
         m_conn_watchdog.setTop(60);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         disconnect();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (m_args.power_channel.empty())
           m_powered = true;
@@ -248,20 +248,20 @@ namespace Transports
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation() override
       {
         m_sm_state = SM_ACT_BEGIN;
         updateStateMachine();
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation() override
       {
         m_sm_state = SM_DEACT_BEGIN;
         updateStateMachine();
@@ -281,7 +281,7 @@ namespace Transports
 
       //! Turn power channel on.
       void
-      turnPowerOn(void)
+      turnPowerOn()
       {
         debug("switching power on");
         controlPower(IMC::PowerChannelControl::PCC_OP_TURN_ON);
@@ -289,7 +289,7 @@ namespace Transports
 
       //! Turn power channel off.
       void
-      turnPowerOff(void)
+      turnPowerOff()
       {
         debug("switching power off");
         controlPower(IMC::PowerChannelControl::PCC_OP_TURN_OFF);
@@ -298,13 +298,13 @@ namespace Transports
       //! Test if power channel is on.
       //! @return true if power channel is on, false otherwise.
       bool
-      isPowered(void)
+      isPowered()
       {
         return m_powered;
       }
 
       bool
-      connect(void)
+      connect()
       {
         debug("connecting");
         std::string pin("AT");
@@ -333,7 +333,7 @@ namespace Transports
       }
 
       bool
-      disconnect(void)
+      disconnect()
       {
         debug("disconnecting");
         if (std::system(m_command_disconnect.c_str()) == -1)
@@ -345,14 +345,14 @@ namespace Transports
       }
 
       bool
-      isConnected(Address* address = NULL)
+      isConnected(Address* address = nullptr)
       {
         std::vector<Interface> interfaces = Interface::get();
         for (size_t i = 0; i < interfaces.size(); ++i)
         {
           if (interfaces[i].name() == m_args.ppp_interface)
           {
-            if (address != NULL)
+            if (address != nullptr)
               *address = interfaces[i].address();
             return true;
           }
@@ -362,7 +362,7 @@ namespace Transports
       }
 
       void
-      startNAT(void)
+      startNAT()
       {
         if (!m_args.ip_fwd)
           return;
@@ -372,7 +372,7 @@ namespace Transports
       }
 
       void
-      stopNAT(void)
+      stopNAT()
       {
         if (!m_args.ip_fwd)
           return;
@@ -398,7 +398,7 @@ namespace Transports
       }
 
       void
-      updateStateMachine(void)
+      updateStateMachine()
       {
         switch (m_sm_state)
         {
@@ -525,7 +525,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

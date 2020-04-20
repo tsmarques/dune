@@ -75,7 +75,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_estate_timer(0.0)
       {
         param("Serial Port - Device", m_args.uart_dev)
@@ -116,14 +116,14 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
@@ -174,7 +174,7 @@ namespace Sensors
       }
 
       std::string
-      createVTG(void)
+      createVTG()
       {
         double vel = Math::norm(m_estate.vx, m_estate.vy);
         double course = Angles::degrees(std::atan2(m_estate.vy, m_estate.vx));
@@ -210,7 +210,7 @@ namespace Sensors
       }
 
       std::string
-      createHDT(void)
+      createHDT()
       {
         NMEAWriter stn("GPHDT");
         stn << String::str("%0.2f", Angles::degrees(m_estate.psi))
@@ -227,7 +227,7 @@ namespace Sensors
       }
 
       void
-      sendSentences(void)
+      sendSentences()
       {
         sendSentences(Clock::getSinceEpoch());
       }
@@ -268,7 +268,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         PeriodicDelay delay(1000000);
 

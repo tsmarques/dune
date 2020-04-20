@@ -89,8 +89,8 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_filter(NULL)
+        m_uart(nullptr),
+        m_filter(nullptr)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")
@@ -117,13 +117,13 @@ namespace Sensors
         .description("Device orientation");
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.wdog_tout))
           m_wdog.setTop(m_args.wdog_tout);
@@ -150,7 +150,7 @@ namespace Sensors
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_beam_count; ++i)
         {
@@ -162,7 +162,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud,
                                 SerialPort::SP_PARITY_NONE,
@@ -175,7 +175,7 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
         Memory::clear(m_filter);
@@ -208,7 +208,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_uart->flushInput();
         m_uart->sendBreak(0);
@@ -243,7 +243,7 @@ namespace Sensors
       }
 
       void
-      readSample(void)
+      readSample()
       {
         if (!Poll::poll(*m_uart, 1.0))
           return;
@@ -347,7 +347,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

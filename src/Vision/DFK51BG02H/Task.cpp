@@ -184,8 +184,8 @@ namespace Vision
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_gvcp(NULL),
-        m_gvsp(NULL),
+        m_gvcp(nullptr),
+        m_gvsp(nullptr),
         m_kalive(0.5),
         m_log_dir(ctx.dir_log),
         m_debayer(BayerDecoder::TILE_GBRG),
@@ -290,14 +290,14 @@ namespace Vision
       }
 
       //! Destructor.
-      ~Task(void)
+      ~Task() override
       {
         delete [] m_rgb24_bfr;
       }
 
       //! Update internal parameters.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         // White-balance filter.
         m_white.setRFactor(m_args.r_factor);
@@ -309,7 +309,7 @@ namespace Vision
 
       //! Acquire resources and buffers.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         // Initialize JPEG compressor.
         m_jpeg.setInputDimensions(c_width, c_height);
@@ -330,15 +330,15 @@ namespace Vision
 
       //! Release allocated resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_gvcp);
 
-        if (m_gvsp != NULL)
+        if (m_gvsp != nullptr)
         {
           m_gvsp->stopAndJoin();
           delete m_gvsp;
-          m_gvsp = NULL;
+          m_gvsp = nullptr;
         }
 
         while (!m_frames.empty())
@@ -351,7 +351,7 @@ namespace Vision
 
       //! Initialize resources and start capturing frames.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         debug("setting privileges");
         m_gvcp->setPrivilege(GVCP::PRIV_BV_CONTROL | GVCP::PRIV_BV_EXCLUSIVE);
@@ -418,7 +418,7 @@ namespace Vision
       }
 
       void
-      onRequestActivation(void)
+      onRequestActivation() override
       {
         IMC::LoggingControl log_ctl;
         log_ctl.op = IMC::LoggingControl::COP_REQUEST_CURRENT_NAME;
@@ -426,22 +426,22 @@ namespace Vision
       }
 
       void
-      onActivation(void)
+      onActivation() override
       {
         m_log_dir.create();
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
       }
 
       void
-      onMain(void)
+      onMain() override
       {
-        Frame* frame = NULL;
+        Frame* frame = nullptr;
 
         while (!stopping())
         {
@@ -462,7 +462,7 @@ namespace Vision
           consumeMessages();
 
           frame = m_gvsp->dequeueDirty();
-          if (frame == NULL)
+          if (frame == nullptr)
           {
             m_gvsp->waitDirty(0.5);
             continue;

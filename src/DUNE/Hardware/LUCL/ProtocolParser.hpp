@@ -54,13 +54,12 @@ namespace DUNE
       class ProtocolParser
       {
       public:
-        ProtocolParser(void)
+        ProtocolParser()
         {
           reset();
         }
 
-        ~ProtocolParser(void)
-        { }
+        ~ProtocolParser () = default;
 
         template <typename T>
         static void
@@ -89,7 +88,7 @@ namespace DUNE
 
         //! Reset internal state machine parser.
         void
-        reset(void)
+        reset()
         {
           m_sm_state = STA_NONE;
           m_sm_size = 0;

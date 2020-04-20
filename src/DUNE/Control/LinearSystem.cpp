@@ -38,7 +38,7 @@ namespace DUNE
     static const unsigned int c_ds = 1000; // Number of discretization steps
 
     // Default Constructor for a null system
-    LinearSystem::LinearSystem(void):
+    LinearSystem::LinearSystem():
       m_n_in(0),
       m_n_out(0),
       m_n_st(0)

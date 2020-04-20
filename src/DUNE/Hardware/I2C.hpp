@@ -60,7 +60,7 @@ namespace DUNE
       I2C(const std::string& bus_dev);
 
       //! I2C destructor.
-      ~I2C(void);
+      ~I2C();
 
       //! Initialize an I2C transfer.
       //! @param adr slave address.

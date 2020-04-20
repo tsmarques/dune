@@ -54,15 +54,13 @@ namespace Plan
       //! Map of strings to floats
       typedef std::map<std::string, float> ATMap;
       //! Const iterator
-      typedef ATMap::const_iterator const_iterator;
+      using const_iterator = ATMap::const_iterator;
 
       //! Constructor
-      ComponentActiveTime(void)
-      { }
+      ComponentActiveTime () = default;
 
       //! Destructor
-      ~ComponentActiveTime(void)
-      { }
+      ~ComponentActiveTime () = default;
 
       //! Add a component's active time to the list
       //! @param[in] id component name
@@ -111,7 +109,7 @@ namespace Plan
 
       //! Clear the contents
       void
-      clear(void)
+      clear()
       {
         m_list.clear();
       }
@@ -119,7 +117,7 @@ namespace Plan
       //! First position of the vector
       //! @return const iterator to begin()
       inline const_iterator
-      begin(void) const
+      begin() const
       {
         return m_list.begin();
       }
@@ -127,7 +125,7 @@ namespace Plan
       //! Last position of the vector
       //! @return const iterator to end()
       inline const_iterator
-      end(void) const
+      end() const
       {
         return m_list.end();
       }

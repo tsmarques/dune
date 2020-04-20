@@ -120,14 +120,14 @@ namespace Supervisors
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization() override
         {
           // Initialize entity state.
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
 
         void
-        onDeactivation(void)
+        onDeactivation() override
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         }
@@ -188,7 +188,7 @@ namespace Supervisors
 
           const IMC::PlanSpecification* spec = static_cast<const IMC::PlanSpecification*>(msg->get());
 
-          if (spec == NULL)
+          if (spec == nullptr)
           {
             m_dr &= ~GOT_LCPLAN;
             return;
@@ -228,7 +228,7 @@ namespace Supervisors
         }
 
         bool
-        testVehicleState(void)
+        testVehicleState()
         {
           return m_serv_err;
         }
@@ -236,7 +236,7 @@ namespace Supervisors
         //! Checks if the vehicle is plan ready or blocked,
         //! and had a failure outcome from the previous plan
         bool
-        testPlanControlState(void)
+        testPlanControlState()
         {
           // is it not executing a plan
           bool is_idle = (m_pcs.state == IMC::PlanControlState::PCS_BLOCKED) || (m_pcs.state == IMC::PlanControlState::PCS_READY);
@@ -248,7 +248,7 @@ namespace Supervisors
         }
 
         bool
-        canStartTimer(void)
+        canStartTimer()
         {
           bool at_surface = m_medium.medium == IMC::VehicleMedium::VM_WATER;
 
@@ -256,7 +256,7 @@ namespace Supervisors
         }
 
         bool
-        canKeepTimer(void)
+        canKeepTimer()
         {
           bool in_water = (m_medium.medium == IMC::VehicleMedium::VM_WATER) ||
           (m_medium.medium == IMC::VehicleMedium::VM_UNDERWATER);
@@ -265,13 +265,13 @@ namespace Supervisors
         }
 
         bool
-        canTakeAction(void)
+        canTakeAction()
         {
           return m_lost_coms_timer.overflow();
         }
 
         bool
-        isStillExecuting(void)
+        isStillExecuting()
         {
           if ((m_pcs.state == IMC::PlanControlState::PCS_INITIALIZING) ||
               (m_pcs.state == IMC::PlanControlState::PCS_EXECUTING))
@@ -284,7 +284,7 @@ namespace Supervisors
         }
 
         void
-        task(void)
+        task() override
         {
           if (!isActive())
             return;

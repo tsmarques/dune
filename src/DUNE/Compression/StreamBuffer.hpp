@@ -58,28 +58,28 @@ namespace DUNE
 
       StreamBuffer(std::istream* stream, Methods method);
 
-      virtual
-      ~StreamBuffer(void);
+      
+      ~StreamBuffer() override;
 
     protected:
-      virtual int_type
-      overflow(int_type c);
+      int_type
+      overflow(int_type c) override;
 
-      virtual int_type
-      underflow(void);
+      int_type
+      underflow() override;
 
-      virtual int
-      sync(void);
+      int
+      sync() override;
 
-      virtual std::streamsize
-      xsputn(const char* bfr, std::streamsize bfr_len);
+      std::streamsize
+      xsputn(const char* bfr, std::streamsize bfr_len) override;
 
-      virtual std::streamsize
-      xsgetn(char* bfr, std::streamsize bfr_len);
+      std::streamsize
+      xsgetn(char* bfr, std::streamsize bfr_len) override;
 
-      virtual std::streampos
+      std::streampos
       seekoff(std::streamoff off, std::ios_base::seekdir way,
-              std::ios_base::openmode which = std::ios_base::in | std::ios_base::out)
+              std::ios_base::openmode which = std::ios_base::in | std::ios_base::out) override
       {
         (void)off;
         (void)way;

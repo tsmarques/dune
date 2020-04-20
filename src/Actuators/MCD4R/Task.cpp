@@ -275,8 +275,8 @@ namespace Actuators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_ctl(NULL),
+        m_uart(nullptr),
+        m_ctl(nullptr),
         m_laser(false)
       {
         // Define configuration parameters.
@@ -300,11 +300,10 @@ namespace Actuators
         bind<IMC::RemoteActionsRequest>(this);
       }
 
-      ~Task(void)
-      { }
+      ~Task () override = default;
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < SV_TOTAL; ++i)
         {
@@ -323,14 +322,14 @@ namespace Actuators
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_wdog.setTop(m_args.wdog_tout);
       }
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -352,7 +351,7 @@ namespace Actuators
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_actions.op = IMC::RemoteActionsRequest::OP_REPORT;
         m_laser_cnt.setTop(c_laser_debounce);
@@ -366,7 +365,7 @@ namespace Actuators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_ctl);
         Memory::clear(m_uart);
@@ -471,7 +470,7 @@ namespace Actuators
       //! Toggle laser value
       //! @return true if successful in sending command
       inline bool
-      toggleLaser(void)
+      toggleLaser()
       {
         if (!m_laser_cnt.overflow())
           return false;
@@ -489,7 +488,7 @@ namespace Actuators
       //! Dispatch raw board state
       //! @return true if successfully dispatched state
       bool
-      dispatchState(void)
+      dispatchState()
       {
         UCTK::Frame frame;
         frame.setId(PKT_ID_STATE);
@@ -566,7 +565,7 @@ namespace Actuators
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

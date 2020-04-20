@@ -61,9 +61,7 @@ namespace DUNE
         };
 
         //! Destructor.
-        virtual
-        ~Generator()
-        { }
+        virtual ~Generator () = default;
 
         //! Maximum value returned by random()
         static const int32_t c_max_random = 0x7fffffffL;
@@ -73,7 +71,7 @@ namespace DUNE
         //! for that purpose, if available.
         //! @return generated seed value.
         static int32_t
-        arbitrarySeed(void);
+        arbitrarySeed();
 
         //! Re-initialize generator with given seed.
         //! @param value value for seed.
@@ -85,12 +83,12 @@ namespace DUNE
         //! @return generated number.
         virtual
         int32_t
-        random(void) = 0;
+        random() = 0;
 
         //! Generate double-precision floating point number with uniform distribution in [0,1].
         //! Default implementation returns value of random()/c_max_random.
         virtual double
-        uniform(void);
+        uniform();
 
         //! Generate number with uniform distribution in a given interval.
         //! @param a value of a.
@@ -106,7 +104,7 @@ namespace DUNE
         //! The number is generated using the Box-Muller method.
         //! @return number with gaussian distribution (0,1).
         double
-        gaussian(void);
+        gaussian();
 
         //! Generate number with a Gaussian distribution,
         //! for a given mean and standard deviation.

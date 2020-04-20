@@ -48,9 +48,9 @@ namespace DUNE
     BasicNavigation::BasicNavigation(const std::string& name, Tasks::Context& ctx):
       Tasks::Periodic(name, ctx),
       m_active(false),
-      m_origin(NULL),
-      m_avg_heave(NULL),
-      m_avg_gps(NULL)
+      m_origin(nullptr),
+      m_avg_heave(nullptr),
+      m_avg_gps(nullptr)
     {
       // Declare configuration parameters.
       param("Maximum Distance to Reference", m_max_dis2ref)
@@ -253,11 +253,10 @@ namespace DUNE
       bind<IMC::WaterVelocity>(this);
     }
 
-    BasicNavigation::~BasicNavigation(void)
-    { }
+    BasicNavigation::~BasicNavigation () = default;
 
     void
-    BasicNavigation::onUpdateParameters(void)
+    BasicNavigation::onUpdateParameters()
     {
       // Initialize timers.
       m_time_without_gps.setTop(m_without_gps_timeout);
@@ -277,7 +276,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::onResourceInitialization(void)
+    BasicNavigation::onResourceInitialization()
     {
       m_avg_heave = new Math::MovingAverage<double>(m_avg_heave_samples);
       m_avg_gps = new Math::MovingAverage<double>(m_avg_gps_samples);
@@ -285,7 +284,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::onEntityResolution(void)
+    BasicNavigation::onEntityResolution()
     {
       // Resolve entities.
       try
@@ -329,7 +328,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::onResourceRelease(void)
+    BasicNavigation::onResourceRelease()
     {
       Memory::clear(m_origin);
       Memory::clear(m_avg_heave);
@@ -856,7 +855,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::reset(void)
+    BasicNavigation::reset()
     {
       m_last_lat = 0.0;
       m_last_lon = 0.0;
@@ -877,11 +876,11 @@ namespace DUNE
     }
 
     bool
-    BasicNavigation::setup(void)
+    BasicNavigation::setup()
     {
       reset();
 
-      if (m_origin == NULL)
+      if (m_origin == nullptr)
         return false;
 
       m_estate.lat = m_origin->lat;
@@ -899,7 +898,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::onConsumeLblConfig(void)
+    BasicNavigation::onConsumeLblConfig()
     {
       // do nothing.
     }
@@ -961,7 +960,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::runKalmanDVL(void)
+    BasicNavigation::runKalmanDVL()
     {
       // Use Ground Velocity messages if they are valid.
       // Water Velocity messages otherwise.
@@ -991,7 +990,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::onDispatchNavigation(void)
+    BasicNavigation::onDispatchNavigation()
     {
       m_estate.x = m_kal.getState(STATE_X);
       m_estate.y = m_kal.getState(STATE_Y);
@@ -1015,7 +1014,7 @@ namespace DUNE
     }
 
     bool
-    BasicNavigation::isActive(void)
+    BasicNavigation::isActive()
     {
       if (m_active)
         return true;
@@ -1050,7 +1049,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::reportToBus(void)
+    BasicNavigation::reportToBus()
     {
       double tstamp = Time::Clock::getSinceEpoch();
       m_estate.setTimeStamp(tstamp);
@@ -1074,7 +1073,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::resetAcceleration(void)
+    BasicNavigation::resetAcceleration()
     {
       m_accel_bfr[AXIS_X] = 0.0;
       m_accel_bfr[AXIS_Y] = 0.0;
@@ -1083,7 +1082,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::resetAngularVelocity(void)
+    BasicNavigation::resetAngularVelocity()
     {
       m_agvel_bfr[AXIS_X] = 0.0;
       m_agvel_bfr[AXIS_Y] = 0.0;
@@ -1092,7 +1091,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::resetDepth(void)
+    BasicNavigation::resetDepth()
     {
       m_depth_bfr = 0.0;
       m_depth_readings = 0.0;
@@ -1100,7 +1099,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::resetEulerAngles(void)
+    BasicNavigation::resetEulerAngles()
     {
       m_euler_bfr[AXIS_X] = 0.0;
       m_euler_bfr[AXIS_Y] = 0.0;
@@ -1109,7 +1108,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::resetEulerAnglesDelta(void)
+    BasicNavigation::resetEulerAnglesDelta()
     {
       m_edelta_bfr[AXIS_X] = 0.0;
       m_edelta_bfr[AXIS_Y] = 0.0;
@@ -1118,7 +1117,7 @@ namespace DUNE
     }
 
     void
-    BasicNavigation::resetBuffers(void)
+    BasicNavigation::resetBuffers()
     {
       resetAcceleration();
       resetAngularVelocity();

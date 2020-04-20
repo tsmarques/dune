@@ -48,13 +48,11 @@ namespace DUNE
     class AbstractTask: public Concurrency::Thread
     {
     public:
-      AbstractTask(void)
-      { }
+      AbstractTask () = default;
 
       //! Destructor.
-      virtual
-      ~AbstractTask(void)
-      { }
+
+      ~AbstractTask () override = default;
 
       //! Queue a message for later consumption.
       //! @param msg message object.
@@ -64,7 +62,7 @@ namespace DUNE
       //! Retrieve task name.
       //! @return task name.
       virtual const char*
-      getName(void) const = 0;
+      getName() const = 0;
 
       //! Send an human-readable informational message to all
       //! configured output channels and files.

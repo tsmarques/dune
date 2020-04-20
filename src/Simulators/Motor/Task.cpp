@@ -72,7 +72,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_avg_motor(NULL)
+        m_avg_motor(nullptr)
       {
         // Retrieve configuration values.
         param("Moving Average Samples", m_args.avg_samples)
@@ -95,14 +95,14 @@ namespace Simulators
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_avg_motor);
       }
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Initialize RPM values.
         m_rpm.value = 0;
@@ -128,7 +128,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task() override
       {
         // Compute filtered RPM value.
         // This value is computed using a moving average filter.

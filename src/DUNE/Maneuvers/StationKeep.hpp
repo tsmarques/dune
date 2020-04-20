@@ -79,12 +79,12 @@ namespace DUNE
       //! Check if vehicle is inside boundary
       //! @return true if inside
       bool
-      isInside(void) const;
+      isInside() const;
 
       //! Check if vehicle is moving
       //! @return true if moving
       bool
-      isMoving(void) const;
+      isMoving() const;
 
     private:
       //! Compute the range to the point

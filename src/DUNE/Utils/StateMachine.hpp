@@ -48,8 +48,8 @@ namespace DUNE
     {
     public:
       struct STATE;
-      typedef STATE (Class::* STATE_)(Data& data);
-      typedef void (Class::* OnStateChange)(STATE old_s, STATE new_s, Data& data);
+      using STATE_ = STATE (Class::*)(Data &);
+      using OnStateChange = void (Class::*)(STATE, STATE, Data &);
 
       struct STATE
       {
@@ -98,7 +98,7 @@ namespace DUNE
       //! Get current state.
       //! @return current state.
       inline STATE
-      current(void)
+      current()
       {
         return m_state;
       }

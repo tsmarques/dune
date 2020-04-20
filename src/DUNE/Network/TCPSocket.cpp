@@ -106,7 +106,7 @@
 static const unsigned c_block_size = 128 * 1024;
 
 static inline std::string
-getLastErrorMessage(void)
+getLastErrorMessage()
 {
 #if defined(DUNE_OS_WINDOWS)
   std::stringstream s;
@@ -136,7 +136,7 @@ namespace DUNE
       }
     }
 
-    TCPSocket::~TCPSocket(void)
+    TCPSocket::~TCPSocket()
     {
 #if defined(DUNE_OS_POSIX)
       shutdown(m_handle, SHUT_RDWR);
@@ -253,7 +253,7 @@ namespace DUNE
     }
 
     void
-    TCPSocket::doFlushInput(void)
+    TCPSocket::doFlushInput()
     {
       uint8_t bfr[4096];
       while (IO::Poll::poll(*this, 0))
@@ -357,7 +357,7 @@ namespace DUNE
     }
 
     Address
-    TCPSocket::getBoundAddress(void)
+    TCPSocket::getBoundAddress()
     {
       sockaddr_in name = {0};
       socklen_t size = sizeof(name);
@@ -368,7 +368,7 @@ namespace DUNE
     }
 
     uint16_t
-    TCPSocket::getBoundPort(void)
+    TCPSocket::getBoundPort()
     {
       sockaddr_in name = {0};
       socklen_t size = sizeof(name);
@@ -379,7 +379,7 @@ namespace DUNE
     }
 
     IO::NativeHandle
-    TCPSocket::doGetNative(void) const
+    TCPSocket::doGetNative() const
     {
 #if defined(DUNE_OS_WINDOWS)
       return m_event_handle;
@@ -389,7 +389,7 @@ namespace DUNE
     }
 
     void
-    TCPSocket::disableSIGPIPE(void)
+    TCPSocket::disableSIGPIPE()
     {
 #if defined(SO_NOSIGPIPE)
       int set = 1;
@@ -398,7 +398,7 @@ namespace DUNE
     }
 
     void
-    TCPSocket::createEventHandle(void)
+    TCPSocket::createEventHandle()
     {
 #if defined(DUNE_OS_WINDOWS)
       m_event_handle = CreateEvent(NULL, FALSE, FALSE, NULL);

@@ -65,7 +65,7 @@ namespace DUNE
     SharedMemory::SharedMemory(const char* name, unsigned size):
       m_creator(false),
       m_size(size),
-      m_ptr(0)
+      m_ptr(nullptr)
     {
       Utils::String::format(m_name, PATH_MAX, "/dune-%s", name);
     }
@@ -73,12 +73,12 @@ namespace DUNE
     SharedMemory::SharedMemory(unsigned size):
       m_creator(false),
       m_size(size),
-      m_ptr(0)
+      m_ptr(nullptr)
     {
       generateName();
     }
 
-    SharedMemory::~SharedMemory(void)
+    SharedMemory::~SharedMemory()
     {
 #if defined(DUNE_SYS_HAS_POSIX_IPC)
       munmap(m_ptr, m_size);
@@ -93,7 +93,7 @@ namespace DUNE
     }
 
     void
-    SharedMemory::create(void)
+    SharedMemory::create()
     {
       m_creator = true;
 
@@ -112,7 +112,7 @@ namespace DUNE
         throw System::Error(errno, "failed to initialize shared memory area");
       }
 
-      m_ptr = mmap(0, m_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+      m_ptr = mmap(nullptr, m_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
       if (m_ptr == MAP_FAILED)
       {
         ::close(fd);
@@ -124,7 +124,7 @@ namespace DUNE
     }
 
     void
-    SharedMemory::open(void)
+    SharedMemory::open()
     {
       m_creator = false;
 
@@ -139,7 +139,7 @@ namespace DUNE
         throw System::Error(errno, "failed to initialize shared memory area");
       }
 
-      m_ptr = mmap(0, m_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
+      m_ptr = mmap(nullptr, m_size, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
       if (m_ptr == MAP_FAILED)
       {
         ::close(fd);
@@ -151,7 +151,7 @@ namespace DUNE
     }
 
     void
-    SharedMemory::generateName(void)
+    SharedMemory::generateName()
     {
 #if defined(DUNE_SYS_HAS_POSIX_IPC)
       Math::Random::Generator* gen =

@@ -98,11 +98,9 @@ namespace DUNE
       class Flusher
       { };
 
-      Terminal(void):
-        m_out(NULL)
-      { }
+      Terminal () : m_out (nullptr) {}
 
-      ~Terminal(void)
+      ~Terminal()
       {
         close();
       }
@@ -111,7 +109,7 @@ namespace DUNE
       open(const std::string& fname);
 
       void
-      close(void);
+      close();
 
       Terminal&
       lock(const char* str = "");

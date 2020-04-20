@@ -73,14 +73,14 @@ namespace Monitors
       }
 
       //! Destructor.
-      ~BatteryData(void)
+      ~BatteryData()
       {
         for (unsigned i = 0; i < BM_TOTAL; ++i)
         {
-          if (m_avg[i] != NULL)
+          if (m_avg[i] != nullptr)
           {
             delete m_avg[i];
-            m_avg[i] = NULL;
+            m_avg[i] = nullptr;
           }
         }
       }
@@ -151,7 +151,7 @@ namespace Monitors
       //! Get voltage value
       //! @return voltage estimate
       inline float
-      getVoltage(void) const
+      getVoltage() const
       {
         return m_avg[BM_VOLTAGE]->mean();
       }
@@ -159,7 +159,7 @@ namespace Monitors
       //! Get current value
       //! @return current estimate
       inline float
-      getCurrent(void) const
+      getCurrent() const
       {
         return m_avg[BM_CURRENT]->mean();
       }
@@ -167,7 +167,7 @@ namespace Monitors
       //! Get temperature value
       //! @return temperature estimate
       inline float
-      getTemperature(void) const
+      getTemperature() const
       {
         return m_avg[BM_TEMPERATURE]->mean();
       }
@@ -175,7 +175,7 @@ namespace Monitors
       //! Check if we have measurements
       //! @return false if some measurement has not been received yet
       inline bool
-      gotMeasurements(void) const
+      gotMeasurements() const
       {
         return m_measures[BM_VOLTAGE] && m_measures[BM_CURRENT] && m_measures[BM_TEMPERATURE];
       }

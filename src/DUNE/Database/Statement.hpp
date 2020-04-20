@@ -46,7 +46,7 @@ namespace DUNE
 {
   namespace Database
   {
-    typedef sqlite3_stmt STMT_HANDLE;
+    using STMT_HANDLE = sqlite3_stmt;
 
     // Export DLL Symbol.
     class DUNE_DLL_SYM Statement;
@@ -76,14 +76,13 @@ namespace DUNE
       //! @param count for INSERT, UPDATE or DELETE statements, may return
       //! the number of rows affected by the operation
       //! @return true if there are more rows to process.
-      bool
-      execute(int* count = 0);
+      bool execute (int *count = nullptr);
 
       //! Reset.
       //! The statement will not be bound to any arguments
       //! nor have any available results afterwards.
       void
-      reset(void);
+      reset();
 
       //! Bind an argument to NULL.
       //! @param null Null datum.
@@ -181,10 +180,10 @@ namespace DUNE
       int m_idx;
 
       void
-      throwError(void);
+      throwError();
 
       bool
-      nullColumn(void);
+      nullColumn();
     };
   }
 }

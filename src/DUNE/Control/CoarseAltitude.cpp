@@ -46,13 +46,13 @@ namespace DUNE
       reset();
     }
 
-    CoarseAltitude::~CoarseAltitude(void)
+    CoarseAltitude::~CoarseAltitude()
     {
       Memory::clear(m_mmav);
     }
 
     void
-    CoarseAltitude::reset(void)
+    CoarseAltitude::reset()
     {
       m_corridor = 0;
       m_tracking = false;
@@ -64,13 +64,13 @@ namespace DUNE
     }
 
     void
-    CoarseAltitude::activate(void)
+    CoarseAltitude::activate()
     {
       m_active = true;
     }
 
     void
-    CoarseAltitude::deactivate(void)
+    CoarseAltitude::deactivate()
     {
       m_active = false;
       reset();
@@ -94,7 +94,7 @@ namespace DUNE
     }
 
     void
-    CoarseAltitude::measurePerformance(void)
+    CoarseAltitude::measurePerformance()
     {
       // See if it's time to check
       if (m_last_check < m_args->period)

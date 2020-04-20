@@ -46,7 +46,7 @@ namespace Power
     {
     public:
       MCP23017(const std::string& dev, uint8_t adr):
-        m_i2c(NULL),
+        m_i2c(nullptr),
         m_adr(adr)
       {
         m_i2c = new DUNE::Hardware::I2C(dev);
@@ -56,14 +56,14 @@ namespace Power
         m_gpios |= getPortValue(1) << 8;
       }
 
-      ~MCP23017(void)
+      ~MCP23017()
       {
         if (m_i2c)
           delete m_i2c;
       }
 
       uint16_t
-      getGPIOs(void)
+      getGPIOs()
       {
         return m_gpios;
       }
@@ -85,7 +85,7 @@ namespace Power
       getPortValue(uint8_t port)
       {
         uint8_t value = 0;
-        m_i2c->transfer(m_adr, c_mcp23017_r_gpioa + port, 0, 0, &value, 1, 0);
+        m_i2c->transfer(m_adr, c_mcp23017_r_gpioa + port, nullptr, 0, &value, 1, nullptr);
         return value;
       }
 

@@ -326,7 +326,7 @@ namespace Maneuver
         m_ctx.config.get("General", "Absolute Maximum Depth", "50.0", m_args.yoyo.max_depth);
 
         for (unsigned i = 0; i < TYPE_TOTAL; ++i)
-          m_maneuvers[i] = NULL;
+          m_maneuvers[i] = nullptr;
 
         bind<IMC::Brake>(this);
         bind<IMC::EstimatedState>(this);
@@ -336,7 +336,7 @@ namespace Maneuver
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.yoyo.variation))
           m_args.yoyo.variation = Angles::radians(m_args.yoyo.variation);
@@ -366,7 +366,7 @@ namespace Maneuver
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         Maneuver::onResourceInitialization();
 
@@ -383,14 +383,14 @@ namespace Maneuver
 
       template <typename Type>
       AbstractMux*
-      create(void)
+      create()
       {
         Type* mux = new Type(static_cast<Maneuvers::Maneuver*>(this));
         return static_cast<AbstractMux*>(mux);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_maneuvers[TYPE_IDLE] = create<Idle>();
         m_maneuvers[TYPE_GOTO] = create<Goto>();
@@ -412,14 +412,14 @@ namespace Maneuver
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         for (unsigned i = 0; i < TYPE_TOTAL; ++i)
           Memory::clear(m_maneuvers[i]);
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         Maneuver::onEntityReservation();
 
@@ -428,13 +428,13 @@ namespace Maneuver
       }
 
       void
-      onManeuverDeactivation(void)
+      onManeuverDeactivation() override
       {
         setEntityId(getEntityId());
       }
 
       void
-      changeEntity(void)
+      changeEntity()
       {
         setEntityId(m_ents[m_type]);
       }
@@ -495,13 +495,13 @@ namespace Maneuver
       }
 
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         m_maneuvers[m_type]->onPathControlState(pcs);
       }
 
       void
-      onStateReport(void)
+      onStateReport() override
       {
         m_maneuvers[m_type]->onStateReport();
       }

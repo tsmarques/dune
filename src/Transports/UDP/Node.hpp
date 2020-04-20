@@ -83,7 +83,7 @@ namespace Transports
       //! Get node name.
       //! @return node name.
       const std::string&
-      getName(void) const
+      getName() const
       {
         return m_name;
       }

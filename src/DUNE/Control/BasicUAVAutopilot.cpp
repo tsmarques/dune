@@ -59,17 +59,16 @@ namespace DUNE
       bind<IMC::ControlLoops>(this);
     }
 
-    BasicUAVAutopilot::~BasicUAVAutopilot()
-    {   }
+    BasicUAVAutopilot::~BasicUAVAutopilot () = default;
 
     void
-    BasicUAVAutopilot::onResourceInitialization(void)
+    BasicUAVAutopilot::onResourceInitialization()
     {
       requestDeactivation();
     }
 
     void
-    BasicUAVAutopilot::reset(void)
+    BasicUAVAutopilot::reset()
     {
     }
 
@@ -146,7 +145,7 @@ namespace DUNE
     }
 
     void
-    BasicUAVAutopilot::onMain(void)
+    BasicUAVAutopilot::onMain()
     {
       while (!stopping())
       {

@@ -61,7 +61,7 @@ namespace Transports
       //! Retrieve the IMC address of the requester.
       //! @return IMC address.
       uint16_t
-      getSource(void) const
+      getSource() const
       {
         return m_src_adr;
       }
@@ -69,7 +69,7 @@ namespace Transports
       //! Retrieve the entity identifier of the requester.
       //! @return entity identifier.
       uint8_t
-      getSourceEntity(void) const
+      getSourceEntity() const
       {
         return m_src_eid;
       }
@@ -77,14 +77,14 @@ namespace Transports
       //! Retrieve request identifier.
       //! @return request identifier.
       uint16_t
-      getId(void) const
+      getId() const
       {
         return m_req_id;
       }
 
       //! Test if MSN is valid.
       bool
-      hasValidMSN(void) const
+      hasValidMSN() const
       {
         return m_msn >= 0;
       }
@@ -92,7 +92,7 @@ namespace Transports
       //! Retrieve MO message sequence number.
       //! @return message sequence number.
       uint16_t
-      getMSN(void) const
+      getMSN() const
       {
         return static_cast<uint16_t>(m_msn);
       }
@@ -106,7 +106,7 @@ namespace Transports
       }
 
       void
-      invalidateMSN(void)
+      invalidateMSN()
       {
         m_msn = -1;
       }
@@ -114,7 +114,7 @@ namespace Transports
       //! Retrieve data.
       //! @return data.
       const std::vector<uint8_t>&
-      getData(void) const
+      getData() const
       {
         return m_data;
       }
@@ -122,7 +122,7 @@ namespace Transports
       //! Retrieve expiration time.
       //! @return expiration time (s).
       double
-      getExpiration(void) const
+      getExpiration() const
       {
         return m_expiration;
       }
@@ -130,7 +130,7 @@ namespace Transports
       //! Test if request expired.
       //! @return true if request expired, false otherwise.
       bool
-      hasExpired(void) const
+      hasExpired() const
       {
         return DUNE::Time::Clock::get() > getExpiration();
       }

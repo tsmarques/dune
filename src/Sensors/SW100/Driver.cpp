@@ -53,7 +53,7 @@ namespace Sensors
     static const double READ_DELAY = 0.1;
 
     bool
-    Driver::setup(void)
+    Driver::setup()
     {
       using namespace std;
 
@@ -181,7 +181,7 @@ namespace Sensors
     }
 
     bool
-    Driver::read(void)
+    Driver::read()
     {
       bool result = false;
       char bfr[64];

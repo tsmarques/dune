@@ -67,13 +67,13 @@ namespace Vision
         }
 
         double
-        getTimeStamp(void) const
+        getTimeStamp() const
         {
           return m_timestamp;
         }
 
         ByteBuffer*
-        getBuffer(void)
+        getBuffer()
         {
           return &m_buffer;
         }
@@ -95,19 +95,19 @@ namespace Vision
         preAllocateFrames();
       }
 
-      ~Log(void)
+      ~Log() override
       {
         while (!m_queue.empty())
         {
           Frame* frame = m_queue.pop();
-          if (frame != NULL)
+          if (frame != nullptr)
             delete frame;
         }
 
         while (!m_free_queue.empty())
         {
           Frame* frame = m_free_queue.pop();
-          if (frame != NULL)
+          if (frame != nullptr)
             delete frame;
         }
 
@@ -115,13 +115,13 @@ namespace Vision
       }
 
       int64_t
-      getSize(void)
+      getSize()
       {
         return m_path.size();
       }
 
       size_t
-      getFrameCount(void)
+      getFrameCount()
       {
         return m_frame_count;
       }
@@ -139,19 +139,19 @@ namespace Vision
       }
 
       Frame*
-      getFreeFrame(void)
+      getFreeFrame()
       {
         Frame* frame = m_free_queue.pop();
-        if (frame == NULL)
+        if (frame == nullptr)
           frame = new Frame();
 
         return frame;
       }
 
       ByteBuffer*
-      getBuffer(void)
+      getBuffer()
       {
-        return NULL;
+        return nullptr;
       }
 
     private:
@@ -191,7 +191,7 @@ namespace Vision
       }
 
       void
-      preAllocateFrames(void)
+      preAllocateFrames()
       {
         for (size_t i = 0; i < 10; ++i)
         {
@@ -201,12 +201,12 @@ namespace Vision
       }
 
       void
-      processQueue(void)
+      processQueue()
       {
         while (!m_queue.empty())
         {
           Frame* frame = m_queue.pop();
-          if (frame == NULL)
+          if (frame == nullptr)
             continue;
 
           ByteBuffer* buffer = frame->getBuffer();
@@ -218,7 +218,7 @@ namespace Vision
       }
 
       void
-      run(void)
+      run() override
       {
         while (!isStopping())
         {

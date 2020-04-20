@@ -52,14 +52,14 @@ namespace Supervisors
       { }
 
       bool
-      success(void)
+      success()
       {
         ScopedMutex l(m_success_mx);
         return m_success;
       }
 
       void
-      run(void)
+      run() override
       {
         if (std::system(m_cmd.c_str()) == 0)
         {

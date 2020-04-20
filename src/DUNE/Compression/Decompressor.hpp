@@ -44,7 +44,7 @@ namespace DUNE
     class Decompressor
     {
     public:
-      Decompressor(void):
+      Decompressor():
         m_decompressed(0),
         m_decompressed_total(0),
         m_processed(0),
@@ -52,9 +52,7 @@ namespace DUNE
         m_unprocessed(0)
       { }
 
-      virtual
-      ~Decompressor(void)
-      { }
+      virtual ~Decompressor () = default;
 
       void
       decompress(char* dst, unsigned long dst_len, char* src, unsigned long src_len);
@@ -66,31 +64,31 @@ namespace DUNE
       decompress(Utils::ByteBuffer& dst, Utils::ByteBuffer& src);
 
       unsigned long
-      decompressed(void)
+      decompressed()
       {
         return m_decompressed;
       }
 
       unsigned long
-      decompressedTotal(void)
+      decompressedTotal()
       {
         return m_decompressed_total;
       }
 
       unsigned long
-      processed(void)
+      processed()
       {
         return m_processed;
       }
 
       unsigned long
-      processedTotal(void)
+      processedTotal()
       {
         return m_processed_total;
       }
 
       unsigned long
-      unprocessed(void)
+      unprocessed()
       {
         return m_unprocessed;
       }

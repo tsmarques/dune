@@ -49,7 +49,7 @@ namespace DUNE
         exclude(exc)
       {  }
 
-      ~BackLogEntry(void)
+      ~BackLogEntry()
       {
         delete message;
       }
@@ -60,16 +60,16 @@ namespace DUNE
       Tasks::AbstractTask* exclude;
     };
 
-    Bus::Bus(void):
+    Bus::Bus():
       m_paused(false)
     { }
 
-    Bus::~Bus(void)
+    Bus::~Bus()
     {
       while (!m_back_log.empty())
       {
         BackLogEntry* entry = m_back_log.pop();
-        if (entry != NULL)
+        if (entry != nullptr)
           delete entry;
       }
 
@@ -123,7 +123,7 @@ namespace DUNE
     }
 
     void
-    Bus::resume(void)
+    Bus::resume()
     {
       m_paused_lock.lock();
       m_paused = false;
@@ -132,7 +132,7 @@ namespace DUNE
       while (!m_back_log.empty())
       {
         BackLogEntry* entry = m_back_log.pop();
-        if (entry != NULL)
+        if (entry != nullptr)
         {
           dispatch(entry->message, entry->exclude);
           delete entry;
@@ -141,7 +141,7 @@ namespace DUNE
     }
 
     const std::vector<TransportBindings*>
-    Bus::getBindings(void)
+    Bus::getBindings()
     {
       Concurrency::ScopedRWLock l(m_lock);
       return m_bind_msgs;

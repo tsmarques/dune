@@ -76,7 +76,7 @@ main(int32_t argc, char** argv)
 
   for (uint32_t j = 2; j < (uint32_t)argc; ++j)
   {
-    std::istream* is = 0;
+    std::istream* is = nullptr;
     Compression::Methods method = Compression::Factory::detect(argv[j]);
     if (method == METHOD_UNKNOWN)
       is = new std::ifstream(argv[j], std::ios::binary);
@@ -87,7 +87,7 @@ main(int32_t argc, char** argv)
 
     try
     {
-      while ((msg = IMC::Packet::deserialize(*is)) != 0)
+      while ((msg = IMC::Packet::deserialize(*is)) != nullptr)
       {
         if (!done_first)
         {

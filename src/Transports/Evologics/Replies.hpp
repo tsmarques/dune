@@ -44,7 +44,7 @@ namespace Transports
 
     struct RecvIM
     {
-      RecvIM(void):
+      RecvIM():
         src(0),
         dst(0),
         ack(false),
@@ -69,7 +69,7 @@ namespace Transports
 
     struct RecvUsblPos
     {
-      RecvUsblPos(void):
+      RecvUsblPos():
         ctime(0),
         mtime(0),
         addr(0),
@@ -118,7 +118,7 @@ namespace Transports
 
     struct RecvUsblAng
     {
-      RecvUsblAng(void):
+      RecvUsblAng():
         ctime(0),
         mtime(0),
         addr(0),

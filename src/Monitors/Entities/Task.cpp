@@ -90,7 +90,7 @@ namespace Monitors
       //! Entity Monitoring State message.
       IMC::EntityMonitoringState m_ems;
       //! Type to store all Entity Ids.
-      typedef std::set<uint8_t> EIdSet;
+      using EIdSet = std::set<uint8_t>;
       //! Record of all available entity information.
       std::vector<ESRecord> m_record;
       //! Ids of all currently monitored entities.
@@ -132,14 +132,14 @@ namespace Monitors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Initialize entity state.
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       }
 
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         // Mark default settings, so we can get back to them.
         m_args.defmon.push_back("Daemon");
@@ -244,7 +244,7 @@ namespace Monitors
       }
 
       void
-      onReportEntityState(void)
+      onReportEntityState() override
       {
         onTimeoutCheck();
         reportState();
@@ -383,7 +383,7 @@ namespace Monitors
 
       //! Dispatch Entity Monitoring State
       void
-      reportState(void)
+      reportState()
       {
         m_ems.mcount = m_ems.ecount = m_ems.ccount = 0;
         m_ems.mnames = m_ems.enames = m_ems.cnames = "";
@@ -420,7 +420,7 @@ namespace Monitors
 
       //! Check if any entity has timedout
       void
-      onTimeoutCheck(void)
+      onTimeoutCheck()
       {
         double now = Clock::get();
 
@@ -455,7 +455,7 @@ namespace Monitors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

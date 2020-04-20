@@ -111,7 +111,7 @@ namespace DUNE
     Progress::compute(const IMC::Message* man, const IMC::ManeuverControlState* mcs,
                       const std::vector<float>& durations, float total_duration)
     {
-      if (man == NULL)
+      if (man == nullptr)
         return -1.0;
 
       if (!durations.size() || mcs->eta == c_max_eta)

@@ -45,7 +45,7 @@ namespace Simulators
     {
     public:
       //! Default Constructor.
-      UUV(void);
+      UUV();
 
       //! Constructor.
       //! @param[in] position buoyancy position.
@@ -56,7 +56,7 @@ namespace Simulators
       UUV(const UUV*);
 
       //! Destructor.
-      ~UUV(void);
+      ~UUV() override;
 
       //! Add a fin to vehicle's configuration.
       //! @param[in] fin vehicle new fin.
@@ -78,29 +78,29 @@ namespace Simulators
 
       //! Apply all forces for UUV vehicle.
       void
-      applyForces(void);
+      applyForces() override;
 
       //! Set added mass coefficient (useful for Coriolis matrix.
       //! @param[in] coefs added mass matrix coefficients.
-      virtual void
-      setAddedMassCoef(double coefs[6]);
+      void
+      setAddedMassCoef(double coefs[6]) override;
 
       //! Set body lift matrix.
       //! @param[in] coefs body lift matrix coefficients.
-      virtual void
-      setBodyLiftCoef(double coefs[8]);
+      void
+      setBodyLiftCoef(double coefs[8]) override;
 
       //! Apply Coriolis Force (and Body Lift) to the UUV
       //! Coriolis Matrices equations from:
       //! "Modeling and Simulation of the LAUV Autonomous Underwater Vehicle"
       //! Jorge Estrela, Bruno Terra, Ricardo Martins e João Sousa.
       void
-      applyCoriolisForce(void);
+      applyCoriolisForce();
 
     private:
       //! Applies vehicle specific force (buoyancy).
       void
-      applyRestoringForcesMoments(void);
+      applyRestoringForcesMoments();
 
       //! UUV vehicle's buoyancy position.
       double m_buoyancy_position[3];

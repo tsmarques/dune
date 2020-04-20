@@ -67,13 +67,13 @@ namespace Maneuver
       //! @param[in] args popup arguments
       PopUp(Maneuvers::Maneuver* task, PopUpArgs* args):
         MuxedManeuver<IMC::PopUp, PopUpArgs>(task, args),
-        m_skeep(NULL),
-        m_elevate(NULL),
+        m_skeep(nullptr),
+        m_elevate(nullptr),
         m_pstate(ST_INITIAL)
       { }
 
       //! Destructor
-      ~PopUp(void)
+      ~PopUp() override
       {
         Memory::clear(m_skeep);
         Memory::clear(m_elevate);
@@ -109,21 +109,21 @@ namespace Maneuver
 
       //! Go up to the surface
       inline void
-      goUp(void)
+      goUp()
       {
         elevate(0.0, IMC::Z_DEPTH);
       }
 
       //! Go down to the maneuver's z reference
       inline void
-      goDown(void)
+      goDown()
       {
         elevate(m_maneuver.z, m_maneuver.z_units);
       }
 
       //! Start station keeping
       void
-      startStationKeeping(void)
+      startStationKeeping()
       {
         Memory::clear(m_skeep);
 
@@ -154,7 +154,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver rows maneuver message
       void
-      onStart(const IMC::PopUp* maneuver)
+      onStart(const IMC::PopUp* maneuver) override
       {
         m_maneuver = *maneuver;
 
@@ -190,7 +190,7 @@ namespace Maneuver
       //! On message VehicleMedium
       //! @param[in] msg pointer to VehicleMedium message
       void
-      onVehicleMedium(const IMC::VehicleMedium* msg)
+      onVehicleMedium(const IMC::VehicleMedium* msg) override
       {
         switch (m_pstate)
         {
@@ -230,7 +230,7 @@ namespace Maneuver
       //! On message GpsFix
       //! @param[in] msg pointer to GpsFix message
       void
-      onGpsFix(const IMC::GpsFix* msg)
+      onGpsFix(const IMC::GpsFix* msg) override
       {
         float dist;
 
@@ -266,7 +266,7 @@ namespace Maneuver
       //! On message EstimatedState
       //! @param[in] msg pointer to EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         m_state = *msg;
 
@@ -298,7 +298,7 @@ namespace Maneuver
       //! On PathControlState message
       //! @param[in] pcs pointer to PathControlState message
       void
-      onPathControlState(const IMC::PathControlState* pcs)
+      onPathControlState(const IMC::PathControlState* pcs) override
       {
         switch (m_pstate)
         {
@@ -341,14 +341,14 @@ namespace Maneuver
 
       //! On state report
       void
-      onStateReport(void)
+      onStateReport() override
       {
         computeETA();
       }
 
       //! Compute ETA
       inline void
-      computeETA(void)
+      computeETA()
       {
         if (m_pstate == ST_SKEEP)
         {
@@ -367,7 +367,7 @@ namespace Maneuver
       //! Will use current position
       //! @return true if must use current waypoint
       bool
-      useCurr(void)
+      useCurr()
       {
         return (m_maneuver.flags & IMC::PopUp::FLG_CURR_POS) != 0;
       }
@@ -375,7 +375,7 @@ namespace Maneuver
       //! Must wait some time at surface
       //! @return true if must wait when surface has been reached
       bool
-      mustWait(void)
+      mustWait()
       {
         return (m_maneuver.flags & IMC::PopUp::FLG_WAIT_AT_SURFACE) != 0;
       }
@@ -383,7 +383,7 @@ namespace Maneuver
       //! Must station keep while at surface
       //! @return true if position must be kept at surface
       bool
-      mustKeep(void)
+      mustKeep()
       {
         return (m_maneuver.flags & IMC::PopUp::FLG_STATION_KEEP) != 0;
       }

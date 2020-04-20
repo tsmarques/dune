@@ -41,7 +41,7 @@ namespace DUNE
 #if defined(DUNE_SYS_HAS_PTHREAD_BARRIER)
       int rv = 0;
 
-      if ((rv = pthread_barrier_init(&m_barrier, 0, count)) != 0)
+      if ((rv = pthread_barrier_init(&m_barrier, nullptr, count)) != 0)
         throw BarrierError("initializing", rv);
 
 #elif defined(DUNE_SYS_HAS_PTHREAD_COND) && defined(DUNE_SYS_HAS_PTHREAD_MUTEX)
@@ -53,7 +53,7 @@ namespace DUNE
     }
 
     //! Destructor.
-    Barrier::~Barrier(void)
+    Barrier::~Barrier()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_BARRIER)
       pthread_barrier_destroy(&m_barrier);
@@ -65,7 +65,7 @@ namespace DUNE
     }
 
     void
-    Barrier::wait(void)
+    Barrier::wait()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_BARRIER)
       int rv = pthread_barrier_wait(&m_barrier);

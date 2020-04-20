@@ -87,63 +87,63 @@ namespace DUNE
       std::string description;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 1;
       }
 
-      EntityState(void);
+      EntityState();
 
       EntityState*
-      clone(void) const
+      clone() const override
       {
         return new EntityState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EntityState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EntityState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(description);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Query Entity State.
@@ -152,48 +152,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 2;
       }
 
-      QueryEntityState(void);
+      QueryEntityState();
 
       QueryEntityState*
-      clone(void) const
+      clone() const override
       {
         return new QueryEntityState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return QueryEntityState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "QueryEntityState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -215,69 +215,69 @@ namespace DUNE
       uint16_t deact_time;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 3;
       }
 
-      EntityInfo(void);
+      EntityInfo();
 
       EntityInfo*
-      clone(void) const
+      clone() const override
       {
         return new EntityInfo(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EntityInfo::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EntityInfo";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(label) + IMC::getSerializationSize(component);
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Query Entity Information.
@@ -288,63 +288,63 @@ namespace DUNE
       uint8_t id;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 4;
       }
 
-      QueryEntityInfo(void);
+      QueryEntityInfo();
 
       QueryEntityInfo*
-      clone(void) const
+      clone() const override
       {
         return new QueryEntityInfo(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return QueryEntityInfo::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "QueryEntityInfo";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Entity List.
@@ -366,63 +366,63 @@ namespace DUNE
       std::string list;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 5;
       }
 
-      EntityList(void);
+      EntityList();
 
       EntityList*
-      clone(void) const
+      clone() const override
       {
         return new EntityList(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EntityList::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EntityList";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(list);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! CPU Usage.
@@ -433,63 +433,63 @@ namespace DUNE
       uint8_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 7;
       }
 
-      CpuUsage(void);
+      CpuUsage();
 
       CpuUsage*
-      clone(void) const
+      clone() const override
       {
         return new CpuUsage(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CpuUsage::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CpuUsage";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Transport Bindings.
@@ -502,63 +502,63 @@ namespace DUNE
       uint16_t message_id;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 8;
       }
 
-      TransportBindings(void);
+      TransportBindings();
 
       TransportBindings*
-      clone(void) const
+      clone() const override
       {
         return new TransportBindings(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TransportBindings::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TransportBindings";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(consumer);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Restart System.
@@ -578,57 +578,57 @@ namespace DUNE
       uint8_t type;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 9;
       }
 
-      RestartSystem(void);
+      RestartSystem();
 
       RestartSystem*
-      clone(void) const
+      clone() const override
       {
         return new RestartSystem(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RestartSystem::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RestartSystem";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Device Calibration Control.
@@ -652,57 +652,57 @@ namespace DUNE
       uint8_t op;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 12;
       }
 
-      DevCalibrationControl(void);
+      DevCalibrationControl();
 
       DevCalibrationControl*
-      clone(void) const
+      clone() const override
       {
         return new DevCalibrationControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DevCalibrationControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DevCalibrationControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Device Calibration State.
@@ -734,63 +734,63 @@ namespace DUNE
       uint8_t flags;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 13;
       }
 
-      DevCalibrationState(void);
+      DevCalibrationState();
 
       DevCalibrationState*
-      clone(void) const
+      clone() const override
       {
         return new DevCalibrationState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DevCalibrationState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DevCalibrationState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(step);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Entity Activation State.
@@ -824,63 +824,63 @@ namespace DUNE
       std::string error;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 14;
       }
 
-      EntityActivationState(void);
+      EntityActivationState();
 
       EntityActivationState*
-      clone(void) const
+      clone() const override
       {
         return new EntityActivationState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EntityActivationState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EntityActivationState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(error);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Query Entity Activation State.
@@ -889,48 +889,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 15;
       }
 
-      QueryEntityActivationState(void);
+      QueryEntityActivationState();
 
       QueryEntityActivationState*
-      clone(void) const
+      clone() const override
       {
         return new QueryEntityActivationState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return QueryEntityActivationState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "QueryEntityActivationState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -989,57 +989,57 @@ namespace DUNE
       fp32_t rpm_rate_max;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 16;
       }
 
-      VehicleOperationalLimits(void);
+      VehicleOperationalLimits();
 
       VehicleOperationalLimits*
-      clone(void) const
+      clone() const override
       {
         return new VehicleOperationalLimits(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VehicleOperationalLimits::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VehicleOperationalLimits";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 69;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Message List.
@@ -1050,79 +1050,79 @@ namespace DUNE
       MessageList<Message> msgs;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 20;
       }
 
-      MsgList(void);
+      MsgList();
 
       MsgList*
-      clone(void) const
+      clone() const override
       {
         return new MsgList(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return MsgList::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "MsgList";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return msgs.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Simulated State.
@@ -1167,57 +1167,57 @@ namespace DUNE
       fp32_t svz;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 50;
       }
 
-      SimulatedState(void);
+      SimulatedState();
 
       SimulatedState*
-      clone(void) const
+      clone() const override
       {
         return new SimulatedState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SimulatedState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SimulatedState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 80;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Leak Simulation.
@@ -1239,63 +1239,63 @@ namespace DUNE
       std::string entities;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 51;
       }
 
-      LeakSimulation(void);
+      LeakSimulation();
 
       LeakSimulation*
-      clone(void) const
+      clone() const override
       {
         return new LeakSimulation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LeakSimulation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LeakSimulation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(entities);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Underwater Acoustics Simulation.
@@ -1321,63 +1321,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 52;
       }
 
-      UASimulation(void);
+      UASimulation();
 
       UASimulation*
-      clone(void) const
+      clone() const override
       {
         return new UASimulation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UASimulation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UASimulation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Dynamics Simulation Parameters.
@@ -1403,57 +1403,57 @@ namespace DUNE
       fp32_t bank2p_pgain;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 53;
       }
 
-      DynamicsSimParam(void);
+      DynamicsSimParam();
 
       DynamicsSimParam*
-      clone(void) const
+      clone() const override
       {
         return new DynamicsSimParam(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DynamicsSimParam::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DynamicsSimParam";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 9;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Storage Usage.
@@ -1466,63 +1466,63 @@ namespace DUNE
       uint8_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 100;
       }
 
-      StorageUsage(void);
+      StorageUsage();
 
       StorageUsage*
-      clone(void) const
+      clone() const override
       {
         return new StorageUsage(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return StorageUsage::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "StorageUsage";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Cache Control.
@@ -1552,79 +1552,79 @@ namespace DUNE
       InlineMessage<Message> message;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 101;
       }
 
-      CacheControl(void);
+      CacheControl();
 
       CacheControl*
-      clone(void) const
+      clone() const override
       {
         return new CacheControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CacheControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CacheControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(snapshot) + message.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Logging Control.
@@ -1654,63 +1654,63 @@ namespace DUNE
       std::string name;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 102;
       }
 
-      LoggingControl(void);
+      LoggingControl();
 
       LoggingControl*
-      clone(void) const
+      clone() const override
       {
         return new LoggingControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LoggingControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LoggingControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Log Book Entry.
@@ -1742,63 +1742,63 @@ namespace DUNE
       std::string text;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 103;
       }
 
-      LogBookEntry(void);
+      LogBookEntry();
 
       LogBookEntry*
-      clone(void) const
+      clone() const override
       {
         return new LogBookEntry(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LogBookEntry::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LogBookEntry";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 9;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(context) + IMC::getSerializationSize(text);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Log Book Control.
@@ -1826,79 +1826,79 @@ namespace DUNE
       MessageList<LogBookEntry> msg;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 104;
       }
 
-      LogBookControl(void);
+      LogBookControl();
 
       LogBookControl*
-      clone(void) const
+      clone() const override
       {
         return new LogBookControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LogBookControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LogBookControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 9;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return msg.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Replay Control.
@@ -1924,63 +1924,63 @@ namespace DUNE
       std::string file;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 105;
       }
 
-      ReplayControl(void);
+      ReplayControl();
 
       ReplayControl*
-      clone(void) const
+      clone() const override
       {
         return new ReplayControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ReplayControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ReplayControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(file);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Clock Control.
@@ -2012,57 +2012,57 @@ namespace DUNE
       int8_t tz;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 106;
       }
 
-      ClockControl(void);
+      ClockControl();
 
       ClockControl*
-      clone(void) const
+      clone() const override
       {
         return new ClockControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ClockControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ClockControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 10;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Historic CTD.
@@ -2077,57 +2077,57 @@ namespace DUNE
       fp32_t depth;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 107;
       }
 
-      HistoricCTD(void);
+      HistoricCTD();
 
       HistoricCTD*
-      clone(void) const
+      clone() const override
       {
         return new HistoricCTD(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return HistoricCTD::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "HistoricCTD";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Historic Telemetry.
@@ -2146,57 +2146,57 @@ namespace DUNE
       int16_t speed;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 108;
       }
 
-      HistoricTelemetry(void);
+      HistoricTelemetry();
 
       HistoricTelemetry*
-      clone(void) const
+      clone() const override
       {
         return new HistoricTelemetry(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return HistoricTelemetry::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "HistoricTelemetry";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Historic Sonar Data.
@@ -2230,63 +2230,63 @@ namespace DUNE
       std::vector<char> sonar_data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 109;
       }
 
-      HistoricSonarData(void);
+      HistoricSonarData();
 
       HistoricSonarData*
-      clone(void) const
+      clone() const override
       {
         return new HistoricSonarData(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return HistoricSonarData::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "HistoricSonarData";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 19;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(sonar_data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Historic Event.
@@ -2308,63 +2308,63 @@ namespace DUNE
       uint8_t type;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 110;
       }
 
-      HistoricEvent(void);
+      HistoricEvent();
 
       HistoricEvent*
-      clone(void) const
+      clone() const override
       {
         return new HistoricEvent(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return HistoricEvent::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "HistoricEvent";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(text);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Profile Sample.
@@ -2377,57 +2377,57 @@ namespace DUNE
       fp32_t avg;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 112;
       }
 
-      ProfileSample(void);
+      ProfileSample();
 
       ProfileSample*
-      clone(void) const
+      clone() const override
       {
         return new ProfileSample(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ProfileSample::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ProfileSample";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Vertical Profile.
@@ -2465,79 +2465,79 @@ namespace DUNE
       fp64_t lon;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 111;
       }
 
-      VerticalProfile(void);
+      VerticalProfile();
 
       VerticalProfile*
-      clone(void) const
+      clone() const override
       {
         return new VerticalProfile(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VerticalProfile::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VerticalProfile";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 18;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return samples.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Heartbeat.
@@ -2546,48 +2546,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 150;
       }
 
-      Heartbeat(void);
+      Heartbeat();
 
       Heartbeat*
-      clone(void) const
+      clone() const override
       {
         return new Heartbeat(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Heartbeat::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Heartbeat";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -2613,63 +2613,63 @@ namespace DUNE
       std::string services;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 151;
       }
 
-      Announce(void);
+      Announce();
 
       Announce*
-      clone(void) const
+      clone() const override
       {
         return new Announce(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Announce::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Announce";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 23;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(sys_name) + IMC::getSerializationSize(services);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Announce Service.
@@ -2691,63 +2691,63 @@ namespace DUNE
       uint8_t service_type;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 152;
       }
 
-      AnnounceService(void);
+      AnnounceService();
 
       AnnounceService*
-      clone(void) const
+      clone() const override
       {
         return new AnnounceService(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AnnounceService::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AnnounceService";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(service);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Receive Signal Strength Information.
@@ -2758,63 +2758,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 153;
       }
 
-      RSSI(void);
+      RSSI();
 
       RSSI*
-      clone(void) const
+      clone() const override
       {
         return new RSSI(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RSSI::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RSSI";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Voltage Standing Wave Ratio.
@@ -2825,63 +2825,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 154;
       }
 
-      VSWR(void);
+      VSWR();
 
       VSWR*
-      clone(void) const
+      clone() const override
       {
         return new VSWR(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VSWR::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VSWR";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Link Level.
@@ -2892,63 +2892,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 155;
       }
 
-      LinkLevel(void);
+      LinkLevel();
 
       LinkLevel*
-      clone(void) const
+      clone() const override
       {
         return new LinkLevel(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LinkLevel::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LinkLevel";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SMS.
@@ -2963,63 +2963,63 @@ namespace DUNE
       std::string contents;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 156;
       }
 
-      Sms(void);
+      Sms();
 
       Sms*
-      clone(void) const
+      clone() const override
       {
         return new Sms(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Sms::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Sms";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(number) + IMC::getSerializationSize(contents);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SMS Transmit.
@@ -3036,63 +3036,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 157;
       }
 
-      SmsTx(void);
+      SmsTx();
 
       SmsTx*
-      clone(void) const
+      clone() const override
       {
         return new SmsTx(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SmsTx::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SmsTx";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(destination) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SMS Receive.
@@ -3105,63 +3105,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 158;
       }
 
-      SmsRx(void);
+      SmsRx();
 
       SmsRx*
-      clone(void) const
+      clone() const override
       {
         return new SmsRx(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SmsRx::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SmsRx";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(source) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SMS State.
@@ -3195,63 +3195,63 @@ namespace DUNE
       std::string error;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 159;
       }
 
-      SmsState(void);
+      SmsState();
 
       SmsState*
-      clone(void) const
+      clone() const override
       {
         return new SmsState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SmsState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SmsState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(error);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Text Message.
@@ -3264,63 +3264,63 @@ namespace DUNE
       std::string text;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 160;
       }
 
-      TextMessage(void);
+      TextMessage();
 
       TextMessage*
-      clone(void) const
+      clone() const override
       {
         return new TextMessage(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TextMessage::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TextMessage";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(origin) + IMC::getSerializationSize(text);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Received Iridium Message.
@@ -3339,63 +3339,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 170;
       }
 
-      IridiumMsgRx(void);
+      IridiumMsgRx();
 
       IridiumMsgRx*
-      clone(void) const
+      clone() const override
       {
         return new IridiumMsgRx(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return IridiumMsgRx::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "IridiumMsgRx";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 24;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(origin) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Transmit Iridium Message.
@@ -3412,63 +3412,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 171;
       }
 
-      IridiumMsgTx(void);
+      IridiumMsgTx();
 
       IridiumMsgTx*
-      clone(void) const
+      clone() const override
       {
         return new IridiumMsgTx(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return IridiumMsgTx::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "IridiumMsgTx";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(destination) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Iridium Transmission Status.
@@ -3500,63 +3500,63 @@ namespace DUNE
       std::string text;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 172;
       }
 
-      IridiumTxStatus(void);
+      IridiumTxStatus();
 
       IridiumTxStatus*
-      clone(void) const
+      clone() const override
       {
         return new IridiumTxStatus(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return IridiumTxStatus::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "IridiumTxStatus";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(text);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Group Membership State.
@@ -3569,63 +3569,63 @@ namespace DUNE
       uint32_t links;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 180;
       }
 
-      GroupMembershipState(void);
+      GroupMembershipState();
 
       GroupMembershipState*
-      clone(void) const
+      clone() const override
       {
         return new GroupMembershipState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GroupMembershipState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GroupMembershipState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(group_name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! System Group.
@@ -3657,63 +3657,63 @@ namespace DUNE
       std::string grouplist;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 181;
       }
 
-      SystemGroup(void);
+      SystemGroup();
 
       SystemGroup*
-      clone(void) const
+      clone() const override
       {
         return new SystemGroup(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SystemGroup::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SystemGroup";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(groupname) + IMC::getSerializationSize(grouplist);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Link Latency.
@@ -3726,63 +3726,63 @@ namespace DUNE
       uint16_t sys_src;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 182;
       }
 
-      LinkLatency(void);
+      LinkLatency();
 
       LinkLatency*
-      clone(void) const
+      clone() const override
       {
         return new LinkLatency(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LinkLatency::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LinkLatency";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Extended Receive Signal Strength Information.
@@ -3795,63 +3795,63 @@ namespace DUNE
       uint8_t units;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 183;
       }
 
-      ExtendedRSSI(void);
+      ExtendedRSSI();
 
       ExtendedRSSI*
-      clone(void) const
+      clone() const override
       {
         return new ExtendedRSSI(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ExtendedRSSI::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ExtendedRSSI";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Historic Data Series.
@@ -3868,79 +3868,79 @@ namespace DUNE
       MessageList<RemoteData> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 184;
       }
 
-      HistoricData(void);
+      HistoricData();
 
       HistoricData*
-      clone(void) const
+      clone() const override
       {
         return new HistoricData(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return HistoricData::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "HistoricData";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return data.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Compressed Historic Data Series.
@@ -3957,63 +3957,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 185;
       }
 
-      CompressedHistory(void);
+      CompressedHistory();
 
       CompressedHistory*
-      clone(void) const
+      clone() const override
       {
         return new CompressedHistory(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CompressedHistory::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CompressedHistory";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Historic Data Sample.
@@ -4036,79 +4036,79 @@ namespace DUNE
       InlineMessage<Message> sample;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 186;
       }
 
-      HistoricSample(void);
+      HistoricSample();
 
       HistoricSample*
-      clone(void) const
+      clone() const override
       {
         return new HistoricSample(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return HistoricSample::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "HistoricSample";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 11;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return sample.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Historic Data Query.
@@ -4136,79 +4136,79 @@ namespace DUNE
       InlineMessage<HistoricData> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 187;
       }
 
-      HistoricDataQuery(void);
+      HistoricDataQuery();
 
       HistoricDataQuery*
-      clone(void) const
+      clone() const override
       {
         return new HistoricDataQuery(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return HistoricDataQuery::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "HistoricDataQuery";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return data.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Remote Command.
@@ -4225,79 +4225,79 @@ namespace DUNE
       InlineMessage<Message> cmd;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 188;
       }
 
-      RemoteCommand(void);
+      RemoteCommand();
 
       RemoteCommand*
-      clone(void) const
+      clone() const override
       {
         return new RemoteCommand(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RemoteCommand::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RemoteCommand";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return cmd.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Communication Systems Query.
@@ -4349,63 +4349,63 @@ namespace DUNE
       std::string list;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 189;
       }
 
-      CommSystemsQuery(void);
+      CommSystemsQuery();
 
       CommSystemsQuery*
-      clone(void) const
+      clone() const override
       {
         return new CommSystemsQuery(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CommSystemsQuery::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CommSystemsQuery";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(list);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Telemetry Message.
@@ -4488,63 +4488,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 190;
       }
 
-      TelemetryMsg(void);
+      TelemetryMsg();
 
       TelemetryMsg*
-      clone(void) const
+      clone() const override
       {
         return new TelemetryMsg(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TelemetryMsg::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TelemetryMsg";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 10;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(destination) + IMC::getSerializationSize(source) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! LBL Range.
@@ -4557,63 +4557,63 @@ namespace DUNE
       fp32_t range;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 200;
       }
 
-      LblRange(void);
+      LblRange();
 
       LblRange*
-      clone(void) const
+      clone() const override
       {
         return new LblRange(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LblRange::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LblRange";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! LBL Beacon Configuration.
@@ -4636,63 +4636,63 @@ namespace DUNE
       uint8_t transponder_delay;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 202;
       }
 
-      LblBeacon(void);
+      LblBeacon();
 
       LblBeacon*
-      clone(void) const
+      clone() const override
       {
         return new LblBeacon(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LblBeacon::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LblBeacon";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 23;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(beacon);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! LBL Configuration.
@@ -4716,79 +4716,79 @@ namespace DUNE
       MessageList<LblBeacon> beacons;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 203;
       }
 
-      LblConfig(void);
+      LblConfig();
 
       LblConfig*
-      clone(void) const
+      clone() const override
       {
         return new LblConfig(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LblConfig::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LblConfig";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return beacons.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Acoustic Message.
@@ -4799,79 +4799,79 @@ namespace DUNE
       InlineMessage<Message> message;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 206;
       }
 
-      AcousticMessage(void);
+      AcousticMessage();
 
       AcousticMessage*
-      clone(void) const
+      clone() const override
       {
         return new AcousticMessage(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AcousticMessage::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AcousticMessage";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return message.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Acoustic Operation.
@@ -4929,79 +4929,79 @@ namespace DUNE
       InlineMessage<Message> msg;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 211;
       }
 
-      AcousticOperation(void);
+      AcousticOperation();
 
       AcousticOperation*
-      clone(void) const
+      clone() const override
       {
         return new AcousticOperation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AcousticOperation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AcousticOperation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(system) + msg.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Acoustic Systems Query.
@@ -5010,48 +5010,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 212;
       }
 
-      AcousticSystemsQuery(void);
+      AcousticSystemsQuery();
 
       AcousticSystemsQuery*
-      clone(void) const
+      clone() const override
       {
         return new AcousticSystemsQuery(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AcousticSystemsQuery::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AcousticSystemsQuery";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -5065,63 +5065,63 @@ namespace DUNE
       std::string list;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 213;
       }
 
-      AcousticSystems(void);
+      AcousticSystems();
 
       AcousticSystems*
-      clone(void) const
+      clone() const override
       {
         return new AcousticSystems(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AcousticSystems::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AcousticSystems";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(list);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Acoustic Link Quality.
@@ -5136,63 +5136,63 @@ namespace DUNE
       uint16_t integrity;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 214;
       }
 
-      AcousticLink(void);
+      AcousticLink();
 
       AcousticLink*
-      clone(void) const
+      clone() const override
       {
         return new AcousticLink(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AcousticLink::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AcousticLink";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(peer);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Revolutions Per Minute.
@@ -5203,63 +5203,63 @@ namespace DUNE
       int16_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 250;
       }
 
-      Rpm(void);
+      Rpm();
 
       Rpm*
-      clone(void) const
+      clone() const override
       {
         return new Rpm(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Rpm::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Rpm";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Voltage.
@@ -5270,63 +5270,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 251;
       }
 
-      Voltage(void);
+      Voltage();
 
       Voltage*
-      clone(void) const
+      clone() const override
       {
         return new Voltage(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Voltage::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Voltage";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Current.
@@ -5337,63 +5337,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 252;
       }
 
-      Current(void);
+      Current();
 
       Current*
-      clone(void) const
+      clone() const override
       {
         return new Current(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Current::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Current";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! GPS Fix.
@@ -5472,57 +5472,57 @@ namespace DUNE
       fp32_t vacc;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 253;
       }
 
-      GpsFix(void);
+      GpsFix();
 
       GpsFix*
-      clone(void) const
+      clone() const override
       {
         return new GpsFix(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GpsFix::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GpsFix";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 56;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Euler Angles.
@@ -5541,57 +5541,57 @@ namespace DUNE
       fp64_t psi_magnetic;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 254;
       }
 
-      EulerAngles(void);
+      EulerAngles();
 
       EulerAngles*
-      clone(void) const
+      clone() const override
       {
         return new EulerAngles(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EulerAngles::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EulerAngles";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 40;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Euler Angles Delta.
@@ -5610,57 +5610,57 @@ namespace DUNE
       fp32_t timestep;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 255;
       }
 
-      EulerAnglesDelta(void);
+      EulerAnglesDelta();
 
       EulerAnglesDelta*
-      clone(void) const
+      clone() const override
       {
         return new EulerAnglesDelta(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EulerAnglesDelta::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EulerAnglesDelta";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 36;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Angular Velocity.
@@ -5677,57 +5677,57 @@ namespace DUNE
       fp64_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 256;
       }
 
-      AngularVelocity(void);
+      AngularVelocity();
 
       AngularVelocity*
-      clone(void) const
+      clone() const override
       {
         return new AngularVelocity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AngularVelocity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AngularVelocity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 32;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Acceleration.
@@ -5744,57 +5744,57 @@ namespace DUNE
       fp64_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 257;
       }
 
-      Acceleration(void);
+      Acceleration();
 
       Acceleration*
-      clone(void) const
+      clone() const override
       {
         return new Acceleration(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Acceleration::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Acceleration";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 32;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Magnetic Field.
@@ -5811,57 +5811,57 @@ namespace DUNE
       fp64_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 258;
       }
 
-      MagneticField(void);
+      MagneticField();
 
       MagneticField*
-      clone(void) const
+      clone() const override
       {
         return new MagneticField(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return MagneticField::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "MagneticField";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 32;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Ground Velocity.
@@ -5889,57 +5889,57 @@ namespace DUNE
       fp64_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 259;
       }
 
-      GroundVelocity(void);
+      GroundVelocity();
 
       GroundVelocity*
-      clone(void) const
+      clone() const override
       {
         return new GroundVelocity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GroundVelocity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GroundVelocity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 25;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Water Velocity.
@@ -5967,57 +5967,57 @@ namespace DUNE
       fp64_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 260;
       }
 
-      WaterVelocity(void);
+      WaterVelocity();
 
       WaterVelocity*
-      clone(void) const
+      clone() const override
       {
         return new WaterVelocity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return WaterVelocity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "WaterVelocity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 25;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Velocity Delta.
@@ -6034,57 +6034,57 @@ namespace DUNE
       fp64_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 261;
       }
 
-      VelocityDelta(void);
+      VelocityDelta();
 
       VelocityDelta*
-      clone(void) const
+      clone() const override
       {
         return new VelocityDelta(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VelocityDelta::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VelocityDelta";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 32;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Device State.
@@ -6105,57 +6105,57 @@ namespace DUNE
       fp32_t psi;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 282;
       }
 
-      DeviceState(void);
+      DeviceState();
 
       DeviceState*
-      clone(void) const
+      clone() const override
       {
         return new DeviceState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DeviceState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DeviceState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 24;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Beam Configuration.
@@ -6168,57 +6168,57 @@ namespace DUNE
       fp32_t beam_height;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 283;
       }
 
-      BeamConfig(void);
+      BeamConfig();
 
       BeamConfig*
-      clone(void) const
+      clone() const override
       {
         return new BeamConfig(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return BeamConfig::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "BeamConfig";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Distance.
@@ -6244,85 +6244,85 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 262;
       }
 
-      Distance(void);
+      Distance();
 
       Distance*
-      clone(void) const
+      clone() const override
       {
         return new Distance(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Distance::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Distance";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return location.getSerializationSize() + beam_config.getSerializationSize();
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Temperature.
@@ -6333,63 +6333,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 263;
       }
 
-      Temperature(void);
+      Temperature();
 
       Temperature*
-      clone(void) const
+      clone() const override
       {
         return new Temperature(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Temperature::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Temperature";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Pressure.
@@ -6400,63 +6400,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 264;
       }
 
-      Pressure(void);
+      Pressure();
 
       Pressure*
-      clone(void) const
+      clone() const override
       {
         return new Pressure(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Pressure::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Pressure";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Depth.
@@ -6467,63 +6467,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 265;
       }
 
-      Depth(void);
+      Depth();
 
       Depth*
-      clone(void) const
+      clone() const override
       {
         return new Depth(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Depth::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Depth";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Depth Offset.
@@ -6534,63 +6534,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 266;
       }
 
-      DepthOffset(void);
+      DepthOffset();
 
       DepthOffset*
-      clone(void) const
+      clone() const override
       {
         return new DepthOffset(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DepthOffset::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DepthOffset";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Sound Speed.
@@ -6601,63 +6601,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 267;
       }
 
-      SoundSpeed(void);
+      SoundSpeed();
 
       SoundSpeed*
-      clone(void) const
+      clone() const override
       {
         return new SoundSpeed(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SoundSpeed::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SoundSpeed";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Water Density.
@@ -6668,63 +6668,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 268;
       }
 
-      WaterDensity(void);
+      WaterDensity();
 
       WaterDensity*
-      clone(void) const
+      clone() const override
       {
         return new WaterDensity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return WaterDensity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "WaterDensity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Conductivity.
@@ -6735,63 +6735,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 269;
       }
 
-      Conductivity(void);
+      Conductivity();
 
       Conductivity*
-      clone(void) const
+      clone() const override
       {
         return new Conductivity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Conductivity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Conductivity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Salinity.
@@ -6802,63 +6802,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 270;
       }
 
-      Salinity(void);
+      Salinity();
 
       Salinity*
-      clone(void) const
+      clone() const override
       {
         return new Salinity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Salinity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Salinity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Wind Speed.
@@ -6873,57 +6873,57 @@ namespace DUNE
       fp32_t turbulence;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 271;
       }
 
-      WindSpeed(void);
+      WindSpeed();
 
       WindSpeed*
-      clone(void) const
+      clone() const override
       {
         return new WindSpeed(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return WindSpeed::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "WindSpeed";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Relative Humidity.
@@ -6934,63 +6934,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 272;
       }
 
-      RelativeHumidity(void);
+      RelativeHumidity();
 
       RelativeHumidity*
-      clone(void) const
+      clone() const override
       {
         return new RelativeHumidity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RelativeHumidity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RelativeHumidity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Device Data (Text).
@@ -7001,63 +7001,63 @@ namespace DUNE
       std::string value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 273;
       }
 
-      DevDataText(void);
+      DevDataText();
 
       DevDataText*
-      clone(void) const
+      clone() const override
       {
         return new DevDataText(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DevDataText::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DevDataText";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(value);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Device Data (Binary).
@@ -7068,63 +7068,63 @@ namespace DUNE
       std::vector<char> value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 274;
       }
 
-      DevDataBinary(void);
+      DevDataBinary();
 
       DevDataBinary*
-      clone(void) const
+      clone() const override
       {
         return new DevDataBinary(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DevDataBinary::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DevDataBinary";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(value);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Force.
@@ -7135,63 +7135,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 275;
       }
 
-      Force(void);
+      Force();
 
       Force*
-      clone(void) const
+      clone() const override
       {
         return new Force(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Force::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Force";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Sonar Data.
@@ -7227,79 +7227,79 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 276;
       }
 
-      SonarData(void);
+      SonarData();
 
       SonarData*
-      clone(void) const
+      clone() const override
       {
         return new SonarData(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SonarData::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SonarData";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 14;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return beam_config.getSerializationSize() + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Pulse.
@@ -7308,48 +7308,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 277;
       }
 
-      Pulse(void);
+      Pulse();
 
       Pulse*
-      clone(void) const
+      clone() const override
       {
         return new Pulse(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Pulse::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Pulse";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -7372,57 +7372,57 @@ namespace DUNE
       uint8_t op;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 278;
       }
 
-      PulseDetectionControl(void);
+      PulseDetectionControl();
 
       PulseDetectionControl*
-      clone(void) const
+      clone() const override
       {
         return new PulseDetectionControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PulseDetectionControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PulseDetectionControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Fuel Level.
@@ -7437,69 +7437,69 @@ namespace DUNE
       std::string opmodes;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 279;
       }
 
-      FuelLevel(void);
+      FuelLevel();
 
       FuelLevel*
-      clone(void) const
+      clone() const override
       {
         return new FuelLevel(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FuelLevel::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FuelLevel";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(opmodes);
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! GPS Navigation Data.
@@ -7538,57 +7538,57 @@ namespace DUNE
       fp32_t cacc;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 280;
       }
 
-      GpsNavData(void);
+      GpsNavData();
 
       GpsNavData*
-      clone(void) const
+      clone() const override
       {
         return new GpsNavData(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GpsNavData::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GpsNavData";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 68;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Servo Position.
@@ -7601,69 +7601,69 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 281;
       }
 
-      ServoPosition(void);
+      ServoPosition();
 
       ServoPosition*
-      clone(void) const
+      clone() const override
       {
         return new ServoPosition(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ServoPosition::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ServoPosition";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Data Sanity.
@@ -7683,57 +7683,57 @@ namespace DUNE
       uint8_t sane;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 284;
       }
 
-      DataSanity(void);
+      DataSanity();
 
       DataSanity*
-      clone(void) const
+      clone() const override
       {
         return new DataSanity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DataSanity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DataSanity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Rhodamine Dye.
@@ -7744,63 +7744,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 285;
       }
 
-      RhodamineDye(void);
+      RhodamineDye();
 
       RhodamineDye*
-      clone(void) const
+      clone() const override
       {
         return new RhodamineDye(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RhodamineDye::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RhodamineDye";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Crude Oil.
@@ -7811,63 +7811,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 286;
       }
 
-      CrudeOil(void);
+      CrudeOil();
 
       CrudeOil*
-      clone(void) const
+      clone() const override
       {
         return new CrudeOil(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CrudeOil::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CrudeOil";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Fine Oil.
@@ -7878,63 +7878,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 287;
       }
 
-      FineOil(void);
+      FineOil();
 
       FineOil*
-      clone(void) const
+      clone() const override
       {
         return new FineOil(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FineOil::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FineOil";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Turbidity.
@@ -7945,63 +7945,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 288;
       }
 
-      Turbidity(void);
+      Turbidity();
 
       Turbidity*
-      clone(void) const
+      clone() const override
       {
         return new Turbidity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Turbidity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Turbidity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Chlorophyll.
@@ -8012,63 +8012,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 289;
       }
 
-      Chlorophyll(void);
+      Chlorophyll();
 
       Chlorophyll*
-      clone(void) const
+      clone() const override
       {
         return new Chlorophyll(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Chlorophyll::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Chlorophyll";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Fluorescein.
@@ -8079,63 +8079,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 290;
       }
 
-      Fluorescein(void);
+      Fluorescein();
 
       Fluorescein*
-      clone(void) const
+      clone() const override
       {
         return new Fluorescein(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Fluorescein::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Fluorescein";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Phycocyanin.
@@ -8146,63 +8146,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 291;
       }
 
-      Phycocyanin(void);
+      Phycocyanin();
 
       Phycocyanin*
-      clone(void) const
+      clone() const override
       {
         return new Phycocyanin(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Phycocyanin::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Phycocyanin";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Phycoerythrin.
@@ -8213,63 +8213,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 292;
       }
 
-      Phycoerythrin(void);
+      Phycoerythrin();
 
       Phycoerythrin*
-      clone(void) const
+      clone() const override
       {
         return new Phycoerythrin(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Phycoerythrin::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Phycoerythrin";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! GPS Fix RTK.
@@ -8334,57 +8334,57 @@ namespace DUNE
       fp32_t iar_ratio;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 293;
       }
 
-      GpsFixRtk(void);
+      GpsFixRtk();
 
       GpsFixRtk*
-      clone(void) const
+      clone() const override
       {
         return new GpsFixRtk(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GpsFixRtk::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GpsFixRtk";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 58;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Estimated State.
@@ -8433,57 +8433,57 @@ namespace DUNE
       fp32_t alt;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 350;
       }
 
-      EstimatedState(void);
+      EstimatedState();
 
       EstimatedState*
-      clone(void) const
+      clone() const override
       {
         return new EstimatedState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EstimatedState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EstimatedState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 88;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! External Navigation Data.
@@ -8507,79 +8507,79 @@ namespace DUNE
       uint8_t type;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 294;
       }
 
-      ExternalNavData(void);
+      ExternalNavData();
 
       ExternalNavData*
-      clone(void) const
+      clone() const override
       {
         return new ExternalNavData(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ExternalNavData::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ExternalNavData";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return state.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Dissolved Oxygen.
@@ -8590,63 +8590,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 295;
       }
 
-      DissolvedOxygen(void);
+      DissolvedOxygen();
 
       DissolvedOxygen*
-      clone(void) const
+      clone() const override
       {
         return new DissolvedOxygen(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DissolvedOxygen::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DissolvedOxygen";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Air Saturation.
@@ -8657,63 +8657,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 296;
       }
 
-      AirSaturation(void);
+      AirSaturation();
 
       AirSaturation*
-      clone(void) const
+      clone() const override
       {
         return new AirSaturation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AirSaturation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AirSaturation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Throttle.
@@ -8724,63 +8724,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 297;
       }
 
-      Throttle(void);
+      Throttle();
 
       Throttle*
-      clone(void) const
+      clone() const override
       {
         return new Throttle(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Throttle::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Throttle";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! pH.
@@ -8791,63 +8791,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 298;
       }
 
-      PH(void);
+      PH();
 
       PH*
-      clone(void) const
+      clone() const override
       {
         return new PH(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PH::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PH";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Redox Potential.
@@ -8858,63 +8858,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 299;
       }
 
-      Redox(void);
+      Redox();
 
       Redox*
-      clone(void) const
+      clone() const override
       {
         return new Redox(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Redox::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Redox";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Camera Zoom.
@@ -8942,63 +8942,63 @@ namespace DUNE
       uint8_t action;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 300;
       }
 
-      CameraZoom(void);
+      CameraZoom();
 
       CameraZoom*
-      clone(void) const
+      clone() const override
       {
         return new CameraZoom(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CameraZoom::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CameraZoom";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Set Thruster Actuation.
@@ -9011,69 +9011,69 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 301;
       }
 
-      SetThrusterActuation(void);
+      SetThrusterActuation();
 
       SetThrusterActuation*
-      clone(void) const
+      clone() const override
       {
         return new SetThrusterActuation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SetThrusterActuation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SetThrusterActuation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Set Servo Position.
@@ -9086,69 +9086,69 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 302;
       }
 
-      SetServoPosition(void);
+      SetServoPosition();
 
       SetServoPosition*
-      clone(void) const
+      clone() const override
       {
         return new SetServoPosition(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SetServoPosition::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SetServoPosition";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Set Control Surface Deflection.
@@ -9161,63 +9161,63 @@ namespace DUNE
       fp32_t angle;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 303;
       }
 
-      SetControlSurfaceDeflection(void);
+      SetControlSurfaceDeflection();
 
       SetControlSurfaceDeflection*
-      clone(void) const
+      clone() const override
       {
         return new SetControlSurfaceDeflection(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SetControlSurfaceDeflection::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SetControlSurfaceDeflection";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Remote Actions Request.
@@ -9239,63 +9239,63 @@ namespace DUNE
       std::string actions;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 304;
       }
 
-      RemoteActionsRequest(void);
+      RemoteActionsRequest();
 
       RemoteActionsRequest*
-      clone(void) const
+      clone() const override
       {
         return new RemoteActionsRequest(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RemoteActionsRequest::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RemoteActionsRequest";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(actions);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Remote Actions.
@@ -9306,63 +9306,63 @@ namespace DUNE
       std::string actions;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 305;
       }
 
-      RemoteActions(void);
+      RemoteActions();
 
       RemoteActions*
-      clone(void) const
+      clone() const override
       {
         return new RemoteActions(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RemoteActions::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RemoteActions";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(actions);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Button Event.
@@ -9375,63 +9375,63 @@ namespace DUNE
       uint8_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 306;
       }
 
-      ButtonEvent(void);
+      ButtonEvent();
 
       ButtonEvent*
-      clone(void) const
+      clone() const override
       {
         return new ButtonEvent(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ButtonEvent::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ButtonEvent";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! LCD Control.
@@ -9459,63 +9459,63 @@ namespace DUNE
       std::string text;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 307;
       }
 
-      LcdControl(void);
+      LcdControl();
 
       LcdControl*
-      clone(void) const
+      clone() const override
       {
         return new LcdControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LcdControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LcdControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(text);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Power Operation.
@@ -9549,57 +9549,57 @@ namespace DUNE
       fp64_t sched_time;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 308;
       }
 
-      PowerOperation(void);
+      PowerOperation();
 
       PowerOperation*
-      clone(void) const
+      clone() const override
       {
         return new PowerOperation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PowerOperation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PowerOperation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 13;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Power Channel Control.
@@ -9635,63 +9635,63 @@ namespace DUNE
       fp64_t sched_time;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 309;
       }
 
-      PowerChannelControl(void);
+      PowerChannelControl();
 
       PowerChannelControl*
-      clone(void) const
+      clone() const override
       {
         return new PowerChannelControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PowerChannelControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PowerChannelControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 9;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Query Power Channel State.
@@ -9700,48 +9700,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 310;
       }
 
-      QueryPowerChannelState(void);
+      QueryPowerChannelState();
 
       QueryPowerChannelState*
-      clone(void) const
+      clone() const override
       {
         return new QueryPowerChannelState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return QueryPowerChannelState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "QueryPowerChannelState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -9766,63 +9766,63 @@ namespace DUNE
       uint8_t state;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 311;
       }
 
-      PowerChannelState(void);
+      PowerChannelState();
 
       PowerChannelState*
-      clone(void) const
+      clone() const override
       {
         return new PowerChannelState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PowerChannelState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PowerChannelState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! LED Brightness.
@@ -9835,69 +9835,69 @@ namespace DUNE
       uint8_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 312;
       }
 
-      LedBrightness(void);
+      LedBrightness();
 
       LedBrightness*
-      clone(void) const
+      clone() const override
       {
         return new LedBrightness(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LedBrightness::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LedBrightness";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Query LED Brightness.
@@ -9908,63 +9908,63 @@ namespace DUNE
       std::string name;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 313;
       }
 
-      QueryLedBrightness(void);
+      QueryLedBrightness();
 
       QueryLedBrightness*
-      clone(void) const
+      clone() const override
       {
         return new QueryLedBrightness(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return QueryLedBrightness::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "QueryLedBrightness";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Set LED Brightness.
@@ -9977,69 +9977,69 @@ namespace DUNE
       uint8_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 314;
       }
 
-      SetLedBrightness(void);
+      SetLedBrightness();
 
       SetLedBrightness*
-      clone(void) const
+      clone() const override
       {
         return new SetLedBrightness(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SetLedBrightness::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SetLedBrightness";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Set PWM.
@@ -10054,63 +10054,63 @@ namespace DUNE
       uint32_t duty_cycle;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 315;
       }
 
-      SetPWM(void);
+      SetPWM();
 
       SetPWM*
-      clone(void) const
+      clone() const override
       {
         return new SetPWM(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SetPWM::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SetPWM";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 9;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! PWM.
@@ -10125,63 +10125,63 @@ namespace DUNE
       uint32_t duty_cycle;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 316;
       }
 
-      PWM(void);
+      PWM();
 
       PWM*
-      clone(void) const
+      clone() const override
       {
         return new PWM(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PWM::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PWM";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 9;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Estimated Stream Velocity.
@@ -10196,57 +10196,57 @@ namespace DUNE
       fp64_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 351;
       }
 
-      EstimatedStreamVelocity(void);
+      EstimatedStreamVelocity();
 
       EstimatedStreamVelocity*
-      clone(void) const
+      clone() const override
       {
         return new EstimatedStreamVelocity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EstimatedStreamVelocity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EstimatedStreamVelocity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 24;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Indicated Speed.
@@ -10257,63 +10257,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 352;
       }
 
-      IndicatedSpeed(void);
+      IndicatedSpeed();
 
       IndicatedSpeed*
-      clone(void) const
+      clone() const override
       {
         return new IndicatedSpeed(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return IndicatedSpeed::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "IndicatedSpeed";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! True Speed.
@@ -10324,63 +10324,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 353;
       }
 
-      TrueSpeed(void);
+      TrueSpeed();
 
       TrueSpeed*
-      clone(void) const
+      clone() const override
       {
         return new TrueSpeed(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TrueSpeed::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TrueSpeed";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Navigation Uncertainty.
@@ -10417,57 +10417,57 @@ namespace DUNE
       fp32_t bias_r;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 354;
       }
 
-      NavigationUncertainty(void);
+      NavigationUncertainty();
 
       NavigationUncertainty*
-      clone(void) const
+      clone() const override
       {
         return new NavigationUncertainty(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return NavigationUncertainty::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "NavigationUncertainty";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 56;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Navigation Data.
@@ -10494,57 +10494,57 @@ namespace DUNE
       fp32_t custom_z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 355;
       }
 
-      NavigationData(void);
+      NavigationData();
 
       NavigationData*
-      clone(void) const
+      clone() const override
       {
         return new NavigationData(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return NavigationData::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "NavigationData";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 36;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! GPS Fix Rejection.
@@ -10572,57 +10572,57 @@ namespace DUNE
       uint8_t reason;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 356;
       }
 
-      GpsFixRejection(void);
+      GpsFixRejection();
 
       GpsFixRejection*
-      clone(void) const
+      clone() const override
       {
         return new GpsFixRejection(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GpsFixRejection::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GpsFixRejection";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! LBL Range Acceptance.
@@ -10652,63 +10652,63 @@ namespace DUNE
       uint8_t acceptance;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 357;
       }
 
-      LblRangeAcceptance(void);
+      LblRangeAcceptance();
 
       LblRangeAcceptance*
-      clone(void) const
+      clone() const override
       {
         return new LblRangeAcceptance(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LblRangeAcceptance::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LblRangeAcceptance";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       uint16_t
-      getSubId(void) const;
+      getSubId() const override;
 
       void
-      setSubId(uint16_t subid);
+      setSubId(uint16_t subid) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! DVL Rejection.
@@ -10747,63 +10747,63 @@ namespace DUNE
       fp32_t timestep;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 358;
       }
 
-      DvlRejection(void);
+      DvlRejection();
 
       DvlRejection*
-      clone(void) const
+      clone() const override
       {
         return new DvlRejection(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DvlRejection::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DvlRejection";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 10;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! LBL Beacon Position Estimate.
@@ -10824,79 +10824,79 @@ namespace DUNE
       fp32_t distance;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 360;
       }
 
-      LblEstimate(void);
+      LblEstimate();
 
       LblEstimate*
-      clone(void) const
+      clone() const override
       {
         return new LblEstimate(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LblEstimate::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LblEstimate";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 20;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return beacon.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Alignment State.
@@ -10922,57 +10922,57 @@ namespace DUNE
       uint8_t state;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 361;
       }
 
-      AlignmentState(void);
+      AlignmentState();
 
       AlignmentState*
-      clone(void) const
+      clone() const override
       {
         return new AlignmentState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AlignmentState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AlignmentState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! GroupStreamVelocity.
@@ -10987,57 +10987,57 @@ namespace DUNE
       fp64_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 362;
       }
 
-      GroupStreamVelocity(void);
+      GroupStreamVelocity();
 
       GroupStreamVelocity*
-      clone(void) const
+      clone() const override
       {
         return new GroupStreamVelocity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GroupStreamVelocity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GroupStreamVelocity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 24;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Airflow.
@@ -11052,57 +11052,57 @@ namespace DUNE
       fp32_t ssa;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 363;
       }
 
-      Airflow(void);
+      Airflow();
 
       Airflow*
-      clone(void) const
+      clone() const override
       {
         return new Airflow(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Airflow::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Airflow";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Heading.
@@ -11113,63 +11113,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 400;
       }
 
-      DesiredHeading(void);
+      DesiredHeading();
 
       DesiredHeading*
-      clone(void) const
+      clone() const override
       {
         return new DesiredHeading(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredHeading::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredHeading";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Z.
@@ -11182,63 +11182,63 @@ namespace DUNE
       uint8_t z_units;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 401;
       }
 
-      DesiredZ(void);
+      DesiredZ();
 
       DesiredZ*
-      clone(void) const
+      clone() const override
       {
         return new DesiredZ(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredZ::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredZ";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Speed.
@@ -11251,63 +11251,63 @@ namespace DUNE
       uint8_t speed_units;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 402;
       }
 
-      DesiredSpeed(void);
+      DesiredSpeed();
 
       DesiredSpeed*
-      clone(void) const
+      clone() const override
       {
         return new DesiredSpeed(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredSpeed::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredSpeed";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 9;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Roll.
@@ -11318,63 +11318,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 403;
       }
 
-      DesiredRoll(void);
+      DesiredRoll();
 
       DesiredRoll*
-      clone(void) const
+      clone() const override
       {
         return new DesiredRoll(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredRoll::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredRoll";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Pitch.
@@ -11385,63 +11385,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 404;
       }
 
-      DesiredPitch(void);
+      DesiredPitch();
 
       DesiredPitch*
-      clone(void) const
+      clone() const override
       {
         return new DesiredPitch(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredPitch::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredPitch";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Vertical Rate.
@@ -11452,63 +11452,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 405;
       }
 
-      DesiredVerticalRate(void);
+      DesiredVerticalRate();
 
       DesiredVerticalRate*
-      clone(void) const
+      clone() const override
       {
         return new DesiredVerticalRate(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredVerticalRate::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredVerticalRate";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Path.
@@ -11564,57 +11564,57 @@ namespace DUNE
       uint8_t flags;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 406;
       }
 
-      DesiredPath(void);
+      DesiredPath();
 
       DesiredPath*
-      clone(void) const
+      clone() const override
       {
         return new DesiredPath(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredPath::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredPath";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 56;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Control.
@@ -11654,57 +11654,57 @@ namespace DUNE
       uint8_t flags;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 407;
       }
 
-      DesiredControl(void);
+      DesiredControl();
 
       DesiredControl*
-      clone(void) const
+      clone() const override
       {
         return new DesiredControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 49;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Heading Rate.
@@ -11715,63 +11715,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 408;
       }
 
-      DesiredHeadingRate(void);
+      DesiredHeadingRate();
 
       DesiredHeadingRate*
-      clone(void) const
+      clone() const override
       {
         return new DesiredHeadingRate(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredHeadingRate::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredHeadingRate";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Velocity.
@@ -11811,57 +11811,57 @@ namespace DUNE
       uint8_t flags;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 409;
       }
 
-      DesiredVelocity(void);
+      DesiredVelocity();
 
       DesiredVelocity*
-      clone(void) const
+      clone() const override
       {
         return new DesiredVelocity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredVelocity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredVelocity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 49;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Path Control State.
@@ -11923,57 +11923,57 @@ namespace DUNE
       uint16_t eta;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 410;
       }
 
-      PathControlState(void);
+      PathControlState();
 
       PathControlState*
-      clone(void) const
+      clone() const override
       {
         return new PathControlState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PathControlState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PathControlState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 81;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Allocated Control Torques.
@@ -11988,57 +11988,57 @@ namespace DUNE
       fp64_t n;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 411;
       }
 
-      AllocatedControlTorques(void);
+      AllocatedControlTorques();
 
       AllocatedControlTorques*
-      clone(void) const
+      clone() const override
       {
         return new AllocatedControlTorques(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AllocatedControlTorques::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AllocatedControlTorques";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 24;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Control Parcel.
@@ -12055,57 +12055,57 @@ namespace DUNE
       fp32_t a;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 412;
       }
 
-      ControlParcel(void);
+      ControlParcel();
 
       ControlParcel*
-      clone(void) const
+      clone() const override
       {
         return new ControlParcel(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ControlParcel::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ControlParcel";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 16;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Brake.
@@ -12127,57 +12127,57 @@ namespace DUNE
       uint8_t op;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 413;
       }
 
-      Brake(void);
+      Brake();
 
       Brake*
-      clone(void) const
+      clone() const override
       {
         return new Brake(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Brake::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Brake";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Linear State.
@@ -12229,57 +12229,57 @@ namespace DUNE
       uint16_t flags;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 414;
       }
 
-      DesiredLinearState(void);
+      DesiredLinearState();
 
       DesiredLinearState*
-      clone(void) const
+      clone() const override
       {
         return new DesiredLinearState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredLinearState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredLinearState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 74;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Desired Throttle.
@@ -12290,63 +12290,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 415;
       }
 
-      DesiredThrottle(void);
+      DesiredThrottle();
 
       DesiredThrottle*
-      clone(void) const
+      clone() const override
       {
         return new DesiredThrottle(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DesiredThrottle::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DesiredThrottle";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Goto Maneuver.
@@ -12377,63 +12377,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 450;
       }
 
-      Goto(void);
+      Goto();
 
       Goto*
-      clone(void) const
+      clone() const override
       {
         return new Goto(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Goto::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Goto";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 52;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! PopUp Maneuver.
@@ -12475,63 +12475,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 451;
       }
 
-      PopUp(void);
+      PopUp();
 
       PopUp*
-      clone(void) const
+      clone() const override
       {
         return new PopUp(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PopUp::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PopUp";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 35;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Teleoperation Maneuver.
@@ -12542,63 +12542,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 452;
       }
 
-      Teleoperation(void);
+      Teleoperation();
 
       Teleoperation*
-      clone(void) const
+      clone() const override
       {
         return new Teleoperation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Teleoperation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Teleoperation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Loiter Maneuver.
@@ -12663,63 +12663,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 453;
       }
 
-      Loiter(void);
+      Loiter();
 
       Loiter*
-      clone(void) const
+      clone() const override
       {
         return new Loiter(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Loiter::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Loiter";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 48;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Idle Maneuver.
@@ -12732,63 +12732,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 454;
       }
 
-      IdleManeuver(void);
+      IdleManeuver();
 
       IdleManeuver*
-      clone(void) const
+      clone() const override
       {
         return new IdleManeuver(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return IdleManeuver::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "IdleManeuver";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Low Level Control Maneuver.
@@ -12803,79 +12803,79 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 455;
       }
 
-      LowLevelControl(void);
+      LowLevelControl();
 
       LowLevelControl*
-      clone(void) const
+      clone() const override
       {
         return new LowLevelControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LowLevelControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LowLevelControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return control.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Rows Maneuver.
@@ -12925,63 +12925,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 456;
       }
 
-      Rows(void);
+      Rows();
 
       Rows*
-      clone(void) const
+      clone() const override
       {
         return new Rows(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Rows::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Rows";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 59;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Path Point.
@@ -12996,57 +12996,57 @@ namespace DUNE
       fp32_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 458;
       }
 
-      PathPoint(void);
+      PathPoint();
 
       PathPoint*
-      clone(void) const
+      clone() const override
       {
         return new PathPoint(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PathPoint::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PathPoint";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Follow Path Maneuver.
@@ -13073,79 +13073,79 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 457;
       }
 
-      FollowPath(void);
+      FollowPath();
 
       FollowPath*
-      clone(void) const
+      clone() const override
       {
         return new FollowPath(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FollowPath::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FollowPath";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 28;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return points.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Yo-Yo Maneuver.
@@ -13174,63 +13174,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 459;
       }
 
-      YoYo(void);
+      YoYo();
 
       YoYo*
-      clone(void) const
+      clone() const override
       {
         return new YoYo(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return YoYo::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "YoYo";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 36;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Teleoperation Done.
@@ -13239,48 +13239,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 460;
       }
 
-      TeleoperationDone(void);
+      TeleoperationDone();
 
       TeleoperationDone*
-      clone(void) const
+      clone() const override
       {
         return new TeleoperationDone(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TeleoperationDone::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TeleoperationDone";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -13310,63 +13310,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 461;
       }
 
-      StationKeeping(void);
+      StationKeeping();
 
       StationKeeping*
-      clone(void) const
+      clone() const override
       {
         return new StationKeeping(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return StationKeeping::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "StationKeeping";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 32;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Elevator Maneuver.
@@ -13406,63 +13406,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 462;
       }
 
-      Elevator(void);
+      Elevator();
 
       Elevator*
-      clone(void) const
+      clone() const override
       {
         return new Elevator(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Elevator::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Elevator";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 38;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Trajectory Point.
@@ -13479,57 +13479,57 @@ namespace DUNE
       fp32_t t;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 464;
       }
 
-      TrajectoryPoint(void);
+      TrajectoryPoint();
 
       TrajectoryPoint*
-      clone(void) const
+      clone() const override
       {
         return new TrajectoryPoint(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TrajectoryPoint::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TrajectoryPoint";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 16;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Follow Trajectory.
@@ -13556,79 +13556,79 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 463;
       }
 
-      FollowTrajectory(void);
+      FollowTrajectory();
 
       FollowTrajectory*
-      clone(void) const
+      clone() const override
       {
         return new FollowTrajectory(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FollowTrajectory::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FollowTrajectory";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 28;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return points.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Custom Maneuver.
@@ -13643,63 +13643,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 465;
       }
 
-      CustomManeuver(void);
+      CustomManeuver();
 
       CustomManeuver*
-      clone(void) const
+      clone() const override
       {
         return new CustomManeuver(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CustomManeuver::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CustomManeuver";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name) + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Vehicle Formation Participant.
@@ -13716,57 +13716,57 @@ namespace DUNE
       fp32_t off_z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 467;
       }
 
-      VehicleFormationParticipant(void);
+      VehicleFormationParticipant();
 
       VehicleFormationParticipant*
-      clone(void) const
+      clone() const override
       {
         return new VehicleFormationParticipant(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VehicleFormationParticipant::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VehicleFormationParticipant";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 14;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Vehicle Formation.
@@ -13795,79 +13795,79 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 466;
       }
 
-      VehicleFormation(void);
+      VehicleFormation();
 
       VehicleFormation*
-      clone(void) const
+      clone() const override
       {
         return new VehicleFormation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VehicleFormation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VehicleFormation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 34;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return points.getSerializationSize() + participants.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Stop Maneuver.
@@ -13876,48 +13876,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 468;
       }
 
-      StopManeuver(void);
+      StopManeuver();
 
       StopManeuver*
-      clone(void) const
+      clone() const override
       {
         return new StopManeuver(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return StopManeuver::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "StopManeuver";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -13931,57 +13931,57 @@ namespace DUNE
       uint16_t mid;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 469;
       }
 
-      RegisterManeuver(void);
+      RegisterManeuver();
 
       RegisterManeuver*
-      clone(void) const
+      clone() const override
       {
         return new RegisterManeuver(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RegisterManeuver::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RegisterManeuver";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Maneuver Control State.
@@ -14009,63 +14009,63 @@ namespace DUNE
       std::string info;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 470;
       }
 
-      ManeuverControlState(void);
+      ManeuverControlState();
 
       ManeuverControlState*
-      clone(void) const
+      clone() const override
       {
         return new ManeuverControlState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ManeuverControlState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ManeuverControlState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(info);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Follow System.
@@ -14090,57 +14090,57 @@ namespace DUNE
       uint8_t z_units;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 471;
       }
 
-      FollowSystem(void);
+      FollowSystem();
 
       FollowSystem*
-      clone(void) const
+      clone() const override
       {
         return new FollowSystem(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FollowSystem::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FollowSystem";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 22;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Communications Relay.
@@ -14165,57 +14165,57 @@ namespace DUNE
       fp32_t move_threshold;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 472;
       }
 
-      CommsRelay(void);
+      CommsRelay();
 
       CommsRelay*
-      clone(void) const
+      clone() const override
       {
         return new CommsRelay(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CommsRelay::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CommsRelay";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 31;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Polygon Vertex.
@@ -14228,57 +14228,57 @@ namespace DUNE
       fp64_t lon;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 474;
       }
 
-      PolygonVertex(void);
+      PolygonVertex();
 
       PolygonVertex*
-      clone(void) const
+      clone() const override
       {
         return new PolygonVertex(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PolygonVertex::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PolygonVertex";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 16;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Cover Area.
@@ -14303,79 +14303,79 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 473;
       }
 
-      CoverArea(void);
+      CoverArea();
 
       CoverArea*
-      clone(void) const
+      clone() const override
       {
         return new CoverArea(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CoverArea::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CoverArea";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 26;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return polygon.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Compass Calibration Maneuver.
@@ -14423,63 +14423,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 475;
       }
 
-      CompassCalibration(void);
+      CompassCalibration();
 
       CompassCalibration*
-      clone(void) const
+      clone() const override
       {
         return new CompassCalibration(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CompassCalibration::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CompassCalibration";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 43;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation Parameters.
@@ -14507,79 +14507,79 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 476;
       }
 
-      FormationParameters(void);
+      FormationParameters();
 
       FormationParameters*
-      clone(void) const
+      clone() const override
       {
         return new FormationParameters(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormationParameters::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormationParameters";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(formation_name) + participants.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Formation Plan Execution.
@@ -14616,63 +14616,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 477;
       }
 
-      FormationPlanExecution(void);
+      FormationPlanExecution();
 
       FormationPlanExecution*
-      clone(void) const
+      clone() const override
       {
         return new FormationPlanExecution(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormationPlanExecution::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormationPlanExecution";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 30;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(group_name) + IMC::getSerializationSize(formation_name) + IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(description) + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Follow Reference Maneuver.
@@ -14691,57 +14691,57 @@ namespace DUNE
       fp32_t altitude_interval;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 478;
       }
 
-      FollowReference(void);
+      FollowReference();
 
       FollowReference*
-      clone(void) const
+      clone() const override
       {
         return new FollowReference(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FollowReference::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FollowReference";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 15;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Reference To Follow.
@@ -14781,79 +14781,79 @@ namespace DUNE
       fp32_t radius;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 479;
       }
 
-      Reference(void);
+      Reference();
 
       Reference*
-      clone(void) const
+      clone() const override
       {
         return new Reference(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Reference::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Reference";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 21;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return speed.getSerializationSize() + z.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Follow Reference State.
@@ -14904,79 +14904,79 @@ namespace DUNE
       uint8_t proximity;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 480;
       }
 
-      FollowRefState(void);
+      FollowRefState();
 
       FollowRefState*
-      clone(void) const
+      clone() const override
       {
         return new FollowRefState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FollowRefState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FollowRefState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return reference.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Relative State.
@@ -15029,63 +15029,63 @@ namespace DUNE
       fp32_t virt_err_z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 482;
       }
 
-      RelativeState(void);
+      RelativeState();
 
       RelativeState*
-      clone(void) const
+      clone() const override
       {
         return new RelativeState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RelativeState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RelativeState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 84;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(s_id);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation Monitoring Data.
@@ -15132,79 +15132,79 @@ namespace DUNE
       MessageList<RelativeState> rel_state;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 481;
       }
 
-      FormationMonitor(void);
+      FormationMonitor();
 
       FormationMonitor*
-      clone(void) const
+      clone() const override
       {
         return new FormationMonitor(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormationMonitor::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormationMonitor";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 72;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return rel_state.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Dislodge Maneuver.
@@ -15232,63 +15232,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 483;
       }
 
-      Dislodge(void);
+      Dislodge();
 
       Dislodge*
-      clone(void) const
+      clone() const override
       {
         return new Dislodge(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Dislodge::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Dislodge";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 7;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation.
@@ -15374,79 +15374,79 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 484;
       }
 
-      Formation(void);
+      Formation();
 
       Formation*
-      clone(void) const
+      clone() const override
       {
         return new Formation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Formation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Formation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 45;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(formation_name) + IMC::getSerializationSize(group_name) + IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(description) + participants.getSerializationSize() + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Launch Maneuver.
@@ -15471,63 +15471,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 485;
       }
 
-      Launch(void);
+      Launch();
 
       Launch*
-      clone(void) const
+      clone() const override
       {
         return new Launch(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Launch::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Launch";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 28;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Drop Maneuver.
@@ -15552,63 +15552,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 486;
       }
 
-      Drop(void);
+      Drop();
 
       Drop*
-      clone(void) const
+      clone() const override
       {
         return new Drop(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Drop::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Drop";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 28;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Scheduled Goto.
@@ -15644,57 +15644,57 @@ namespace DUNE
       uint8_t delayed;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 487;
       }
 
-      ScheduledGoto(void);
+      ScheduledGoto();
 
       ScheduledGoto*
-      clone(void) const
+      clone() const override
       {
         return new ScheduledGoto(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ScheduledGoto::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ScheduledGoto";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 35;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Rows Coverage.
@@ -15744,63 +15744,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 488;
       }
 
-      RowsCoverage(void);
+      RowsCoverage();
 
       RowsCoverage*
-      clone(void) const
+      clone() const override
       {
         return new RowsCoverage(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RowsCoverage::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RowsCoverage";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 59;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Sample Maneuver.
@@ -15831,63 +15831,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 489;
       }
 
-      Sample(void);
+      Sample();
 
       Sample*
-      clone(void) const
+      clone() const override
       {
         return new Sample(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Sample::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Sample";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 31;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Image Tracking.
@@ -15896,48 +15896,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 490;
       }
 
-      ImageTracking(void);
+      ImageTracking();
 
       ImageTracking*
-      clone(void) const
+      clone() const override
       {
         return new ImageTracking(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ImageTracking::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ImageTracking";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -15965,63 +15965,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 491;
       }
 
-      Takeoff(void);
+      Takeoff();
 
       Takeoff*
-      clone(void) const
+      clone() const override
       {
         return new Takeoff(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Takeoff::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Takeoff";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 30;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Land Maneuver.
@@ -16052,63 +16052,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 492;
       }
 
-      Land(void);
+      Land();
 
       Land*
-      clone(void) const
+      clone() const override
       {
         return new Land(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Land::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Land";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 43;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Autonomous Section.
@@ -16152,79 +16152,79 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 493;
       }
 
-      AutonomousSection(void);
+      AutonomousSection();
 
       AutonomousSection*
-      clone(void) const
+      clone() const override
       {
         return new AutonomousSection(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AutonomousSection::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AutonomousSection";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 46;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return area_limits.getSerializationSize() + IMC::getSerializationSize(controller) + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Follow Point Maneuver.
@@ -16249,63 +16249,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 494;
       }
 
-      FollowPoint(void);
+      FollowPoint();
 
       FollowPoint*
-      clone(void) const
+      clone() const override
       {
         return new FollowPoint(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FollowPoint::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FollowPoint";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 26;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(target) + IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Alignment Maneuver.
@@ -16326,63 +16326,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 495;
       }
 
-      Alignment(void);
+      Alignment();
 
       Alignment*
-      clone(void) const
+      clone() const override
       {
         return new Alignment(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Alignment::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Alignment";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 23;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Station Keeping Extended.
@@ -16422,63 +16422,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 496;
       }
 
-      StationKeepingExtended(void);
+      StationKeepingExtended();
 
       StationKeepingExtended*
-      clone(void) const
+      clone() const override
       {
         return new StationKeepingExtended(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return StationKeepingExtended::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "StationKeepingExtended";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 37;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Magnetometer Maneuver.
@@ -16518,63 +16518,63 @@ namespace DUNE
       std::string custom;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 499;
       }
 
-      Magnetometer(void);
+      Magnetometer();
 
       Magnetometer*
-      clone(void) const
+      clone() const override
       {
         return new Magnetometer(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Magnetometer::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Magnetometer";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 41;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(custom);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Vehicle State.
@@ -16627,63 +16627,63 @@ namespace DUNE
       fp64_t last_error_time;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 500;
       }
 
-      VehicleState(void);
+      VehicleState();
 
       VehicleState*
-      clone(void) const
+      clone() const override
       {
         return new VehicleState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VehicleState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VehicleState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 27;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(error_ents) + IMC::getSerializationSize(last_error);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Vehicle Command.
@@ -16730,79 +16730,79 @@ namespace DUNE
       std::string info;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 501;
       }
 
-      VehicleCommand(void);
+      VehicleCommand();
 
       VehicleCommand*
-      clone(void) const
+      clone() const override
       {
         return new VehicleCommand(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VehicleCommand::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VehicleCommand";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return maneuver.getSerializationSize() + IMC::getSerializationSize(info);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Monitor Entity State.
@@ -16830,63 +16830,63 @@ namespace DUNE
       std::string entities;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 502;
       }
 
-      MonitorEntityState(void);
+      MonitorEntityState();
 
       MonitorEntityState*
-      clone(void) const
+      clone() const override
       {
         return new MonitorEntityState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return MonitorEntityState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "MonitorEntityState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(entities);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Entity Monitoring State.
@@ -16911,63 +16911,63 @@ namespace DUNE
       fp64_t last_error_time;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 503;
       }
 
-      EntityMonitoringState(void);
+      EntityMonitoringState();
 
       EntityMonitoringState*
-      clone(void) const
+      clone() const override
       {
         return new EntityMonitoringState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EntityMonitoringState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EntityMonitoringState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 11;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(mnames) + IMC::getSerializationSize(enames) + IMC::getSerializationSize(cnames) + IMC::getSerializationSize(last_error);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Operational Limits.
@@ -17000,57 +17000,57 @@ namespace DUNE
       fp32_t length;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 504;
       }
 
-      OperationalLimits(void);
+      OperationalLimits();
 
       OperationalLimits*
-      clone(void) const
+      clone() const override
       {
         return new OperationalLimits(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return OperationalLimits::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "OperationalLimits";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 53;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Get Operational Limits.
@@ -17059,48 +17059,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 505;
       }
 
-      GetOperationalLimits(void);
+      GetOperationalLimits();
 
       GetOperationalLimits*
-      clone(void) const
+      clone() const override
       {
         return new GetOperationalLimits(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GetOperationalLimits::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GetOperationalLimits";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -17114,57 +17114,57 @@ namespace DUNE
       uint16_t duration;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 506;
       }
 
-      Calibration(void);
+      Calibration();
 
       Calibration*
-      clone(void) const
+      clone() const override
       {
         return new Calibration(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Calibration::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Calibration";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Control Loops.
@@ -17188,57 +17188,57 @@ namespace DUNE
       uint32_t scope_ref;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 507;
       }
 
-      ControlLoops(void);
+      ControlLoops();
 
       ControlLoops*
-      clone(void) const
+      clone() const override
       {
         return new ControlLoops(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ControlLoops::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ControlLoops";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 9;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Vehicle Medium.
@@ -17264,57 +17264,57 @@ namespace DUNE
       uint8_t medium;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 508;
       }
 
-      VehicleMedium(void);
+      VehicleMedium();
 
       VehicleMedium*
-      clone(void) const
+      clone() const override
       {
         return new VehicleMedium(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VehicleMedium::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VehicleMedium";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Collision.
@@ -17340,63 +17340,63 @@ namespace DUNE
       uint8_t type;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 509;
       }
 
-      Collision(void);
+      Collision();
 
       Collision*
-      clone(void) const
+      clone() const override
       {
         return new Collision(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Collision::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Collision";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation Tracking State.
@@ -17446,57 +17446,57 @@ namespace DUNE
       uint8_t convergmon;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 510;
       }
 
-      FormState(void);
+      FormState();
 
       FormState*
-      clone(void) const
+      clone() const override
       {
         return new FormState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 15;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Autopilot Mode.
@@ -17520,63 +17520,63 @@ namespace DUNE
       std::string mode;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 511;
       }
 
-      AutopilotMode(void);
+      AutopilotMode();
 
       AutopilotMode*
-      clone(void) const
+      clone() const override
       {
         return new AutopilotMode(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return AutopilotMode::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "AutopilotMode";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(mode);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation Tracking State.
@@ -17648,57 +17648,57 @@ namespace DUNE
       uint8_t convergmon;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 512;
       }
 
-      FormationState(void);
+      FormationState();
 
       FormationState*
-      clone(void) const
+      clone() const override
       {
         return new FormationState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormationState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormationState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 17;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Report Control.
@@ -17747,63 +17747,63 @@ namespace DUNE
       std::string sys_dst;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 513;
       }
 
-      ReportControl(void);
+      ReportControl();
 
       ReportControl*
-      clone(void) const
+      clone() const override
       {
         return new ReportControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ReportControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ReportControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(sys_dst);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! State Report.
@@ -17832,57 +17832,57 @@ namespace DUNE
       uint16_t plan_checksum;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 514;
       }
 
-      StateReport(void);
+      StateReport();
 
       StateReport*
-      clone(void) const
+      clone() const override
       {
         return new StateReport(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return StateReport::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "StateReport";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 24;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Transmission Request.
@@ -17931,79 +17931,79 @@ namespace DUNE
       std::vector<char> raw_data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 515;
       }
 
-      TransmissionRequest(void);
+      TransmissionRequest();
 
       TransmissionRequest*
-      clone(void) const
+      clone() const override
       {
         return new TransmissionRequest(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TransmissionRequest::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TransmissionRequest";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(destination) + msg_data.getSerializationSize() + IMC::getSerializationSize(txt_data) + IMC::getSerializationSize(raw_data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Transmission Status.
@@ -18037,63 +18037,63 @@ namespace DUNE
       std::string info;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 516;
       }
 
-      TransmissionStatus(void);
+      TransmissionStatus();
 
       TransmissionStatus*
-      clone(void) const
+      clone() const override
       {
         return new TransmissionStatus(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TransmissionStatus::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TransmissionStatus";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(info);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SMS Transmission Request.
@@ -18110,63 +18110,63 @@ namespace DUNE
       std::string sms_text;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 517;
       }
 
-      SmsRequest(void);
+      SmsRequest();
 
       SmsRequest*
-      clone(void) const
+      clone() const override
       {
         return new SmsRequest(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SmsRequest::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SmsRequest";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 10;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(destination) + IMC::getSerializationSize(sms_text);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SMS Transmission Status.
@@ -18194,63 +18194,63 @@ namespace DUNE
       std::string info;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 518;
       }
 
-      SmsStatus(void);
+      SmsStatus();
 
       SmsStatus*
-      clone(void) const
+      clone() const override
       {
         return new SmsStatus(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SmsStatus::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SmsStatus";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(info);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! VTOL State.
@@ -18276,57 +18276,57 @@ namespace DUNE
       uint8_t state;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 519;
       }
 
-      VtolState(void);
+      VtolState();
 
       VtolState*
-      clone(void) const
+      clone() const override
       {
         return new VtolState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VtolState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VtolState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Arming State.
@@ -18346,57 +18346,57 @@ namespace DUNE
       uint8_t state;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 520;
       }
 
-      ArmingState(void);
+      ArmingState();
 
       ArmingState*
-      clone(void) const
+      clone() const override
       {
         return new ArmingState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ArmingState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ArmingState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Abort.
@@ -18405,48 +18405,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 550;
       }
 
-      Abort(void);
+      Abort();
 
       Abort*
-      clone(void) const
+      clone() const override
       {
         return new Abort(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Abort::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Abort";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -18490,63 +18490,63 @@ namespace DUNE
       uint8_t access;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 561;
       }
 
-      PlanVariable(void);
+      PlanVariable();
 
       PlanVariable*
-      clone(void) const
+      clone() const override
       {
         return new PlanVariable(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanVariable::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanVariable";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name) + IMC::getSerializationSize(value);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Plan Maneuver.
@@ -18563,79 +18563,79 @@ namespace DUNE
       MessageList<Message> end_actions;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 552;
       }
 
-      PlanManeuver(void);
+      PlanManeuver();
 
       PlanManeuver*
-      clone(void) const
+      clone() const override
       {
         return new PlanManeuver(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanManeuver::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanManeuver";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(maneuver_id) + data.getSerializationSize() + start_actions.getSerializationSize() + end_actions.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Plan Transition.
@@ -18652,79 +18652,79 @@ namespace DUNE
       MessageList<Message> actions;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 553;
       }
 
-      PlanTransition(void);
+      PlanTransition();
 
       PlanTransition*
-      clone(void) const
+      clone() const override
       {
         return new PlanTransition(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanTransition::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanTransition";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(source_man) + IMC::getSerializationSize(dest_man) + IMC::getSerializationSize(conditions) + actions.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Plan Specification.
@@ -18751,79 +18751,79 @@ namespace DUNE
       MessageList<Message> end_actions;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 551;
       }
 
-      PlanSpecification(void);
+      PlanSpecification();
 
       PlanSpecification*
-      clone(void) const
+      clone() const override
       {
         return new PlanSpecification(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanSpecification::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanSpecification";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(description) + IMC::getSerializationSize(vnamespace) + variables.getSerializationSize() + IMC::getSerializationSize(start_man_id) + maneuvers.getSerializationSize() + transitions.getSerializationSize() + start_actions.getSerializationSize() + end_actions.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Emergency Control.
@@ -18853,79 +18853,79 @@ namespace DUNE
       InlineMessage<PlanSpecification> plan;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 554;
       }
 
-      EmergencyControl(void);
+      EmergencyControl();
 
       EmergencyControl*
-      clone(void) const
+      clone() const override
       {
         return new EmergencyControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EmergencyControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EmergencyControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return plan.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Emergency Control State.
@@ -18957,63 +18957,63 @@ namespace DUNE
       uint8_t comm_level;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 555;
       }
 
-      EmergencyControlState(void);
+      EmergencyControlState();
 
       EmergencyControlState*
-      clone(void) const
+      clone() const override
       {
         return new EmergencyControlState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EmergencyControlState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EmergencyControlState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(plan_id);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Plan DB.
@@ -19068,79 +19068,79 @@ namespace DUNE
       std::string info;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 556;
       }
 
-      PlanDB(void);
+      PlanDB();
 
       PlanDB*
-      clone(void) const
+      clone() const override
       {
         return new PlanDB(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanDB::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanDB";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(plan_id) + arg.getSerializationSize() + IMC::getSerializationSize(info);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Plan DB Information.
@@ -19161,63 +19161,63 @@ namespace DUNE
       std::vector<char> md5;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 558;
       }
 
-      PlanDBInformation(void);
+      PlanDBInformation();
 
       PlanDBInformation*
-      clone(void) const
+      clone() const override
       {
         return new PlanDBInformation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanDBInformation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanDBInformation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(change_sname) + IMC::getSerializationSize(md5);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Plan DB State.
@@ -19240,79 +19240,79 @@ namespace DUNE
       MessageList<PlanDBInformation> plans_info;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 557;
       }
 
-      PlanDBState(void);
+      PlanDBState();
 
       PlanDBState*
-      clone(void) const
+      clone() const override
       {
         return new PlanDBState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanDBState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanDBState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 16;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(change_sname) + IMC::getSerializationSize(md5) + plans_info.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Plan Control.
@@ -19370,79 +19370,79 @@ namespace DUNE
       std::string info;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 559;
       }
 
-      PlanControl(void);
+      PlanControl();
 
       PlanControl*
-      clone(void) const
+      clone() const override
       {
         return new PlanControl(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanControl::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanControl";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(plan_id) + arg.getSerializationSize() + IMC::getSerializationSize(info);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Plan Control State.
@@ -19491,63 +19491,63 @@ namespace DUNE
       uint8_t last_outcome;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 560;
       }
 
-      PlanControlState(void);
+      PlanControlState();
 
       PlanControlState*
-      clone(void) const
+      clone() const override
       {
         return new PlanControlState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanControlState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanControlState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 16;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(man_id);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Plan Generation.
@@ -19584,63 +19584,63 @@ namespace DUNE
       std::string params;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 562;
       }
 
-      PlanGeneration(void);
+      PlanGeneration();
 
       PlanGeneration*
-      clone(void) const
+      clone() const override
       {
         return new PlanGeneration(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanGeneration::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanGeneration";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(params);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Leader State.
@@ -19700,63 +19700,63 @@ namespace DUNE
       fp32_t svz;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 563;
       }
 
-      LeaderState(void);
+      LeaderState();
 
       LeaderState*
-      clone(void) const
+      clone() const override
       {
         return new LeaderState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return LeaderState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "LeaderState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 81;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(group_name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Plan Statistics.
@@ -19805,63 +19805,63 @@ namespace DUNE
       std::string fuel;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 564;
       }
 
-      PlanStatistics(void);
+      PlanStatistics();
 
       PlanStatistics*
-      clone(void) const
+      clone() const override
       {
         return new PlanStatistics(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PlanStatistics::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PlanStatistics";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(plan_id) + IMC::getSerializationSize(durations) + IMC::getSerializationSize(distances) + IMC::getSerializationSize(actions) + IMC::getSerializationSize(fuel);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Reported State.
@@ -19903,63 +19903,63 @@ namespace DUNE
       uint8_t s_type;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 600;
       }
 
-      ReportedState(void);
+      ReportedState();
 
       ReportedState*
-      clone(void) const
+      clone() const override
       {
         return new ReportedState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ReportedState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ReportedState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 57;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(sid);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Remote Sensor Info.
@@ -19982,63 +19982,63 @@ namespace DUNE
       std::string data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 601;
       }
 
-      RemoteSensorInfo(void);
+      RemoteSensorInfo();
 
       RemoteSensorInfo*
-      clone(void) const
+      clone() const override
       {
         return new RemoteSensorInfo(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RemoteSensorInfo::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RemoteSensorInfo";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 24;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(id) + IMC::getSerializationSize(sensor_class) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! MapPoint.
@@ -20053,57 +20053,57 @@ namespace DUNE
       fp32_t alt;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 604;
       }
 
-      MapPoint(void);
+      MapPoint();
 
       MapPoint*
-      clone(void) const
+      clone() const override
       {
         return new MapPoint(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return MapPoint::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "MapPoint";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 20;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Map Feature.
@@ -20143,79 +20143,79 @@ namespace DUNE
       MessageList<MapPoint> feature;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 603;
       }
 
-      MapFeature(void);
+      MapFeature();
 
       MapFeature*
-      clone(void) const
+      clone() const override
       {
         return new MapFeature(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return MapFeature::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "MapFeature";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(id) + feature.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Map.
@@ -20228,79 +20228,79 @@ namespace DUNE
       MessageList<MapFeature> features;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 602;
       }
 
-      Map(void);
+      Map();
 
       Map*
-      clone(void) const
+      clone() const override
       {
         return new Map(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Map::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Map";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(id) + features.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! CCU Event.
@@ -20338,79 +20338,79 @@ namespace DUNE
       InlineMessage<Message> arg;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 606;
       }
 
-      CcuEvent(void);
+      CcuEvent();
 
       CcuEvent*
-      clone(void) const
+      clone() const override
       {
         return new CcuEvent(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CcuEvent::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CcuEvent";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(id) + arg.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Vehicle Links.
@@ -20423,79 +20423,79 @@ namespace DUNE
       MessageList<Announce> links;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 650;
       }
 
-      VehicleLinks(void);
+      VehicleLinks();
 
       VehicleLinks*
-      clone(void) const
+      clone() const override
       {
         return new VehicleLinks(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return VehicleLinks::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "VehicleLinks";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(localname) + links.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! TREX Observation.
@@ -20510,63 +20510,63 @@ namespace DUNE
       std::string attributes;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 651;
       }
 
-      TrexObservation(void);
+      TrexObservation();
 
       TrexObservation*
-      clone(void) const
+      clone() const override
       {
         return new TrexObservation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TrexObservation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TrexObservation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(timeline) + IMC::getSerializationSize(predicate) + IMC::getSerializationSize(attributes);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! TREX Command.
@@ -20598,63 +20598,63 @@ namespace DUNE
       std::string goal_xml;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 652;
       }
 
-      TrexCommand(void);
+      TrexCommand();
 
       TrexCommand*
-      clone(void) const
+      clone() const override
       {
         return new TrexCommand(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TrexCommand::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TrexCommand";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(goal_id) + IMC::getSerializationSize(goal_xml);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! TREX Attribute.
@@ -20686,63 +20686,63 @@ namespace DUNE
       std::string max;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 656;
       }
 
-      TrexAttribute(void);
+      TrexAttribute();
 
       TrexAttribute*
-      clone(void) const
+      clone() const override
       {
         return new TrexAttribute(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TrexAttribute::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TrexAttribute";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name) + IMC::getSerializationSize(min) + IMC::getSerializationSize(max);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! TREX Token.
@@ -20757,79 +20757,79 @@ namespace DUNE
       MessageList<TrexAttribute> attributes;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 657;
       }
 
-      TrexToken(void);
+      TrexToken();
 
       TrexToken*
-      clone(void) const
+      clone() const override
       {
         return new TrexToken(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TrexToken::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TrexToken";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(timeline) + IMC::getSerializationSize(predicate) + attributes.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! TREX Operation.
@@ -20859,79 +20859,79 @@ namespace DUNE
       InlineMessage<TrexToken> token;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 655;
       }
 
-      TrexOperation(void);
+      TrexOperation();
 
       TrexOperation*
-      clone(void) const
+      clone() const override
       {
         return new TrexOperation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TrexOperation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TrexOperation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(goal_id) + token.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! TREX Plan.
@@ -20944,79 +20944,79 @@ namespace DUNE
       MessageList<TrexToken> tokens;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 658;
       }
 
-      TrexPlan(void);
+      TrexPlan();
 
       TrexPlan*
-      clone(void) const
+      clone() const override
       {
         return new TrexPlan(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TrexPlan::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TrexPlan";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(reactor) + tokens.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Event.
@@ -21029,63 +21029,63 @@ namespace DUNE
       std::string data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 660;
       }
 
-      Event(void);
+      Event();
 
       Event*
-      clone(void) const
+      clone() const override
       {
         return new Event(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Event::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Event";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(topic) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Compressed Image.
@@ -21098,63 +21098,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 702;
       }
 
-      CompressedImage(void);
+      CompressedImage();
 
       CompressedImage*
-      clone(void) const
+      clone() const override
       {
         return new CompressedImage(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CompressedImage::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CompressedImage";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Image Transmission Settings.
@@ -21171,57 +21171,57 @@ namespace DUNE
       uint8_t tsize;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 703;
       }
 
-      ImageTxSettings(void);
+      ImageTxSettings();
 
       ImageTxSettings*
-      clone(void) const
+      clone() const override
       {
         return new ImageTxSettings(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ImageTxSettings::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ImageTxSettings";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Remote State.
@@ -21240,57 +21240,57 @@ namespace DUNE
       fp32_t psi;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 750;
       }
 
-      RemoteState(void);
+      RemoteState();
 
       RemoteState*
-      clone(void) const
+      clone() const override
       {
         return new RemoteState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return RemoteState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "RemoteState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 17;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Target.
@@ -21313,63 +21313,63 @@ namespace DUNE
       fp32_t sog;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 800;
       }
 
-      Target(void);
+      Target();
 
       Target*
-      clone(void) const
+      clone() const override
       {
         return new Target(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Target::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Target";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 29;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(label);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! EntityParameter.
@@ -21382,63 +21382,63 @@ namespace DUNE
       std::string value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 801;
       }
 
-      EntityParameter(void);
+      EntityParameter();
 
       EntityParameter*
-      clone(void) const
+      clone() const override
       {
         return new EntityParameter(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EntityParameter::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EntityParameter";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name) + IMC::getSerializationSize(value);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! EntityParameters.
@@ -21451,79 +21451,79 @@ namespace DUNE
       MessageList<EntityParameter> params;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 802;
       }
 
-      EntityParameters(void);
+      EntityParameters();
 
       EntityParameters*
-      clone(void) const
+      clone() const override
       {
         return new EntityParameters(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return EntityParameters::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "EntityParameters";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name) + params.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! QueryEntityParameters.
@@ -21538,63 +21538,63 @@ namespace DUNE
       std::string scope;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 803;
       }
 
-      QueryEntityParameters(void);
+      QueryEntityParameters();
 
       QueryEntityParameters*
-      clone(void) const
+      clone() const override
       {
         return new QueryEntityParameters(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return QueryEntityParameters::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "QueryEntityParameters";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name) + IMC::getSerializationSize(visibility) + IMC::getSerializationSize(scope);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SetEntityParameters.
@@ -21607,79 +21607,79 @@ namespace DUNE
       MessageList<EntityParameter> params;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 804;
       }
 
-      SetEntityParameters(void);
+      SetEntityParameters();
 
       SetEntityParameters*
-      clone(void) const
+      clone() const override
       {
         return new SetEntityParameters(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SetEntityParameters::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SetEntityParameters";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name) + params.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! SaveEntityParameters.
@@ -21690,63 +21690,63 @@ namespace DUNE
       std::string name;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 805;
       }
 
-      SaveEntityParameters(void);
+      SaveEntityParameters();
 
       SaveEntityParameters*
-      clone(void) const
+      clone() const override
       {
         return new SaveEntityParameters(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SaveEntityParameters::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SaveEntityParameters";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Create Session.
@@ -21757,57 +21757,57 @@ namespace DUNE
       uint32_t timeout;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 806;
       }
 
-      CreateSession(void);
+      CreateSession();
 
       CreateSession*
-      clone(void) const
+      clone() const override
       {
         return new CreateSession(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CreateSession::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CreateSession";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Close Session.
@@ -21818,57 +21818,57 @@ namespace DUNE
       uint32_t sessid;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 807;
       }
 
-      CloseSession(void);
+      CloseSession();
 
       CloseSession*
-      clone(void) const
+      clone() const override
       {
         return new CloseSession(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return CloseSession::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "CloseSession";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Session Subscription.
@@ -21881,63 +21881,63 @@ namespace DUNE
       std::string messages;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 808;
       }
 
-      SessionSubscription(void);
+      SessionSubscription();
 
       SessionSubscription*
-      clone(void) const
+      clone() const override
       {
         return new SessionSubscription(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SessionSubscription::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SessionSubscription";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(messages);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Session Keep-Alive.
@@ -21948,57 +21948,57 @@ namespace DUNE
       uint32_t sessid;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 809;
       }
 
-      SessionKeepAlive(void);
+      SessionKeepAlive();
 
       SessionKeepAlive*
-      clone(void) const
+      clone() const override
       {
         return new SessionKeepAlive(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SessionKeepAlive::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SessionKeepAlive";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Session Status.
@@ -22020,57 +22020,57 @@ namespace DUNE
       uint8_t status;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 810;
       }
 
-      SessionStatus(void);
+      SessionStatus();
 
       SessionStatus*
-      clone(void) const
+      clone() const override
       {
         return new SessionStatus(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SessionStatus::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SessionStatus";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Push Entity Parameters.
@@ -22081,63 +22081,63 @@ namespace DUNE
       std::string name;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 811;
       }
 
-      PushEntityParameters(void);
+      PushEntityParameters();
 
       PushEntityParameters*
-      clone(void) const
+      clone() const override
       {
         return new PushEntityParameters(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PushEntityParameters::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PushEntityParameters";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Pop Entity Parameters.
@@ -22148,63 +22148,63 @@ namespace DUNE
       std::string name;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 812;
       }
 
-      PopEntityParameters(void);
+      PopEntityParameters();
 
       PopEntityParameters*
-      clone(void) const
+      clone() const override
       {
         return new PopEntityParameters(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return PopEntityParameters::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "PopEntityParameters";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! I/O Event.
@@ -22226,63 +22226,63 @@ namespace DUNE
       std::string error;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 813;
       }
 
-      IoEvent(void);
+      IoEvent();
 
       IoEvent*
-      clone(void) const
+      clone() const override
       {
         return new IoEvent(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return IoEvent::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "IoEvent";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(error);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! UamTxFrame.
@@ -22308,63 +22308,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 814;
       }
 
-      UamTxFrame(void);
+      UamTxFrame();
 
       UamTxFrame*
-      clone(void) const
+      clone() const override
       {
         return new UamTxFrame(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UamTxFrame::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UamTxFrame";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(sys_dst) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! UamRxFrame.
@@ -22390,63 +22390,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 815;
       }
 
-      UamRxFrame(void);
+      UamRxFrame();
 
       UamRxFrame*
-      clone(void) const
+      clone() const override
       {
         return new UamRxFrame(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UamRxFrame::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UamRxFrame";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(sys_src) + IMC::getSerializationSize(sys_dst) + IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! UamTxStatus.
@@ -22482,69 +22482,69 @@ namespace DUNE
       std::string error;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 816;
       }
 
-      UamTxStatus(void);
+      UamTxStatus();
 
       UamTxStatus*
-      clone(void) const
+      clone() const override
       {
         return new UamTxStatus(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UamTxStatus::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UamTxStatus";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(error);
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! UamRxRange.
@@ -22559,69 +22559,69 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 817;
       }
 
-      UamRxRange(void);
+      UamRxRange();
 
       UamRxRange*
-      clone(void) const
+      clone() const override
       {
         return new UamRxRange(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UamRxRange::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UamRxRange";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(sys);
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation Control Parameters.
@@ -22653,57 +22653,57 @@ namespace DUNE
       fp32_t deconflgain;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 820;
       }
 
-      FormCtrlParam(void);
+      FormCtrlParam();
 
       FormCtrlParam*
-      clone(void) const
+      clone() const override
       {
         return new FormCtrlParam(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormCtrlParam::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormCtrlParam";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 21;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation Evaluation Data.
@@ -22718,57 +22718,57 @@ namespace DUNE
       fp32_t dist_min_mean;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 821;
       }
 
-      FormationEval(void);
+      FormationEval();
 
       FormationEval*
-      clone(void) const
+      clone() const override
       {
         return new FormationEval(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormationEval::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormationEval";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 12;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation Control Parameters.
@@ -22810,57 +22810,57 @@ namespace DUNE
       fp32_t accel_lim_x;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 822;
       }
 
-      FormationControlParams(void);
+      FormationControlParams();
 
       FormationControlParams*
-      clone(void) const
+      clone() const override
       {
         return new FormationControlParams(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormationControlParams::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormationControlParams";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 41;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Formation Evaluation Data.
@@ -22909,79 +22909,79 @@ namespace DUNE
       InlineMessage<FormationControlParams> controlparams;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 823;
       }
 
-      FormationEvaluation(void);
+      FormationEvaluation();
 
       FormationEvaluation*
-      clone(void) const
+      clone() const override
       {
         return new FormationEvaluation(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FormationEvaluation::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FormationEvaluation";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 22;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return controlparams.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! SOI Waypoint.
@@ -22998,57 +22998,57 @@ namespace DUNE
       uint16_t duration;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 850;
       }
 
-      SoiWaypoint(void);
+      SoiWaypoint();
 
       SoiWaypoint*
-      clone(void) const
+      clone() const override
       {
         return new SoiWaypoint(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SoiWaypoint::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SoiWaypoint";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 14;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SOI Plan.
@@ -23061,79 +23061,79 @@ namespace DUNE
       MessageList<SoiWaypoint> waypoints;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 851;
       }
 
-      SoiPlan(void);
+      SoiPlan();
 
       SoiPlan*
-      clone(void) const
+      clone() const override
       {
         return new SoiPlan(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SoiPlan::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SoiPlan";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return waypoints.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! SOI Command.
@@ -23180,79 +23180,79 @@ namespace DUNE
       std::string info;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 852;
       }
 
-      SoiCommand(void);
+      SoiCommand();
 
       SoiCommand*
-      clone(void) const
+      clone() const override
       {
         return new SoiCommand(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SoiCommand::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SoiCommand";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 2;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(settings) + plan.getSerializationSize() + IMC::getSerializationSize(info);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! SOI State.
@@ -23280,57 +23280,57 @@ namespace DUNE
       uint16_t settings_chk;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 853;
       }
 
-      SoiState(void);
+      SoiState();
 
       SoiState*
-      clone(void) const
+      clone() const override
       {
         return new SoiState(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SoiState::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SoiState";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Message Fragment.
@@ -23347,63 +23347,63 @@ namespace DUNE
       std::vector<char> data;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 877;
       }
 
-      MessagePart(void);
+      MessagePart();
 
       MessagePart*
-      clone(void) const
+      clone() const override
       {
         return new MessagePart(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return MessagePart::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "MessagePart";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 3;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(data);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Neptus Blob.
@@ -23416,63 +23416,63 @@ namespace DUNE
       std::vector<char> content;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 888;
       }
 
-      NeptusBlob(void);
+      NeptusBlob();
 
       NeptusBlob*
-      clone(void) const
+      clone() const override
       {
         return new NeptusBlob(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return NeptusBlob::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "NeptusBlob";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(content_type) + IMC::getSerializationSize(content);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Aborted.
@@ -23481,48 +23481,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 889;
       }
 
-      Aborted(void);
+      Aborted();
 
       Aborted*
-      clone(void) const
+      clone() const override
       {
         return new Aborted(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Aborted::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Aborted";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -23540,57 +23540,57 @@ namespace DUNE
       fp32_t elevation;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 890;
       }
 
-      UsblAngles(void);
+      UsblAngles();
 
       UsblAngles*
-      clone(void) const
+      clone() const override
       {
         return new UsblAngles(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UsblAngles::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UsblAngles";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 10;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! USBL Position.
@@ -23607,57 +23607,57 @@ namespace DUNE
       fp32_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 891;
       }
 
-      UsblPosition(void);
+      UsblPosition();
 
       UsblPosition*
-      clone(void) const
+      clone() const override
       {
         return new UsblPosition(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UsblPosition::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UsblPosition";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 14;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! USBL Fix.
@@ -23676,57 +23676,57 @@ namespace DUNE
       fp32_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 892;
       }
 
-      UsblFix(void);
+      UsblFix();
 
       UsblFix*
-      clone(void) const
+      clone() const override
       {
         return new UsblFix(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UsblFix::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UsblFix";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 23;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Parameters XML.
@@ -23739,63 +23739,63 @@ namespace DUNE
       std::vector<char> config;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 893;
       }
 
-      ParametersXml(void);
+      ParametersXml();
 
       ParametersXml*
-      clone(void) const
+      clone() const override
       {
         return new ParametersXml(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ParametersXml::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ParametersXml";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(locale) + IMC::getSerializationSize(config);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Get Parameters XML.
@@ -23804,48 +23804,48 @@ namespace DUNE
     public:
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 894;
       }
 
-      GetParametersXml(void);
+      GetParametersXml();
 
       GetParametersXml*
-      clone(void) const
+      clone() const override
       {
         return new GetParametersXml(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GetParametersXml::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GetParametersXml";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 0;
       }
@@ -23863,57 +23863,57 @@ namespace DUNE
       uint16_t y;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 895;
       }
 
-      SetImageCoords(void);
+      SetImageCoords();
 
       SetImageCoords*
-      clone(void) const
+      clone() const override
       {
         return new SetImageCoords(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SetImageCoords::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SetImageCoords";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Get Image Coordinates.
@@ -23928,57 +23928,57 @@ namespace DUNE
       uint16_t y;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 896;
       }
 
-      GetImageCoords(void);
+      GetImageCoords();
 
       GetImageCoords*
-      clone(void) const
+      clone() const override
       {
         return new GetImageCoords(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GetImageCoords::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GetImageCoords";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Get World Coordinates.
@@ -23999,57 +23999,57 @@ namespace DUNE
       fp32_t z;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 897;
       }
 
-      GetWorldCoordinates(void);
+      GetWorldCoordinates();
 
       GetWorldCoordinates*
-      clone(void) const
+      clone() const override
       {
         return new GetWorldCoordinates(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return GetWorldCoordinates::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "GetWorldCoordinates";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 29;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! USBL Angles Extended.
@@ -24076,63 +24076,63 @@ namespace DUNE
       fp32_t accuracy;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 898;
       }
 
-      UsblAnglesExtended(void);
+      UsblAnglesExtended();
 
       UsblAnglesExtended*
-      clone(void) const
+      clone() const override
       {
         return new UsblAnglesExtended(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UsblAnglesExtended::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UsblAnglesExtended";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 32;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(target);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! USBL Position Extended.
@@ -24163,63 +24163,63 @@ namespace DUNE
       fp32_t accuracy;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 899;
       }
 
-      UsblPositionExtended(void);
+      UsblPositionExtended();
 
       UsblPositionExtended*
-      clone(void) const
+      clone() const override
       {
         return new UsblPositionExtended(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UsblPositionExtended::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UsblPositionExtended";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 40;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(target);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! USBL Fix Extended.
@@ -24240,63 +24240,63 @@ namespace DUNE
       fp32_t accuracy;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 900;
       }
 
-      UsblFixExtended(void);
+      UsblFixExtended();
 
       UsblFixExtended*
-      clone(void) const
+      clone() const override
       {
         return new UsblFixExtended(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UsblFixExtended::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UsblFixExtended";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 25;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(target);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! USBL Modem Configuration.
@@ -24315,63 +24315,63 @@ namespace DUNE
       uint8_t z_units;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 901;
       }
 
-      UsblModem(void);
+      UsblModem();
 
       UsblModem*
-      clone(void) const
+      clone() const override
       {
         return new UsblModem(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UsblModem::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UsblModem";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 21;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(name);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! USBL Configuration.
@@ -24395,79 +24395,79 @@ namespace DUNE
       MessageList<UsblModem> modems;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 902;
       }
 
-      UsblConfig(void);
+      UsblConfig();
 
       UsblConfig*
-      clone(void) const
+      clone() const override
       {
         return new UsblConfig(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return UsblConfig::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "UsblConfig";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return modems.getSerializationSize();
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
 
     protected:
       void
-      setTimeStampNested(double value__);
+      setTimeStampNested(double value__) override;
 
       void
-      setSourceNested(uint16_t value__);
+      setSourceNested(uint16_t value__) override;
 
       void
-      setSourceEntityNested(uint8_t value__);
+      setSourceEntityNested(uint8_t value__) override;
 
       void
-      setDestinationNested(uint16_t value__);
+      setDestinationNested(uint16_t value__) override;
 
       void
-      setDestinationEntityNested(uint8_t value__);
+      setDestinationEntityNested(uint8_t value__) override;
     };
 
     //! Dissolved Organic Matter.
@@ -24489,63 +24489,63 @@ namespace DUNE
       uint8_t type;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 903;
       }
 
-      DissolvedOrganicMatter(void);
+      DissolvedOrganicMatter();
 
       DissolvedOrganicMatter*
-      clone(void) const
+      clone() const override
       {
         return new DissolvedOrganicMatter(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DissolvedOrganicMatter::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DissolvedOrganicMatter";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 5;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Optical Backscattering Coefficient.
@@ -24556,63 +24556,63 @@ namespace DUNE
       fp32_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 904;
       }
 
-      OpticalBackscatter(void);
+      OpticalBackscatter();
 
       OpticalBackscatter*
-      clone(void) const
+      clone() const override
       {
         return new OpticalBackscatter(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return OpticalBackscatter::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "OpticalBackscatter";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 4;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Tachograph.
@@ -24653,57 +24653,57 @@ namespace DUNE
       fp32_t depth_max;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 905;
       }
 
-      Tachograph(void);
+      Tachograph();
 
       Tachograph*
-      clone(void) const
+      clone() const override
       {
         return new Tachograph(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return Tachograph::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "Tachograph";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 64;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! APM Status.
@@ -24737,63 +24737,63 @@ namespace DUNE
       std::string text;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 906;
       }
 
-      ApmStatus(void);
+      ApmStatus();
 
       ApmStatus*
-      clone(void) const
+      clone() const override
       {
         return new ApmStatus(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return ApmStatus::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "ApmStatus";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(text);
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! SADC Readings.
@@ -24819,63 +24819,63 @@ namespace DUNE
       uint8_t gain;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 907;
       }
 
-      SadcReadings(void);
+      SadcReadings();
 
       SadcReadings*
-      clone(void) const
+      clone() const override
       {
         return new SadcReadings(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return SadcReadings::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "SadcReadings";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 6;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! DMS Detection.
@@ -24916,57 +24916,57 @@ namespace DUNE
       fp32_t ch16;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 908;
       }
 
-      DmsDetection(void);
+      DmsDetection();
 
       DmsDetection*
-      clone(void) const
+      clone() const override
       {
         return new DmsDetection(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return DmsDetection::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "DmsDetection";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 64;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Total Magnetic Field Intensity.
@@ -24977,63 +24977,63 @@ namespace DUNE
       fp64_t value;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 2006;
       }
 
-      TotalMagIntensity(void);
+      TotalMagIntensity();
 
       TotalMagIntensity*
-      clone(void) const
+      clone() const override
       {
         return new TotalMagIntensity(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return TotalMagIntensity::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "TotalMagIntensity";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 8;
       }
 
       fp64_t
-      getValueFP(void) const;
+      getValueFP() const override;
 
       void
-      setValueFP(fp64_t val);
+      setValueFP(fp64_t val) override;
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
   }
 }

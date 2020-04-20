@@ -97,8 +97,7 @@ namespace Control
         }
 
         //! Destructor.
-        ~DistanceTracking(void)
-        { }
+        ~DistanceTracking () = default;
 
       private:
         //! Pointer to arguments

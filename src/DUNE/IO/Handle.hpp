@@ -42,7 +42,7 @@ namespace DUNE
   namespace IO
   {
 #if defined(DUNE_OS_POSIX)
-    typedef int NativeHandle;
+    using NativeHandle = int;
 #elif defined(DUNE_OS_WINDOWS)
     typedef HANDLE NativeHandle;
 #endif
@@ -51,9 +51,7 @@ namespace DUNE
     {
     public:
       //! Destructor.
-      virtual
-      ~Handle(void)
-      { }
+      virtual ~Handle () = default;
 
       //! Write binary data to I/O handle.
       //! @param[in] data data buffer.
@@ -118,21 +116,21 @@ namespace DUNE
 
       //! Flush input and output.
       void
-      flush(void)
+      flush()
       {
         doFlush();
       }
 
       //! Flush data received but not read.
       void
-      flushInput(void)
+      flushInput()
       {
         doFlushInput();
       }
 
       //! Flush data buffered but not written.
       void
-      flushOutput(void)
+      flushOutput()
       {
         doFlushOutput();
       }
@@ -140,14 +138,14 @@ namespace DUNE
       //! Retrieve the native I/O handle.
       //! @return native I/O handle.
       NativeHandle
-      getNative(void) const
+      getNative() const
       {
         return doGetNative();
       }
 
     protected:
       virtual NativeHandle
-      doGetNative(void) const = 0;
+      doGetNative() const = 0;
 
       virtual size_t
       doWrite(const uint8_t* data, size_t data_size) = 0;
@@ -156,15 +154,15 @@ namespace DUNE
       doRead(uint8_t* data, size_t data_size) = 0;
 
       virtual void
-      doFlushInput(void)
+      doFlushInput()
       { }
 
       virtual void
-      doFlushOutput(void)
+      doFlushOutput()
       { }
 
       virtual void
-      doFlush(void)
+      doFlush()
       {
         doFlushOutput();
         doFlushInput();

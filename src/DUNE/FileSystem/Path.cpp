@@ -145,7 +145,7 @@ namespace DUNE
   namespace FileSystem
   {
     const char*
-    Path::separator(void)
+    Path::separator()
     {
 #if defined(DUNE_OS_POSIX) || defined(DUNE_OS_WINDOWS)
       return "/";
@@ -157,7 +157,7 @@ namespace DUNE
     }
 
     unsigned int
-    Path::separatorLength(void)
+    Path::separatorLength()
     {
 #if defined(DUNE_OS_POSIX) || defined(DUNE_OS_WINDOWS)
       return 1;
@@ -169,7 +169,7 @@ namespace DUNE
     }
 
     Path
-    Path::current(void)
+    Path::current()
     {
       char bfr[PATH_MAX] = {0};
 
@@ -180,7 +180,7 @@ namespace DUNE
 
       // POSIX implementation.
 #elif defined(DUNE_SYS_HAS_GETCWD)
-      if (getcwd(bfr, PATH_MAX) == 0)
+      if (getcwd(bfr, PATH_MAX) == nullptr)
         throw System::Error(errno, "retrieving current working directory");
 
       // Lacking implementation.
@@ -192,7 +192,7 @@ namespace DUNE
     }
 
     Path
-    Path::applicationFile(void)
+    Path::applicationFile()
     {
       char bfr[PATH_MAX] = {0};
 
@@ -373,7 +373,7 @@ namespace DUNE
     }
 
     Path::Type
-    Path::type(void) const
+    Path::type() const
     {
       // POSIX implementation.
 #if defined(DUNE_SYS_HAS_STRUCT_STAT)
@@ -420,7 +420,7 @@ namespace DUNE
     }
 
     bool
-    Path::isAbsolute(void) const
+    Path::isAbsolute() const
     {
       // POSIX implementation.
 #if defined(DUNE_OS_POSIX)
@@ -451,7 +451,7 @@ namespace DUNE
         if (mode == MODE_RECURSIVE)
         {
           Directory dir(m_path.c_str());
-          const char* entry = 0;
+          const char* entry = nullptr;
           while ((entry = dir.readEntry(Directory::RD_FULL_NAME)))
             Path(entry).remove(mode);
         }
@@ -548,11 +548,11 @@ namespace DUNE
       char bfr[c_copy_buffer_size];
 
       std::FILE* ifd = std::fopen(c_str(), "rb");
-      if (ifd == 0)
+      if (ifd == nullptr)
         throw System::Error(errno, "opening source file", str());
 
       std::FILE* ofd = std::fopen(destination.c_str(), "wb");
-      if (ofd == 0)
+      if (ofd == nullptr)
       {
         std::fclose(ifd);
         throw System::Error(errno, "opening destination file", destination.str());
@@ -573,7 +573,7 @@ namespace DUNE
     }
 
     void
-    Path::normalize(void)
+    Path::normalize()
     {
 #if defined(DUNE_OS_WINDOWS)
       std::replace(m_path.begin(), m_path.end(), '\\', '/');
@@ -615,7 +615,7 @@ namespace DUNE
     }
 
     int64_t
-    Path::size(void) const
+    Path::size() const
     {
       // POSIX implementation.
 #if defined(DUNE_OS_POSIX)
@@ -646,7 +646,7 @@ namespace DUNE
     }
 
     time_t
-    Path::getLastModifiedTime(void) const
+    Path::getLastModifiedTime() const
     {
       // POSIX implementation.
 #if defined(DUNE_OS_POSIX)
@@ -670,7 +670,7 @@ namespace DUNE
     }
 
     Path
-    Path::root(void) const
+    Path::root() const
     {
       if (!isAbsolute())
         return Path();
@@ -699,14 +699,14 @@ namespace DUNE
     }
 
     Path
-    Path::basename(void) const
+    Path::basename() const
     {
       std::string::size_type idx = m_path.find_last_of(separator()) + 1;
       return m_path.substr(idx, m_path.size() - idx);
     }
 
     std::string
-    Path::extension(void) const
+    Path::extension() const
     {
       std::string::size_type idx = m_path.find_last_of('.');
 
@@ -738,7 +738,7 @@ namespace DUNE
     void
     Path::contents(std::vector<Path>& dirs, int min_depth, int max_depth, int depth) const
     {
-      const char* name = 0;
+      const char* name = nullptr;
       Directory dir(m_path);
 
       while ((name = dir.readEntry(Directory::RD_FULL_NAME)))
@@ -754,13 +754,13 @@ namespace DUNE
     }
 
     void
-    Path::clear(void)
+    Path::clear()
     {
       return m_path.clear();
     }
 
     bool
-    Path::empty(void) const
+    Path::empty() const
     {
       return m_path.empty();
     }

@@ -138,10 +138,10 @@ namespace Transports
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
         m_sm_state(SM_IDLE),
-        m_radio(NULL),
+        m_radio(nullptr),
         m_powered(false),
-        m_reporter(NULL),
-        m_telemetry(NULL)
+        m_reporter(nullptr),
+        m_telemetry(nullptr)
       {
 
         // Define configuration parameters.
@@ -263,7 +263,7 @@ namespace Transports
       void
       consume(const IMC::Voltage* msg)
       {
-        if ( (m_telemetry != NULL) && (msg->getSourceEntity()  ==  m_voltage_eid))
+        if ( (m_telemetry != nullptr) && (msg->getSourceEntity()  ==  m_voltage_eid))
         {
           m_telemetry->consume(msg);
         }
@@ -273,7 +273,7 @@ namespace Transports
       void
       consume(const IMC::TelemetryMsg* msg)
       {
-        if ( (m_telemetry != NULL))
+        if ( (m_telemetry != nullptr))
         {
           m_telemetry->consume(msg);
         }
@@ -291,42 +291,42 @@ namespace Transports
       void
       consume(const IMC::ReportControl* msg)
       {
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->consume(msg);
       }
 
       void
       consume(const IMC::EstimatedState* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
       void
       consume(const IMC::PlanControlState* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
       void
       consume(const IMC::FuelLevel* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
       void
       consume(const IMC::VehicleState* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
       void
       consume(const IMC::VtolState* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
@@ -335,7 +335,7 @@ namespace Transports
       void
       consume(const IMC::IndicatedSpeed* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
       void
@@ -365,7 +365,7 @@ namespace Transports
 
       //! Update internal state with new parameter values.
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
          if (m_args.power_channel.empty())
           m_powered = true;
@@ -374,13 +374,13 @@ namespace Transports
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
       }
 
       //! Resolve entity names.
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
           try
           {
@@ -395,7 +395,7 @@ namespace Transports
       //! @return true if socket was opened, false otherwise.
 
       void
-      onRequestActivation(void)
+      onRequestActivation() override
       {
 
         int m_addr = 0;
@@ -458,7 +458,7 @@ namespace Transports
       }
 
       void
-      onRequestDeactivation(void)
+      onRequestDeactivation() override
       {
         m_sm_state = SM_DEACT_BEGIN;
         hardwareUpdateStateMachine();
@@ -466,7 +466,7 @@ namespace Transports
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         m_reporter = new Supervisors::Reporter::Client(this, Supervisors::Reporter::IS_RADIO,
@@ -491,7 +491,7 @@ namespace Transports
 
       //! Turn power channel on.
       void
-      turnPowerOn(void)
+      turnPowerOn()
       {
         debug("switching power on");
         controlPower(IMC::PowerChannelControl::PCC_OP_TURN_ON);
@@ -499,7 +499,7 @@ namespace Transports
 
       //! Turn power channel off.
       void
-      turnPowerOff(void)
+      turnPowerOff()
       {
         debug("switching power off");
         controlPower(IMC::PowerChannelControl::PCC_OP_TURN_OFF);
@@ -508,7 +508,7 @@ namespace Transports
       //! Test if power channel is on.
       //! @return true if power channel is on, false otherwise.
       bool
-      isPowered(void)
+      isPowered()
       {
         return m_powered;
       }
@@ -529,7 +529,7 @@ namespace Transports
       }
 
       void
-      hardwareUpdateStateMachine(void)
+      hardwareUpdateStateMachine()
       {
         switch (m_sm_state)
         {
@@ -657,7 +657,7 @@ namespace Transports
       }
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
          std::vector<std::string> addrs = m_ctx.config.options(m_args.addr_section);
         for (unsigned i = 0; i < addrs.size(); ++i)
@@ -679,19 +679,19 @@ namespace Transports
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_reporter);
         Memory::clear(m_telemetry);
       }
 
       void
-      radioReport(void)
+      radioReport()
       {
         //report creation
         if (m_args.report_enable)
         {
-          if (m_reporter != NULL && m_reporter->trigger() && m_telemetry!=NULL)
+          if (m_reporter != nullptr && m_reporter->trigger() && m_telemetry!=nullptr)
           {
            if(m_telemetry->isIdle())
            {
@@ -701,13 +701,13 @@ namespace Transports
         }
       }
       void
-      highSpeedReport(void)
+      highSpeedReport()
       {
 
         //report creation
         if (m_args.high_speed_report)
         {
-          if (m_reporter != NULL && m_telemetry!=NULL && m_fast_treport_counter.overflow())
+          if (m_reporter != nullptr && m_telemetry!=nullptr && m_fast_treport_counter.overflow())
           {
             m_fast_treport_counter.setTop(m_args.radio_period);
            if(m_telemetry->isIdle())
@@ -721,7 +721,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

@@ -62,7 +62,7 @@ namespace DUNE
           std::runtime_error(DTR("invalid entity label: ") + label)
         { }
 
-        InvalidLabel(void):
+        InvalidLabel():
           std::runtime_error(DTR("entity labels cannot be empty"))
         { }
       };
@@ -89,13 +89,13 @@ namespace DUNE
       };
 
       //! Constructor.
-      EntityDataBase(void):
+      EntityDataBase():
         m_next_id(0)
       {
       }
 
       //! Destructor.
-      ~EntityDataBase(void)
+      ~EntityDataBase()
       {
         Concurrency::ScopedMutex l(m_lock);
 
@@ -215,7 +215,7 @@ namespace DUNE
       //! Produce a map between the existing numeric entity ids and the entity labels.
       //! @return the produced map.
       std::map<unsigned, std::string>
-      entries(void)
+      entries()
       {
         std::map<unsigned, std::string> ent;
 

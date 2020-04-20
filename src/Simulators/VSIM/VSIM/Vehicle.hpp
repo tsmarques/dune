@@ -48,11 +48,11 @@ namespace Simulators
     {
     public:
       //! Constructor.
-      Vehicle(void);
+      Vehicle();
 
       //! Destructor
-      virtual
-      ~Vehicle(void);
+      
+      ~Vehicle() override;
 
       //! Add a force.
       //! @param[in] force new force.
@@ -66,11 +66,11 @@ namespace Simulators
 
       //! Applies vehicle commands forces.
       void
-      applyControlForces(void);
+      applyControlForces();
 
       //! Applies all vehicle's forces.
       void
-      applyForces(void);
+      applyForces() override;
 
       //! Updates actuation.
       //! @param[in] id actuation id.

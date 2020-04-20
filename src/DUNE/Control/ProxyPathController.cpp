@@ -39,7 +39,7 @@ namespace DUNE
 
     ProxyPathController::ProxyPathController(const std::string& name, Tasks::Context& ctx):
       Control::PathController(name, ctx),
-      m_state_filter(NULL)
+      m_state_filter(nullptr)
     {
       param("EstimatedState Filter", m_state_src)
       .defaultValue("self")
@@ -47,13 +47,13 @@ namespace DUNE
                    " systems allowed to pass EstimatedState messages");
     }
 
-    ProxyPathController::~ProxyPathController(void)
+    ProxyPathController::~ProxyPathController()
     {
       Memory::clear(m_state_filter);
     }
 
     void
-    ProxyPathController::onEntityResolution(void)
+    ProxyPathController::onEntityResolution()
     {
       PathController::onEntityResolution();
 

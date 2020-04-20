@@ -74,12 +74,12 @@ namespace DUNE
 {
   namespace Network
   {
-    Interface::Interface(void):
+    Interface::Interface():
       m_features(0)
     { }
 
     std::vector<Interface>
-    Interface::get(void)
+    Interface::get()
     {
       std::vector<Interface> itfs;
 
@@ -91,7 +91,7 @@ namespace DUNE
       do
       {
         // No address.
-        if (next->ifa_addr == 0)
+        if (next->ifa_addr == nullptr)
           continue;
 
         // Not IPv4.

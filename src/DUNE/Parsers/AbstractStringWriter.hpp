@@ -40,12 +40,10 @@ namespace DUNE
     class AbstractStringWriter
     {
     public:
-      virtual
-      ~AbstractStringWriter(void)
-      { }
+      virtual ~AbstractStringWriter () = default;
 
       virtual std::string
-      write(void) = 0;
+      write() = 0;
     };
   }
 }

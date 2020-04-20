@@ -181,7 +181,7 @@ namespace Maneuver
         }
 
         void
-        onPathControlState(const IMC::PathControlState* pcs)
+        onPathControlState(const IMC::PathControlState* pcs) override
         {
           m_pcs = *pcs;
           updateFollowRefStateFlags();
@@ -245,7 +245,7 @@ namespace Maneuver
 
         //! Generate and dispatch a DesiredPath based on the received reference
         void
-        processDesiredPath(void)
+        processDesiredPath()
         {
           updateCoordinates();
 
@@ -273,7 +273,7 @@ namespace Maneuver
 
         //! Update desired path's end location.
         void
-        updateEndLoc(void)
+        updateEndLoc()
         {
           // set end location according to received reference
           if (m_cur_ref.flags & IMC::Reference::FLAG_LOCATION)
@@ -286,7 +286,7 @@ namespace Maneuver
 
         //! Update desired path's speed.
         void
-        updateSpeed(void)
+        updateSpeed()
         {
           if ((m_cur_ref.flags & IMC::Reference::FLAG_SPEED) && !(m_cur_ref.speed.isNull()))
           {
@@ -302,7 +302,7 @@ namespace Maneuver
 
         //! Update desired path's radius.
         void
-        updateRadius(void)
+        updateRadius()
         {
           if (m_cur_ref.flags & IMC::Reference::FLAG_RADIUS)
             m_desired_path.lradius = m_cur_ref.radius;
@@ -320,7 +320,7 @@ namespace Maneuver
 
         //! Update desired path's end z.
         void
-        updateEndZ(void)
+        updateEndZ()
         {
           // set end_z according to received reference
           if ((m_cur_ref.flags & IMC::Reference::FLAG_Z) && !(m_cur_ref.z.isNull()))
@@ -338,7 +338,7 @@ namespace Maneuver
         //! Initialize end z.
         //! @return desired height.
         int
-        initializeEndZ(void)
+        initializeEndZ()
         {
           int currentHeight = m_estate.height - m_estate.z;
           if (currentHeight > 90 && currentHeight < 500)
@@ -355,7 +355,7 @@ namespace Maneuver
 
         //! Update desired path's coordinates.
         void
-        updateCoordinates(void)
+        updateCoordinates()
         {
           if (m_cur_ref.flags & IMC::Reference::FLAG_START_POINT)
           {
@@ -371,7 +371,7 @@ namespace Maneuver
 
         //! Dispatch desired path message.
         void
-        dispatchDesiredPath(void)
+        dispatchDesiredPath()
         {
           enableMovement(true);
           dispatch(m_desired_path);
@@ -406,7 +406,7 @@ namespace Maneuver
 
         //! Update follow reference state flags.
         void
-        updateFollowRefStateFlags(void)
+        updateFollowRefStateFlags()
         {
           if (m_pcs.flags & IMC::PathControlState::FL_LOITERING)
           {
@@ -432,7 +432,7 @@ namespace Maneuver
 
         //! Check timeout.
         void
-        checkTimeout(void)
+        checkTimeout()
         {
           double delta = 0;
           if (m_spec.timeout != 0)
@@ -449,14 +449,14 @@ namespace Maneuver
         //! Check if follow reference state has either timed out or is waiting.
         //! @return true if timed out or waiting, false otherwise.
         bool
-        offlineOrWaiting(void)
+        offlineOrWaiting()
         {
           return ((m_fref_state.state & IMC::FollowRefState::FR_TIMEOUT)
                   && (m_fref_state.state & IMC::FollowRefState::FR_WAIT));
         }
 
         void
-        onDeactivation(void)
+        onDeactivation() override
         {
           m_fref_state.state = IMC::FollowRefState::FR_WAIT;
           dispatch(m_fref_state);

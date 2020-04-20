@@ -51,9 +51,7 @@ namespace DUNE
       { }
 
       //! Destructor
-      virtual
-      ~AbstractLoiter(void)
-      { }
+      virtual ~AbstractLoiter () = default;
 
       //! On PathControlState message.
       //! @param[in] pcs pointer to PathControlState message
@@ -74,7 +72,7 @@ namespace DUNE
       //! Are we loiterting already?
       //! @return true if loitering, false otherwise.
       virtual bool
-      isLoitering(void) const = 0;
+      isLoitering() const = 0;
 
     protected:
       //! Pointer to task

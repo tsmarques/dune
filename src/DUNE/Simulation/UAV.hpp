@@ -244,7 +244,7 @@ namespace DUNE
 
       //! This method resets all the vehicle model variables.
       void
-      resetModel(void);
+      resetModel();
 
       //! This method updates the simulated state with the defined time step.
       //! @param[in] timestep - time step for the update
@@ -343,32 +343,32 @@ namespace DUNE
       //! This method gets the vehicle state.
       //! @returns pos - current position vector
       DUNE::Math::Matrix
-      getPosition(void);
+      getPosition();
 
       //! This method gets the vehicle state.
       //! @returns vel - current velocity vector
       DUNE::Math::Matrix
-      getVelocity(void);
+      getVelocity();
 
       //! This method gets the vehicle state.
       //! @returns airspeed - current aircraft total airspeed
       double
-      getAirspeed(void);
+      getAirspeed();
 
       //! This method gets the vehicle bank command.
       //! @returns bank command
       double
-      getBankCmd(void);
+      getBankCmd();
 
       //! This method gets the vehicle airspeed command.
       //! @returns airspeed command
       double
-      getAirspeedCmd(void);
+      getAirspeedCmd();
 
       //! This method gets the vehicle altitude command.
       //! @returns altitude command
       double
-      getAltCmd(void);
+      getAltCmd();
 
       //! This method sets the vehicle state.
       //! @param[in] pos - new position vector
@@ -509,10 +509,10 @@ namespace DUNE
       integratePosition(const double& timestep);
 
       void
-      calcUAV2AirData(void);
+      calcUAV2AirData();
 
       void
-      updateVelocity(void);
+      updateVelocity();
 
       void
       update3DOF(const double& timestep);

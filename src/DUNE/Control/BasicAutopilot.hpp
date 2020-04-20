@@ -55,23 +55,23 @@ namespace DUNE
                      const uint32_t controllable_loops, const uint32_t required_loops);
 
       //! Destructor.
-      virtual
-      ~BasicAutopilot(void);
+      
+      ~BasicAutopilot() override;
 
-      virtual void
-      onResourceInitialization(void);
+      void
+      onResourceInitialization() override;
 
-      virtual void
-      onResourceAcquisition(void)
+      void
+      onResourceAcquisition() override
       { }
 
-      virtual void
-      onResourceRelease(void)
+      void
+      onResourceRelease() override
       { }
 
       //! Reset to initial values
       virtual void
-      reset(void);
+      reset();
 
       //! To be used by derived class when estimated state is received
       virtual void
@@ -99,7 +99,7 @@ namespace DUNE
       consume(const IMC::DesiredVelocity* msg);
 
       void
-      onMain(void);
+      onMain() override;
 
     protected:
       //! Available vertical modes
@@ -137,19 +137,19 @@ namespace DUNE
       //! On autopilot activation
       //! Does nothing by default
       virtual void
-      onAutopilotActivation(void)
+      onAutopilotActivation()
       { }
 
       //! On autopilot deactivation
       //! Does nothing by default
       virtual void
-      onAutopilotDeactivation(void)
+      onAutopilotDeactivation()
       { }
 
       //! On deactivation leave error or active entity state
       //! Method from parent class
       void
-      onDeactivation(void)
+      onDeactivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
         reset();
@@ -159,7 +159,7 @@ namespace DUNE
       //! On activation enter active entity state
       //! Method from parent class
       void
-      onActivation(void)
+      onActivation() override
       {
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         reset();
@@ -189,7 +189,7 @@ namespace DUNE
       //! get vertical ref value
       //! @return current vertical reference value
       inline float
-      getVerticalRef(void) const
+      getVerticalRef() const
       {
         return m_vertical_ref;
       }
@@ -197,7 +197,7 @@ namespace DUNE
       //! get vertical mode
       //! @return current vertical mode
       inline VerticalMode
-      getVerticalMode(void) const
+      getVerticalMode() const
       {
         return m_vertical_mode;
       }
@@ -205,7 +205,7 @@ namespace DUNE
       //! get yaw ref value
       //! @return current yaw reference
       inline float
-      getYawRef(void) const
+      getYawRef() const
       {
         return m_yaw_ref;
       }
@@ -213,7 +213,7 @@ namespace DUNE
       //! get yaw mode
       //! @return current yaw mode
       inline YawMode
-      getYawMode(void) const
+      getYawMode() const
       {
         return m_yaw_mode;
       }
@@ -221,7 +221,7 @@ namespace DUNE
       //! get surge reference
       //! @return current surge reference
       inline float
-      getSurgeRef(void) const
+      getSurgeRef() const
       {
         return m_surge_ref;
       }
@@ -229,7 +229,7 @@ namespace DUNE
       //! get sway reference
       //! @return current sway reference
       inline float
-      getSwayRef(void) const
+      getSwayRef() const
       {
         return m_sway_ref;
       }
@@ -237,7 +237,7 @@ namespace DUNE
       //! Get depth for following the bottom
       //! @return current depth to follow bottom profile
       inline float
-      getBottomFollowDepth(void) const
+      getBottomFollowDepth() const
       {
         return m_bottom_follow_depth;
       }

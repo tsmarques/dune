@@ -48,12 +48,12 @@ namespace DUNE
     Factory::produce(const std::string& name, const std::string& label, Context& ctx)
     {
       if (!exists(name))
-        return 0;
+        return nullptr;
 
       task_creator_t creator = c_table[name].getCreatorPointer();
 
-      if (creator == NULL)
-        return 0;
+      if (creator == nullptr)
+        return nullptr;
 
       return creator(label, ctx);
     }
@@ -86,7 +86,7 @@ namespace DUNE
       try
       {
         Directory dir(folder);
-        const char* fname = 0;
+        const char* fname = nullptr;
 
         while ((fname = dir.readEntry(Directory::RD_FULL_NAME)))
         {
@@ -105,13 +105,13 @@ namespace DUNE
     }
 
     int
-    Factory::getRegisteredCount(void)
+    Factory::getRegisteredCount()
     {
       return c_table.size();
     }
 
     Factory::Table&
-    Factory::getTable(void)
+    Factory::getTable()
     {
       return c_table;
     }

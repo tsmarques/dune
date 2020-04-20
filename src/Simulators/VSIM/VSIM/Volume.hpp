@@ -43,9 +43,7 @@ namespace Simulators
       Volume(double height, double width, double length);
 
       //! Destructor.
-      virtual
-      ~Volume(void)
-      { }
+      virtual ~Volume () = default;
 
       //! Get aprox. submersed volume.
       //! @param[in] depth depth of the submersed part.

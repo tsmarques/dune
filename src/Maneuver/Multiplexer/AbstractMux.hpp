@@ -49,9 +49,7 @@ namespace Maneuver
       { }
 
       //! Destructor
-      virtual
-      ~AbstractMux(void)
-      { }
+      virtual ~AbstractMux () = default;
 
       //! Start function
       virtual void
@@ -80,7 +78,7 @@ namespace Maneuver
 
       //! On StateReport function
       virtual void
-      onStateReport(void)
+      onStateReport()
       { }
 
       //! On VehicleMedium message

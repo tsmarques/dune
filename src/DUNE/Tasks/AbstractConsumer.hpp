@@ -43,15 +43,12 @@ namespace DUNE
     class AbstractConsumer
     {
     public:
-      AbstractConsumer(void)
-      { }
+      AbstractConsumer () = default;
 
       virtual void
       consume(const IMC::Message*) = 0;
 
-      virtual
-      ~AbstractConsumer(void)
-      { }
+      virtual ~AbstractConsumer () = default;
     };
   }
 }

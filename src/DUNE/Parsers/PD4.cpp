@@ -180,7 +180,7 @@ namespace DUNE
     }
 
     void
-    PD4::clear(void)
+    PD4::clear()
     {
       m_rcsum = 0;
       m_ccsum = 0;

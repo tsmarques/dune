@@ -44,7 +44,7 @@ namespace DUNE
       class Frame
       {
       public:
-        Frame(void)
+        Frame()
         {
           m_data[0] = c_sync;
           m_data[1] = 0;
@@ -58,19 +58,19 @@ namespace DUNE
         }
 
         uint8_t
-        getId(void) const
+        getId() const
         {
           return m_data[2];
         }
 
         const uint8_t*
-        getData(void) const
+        getData() const
         {
           return m_data;
         }
 
         uint8_t
-        getSize(void) const
+        getSize() const
         {
           return c_header_size + c_footer_size + getPayloadSize();
         }
@@ -82,19 +82,19 @@ namespace DUNE
         }
 
         uint8_t
-        getPayloadSize(void) const
+        getPayloadSize() const
         {
           return m_data[1];
         }
 
         uint8_t*
-        getPayload(void)
+        getPayload()
         {
           return m_data + c_header_size;
         }
 
         const uint8_t*
-        getPayload(void) const
+        getPayload() const
         {
           return m_data + c_header_size;
         }
@@ -120,7 +120,7 @@ namespace DUNE
         }
 
         void
-        computeCRC(void)
+        computeCRC()
         {
           uint8_t size = c_header_size + getPayloadSize();
           m_data[size] = Algorithms::XORChecksum::compute(m_data, size) | c_csum_mask;

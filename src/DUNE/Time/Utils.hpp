@@ -35,7 +35,7 @@
 #include <DUNE/Time/Constants.hpp>
 
 #if defined(DUNE_SYS_HAS_TIME_H)
-#  include <time.h>
+#  include <ctime>
 #endif
 
 #if defined(DUNE_SYS_HAS_PTHREAD_H)

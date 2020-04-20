@@ -115,8 +115,8 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_listener(NULL),
+        m_uart(nullptr),
+        m_listener(nullptr),
         m_demand_res(0)
       {
         // Define configuration parameters.
@@ -134,7 +134,7 @@ namespace Actuators
       }
 
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
@@ -146,20 +146,20 @@ namespace Actuators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_listener != NULL)
+        if (m_listener != nullptr)
         {
           m_listener->stopAndJoin();
           delete m_listener;
-          m_listener = NULL;
+          m_listener = nullptr;
         }
 
         Memory::clear(m_uart);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -174,7 +174,7 @@ namespace Actuators
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         clearStats();
 
@@ -214,11 +214,11 @@ namespace Actuators
       }
 
       bool
-      readConstantParameters(void)
+      readConstantParameters()
       {
-        LUCL::ProtocolParser::sendCommand(CMD_PARAMS_CON, 0, 0, m_uart);
+        LUCL::ProtocolParser::sendCommand(CMD_PARAMS_CON, nullptr, 0, m_uart);
         LUCL::Command* cmd = waitForReply(CMD_PARAMS_CON, 1.0);
-        if (cmd == NULL)
+        if (cmd == nullptr)
           return false;
 
         m_demand_res = cmd->command.data[6];
@@ -227,11 +227,11 @@ namespace Actuators
       }
 
       bool
-      readEffectiveParameters(void)
+      readEffectiveParameters()
       {
-        LUCL::ProtocolParser::sendCommand(CMD_PARAMS_EFF, 0, 0, m_uart);
+        LUCL::ProtocolParser::sendCommand(CMD_PARAMS_EFF, nullptr, 0, m_uart);
         LUCL::Command* cmd = waitForReply(CMD_PARAMS_EFF, 1.0);
-        if (cmd == NULL)
+        if (cmd == nullptr)
           return false;
 
         uint8_t* ptr = cmd->command.data;
@@ -253,17 +253,17 @@ namespace Actuators
       }
 
       bool
-      startContinuous(void)
+      startContinuous()
       {
         LUCL::ProtocolParser::sendCommand(CMD_STATE, CONT_OUT_RATE_10HZ, m_uart);
         return waitForReplyAndDiscard(CMD_STATE, 1.0);
       }
 
       bool
-      stopContinuous(void)
+      stopContinuous()
       {
         LUCL::ProtocolParser::sendCommand(CMD_STATE, CONT_OUT_RATE_0HZ, m_uart);
-        LUCL::ProtocolParser::sendCommand(CMD_CHECK_FUSES, 0, 0, m_uart);
+        LUCL::ProtocolParser::sendCommand(CMD_CHECK_FUSES, nullptr, 0, m_uart);
         return waitForReplyAndDiscard(CMD_CHECK_FUSES, 1.0);
       }
 
@@ -276,7 +276,7 @@ namespace Actuators
           if (m_listener->waitForCommand(timer.getRemaining()))
           {
             LUCL::Command* cmd = m_listener->pop();
-            if (cmd == NULL)
+            if (cmd == nullptr)
               continue;
 
             if (cmd->command.code == command)
@@ -289,14 +289,14 @@ namespace Actuators
         ++m_stat_timeout;
         dispatchStats();
 
-        return NULL;
+        return nullptr;
       }
 
       bool
       waitForReplyAndDiscard(Commands command, double timeout)
       {
         LUCL::Command* cmd = waitForReply(command, timeout);
-        if (cmd != NULL)
+        if (cmd != nullptr)
         {
           delete cmd;
           return true;
@@ -382,7 +382,7 @@ namespace Actuators
       }
 
       void
-      dispatchStats(void)
+      dispatchStats()
       {
         IMC::DevDataText msg;
         msg.value = String::str("invalid: %u, error: %u, timeout: %u",
@@ -393,7 +393,7 @@ namespace Actuators
       }
 
       void
-      clearStats(void)
+      clearStats()
       {
         m_stat_invalid = 0;
         m_stat_error = 0;
@@ -402,16 +402,16 @@ namespace Actuators
       }
 
       void
-      onMain(void)
+      onMain() override
       {
-        LUCL::Command* cmd = NULL;
+        LUCL::Command* cmd = nullptr;
 
         while (!stopping())
         {
           consumeMessages();
           if (m_listener->waitForCommand(1.0))
           {
-            while ((cmd = m_listener->pop()) != NULL)
+            while ((cmd = m_listener->pop()) != nullptr)
             {
               handleCommand(cmd);
               delete cmd;

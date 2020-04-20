@@ -65,7 +65,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL)
+        m_uart(nullptr)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")
@@ -83,14 +83,14 @@ namespace Sensors
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         if (paramChanged(m_args.input_timeout))
           m_wdog.setTop(m_args.input_timeout);
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud);
@@ -98,7 +98,7 @@ namespace Sensors
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_uart->writeString("#");
         m_uart->writeString("M1\r\n");
@@ -106,13 +106,13 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         char bfr[16];
 

@@ -69,25 +69,22 @@ namespace DUNE
       //! @param[in] min_range minimum admissible forward range for bottom tracking
       //! @param[in] safe_pitch max admissible pitch angle to perform bottom tracking
       //! @param[in] slope_hyst slope angle hysteresis value for safeness detection
-      SlopeData(unsigned fsamples, float min_range, float safe_pitch, float slope_hyst):
-        m_frange(NULL),
-        m_min_range(min_range),
-        m_safe_pitch(safe_pitch),
-        m_fsamples(fsamples),
-        m_slope_hyst(slope_hyst),
-        m_too_steep(false),
-        m_sonar_conf(false)
-      { };
+      SlopeData (unsigned fsamples, float min_range, float safe_pitch,
+                 float slope_hyst)
+          : m_frange (nullptr), m_min_range (min_range),
+            m_safe_pitch (safe_pitch), m_fsamples (fsamples),
+            m_slope_hyst (slope_hyst), m_too_steep (false),
+            m_sonar_conf (false){};
 
       //! Deconstructor
-      ~SlopeData(void)
+      ~SlopeData()
       {
         Memory::clear(m_frange);
       };
 
       //! Reset the object
       void
-      reset(void)
+      reset()
       {
         Memory::clear(m_frange);
 
@@ -151,7 +148,7 @@ namespace DUNE
       //! Get forward range
       //! @return forward range
       inline float
-      getFRange(void)
+      getFRange()
       {
         if (!isRangeValid())
           return c_max_range;
@@ -162,7 +159,7 @@ namespace DUNE
       //! Get current slope angle
       //! @return current slope angle
       inline float
-      getSlope(void) const
+      getSlope() const
       {
         return m_curr_slope;
       }
@@ -170,9 +167,9 @@ namespace DUNE
       //! Get distance to slope top
       //! @return current distance to slope top
       inline float
-      getDistanceToSlope(void) const
+      getDistanceToSlope() const
       {
-        if (m_slope_top.dist == NULL)
+        if (m_slope_top.dist == nullptr)
           return -1.0;
 
         return m_slope_top.dist->mean();
@@ -202,7 +199,7 @@ namespace DUNE
       //! Test if slope is too steep
       //! @return true if slope is too steep
       inline bool
-      isTooSteep(void)
+      isTooSteep()
       {
         if (!isRangeValid())
           return false;
@@ -221,9 +218,9 @@ namespace DUNE
       //! of if distance to slope top is very short
       //! @return true if cleared
       inline bool
-      isTopCleared(void) const
+      isTopCleared() const
       {
-        if (m_slope_top.dist == NULL)
+        if (m_slope_top.dist == nullptr)
           return true;
 
         return (m_slope_top.trend >= c_stdist_samples) || (m_slope_top.dist->mean() < c_dist_tol);
@@ -250,7 +247,7 @@ namespace DUNE
       //! Test if slope is increasing
       //! @return true if slope is increasing
       inline bool
-      isSlopeIncreasing(void)
+      isSlopeIncreasing()
       {
         if (!isRangeValid())
           return false;
@@ -260,7 +257,7 @@ namespace DUNE
 
       //! Flag slope top as invalid
       inline void
-      renderSlopeInvalid(void)
+      renderSlopeInvalid()
       {
         m_slope_top.valid = false;
       }
@@ -269,15 +266,15 @@ namespace DUNE
       //! Test if forward range is valid
       //! @return true if range is valid and can be used
       inline bool
-      isRangeValid(void)
+      isRangeValid()
       {
-        if (m_frange != NULL)
-        {
-          if (m_delta.check() < c_timeout)
-            return true;
-          else
-            reset();
-        }
+        if (m_frange != nullptr)
+          {
+            if (m_delta.check () < c_timeout)
+              return true;
+            else
+              reset ();
+          }
 
         return false;
       }
@@ -289,7 +286,7 @@ namespace DUNE
       void
       update(float value, const IMC::EstimatedState& state, IMC::ControlParcel& cparcel)
       {
-        if (m_frange == NULL)
+        if (m_frange == nullptr)
           m_frange = new MovingAverage<float>(m_fsamples);
 
         m_delta.reset();
@@ -329,19 +326,18 @@ namespace DUNE
         //! Validity.
         bool valid;
 
-        SlopeTop(void) : dist(NULL)
-        { };
+        SlopeTop () : dist (nullptr){};
 
-        ~SlopeTop(void)
+        ~SlopeTop()
         {
           Memory::clear(dist);
         };
 
         //! Reset this structure
         void
-        reset(void)
+        reset()
         {
-          if (dist != NULL)
+          if (dist != nullptr)
             dist->clear();
 
           trend = 0;
@@ -360,11 +356,11 @@ namespace DUNE
 
           bool update_trend = true;
 
-          if (dist == NULL)
-          {
-            dist = new MovingAverage<float>(c_stdist_samples);
-            update_trend = false;
-          }
+          if (dist == nullptr)
+            {
+              dist = new MovingAverage<float> (c_stdist_samples);
+              update_trend = false;
+            }
 
           if (!valid)
           {

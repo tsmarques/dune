@@ -109,8 +109,8 @@ namespace Power
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_driver(0),
+        m_uart(nullptr),
+        m_driver(nullptr),
         m_tstamp(0)
       {
         param("Serial Port - Device", m_args.uart_dev)
@@ -190,7 +190,7 @@ namespace Power
 
       //! Reserve entity identifiers.
       void
-      onEntityReservation(void)
+      onEntityReservation() override
       {
         for (uint8_t i = 0; i < m_args.number_cell; ++i)
         {
@@ -225,7 +225,7 @@ namespace Power
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_INIT);
         try
@@ -245,7 +245,7 @@ namespace Power
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         m_driver->stopAcquisition();
         m_uart->flush();
@@ -256,9 +256,9 @@ namespace Power
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_poll.remove(*m_uart);
           Memory::clear(m_driver);
@@ -335,7 +335,7 @@ namespace Power
       }
 
       void
-      dispatchData(void)
+      dispatchData()
       {
         m_driver->resetStateNewData();
 
@@ -463,7 +463,7 @@ namespace Power
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {    
         while (!stopping())
         {

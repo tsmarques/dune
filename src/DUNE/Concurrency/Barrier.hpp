@@ -52,10 +52,10 @@ namespace DUNE
       Barrier(int count);
 
       //! Destructor.
-      ~Barrier(void);
+      ~Barrier();
 
       void
-      wait(void);
+      wait();
 
     private:
 #if defined(DUNE_SYS_HAS_PTHREAD_BARRIER)
@@ -69,11 +69,10 @@ namespace DUNE
 #endif
 
       // Non - copyable.
-      Barrier(Barrier const&);
+      Barrier (Barrier const &) = delete;
 
       // Non - assignable
-      Barrier&
-      operator=(Barrier const&);
+      Barrier &operator= (Barrier const &) = delete;
     };
   }
 }

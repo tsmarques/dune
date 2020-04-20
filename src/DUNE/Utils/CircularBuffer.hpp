@@ -88,14 +88,14 @@ namespace DUNE
 
       //! Destructor.
       inline
-      ~CircularBuffer(void)
+      ~CircularBuffer()
       {
         delete [] m_buffer;
       }
 
       //! Clear the buffer.
       inline void
-      clear(void)
+      clear()
       {
         m_head = 0;
         m_tail = 0;
@@ -170,7 +170,7 @@ namespace DUNE
       //! Get buffer capacity.
       //! @return buffer capacity.
       inline uint32_t
-      getCapacity(void) const
+      getCapacity() const
       {
         return m_capacity;
       }
@@ -178,7 +178,7 @@ namespace DUNE
       //! Get size of the buffer in use.
       //! @return buffer size in use.
       inline uint32_t
-      getSize(void) const
+      getSize() const
       {
         return m_size;
       }

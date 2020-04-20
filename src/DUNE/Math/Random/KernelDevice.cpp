@@ -43,7 +43,7 @@ namespace DUNE
       static const char* c_device_file = "/dev/urandom";
 
       bool
-      KernelDevice::available(void)
+      KernelDevice::available()
       {
 #if defined(DUNE_OS_WINDOWS)
         return false;
@@ -53,21 +53,21 @@ namespace DUNE
 #endif
       }
 
-      KernelDevice::KernelDevice(void)
+      KernelDevice::KernelDevice()
       {
         m_fp = std::fopen(c_device_file, "r");
         if (!m_fp)
           throw Generator::Error("could not open RNG kernel device");
       }
 
-      KernelDevice::~KernelDevice(void)
+      KernelDevice::~KernelDevice()
       {
         if (m_fp)
           std::fclose(m_fp);
       }
 
       int32_t
-      KernelDevice::random(void)
+      KernelDevice::random()
       {
         int32_t v;
         if (std::fread(&v, sizeof(v), 1, m_fp) != 1)
@@ -76,7 +76,7 @@ namespace DUNE
       }
 
       double
-      KernelDevice::uniform(void)
+      KernelDevice::uniform()
       {
         // 53-bit precision (same solution as in MT19937)
         uint32_t v[2];

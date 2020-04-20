@@ -63,7 +63,7 @@ namespace DUNE
       unsigned day_year;
 
       //! Default constructor, initializes object with current time.
-      BrokenDown(void)
+      BrokenDown()
       {
         convert();
       }
@@ -99,7 +99,7 @@ namespace DUNE
       void
       convert(bool utc = true)
       {
-        std::time_t now = std::time(NULL);
+        std::time_t now = std::time (nullptr);
         convert(now, utc);
       }
     };

@@ -167,7 +167,7 @@ namespace Control
 
         Task(const std::string& name, Tasks::Context& ctx):
           DUNE::Control::BasicAutopilot(name, ctx, c_controllable, c_required),
-          m_ca(NULL),
+          m_ca(nullptr),
           m_extra_pitch(false)
         {
           // Load controller gains and integral limits.
@@ -326,7 +326,7 @@ namespace Control
 
         //! Initialize resources.
         void
-        onResourceInitialization(void)
+        onResourceInitialization() override
         {
           BasicAutopilot::onResourceInitialization();
 
@@ -334,7 +334,7 @@ namespace Control
 
         //! Acquire resources.
         void
-        onResourceAcquisition(void)
+        onResourceAcquisition() override
         {
           BasicAutopilot::onResourceAcquisition();
 
@@ -344,7 +344,7 @@ namespace Control
 
         //! Release Resources.
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           Memory::clear(m_ca);
 
@@ -353,23 +353,23 @@ namespace Control
 
         //! On activation.
         void
-        onAutopilotActivation(void)
+        onAutopilotActivation() override
         {
-          if (m_ca != NULL)
+          if (m_ca != nullptr)
             m_ca->activate();
         }
 
         //! On deactivation.
         void
-        onAutopilotDeactivation(void)
+        onAutopilotDeactivation() override
         {
-          if (m_ca != NULL)
+          if (m_ca != nullptr)
             m_ca->deactivate();
         }
 
         //! Update internal parameters.
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           reset();
 
@@ -421,7 +421,7 @@ namespace Control
 
         //! Initialize PID related variables.
         void
-        initializePIDs(void)
+        initializePIDs()
         {
           float output_limits[LP_MAX_LOOPS];
           output_limits[LP_ROLL] = m_args.max_fin_rot;
@@ -445,7 +445,7 @@ namespace Control
 
         //! Member variable reset function.
         void
-        reset(void)
+        reset() override
         {
           BasicAutopilot::reset();
 
@@ -455,7 +455,7 @@ namespace Control
 
         //! Reserve entities for messages.
         void
-        onEntityReservation(void)
+        onEntityReservation() override
         {
           if (m_args.log_parcels)
           {
@@ -470,7 +470,7 @@ namespace Control
         //! @param[in] timestep time interval to use in pid controller.
         //! @param[in] msg pointer to EstimatedState message.
         void
-        onEstimatedState(const double timestep, const IMC::EstimatedState* msg)
+        onEstimatedState(const double timestep, const IMC::EstimatedState* msg) override
         {
           // Desired actuation torque vector.
           IMC::DesiredControl torques;
@@ -553,7 +553,7 @@ namespace Control
                 {
                   float bfd = getBottomFollowDepth();
 
-                  if (m_ca != NULL)
+                  if (m_ca != nullptr)
                   {
                     z_error = m_ca->update(timestep, msg->depth, bfd) - msg->depth;
 

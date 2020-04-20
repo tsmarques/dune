@@ -69,13 +69,12 @@ namespace Maneuver
         m_done(false)
       { }
 
-      ~Sample(void)
-      { }
+      ~Sample () override = default;
 
       //! Start maneuver function
       //! @param[in] maneuver Sample maneuver message
       void
-      onStart(const IMC::Sample* maneuver)
+      onStart(const IMC::Sample* maneuver) override
       {
         m_maneuver = *maneuver;
         timer.setTop(m_args->max_time);
@@ -83,7 +82,7 @@ namespace Maneuver
       }
 
       void
-      onThrottle(const IMC::Throttle* throttle)
+      onThrottle(const IMC::Throttle* throttle) override
       {
         m_task->debug("Trottle: %f\tDone?: %d\n", throttle->value, m_done);
 
@@ -122,7 +121,7 @@ namespace Maneuver
       }
 
       void
-      onVehicleMedium(const IMC::VehicleMedium* medium)
+      onVehicleMedium(const IMC::VehicleMedium* medium) override
       {
         m_medium = *medium;
       }

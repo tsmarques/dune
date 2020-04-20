@@ -113,10 +113,10 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_handle(NULL),
+        m_handle(nullptr),
         m_has_agvel(false),
         m_has_euler(false),
-        m_reader(NULL)
+        m_reader(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -160,7 +160,7 @@ namespace Sensors
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         if (m_args.pwr_channels.size() > 0)
         {
@@ -192,7 +192,7 @@ namespace Sensors
       }
 
       bool
-      openSocket(void)
+      openSocket()
       {
         char addr[128] = {0};
         unsigned port = 0;
@@ -207,20 +207,20 @@ namespace Sensors
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_reader != NULL)
+        if (m_reader != nullptr)
         {
           m_reader->stopAndJoin();
           delete m_reader;
-          m_reader = NULL;
+          m_reader = nullptr;
         }
 
         Memory::clear(m_handle);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         for (unsigned i = 0; i < c_max_init_cmds; ++i)
         {
@@ -276,7 +276,7 @@ namespace Sensors
       }
 
       void
-      clearMessages(void)
+      clearMessages()
       {
         m_euler.clear();
         m_agvel.clear();
@@ -747,7 +747,7 @@ namespace Sensors
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

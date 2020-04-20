@@ -120,7 +120,7 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_pstate(PST_HDR1),
         m_pdata_idx(0),
         m_pdata_crc(0)
@@ -145,19 +145,19 @@ namespace Actuators
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_uart = new SerialPort(m_args.uart_dev, m_args.uart_baud, SerialPort::SP_PARITY_EVEN);
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_uart);
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         setMode(MODE_RATE);
         setOSD(OSD_NONE);
@@ -321,7 +321,7 @@ namespace Actuators
       }
 
       void
-      computeChecksum(void)
+      computeChecksum()
       {
         m_cmd[IDX_CSUM] = 0;
         for (unsigned i = 0; i < IDX_CSUM; ++i)
@@ -329,7 +329,7 @@ namespace Actuators
       }
 
       void
-      sendCommand(void)
+      sendCommand()
       {
         computeChecksum();
 
@@ -391,7 +391,7 @@ namespace Actuators
       }
 
       void
-      task(void)
+      task() override
       {
         sendCommand();
 

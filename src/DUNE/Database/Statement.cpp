@@ -44,30 +44,30 @@ namespace DUNE
   namespace Database
   {
     Statement::Statement(const char* sql_stmt, Connection& conn):
-      m_handle(0),
+      m_handle(nullptr),
       m_conn(conn),
       m_idx(0)
     {
-      if (sqlite3_prepare_v2(m_conn.handle(), sql_stmt, std::strlen(sql_stmt), &m_handle, 0) != SQLITE_OK)
+      if (sqlite3_prepare_v2(m_conn.handle(), sql_stmt, std::strlen(sql_stmt), &m_handle, nullptr) != SQLITE_OK)
       {
         throwError();
       }
     }
 
-    Statement::~Statement(void)
+    Statement::~Statement()
     {
       if (m_handle)
         sqlite3_finalize(m_handle);
     }
 
     void
-    Statement::throwError(void)
+    Statement::throwError()
     {
       throw Error(m_conn.lastError());
     }
 
     void
-    Statement::reset(void)
+    Statement::reset()
     {
       m_idx = 0;
 
@@ -169,7 +169,7 @@ namespace DUNE
     }
 
     bool
-    Statement::nullColumn(void)
+    Statement::nullColumn()
     {
       return sqlite3_column_type(m_handle, m_idx) == SQLITE_NULL;
     }

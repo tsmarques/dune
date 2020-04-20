@@ -50,14 +50,14 @@ namespace DUNE
       //! not change after system start-up time.
       //! @return time in nanoseconds.
       static uint64_t
-      getNsec(void);
+      getNsec();
 
       //! Get the amount of time (in microseconds) since an unspecified
       //! point in the past. If the system permits, this point does
       //! not change after system start-up time.
       //! @return time in microseconds.
       static uint64_t
-      getUsec(void)
+      getUsec()
       {
         return getNsec() / c_nsec_per_usec;
       }
@@ -67,7 +67,7 @@ namespace DUNE
       //! not change after system start-up time.
       //! @return time in milliseconds.
       static uint64_t
-      getMsec(void)
+      getMsec()
       {
         return getNsec() / c_nsec_per_msec;
       }
@@ -77,7 +77,7 @@ namespace DUNE
       //! not change after system start-up time.
       //! @return time in seconds.
       static double
-      get(void)
+      get()
       {
         return getNsec() / c_nsec_per_sec_fp;
       }
@@ -86,13 +86,13 @@ namespace DUNE
       //! UNIX Epoch (Midnight UTC of January 1, 1970).
       //! @return time in nanoseconds.
       static uint64_t
-      getSinceEpochNsec(void);
+      getSinceEpochNsec();
 
       //! Get the amount of time (in microseconds) elapsed since the
       //! UNIX Epoch (Midnight UTC of January 1, 1970).
       //! @return time in microseconds.
       static uint64_t
-      getSinceEpochUsec(void)
+      getSinceEpochUsec()
       {
         return getSinceEpochNsec() / c_nsec_per_usec;
       }
@@ -101,7 +101,7 @@ namespace DUNE
       //! UNIX Epoch (Midnight UTC of January 1, 1970).
       //! @return time in milliseconds.
       static uint64_t
-      getSinceEpochMsec(void)
+      getSinceEpochMsec()
       {
         return getSinceEpochNsec() / c_nsec_per_msec;
       }
@@ -110,7 +110,7 @@ namespace DUNE
       //! UNIX Epoch (Midnight UTC of January 1, 1970).
       //! @return time in seconds.
       static double
-      getSinceEpoch(void)
+      getSinceEpoch()
       {
         return getSinceEpochNsec() / c_nsec_per_sec_fp;
       }

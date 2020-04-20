@@ -104,7 +104,7 @@ namespace Navigation
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::Task(name, ctx),
-          m_origin(NULL)
+          m_origin(nullptr)
         {
           param("State Covariance Initial State", m_args.covariance)
           .defaultValue("1.0")
@@ -156,7 +156,7 @@ namespace Navigation
           .description("Maximum error standard deviation to trigger a beacon correction");
 
           for (unsigned i = 0; i < DUNE::Navigation::c_max_transponders; ++i)
-            m_estimate[i] = NULL;
+            m_estimate[i] = nullptr;
 
           m_last_n = 0.0;
           m_last_e = 0.0;
@@ -176,20 +176,20 @@ namespace Navigation
         }
 
         void
-        onUpdateParameters(void)
+        onUpdateParameters() override
         {
           if (paramChanged(m_args.gps_timeout))
             m_time_without_gps.setTop(m_args.gps_timeout);
         }
 
         void
-        onResourceInitialization(void)
+        onResourceInitialization() override
         {
           setEntityState(IMC::EntityState::ESTA_BOOT, Status::CODE_WAIT_GPS_FIX);
         }
 
         void
-        onResourceRelease(void)
+        onResourceRelease() override
         {
           Memory::clear(m_origin);
 
@@ -359,7 +359,7 @@ namespace Navigation
 
         //! Setup filter.
         void
-        setup(void)
+        setup()
         {
           if (!m_ranging.getSize())
           {
@@ -409,7 +409,7 @@ namespace Navigation
 
           requestActivation();
 
-          if (m_origin != NULL)
+          if (m_origin != nullptr)
           {
             // Get vehicle fix.
             double vlat = m_origin->lat;
@@ -460,7 +460,7 @@ namespace Navigation
         }
 
         void
-        onMain(void)
+        onMain() override
         {
           while (!stopping())
           {

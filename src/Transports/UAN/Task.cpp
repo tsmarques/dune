@@ -114,11 +114,11 @@ namespace Transports
         m_fuel_level(0),
         m_fuel_conf(0),
         m_seq(0),
-        m_last_acop(NULL),
+        m_last_acop(nullptr),
         m_send_next(false),
-        m_reporter(NULL),
-        m_usbl_node(NULL),
-        m_usbl_modem(NULL)
+        m_reporter(nullptr),
+        m_usbl_node(nullptr),
+        m_usbl_modem(nullptr)
       {
         param("Enable Reports", m_args.report_enable)
         .defaultValue("false")
@@ -197,13 +197,13 @@ namespace Transports
         bind<IMC::UsblConfig>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         onResourceRelease();
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_reporter = new Supervisors::Reporter::Client(this, Supervisors::Reporter::IS_ACOUSTIC,
                                                        2.0, false);
@@ -213,7 +213,7 @@ namespace Transports
 
       //! Initialize resources.
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://acoustic/operation/")
@@ -228,7 +228,7 @@ namespace Transports
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         clearLastOp();
         Memory::clear(m_reporter);
@@ -366,13 +366,13 @@ namespace Transports
           case CODE_USBL:
             if (UsblTools::toNode(msg->data[2]))
             {
-              if (m_usbl_node != NULL)
+              if (m_usbl_node != nullptr)
                 m_usbl_node->parse(imc_addr_src, msg);
             }
             else
             {
               // handle request to USBL modem.
-              if (m_usbl_modem != NULL)
+              if (m_usbl_modem != nullptr)
               {
                 std::vector<uint8_t> data;
                 data.push_back(CODE_USBL);
@@ -393,7 +393,7 @@ namespace Transports
         if (msg->getDestinationEntity() != getEntityId())
           return;
 
-        if (m_last_acop == NULL)
+        if (m_last_acop == nullptr)
           return;
 
         IMC::AcousticOperation aop(*m_last_acop);
@@ -479,7 +479,7 @@ namespace Transports
       void
       consume(const IMC::UamRxRange* msg)
       {
-        if (m_last_acop == NULL)
+        if (m_last_acop == nullptr)
           return;
 
         if (m_last_acop->op == IMC::AcousticOperation::AOP_RANGE)
@@ -494,7 +494,7 @@ namespace Transports
       void
       consume(const IMC::UsblPositionExtended* msg)
       {
-        if (m_usbl_modem == NULL)
+        if (m_usbl_modem == nullptr)
         {
           announceUSBL();
           m_usbl_modem = new UsblTools::Modem();
@@ -526,7 +526,7 @@ namespace Transports
       void
       consume(const IMC::UsblAnglesExtended* msg)
       {
-        if (m_usbl_modem == NULL)
+        if (m_usbl_modem == nullptr)
         {
           announceUSBL();
           m_usbl_modem = new UsblTools::Modem();
@@ -546,20 +546,20 @@ namespace Transports
       void
       consume(const IMC::UsblConfig* msg)
       {
-        if (m_usbl_node != NULL)
+        if (m_usbl_node != nullptr)
           m_usbl_node->consume(msg);
       }
 
       void
       consume(const IMC::ReportControl* msg)
       {
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->consume(msg);
       }
 
       //! Announce USBL service.
       void
-      announceUSBL(void)
+      announceUSBL()
       {
         IMC::AnnounceService announce;
         announce.service = std::string("imc+any://acoustic/usbl/")
@@ -569,7 +569,7 @@ namespace Transports
 
       //! Clear last operation.
       void
-      clearLastOp(void)
+      clearLastOp()
       {
         Memory::clear(m_last_acop);
       }
@@ -660,7 +660,7 @@ namespace Transports
       void
       sendMessage(const std::string& sys, const InlineMessage<IMC::Message>& imsg)
       {
-        const IMC::Message* msg = NULL;
+        const IMC::Message* msg = nullptr;
 
         try
         {
@@ -696,7 +696,7 @@ namespace Transports
           uint16_t msg_type;
           std::memcpy(&msg_type, &msg->data[2], sizeof(uint16_t));
           Message *m = IMC::Factory::produce(msg_type);
-          if (m == NULL)
+          if (m == nullptr)
           {
             err("Invalid message type received: %d", msg_type);
             return;
@@ -791,7 +791,7 @@ namespace Transports
       }
 
       void
-      sendReport(void)
+      sendReport()
       {
         double lat = 0;
         double lon = 0;
@@ -845,9 +845,9 @@ namespace Transports
 
       //! Main loop of USBL modem.
       void
-      onUsblModem(void)
+      onUsblModem()
       {
-        if (m_usbl_modem != NULL)
+        if (m_usbl_modem != nullptr)
         {
           // Trigger target.
           std::string sys;
@@ -858,9 +858,9 @@ namespace Transports
 
       //! Main loop of USBL node.
       void
-      onUsblNode(void)
+      onUsblNode()
       {
-        if (m_usbl_node != NULL)
+        if (m_usbl_node != nullptr)
         {
           std::vector<uint8_t> data;
           data.push_back(CODE_USBL);
@@ -871,7 +871,7 @@ namespace Transports
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {
@@ -882,7 +882,7 @@ namespace Transports
 
           if (m_args.report_enable)
           {
-            if (m_reporter != NULL && m_reporter->trigger())
+            if (m_reporter != nullptr && m_reporter->trigger())
               sendReport();
           }
 

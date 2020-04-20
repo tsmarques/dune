@@ -78,7 +78,7 @@ namespace Maneuver
       //! Start maneuver function
       //! @param[in] maneuver idle maneuver message
       void
-      onStart(const IMC::Dislodge* maneuver)
+      onStart(const IMC::Dislodge* maneuver) override
       {
         m_task->setControl(IMC::CL_SPEED);
 
@@ -96,7 +96,7 @@ namespace Maneuver
       //! On EstimatedState message
       //! @param[in] msg EstimatedState message
       void
-      onEstimatedState(const IMC::EstimatedState* msg)
+      onEstimatedState(const IMC::EstimatedState* msg) override
       {
         m_estate = *msg;
 
@@ -161,8 +161,7 @@ namespace Maneuver
         }
       }
 
-      ~Dislodge(void)
-      { }
+      ~Dislodge () override = default;
 
     private:
       enum State
@@ -211,7 +210,7 @@ namespace Maneuver
       //! Burst direction
       //! @return true for front, false for back
       bool
-      burstDirection(void)
+      burstDirection()
       {
         switch (m_dir)
         {
@@ -247,7 +246,7 @@ namespace Maneuver
 
       //! Stop bursting
       void
-      stopBurst(void)
+      stopBurst()
       {
         IMC::DesiredSpeed ds;
         ds.value = 0.0;
@@ -257,7 +256,7 @@ namespace Maneuver
 
       //! Failed attempt of dislodging
       void
-      failedAttempt(void)
+      failedAttempt()
       {
         ++m_attempts;
 

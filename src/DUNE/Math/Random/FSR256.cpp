@@ -36,7 +36,7 @@ namespace DUNE
   {
     namespace Random
     {
-      FSR256::FSR256(void)
+      FSR256::FSR256()
       {
         seed(Generator::arbitrarySeed());
       }
@@ -46,11 +46,10 @@ namespace DUNE
         seed(value);
       }
 
-      FSR256::~FSR256(void)
-      { }
+      FSR256::~FSR256 () = default;
 
       int32_t
-      FSR256::random(void)
+      FSR256::random()
       {
         int32_t* table = m_state.table;
         int* i = &m_state.i;

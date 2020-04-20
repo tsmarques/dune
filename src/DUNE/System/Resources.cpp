@@ -91,7 +91,7 @@ namespace DUNE
     static const unsigned c_proc_self_stat_skips = 13;
 #endif
 
-    Resources::Resources(void):
+    Resources::Resources():
       m_last_proc_time(0),
       m_last_global_time(0)
     {
@@ -101,7 +101,7 @@ namespace DUNE
     }
 
     int
-    Resources::getProcessorUsage(void)
+    Resources::getProcessorUsage()
     {
       uint64_t global_time = 0;
       uint64_t global_delta = 0;
@@ -181,7 +181,7 @@ namespace DUNE
     }
 
     void
-    Resources::lockMemory(void)
+    Resources::lockMemory()
     {
 #if defined(DUNE_SYS_HAS_MLOCKALL)
       mlockall(MCL_CURRENT | MCL_FUTURE);
@@ -189,7 +189,7 @@ namespace DUNE
     }
 
     void
-    Resources::unlockMemory(void)
+    Resources::unlockMemory()
     {
 #if defined(DUNE_SYS_HAS_MUNLOCKALL)
       munlockall();

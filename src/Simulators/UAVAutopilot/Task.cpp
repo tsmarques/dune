@@ -63,7 +63,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Periodic(name, ctx),
-        m_state_flt(NULL),
+        m_state_flt(nullptr),
         m_alias_id(UINT_MAX)
       {
         // Definition of configuration parameters.
@@ -79,13 +79,13 @@ namespace Simulators
         bind<IMC::SimulatedState>(this);
       }
 
-      ~Task(void)
+      ~Task() override
       {
         Task::onResourceRelease();
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         //! Set source system alias
         if (!m_args.src_alias.empty())
@@ -106,13 +106,13 @@ namespace Simulators
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear( m_state_flt );
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         //! Process the systems and entities allowed to pass the SimulatedState
         m_state_flt = new Tasks::SourceFilter(*this, m_args.state_src, "SimulatedState");
@@ -157,7 +157,7 @@ namespace Simulators
       }
 
       void
-      task(void)
+      task() override
       {
         //! Check if system is active
         if (!isActive())

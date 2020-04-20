@@ -88,7 +88,7 @@ namespace Transports
       }
 
       void
-      onResourceInitialization(void)
+      onResourceInitialization() override
       {
         // Initialize socket.
         m_sock.setMulticastTTL(1);
@@ -123,7 +123,7 @@ namespace Transports
         IMC::Message* msg = IMC::Packet::deserialize(m_bfr, rv);
 
         // Validate message.
-        if (msg == 0)
+        if (msg == nullptr)
         {
           war(DTR("discarding spurious message"));
           delete msg;
@@ -213,7 +213,7 @@ namespace Transports
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         while (!stopping())
         {

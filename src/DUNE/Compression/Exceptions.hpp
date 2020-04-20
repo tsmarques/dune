@@ -60,7 +60,7 @@ namespace DUNE
     class OutOfMemory: public Error
     {
     public:
-      OutOfMemory(void):
+      OutOfMemory():
         Error("not enough memory to uncompress/decompress data")
       { }
     };
@@ -68,7 +68,7 @@ namespace DUNE
     class BufferTooShort: public Error
     {
     public:
-      BufferTooShort(void):
+      BufferTooShort():
         Error(Utils::String::str("buffer is too short"))
       { }
 
@@ -80,7 +80,7 @@ namespace DUNE
     class CorruptedData: public Error
     {
     public:
-      CorruptedData(void):
+      CorruptedData():
         Error("corrupted data")
       { }
     };
@@ -89,7 +89,7 @@ namespace DUNE
     class UnexpectedEOD: public Error
     {
     public:
-      UnexpectedEOD(void):
+      UnexpectedEOD():
         Error("unexpected end-of-data")
       { }
     };

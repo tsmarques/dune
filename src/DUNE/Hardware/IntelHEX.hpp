@@ -62,7 +62,7 @@ namespace DUNE
       //! Retrieve page table.
       //! @return page table.
       const PageTable&
-      getTable(void) const
+      getTable() const
       {
         return m_page_table;
       }
@@ -77,7 +77,7 @@ namespace DUNE
 
       //! Load Intel HEX file.
       void
-      load(void);
+      load();
     };
   }
 }

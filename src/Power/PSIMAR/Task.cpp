@@ -65,8 +65,8 @@ namespace Power
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_psu_escc(NULL),
-        m_psu_ctl(NULL)
+        m_psu_escc(nullptr),
+        m_psu_ctl(nullptr)
       {
         param("Power Channel", m_args.pwr_chn)
         .defaultValue("Private (IMU)")
@@ -83,13 +83,13 @@ namespace Power
       }
 
       void
-      onUpdateParameters(void)
+      onUpdateParameters() override
       {
         m_power_state.name = m_args.pwr_chn;
       }
 
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         try
         {
@@ -115,13 +115,13 @@ namespace Power
       }
 
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
-        if (m_psu_ctl != NULL)
+        if (m_psu_ctl != nullptr)
         {
           setPower(false);
           delete m_psu_ctl;
-          m_psu_ctl = NULL;
+          m_psu_ctl = nullptr;
         }
 
         Memory::clear(m_psu_escc);
@@ -166,7 +166,7 @@ namespace Power
       //! Dispatch raw board state
       //! @return true if successfully dispatched state
       bool
-      dispatchState(void)
+      dispatchState()
       {
         UCTK::Frame frame;
         frame.setId(c_pkt_state);
@@ -194,7 +194,7 @@ namespace Power
       }
 
       void
-      onMain(void)
+      onMain() override
       {
         Counter<double> timer(1.0);
 

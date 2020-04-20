@@ -65,7 +65,7 @@ main(int32_t argc, char** argv)
   uint8_t alternation = 100;
   uint8_t flags = !IMC::Rows::FLG_SQUARE_CURVE  | IMC::Rows::FLG_CURVE_RIGHT;
   Maneuvers::RowsStages* rows_stages = new Maneuvers::RowsStages(lat, lon, bearing, cross_angle,
-      width, length, hstep, coff, alternation, flags, NULL);
+      width, length, hstep, coff, alternation, flags, nullptr);
 
   int c = 0;
   bool ret = rows_stages->getFirstPoint(&latP, &lonP);
