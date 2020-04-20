@@ -184,8 +184,8 @@ namespace Vision
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_gvcp(NULL),
-        m_gvsp(NULL),
+        m_gvcp(nullptr),
+        m_gvsp(nullptr),
         m_kalive(0.5),
         m_log_dir(ctx.dir_log),
         m_debayer(BayerDecoder::TILE_GBRG),
@@ -334,11 +334,11 @@ namespace Vision
       {
         Memory::clear(m_gvcp);
 
-        if (m_gvsp != NULL)
+        if (m_gvsp != nullptr)
         {
           m_gvsp->stopAndJoin();
           delete m_gvsp;
-          m_gvsp = NULL;
+          m_gvsp = nullptr;
         }
 
         while (!m_frames.empty())
@@ -441,7 +441,7 @@ namespace Vision
       void
       onMain() override
       {
-        Frame* frame = NULL;
+        Frame* frame = nullptr;
 
         while (!stopping())
         {
@@ -462,7 +462,7 @@ namespace Vision
           consumeMessages();
 
           frame = m_gvsp->dequeueDirty();
-          if (frame == NULL)
+          if (frame == nullptr)
           {
             m_gvsp->waitDirty(0.5);
             continue;

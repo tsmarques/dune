@@ -50,7 +50,7 @@ namespace Maneuver
       //! @param[in] task pointer to Maneuver task
       Rows(Maneuvers::Maneuver* task):
         MuxedManeuver<IMC::Rows, void>(task),
-        m_parser(NULL)
+        m_parser(nullptr)
       { }
 
       //! Destructor

@@ -104,7 +104,7 @@ namespace Navigation
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::Task(name, ctx),
-          m_origin(NULL)
+          m_origin(nullptr)
         {
           param("State Covariance Initial State", m_args.covariance)
           .defaultValue("1.0")
@@ -156,7 +156,7 @@ namespace Navigation
           .description("Maximum error standard deviation to trigger a beacon correction");
 
           for (unsigned i = 0; i < DUNE::Navigation::c_max_transponders; ++i)
-            m_estimate[i] = NULL;
+            m_estimate[i] = nullptr;
 
           m_last_n = 0.0;
           m_last_e = 0.0;
@@ -409,7 +409,7 @@ namespace Navigation
 
           requestActivation();
 
-          if (m_origin != NULL)
+          if (m_origin != nullptr)
           {
             // Get vehicle fix.
             double vlat = m_origin->lat;

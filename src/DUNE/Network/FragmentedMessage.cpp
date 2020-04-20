@@ -36,7 +36,7 @@ namespace DUNE
   {
     FragmentedMessage::FragmentedMessage()
     {
-      m_parent = NULL;
+      m_parent = nullptr;
       m_src = m_uid = m_creation_time = m_num_frags = -1;
     }
 
@@ -62,12 +62,12 @@ namespace DUNE
       if (part->uid != m_uid || part->getSource() != m_src ||
           part->frag_number >= m_num_frags)
       {
-        if (m_parent == NULL)
+        if (m_parent == nullptr)
           DUNE_ERR("FragmentedMessage", "Invalid fragment received and it won't be processed.");
         else
           m_parent->err(DTR("Invalid fragment received and it won't be processed."));
 
-        return NULL;
+        return nullptr;
       }
 
       m_fragments[part->frag_number] = *part;
@@ -90,7 +90,7 @@ namespace DUNE
       }
       else
       {
-        return 0;
+        return nullptr;
       }
     }
 

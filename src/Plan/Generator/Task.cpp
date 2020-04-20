@@ -82,8 +82,8 @@ namespace Plan
       //! Class constructor
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_estate(NULL),
-        m_last_lbl_config(NULL)
+        m_estate(nullptr),
+        m_last_lbl_config(nullptr)
       {
         param("Dive depth", m_args.dive_depth)
         .description("Depth to dive in response to 'dive' command")
@@ -140,14 +140,14 @@ namespace Plan
         if (msg->getSource() != getSystemId())
           return;
 
-        if (m_estate == NULL)
+        if (m_estate == nullptr)
         {
           setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         }
         else
         {
           delete m_estate;
-          m_estate = NULL;
+          m_estate = nullptr;
         }
 
         m_estate = new IMC::EstimatedState(*msg);
@@ -163,7 +163,7 @@ namespace Plan
         if (m_last_lbl_config)
         {
           delete m_last_lbl_config;
-          m_last_lbl_config = NULL;
+          m_last_lbl_config = nullptr;
         }
         m_last_lbl_config = new IMC::LblConfig(*msg);
       }
@@ -301,7 +301,7 @@ namespace Plan
       bool
       getCurrentPosition(double* lat, double* lon, double* depth)
       {
-        if (m_estate == NULL)
+        if (m_estate == nullptr)
           return false;
 
         *lat = m_estate->lat;
@@ -368,10 +368,10 @@ namespace Plan
       void
       updatePositionFromBeacon(const std::string& match, const IMC::LblBeacon* msg, double* lat, double* lon)
       {
-        if (msg == NULL)
+        if (msg == nullptr)
           return;
 
-        if (msg != NULL && msg->beacon == match)
+        if (msg != nullptr && msg->beacon == match)
         {
           *lat = msg->lat;
           *lon = msg->lon;
@@ -408,7 +408,7 @@ namespace Plan
 
           // Searches for a beacon whose name matches given loc
           // in which case updates lat/lon with the beacon's location
-          if (loc != "" && m_last_lbl_config != NULL)
+          if (loc != "" && m_last_lbl_config != nullptr)
           {
             IMC::MessageList<IMC::LblBeacon>::const_iterator itr = m_last_lbl_config->beacons.begin();
             for (unsigned i = 0; itr != m_last_lbl_config->beacons.end(); ++itr, ++i)
@@ -433,7 +433,7 @@ namespace Plan
           }
 
           // if 'loc' is home, updates lat/lon with home location
-          if (loc == "home" && m_estate != NULL)
+          if (loc == "home" && m_estate != nullptr)
           {
             lat = m_estate->lat;
             lon = m_estate->lon;

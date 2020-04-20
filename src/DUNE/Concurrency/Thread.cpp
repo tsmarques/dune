@@ -95,7 +95,7 @@ dune_concurrency_thread_entry_point(void* data)
 
   td->setStateImpl(Thread::StateDead);
 
-  return NULL;
+  return nullptr;
 }
 
 namespace DUNE
@@ -161,7 +161,7 @@ namespace DUNE
     Thread::joinImpl()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD)
-      int rv = pthread_join(m_handle, 0);
+      int rv = pthread_join(m_handle, nullptr);
       if (rv != 0)
         throw ThreadError("failed to join thread", rv);
 #endif

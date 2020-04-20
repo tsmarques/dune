@@ -244,7 +244,7 @@ namespace Control
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::Task(name, ctx),
-          m_TCP_sock(NULL),
+          m_TCP_sock(nullptr),
           m_sysid(1),
           m_lat(0.0),
           m_lon(0.0),
@@ -1511,7 +1511,7 @@ namespace Control
         bool
         poll(double timeout)
         {
-          if (m_TCP_sock != NULL)
+          if (m_TCP_sock != nullptr)
             return Poll::poll(*m_TCP_sock, timeout);
 
           return false;

@@ -198,10 +198,10 @@ namespace DUNE
       if (rv <= 0)
         throw NetworkError(DTR("error receiving data"), DUNE_SOCKET_ERROR);
 
-      if (addr != NULL)
+      if (addr != nullptr)
         *addr = (::sockaddr*)&host;
 
-      if (port != NULL)
+      if (port != nullptr)
         *port = Utils::ByteCopy::fromBE(host.sin_port);
 
       return rv;

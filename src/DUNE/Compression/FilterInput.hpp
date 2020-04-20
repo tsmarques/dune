@@ -45,11 +45,11 @@ namespace DUNE
     {
     public:
       FilterInput (Methods method)
-          : std::istream (0), m_method (method), m_buffer (nullptr)
+          : std::istream (nullptr), m_method (method), m_buffer (nullptr)
       { }
 
       FilterInput (std::istream &stream, Methods method)
-          : std::istream (0), m_method (method), m_buffer (nullptr)
+          : std::istream (nullptr), m_method (method), m_buffer (nullptr)
       {
         setStream(stream, m_method);
       }

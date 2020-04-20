@@ -105,7 +105,7 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_estate(0),
+        m_estate(nullptr),
         m_last_announce(-1)
       {
         // Define configuration parameters.

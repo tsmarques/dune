@@ -84,7 +84,7 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_demand(0),
         m_err_count(0),
         m_err_wdog(5)

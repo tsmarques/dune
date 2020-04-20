@@ -170,14 +170,14 @@ namespace Navigation
             }
           }
 
-          return NULL;
+          return nullptr;
         }
 
         void
         pingNextBeacon()
         {
           const IMC::LblBeacon* beacon = getNextBeacon();
-          if (beacon == NULL)
+          if (beacon == nullptr)
             return;
 
           ping(beacon->beacon);

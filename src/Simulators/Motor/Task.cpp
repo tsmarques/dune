@@ -72,7 +72,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_avg_motor(NULL)
+        m_avg_motor(nullptr)
       {
         // Retrieve configuration values.
         param("Moving Average Samples", m_args.avg_samples)

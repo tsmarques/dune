@@ -114,8 +114,8 @@ namespace Control
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::Periodic(name, ctx),
           m_aloops(0),
-          m_counter_solo(NULL),
-          m_counter_step(NULL),
+          m_counter_solo(nullptr),
+          m_counter_step(nullptr),
           m_braking(false),
           m_scope_ref(0)
         {

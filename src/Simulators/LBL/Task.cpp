@@ -98,9 +98,9 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_gps(NULL),
-        m_lbl_cfg(NULL),
-        m_prng(NULL)
+        m_gps(nullptr),
+        m_lbl_cfg(nullptr),
+        m_prng(nullptr)
       {
         // Define configuration parameters.
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -177,7 +177,7 @@ namespace Simulators
       bool
       checkLbl() const
       {
-        return m_lbl_cfg != NULL;
+        return m_lbl_cfg != nullptr;
       }
 
       //! Check GPS is defined.
@@ -185,7 +185,7 @@ namespace Simulators
       bool
       checkGps() const
       {
-        return m_gps != NULL;
+        return m_gps != nullptr;
       }
 
       //! Check if we are ready to simulate LBL.
@@ -296,7 +296,7 @@ namespace Simulators
         if (!checkLbl())
           return;
 
-        IMC::LblBeacon* beacon = NULL;
+        IMC::LblBeacon* beacon = nullptr;
 
         // Find beacon id.
         unsigned id = 0;

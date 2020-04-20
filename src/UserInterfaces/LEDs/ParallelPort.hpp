@@ -47,7 +47,7 @@ namespace UserInterfaces
     public:
       ParallelPort(unsigned addr, unsigned nr):
         m_nr(nr),
-        m_port(0)
+        m_port(nullptr)
       {
         m_port = new IOPort(addr, 1);
       }

@@ -83,7 +83,7 @@ namespace Transports
               m_incoming[hash].getFragmentsMissing());
 
         IMC::Message * res = m_incoming[hash].setFragment(msg);
-        if (res != NULL)
+        if (res != nullptr)
         {
           dispatch(res);
           m_incoming.erase(hash);

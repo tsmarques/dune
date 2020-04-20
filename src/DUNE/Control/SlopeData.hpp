@@ -286,7 +286,7 @@ namespace DUNE
       void
       update(float value, const IMC::EstimatedState& state, IMC::ControlParcel& cparcel)
       {
-        if (m_frange == NULL)
+        if (m_frange == nullptr)
           m_frange = new MovingAverage<float>(m_fsamples);
 
         m_delta.reset();
@@ -337,7 +337,7 @@ namespace DUNE
         void
         reset()
         {
-          if (dist != NULL)
+          if (dist != nullptr)
             dist->clear();
 
           trend = 0;

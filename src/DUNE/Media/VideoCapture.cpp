@@ -295,7 +295,7 @@ namespace DUNE
 #if defined(DUNE_SYS_HAS_LIBV4L2_H)
       return (uint8_t*)m_bfrs[m_bfr->index].start;
 #else
-      return 0;
+      return nullptr;
 #endif
     }
 

@@ -66,7 +66,7 @@ namespace DUNE
       ts.tv_nsec = nsec - (ts.tv_sec * c_nsec_per_sec);
 
 #  if defined(DUNE_SYS_HAS_CLOCK_NANOSLEEP)
-      clock_nanosleep(CLOCK_MONOTONIC, 0, &ts, 0);
+      clock_nanosleep(CLOCK_MONOTONIC, 0, &ts, nullptr);
 #  else
       nanosleep(&ts, 0);
 #  endif

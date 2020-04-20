@@ -338,11 +338,11 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_result(RS_NONE),
         m_sound_speed_eid(-1),
-        m_reporter(NULL),
-        m_salinity(NULL)
+        m_reporter(nullptr),
+        m_salinity(nullptr)
       {
         // Define configuration parameters.
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -1074,7 +1074,7 @@ namespace Sensors
         int8_t prog = (int8_t)m_progress;
 
         // in case the vehicle doesn't have altitude
-        if (i_alt == -10 && m_salinity != NULL)
+        if (i_alt == -10 && m_salinity != nullptr)
           i_alt = -(m_salinity->value * 10);
 
         for (uint8_t i = 0; i < std::min(2, (int)m_lbl.size()); i++)
@@ -1119,7 +1119,7 @@ namespace Sensors
         tx_status.value = IMC::UamTxStatus::UTS_DONE;
         dispatch(tx_status);
 
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->ack();
       }
 
@@ -1247,7 +1247,7 @@ namespace Sensors
       void
       consume(const IMC::ReportControl* msg)
       {
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->consume(msg);
       }
 
@@ -1286,7 +1286,7 @@ namespace Sensors
             else
               debug("failed to report range to %s", m_lbl(i).name.c_str());
 
-            if (m_reporter != NULL)
+            if (m_reporter != nullptr)
               m_reporter->ack();
           }
         }
@@ -1354,7 +1354,7 @@ namespace Sensors
           // Report.
           if (m_args.report != "None" && !m_stop_comms)
           {
-            if (m_reporter != NULL && m_reporter->trigger())
+            if (m_reporter != nullptr && m_reporter->trigger())
             {
               if (m_args.report == "Full")
                 fullAcousticReport();

@@ -75,12 +75,12 @@ namespace Maneuver
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Maneuvers::Maneuver(name, ctx),
-        m_stages_parser(NULL),
+        m_stages_parser(nullptr),
         m_alt_min(0),
         m_cov_pred(0),
         m_cov_actual_min(0),
         m_cur_hstep(0),
-        m_alt_avrg(NULL),
+        m_alt_avrg(nullptr),
         m_stage(0)
       {
         param("Altitude Moving Average Samples", m_args.altitude_average_size)
@@ -175,7 +175,7 @@ namespace Maneuver
         if (msg->getSource() != getSystemId())
           return;
 
-        if (m_alt_avrg == NULL)
+        if (m_alt_avrg == nullptr)
           return;
 
         if (msg->alt > m_args.min_altitude)
@@ -197,7 +197,7 @@ namespace Maneuver
       void
       onPathControlState(const IMC::PathControlState* pcs) override
       {
-        if (m_alt_avrg == NULL)
+        if (m_alt_avrg == nullptr)
           return;
 
         std::stringstream ss;

@@ -89,7 +89,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_prng(NULL),
+        m_prng(nullptr),
         m_fault_timer(-1.0),
         m_faulted(false),
         m_servo_in_fault(-1)

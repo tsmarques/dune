@@ -63,12 +63,12 @@ namespace DUNE
       m_clear = false;
 
       bz_stream* stream = &m_private->stream;
-      stream->next_in = 0;
+      stream->next_in = nullptr;
       stream->avail_in = 0;
-      stream->next_out = 0;
+      stream->next_out = nullptr;
       stream->avail_out = 0;
-      stream->bzalloc = 0;
-      stream->bzfree = 0;
+      stream->bzalloc = nullptr;
+      stream->bzfree = nullptr;
 
       int err = BZ2_bzDecompressInit(stream, 0, 0);
       if (err != BZ_OK)

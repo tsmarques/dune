@@ -84,8 +84,8 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Periodic(name, ctx),
-        m_vehicle(NULL),
-        m_world(NULL),
+        m_vehicle(nullptr),
+        m_world(nullptr),
         m_start_time(Clock::get()),
         m_last_time(m_start_time)
       {

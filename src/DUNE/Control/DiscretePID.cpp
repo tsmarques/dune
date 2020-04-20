@@ -46,8 +46,8 @@ namespace DUNE
       m_lower_limit(0),
       m_upper_limit(0),
       m_debug(false),
-      m_task(NULL),
-      m_parcel(NULL)
+      m_task(nullptr),
+      m_parcel(nullptr)
     {
       reset();
     }
@@ -114,7 +114,7 @@ namespace DUNE
       m_task = t;
       m_parcel = p;
 
-      if ((t != NULL) && (p != NULL))
+      if ((t != nullptr) && (p != nullptr))
         m_debug = true;
     }
 

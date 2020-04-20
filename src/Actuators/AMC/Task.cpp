@@ -121,7 +121,7 @@ namespace Actuators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_tstamp(0)
       {
         // Define configuration parameters.
@@ -221,11 +221,11 @@ namespace Actuators
       void
       onResourceRelease() override
       {
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_poll.remove(*m_uart);
           delete m_uart;
-          m_uart = NULL;
+          m_uart = nullptr;
         }
 
         Memory::clear(m_parse);

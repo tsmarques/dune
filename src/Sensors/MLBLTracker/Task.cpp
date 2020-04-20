@@ -172,12 +172,12 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_handle(NULL),
+        m_handle(nullptr),
         m_op_deadline(-1.0),
-        m_pc(NULL),
+        m_pc(nullptr),
         m_op(OP_NONE),
-        m_gpio_txd(NULL),
-        m_estate(NULL)
+        m_gpio_txd(nullptr),
+        m_estate(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -261,7 +261,7 @@ namespace Sensors
       void
       onUpdateParameters() override
       {
-        if ((m_gpio_txd != NULL) && paramChanged(m_args.gpio_txd) && !m_ignore_gpio)
+        if ((m_gpio_txd != nullptr) && paramChanged(m_args.gpio_txd) && !m_ignore_gpio)
           throw RestartNeeded(DTR("restarting to change transducer detection GPIO"), 1);
 
         // Process micro-modem addresses.
@@ -381,7 +381,7 @@ namespace Sensors
         if (m_ignore_gpio)
           return true;
 
-        if (m_gpio_txd == NULL)
+        if (m_gpio_txd == nullptr)
           return true;
 
         if (m_gpio_txd->getValue() == false)
@@ -462,7 +462,7 @@ namespace Sensors
           return;
         }
 
-        const IMC::Message* msg = NULL;
+        const IMC::Message* msg = nullptr;
         std::string command;
 
         try
@@ -514,7 +514,7 @@ namespace Sensors
       reverseRange(const std::string& sys)
       {
         MicroModemMap::iterator itr = m_ummap.find(sys);
-        if (itr == m_ummap.end() || m_estate == NULL)
+        if (itr == m_ummap.end() || m_estate == nullptr)
         {
           m_acop_out.op = IMC::AcousticOperation::AOP_UNSUPPORTED;
           m_acop_out.system = sys;

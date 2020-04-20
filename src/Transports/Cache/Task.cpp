@@ -122,7 +122,7 @@ namespace Transports
       getMessageFiles(std::vector<std::string>& files)
       {
         std::vector<std::string> msgs = m_args.order;
-        const char* fname = 0;
+        const char* fname = nullptr;
 
         // Retrieve the name of all cached messages that are not in the
         // loading order list.

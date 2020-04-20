@@ -69,7 +69,7 @@ namespace DUNE
       while (!m_back_log.empty())
       {
         BackLogEntry* entry = m_back_log.pop();
-        if (entry != NULL)
+        if (entry != nullptr)
           delete entry;
       }
 
@@ -132,7 +132,7 @@ namespace DUNE
       while (!m_back_log.empty())
       {
         BackLogEntry* entry = m_back_log.pop();
-        if (entry != NULL)
+        if (entry != nullptr)
         {
           dispatch(entry->message, entry->exclude);
           delete entry;

@@ -138,8 +138,8 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_ctl(NULL),
+        m_uart(nullptr),
+        m_ctl(nullptr),
         m_state_timer(1.0),
         m_sample_count(0),
         m_faults_count(0),
@@ -301,7 +301,7 @@ namespace Sensors
       void
       setOutputFrequency(uint8_t frequency)
       {
-        if (m_ctl == NULL)
+        if (m_ctl == nullptr)
           return;
 
         if (m_args.raw_data)
@@ -320,7 +320,7 @@ namespace Sensors
       void
       getHardIronFactors()
       {
-        if (m_ctl == NULL)
+        if (m_ctl == nullptr)
           return;
 
         UCTK::Frame frame;
@@ -347,7 +347,7 @@ namespace Sensors
       void
       setHardIronFactors()
       {
-        if (m_ctl == NULL)
+        if (m_ctl == nullptr)
           return;
 
         double factors[c_axes_count];

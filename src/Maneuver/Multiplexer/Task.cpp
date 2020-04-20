@@ -326,7 +326,7 @@ namespace Maneuver
         m_ctx.config.get("General", "Absolute Maximum Depth", "50.0", m_args.yoyo.max_depth);
 
         for (unsigned i = 0; i < TYPE_TOTAL; ++i)
-          m_maneuvers[i] = NULL;
+          m_maneuvers[i] = nullptr;
 
         bind<IMC::Brake>(this);
         bind<IMC::EstimatedState>(this);

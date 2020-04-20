@@ -154,7 +154,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_handle(NULL),
+        m_handle(nullptr),
         m_crc_err_count(0),
         m_state_timer(1),
         m_sample_count(0),

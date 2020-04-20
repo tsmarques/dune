@@ -91,8 +91,8 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Periodic(name, ctx),
-        m_driver(NULL),
-        m_uart(NULL),
+        m_driver(nullptr),
+        m_uart(nullptr),
         m_depth_avg(10),
         m_at_surface(false),
         m_maneuvering(false),

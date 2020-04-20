@@ -77,7 +77,22 @@ namespace DUNE
           m_queue.pop();
           return v;
         }
-        return 0;
+        return nullptr;
+      }
+
+      //! @return true if an element was popped, false otherwise.
+      bool
+      pop(T& value)
+      {
+        ScopedCondition l(m_cond);
+        if (m_queue.size() > 0)
+        {
+          value = m_queue.front();
+          m_queue.pop();
+          return true;
+        }
+
+        return false;
       }
 
       //! Wait for items to be available.

@@ -58,7 +58,7 @@ namespace Transports
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::SimpleTransport(name, ctx),
-          m_sock(NULL)
+          m_sock(nullptr)
         {
           param("Server - Address", m_args.address)
           .defaultValue("127.0.0.1")
@@ -98,7 +98,7 @@ namespace Transports
           if (m_sock)
           {
             delete m_sock;
-            m_sock = NULL;
+            m_sock = nullptr;
           }
 
           m_parser.reset();

@@ -41,7 +41,7 @@ namespace Simulators
   namespace VSIM
   {
     ASV::ASV():
-      m_volume(NULL)
+      m_volume(nullptr)
     { }
 
     ASV::ASV(double dimensions[3])
@@ -62,10 +62,10 @@ namespace Simulators
 
     ASV::~ASV()
     {
-      if (m_volume != NULL)
+      if (m_volume != nullptr)
       {
         delete m_volume;
-        m_volume = NULL;
+        m_volume = nullptr;
       }
     }
 

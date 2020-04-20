@@ -46,7 +46,7 @@ namespace UserInterfaces
     {
     public:
       GPIO(unsigned nr):
-        m_gpio(0)
+        m_gpio(nullptr)
       {
         m_gpio = new Hardware::GPIO(nr);
         m_gpio->setDirection(Hardware::GPIO::GPIO_DIR_OUTPUT);

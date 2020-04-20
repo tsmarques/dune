@@ -443,7 +443,7 @@ namespace Vision
       }
 
       bool
-      readAck(uint16_t op, uint16_t seq, uint32_t* value = NULL)
+      readAck(uint16_t op, uint16_t seq, uint32_t* value = nullptr)
       {
         uint16_t type = TYPE_CAM_COM;
         uint8_t bfr[12];
@@ -474,7 +474,7 @@ namespace Vision
             if (bfr[7] != (uint8_t)(seq >> 0))
               return false;
 
-            if (value != NULL)
+            if (value != nullptr)
               ByteCopy::fromBE(*value, bfr + 8);
 
             return true;

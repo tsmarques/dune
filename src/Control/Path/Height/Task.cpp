@@ -79,8 +79,8 @@ namespace Control
           m_airspeed(0.0),
           m_target_z(0.0),
           m_first_run(true),
-          m_cmd_flt(NULL),
-          m_state_flt(NULL)
+          m_cmd_flt(nullptr),
+          m_state_flt(nullptr)
         {
           paramActive(Tasks::Parameter::SCOPE_MANEUVER,
                       Tasks::Parameter::VISIBILITY_USER);

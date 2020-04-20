@@ -120,7 +120,7 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_pstate(PST_HDR1),
         m_pdata_idx(0),
         m_pdata_crc(0)

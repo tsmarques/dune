@@ -275,8 +275,8 @@ namespace Actuators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_ctl(NULL),
+        m_uart(nullptr),
+        m_ctl(nullptr),
         m_laser(false)
       {
         // Define configuration parameters.

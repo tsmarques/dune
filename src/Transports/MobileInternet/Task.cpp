@@ -345,14 +345,14 @@ namespace Transports
       }
 
       bool
-      isConnected(Address* address = NULL)
+      isConnected(Address* address = nullptr)
       {
         std::vector<Interface> interfaces = Interface::get();
         for (size_t i = 0; i < interfaces.size(); ++i)
         {
           if (interfaces[i].name() == m_args.ppp_interface)
           {
-            if (address != NULL)
+            if (address != nullptr)
               *address = interfaces[i].address();
             return true;
           }

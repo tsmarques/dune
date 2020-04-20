@@ -91,7 +91,7 @@ namespace Sensors
       virtual uint8_t*
       getMessageData()
       {
-        return NULL;
+        return nullptr;
       }
 
       //! Get footer start address.
@@ -99,7 +99,7 @@ namespace Sensors
       virtual uint8_t*
       getFooterData()
       {
-        return NULL;
+        return nullptr;
       }
 
       //! Retrieve the size of the frame.
@@ -189,7 +189,7 @@ namespace Sensors
         ByteCopy::toBE((uint16_t)(((uint16_t)(roll * 10 + 900) & 0x7fff) | 0x8000),
                        getData() + getIndexRoll());
 
-        if (getFooterData() != NULL)
+        if (getFooterData() != nullptr)
           ByteCopy::toLE((uint16_t)(roll * c_euler_factor),
                          getFooterData() + FTR_IDX_ROLL);
       }
@@ -204,7 +204,7 @@ namespace Sensors
         ByteCopy::toBE((uint16_t)(((uint16_t)(pitch * 10 + 900) & 0x7fff) | 0x8000),
                        getData() + getIndexPitch());
 
-        if (getFooterData() != NULL)
+        if (getFooterData() != nullptr)
           ByteCopy::toLE((uint16_t)(pitch * c_euler_factor),
                          getFooterData() + FTR_IDX_PITCH);
       }
@@ -222,7 +222,7 @@ namespace Sensors
         ByteCopy::toBE((uint16_t)(((uint16_t)(heading * 10) & 0x7fff) | 0x8000),
                        getData() + getIndexHeading());
 
-        if (getFooterData() != NULL)
+        if (getFooterData() != nullptr)
           ByteCopy::toLE((uint16_t)(heading * c_euler_factor),
                          getFooterData() + FTR_IDX_HEADING);
       }

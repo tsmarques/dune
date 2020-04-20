@@ -130,8 +130,8 @@ namespace UserInterfaces
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_i2c(NULL),
-        m_blight(NULL),
+        m_i2c(nullptr),
+        m_blight(nullptr),
         m_blight_time(0),
         m_blight_state(false),
         m_display_state(false)
@@ -215,7 +215,7 @@ namespace UserInterfaces
 
         if (m_args.blight_gpio > 0)
         {
-          if (m_blight != NULL)
+          if (m_blight != nullptr)
             m_blight->setValue(state);
         }
 

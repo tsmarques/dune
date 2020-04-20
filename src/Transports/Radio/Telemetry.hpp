@@ -670,7 +670,7 @@ namespace Transports
            std::memcpy(&msg_type, data, sizeof(uint16_t));
            m_task->debug(" RX IMC TYPE %d", (int) msg_type);
            Message *m = IMC::Factory::produce(msg_type);
-           if (m == NULL)
+           if (m == nullptr)
            {
              m_task->err("Invalid message type received: %d", msg_type);
              rxmsg.state = MSG_ERROR;

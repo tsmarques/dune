@@ -109,8 +109,8 @@ namespace Power
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_driver(0),
+        m_uart(nullptr),
+        m_driver(nullptr),
         m_tstamp(0)
       {
         param("Serial Port - Device", m_args.uart_dev)
@@ -258,7 +258,7 @@ namespace Power
       void
       onResourceRelease() override
       {
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_poll.remove(*m_uart);
           Memory::clear(m_driver);

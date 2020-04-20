@@ -96,7 +96,7 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_is(0)
+        m_is(nullptr)
       {
         param("Load At Start", m_args.startup_file)
         .defaultValue("")
@@ -221,7 +221,7 @@ namespace Transports
           return;
         }
 
-        IMC::Message* m = 0;
+        IMC::Message* m = nullptr;
 
         try
         {
@@ -319,7 +319,7 @@ namespace Transports
         if (m_is)
         {
           delete m_is;
-          m_is = 0;
+          m_is = nullptr;
         }
         m_eid2eid.clear();
         m_tstats.clear();
@@ -345,9 +345,9 @@ namespace Transports
           if (!isActive())
             continue;
 
-          IMC::Message* m = 0;
+          IMC::Message* m = nullptr;
 
-          while (!stopping() && (m = DUNE::IMC::Packet::deserialize(*m_is)) != 0 && !m_is->eof())
+          while (!stopping() && (m = DUNE::IMC::Packet::deserialize(*m_is)) != nullptr && !m_is->eof())
           {
             consumeMessages();
 

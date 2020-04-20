@@ -115,7 +115,7 @@ namespace UserInterfaces
         m_mode(MODE_NONE),
         m_power_down(false),
         m_power_down_now(false),
-        m_cmd(0),
+        m_cmd(nullptr),
         m_last_acop(-1.0),
         m_prog_bar(0)
       {
@@ -461,7 +461,7 @@ namespace UserInterfaces
         if (m_power_down_now)
           return;
 
-        if (m_cmd == 0)
+        if (m_cmd == nullptr)
         {
           m_cmd = new Command(m_args.cmd_pwr_down);
           m_cmd->start();
@@ -473,7 +473,7 @@ namespace UserInterfaces
           war("%s", DTR(Status::getString(Status::CODE_POWER_DOWN)));
           m_cmd->stopAndJoin();
           delete m_cmd;
-          m_cmd = 0;
+          m_cmd = nullptr;
 
           m_lcd.op = IMC::LcdControl::OP_WRITE1;
           m_lcd.text = center("- Now -");

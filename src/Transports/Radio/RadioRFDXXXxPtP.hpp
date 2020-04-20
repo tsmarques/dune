@@ -124,7 +124,7 @@ namespace Transports
         };
 
         //! Radio RadioRFDXXXxPtP driver.
-        RadioRFDXXXxPtP(RadioConfParam args , Tasks::Task* taskp = NULL):
+        RadioRFDXXXxPtP(RadioConfParam args , Tasks::Task* taskp = nullptr):
         RadioDriver( args ,taskp ),
         cmd_mode(false)
         {

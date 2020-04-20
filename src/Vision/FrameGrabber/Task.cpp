@@ -70,7 +70,7 @@ namespace Vision
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_video(NULL),
+        m_video(nullptr),
         m_standard(Media::VideoCapture::STANDARD_PAL)
       {
         // Retrieve configuration values.

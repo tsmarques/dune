@@ -123,7 +123,7 @@ namespace Transports
         IMC::Message* msg = IMC::Packet::deserialize(m_bfr, rv);
 
         // Validate message.
-        if (msg == 0)
+        if (msg == nullptr)
         {
           war(DTR("discarding spurious message"));
           delete msg;

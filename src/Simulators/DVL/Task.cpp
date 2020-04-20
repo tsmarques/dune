@@ -79,7 +79,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_prng(NULL)
+        m_prng(nullptr)
       {
         param("Standard Deviation - Ground Velocity", m_args.stdev_gvel)
         .units(Units::MeterPerSecond)

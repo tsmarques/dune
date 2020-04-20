@@ -107,8 +107,8 @@ namespace Power
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_ctl(NULL)
+        m_uart(nullptr),
+        m_ctl(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -158,7 +158,7 @@ namespace Power
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             Memory::clear(m_adcs[i]);
         }
       }
@@ -170,7 +170,7 @@ namespace Power
         // Produces ADC messages.
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
 
           m_adcs[i] = IMC::Factory::produce(m_args.adc_messages[i]);
@@ -258,10 +258,10 @@ namespace Power
       void
       onResourceRelease() override
       {
-        if (m_ctl != NULL)
+        if (m_ctl != nullptr)
         {
           delete m_ctl;
-          m_ctl = NULL;
+          m_ctl = nullptr;
         }
 
         Memory::clear(m_uart);
@@ -338,7 +338,7 @@ namespace Power
           uint16_t value = 0;
           frame.get(value, i*2);
 
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
           {
             float tmp = m_args.adc_factors[i][0] * ((value / 4096.0) - c_adc_vdelta) + m_args.adc_factors[i][1];
             m_adcs[i]->setValueFP(tmp);

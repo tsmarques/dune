@@ -91,7 +91,7 @@ namespace DUNE
       do
       {
         // No address.
-        if (next->ifa_addr == 0)
+        if (next->ifa_addr == nullptr)
           continue;
 
         // Not IPv4.

@@ -39,7 +39,7 @@ namespace DUNE
 
     ProxyPathController::ProxyPathController(const std::string& name, Tasks::Context& ctx):
       Control::PathController(name, ctx),
-      m_state_filter(NULL)
+      m_state_filter(nullptr)
     {
       param("EstimatedState Filter", m_state_src)
       .defaultValue("self")

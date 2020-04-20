@@ -163,7 +163,7 @@ namespace Sensors
 
         // Execute and open command output for reading
         FILE* fd = popen(ss.str().c_str(), "re");
-        if (fd == NULL)
+        if (fd == nullptr)
         {
           war("Unable to retrieve RSSI. Unable to spawn child process.");
         }

@@ -66,7 +66,7 @@ namespace Maneuver
       //! @param[in] args loiter arguments
       Loiter(Maneuvers::Maneuver* task, LoiterArgs* args):
         MuxedManeuver<IMC::Loiter, LoiterArgs>(task, args),
-        m_ltr(NULL)
+        m_ltr(nullptr)
       { }
 
       //! Destructor

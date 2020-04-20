@@ -68,7 +68,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_prng(NULL)
+        m_prng(nullptr)
       {
         // Retrieve configuration values.
         param("Standard Deviation", m_args.std_dev)

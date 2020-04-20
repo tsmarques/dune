@@ -51,7 +51,7 @@ namespace Vision
       //! @param[in] capacity frame capacity in bytes.
       Frame(unsigned capacity):
         m_capacity(capacity),
-        m_data(NULL),
+        m_data(nullptr),
         m_tstamp(-1),
         m_pkt_count(0)
       {

@@ -403,7 +403,7 @@ namespace Control
           double m_s = m_args.ms_minimum;
           double rpm = rpm_m/1000, m_s_m = m_s;
           float angroll = 0 ;
-          if(m_last_rpm!=NULL)
+          if(m_last_rpm!=nullptr)
           {
             rpm_m = (double)m_last_rpm->value;
             trimValueMod( rpm_m , m_args.rpm_minimum, m_args.max_rpm);
@@ -412,7 +412,7 @@ namespace Control
             rpm = m_avg_rpm->mean();
           }
 
-          if(m_last_estimated_state!=NULL)
+          if(m_last_estimated_state!=nullptr)
           {
             m_s_m = (double) m_last_estimated_state->u;
             trimValueMod( m_s_m , m_args.ms_minimum, m_args.max_ms);

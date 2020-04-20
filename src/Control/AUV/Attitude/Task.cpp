@@ -167,7 +167,7 @@ namespace Control
 
         Task(const std::string& name, Tasks::Context& ctx):
           DUNE::Control::BasicAutopilot(name, ctx, c_controllable, c_required),
-          m_ca(NULL),
+          m_ca(nullptr),
           m_extra_pitch(false)
         {
           // Load controller gains and integral limits.
@@ -355,7 +355,7 @@ namespace Control
         void
         onAutopilotActivation() override
         {
-          if (m_ca != NULL)
+          if (m_ca != nullptr)
             m_ca->activate();
         }
 
@@ -363,7 +363,7 @@ namespace Control
         void
         onAutopilotDeactivation() override
         {
-          if (m_ca != NULL)
+          if (m_ca != nullptr)
             m_ca->deactivate();
         }
 
@@ -553,7 +553,7 @@ namespace Control
                 {
                   float bfd = getBottomFollowDepth();
 
-                  if (m_ca != NULL)
+                  if (m_ca != nullptr)
                   {
                     z_error = m_ca->update(timestep, msg->depth, bfd) - msg->depth;
 

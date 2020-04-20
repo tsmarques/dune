@@ -150,7 +150,7 @@ namespace DUNE
         m_stages.push_back(down_curve_end);
       }
 
-      if (m_task != NULL)
+      if (m_task != nullptr)
       {
         m_task->debug("-- row stages and offsets -- ");
         for (uint8_t i = 0; i < m_stages.size(); ++i)
@@ -275,7 +275,7 @@ namespace DUNE
 
       Angles::rotate(m_bearing, false, dx, dy);
 
-      if (m_task != NULL)
+      if (m_task != nullptr)
         m_task->debug("%0.2f %0.2f -- %s", dx, dy, m_sabs.label);
 
       // Calculate WGS-84 coordinates and fill DesiredPath message

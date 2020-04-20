@@ -208,9 +208,9 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_prng(NULL),
-        m_qtree(NULL),
-        m_pb(NULL)
+        m_prng(nullptr),
+        m_qtree(nullptr),
+        m_pb(nullptr)
       {
         param("Simulate - Bottom Distance", m_args.simulate_bd)
         .defaultValue("true")
@@ -417,7 +417,7 @@ namespace Simulators
 
         std::vector<QuadTree::Item> data;
         QuadTree::Item item;
-        Bounds* bounds = 0;
+        Bounds* bounds = nullptr;
 
         for (unsigned i = 0; i < lines.size(); ++i)
         {

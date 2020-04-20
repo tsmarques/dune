@@ -93,7 +93,7 @@ namespace DUNE
         throw InvalidTaskName(task_name);
 
       Task* task = Factory::produce(task_name, section, m_ctx);
-      if (task == NULL)
+      if (task == nullptr)
         throw InvalidTaskName(task_name);
 
       try
@@ -132,7 +132,7 @@ namespace DUNE
         if (m_tasks[m_list[i]]->isCreated())
           join(m_list[i]);
         delete m_tasks[m_list[i]];
-        m_tasks[m_list[i]] = NULL;
+        m_tasks[m_list[i]] = nullptr;
       }
     }
 

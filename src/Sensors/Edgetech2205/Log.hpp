@@ -82,7 +82,7 @@ namespace Sensors
       get()
       {
         Packet* packet = m_clean.pop();
-        if (packet == NULL)
+        if (packet == nullptr)
           packet = new Packet();
 
         return packet;
@@ -106,7 +106,7 @@ namespace Sensors
         while (!m_dirty.empty())
         {
           Packet* packet = m_dirty.pop();
-          if (packet != NULL)
+          if (packet != nullptr)
           {
             m_stream.write((const char*)packet->getData(), packet->getSize());
             m_clean.push(packet);
@@ -120,7 +120,7 @@ namespace Sensors
         while (!m_clean.empty())
         {
           Packet* packet = m_clean.pop();
-          if (packet != NULL)
+          if (packet != nullptr)
             delete packet;
         }
       }

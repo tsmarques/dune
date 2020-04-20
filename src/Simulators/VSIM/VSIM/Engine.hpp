@@ -52,8 +52,8 @@ namespace Simulators
       //! of the vehicle.
       //! @param[in] orientation orientation of the engine.
       //! @param[in] force maximum force of the engine.
-      Engine(unsigned int id = 0, double aforce[3] = 0, double pos[3] = 0,
-             double orientation[3] = 0, float force = 0);
+      Engine(unsigned int id = 0, double aforce[3] = nullptr, double pos[3] = nullptr,
+             double orientation[3] = nullptr, float force = 0);
 
       //! Update engine's actuation.
       //! @param[in] value actuation value.

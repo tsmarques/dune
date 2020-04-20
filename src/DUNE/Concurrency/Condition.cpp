@@ -46,7 +46,7 @@ namespace DUNE
 #if defined(DUNE_SYS_HAS_PTHREAD_COND)
       int rv = 0;
 
-      if ((rv = pthread_mutex_init(&m_mutex, NULL)) != 0)
+      if ((rv = pthread_mutex_init(&m_mutex, nullptr)) != 0)
         throw MutexError(rv);
 
       rv = pthread_condattr_init(&m_cond_attr);

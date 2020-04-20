@@ -46,20 +46,20 @@ main(int argc, char** argv)
     return 1;
   }
 
-  std::istream* is = 0;
+  std::istream* is = nullptr;
   Compression::Methods method = Compression::Factory::detect(argv[1]);
   if (method == METHOD_UNKNOWN)
     is = new std::ifstream(argv[1], std::ios::binary);
   else
     is = new Compression::FileInput(argv[1], method);
 
-  DUNE::IMC::Message* msg = NULL;
+  DUNE::IMC::Message* msg = nullptr;
 
   Path folder = Path(argv[1]).dirname();
 
   try
   {
-    while ((msg = DUNE::IMC::Packet::deserialize(*is)) != 0)
+    while ((msg = DUNE::IMC::Packet::deserialize(*is)) != nullptr)
     {
       if (msg->getId() == DUNE_IMC_COMPRESSEDIMAGE)
       {

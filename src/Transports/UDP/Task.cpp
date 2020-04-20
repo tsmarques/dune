@@ -118,9 +118,9 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_bfr(NULL),
-        m_listener(NULL),
-        m_lcomms(NULL)
+        m_bfr(nullptr),
+        m_listener(nullptr),
+        m_lcomms(nullptr)
       {
         param("Local Port", m_args.port)
         .defaultValue("6002")
@@ -193,7 +193,7 @@ namespace Transports
 
       ~Task() override
       {
-        if (m_bfr != NULL)
+        if (m_bfr != nullptr)
           delete[] m_bfr;
       }
 
@@ -308,11 +308,11 @@ namespace Transports
       void
       onResourceRelease() override
       {
-        if (m_listener != NULL)
+        if (m_listener != nullptr)
         {
           m_listener->stopAndJoin();
           delete m_listener;
-          m_listener = NULL;
+          m_listener = nullptr;
         }
 
         Memory::clear(m_lcomms);

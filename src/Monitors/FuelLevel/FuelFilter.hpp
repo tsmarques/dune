@@ -133,10 +133,10 @@ namespace Monitors
       };
 
       FuelFilter(Arguments* args, unsigned eids[BatteryData::BM_TOTAL],
-                 const EPMap* epower, Tasks::Task* task = NULL,
+                 const EPMap* epower, Tasks::Task* task = nullptr,
                  bool real_clock = false, double start_time = 0.0):
         m_args(args),
-        m_bdata(NULL),
+        m_bdata(nullptr),
         m_epower(epower),
         m_energy_consumed(0.0),
         m_has_initial_estimate(false),
@@ -290,7 +290,7 @@ namespace Monitors
           dbg = String::str("Initial estimate: %.2f Wh, Optimistic: %.2f Wh, Pessimistic: %.2f Wh.",
                             m_initial_estimate, getModelEstimate(MDL_OPT), getModelEstimate(MDL_PES));
 
-          if (m_task != NULL)
+          if (m_task != nullptr)
             m_task->debug("%s", dbg.c_str());
           else
             std::cerr << dbg << std::endl;
@@ -346,7 +346,7 @@ namespace Monitors
             // Reset energy consumed
             m_energy_consumed = 0.0;
 
-            if (m_task != NULL)
+            if (m_task != nullptr)
               m_task->debug("recomputed estimate");
             else
               std::cerr << "recomputed estimate" << std::endl;
@@ -379,7 +379,7 @@ namespace Monitors
 
         fl.opmodes = ss.str();
 
-        if (m_task != NULL)
+        if (m_task != nullptr)
         {
           m_task->trace("Energy Left %.2f Wh", m_initial_estimate - m_energy_consumed);
 

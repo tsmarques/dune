@@ -97,9 +97,9 @@ namespace Sensors
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_tstamp(0),
-        m_driver(NULL),
+        m_driver(nullptr),
         m_is_correct_conf(0)
       {
         param("Serial Port - Device", m_args.uart_dev)
@@ -222,13 +222,13 @@ namespace Sensors
       void
       onResourceRelease() override
       {
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_uart->write(m_driver->disable_output(), strlen(m_driver->disable_output()));
 
           m_poll.remove(*m_uart);
           delete m_uart;
-          m_uart = NULL;
+          m_uart = nullptr;
 
           Memory::clear(m_driver);
         }

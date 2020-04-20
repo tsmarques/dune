@@ -65,8 +65,8 @@ namespace Power
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_psu_escc(NULL),
-        m_psu_ctl(NULL)
+        m_psu_escc(nullptr),
+        m_psu_ctl(nullptr)
       {
         param("Power Channel", m_args.pwr_chn)
         .defaultValue("Private (IMU)")
@@ -117,11 +117,11 @@ namespace Power
       void
       onResourceRelease() override
       {
-        if (m_psu_ctl != NULL)
+        if (m_psu_ctl != nullptr)
         {
           setPower(false);
           delete m_psu_ctl;
-          m_psu_ctl = NULL;
+          m_psu_ctl = nullptr;
         }
 
         Memory::clear(m_psu_escc);

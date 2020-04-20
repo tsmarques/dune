@@ -141,16 +141,16 @@ namespace Vision
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_http(NULL),
+        m_http(nullptr),
         m_boundary(""),
         m_log_dir(ctx.dir_log),
         m_timestamp(-1),
-        m_pwr_gpio(NULL),
-        m_led_gpio(NULL),
+        m_pwr_gpio(nullptr),
+        m_led_gpio(nullptr),
         m_cfg_dirty(false),
-        m_slave_entities(NULL),
+        m_slave_entities(nullptr),
         m_log_dir_updated(false),
-        m_log(NULL),
+        m_log(nullptr),
         m_actual_frame_rate(-1)
       {
         // Retrieve configuration values.
@@ -271,7 +271,7 @@ namespace Vision
       void
       updateSlaveEntities()
       {
-        if (m_slave_entities == NULL)
+        if (m_slave_entities == nullptr)
           return;
 
         m_slave_entities->clear();
@@ -381,7 +381,7 @@ namespace Vision
       {
         trace("received activation request");
 
-        if (m_pwr_gpio != NULL)
+        if (m_pwr_gpio != nullptr)
           m_pwr_gpio->setValue(1);
 
         m_slave_entities->activate();
@@ -468,16 +468,16 @@ namespace Vision
         stopVideo();
         inf(DTR("stopped video stream"));
 
-        if (m_log != NULL)
+        if (m_log != nullptr)
         {
           m_log->stopAndJoin();
           delete m_log;
-          m_log = NULL;
+          m_log = nullptr;
         }
 
         m_log_dir_updated = false;
 
-        if (m_pwr_gpio != NULL)
+        if (m_pwr_gpio != nullptr)
           m_pwr_gpio->setValue(0);
 
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_IDLE);
@@ -534,7 +534,7 @@ namespace Vision
           }
         }
 
-        if (m_led_gpio != NULL)
+        if (m_led_gpio != nullptr)
           m_led_gpio->setValue(1);
 
         inf(DTR("started video stream"));
@@ -543,14 +543,14 @@ namespace Vision
       void
       stopVideo()
       {
-        if (m_http == NULL)
+        if (m_http == nullptr)
           return;
 
         debug("stopping video stream");
         delete m_http;
-        m_http = NULL;
+        m_http = nullptr;
 
-        if (m_led_gpio != NULL)
+        if (m_led_gpio != nullptr)
           m_led_gpio->setValue(0);
       }
 
@@ -852,11 +852,11 @@ namespace Vision
       void
       changeLogFile()
       {
-        if (m_log != NULL)
+        if (m_log != nullptr)
         {
           m_log->stopAndJoin();
           delete m_log;
-          m_log = NULL;
+          m_log = nullptr;
         }
 
         m_log = new Log(this, m_log_dir, c_width, c_height, m_actual_frame_rate);
@@ -872,7 +872,7 @@ namespace Vision
             return;
         }
 
-        if (m_log == NULL)
+        if (m_log == nullptr)
           changeLogFile();
 
         Log::Frame* frame = m_log->getFreeFrame();
@@ -927,7 +927,7 @@ namespace Vision
       bool
       updateActualFrameRate()
       {
-        if (m_http == NULL)
+        if (m_http == nullptr)
           return false;
 
         try
@@ -949,7 +949,7 @@ namespace Vision
       bool
       checkCaptureOk()
       {
-        if (m_http != NULL)
+        if (m_http != nullptr)
           return true;
 
         try

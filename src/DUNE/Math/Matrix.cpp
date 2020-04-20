@@ -65,8 +65,8 @@ namespace DUNE
       m_nrows(0),
       m_ncols(0),
       m_size(0),
-      m_data(NULL),
-      m_counter(NULL)
+      m_data(nullptr),
+      m_counter(nullptr)
     { }
 
     Matrix::Matrix(size_t r, size_t c)
@@ -113,8 +113,8 @@ namespace DUNE
       }
       else
       {
-        m_data = NULL;
-        m_counter = NULL;
+        m_data = nullptr;
+        m_counter = nullptr;
       }
     }
 
@@ -174,13 +174,13 @@ namespace DUNE
     void
     Matrix::erase()
     {
-      if (m_size != 0 && m_counter != NULL)
+      if (m_size != 0 && m_counter != nullptr)
       {
         if (--(*m_counter) == 0)
         {
           std::free(m_data);
-          m_data = NULL;
-          m_counter = NULL;
+          m_data = nullptr;
+          m_counter = nullptr;
           m_nrows = 0;
           m_ncols = 0;
           m_size = 0;
@@ -737,14 +737,14 @@ namespace DUNE
       if (m_ncols != m.m_ncols)
         return false;
 
-      if (m_data == NULL)
+      if (m_data == nullptr)
       {
-        if (m.m_data == NULL)
+        if (m.m_data == nullptr)
           return true;
         else
           return false;
       }
-      else if (m.m_data == NULL)
+      else if (m.m_data == nullptr)
         return false;
 
       return std::memcmp(m_data, m.m_data, m_size * sizeof(double)) == 0;

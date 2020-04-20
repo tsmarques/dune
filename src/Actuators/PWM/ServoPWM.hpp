@@ -125,7 +125,7 @@ namespace Actuators
 
           while (cntRefreshservo < 200 && !isStopping() && m_gpio_state)
           {
-            if ((myOutputHandle = fopen(GPIOValue, "rb+")) == NULL)
+            if ((myOutputHandle = fopen(GPIOValue, "rb+")) == nullptr)
             {
               m_task->err("ERROR PinOut %d", m_gpio);
               m_gpio_state = false;
@@ -135,7 +135,7 @@ namespace Actuators
             fclose(myOutputHandle);
             Delay::waitUsec(valueUP);
             // Set output to low
-            if ((myOutputHandle = fopen(GPIOValue, "rb+")) == NULL)
+            if ((myOutputHandle = fopen(GPIOValue, "rb+")) == nullptr)
             {
               m_task->err("ERROR PinOut %d", m_gpio);
               m_gpio_state = false;
@@ -160,7 +160,7 @@ namespace Actuators
           sprintf(GPIOValue, "/sys/class/gpio/gpio%d/value", gpioPin);
           sprintf(GPIODirection, "/sys/class/gpio/gpio%d/direction", gpioPin);
           // Export the pin
-          if ((myOutputHandle = fopen("/sys/class/gpio/export", "ab")) == NULL)
+          if ((myOutputHandle = fopen("/sys/class/gpio/export", "ab")) == nullptr)
           {
             m_task->err("Unable to export GPIO pin (%d)", m_gpio);
             return false;
@@ -169,7 +169,7 @@ namespace Actuators
           fwrite(&setValue, sizeof(char), 2, myOutputHandle);
           fclose(myOutputHandle);
           // Set direction of the pin to an output
-          if ((myOutputHandle = fopen(GPIODirection, "rb+")) == NULL)
+          if ((myOutputHandle = fopen(GPIODirection, "rb+")) == nullptr)
           {
             m_task->err("Unable to open direction handle (%d)", m_gpio);
             return false;
@@ -186,7 +186,7 @@ namespace Actuators
         closeConfigServo()
         {
           // Unexport the pin
-          if ((myOutputHandle = fopen("/sys/class/gpio/unexport", "ab")) == NULL)
+          if ((myOutputHandle = fopen("/sys/class/gpio/unexport", "ab")) == nullptr)
           {
             m_task->err("Unable to unexport GPIO pin (%d)", m_gpio);
             return false;
@@ -212,7 +212,7 @@ namespace Actuators
 
           valueUP = (10 * degAngle) + 600;
 
-          if ((myOutputHandle = fopen(GPIOValue, "rb+")) == NULL)
+          if ((myOutputHandle = fopen(GPIOValue, "rb+")) == nullptr)
           {
             m_task->err("Unable to open value handle (%d)", m_gpio);
             m_gpio_state = false;
@@ -222,7 +222,7 @@ namespace Actuators
           fclose(myOutputHandle);
           Delay::waitUsec(valueUP);
           // Set output to low
-          if ((myOutputHandle = fopen(GPIOValue, "rb+")) == NULL)
+          if ((myOutputHandle = fopen(GPIOValue, "rb+")) == nullptr)
           {
             m_task->err("Unable to open value handle (%d)", m_gpio);
             m_gpio_state = false;

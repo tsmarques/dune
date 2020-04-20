@@ -63,7 +63,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Periodic(name, ctx),
-        m_state_flt(NULL),
+        m_state_flt(nullptr),
         m_alias_id(UINT_MAX)
       {
         // Definition of configuration parameters.

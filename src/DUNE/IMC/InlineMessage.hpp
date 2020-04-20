@@ -51,12 +51,12 @@ namespace DUNE
     {
     public:
       //! Default constructor.
-      InlineMessage () : m_parent (nullptr), m_msg (NULL) {}
+      InlineMessage () : m_parent (nullptr), m_msg (nullptr) {}
 
       //! Copy constructor.
       InlineMessage(const InlineMessage& other):
         m_parent(other.m_parent),
-        m_msg(NULL)
+        m_msg(nullptr)
       {
         *this = other;
       }
@@ -88,10 +88,10 @@ namespace DUNE
       void
       clear()
       {
-        if (m_msg != NULL)
+        if (m_msg != nullptr)
         {
           delete m_msg;
-          m_msg = NULL;
+          m_msg = nullptr;
         }
       }
 
@@ -116,12 +116,12 @@ namespace DUNE
       inline bool
       get(const T*& m) const
       {
-        m = NULL;
+        m = nullptr;
 
         if (!isNull())
           m = static_cast<const T*>(m_msg);
 
-        return m != NULL;
+        return m != nullptr;
       }
 
       template <typename T>
@@ -139,7 +139,7 @@ namespace DUNE
       unsigned
       getSerializationSize() const
       {
-        if (m_msg == NULL)
+        if (m_msg == nullptr)
           return 2;
 
         return m_msg->getPayloadSerializationSize() + 2;
@@ -148,7 +148,7 @@ namespace DUNE
       bool
       isNull() const
       {
-        return m_msg == NULL;
+        return m_msg == nullptr;
       }
 
       Type&
@@ -169,7 +169,7 @@ namespace DUNE
       {
         clear();
 
-        if (other.m_msg != NULL)
+        if (other.m_msg != nullptr)
           m_msg = static_cast<Type*>(other.m_msg->clone());
 
         return *this;
@@ -196,7 +196,7 @@ namespace DUNE
       uint16_t
       serialize(uint8_t* bfr) const
       {
-        if (m_msg == NULL)
+        if (m_msg == nullptr)
         {
           bfr += IMC::serialize((uint16_t)DUNE_IMC_CONST_NULL_ID, bfr);
         }
@@ -220,7 +220,7 @@ namespace DUNE
 
         Type* m = static_cast<Type*>(Factory::produce(id));
 
-        if (m == 0)
+        if (m == nullptr)
           throw InvalidMessageId(id);
 
         uint16_t ssize = m->deserializeFields(bfr + 2, bfr_len - 2);
@@ -241,7 +241,7 @@ namespace DUNE
 
         Type* m = static_cast<Type*>(Factory::produce(id));
 
-        if (m == 0)
+        if (m == nullptr)
           throw InvalidMessageId(id);
 
         uint16_t ssize = m->reverseDeserializeFields(bfr + 2, bfr_len - 2);
@@ -260,7 +260,7 @@ namespace DUNE
 
         os << prefix << '\n' << indent << '"' << label << "\": ";
 
-        if (m_msg == NULL)
+        if (m_msg == nullptr)
         {
           os << "\"null\"";
         }
@@ -291,7 +291,7 @@ namespace DUNE
       void
       synchronizeHeader()
       {
-        if ((m_parent == NULL) || (m_msg == NULL))
+        if ((m_parent == nullptr) || (m_msg == nullptr))
           return;
 
         m_msg->setTimeStamp(m_parent->getTimeStamp());

@@ -222,9 +222,9 @@ namespace Actuators
         Tasks::Periodic(name, ctx),
         m_actuation(0),
         m_ctl_mode(MODE_NONE),
-        m_motor_ent(NULL),
-        m_bridge_ent(NULL),
-        m_mcu_ent(NULL),
+        m_motor_ent(nullptr),
+        m_bridge_ent(nullptr),
+        m_mcu_ent(nullptr),
         m_dev_errors(ERR_NONE),
         m_motor_id(0),
         m_legacy(false),
@@ -450,7 +450,7 @@ namespace Actuators
       }
 
       bool
-      getEEPROM(uint8_t command, const uint8_t* data = NULL, size_t data_size = 0)
+      getEEPROM(uint8_t command, const uint8_t* data = nullptr, size_t data_size = 0)
       {
         m_dev_errors = ERR_NONE;
         double deadline = Clock::get() + 2.0;

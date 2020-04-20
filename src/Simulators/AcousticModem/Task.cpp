@@ -73,7 +73,7 @@ namespace Simulators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_sock(NULL)
+        m_sock(nullptr)
       {
         param("Local Port", m_args.local_port)
         .defaultValue("6021")
@@ -198,7 +198,7 @@ namespace Simulators
         {
           consumeMessages();
 
-          if (m_sock != NULL)
+          if (m_sock != nullptr)
             readData();
         }
       }

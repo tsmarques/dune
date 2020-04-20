@@ -160,10 +160,10 @@ namespace Sensors
       //! %Task constructor.
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_sound_speed(c_sound_speed),
         m_parser(m_profile.data),
-        m_pfilt(NULL),
+        m_pfilt(nullptr),
         m_uam_tx_ip(false)
       {
         paramActive(Tasks::Parameter::SCOPE_IDLE,
@@ -288,7 +288,7 @@ namespace Sensors
         m_switch.setDataPoints(m_args.data_points);
         m_trigger.setSampleFrequency(m_args.sample_frequency);
 
-        if (paramChanged(m_args.uart_dev) && (m_uart != NULL))
+        if (paramChanged(m_args.uart_dev) && (m_uart != nullptr))
           throw RestartNeeded(DTR("restarting to change UART device"), 1);
 
         m_sound_speed = m_args.sspeed;

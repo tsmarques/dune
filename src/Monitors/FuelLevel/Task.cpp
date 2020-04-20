@@ -99,7 +99,7 @@ namespace Monitors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Periodic(name, ctx),
-        m_fuel_filter(NULL),
+        m_fuel_filter(nullptr),
         m_volt_error_level(false),
         m_volt_bat(0),
         m_filter_ready(false)

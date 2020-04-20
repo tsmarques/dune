@@ -88,7 +88,7 @@ namespace Transports
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
         m_last_flush(0),
-        m_lsf(NULL),
+        m_lsf(nullptr),
         m_active(true)
       {
         // Define configuration parameters.
@@ -303,7 +303,7 @@ namespace Transports
         if (!m_active)
           return;
 
-        if (m_lsf == NULL)
+        if (m_lsf == nullptr)
           return;
 
         m_active = keep_logging;
@@ -384,7 +384,7 @@ namespace Transports
       void
       tryRotate()
       {
-        if (m_lsf == NULL)
+        if (m_lsf == nullptr)
           return;
 
         int64_t mib = Path(m_lsf_file).size();
@@ -421,7 +421,7 @@ namespace Transports
       void
       logMessage(const IMC::Message* msg)
       {
-        if (m_lsf == NULL)
+        if (m_lsf == nullptr)
           return;
 
         IMC::Packet::serialize(msg, m_buffer);

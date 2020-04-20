@@ -94,7 +94,7 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_pan(0),
         m_tilt(Math::c_half_pi)
       {

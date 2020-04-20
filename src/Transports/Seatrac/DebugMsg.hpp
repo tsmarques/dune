@@ -52,7 +52,7 @@ namespace Transports
     //! @param[in] aco_fix data pointer.
     //! @param[in] task parent task.
     void
-    printAcoFixData(std::string msg_name, Acofix_t* aco_fix, Tasks::Task* task = NULL)
+    printAcoFixData(std::string msg_name, Acofix_t* aco_fix, Tasks::Task* task = nullptr)
     {
       task->debug("data_Beacon.%s.aco_fix.dest_id        %d ",
                   msg_name.c_str(), aco_fix->dest_id);
@@ -122,7 +122,7 @@ namespace Transports
     //! @param[in] task parent task.
     void
     printDebugFunction(unsigned message_type, DataSeatrac& data_Beacon,
-                       Tasks::Task* task = NULL)
+                       Tasks::Task* task = nullptr)
     {
 
       switch(message_type)

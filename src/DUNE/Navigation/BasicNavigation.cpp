@@ -48,9 +48,9 @@ namespace DUNE
     BasicNavigation::BasicNavigation(const std::string& name, Tasks::Context& ctx):
       Tasks::Periodic(name, ctx),
       m_active(false),
-      m_origin(NULL),
-      m_avg_heave(NULL),
-      m_avg_gps(NULL)
+      m_origin(nullptr),
+      m_avg_heave(nullptr),
+      m_avg_gps(nullptr)
     {
       // Declare configuration parameters.
       param("Maximum Distance to Reference", m_max_dis2ref)
@@ -880,7 +880,7 @@ namespace DUNE
     {
       reset();
 
-      if (m_origin == NULL)
+      if (m_origin == nullptr)
         return false;
 
       m_estate.lat = m_origin->lat;

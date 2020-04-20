@@ -73,7 +73,7 @@ namespace Transports
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::SimpleTransport(name, ctx),
-          m_sock(0)
+          m_sock(nullptr)
         {
           param("Port", m_args.port)
           .defaultValue("7001")
@@ -190,7 +190,7 @@ namespace Transports
           {
             m_poll.remove(*m_sock);
             delete m_sock;
-            m_sock = 0;
+            m_sock = nullptr;
           }
         }
 
@@ -234,7 +234,7 @@ namespace Transports
         acceptNewClient()
         {
           Client c;
-          c.socket = 0;
+          c.socket = nullptr;
           try
           {
             c.socket = m_sock->accept(&c.address, &c.port);

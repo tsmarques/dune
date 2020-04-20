@@ -52,7 +52,7 @@ main(int argc, char** argv)
   Path bin_name(argv[1]);
 
   std::FILE* bin = std::fopen(bin_name.c_str(), "rb");
-  if (bin == NULL)
+  if (bin == nullptr)
   {
     std::cerr << "ERROR: failed to open file '" << bin_name << "'" << std::endl;
     return 1;
@@ -60,7 +60,7 @@ main(int argc, char** argv)
 
   Path tsv_name(bin_name + ".tsv");
   std::FILE* tsv = std::fopen(tsv_name.c_str(), "w");
-  if (tsv == NULL)
+  if (tsv == nullptr)
   {
     std::cerr << "ERROR: failed to open file '" << tsv_name << "'" << std::endl;
     return 1;

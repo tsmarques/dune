@@ -54,7 +54,7 @@ namespace Actuators
         while (!m_queue.empty())
         {
           LUCL::Command* cmd = m_queue.pop();
-          if (cmd != NULL)
+          if (cmd != nullptr)
             delete cmd;
         }
       }

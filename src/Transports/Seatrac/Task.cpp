@@ -169,7 +169,7 @@ namespace Transports
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx) :
         DUNE::Tasks::Task(name, ctx),
-        m_handle(NULL),
+        m_handle(nullptr),
         m_config_status(false),
         m_pre_detected(false),
         m_stop_comms(false),
@@ -526,7 +526,7 @@ namespace Transports
         for (unsigned i = 0; i < 3; i++)
           m_hard_iron[i] = data(i);
 
-        if (m_handle != NULL)
+        if (m_handle != nullptr)
         {
 
           if (paramChanged(m_args.hard_iron))
@@ -537,7 +537,7 @@ namespace Transports
       void
       runCalibration()
       {
-        if (m_handle == NULL)
+        if (m_handle == nullptr)
           return;
 
         // See if vehicle has same hard iron calibration parameters.
@@ -786,7 +786,7 @@ namespace Transports
           {
             IMC::UamRxRange range;
             range.sys = sys_src;
-            if (m_ticket != NULL)
+            if (m_ticket != nullptr)
               range.seq = m_ticket->seq;
 
             range.value = range_dist;
@@ -1075,11 +1075,11 @@ namespace Transports
       clearTicket(IMC::UamTxStatus::ValueEnum reason,
                   const std::string& error = "")
       {
-        if (m_ticket != NULL)
+        if (m_ticket != nullptr)
         {
           sendTxStatus(*m_ticket, reason, error);
           delete m_ticket;
-          m_ticket = NULL;
+          m_ticket = nullptr;
         }
       }
 

@@ -58,7 +58,7 @@ namespace UserInterfaces
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_buttons(NULL)
+        m_buttons(nullptr)
       {
         param("Event Device", m_args.event_dev)
         .defaultValue("")

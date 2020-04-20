@@ -168,7 +168,7 @@ namespace Transports
         getTask()->debug("sending SBD with size %u", static_cast<unsigned>(data.size()));
 
         if (data.size() == 0)
-          writeBufferMO(NULL, 0);
+          writeBufferMO(nullptr, 0);
         else
           writeBufferMO(&data[0], data.size());
 

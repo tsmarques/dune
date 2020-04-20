@@ -75,7 +75,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_estate_timer(0.0)
       {
         param("Serial Port - Device", m_args.uart_dev)

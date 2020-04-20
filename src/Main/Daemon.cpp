@@ -122,14 +122,14 @@ setDaemonSignalHandlers()
   actions.sa_flags = 0;
   actions.sa_handler = handleTerminate;
 
-  sigaction(SIGALRM, &actions, 0);
-  sigaction(SIGHUP, &actions, 0);
-  sigaction(SIGINT, &actions, 0);
-  sigaction(SIGQUIT, &actions, 0);
-  sigaction(SIGTERM, &actions, 0);
-  sigaction(SIGCHLD, &actions, 0);
-  sigaction(SIGCONT, &actions, 0);
-  sigaction(SIGPIPE, &actions, 0);
+  sigaction(SIGALRM, &actions, nullptr);
+  sigaction(SIGHUP, &actions, nullptr);
+  sigaction(SIGINT, &actions, nullptr);
+  sigaction(SIGQUIT, &actions, nullptr);
+  sigaction(SIGTERM, &actions, nullptr);
+  sigaction(SIGCHLD, &actions, nullptr);
+  sigaction(SIGCONT, &actions, nullptr);
+  sigaction(SIGPIPE, &actions, nullptr);
 
   // Enable core dumps.
   struct rlimit rlim;

@@ -45,7 +45,7 @@ namespace Simulators
   namespace VSIM
   {
     UUV::UUV():
-      m_volume(NULL)
+      m_volume(nullptr)
     {
       setBuoyancyPosition(0, 0, 0);
       std::memset(m_added_mass_coef, 0, sizeof(m_added_mass_coef));
@@ -72,10 +72,10 @@ namespace Simulators
 
     UUV::~UUV()
     {
-      if (m_volume != NULL)
+      if (m_volume != nullptr)
       {
         delete m_volume;
-        m_volume = NULL;
+        m_volume = nullptr;
       }
     }
 

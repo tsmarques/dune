@@ -70,7 +70,7 @@ namespace Transports
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_log(NULL)
+        m_log(nullptr)
       {
         param("Sample Interval", m_args.sample_interval)
         .defaultValue("1.0")
@@ -198,7 +198,7 @@ namespace Transports
               throw RestartNeeded(e.what(), 5);
             }
 
-            if (m_log != NULL)
+            if (m_log != nullptr)
               logMessage(msg);
             break;
           case IMC::LoggingControl::COP_STOPPED:
@@ -235,7 +235,7 @@ namespace Transports
       void
       writeSample()
       {
-        if (m_log == NULL)
+        if (m_log == nullptr)
           return;
 
         if (!m_sample_timer.overflow())
@@ -255,7 +255,7 @@ namespace Transports
       void
       flush()
       {
-        if (m_log == NULL)
+        if (m_log == nullptr)
           return;
 
         if (!m_flush_timer.overflow())
@@ -268,7 +268,7 @@ namespace Transports
       void
       logMessage(const IMC::Message* msg)
       {
-        if (m_log == NULL)
+        if (m_log == nullptr)
           return;
 
         IMC::Packet::serialize(msg, m_buffer);

@@ -100,14 +100,14 @@ namespace Vision
         while (!m_queue.empty())
         {
           Frame* frame = m_queue.pop();
-          if (frame != NULL)
+          if (frame != nullptr)
             delete frame;
         }
 
         while (!m_free_queue.empty())
         {
           Frame* frame = m_free_queue.pop();
-          if (frame != NULL)
+          if (frame != nullptr)
             delete frame;
         }
 
@@ -142,7 +142,7 @@ namespace Vision
       getFreeFrame()
       {
         Frame* frame = m_free_queue.pop();
-        if (frame == NULL)
+        if (frame == nullptr)
           frame = new Frame();
 
         return frame;
@@ -151,7 +151,7 @@ namespace Vision
       ByteBuffer*
       getBuffer()
       {
-        return NULL;
+        return nullptr;
       }
 
     private:
@@ -206,7 +206,7 @@ namespace Vision
         while (!m_queue.empty())
         {
           Frame* frame = m_queue.pop();
-          if (frame == NULL)
+          if (frame == nullptr)
             continue;
 
           ByteBuffer* buffer = frame->getBuffer();

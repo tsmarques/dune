@@ -194,7 +194,7 @@ namespace Sensors
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_parser(m_sonar.data),
         m_sound_speed(c_sound_speed)
       {
@@ -344,7 +344,7 @@ namespace Sensors
       void
       onUpdateParameters() override
       {
-        if (paramChanged(m_args.uart_dev) && (m_uart != NULL))
+        if (paramChanged(m_args.uart_dev) && (m_uart != nullptr))
           throw RestartNeeded(DTR("restarting to change UART device"), 1);
 
         m_sound_speed = m_args.sspeed;
@@ -637,7 +637,7 @@ namespace Sensors
         {
           consumeMessages();
 
-          if (isActive() && (m_uart != NULL))
+          if (isActive() && (m_uart != nullptr))
           {
             if (m_wdog.overflow())
             {

@@ -50,7 +50,7 @@ namespace DUNE
       std::ofstream* nos = new std::ofstream();
       nos->open(fname.c_str());
 
-      if (m_out != NULL)
+      if (m_out != nullptr)
       {
         m_out->close();
         delete m_out;
@@ -63,11 +63,11 @@ namespace DUNE
     Terminal::close()
     {
       Concurrency::ScopedMutex l(m_mutex);
-      if (m_out != NULL)
+      if (m_out != nullptr)
       {
         m_out->close();
         delete m_out;
-        m_out = NULL;
+        m_out = nullptr;
       }
     }
 

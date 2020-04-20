@@ -103,7 +103,7 @@ namespace DUNE
       m_units(Units::None),
       m_min_size(UINT_MAX),
       m_max_size(UINT_MAX),
-      m_reader(NULL),
+      m_reader(nullptr),
       m_changed(true),
       m_visibility(VISIBILITY_DEVELOPER),
       m_scope(SCOPE_GLOBAL)
@@ -111,7 +111,7 @@ namespace DUNE
 
     Parameter::~Parameter()
     {
-      if (m_reader != NULL)
+      if (m_reader != nullptr)
         delete m_reader;
 
       for (unsigned i = 0; i < m_values_if.size(); ++i)
@@ -121,7 +121,7 @@ namespace DUNE
     void
     Parameter::reader(AbstractParameterParser* r)
     {
-      if (m_reader != NULL)
+      if (m_reader != nullptr)
         delete m_reader;
 
       m_reader = r;
@@ -130,7 +130,7 @@ namespace DUNE
     void
     Parameter::read(const std::string& val)
     {
-      if (m_reader == NULL)
+      if (m_reader == nullptr)
         throw std::runtime_error(DTR("no available reader"));
 
       try

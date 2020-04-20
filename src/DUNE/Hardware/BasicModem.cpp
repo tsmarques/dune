@@ -224,7 +224,12 @@ namespace DUNE
       while (!timer.overflow())
       {
         if (m_bytes.waitForItems(timer.getRemaining()))
-          data[bytes_read++] = m_bytes.pop();
+        {
+          uint8_t byte = 0;
+          if (m_bytes.pop(byte))
+            data[bytes_read++] = byte;
+        }
+
 
         if (bytes_read == data_size)
           return;

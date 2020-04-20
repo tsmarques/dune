@@ -77,8 +77,8 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_msg(NULL),
-        m_prng(NULL)
+        m_msg(nullptr),
+        m_prng(nullptr)
       {
         // Retrieve configuration values.
         param("Latitude (degrees) of gaussian peak", m_args.peak_lat)

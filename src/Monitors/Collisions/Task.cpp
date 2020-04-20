@@ -107,10 +107,10 @@ namespace Monitors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_avg_x_innov(NULL),
-        m_avg_z_innov(NULL),
-        m_avg_x_abs(NULL),
-        m_avg_z_abs(NULL),
+        m_avg_x_innov(nullptr),
+        m_avg_z_innov(nullptr),
+        m_avg_x_abs(nullptr),
+        m_avg_z_abs(nullptr),
         m_braking(false),
         m_rpms(0)
       {

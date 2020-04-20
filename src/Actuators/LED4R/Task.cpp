@@ -132,9 +132,9 @@ namespace Actuators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_ctl(NULL),
-        m_mcu_ent(NULL)
+        m_uart(nullptr),
+        m_ctl(nullptr),
+        m_mcu_ent(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -272,12 +272,12 @@ namespace Actuators
       void
       onResourceRelease() override
       {
-        if (m_ctl != NULL)
+        if (m_ctl != nullptr)
         {
           setExternalTrigger(false);
           setExternalDriver(false);
           delete m_ctl;
-          m_ctl = NULL;
+          m_ctl = nullptr;
         }
 
         Memory::clear(m_uart);
@@ -286,7 +286,7 @@ namespace Actuators
       void
       setConfig()
       {
-        if (m_ctl != NULL)
+        if (m_ctl != nullptr)
         {
           if (!setExternalDriver(m_args.ext_drv))
             throw RestartNeeded(DTR("failed to configure LED driver"), c_restart_delay);

@@ -130,7 +130,7 @@ namespace DUNE
       size_t
       doRead(uint8_t* data, size_t data_size) override
       {
-        return read(data, data_size, NULL, NULL);
+        return read(data, data_size, nullptr, nullptr);
       }
 
       void

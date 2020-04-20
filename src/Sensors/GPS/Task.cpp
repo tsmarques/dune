@@ -113,10 +113,10 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_handle(NULL),
+        m_handle(nullptr),
         m_has_agvel(false),
         m_has_euler(false),
-        m_reader(NULL)
+        m_reader(nullptr)
       {
         // Define configuration parameters.
         param("Serial Port - Device", m_args.uart_dev)
@@ -209,11 +209,11 @@ namespace Sensors
       void
       onResourceRelease() override
       {
-        if (m_reader != NULL)
+        if (m_reader != nullptr)
         {
           m_reader->stopAndJoin();
           delete m_reader;
-          m_reader = NULL;
+          m_reader = nullptr;
         }
 
         Memory::clear(m_handle);

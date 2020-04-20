@@ -64,14 +64,14 @@ namespace DUNE
       m_clear = false;
 
       z_stream* stream = &m_private->stream;
-      stream->next_in = 0;
+      stream->next_in = nullptr;
       stream->avail_in = 0;
-      stream->next_out = 0;
+      stream->next_out = nullptr;
       stream->avail_out = 0;
-      stream->zalloc = 0;
-      stream->zfree = 0;
+      stream->zalloc = nullptr;
+      stream->zfree = nullptr;
       stream->total_out = 0;
-      stream->opaque = 0;
+      stream->opaque = nullptr;
 
       int err = inflateInit2(stream, m_wbits);
       if (err != Z_OK)

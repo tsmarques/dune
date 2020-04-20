@@ -99,7 +99,7 @@ main(int argc, char** argv)
     return 1;
   }
 
-  IMC::Message* msg = NULL;
+  IMC::Message* msg = nullptr;
 
   if (strcmp(argv[3], "Abort") == 0)
   {
@@ -829,7 +829,7 @@ main(int argc, char** argv)
     tmsg->medium = atoi(argv[4]);
   }
 
-  if (msg == NULL)
+  if (msg == nullptr)
   {
     fprintf(stderr, "ERROR: unknown message '%s'\n", argv[3]);
     return 1;
@@ -858,10 +858,10 @@ main(int argc, char** argv)
     return 1;
   }
 
-  if (msg != NULL)
+  if (msg != nullptr)
   {
     delete msg;
-    msg = NULL;
+    msg = nullptr;
   }
 
   return 0;

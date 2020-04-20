@@ -107,7 +107,7 @@ namespace Plan
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_db(NULL),
+        m_db(nullptr),
         m_local_reqid(0)
       {
         param("DB Path", m_args.db_path)
@@ -122,7 +122,7 @@ namespace Plan
       void
       onResourceAcquisition() override
       {
-        if (m_db != NULL)
+        if (m_db != nullptr)
           return;
 
         m_reply.clear();
@@ -174,7 +174,7 @@ namespace Plan
       void
       onResourceRelease() override
       {
-        if (m_db == NULL)
+        if (m_db == nullptr)
           return;
 
         delete m_insert_plan_stmt;
@@ -187,7 +187,7 @@ namespace Plan
         delete m_lastchange_query_stmt;
         delete m_db;
 
-        m_db = NULL;
+        m_db = nullptr;
       }
 
       void
@@ -337,7 +337,7 @@ namespace Plan
           return;
         }
 
-        const IMC::PlanSpecification* spec = 0;
+        const IMC::PlanSpecification* spec = nullptr;
 
         if (!req.arg.get(spec))
         {

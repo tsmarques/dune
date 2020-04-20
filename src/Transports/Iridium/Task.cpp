@@ -76,7 +76,7 @@ namespace Transports
         m_announce_pool_empty(true),
         m_dev_update_req_id(10),
         m_announce_req_id(75),
-        m_rnd(NULL)
+        m_rnd(nullptr)
       {
         paramActive(Tasks::Parameter::SCOPE_GLOBAL,
                     Tasks::Parameter::VISIBILITY_USER);
@@ -221,7 +221,7 @@ namespace Transports
       {
 
         DUNE::IMC::IridiumMessage * m = DUNE::IMC::IridiumMessage::deserialize(msg);
-        if (m == NULL)
+        if (m == nullptr)
         {
           war(DTR("Parsing unrecognized iridium message as text"));
           std::string text(msg->data.begin(), msg->data.end());

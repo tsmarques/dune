@@ -123,7 +123,7 @@ namespace Transports
         };
 
         //! Radio 3DR driver.
-        Radio3dr(RadioConfParam args , Tasks::Task* taskp = NULL):
+        Radio3dr(RadioConfParam args , Tasks::Task* taskp = nullptr):
         RadioDriver( args ,taskp ),
         cmd_mode(false)
         {

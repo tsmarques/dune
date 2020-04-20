@@ -53,7 +53,7 @@ namespace Transports
     public:
       NodeTable():
         m_active_count(0),
-        m_lcomms(NULL)
+        m_lcomms(nullptr)
       { }
 
       void
@@ -99,7 +99,7 @@ namespace Transports
       void
       send(UDPSocket& sock, const uint8_t* data, unsigned data_len, unsigned msgid)
       {
-        if (m_lcomms != NULL)
+        if (m_lcomms != nullptr)
         {
           if (m_lcomms->isActive())
           {

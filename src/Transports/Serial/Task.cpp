@@ -58,7 +58,7 @@ namespace Transports
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::SimpleTransport(name, ctx),
-        m_uart(NULL)
+        m_uart(nullptr)
       {
         param("Serial Port - Device", m_args.device)
         .defaultValue("")

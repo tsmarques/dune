@@ -371,7 +371,7 @@ namespace DUNE
       bool
       isTrackingBottom()
       {
-        return m_btd.enabled && (m_btrack != NULL);
+        return m_btd.enabled && (m_btrack != nullptr);
       }
 
       //! Data for along-track error monitoring.

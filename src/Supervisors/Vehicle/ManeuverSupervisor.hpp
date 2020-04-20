@@ -53,7 +53,7 @@ namespace Supervisors
     public:
       ManeuverSupervisor(Tasks::Task* task, double timeout):
         m_task(task),
-        m_curr_req(NULL),
+        m_curr_req(nullptr),
         m_timeout(timeout),
         m_valid_state(false)
       { }
@@ -257,7 +257,7 @@ namespace Supervisors
       bool
       isProcessing()
       {
-        return (m_curr_req != NULL);
+        return (m_curr_req != nullptr);
       }
 
       //! Check if current request has expired

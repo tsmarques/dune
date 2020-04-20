@@ -45,11 +45,11 @@ namespace DUNE
     {
     public:
       FilterOutput (Methods method)
-          : std::ostream (0), m_method (method), m_buffer (nullptr)
+          : std::ostream (nullptr), m_method (method), m_buffer (nullptr)
       { }
 
       FilterOutput (std::ostream &stream, Methods method)
-          : std::ostream (0), m_buffer (nullptr)
+          : std::ostream (nullptr), m_buffer (nullptr)
       {
         setStream(stream, method);
       }

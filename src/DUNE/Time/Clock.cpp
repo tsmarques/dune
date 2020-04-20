@@ -121,7 +121,7 @@ namespace DUNE
       timeval tv;
       tv.tv_sec = static_cast<time_t>(value);
       tv.tv_usec = 0;
-      if (settimeofday(&tv, 0) != 0)
+      if (settimeofday(&tv, nullptr) != 0)
         throw System::Error(errno, DTR("failed to set time"));
 #else
       (void)value;

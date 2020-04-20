@@ -107,7 +107,7 @@ namespace Supervisors
         m_switch_time(-1.0),
         m_ignore_errors(false),
         m_scope_ref(0),
-        m_man_sup(NULL)
+        m_man_sup(nullptr)
       {
         param("Vital Entities", m_args.vital_ents)
         .defaultValue("")
@@ -189,7 +189,7 @@ namespace Supervisors
       }
 
       void
-      changeMode(IMC::VehicleState::OperationModeEnum s, IMC::Message* maneuver = 0)
+      changeMode(IMC::VehicleState::OperationModeEnum s, IMC::Message* maneuver = nullptr)
       {
         if (m_vs.op_mode != s)
         {
@@ -493,7 +493,7 @@ namespace Supervisors
         if (maneuverMode())
           reset();
 
-        const IMC::Message* m = 0;
+        const IMC::Message* m = nullptr;
 
         if (!msg->maneuver.isNull())
         {
@@ -542,7 +542,7 @@ namespace Supervisors
       void
       startManeuver(const IMC::VehicleCommand* msg)
       {
-        const IMC::Message* m = 0;
+        const IMC::Message* m = nullptr;
 
         if (!msg->maneuver.isNull())
           m = msg->maneuver.get();

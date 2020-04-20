@@ -135,8 +135,8 @@ namespace Sensors
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_driver(0),
+        m_uart(nullptr),
+        m_driver(nullptr),
         m_temperature(0),
         m_salinity(0),
         m_pressure(0),
@@ -241,7 +241,7 @@ namespace Sensors
       void
       onResourceRelease() override
       {
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           m_poll.remove(*m_uart);
           Memory::clear(m_driver);

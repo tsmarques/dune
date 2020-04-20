@@ -74,7 +74,7 @@ namespace Sensors
       //! Constructor.
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_sock(NULL)
+        m_sock(nullptr)
       {
         param("IPv4 Address", m_args.ip)
         .defaultValue("10.0.10.73")
@@ -192,7 +192,7 @@ namespace Sensors
       {
         consumeMessages();
 
-        if (m_sock != NULL)
+        if (m_sock != nullptr)
         {
           try
           {

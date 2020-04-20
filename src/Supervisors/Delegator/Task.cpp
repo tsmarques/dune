@@ -104,7 +104,7 @@ namespace Supervisors
           return false;
 
         Tasks::Task* task = Tasks::Factory::produce(m_args.task_name, "Surrogate", m_ctx);
-        if (task == NULL)
+        if (task == nullptr)
           throw std::invalid_argument(Utils::String::str(DTR("invalid task name '%s'"), m_args.task_name.c_str()));
 
         try

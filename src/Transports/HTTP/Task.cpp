@@ -84,7 +84,7 @@ namespace Transports
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
         RequestHandler(),
-        m_server(NULL),
+        m_server(nullptr),
         m_msg_mon(getSystemName(), ctx.uid)
       {
         // Define configuration parameters.

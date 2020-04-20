@@ -189,8 +189,8 @@ namespace Control
           m_offset(false),
           m_duration(0),
           m_maneuver(false),
-          m_TCP_sock(NULL),
-          m_UDP_sock(NULL),
+          m_TCP_sock(nullptr),
+          m_UDP_sock(nullptr),
           m_sysid(1),
           m_vtol_state(MAV_VTOL_STATE_UNDEFINED),
           m_error_missing(false),
@@ -870,10 +870,10 @@ namespace Control
         bool
         poll(double timeout)
         {
-          if (m_TCP_sock != NULL)
+          if (m_TCP_sock != nullptr)
             return Poll::poll(*m_TCP_sock, timeout);
 
-          if (m_UDP_sock != NULL)
+          if (m_UDP_sock != nullptr)
             return Poll::poll(*m_UDP_sock, timeout);
 
           return false;

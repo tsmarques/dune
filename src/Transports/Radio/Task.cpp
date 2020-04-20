@@ -138,10 +138,10 @@ namespace Transports
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
         m_sm_state(SM_IDLE),
-        m_radio(NULL),
+        m_radio(nullptr),
         m_powered(false),
-        m_reporter(NULL),
-        m_telemetry(NULL)
+        m_reporter(nullptr),
+        m_telemetry(nullptr)
       {
 
         // Define configuration parameters.
@@ -263,7 +263,7 @@ namespace Transports
       void
       consume(const IMC::Voltage* msg)
       {
-        if ( (m_telemetry != NULL) && (msg->getSourceEntity()  ==  m_voltage_eid))
+        if ( (m_telemetry != nullptr) && (msg->getSourceEntity()  ==  m_voltage_eid))
         {
           m_telemetry->consume(msg);
         }
@@ -273,7 +273,7 @@ namespace Transports
       void
       consume(const IMC::TelemetryMsg* msg)
       {
-        if ( (m_telemetry != NULL))
+        if ( (m_telemetry != nullptr))
         {
           m_telemetry->consume(msg);
         }
@@ -291,42 +291,42 @@ namespace Transports
       void
       consume(const IMC::ReportControl* msg)
       {
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->consume(msg);
       }
 
       void
       consume(const IMC::EstimatedState* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
       void
       consume(const IMC::PlanControlState* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
       void
       consume(const IMC::FuelLevel* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
       void
       consume(const IMC::VehicleState* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
       void
       consume(const IMC::VtolState* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
 
@@ -335,7 +335,7 @@ namespace Transports
       void
       consume(const IMC::IndicatedSpeed* msg)
       {
-        if (m_telemetry != NULL)
+        if (m_telemetry != nullptr)
           m_telemetry->consume(msg);
       }
       void
@@ -691,7 +691,7 @@ namespace Transports
         //report creation
         if (m_args.report_enable)
         {
-          if (m_reporter != NULL && m_reporter->trigger() && m_telemetry!=NULL)
+          if (m_reporter != nullptr && m_reporter->trigger() && m_telemetry!=nullptr)
           {
            if(m_telemetry->isIdle())
            {
@@ -707,7 +707,7 @@ namespace Transports
         //report creation
         if (m_args.high_speed_report)
         {
-          if (m_reporter != NULL && m_telemetry!=NULL && m_fast_treport_counter.overflow())
+          if (m_reporter != nullptr && m_telemetry!=nullptr && m_fast_treport_counter.overflow())
           {
             m_fast_treport_counter.setTop(m_args.radio_period);
            if(m_telemetry->isIdle())

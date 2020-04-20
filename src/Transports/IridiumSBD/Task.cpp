@@ -82,9 +82,9 @@ namespace Transports
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_driver(NULL),
-        m_tx_request(NULL)
+        m_uart(nullptr),
+        m_driver(nullptr),
+        m_tx_request(nullptr)
       {
         paramActive(Tasks::Parameter::SCOPE_GLOBAL,
                     Tasks::Parameter::VISIBILITY_USER);
@@ -136,7 +136,7 @@ namespace Transports
         if (paramChanged(m_args.mbox_check_per))
           m_mbox_check_timer.setTop(m_args.mbox_check_per);
 
-        if (m_driver != NULL)
+        if (m_driver != nullptr)
           m_driver->setTxRateMax(m_args.max_tx_rate);
       }
 
@@ -188,7 +188,7 @@ namespace Transports
         {
           m_driver->stopAndJoin();
           delete m_driver;
-          m_driver = NULL;
+          m_driver = nullptr;
         }
 
         Memory::clear(m_uart);
@@ -255,7 +255,7 @@ namespace Transports
       void
       dequeueTxRequest(unsigned msn)
       {
-        if (m_tx_request == NULL)
+        if (m_tx_request == nullptr)
           return;
 
         if (!m_tx_request->hasValidMSN() || (m_tx_request->getMSN() != msn))
@@ -271,7 +271,7 @@ namespace Transports
       void
       invalidateTxRequest(unsigned msn, unsigned err_code)
       {
-        if (m_tx_request == NULL)
+        if (m_tx_request == nullptr)
           return;
 
         if (!m_tx_request->hasValidMSN() || (m_tx_request->getMSN() != msn))
@@ -284,7 +284,7 @@ namespace Transports
                             String::str(DTR("failed with error %u"), err_code));
 
         enqueueTxRequest(m_tx_request);
-        m_tx_request = NULL;
+        m_tx_request = nullptr;
       }
 
       void
@@ -365,7 +365,7 @@ namespace Transports
         if (!isActive())
           m_mbox_check_timer.reset();
 
-        if (m_tx_request != NULL)
+        if (m_tx_request != nullptr)
         {
           unsigned msn = m_driver->getMOMSN();
           m_tx_request->setMSN(msn);

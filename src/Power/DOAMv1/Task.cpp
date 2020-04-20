@@ -174,7 +174,7 @@ namespace Power
       {
         for (unsigned i = 0; i < c_adcs_max; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
         }
       }
@@ -186,7 +186,7 @@ namespace Power
 
         for (unsigned i = 0; i < c_adcs_max; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
 
           m_adcs[i] = IMC::Factory::produce(m_args.adc_messages[i]);

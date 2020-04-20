@@ -132,7 +132,7 @@ namespace Sensors
 
         const Packet* reply = read(MSG_ID_PING_RANGE, COMMAND_TYPE_REPLY, subsys, 0, 1.0);
 
-        if (reply == NULL)
+        if (reply == nullptr)
           throw std::runtime_error(DTR("failed to get range"));
 
         return reply->getValue();
@@ -208,7 +208,7 @@ namespace Sensors
 
         // Wait for reply.
         const Packet* reply = read(MSG_ID_SYSTEM_TIME, COMMAND_TYPE_REPLY, 0, 0, 1.0);
-        if (reply == NULL)
+        if (reply == nullptr)
         {
           m_parent->debug("no reply to system time request");
           return std::numeric_limits<long int>::max();
@@ -327,7 +327,7 @@ namespace Sensors
           }
         }
 
-        return NULL;
+        return nullptr;
       }
     };
   }

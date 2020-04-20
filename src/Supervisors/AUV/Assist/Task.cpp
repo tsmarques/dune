@@ -108,7 +108,7 @@ namespace Supervisors
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::Periodic(name, ctx),
-          m_vmon(NULL),
+          m_vmon(nullptr),
           m_astate(ST_IDLE),
           m_dtimer(c_stab_time),
           m_ltimer(c_stab_time),

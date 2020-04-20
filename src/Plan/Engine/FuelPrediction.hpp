@@ -82,8 +82,8 @@ namespace Plan
         m_starting_fuel(-1.0f),
         m_valid(true)
       {
-        if (profiles == NULL || cat == NULL ||
-            speed_model == NULL || power_model == NULL)
+        if (profiles == nullptr || cat == nullptr ||
+            speed_model == nullptr || power_model == nullptr)
         {
           m_valid = false;
           return;

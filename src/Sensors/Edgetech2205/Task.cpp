@@ -149,12 +149,12 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_sock_dat(NULL),
-        m_cmd(NULL),
-        m_log(NULL),
+        m_sock_dat(nullptr),
+        m_cmd(nullptr),
+        m_log(nullptr),
         m_sm_state(SM_IDLE),
         m_powered(false),
-        m_packet(NULL)
+        m_packet(nullptr)
       {
         // Define configuration parameters.
         setParamSectionEditor("Edgetech2205");
@@ -603,7 +603,7 @@ namespace Sensors
       void
       handleSonarData()
       {
-        if (m_log == NULL || m_packet == NULL)
+        if (m_log == nullptr || m_packet == nullptr)
           return;
 
         int subsys_idx = getSubsysIndex(m_packet->getSubsystemNumber());
@@ -724,9 +724,9 @@ namespace Sensors
                                       estate_delta,
                                       data->msec_cpu - msec_cpu_old,
                                       msec_delta,
-                                      (estate == NULL) ? 0 : 1,
+                                      (estate == nullptr) ? 0 : 1,
                                       m_cmd->getEstimatedTimeDelta()));
-        if (estate == NULL)
+        if (estate == nullptr)
           return;
 
         // Position.
@@ -781,7 +781,7 @@ namespace Sensors
           return false;
 
         consumeMessages();
-        if (m_sock_dat == NULL || m_packet == NULL)
+        if (m_sock_dat == nullptr || m_packet == nullptr)
           return false;
 
         size_t rv = m_sock_dat->read(&m_bfr[0], m_bfr.size());
@@ -831,7 +831,7 @@ namespace Sensors
         if (!isActive() && !isActivating())
           return;
 
-        if (m_log != NULL)
+        if (m_log != nullptr)
         {
           if (m_log->getPath() == path)
             return;
@@ -848,7 +848,7 @@ namespace Sensors
       void
       logPacket()
       {
-        if (m_log != NULL)
+        if (m_log != nullptr)
         {
           m_log->put(m_packet);
           m_packet = m_log->get();
@@ -858,7 +858,7 @@ namespace Sensors
       void
       closeLog()
       {
-        if (m_log == NULL)
+        if (m_log == nullptr)
           return;
 
         m_log->stopAndJoin();
@@ -966,7 +966,7 @@ namespace Sensors
 
             // Wait for log name.
           case SM_ACT_LOG_WAIT:
-            if (m_log != NULL)
+            if (m_log != nullptr)
               queueState(SM_ACT_DONE);
             break;
 

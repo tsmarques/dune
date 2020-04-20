@@ -47,7 +47,7 @@ using namespace DUNE::Coordinates;
 using namespace DUNE::FileSystem;
 
 static bool deg = true;
-static WMM* wmm = 0; // create only if necessary
+static WMM* wmm = nullptr; // create only if necessary
 
 void
 helpC(std::istream& is)

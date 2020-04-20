@@ -234,14 +234,14 @@ namespace DUNE
         return true;
 
 #if defined(DUNE_SYS_HAS_GETADDRINFO)
-      addrinfo* res = 0;
+      addrinfo* res = nullptr;
       addrinfo hints;
 
       std::memset(&hints, 0, sizeof(addrinfo));
       hints.ai_flags = AI_CANONNAME;
       hints.ai_family = AF_INET;
 
-      int rv = getaddrinfo(m_host.c_str(), 0, &hints, &res);
+      int rv = getaddrinfo(m_host.c_str(), nullptr, &hints, &res);
 
       if (rv != 0)
         return false;

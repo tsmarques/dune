@@ -85,7 +85,7 @@ namespace Actuators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_reply_tout(c_reply_tout)
       {
         param("Entity Label - Motors", m_args.motor_enames)

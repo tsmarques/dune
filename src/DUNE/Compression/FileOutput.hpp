@@ -46,7 +46,7 @@ namespace DUNE
     {
     public:
       FileOutput (const char *filename, Methods method)
-          : std::ostream (0), m_method (method),
+          : std::ostream (nullptr), m_method (method),
             m_stream (filename, std::ios::binary | std::ios::out),
             m_buffer (nullptr)
       {

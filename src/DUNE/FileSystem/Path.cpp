@@ -180,7 +180,7 @@ namespace DUNE
 
       // POSIX implementation.
 #elif defined(DUNE_SYS_HAS_GETCWD)
-      if (getcwd(bfr, PATH_MAX) == 0)
+      if (getcwd(bfr, PATH_MAX) == nullptr)
         throw System::Error(errno, "retrieving current working directory");
 
       // Lacking implementation.
@@ -451,7 +451,7 @@ namespace DUNE
         if (mode == MODE_RECURSIVE)
         {
           Directory dir(m_path.c_str());
-          const char* entry = 0;
+          const char* entry = nullptr;
           while ((entry = dir.readEntry(Directory::RD_FULL_NAME)))
             Path(entry).remove(mode);
         }
@@ -548,11 +548,11 @@ namespace DUNE
       char bfr[c_copy_buffer_size];
 
       std::FILE* ifd = std::fopen(c_str(), "rb");
-      if (ifd == 0)
+      if (ifd == nullptr)
         throw System::Error(errno, "opening source file", str());
 
       std::FILE* ofd = std::fopen(destination.c_str(), "wb");
-      if (ofd == 0)
+      if (ofd == nullptr)
       {
         std::fclose(ifd);
         throw System::Error(errno, "opening destination file", destination.str());
@@ -738,7 +738,7 @@ namespace DUNE
     void
     Path::contents(std::vector<Path>& dirs, int min_depth, int max_depth, int depth) const
     {
-      const char* name = 0;
+      const char* name = nullptr;
       Directory dir(m_path);
 
       while ((name = dir.readEntry(Directory::RD_FULL_NAME)))

@@ -64,12 +64,12 @@ namespace Transports
       {
         latDegs = lonDegs = zMeters = timestamp = 0;
         priority = source = -1;
-        sample = NULL;
+        sample = nullptr;
       }
 
       ~DataSample()
       {
-        if (sample != NULL)
+        if (sample != nullptr)
           delete sample;
       }
 
@@ -242,7 +242,7 @@ namespace Transports
         }
 
         if (ret->data.size() == 0)
-          return NULL;
+          return nullptr;
         else
           return ret;
       }
@@ -286,7 +286,7 @@ namespace Transports
 
         // no data can be added
         if (added.empty())
-          return NULL;
+          return nullptr;
 
         ret->base_lat = added.at(0)->latDegs;
         ret->base_lon = added.at(0)->lonDegs;

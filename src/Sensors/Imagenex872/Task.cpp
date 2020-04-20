@@ -116,7 +116,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_sock(NULL)
+        m_sock(nullptr)
       {
         // Define configuration parameters.
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -184,10 +184,10 @@ namespace Sensors
         setDataGain(m_args.dat_gain);
         setBalanceGain(m_args.bal_gain);
 
-        if (paramChanged(m_args.addr) && m_sock != NULL)
+        if (paramChanged(m_args.addr) && m_sock != nullptr)
           throw RestartNeeded(DTR("restarting to change IPv4 address"), 1);
 
-        if (paramChanged(m_args.port) && m_sock != NULL)
+        if (paramChanged(m_args.port) && m_sock != nullptr)
           throw RestartNeeded(DTR("restarting to change TCP port"), 1);
       }
 

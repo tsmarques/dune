@@ -138,10 +138,10 @@ namespace DUNE
       using FileSystem::Path;
 
       char bfr[64];
-      const char* fmts[] = {"/dev/ttyS%d", "/dev/ttyACM%d", "/dev/ttyUSB%d", 0};
+      const char* fmts[] = {"/dev/ttyS%d", "/dev/ttyACM%d", "/dev/ttyUSB%d", nullptr};
       const char** fmt = fmts;
 
-      while (*fmt != 0)
+      while (*fmt != nullptr)
       {
         for (int i = 0; i < 24; ++i)
         {

@@ -114,7 +114,7 @@ namespace Simulators
           if (area.intersects(cb) && (*c)->remove(area, cb))
           {
             delete *c;
-            * c = 0;
+            * c = nullptr;
             ++cdel;
           }
         }
@@ -140,7 +140,7 @@ namespace Simulators
     };
 
     QuadTree::QuadTree(const Bounds& bounds):
-      m_bounds(bounds), m_root(0)
+      m_bounds(bounds), m_root(nullptr)
     { }
 
     QuadTree::~QuadTree()
@@ -169,7 +169,7 @@ namespace Simulators
       if (m_root)
       {
         delete m_root;
-        m_root = 0;
+        m_root = nullptr;
       }
     }
 

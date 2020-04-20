@@ -48,7 +48,7 @@ namespace DUNE
 {
   Daemon::Daemon(DUNE::Tasks::Context& ctx, const std::string& profiles):
     DUNE::Tasks::Task("Daemon", ctx),
-    m_tman(NULL),
+    m_tman(nullptr),
     m_fs_capacity(0),
     call_reboot(false)
   {

@@ -54,7 +54,7 @@ namespace DUNE
   I18N::getLanguage()
   {
 #if defined(DUNE_SYS_HAS_GETTEXT) && defined(LC_MESSAGES)
-    std::string name = setlocale(LC_MESSAGES, NULL);
+    std::string name = setlocale(LC_MESSAGES, nullptr);
     for (unsigned i = 0; i < name.size(); ++i)
     {
       if (name[i] == '.' || name[i] == '@')

@@ -84,7 +84,7 @@ namespace Sensors
       {"!A0000000000000000", "!L", "0000000000000000THR\r\n"},
       {"W0100", "X", "0100BST\r\n"},
       {"!141030000", "!2", "41030000STC\r\n"},
-      {0, 0, 0}
+      {nullptr, nullptr, nullptr}
     };
 
     //! %Task arguments.
@@ -135,8 +135,8 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_avg_sspeed(NULL)
+        m_uart(nullptr),
+        m_avg_sspeed(nullptr)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")

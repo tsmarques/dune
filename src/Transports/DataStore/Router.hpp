@@ -142,7 +142,7 @@ namespace Transports
           if (curTime - it->second.getTimeStamp() < c_wifi_timeout)
           {
             IMC::HistoricData* cmds = store->pollCommands(it->second.getSource(), c_max_size_wifi);
-            if (cmds != NULL)
+            if (cmds != nullptr)
             {
               m_parent->inf("Forwarding commands over Wifi to %s.", it->first.c_str());
               cmds->setDestination(it->second.getSource());
@@ -166,7 +166,7 @@ namespace Transports
             int id = m_parent->resolveSystemName(it->first);
 
             IMC::HistoricData* cmds = store->pollCommands(id, c_max_size_acoustic);
-            if (cmds != NULL)
+            if (cmds != nullptr)
             {
               cmds->setDestination(id);
               AcousticOperation acOp;
@@ -183,7 +183,7 @@ namespace Transports
       void iridiumUpload(DataStore* store)
       {
         IMC::HistoricData* data = store->pollSamples(c_max_size_iridium);
-        if (data == NULL)
+        if (data == nullptr)
           return;
         IMC::ImcIridiumMessage msg(data);
         msg.source = m_parent->getSystemId();

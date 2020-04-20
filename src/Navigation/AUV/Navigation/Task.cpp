@@ -190,7 +190,7 @@ namespace Navigation
 
         Task(const std::string& name, Tasks::Context& ctx):
           DUNE::Navigation::BasicNavigation(name, ctx),
-          m_avg_speed(NULL)
+          m_avg_speed(nullptr)
         {
           // Declare configuration parameters.
           param("Position Noise Covariance with IMU", m_args.pos_noise)
@@ -757,7 +757,7 @@ namespace Navigation
         double
         getRpmToMs(double rpm)
         {
-          if(m_speed_model != NULL)
+          if(m_speed_model != nullptr)
           return m_speed_model->toMPS(rpm,IMC::SUNITS_RPM);
         return m_args.rpm_ini*rpm;
         }

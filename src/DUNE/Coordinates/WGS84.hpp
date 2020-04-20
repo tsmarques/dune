@@ -130,7 +130,7 @@ namespace DUNE
       static void
       displacement(Ta rlat, Ta rlon, Tb rhae,
                    Tc lat, Tc lon, Td hae,
-                   Te* n, Te* e, Te* d = NULL)
+                   Te* n, Te* e, Te* d = nullptr)
       {
         double cs[6] = {0.0};
 
@@ -146,15 +146,15 @@ namespace DUNE
         double clon = std::cos(rlon);
 
         // North.
-        if (n != NULL)
+        if (n != nullptr)
           *n = -slat * clon * ox - slat * slon * oy + clat * oz;
 
         // East.
-        if (e != NULL)
+        if (e != nullptr)
           *e = -slon * ox + clon * oy;
 
         // Down.
-        if (d != NULL)
+        if (d != nullptr)
           *d = -clat * clon * ox - clat * slon * oy - slat * oz;
       }
 

@@ -91,7 +91,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        m_prng(NULL)
+        m_prng(nullptr)
       {
         param("PRNG Type", m_args.prng_type)
         .defaultValue(Random::Factory::c_default)

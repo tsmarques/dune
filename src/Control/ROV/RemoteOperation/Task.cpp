@@ -119,9 +119,9 @@ namespace Control
           m_thruster(5, 1, 0.0),
           m_forces(6, 1, 0.0),
           m_dh_data(false),
-          m_dt(NULL),
+          m_dt(nullptr),
           m_wdist_desired(c_wall_dist),
-          m_wdist_mav(NULL)
+          m_wdist_mav(nullptr)
         {
           param("Actuation Inverse Matrix", m_args.actuat)
           .defaultValue("")

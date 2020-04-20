@@ -157,7 +157,7 @@ namespace Power
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
         m_pwr_down(false),
-        m_gpios(NULL),
+        m_gpios(nullptr),
         m_halt(false)
       {
         std::memset(m_adcs, 0, sizeof(m_adcs));
@@ -218,7 +218,7 @@ namespace Power
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
         }
 
@@ -234,7 +234,7 @@ namespace Power
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
 
           m_adcs[i] = IMC::Factory::produce(m_args.adc_messages[i]);
@@ -549,7 +549,7 @@ namespace Power
         // Dispatch ADCs
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] == NULL)
+          if (m_adcs[i] == nullptr)
             continue;
 
           fp32_t tmp = m_args.adc_factors[i][0] * ((unpack[i] / 1024.0) * m_args.adc_ref) + m_args.adc_factors[i][1];

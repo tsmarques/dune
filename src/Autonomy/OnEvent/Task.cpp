@@ -94,7 +94,7 @@ namespace Autonomy
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_sampler(NULL),
+        m_sampler(nullptr),
         m_trigger(false)
       {
         paramActive(Tasks::Parameter::SCOPE_MANEUVER,
@@ -208,7 +208,7 @@ namespace Autonomy
       void
       consume(const IMC::Message* msg)
       {
-        if (m_sampler == NULL)
+        if (m_sampler == nullptr)
           return;
 
         double reading = msg->getValueFP();

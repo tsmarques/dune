@@ -53,7 +53,7 @@ namespace Simulators
       // Retrieve vehicle's volume.
       double gravity[3];
       if (!cfg.getList(section, "Gravity", gravity, 3))
-        return 0;
+        return nullptr;
 
       return new Simulators::VSIM::World(0, gravity, 0);
     }
@@ -61,7 +61,7 @@ namespace Simulators
     Simulators::VSIM::Vehicle*
     Factory::produceVehicle(Parsers::Config& cfg)
     {
-      Simulators::VSIM::Vehicle* vehicle = NULL;
+      Simulators::VSIM::Vehicle* vehicle = nullptr;
 
       // To allow different types of vehicles.
       std::string model;
@@ -73,12 +73,12 @@ namespace Simulators
       // Retrieve vehicle's volume.
       double volume[3];
       if (!cfg.getList(section, "Volume", volume, 3))
-        return 0;
+        return nullptr;
 
       // Retrieve vehicle's buoyancy.
       double buoyancy[3];
       if (!cfg.getList(section, "Buoyancy", buoyancy, 3))
-        return 0;
+        return nullptr;
 
       // Get vehicle type and create vehicle's object.p
       std::string type;
@@ -93,7 +93,7 @@ namespace Simulators
         if (has_amass)
           vehicle->setAddedMassCoef(addedmass);
         else
-          return 0;
+          return nullptr;
 
         // Retrieve lift coefficient.
         double bodylift[8];
@@ -101,14 +101,14 @@ namespace Simulators
         if (has_lift)
           vehicle->setBodyLiftCoef(bodylift);
         else
-          return 0;
+          return nullptr;
       }
       else
       {
         if (type == "ASV")
           vehicle = new Simulators::VSIM::ASV(volume);
         else
-          return 0;
+          return nullptr;
       }
 
       // Retrieve mass.
@@ -119,7 +119,7 @@ namespace Simulators
       double imatrix[6];
       bool has_imatrix = cfg.getList(section, "Inertial Matrix", imatrix, 6);
       if (!has_imatrix)
-        return 0;
+        return nullptr;
       vehicle->setMassProp(mass, imatrix);
 
       // Retrieve linear drag coefficient.
@@ -128,7 +128,7 @@ namespace Simulators
       if (has_ldrag)
         vehicle->setLinearDragCoef(ldrag);
       else
-        return 0;
+        return nullptr;
 
       // Retrieve quadratic drag coefficient.
       double qdrag[10];
@@ -136,7 +136,7 @@ namespace Simulators
       if (has_qdrag)
         vehicle->setQuadraticDragCoef(qdrag);
       else
-        return 0;
+        return nullptr;
 
       // Velocity integration method
       // true: uses regular method.
@@ -161,7 +161,7 @@ namespace Simulators
             || !cfg.getList(section, "Fin Position " + idx, position, 3))
         {
           delete vehicle;
-          return 0;
+          return nullptr;
         }
 
         vehicle->addForce(new Simulators::VSIM::Fin(i, force, position));
@@ -184,7 +184,7 @@ namespace Simulators
             || !cfg.getList(section, "Engine Orientation " + idx, orientation, 2))
         {
           delete vehicle;
-          return 0;
+          return nullptr;
         }
 
         vehicle->addForce(new Simulators::VSIM::Engine(i, force, position, orientation, eng_max_force));

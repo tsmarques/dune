@@ -63,7 +63,7 @@ namespace Transports
       handlePUT(TCPSocket* sock, Utils::TupleList& headers, const char* uri);
 
       void
-      sendHeader(TCPSocket* sock, const char* status_line, int64_t length, HeaderFieldsMap* hdr_fields = 0);
+      sendHeader(TCPSocket* sock, const char* status_line, int64_t length, HeaderFieldsMap* hdr_fields = nullptr);
 
       void
       sendResponse100(TCPSocket* sock);
@@ -96,10 +96,10 @@ namespace Transports
       sendResponse503(TCPSocket* sock);
 
       void
-      sendData(TCPSocket* sock, const char* data, int size, HeaderFieldsMap* hdr_fields = 0);
+      sendData(TCPSocket* sock, const char* data, int size, HeaderFieldsMap* hdr_fields = nullptr);
 
       inline void
-      sendData(TCPSocket* sock, const std::string& data, HeaderFieldsMap* hdr_fields = 0)
+      sendData(TCPSocket* sock, const std::string& data, HeaderFieldsMap* hdr_fields = nullptr)
       {
         sendData(sock, data.c_str(), (int)data.size(), hdr_fields);
       }

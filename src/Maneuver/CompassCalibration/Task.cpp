@@ -98,7 +98,7 @@ namespace Maneuver
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Maneuvers::Maneuver(name, ctx),
-        m_yoyo(NULL),
+        m_yoyo(nullptr),
         m_calibrating(false),
         m_calibrated(false),
         m_yoyo_ing(false)

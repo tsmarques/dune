@@ -77,7 +77,7 @@ namespace Sensors
       {
         for(unsigned i = 0; i < c_max_n_probes; ++i)
         {
-          m_msg[i]=NULL;
+          m_msg[i]=nullptr;
         }
 
         paramActive(Tasks::Parameter::SCOPE_IDLE,

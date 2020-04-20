@@ -100,7 +100,7 @@ namespace UserInterfaces
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_current(NULL),
+        m_current(nullptr),
         m_cursor(0),
         m_current_id(PAT_NORMAL),
         m_next_id(-1),
@@ -160,7 +160,7 @@ namespace UserInterfaces
       {
         for (unsigned i = 0; i < m_args.led_ids.size(); ++i)
         {
-          AbstractOutput* out = NULL;
+          AbstractOutput* out = nullptr;
 
           if (m_args.interface == "Message")
           {

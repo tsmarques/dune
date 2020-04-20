@@ -61,14 +61,14 @@ namespace DUNE
 
     PathController::PathController(std::string name, Tasks::Context& ctx):
       Task(name, ctx),
-      m_bt_entity(NULL),
+      m_bt_entity(nullptr),
       m_running_monitors(true),
       m_error(false),
       m_setup(true),
       m_braking(false),
       m_jump_monitors(false),
       m_aloops(0),
-      m_btrack(NULL),
+      m_btrack(nullptr),
       m_scope_ref(0)
     {
       param("Control Frequency", m_cperiod)
@@ -249,7 +249,7 @@ namespace DUNE
           if (paramChanged(m_btd.args.control_period))
             m_btd.args.control_period = 1.0 / m_btd.args.control_period;
 
-          if (m_btrack == NULL)
+          if (m_btrack == nullptr)
           {
             m_btd.args.task = this;
             m_btrack = new BottomTracker(&m_btd.args);
@@ -1070,7 +1070,7 @@ namespace DUNE
     void
     PathController::deactivateBottomTracker()
     {
-      if (m_btrack == NULL)
+      if (m_btrack == nullptr)
         return;
 
       m_btrack->deactivate();

@@ -47,8 +47,8 @@ namespace Sensors
     public:
       Trigger():
         m_active(false),
-        m_uart(NULL),
-        m_switch_data(NULL),
+        m_uart(nullptr),
+        m_switch_data(nullptr),
         m_switch_data_size(0)
       {
       }

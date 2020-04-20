@@ -39,7 +39,7 @@ namespace DUNE
     RWLock::RWLock()
     {
 #if defined(DUNE_SYS_HAS_PTHREAD_RWLOCK)
-      int rv = pthread_rwlock_init(&m_lock, 0);
+      int rv = pthread_rwlock_init(&m_lock, nullptr);
 
       if (rv != 0)
         throw RWLockError(rv);

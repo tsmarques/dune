@@ -218,7 +218,7 @@ namespace DUNE
       return converted_frame->image;
 
 #else
-      return NULL;
+      return nullptr;
 #endif
     }
 
@@ -238,7 +238,7 @@ namespace DUNE
       return converted_frame->image;
 
    #else
-      return NULL;
+      return nullptr;
    #endif
     }
 
@@ -257,7 +257,7 @@ namespace DUNE
       return converted_frame->image;
 
 #else
-      return NULL;
+      return nullptr;
 #endif
     }
 

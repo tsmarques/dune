@@ -136,7 +136,7 @@ namespace DUNE
           break;
       }
 
-      return 0;
+      return nullptr;
     }
 
     Compressor*
@@ -160,7 +160,7 @@ namespace DUNE
           break;
       }
 
-      return 0;
+      return nullptr;
     }
 
     Decompressor*

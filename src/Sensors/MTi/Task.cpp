@@ -104,7 +104,7 @@ namespace Sensors
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
         m_state(PS_NONE),
-        m_uart(NULL)
+        m_uart(nullptr)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")
@@ -325,13 +325,13 @@ namespace Sensors
       bool
       sendGoToConfig()
       {
-        return sendMessageWithAck(0x30, 0, 0);
+        return sendMessageWithAck(0x30, nullptr, 0);
       }
 
       bool
       sendGoToMeasurement()
       {
-        return sendMessageWithAck(0x10, 0, 0);
+        return sendMessageWithAck(0x10, nullptr, 0);
       }
 
       bool

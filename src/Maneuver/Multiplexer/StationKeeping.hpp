@@ -57,7 +57,7 @@ namespace Maneuver
       //! @param[in] args stationkeeping arguments
       StationKeeping(Maneuvers::Maneuver* task, StationKeepingArgs* args):
         MuxedManeuver<IMC::StationKeeping, StationKeepingArgs>(task, args),
-        m_skeep(NULL),
+        m_skeep(nullptr),
         m_end_time(-1.0)
       { }
 
@@ -85,7 +85,7 @@ namespace Maneuver
       void
       onEstimatedState(const IMC::EstimatedState* msg) override
       {
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         if (m_skeep->isInside() && (m_end_time < 0))
@@ -101,7 +101,7 @@ namespace Maneuver
       {
         m_pcs = *pcs;
 
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         m_skeep->updatePathControl(pcs);
@@ -111,7 +111,7 @@ namespace Maneuver
       void
       onStateReport() override
       {
-        if (m_skeep == NULL)
+        if (m_skeep == nullptr)
           return;
 
         if (m_skeep->isInside())

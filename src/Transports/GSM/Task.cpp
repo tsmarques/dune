@@ -137,8 +137,8 @@ namespace Transports
 
         Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_driver(NULL),
+        m_uart(nullptr),
+        m_driver(nullptr),
         m_req_id(1560),
         m_success_balance(false),
         m_rssi(0)
@@ -249,7 +249,7 @@ namespace Transports
         {
           m_driver->stopAndJoin();
           delete m_driver;
-          m_driver = NULL;
+          m_driver = nullptr;
         }
 
         Memory::clear(m_uart);

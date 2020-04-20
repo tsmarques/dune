@@ -96,7 +96,7 @@ namespace Plan
       parse(const std::set<uint16_t>* supported_maneuvers,
             const std::map<std::string, IMC::EntityInfo>& cinfo,
             IMC::PlanStatistics& ps, bool imu_enabled = false,
-            const IMC::EstimatedState* state = NULL);
+            const IMC::EstimatedState* state = nullptr);
 
       //! Signal that the plan has started
       void

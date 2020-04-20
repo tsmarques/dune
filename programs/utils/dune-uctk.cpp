@@ -85,7 +85,7 @@ main(int argc, char** argv)
   }
 
   // Get device type.
-  IO::Handle* handle = NULL;
+  IO::Handle* handle = nullptr;
   std::string dev_type = options.value("--dev-type");
   if (dev_type == "escc")
     handle = new ESCC(sys_dev);

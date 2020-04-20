@@ -110,9 +110,9 @@ namespace Transports
       public:
       DeviceReports device_reports;
 
-      RadioDriver( RadioConfParam args , Tasks::Task* taskp = NULL):
+      RadioDriver( RadioConfParam args , Tasks::Task* taskp = nullptr):
       task(taskp),
-      m_handle(NULL),
+      m_handle(nullptr),
       radioParams(args)
       {
       }

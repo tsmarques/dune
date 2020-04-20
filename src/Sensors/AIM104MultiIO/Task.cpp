@@ -83,7 +83,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Periodic(name, ctx),
-        m_driver(NULL),
+        m_driver(nullptr),
         m_samples(0)
       {
         // Initialize conversion variables.
@@ -183,7 +183,7 @@ namespace Sensors
 
         for (unsigned i = 0; i < c_max_channels; ++i)
         {
-          if (m_messages[i] == NULL)
+          if (m_messages[i] == nullptr)
             continue;
 
           m_driver->setChannel(i);
@@ -201,7 +201,7 @@ namespace Sensors
         {
           for (unsigned i = 0; i < c_max_channels; ++i)
           {
-            if (m_messages[i] == NULL)
+            if (m_messages[i] == nullptr)
               continue;
 
             double mean = m_means[i] / m_args.spl_avg;

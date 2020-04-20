@@ -80,9 +80,9 @@ namespace Actuators
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
       DUNE::Tasks::Task(name, ctx),
-      m_servo_0(NULL),
-      m_servo_1(NULL),
-      m_servo_2(NULL)
+      m_servo_0(nullptr),
+      m_servo_1(nullptr),
+      m_servo_2(nullptr)
       {
         for(unsigned int i = 0; i < c_max_pwm; ++i)
         {
@@ -136,23 +136,23 @@ namespace Actuators
       void
       onResourceRelease() override
       {
-        if (m_servo_0 != NULL)
+        if (m_servo_0 != nullptr)
         {
           m_servo_0->stopAndJoin();
           delete m_servo_0;
-          m_servo_0 = NULL;
+          m_servo_0 = nullptr;
         }
-        if (m_servo_1 != NULL)
+        if (m_servo_1 != nullptr)
         {
           m_servo_1->stopAndJoin();
           delete m_servo_1;
-          m_servo_1 = NULL;
+          m_servo_1 = nullptr;
         }
-        if (m_servo_2 != NULL)
+        if (m_servo_2 != nullptr)
         {
           m_servo_2->stopAndJoin();
           delete m_servo_2;
-          m_servo_2 = NULL;
+          m_servo_2 = nullptr;
         }
       }
 

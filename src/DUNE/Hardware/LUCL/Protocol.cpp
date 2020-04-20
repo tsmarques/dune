@@ -64,8 +64,8 @@ namespace DUNE
       const int Protocol::c_error_last = 8;
 
       Protocol::Protocol():
-        m_uart(0),
-        m_i2c(0),
+        m_uart(nullptr),
+        m_i2c(nullptr),
         m_i2c_read_pend(false),
         m_open(false)
       {
@@ -153,13 +153,13 @@ namespace DUNE
         if (m_uart)
         {
           delete m_uart;
-          m_uart = 0;
+          m_uart = nullptr;
         }
 
         if (m_i2c)
         {
           delete m_i2c;
-          m_i2c = 0;
+          m_i2c = nullptr;
         }
 
         m_open = false;

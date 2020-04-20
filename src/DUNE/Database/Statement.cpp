@@ -44,11 +44,11 @@ namespace DUNE
   namespace Database
   {
     Statement::Statement(const char* sql_stmt, Connection& conn):
-      m_handle(0),
+      m_handle(nullptr),
       m_conn(conn),
       m_idx(0)
     {
-      if (sqlite3_prepare_v2(m_conn.handle(), sql_stmt, std::strlen(sql_stmt), &m_handle, 0) != SQLITE_OK)
+      if (sqlite3_prepare_v2(m_conn.handle(), sql_stmt, std::strlen(sql_stmt), &m_handle, nullptr) != SQLITE_OK)
       {
         throwError();
       }

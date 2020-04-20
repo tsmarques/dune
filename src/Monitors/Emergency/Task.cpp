@@ -87,7 +87,7 @@ namespace Monitors
         Tasks::Periodic(name, ctx),
         m_in_mission(false),
         m_req(0),
-        m_reporter(NULL)
+        m_reporter(nullptr)
       {
         paramActive(Tasks::Parameter::SCOPE_IDLE,
                     Tasks::Parameter::VISIBILITY_USER);
@@ -210,7 +210,7 @@ namespace Monitors
       void
       consume(const IMC::ReportControl* msg)
       {
-        if (m_reporter != NULL)
+        if (m_reporter != nullptr)
           m_reporter->consume(msg);
       }
 
@@ -380,7 +380,7 @@ namespace Monitors
       sendScheduled()
       {
         std::string number;
-        if (m_reporter != NULL && m_reporter->trigger(&number))
+        if (m_reporter != nullptr && m_reporter->trigger(&number))
         {
           if (!m_hand.isUnderwater())
           {

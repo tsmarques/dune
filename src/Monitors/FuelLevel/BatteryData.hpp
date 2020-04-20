@@ -77,10 +77,10 @@ namespace Monitors
       {
         for (unsigned i = 0; i < BM_TOTAL; ++i)
         {
-          if (m_avg[i] != NULL)
+          if (m_avg[i] != nullptr)
           {
             delete m_avg[i];
-            m_avg[i] = NULL;
+            m_avg[i] = nullptr;
           }
         }
       }

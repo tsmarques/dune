@@ -115,12 +115,12 @@ namespace DUNE
 
       if (timeout < 0.0)
       {
-        rv = select(max + 1, &m_rfd, NULL, NULL, NULL);
+        rv = select(max + 1, &m_rfd, nullptr, nullptr, nullptr);
       }
       else
       {
         timeval tv = DUNE_TIMEVAL_INIT_SEC_FP(timeout);
-        rv = select(max + 1, &m_rfd, NULL, NULL, &tv);
+        rv = select(max + 1, &m_rfd, nullptr, nullptr, &tv);
       }
 
       if (rv == -1)
@@ -151,12 +151,12 @@ namespace DUNE
       int rv = 0;
       if (timeout < 0.0)
       {
-        rv = select(handle + 1, &rfd, NULL, NULL, NULL);
+        rv = select(handle + 1, &rfd, nullptr, nullptr, nullptr);
       }
       else
       {
         timeval tv = DUNE_TIMEVAL_INIT_SEC_FP(timeout);
-        rv = select(handle + 1, &rfd, NULL, NULL, &tv);
+        rv = select(handle + 1, &rfd, nullptr, nullptr, &tv);
       }
 
       if (rv == -1)

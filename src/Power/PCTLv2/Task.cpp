@@ -257,7 +257,7 @@ namespace Power
       {
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
         }
       }
@@ -277,7 +277,7 @@ namespace Power
 
         for (unsigned i = 0; i < c_adcs_count; ++i)
         {
-          if (m_adcs[i] != NULL)
+          if (m_adcs[i] != nullptr)
             delete m_adcs[i];
 
           m_adcs[i] = IMC::Factory::produce(m_args.adc_messages[i]);
@@ -660,7 +660,7 @@ namespace Power
 
           if (msg->op == IMC::PowerChannelControl::PCC_OP_TURN_OFF)
           {
-            m_proto.sendCommand(CMD_PWR_HLT, 0, 0);
+            m_proto.sendCommand(CMD_PWR_HLT, nullptr, 0);
             return;
           }
         }

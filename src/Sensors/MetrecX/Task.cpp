@@ -171,7 +171,7 @@ namespace Sensors
       //! @param[in] ctx context.
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL)
+        m_uart(nullptr)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")
@@ -249,7 +249,7 @@ namespace Sensors
         // initialize variables.
         for (unsigned i = 0; i < c_total; ++i)
         {
-          m_msgs[i] = NULL;
+          m_msgs[i] = nullptr;
           m_slots[i] = false;
         }
 

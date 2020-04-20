@@ -65,8 +65,8 @@ namespace Maneuver
       //! @param[in] args elevator arguments
       Elevator(Maneuvers::Maneuver* task, ElevatorArgs* args):
         MuxedManeuver<IMC::Elevator, ElevatorArgs>(task, args),
-        m_elevate(NULL),
-        m_vmon(NULL)
+        m_elevate(nullptr),
+        m_vmon(nullptr)
       { }
 
       //! Destructor

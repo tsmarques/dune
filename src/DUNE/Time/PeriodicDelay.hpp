@@ -113,7 +113,7 @@ namespace DUNE
         // POSIX clock_nanosleep().
 #elif defined(DUNE_SYS_HAS_CLOCK_NANOSLEEP)
         timespec deadline = {(time_t)(m_deadline / 1000000000), (long)(m_deadline % 1000000000)};
-        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &deadline, NULL);
+        clock_nanosleep(CLOCK_MONOTONIC, TIMER_ABSTIME, &deadline, nullptr);
 
         // POSIX nanosleep().
 #elif defined(DUNE_SYS_HAS_NANOSLEEP)

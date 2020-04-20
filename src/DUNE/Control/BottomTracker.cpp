@@ -81,7 +81,7 @@ namespace DUNE
     void
     BottomTracker::reset()
     {
-      if (m_sdata != NULL)
+      if (m_sdata != nullptr)
         m_sdata->reset();
 
       m_z_ref.value = 0.0;

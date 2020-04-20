@@ -145,7 +145,7 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         DUNE::Tasks::Task(name, ctx),
-        m_uart(NULL),
+        m_uart(nullptr),
         m_timer(0),
         m_last_tick(0)
       {
@@ -206,7 +206,7 @@ namespace Sensors
         for (unsigned i = 0; i < 3; i++)
           m_hard_iron[i] = data(i);
 
-        if (m_uart != NULL)
+        if (m_uart != nullptr)
         {
           if (paramChanged(m_args.hard_iron))
             runCalibration();
@@ -645,7 +645,7 @@ namespace Sensors
       void
       runCalibration()
       {
-        if (m_uart == NULL)
+        if (m_uart == nullptr)
           return;
 
         // See if vehicle has same hard iron calibration parameters.

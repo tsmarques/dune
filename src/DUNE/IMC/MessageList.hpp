@@ -87,10 +87,10 @@ namespace DUNE
       {
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if (m_list[i] != NULL)
+          if (m_list[i] != nullptr)
           {
             delete m_list[i];
-            m_list[i] = NULL;
+            m_list[i] = nullptr;
           }
         }
 
@@ -132,7 +132,7 @@ namespace DUNE
       {
         Type* tmsg = static_cast<Type*>(msg.clone());
 
-        if (m_parent != NULL)
+        if (m_parent != nullptr)
           synchronizeHeader(tmsg);
 
         m_list.push_back(tmsg);
@@ -145,9 +145,9 @@ namespace DUNE
       void
       push_back(const Type* msg)
       {
-        if (msg == NULL)
+        if (msg == nullptr)
         {
-          m_list.push_back(NULL);
+          m_list.push_back(nullptr);
           return;
         }
 
@@ -165,7 +165,7 @@ namespace DUNE
         {
           nbytes += 2;
 
-          if (m_list[i] != NULL)
+          if (m_list[i] != nullptr)
             nbytes += m_list[i]->getPayloadSerializationSize();
         }
 
@@ -194,10 +194,10 @@ namespace DUNE
 
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if ((m_list[i] == NULL) && (other.m_list[i] == NULL))
+          if ((m_list[i] == nullptr) && (other.m_list[i] == nullptr))
             continue;
 
-          if ((m_list[i] != NULL) && (other.m_list[i] != NULL))
+          if ((m_list[i] != nullptr) && (other.m_list[i] != nullptr))
           {
             if (*m_list[i] != *other.m_list[i])
               return false;
@@ -233,7 +233,7 @@ namespace DUNE
         // Serialize messages.
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if (m_list[i] == NULL)
+          if (m_list[i] == nullptr)
           {
             bfr += IMC::serialize((uint16_t)DUNE_IMC_CONST_NULL_ID, bfr);
           }
@@ -270,13 +270,13 @@ namespace DUNE
 
           if (id == DUNE_IMC_CONST_NULL_ID)
           {
-            m_list.push_back(NULL);
+            m_list.push_back(nullptr);
             continue;
           }
 
           Type* msg = static_cast<Type*>(Factory::produce(id));
 
-          if (msg == NULL)
+          if (msg == nullptr)
             throw InvalidMessageId(id);
 
           uint16_t ssize = msg->deserializeFields(ptr, bfr_len - (ptr - bfr));
@@ -307,13 +307,13 @@ namespace DUNE
 
           if (id == DUNE_IMC_CONST_NULL_ID)
           {
-            m_list.push_back(NULL);
+            m_list.push_back(nullptr);
             continue;
           }
 
           Type* msg = static_cast<Type*>(Factory::produce(id));
 
-          if (msg == NULL)
+          if (msg == nullptr)
             throw InvalidMessageId(id);
 
           uint16_t ssize = msg->reverseDeserializeFields(ptr, bfr_len - (ptr - bfr));
@@ -335,7 +335,7 @@ namespace DUNE
 
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if (m_list[i] == NULL)
+          if (m_list[i] == nullptr)
           {
             os << "\"null\"";
           }
@@ -356,12 +356,12 @@ namespace DUNE
       void
       setTimeStamp(double value)
       {
-        if (m_parent == NULL)
+        if (m_parent == nullptr)
           return;
 
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if (m_list[i] != NULL)
+          if (m_list[i] != nullptr)
             m_list[i]->setTimeStamp(value);
         }
       }
@@ -369,12 +369,12 @@ namespace DUNE
       void
       setSource(uint16_t value)
       {
-        if (m_parent == NULL)
+        if (m_parent == nullptr)
           return;
 
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if (m_list[i] != NULL)
+          if (m_list[i] != nullptr)
             m_list[i]->setSource(value);
         }
       }
@@ -382,12 +382,12 @@ namespace DUNE
       void
       setSourceEntity(uint8_t value)
       {
-        if (m_parent == NULL)
+        if (m_parent == nullptr)
           return;
 
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if (m_list[i] != NULL)
+          if (m_list[i] != nullptr)
             m_list[i]->setSourceEntity(value);
         }
       }
@@ -395,12 +395,12 @@ namespace DUNE
       void
       setDestination(uint16_t value)
       {
-        if (m_parent == NULL)
+        if (m_parent == nullptr)
           return;
 
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if (m_list[i] != NULL)
+          if (m_list[i] != nullptr)
             m_list[i]->setDestination(value);
         }
       }
@@ -408,12 +408,12 @@ namespace DUNE
       void
       setDestinationEntity(uint8_t value)
       {
-        if (m_parent == NULL)
+        if (m_parent == nullptr)
           return;
 
         for (unsigned i = 0; i < m_list.size(); ++i)
         {
-          if (m_list[i] != NULL)
+          if (m_list[i] != nullptr)
             m_list[i]->setDestinationEntity(value);
         }
       }
@@ -427,7 +427,7 @@ namespace DUNE
       void
       synchronizeHeader(Type* msg)
       {
-        if (msg == NULL)
+        if (msg == nullptr)
           return;
 
         msg->setTimeStamp(m_parent->getTimeStamp());
@@ -446,8 +446,8 @@ namespace DUNE
 
         for (unsigned i = 0; i < other.m_list.size(); ++i)
         {
-          if (other.m_list[i] == NULL)
-            m_list.push_back(NULL);
+          if (other.m_list[i] == nullptr)
+            m_list.push_back(nullptr);
           else
             m_list.push_back(static_cast<Type*>(other.m_list[i]->clone()));
         }

@@ -188,7 +188,7 @@ namespace Supervisors
 
           const IMC::PlanSpecification* spec = static_cast<const IMC::PlanSpecification*>(msg->get());
 
-          if (spec == NULL)
+          if (spec == nullptr)
           {
             m_dr &= ~GOT_LCPLAN;
             return;

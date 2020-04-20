@@ -96,7 +96,7 @@ namespace Simulators
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_prng(NULL),
+        m_prng(nullptr),
         m_timeref(-1.0)
       {
         param("Latitude of Dock", m_args.lat)

@@ -89,8 +89,8 @@ namespace Sensors
 
       Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Task(name, ctx),
-        m_uart(NULL),
-        m_filter(NULL)
+        m_uart(nullptr),
+        m_filter(nullptr)
       {
         param("Serial Port - Device", m_args.uart_dev)
         .defaultValue("")

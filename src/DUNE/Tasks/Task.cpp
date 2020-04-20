@@ -59,9 +59,9 @@ namespace DUNE
 
     Task::Task(const std::string& n, Context& ctx):
       m_ctx(ctx),
-      m_recipient(0),
+      m_recipient(nullptr),
       m_name(n),
-      m_entity(NULL),
+      m_entity(nullptr),
       m_debug_level(DEBUG_LEVEL_NONE),
       m_honours_active(false)
     {
@@ -116,7 +116,7 @@ namespace DUNE
     {
       std::vector<Entities::BasicEntity*>::iterator it = std::find(m_entities.begin(), m_entities.end(), label);
       if (it == m_entities.end())
-          return NULL;
+          return nullptr;
       else
         return (*it);
     }

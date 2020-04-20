@@ -213,8 +213,8 @@ namespace Monitors
 
         for (unsigned i = 0; i < c_servo_count; ++i)
         {
-          m_pos_monitor[i] = NULL;
-          m_curr_monitor[i] = NULL;
+          m_pos_monitor[i] = nullptr;
+          m_curr_monitor[i] = nullptr;
         }
 
         // Register handler routines.
@@ -342,7 +342,7 @@ namespace Monitors
       {
         unsigned i = msg->id;
 
-        if (m_pos_monitor[i] == NULL)
+        if (m_pos_monitor[i] == nullptr)
         {
           m_pos_monitor[i] = new ServoPositionMonitor<float>(m_args.pos_error_threshold,
                                                              m_args.rate_factor,

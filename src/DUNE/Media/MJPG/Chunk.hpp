@@ -56,7 +56,7 @@ namespace DUNE
         //! @param[in] id chunk identifier.
         Chunk(const Properties& properties, const char* id):
           m_properties(properties),
-          m_data(NULL),
+          m_data(nullptr),
           m_data_size(0),
           m_pad_size(0)
         {
@@ -158,7 +158,7 @@ namespace DUNE
         virtual void
         writeData(std::ostream& os)
         {
-          if (m_data_size > 0 && m_data != NULL)
+          if (m_data_size > 0 && m_data != nullptr)
             os.write((const char*)m_data, m_data_size);
 
           if (m_pad_size > 0)

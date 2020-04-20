@@ -67,7 +67,7 @@ namespace Maneuver
       //! @param[in] args yoyo arguments
       YoYo(Maneuvers::Maneuver* task, YoYoArgs* args):
         MuxedManeuver<IMC::YoYo, YoYoArgs>(task, args),
-        m_yoyo(NULL)
+        m_yoyo(nullptr)
       { }
 
       //! Destructor
@@ -173,7 +173,7 @@ namespace Maneuver
       void
       onBrake(const IMC::Brake* msg) override
       {
-        if (m_yoyo == NULL)
+        if (m_yoyo == nullptr)
           return;
 
         if (msg->op == IMC::Brake::OP_START)

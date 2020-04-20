@@ -49,7 +49,7 @@ namespace DUNE
 
     public:
       ByteBuffer(uint32_t capacity = 128):
-        m_buffer(NULL),
+        m_buffer(nullptr),
         m_capacity(Math::computeNextPowerOfTwo(capacity)),
         m_size(0)
       {

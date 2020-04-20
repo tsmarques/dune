@@ -46,7 +46,7 @@ namespace DUNE
     {
     public:
       FileInput (const char *filename, Methods method)
-          : std::istream (0), m_method (method),
+          : std::istream (nullptr), m_method (method),
             m_stream (filename, std::ios::binary | std::ios::in),
             m_buffer (nullptr)
       {

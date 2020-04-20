@@ -120,7 +120,7 @@ namespace DUNE
     Process::joinImpl()
     {
 #if defined(DUNE_SYS_HAS_FORK)
-      waitpid(m_pvt->handle, 0, 0);
+      waitpid(m_pvt->handle, nullptr, 0);
 #endif
     }
 
