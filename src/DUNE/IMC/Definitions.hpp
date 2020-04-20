@@ -1,5 +1,5 @@
 //***************************************************************************
-// Copyright 2007-2017 Universidade do Porto - Faculdade de Engenharia      *
+// Copyright 2007-2019 Universidade do Porto - Faculdade de Engenharia      *
 // Laboratório de Sistemas e Tecnologia Subaquática (LSTS)                  *
 //***************************************************************************
 // This file is part of DUNE: Unified Navigation Environment.               *
@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: cdc4c6dfe2baed8395138f0b1b8e1910                            *
+// IMC XML MD5: c659e4d5ac49839c6943e6b96ceedb88                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -7133,6 +7133,8 @@ namespace DUNE
     public:
       //! Measured Force.
       fp32_t value;
+      //! Force Label.
+      std::string label;
 
       static uint16_t
       getIdStatic()
@@ -7182,6 +7184,12 @@ namespace DUNE
       getFixedSerializationSize() const override
       {
         return 4;
+      }
+
+      unsigned
+      getVariableSerializationSize(void) const
+      {
+        return IMC::getSerializationSize(label);
       }
 
       fp64_t
@@ -24967,6 +24975,88 @@ namespace DUNE
 
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
+    };
+
+    //! Flight Event.
+    class FlightEvent: public Message
+    {
+    public:
+      //! Type.
+      enum TypeEnum
+      {
+        //! Idle.
+        FLEV_IDLE = 0,
+        //! Ignition.
+        FLEV_IGNITION = 1,
+        //! Lift Off.
+        FLEV_LIFTOFF = 2,
+        //! Maximum Dynamic Pressure.
+        FLEV_MAX_Q = 3,
+        //! Coasting.
+        FLEV_COASTING = 4,
+        //! Apogee.
+        FLEV_APOGEE = 5,
+        //! Recovery.
+        FLEV_RECOVERY = 6,
+        //! Touchdown.
+        FLEV_TOUCHDOWN = 7
+      };
+
+      //! Type.
+      uint8_t type;
+
+      static uint16_t
+      getIdStatic(void)
+      {
+        return 909;
+      }
+
+      FlightEvent(void);
+
+      FlightEvent*
+      clone(void) const
+      {
+        return new FlightEvent(*this);
+      }
+
+      void
+      clear(void);
+
+      bool
+      fieldsEqual(const Message& msg__) const;
+
+      int
+      validate(void) const;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+
+      uint16_t
+      getId(void) const
+      {
+        return FlightEvent::getIdStatic();
+      }
+
+      const char*
+      getName(void) const
+      {
+        return "FlightEvent";
+      }
+
+      unsigned
+      getFixedSerializationSize(void) const
+      {
+        return 1;
+      }
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
     };
 
     //! Total Magnetic Field Intensity.

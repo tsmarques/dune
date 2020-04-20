@@ -4,8 +4,23 @@ WarningsAsErrors: '*'
 HeaderFilterRegex: 'src'
 AnalyzeTemporaryDtors: false
 FormatStyle:     gnu
+<<<<<<< HEAD
 User:            tsm
 CheckOptions:
+=======
+User:            rasm
+CheckOptions:
+  - key:             modernize-loop-convert.MaxCopySize
+    value:           '16'
+  - key:             modernize-loop-convert.MinConfidence
+    value:           reasonable
+  - key:             modernize-loop-convert.NamingStyle
+    value:           lower_case
+  - key:             modernize-pass-by-value.IncludeStyle
+    value:           llvm
+  - key:             modernize-replace-auto-ptr.IncludeStyle
+    value:           llvm
+>>>>>>> feature/launcher-simulation
   - key:             modernize-use-nullptr.NullMacros
     value:           'NULL'
 ...

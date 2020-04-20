@@ -1,5 +1,5 @@
 //***************************************************************************
-// Copyright 2007-2017 Universidade do Porto - Faculdade de Engenharia      *
+// Copyright 2007-2019 Universidade do Porto - Faculdade de Engenharia      *
 // Laboratório de Sistemas e Tecnologia Subaquática (LSTS)                  *
 //***************************************************************************
 // This file is part of DUNE: Unified Navigation Environment.               *
@@ -59,12 +59,12 @@ namespace Transports
     enum MsgState
     {
       MSG_NONE,
-    	MSG_QUEUE,
-    	MSG_TO_DRIVER,
+      MSG_QUEUE,
+      MSG_TO_DRIVER,
       MSG_IN_PARTS,
       MSG_IN_PARTS_ERR,
-    	WAITING_ACKN,
-    	MSG_SEND,
+      WAITING_ACKN,
+      MSG_TRANSMIT,
       MSG_RECIVING,
       MSG_RECIVED,
       MSG_PROCESSED,
