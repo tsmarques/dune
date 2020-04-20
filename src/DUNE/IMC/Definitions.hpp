@@ -7187,7 +7187,7 @@ namespace DUNE
       }
 
       unsigned
-      getVariableSerializationSize(void) const
+      getVariableSerializationSize() const override
       {
         return IMC::getSerializationSize(label);
       }
@@ -25006,57 +25006,57 @@ namespace DUNE
       uint8_t type;
 
       static uint16_t
-      getIdStatic(void)
+      getIdStatic()
       {
         return 909;
       }
 
-      FlightEvent(void);
+      FlightEvent();
 
       FlightEvent*
-      clone(void) const
+      clone() const override
       {
         return new FlightEvent(*this);
       }
 
       void
-      clear(void);
+      clear() override;
 
       bool
-      fieldsEqual(const Message& msg__) const;
+      fieldsEqual(const Message& msg__) const override;
 
       int
-      validate(void) const;
+      validate() const override;
 
       uint8_t*
-      serializeFields(uint8_t* bfr__) const;
+      serializeFields(uint8_t* bfr__) const override;
 
       uint16_t
-      deserializeFields(const uint8_t* bfr__, uint16_t size__);
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__);
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
 
       uint16_t
-      getId(void) const
+      getId() const override
       {
         return FlightEvent::getIdStatic();
       }
 
       const char*
-      getName(void) const
+      getName() const override
       {
         return "FlightEvent";
       }
 
       unsigned
-      getFixedSerializationSize(void) const
+      getFixedSerializationSize() const override
       {
         return 1;
       }
 
       void
-      fieldsToJSON(std::ostream& os__, unsigned nindent__) const;
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
     };
 
     //! Total Magnetic Field Intensity.
