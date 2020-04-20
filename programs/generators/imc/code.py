@@ -118,7 +118,7 @@ class Enum:
         return out
 
 class Function:
-    def __init__(self, name, rett = None, args = None, const = False, inline = False, static = False):
+    def __init__(self, name, rett = None, args = None, const = False, inline = False, static = False, override = False):
         self._data = {}
         self._name = name
         self._rett = rett
@@ -128,9 +128,10 @@ class Function:
         self._body = ''
         self._class = None
         self._static = static
+        self._override = override
 
         if self._args is None:
-            self._args_str = 'void'
+            self._args_str = ''
         else:
             self._args_str = ', '.join([v.as_func_arg() for v in self._args])
 
@@ -160,8 +161,12 @@ class Function:
         if self._rett is not None:
             out += self._rett + '\n';
 
+        override = ''
+        if self._override:
+            override = ' override'
+
         return out + \
-               self._name + '(' + self._args_str + ')' + self._const_str +';\n' \
+               self._name + '(' + self._args_str + ')' + self._const_str + override + ';\n'
 
     def __str__(self):
         out = ''
@@ -177,6 +182,10 @@ class Function:
         else:
             name = self._name
 
+        override = ''
+        if self._inline and self._override:
+            override = ' override'
+
         return out + \
-               name + '(' + self._args_str + ')' + self._const_str +'\n' \
+               name + '(' + self._args_str + ')' + self._const_str + override + '\n' \
                '{\n'+ self._body + '\n}\n'

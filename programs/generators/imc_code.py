@@ -108,25 +108,25 @@ class Message:
         public.append(f)
 
         # clone()
-        f = Function('clone', '%(abbrev)s*' % node.attrib, const = True, inline = True)
+        f = Function('clone', '%(abbrev)s*' % node.attrib, const = True, inline = True, override = True)
         f.body('return new %(abbrev)s(*this);' % node.attrib)
         public.append(f)
 
         # clear()
-        f = Function('clear', 'void')
+        f = Function('clear', 'void', override = True)
         f.body('\n'.join([get_clear(field) for field in node.findall('field')]))
         public.append(f)
 
         # fieldsEqual()
         if self.has_fields():
-            f = Function('fieldsEqual', 'bool', [Var('msg__', 'const Message&')], const = True)
+            f = Function('fieldsEqual', 'bool', [Var('msg__', 'const Message&')], const = True, override = True)
             f.add_body('const IMC::' + node.get('abbrev') + '& other__ = static_cast<const ' + node.get('abbrev') + '&>(msg__);')
             f.add_body('\n'.join([get_not_equal(field) for field in node.findall('field')]))
             f.add_body('return true;')
             public.append(f)
 
         # validate() / fixme
-        f = Function('validate', 'int', const = True)
+        f = Function('validate', 'int', const = True, override = True)
         if self.has_fields():
             for field in node.findall('field'):
                 fabbrev = get_name(field)
@@ -142,7 +142,7 @@ class Message:
         public.append(f);
 
         # serializeFields()
-        f = Function('serializeFields', 'uint8_t*', [Var('bfr__', 'uint8_t*')], const = True)
+        f = Function('serializeFields', 'uint8_t*', [Var('bfr__', 'uint8_t*')], const = True, override = True)
         if self.has_fields():
             f.add_body('uint8_t* ptr__ = bfr__;')
             for field in node.findall('field'):
@@ -156,7 +156,7 @@ class Message:
         public.append(f)
 
         # deserializeFields()
-        f = Function('deserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')])
+        f = Function('deserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')], override = True)
         if self.has_fields():
             f.add_body('const uint8_t* start__ = bfr__;')
             for field in node.findall('field'):
@@ -171,7 +171,7 @@ class Message:
         public.append(f)
 
         # reverseDeserializeFields()
-        f = Function('reverseDeserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')])
+        f = Function('reverseDeserializeFields', 'uint16_t', [Var('bfr__', 'const uint8_t*'), Var('size__', 'uint16_t')], override = True)
         if self.has_fields():
             f.add_body('const uint8_t* start__ = bfr__;')
             for field in node.findall('field'):
@@ -188,54 +188,54 @@ class Message:
         public.append(f)
 
         # getId()
-        f = Function('getId', 'uint16_t', const = True, inline = True)
+        f = Function('getId', 'uint16_t', const = True, inline = True, override = True)
         f.body('return %(abbrev)s::getIdStatic();' % node.attrib)
         public.append(f)
 
         # getName()
-        f = Function('getName', 'const char*', const = True, inline = True)
+        f = Function('getName', 'const char*', const = True, inline = True, override = True)
         f.body('return "%(abbrev)s";' % node.attrib)
         public.append(f)
 
         # getFixedSerializationSize()
-        f = Function('getFixedSerializationSize', 'unsigned', const = True, inline = True)
+        f = Function('getFixedSerializationSize', 'unsigned', const = True, inline = True, override = True)
         f.body('return ' + str(self.get_fixed_size()) + ';')
         public.append(f)
 
         # getVariableSerializationSize()
         var_size = str(self.get_variable_size())
         if var_size != '':
-            f = Function('getVariableSerializationSize', 'unsigned', const = True, inline = True)
+            f = Function('getVariableSerializationSize', 'unsigned', const = True, inline = True, override = True)
             f.body('return ' + var_size + ';')
             public.append(f)
 
         subid = node.find("field/[@abbrev='id']")
         if subid is not None and subid.get('type') in consts['fixed_types']:
             # getSubId()
-            f = Function('getSubId', 'uint16_t', const = True)
+            f = Function('getSubId', 'uint16_t', const = True, override = True)
             f.body('return id;')
             public.append(f)
 
             # setSubId()
-            f = Function('setSubId', 'void', [Var('subid', 'uint16_t')])
+            f = Function('setSubId', 'void', [Var('subid', 'uint16_t')], override = True)
             f.body('id = ({0})subid;'.format(subid.get('type')))
             public.append(f)
 
         value = node.find("field/[@abbrev='value']")
         if value is not None and value.get('type') in consts['fixed_types']:
             # getValueFP()
-            f = Function('getValueFP', 'fp64_t', const = True)
+            f = Function('getValueFP', 'fp64_t', const = True, override = True)
             f.body('return static_cast<fp64_t>(value);')
             public.append(f)
 
             # setValueFP()
-            f = Function('setValueFP', 'void', [Var('val', 'fp64_t')])
+            f = Function('setValueFP', 'void', [Var('val', 'fp64_t')], override = True)
             f.body('value = static_cast<{0}>(val);'.format(value.get('type')))
             public.append(f)
 
         # fieldsToJSON()
         if self.has_fields():
-            f = Function('fieldsToJSON', 'void', [Var('os__', 'std::ostream&'), Var('nindent__', 'unsigned')], const = True)
+            f = Function('fieldsToJSON', 'void', [Var('os__', 'std::ostream&'), Var('nindent__', 'unsigned')], const = True, override = True)
             f.add_body(self.fields_to_json())
             public.append(f)
 
@@ -245,7 +245,7 @@ class Message:
                      ('SourceEntity', 'uint8_t'), ('Destination', 'uint16_t'),
                      ('DestinationEntity', 'uint8_t')]
             for func in funcs:
-                f = Function('set' + func[0] + 'Nested', 'void', [Var('value__', func[1])])
+                f = Function('set' + func[0] + 'Nested', 'void', [Var('value__', func[1])], override = True)
                 for field in node.findall("field[@type='message']"):
                     f.add_body(call_inline_message_function(get_name(field), 'set' + func[0], 'value__'))
                 for field in node.findall("field[@type='message-list']"):
@@ -544,7 +544,7 @@ hpp.add_dune_headers('Config.hpp', 'IMC/Message.hpp',
 # Definitions.cpp                                                              #
 ################################################################################
 cpp = File('Definitions.cpp', dest_folder, md5 = xml_md5)
-cpp.add_isoc_headers('algorithm','iostream', 'iomanip', 'string', 'cstdio')
+cpp.add_isoc_headers('algorithm','iostream', 'iomanip', 'string', 'cstdio', 'cstdint')
 cpp.add_dune_headers('Utils/ByteCopy.hpp', 'Utils/Utils.hpp',
                      'IMC/Exceptions.hpp', 'IMC/Definitions.hpp',
                      'IMC/Factory.hpp', 'IMC/Serialization.hpp')
