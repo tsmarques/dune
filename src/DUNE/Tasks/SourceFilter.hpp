@@ -78,7 +78,6 @@ namespace DUNE
 
       //! Destructor.
       ~SourceFilter () = default;
-      ;
 
       //! Define filter by systems.
       //! @param[in] source desired sources system and entity names.
