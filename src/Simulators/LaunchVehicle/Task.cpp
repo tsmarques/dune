@@ -279,7 +279,8 @@ namespace Simulators::LaunchVehicle
 
       if (paramChanged(m_args.initial_altitude))
       {
-        m_initial_fix.altitude = m_args.initial_altitude;
+        // @fixme is this correct?
+        m_initial_fix.height = m_args.initial_altitude;
         m_estate.alt = m_args.initial_altitude;
       }
     }
@@ -444,7 +445,7 @@ namespace Simulators::LaunchVehicle
         float k4 = dv_dt(m_estate.w + k3 * dt[step], t0[step] + dt[step], m_mass, m_estate.alt);
 
         m_estate.w = m_estate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0);
-        m_estate.alt = m_estate.altitude + m_estate.w * dt[step];
+        m_estate.alt = m_estate.alt + m_estate.w * dt[step];
         ++step;
       }
 
