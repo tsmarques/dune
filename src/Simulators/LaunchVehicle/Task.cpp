@@ -389,14 +389,14 @@ namespace Simulators::LaunchVehicle
     //! m - Current launcher's total mass
     //! g - Gravity constant
     fp32_t
-    dv_dt(const float& v, const float& t_sec, const float& mass, const float& altitude)
+    dv_dt(const float& v, const float& t_sec, const float& mass, const float& altitude) const
     {
       float thrust = m_motor->computeEngineThrust(t_sec);
       float accel_thrust = thrust / mass;
       float accel_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_args.atmos_density, altitude, v) / mass;
 
       // should be opposite to velocity
-      accel_drag = accel_drag * (v >= 0 ? 1 : -1);
+      accel_drag = accel_drag * (v >= 0 ? 1.0f : -1.0f);
 
       return accel_thrust - m_args.gravity - accel_drag;
     }
@@ -452,11 +452,11 @@ namespace Simulators::LaunchVehicle
       while (step < t_steps.capacity())
       {
         float k1 = dv_dt(m_estate.w, t0[step], m_mass, m_estate.alt);
-        float k2 = dv_dt(m_estate.w + k1 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_estate.alt);
-        float k3 = dv_dt(m_estate.w + k2 * 0.5, t0[step] + (0.5 * dt[step]), m_mass, m_estate.alt);
+        float k2 = dv_dt(m_estate.w + k1 * 0.5f, t0[step] + (0.5f * dt[step]), m_mass, m_estate.alt);
+        float k3 = dv_dt(m_estate.w + k2 * 0.5f, t0[step] + (0.5f * dt[step]), m_mass, m_estate.alt);
         float k4 = dv_dt(m_estate.w + k3 * dt[step], t0[step] + dt[step], m_mass, m_estate.alt);
 
-        m_estate.w = m_estate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0);
+        m_estate.w = m_estate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0f);
         m_estate.alt = m_estate.alt + m_estate.w * dt[step];
         ++step;
       }
