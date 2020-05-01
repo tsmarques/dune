@@ -142,7 +142,7 @@ namespace Simulators::LaunchVehicle
     Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
         tstep_sec(0),
-        m_motor(NULL),
+        m_motor(nullptr),
         m_valid_thrust_curve(false),
         m_trigger_msec(0),
         m_prev_time_sec(0),
