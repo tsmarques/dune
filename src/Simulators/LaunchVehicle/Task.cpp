@@ -49,21 +49,37 @@ using DUNE_NAMESPACES;
 //! @author Tiago Sá Marques
 namespace Simulators::LaunchVehicle
 {
+  struct MotorArguments
+  {
+    //! Which motor is being simulated
+    std::string name;
+    //! Propellant's mass
+    float prop_mass{};
+    //! Motor's casing mass
+    float mass{};
+    //! Data points that describe this motor's thrust curve
+    std::vector<std::string> thrust_curve;
+  };
+
+  struct ParachuteArguments
+  {
+    //! Parachute's drag coefficient
+    float drag_coeff{};
+    //! parachute's cross sectional area
+    float area{};
+    //! Parachute's mass in kg
+    float mass{};
+    //! Parachute's deployment delay after apogee
+    float delay{};
+  };
+
   //! %Task arguments.
   struct Arguments
   {
     //! How many motors this launch vehicle has
     int n_motors{};
-    //! Data points that describe this motor's thrust curve
-    std::vector<std::string> thrust_curve;
-    //! Which motor is being simulated
-    std::string motor_name;
     //! Launcher's mass without motor
     float dry_mass{};
-    //! Propellant's mass
-    float prop_mass{};
-    //! Motor's casing mass
-    float motor_mass{};
     //! Gravity constant
     float gravity{};
     //! Crag coefficient
@@ -78,14 +94,10 @@ namespace Simulators::LaunchVehicle
     double initial_lon{};
     //! LV's initial altitude in meters
     float initial_altitude{};
-    //! Parachute's drag coefficient
-    float parachute_drag_coeff{};
-    //! parachute's cross sectional area
-    float parachute_area{};
-    //! Parachute's mass in kg
-    float parachute_mass{};
-    //! Parachute's deployment delay after apogee
-    float parachute_delay{};
+    //! Motor's arguments
+    MotorArguments motor;
+    //! Parachute's arguments
+    ParachuteArguments parachute;
   };
 
   //! Drag force entity label
@@ -160,19 +172,19 @@ namespace Simulators::LaunchVehicle
           .units(Units::Kilogram)
           .description("Launcher's mass without motor (and propellant) in kg");
 
-      param("Motor -- Name", m_args.motor_name)
+      param("Motor -- Name", m_args.motor.name)
           .defaultValue("Aerotech I65W")
           .description("Name/Brand of the motor we're simulating");
 
-      param("Motor -- Thrust Curve", m_args.thrust_curve)
+      param("Motor -- Thrust Curve", m_args.motor.thrust_curve)
           .description("Data points, time in seconds and thrust in newtons, that describe this motor's thrust function");
 
-      param("Motor -- Mass", m_args.motor_mass)
+      param("Motor -- Mass", m_args.motor.mass)
           .defaultValue("0.375")
           .units(Units::Kilogram)
           .description("Motor's casing mass without propellant in kg");
 
-      param("Motor -- Propellant Mass", m_args.prop_mass)
+      param("Motor -- Propellant Mass", m_args.motor.prop_mass)
           .defaultValue("0.377")
           .units(Units::Kilogram)
           .description("Propellant's mass in kg");
@@ -210,15 +222,15 @@ namespace Simulators::LaunchVehicle
           .units(Units::Meter)
           .description("Initial altitude in meters");
 
-      param("Parachute -- Drag Coefficient", m_args.parachute_drag_coeff)
+      param("Parachute -- Drag Coefficient", m_args.parachute.drag_coeff)
           .defaultValue("1.5")
           .description("Parachute's drag coefficient when open");
 
-      param("Parachute -- Area", m_args.parachute_area)
+      param("Parachute -- Area", m_args.parachute.area)
           .defaultValue("2.064")
           .description("Parachute's projected area in m^2");
 
-      param("Parachute -- Mass", m_args.parachute_mass)
+      param("Parachute -- Mass", m_args.parachute.mass)
           .defaultValue("0.062")
           .units(Units::Kilogram)
           .description("Parachute's mass in kg");
@@ -253,7 +265,7 @@ namespace Simulators::LaunchVehicle
     {
       tstep_sec = 1.0 / getFrequency();
 
-      if (m_args.thrust_curve.empty())
+      if (m_args.motor.thrust_curve.empty())
       {
         war("No thrust curve found");
         return;
@@ -300,7 +312,7 @@ namespace Simulators::LaunchVehicle
     void
     onResourceAcquisition() override
     {
-      m_motor = new Motor(this, m_args.thrust_curve);
+      m_motor = new Motor(this, m_args.motor.thrust_curve);
     }
 
     void
@@ -348,8 +360,8 @@ namespace Simulators::LaunchVehicle
         return;
 
       inf("activating parachute");
-      curr_ref_area = std::max(m_args.parachute_area, curr_ref_area);
-      curr_drag_coeff = std::max(m_args.parachute_drag_coeff, curr_drag_coeff);
+      curr_ref_area = std::max(m_args.parachute.area, curr_ref_area);
+      curr_drag_coeff = std::max(m_args.parachute.drag_coeff, curr_drag_coeff);
     }
 
     void
@@ -472,16 +484,16 @@ namespace Simulators::LaunchVehicle
           "Parachute Drag Coefficient: %f\n"
           "Parachute area: %f\n"
           "Parachute mass: %f\n",
-          m_args.motor_name.c_str(),
+          m_args.motor.name.c_str(),
           m_args.n_motors,
           m_args.dry_mass,
-          m_args.motor_mass,
-          m_args.prop_mass,
+          m_args.motor.mass,
+          m_args.motor.prop_mass,
           m_args.coeff_drag,
           m_args.area,
-          m_args.parachute_drag_coeff,
-          m_args.parachute_area,
-          m_args.parachute_mass);
+          m_args.parachute.drag_coeff,
+          m_args.parachute.area,
+          m_args.parachute.mass);
     }
 
     void
@@ -502,7 +514,7 @@ namespace Simulators::LaunchVehicle
 
       float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
 
-      m_mass = m_args.dry_mass + m_args.prop_mass + m_args.motor_mass + m_args.parachute_mass;
+      m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass + m_args.parachute.mass;
       updateThrust(curr_time_sec);
       updateState(curr_time_sec);
 
