@@ -34,16 +34,13 @@
 
 namespace DUNE::Physics
 {
-  //! Atmosphere's "Scale height"
-  const float c_atmos_scale_height = 8000;
-
   //! Get the atmospheric density at the given height
   //! @param[i] sea_level_dens Sea level density
   //! @param[in] height body's height
   inline fp64_t
   getAtmosphericDensity(double sea_level_dens, double height)
   {
-    return sea_level_dens * std::exp((-height / c_atmos_scale_height));
+    return sea_level_dens * std::exp((-height / Math::c_atmos_scale_height));
   }
 
   //! Compute the dynamic pressure of a body with the given velocity

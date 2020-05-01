@@ -61,6 +61,8 @@ namespace DUNE
     static const float c_sea_level_pressure = 101325.0f;
     // Conversion between bar and pascal
     static const float c_pascal_per_bar = 100000.0f;
+    //! Atmosphere's "Scale height"
+    const float c_atmos_scale_height = 8000;
   }
 }
 
