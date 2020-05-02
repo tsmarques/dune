@@ -102,12 +102,9 @@ include(${PROJECT_SOURCE_DIR}/cmake/I18N.cmake)
 #############################################################################
 # DUNE's default build type
 #############################################################################
-if(DEBUG)
-  set(CMAKE_BUILD_TYPE "Debug")
+if(CMAKE_BUILD_TYPE MATCHES "Debug")
   add_definitions(-DDEBUG)
-else(DEBUG)
-  set(CMAKE_BUILD_TYPE "Release")
-endif(DEBUG)
+endif(CMAKE_BUILD_TYPE MATCHES "Debug")
 
 if(PROFILE)
   set(CMAKE_BUILD_TYPE "Debug")
