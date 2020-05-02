@@ -34,6 +34,7 @@
 #include <DUNE/Physics.hpp>
 
 #include "Motor.hpp"
+#include "SimulationState.hpp"
 
 using DUNE_NAMESPACES;
 
@@ -374,7 +375,7 @@ namespace Simulators::LaunchVehicle
       m_thrust.value = m_motor->computeEngineThrust(curr_time_sec);
     }
 
-    //! Compute acceleration's integral
+    //! Compute, among others, acceleration's integral
     //! F = Ft - Fd - Fg
     //! F - total force
     //! Ft - Thrust force
@@ -388,17 +389,26 @@ namespace Simulators::LaunchVehicle
     //! v - velocity
     //! m - Current launcher's total mass
     //! g - Gravity constant
-    fp32_t
-    dv_dt(const float& v, const float& t_sec, const float& mass, const float& altitude) const
+    SimulationState
+    rk4Step(const IMC::EstimatedState& curr_state, float t_sec, float mass) const
     {
-      float thrust = m_motor->computeEngineThrust(t_sec);
-      float accel_thrust = thrust / mass;
-      float accel_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_args.atmos_density, altitude, v) / mass;
+      SimulationState new_state;
+
+      // @note for now assume no thrust vectoring
+      float f_thrust = m_motor->computeEngineThrust(t_sec);
+      float f_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area,
+                                           m_args.atmos_density, curr_state.alt,
+                                           curr_state.w);
 
       // should be opposite to velocity
-      accel_drag = accel_drag * (v >= 0 ? 1.0f : -1.0f);
+      f_drag = f_drag * (curr_state.w >= 0 ? 1.0f : -1.0f);
 
-      return accel_thrust - m_args.gravity - accel_drag;
+      // update linear acceleration (on x)
+      new_state.m_a(0, 2) = f_thrust / mass;
+      new_state.m_a(0, 2) -= m_args.gravity;
+      new_state.m_a(0, 2) -= (f_drag / mass);
+
+      return new_state;
     }
 
     void
@@ -451,13 +461,31 @@ namespace Simulators::LaunchVehicle
       size_t step = 0;
       while (step < t_steps.capacity())
       {
-        float k1 = dv_dt(m_estate.w, t0[step], m_mass, m_estate.alt);
-        float k2 = dv_dt(m_estate.w + k1 * 0.5f, t0[step] + (0.5f * dt[step]), m_mass, m_estate.alt);
-        float k3 = dv_dt(m_estate.w + k2 * 0.5f, t0[step] + (0.5f * dt[step]), m_mass, m_estate.alt);
-        float k4 = dv_dt(m_estate.w + k3 * dt[step], t0[step] + dt[step], m_mass, m_estate.alt);
+        SimulationState k1 = rk4Step(m_estate, t0[step], m_mass);
 
-        m_estate.w = m_estate.w + (dt[step] * (k1 + 2 * (k2 + k3) + k4) / 6.0f);
-        m_estate.alt = m_estate.alt + m_estate.w * dt[step];
+        IMC::EstimatedState* estate_clone = m_estate.clone();
+        estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * 0.5f;
+        SimulationState k2 = rk4Step(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
+
+        delete estate_clone;
+        estate_clone = m_estate.clone();
+        estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * 0.5f;
+        SimulationState k3 = rk4Step(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
+
+        delete estate_clone;
+        estate_clone = m_estate.clone();
+        estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * dt[step];
+        SimulationState k4 = rk4Step(*estate_clone, t0[step] + dt[step], m_mass);
+
+        // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
+        SimulationState delta;
+        delta.m_v = dt[step] * (k1.m_a + 2 * (k2.m_a + k3.m_a) + k4.m_a) / 6.0f;
+
+        m_estate.w = m_estate.w + delta.m_v.element(0, 2);
+        m_estate.alt =  m_estate.alt + m_estate.w * dt[step];
+
+        delete estate_clone;
+
         ++step;
       }
 
