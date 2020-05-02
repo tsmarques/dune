@@ -366,6 +366,16 @@ namespace Simulators::LaunchVehicle
     }
 
     void
+    updateForces(float t)
+    {
+      updateThrust(t);
+
+      m_weight.value = m_args.gravity * m_mass;
+      m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
+      m_drag.value = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
+    }
+
+    void
     updateThrust(float curr_time_sec)
     {
       if (!m_motor->isActive() || !m_valid_thrust_curve)
@@ -394,17 +404,11 @@ namespace Simulators::LaunchVehicle
     {
       SimulationState new_state;
 
-      // @note for now assume no thrust vectoring
-      float f_thrust = m_motor->computeEngineThrust(t_sec);
-      float f_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area,
-                                           m_args.atmos_density, curr_state.alt,
-                                           curr_state.w);
-
       // should be opposite to velocity
-      f_drag = f_drag * (curr_state.w >= 0 ? 1.0f : -1.0f);
+      float f_drag = m_drag.value * (curr_state.w >= 0 ? 1.0f : -1.0f);
 
       // update linear acceleration (on x)
-      new_state.m_a(0, 2) = f_thrust / mass;
+      new_state.m_a(0, 2) = m_thrust.value / mass;
       new_state.m_a(0, 2) -= m_args.gravity;
       new_state.m_a(0, 2) -= (f_drag / mass);
 
@@ -580,12 +584,8 @@ namespace Simulators::LaunchVehicle
       float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
 
       m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass + m_args.parachute.mass;
-      updateThrust(curr_time_sec);
+      updateForces(curr_time_sec);
       updateState(curr_time_sec);
-
-      m_weight.value = m_args.gravity * m_mass;
-      m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
-      m_drag.value = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
 
       dispatch(m_thrust);
       dispatch(m_estate);
