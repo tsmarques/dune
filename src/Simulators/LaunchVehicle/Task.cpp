@@ -462,23 +462,41 @@ namespace Simulators::LaunchVehicle
       while (step < t_steps.capacity())
       {
         SimulationState k1 = rk4Step(m_estate, t0[step], m_mass);
+        k1.m_v(0, 0) = m_estate.u;
+        k1.m_v(0, 1) = m_estate.v;
         k1.m_v(0, 2) = m_estate.w;
 
         IMC::EstimatedState* estate_clone = m_estate.clone();
+
+        // k2
+        estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * 0.5f;
+        estate_clone->v = m_estate.v + k1.m_a.element(0, 1) * 0.5f;
         estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * 0.5f;
         SimulationState k2 = rk4Step(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
+        k2.m_v(0, 0) = estate_clone->u;
+        k2.m_v(0, 1) = estate_clone->v;
         k2.m_v(0, 2) = estate_clone->w;
 
+        // k3
         delete estate_clone;
         estate_clone = m_estate.clone();
+        estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * 0.5f;
+        estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * 0.5f;
         estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * 0.5f;
         SimulationState k3 = rk4Step(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
+        k3.m_v(0, 0) = estate_clone->u;
+        k3.m_v(0, 1) = estate_clone->v;
         k3.m_v(0, 2) = estate_clone->w;
 
+        // k3
         delete estate_clone;
         estate_clone = m_estate.clone();
+        estate_clone->u = m_estate.u  + k3.m_a.element(0, 0) * dt[step];
+        estate_clone->v = m_estate.v  + k3.m_a.element(0, 1) * dt[step];
         estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * dt[step];
         SimulationState k4 = rk4Step(*estate_clone, t0[step] + dt[step], m_mass);
+        k4.m_v(0, 0) = estate_clone->u;
+        k4.m_v(0, 1) = estate_clone->v;
         k4.m_v(0, 2) = estate_clone->w;
 
         // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
@@ -488,7 +506,19 @@ namespace Simulators::LaunchVehicle
         // integrate for position
         delta.m_p = dt[step] * (k1.m_v + 2 * (k2.m_v + k3.m_v) + k4.m_v) / 6.0f;
 
+        // update state
+
+        // velocity
+        m_estate.u = m_estate.u + delta.m_v.element(0, 0);
+        m_estate.v = m_estate.v + delta.m_v.element(0, 1);
         m_estate.w = m_estate.w + delta.m_v.element(0, 2);
+
+        // position offsets
+        m_estate.x = m_estate.x + delta.m_p.element(0, 0);
+        m_estate.y = m_estate.y + delta.m_p.element(0, 1);
+        m_estate.z = m_estate.z + delta.m_p.element(0, 2);
+
+        // @fixme: is altitude the same as Z offset?
         m_estate.alt =  m_estate.alt + delta.m_p.element(0, 2);
 
         delete estate_clone;

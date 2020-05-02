@@ -9,15 +9,15 @@ namespace Simulators::LaunchVehicle
 {
   struct SimulationState
   {
-    //! Linear velocity
+    //! Linear velocity (x, y, z)
     DUNE::Math::Matrix m_v;
-    //! Linear acceleration
+    //! Linear acceleration (x, y, z)
     DUNE::Math::Matrix m_a;
-    //! Rotational Velocity
+    //! Rotational Velocity (x, y, z)
     DUNE::Math::Matrix m_rv;
-    //! Rotational Aceleration
+    //! Rotational Aceleration (x, y, z)
     DUNE::Math::Matrix m_ra;
-    //! Position
+    //! Displacement (x, y, z)
     DUNE::Math::Matrix m_p;
 
     SimulationState() :
