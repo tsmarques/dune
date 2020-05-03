@@ -75,7 +75,7 @@ namespace Maneuver
         // Iterate point list
         for (; itr != maneuver->points.end(); itr++)
         {
-          if ((*itr) == NULL)
+          if ((*itr) == nullptr)
             continue;
 
           Waypoint w;

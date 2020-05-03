@@ -304,7 +304,7 @@ namespace Simulators
         MessageList<IMC::LblBeacon>::const_iterator itr = m_lbl_cfg->beacons.begin();
         for (; itr < m_lbl_cfg->beacons.end(); ++itr)
         {
-          if ((*itr) == NULL)
+          if ((*itr) == nullptr)
             continue;
 
           if ((*itr)->beacon == sys_name)
@@ -363,7 +363,7 @@ namespace Simulators
             continue;
           }
 
-          if (!m_pinger.overflow() || *m_cursor == NULL)
+          if (!m_pinger.overflow() || *m_cursor == nullptr)
           {
             waitForMessages(m_pinger.getRemaining());
             continue;

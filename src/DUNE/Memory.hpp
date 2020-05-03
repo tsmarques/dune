@@ -42,10 +42,10 @@ namespace DUNE
     static inline void
     clear(T& var)
     {
-      if (var != NULL)
+      if (var != nullptr)
       {
         delete var;
-        var = NULL;
+        var = nullptr;
       }
     }
 
@@ -53,7 +53,7 @@ namespace DUNE
     static inline void
     replace(T& var, T rep)
     {
-      if (var != NULL)
+      if (var != nullptr)
         delete var;
 
       var = rep;
