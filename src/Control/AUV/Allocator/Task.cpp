@@ -112,8 +112,12 @@ namespace Control
 
         Task(const std::string& name, Tasks::Context& ctx):
           Tasks::Task(name, ctx),
+          m_last_estimated_state(nullptr),
+          m_last_rpm(nullptr),
           m_braking(false),
-          m_scope_ref(0)
+          m_scope_ref(0),
+          m_avg_ms(nullptr),
+          m_avg_rpm(nullptr)
         {
           param(DTR_RT("Maximum Fin Rotation"), m_args.max_fin_rot)
           .defaultValue("25.0")
