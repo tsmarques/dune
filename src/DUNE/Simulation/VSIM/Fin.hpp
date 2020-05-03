@@ -24,37 +24,76 @@
 // https://github.com/LSTS/dune/blob/master/LICENCE.md and                  *
 // http://ec.europa.eu/idabc/eupl.html.                                     *
 //***************************************************************************
-// Author: Ricardo Martins                                                  *
+// Author: Bruno Terra                                                      *
+// Author: José Braga                                                       *
 //***************************************************************************
 
-#ifndef SIMULATORS_VSIM_FACTORY_HPP_INCLUDED_
-#define SIMULATORS_VSIM_FACTORY_HPP_INCLUDED_
+#ifndef SIMULATORS_VSIM_VSIM_FIN_HPP_INCLUDED_
+#define SIMULATORS_VSIM_VSIM_FIN_HPP_INCLUDED_
 
-// DUNE headers.
-#include <DUNE/DUNE.hpp>
-
-// VSIM headers.
-#include <DUNE/Simulation/VSIM/World.hpp>
-#include <DUNE/Simulation/VSIM/Vehicle.hpp>
+//! VSIM headers.
+#include <DUNE/Simulation/VSIM/Force.hpp>
 
 namespace Simulators::VSIM
 {
-  //! %Factory to produce world and vehicle
-  //! objects from configuration file parameters.
-  class Factory
+  //! AUV maximum actuation.
+  static const double c_max_act = 0.4363;
+
+  //! %Fin control surfaces class.
+  class Fin: public Force
   {
   public:
-    //! This task is responsible for creating the world.
-    //! @param[in] cfg configuration file.
-    //! @return pointer to a VSIM::World object.
-    static Simulators::VSIM::World*
-    produceWorld(DUNE::Parsers::Config& cfg);
+    //! Constructor.
+    //! @param[in] finid fin id.
+    //! @param[in] coef fin coeficients.
+    //! @param[in] pos fin position.
+    Fin(unsigned int finid, double[3] = nullptr, double[3] = nullptr);
 
-    //! This task is responsible for creating the vehicle.
-    //! @param[in] cfg configuration file.
-    //! @return pointer to a VSIM::Vehicle object.
-    static Simulators::VSIM::Vehicle*
-    produceVehicle(DUNE::Parsers::Config& cfg);
+    //! Update fin's actuation.
+    //! @param[in] value fin actuation.
+    void
+    updateAct(double value) override;
+
+    //! Apply fin's force
+    //! @param[in] speed speed reference.
+    //! @param[out] forces forces to be applied by the fin.
+    void
+    applyForce(double speed, double forces[6]) override;
+
+    //! Check fin's id.
+    //! @return true if id matches, false otherwise.
+    bool
+    checkId(unsigned int testid) override;
+
+    //! Fin id encoding.
+    inline static int
+    encodeId(int id)
+    {
+      return id + 2000;
+    }
+
+  private:
+    //! Define fin properties.
+    //! @param[in] id fin id.
+    //! @param[in] coefficient fin coeficients.
+    //! @param[in] position fin position.
+    void
+    setFin(unsigned int id = 0, double coefficient[3] = nullptr, double position[3] = nullptr);
+
+    //! Gets fin produced force.
+    //! @param[out] f fin produced force.
+    void
+    getFinProducedForce(double f[3]);
+
+    //! Gets fin produced torque.
+    //! @param[out] f fin produced torque.
+    void
+    getFinProducedTorque(double f[3]);
+
+    //! Vehicle fin id.
+    unsigned int m_id;
+    //! Vehicle fin actuation.
+    double m_act;
   };
 }
 

@@ -28,76 +28,73 @@
 // Author: José Braga                                                       *
 //***************************************************************************
 
-#ifndef SIMULATORS_VSIM_VSIM_VEHICLE_HPP_INCLUDED_
-#define SIMULATORS_VSIM_VSIM_VEHICLE_HPP_INCLUDED_
-
-// ISO C++ 98 headers.
-#include <list>
-
 // VSIM headers.
-#include <VSIM/Engine.hpp>
-#include <VSIM/Force.hpp>
-#include <VSIM/Object.hpp>
+#include <DUNE/Simulation/VSIM/World.hpp>
 
-namespace Simulators
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  World::World(int ident, double grv[3], double tstep):
+      m_timestep(tstep)
   {
-    //! %Vehicle general properties.
-    class Vehicle: public virtual Object
-    {
-    public:
-      //! Constructor.
-      Vehicle();
+    m_world_id = ident;
+    setGravity(grv[0], grv[1], grv[2]);
+  }
 
-      //! Destructor
-      
-      ~Vehicle() override;
+  World::~World () = default;
 
-      //! Add a force.
-      //! @param[in] force new force.
-      void
-      addForce(Force* force);
+  void
+  World::setGravity(double x, double y, double z)
+  {
+    m_gravity[0] = x;
+    m_gravity[1] = y;
+    m_gravity[2] = z;
+  }
 
-      //! Add Engine
-      //! @param[in] engine new engine.
-      void
-      addEngine(Engine* engine);
+  void
+  World::addObject(Object* obj)
+  {
+    m_objects.push_back(obj);
+    obj->insertInWorld();
+  }
 
-      //! Applies vehicle commands forces.
-      void
-      applyControlForces();
+  void
+  World::addVehicle(Vehicle* veh)
+  {
+    m_vehicles.push_back(veh);
+    veh->insertInWorld();
+  }
 
-      //! Applies all vehicle's forces.
-      void
-      applyForces() override;
+  void
+  World::applyForces()
+  {
+    std::list<Object*>::iterator oitr = m_objects.begin();
+    for (; oitr != m_objects.end(); ++oitr)
+      (*oitr)->applyForces();
 
-      //! Updates actuation.
-      //! @param[in] id actuation id.
-      //! @param[in] act new actuation value.
-      void
-      updateact(unsigned int id, double act);
+    std::list<Vehicle*>::iterator vitr = m_vehicles.begin();
+    for (; vitr != m_vehicles.end(); ++vitr)
+      (*vitr)->applyForces();
+  }
 
-      //! Updates a engine's actuation.
-      //! @param[in] id engine id.
-      //! @param[in] act new engine actuation value.
-      void
-      updateEngine(unsigned int id, double act);
+  void
+  World::update()
+  {
+    std::list<Object*>::iterator oitr = m_objects.begin();
+    for (; oitr != m_objects.end(); ++oitr)
+      (*oitr)->update(m_timestep);
 
-      //! Set added mass coefficient (for UUVs).
-      //! @param[in] coefs added mass matrix coefficients.
-      virtual void
-      setAddedMassCoef(double coefs[6]);
+    std::list<Vehicle*>::iterator vitr = m_vehicles.begin();
+    for (; vitr != m_vehicles.end(); ++vitr)
+      (*vitr)->update(m_timestep);
+  }
 
-      //! Set body lift matrix (for UUVs).
-      //! @param[in] coefs body lift matrix coefficients.
-      virtual void
-      setBodyLiftCoef(double coefs[8]);
+  void
+  World::takeStep()
+  {
+    // Apply forces to vehicle.
+    applyForces();
 
-      //! Engines/Fins vector.
-      std::list<Force*> m_vehicle_forces;
-    };
+    // Update vehicle state.
+    update();
   }
 }
-
-#endif

@@ -32,86 +32,83 @@
 #define SIMULATORS_VSIM_VSIM_UUV_HPP_INCLUDED_
 
 // VSIM headers.
-#include <VSIM/Vehicle.hpp>
-#include <VSIM/Fin.hpp>
-#include <VSIM/Volume.hpp>
+#include <DUNE/Simulation/VSIM/Fin.hpp>
+#include <DUNE/Simulation/VSIM/Vehicle.hpp>
+#include <DUNE/Simulation/VSIM/Volume.hpp>
 
-namespace Simulators
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  //! Unmanned Underwater Vehicle class.
+  class UUV: public Vehicle
   {
-    //! Unmanned Underwater Vehicle class.
-    class UUV: public Vehicle
-    {
-    public:
-      //! Default Constructor.
-      UUV();
+  public:
+    //! Default Constructor.
+    UUV();
 
-      //! Constructor.
-      //! @param[in] position buoyancy position.
-      //! @param[in] dimensions volume dimensions.
-      UUV(double position[3], double dimensions[3]);
+    //! Constructor.
+    //! @param[in] position buoyancy position.
+    //! @param[in] dimensions volume dimensions.
+    UUV(double position[3], double dimensions[3]);
 
-      //! Copy Constructor.
-      UUV(const UUV*);
+    //! Copy Constructor.
+    UUV(const UUV*);
 
-      //! Destructor.
-      ~UUV() override;
+    //! Destructor.
+    ~UUV() override;
 
-      //! Add a fin to vehicle's configuration.
-      //! @param[in] fin vehicle new fin.
-      void
-      addFin(Fin* fin);
+    //! Add a fin to vehicle's configuration.
+    //! @param[in] fin vehicle new fin.
+    void
+    addFin(Fin* fin);
 
-      //! Updates fin's actuation.
-      //! @param[in] id fin id.
-      //! @param[in] act fin actuation value.
-      void
-      updateFin(unsigned int id, double act);
+    //! Updates fin's actuation.
+    //! @param[in] id fin id.
+    //! @param[in] act fin actuation value.
+    void
+    updateFin(unsigned int id, double act);
 
-      //! Set the buoyancy position.
-      //! @param[in] x buoyancy position in the x-axis.
-      //! @param[in] y buoyancy position in the y-axis.
-      //! @param[in] z buoyancy position in the z-axis.
-      void
-      setBuoyancyPosition(double x, double y, double z);
+    //! Set the buoyancy position.
+    //! @param[in] x buoyancy position in the x-axis.
+    //! @param[in] y buoyancy position in the y-axis.
+    //! @param[in] z buoyancy position in the z-axis.
+    void
+    setBuoyancyPosition(double x, double y, double z);
 
-      //! Apply all forces for UUV vehicle.
-      void
-      applyForces() override;
+    //! Apply all forces for UUV vehicle.
+    void
+    applyForces() override;
 
-      //! Set added mass coefficient (useful for Coriolis matrix.
-      //! @param[in] coefs added mass matrix coefficients.
-      void
-      setAddedMassCoef(double coefs[6]) override;
+    //! Set added mass coefficient (useful for Coriolis matrix.
+    //! @param[in] coefs added mass matrix coefficients.
+    void
+    setAddedMassCoef(double coefs[6]) override;
 
-      //! Set body lift matrix.
-      //! @param[in] coefs body lift matrix coefficients.
-      void
-      setBodyLiftCoef(double coefs[8]) override;
+    //! Set body lift matrix.
+    //! @param[in] coefs body lift matrix coefficients.
+    void
+    setBodyLiftCoef(double coefs[8]) override;
 
-      //! Apply Coriolis Force (and Body Lift) to the UUV
-      //! Coriolis Matrices equations from:
-      //! "Modeling and Simulation of the LAUV Autonomous Underwater Vehicle"
-      //! Jorge Estrela, Bruno Terra, Ricardo Martins e João Sousa.
-      void
-      applyCoriolisForce();
+    //! Apply Coriolis Force (and Body Lift) to the UUV
+    //! Coriolis Matrices equations from:
+    //! "Modeling and Simulation of the LAUV Autonomous Underwater Vehicle"
+    //! Jorge Estrela, Bruno Terra, Ricardo Martins e João Sousa.
+    void
+    applyCoriolisForce();
 
-    private:
-      //! Applies vehicle specific force (buoyancy).
-      void
-      applyRestoringForcesMoments();
+  private:
+    //! Applies vehicle specific force (buoyancy).
+    void
+    applyRestoringForcesMoments();
 
-      //! UUV vehicle's buoyancy position.
-      double m_buoyancy_position[3];
-      //! UUV added mass coefficient.
-      double m_added_mass_coef[6];
-      //! UUV body lift coefficient
-      double m_body_lift_coef[8];
-      //! Vehicle's volume.
-      Volume* m_volume;
-    };
-  }
+    //! UUV vehicle's buoyancy position.
+    double m_buoyancy_position[3];
+    //! UUV added mass coefficient.
+    double m_added_mass_coef[6];
+    //! UUV body lift coefficient
+    double m_body_lift_coef[8];
+    //! Vehicle's volume.
+    Volume* m_volume;
+  };
 }
 
 #endif

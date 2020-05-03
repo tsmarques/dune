@@ -28,94 +28,93 @@
 // Author: José Braga                                                       *
 //***************************************************************************
 
-// VSIM headers.
-#include <VSIM/Force.hpp>
+#ifndef SIMULATORS_VSIM_VSIM_FORCE_HPP_INCLUDED_
+#define SIMULATORS_VSIM_VSIM_FORCE_HPP_INCLUDED_
 
-namespace Simulators
+// ISO C++ 98 headers.
+#include <cmath>
+
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  //! %Force properties.
+  //! This is the base class for engine and fin subclasses.
+  class Force
   {
-    Force::Force()
-    {
-      for (unsigned i = 0; i < 3; ++i)
-      {
-        m_max_force[i] = 0.0;
-        m_act_position[i] = 0.0;
-      }
+  public:
+    //! Constructor.
+    Force();
 
-      m_fIsInertial = false;
-      m_pIsInertial = false;
-      m_fIsTorque = false;
-    }
+    //! Destructor.
+    virtual ~Force () = default;
 
+    //! Defines force vector.
+    //! @param[in] x force along x-axis.
+    //! @param[in] y force along y-axis.
+    //! @param[in] z force along z-axis.
+    //! @param[in] is_inertial if force is in inertial referencial.
+    //! @param[in] is_torque if force is a torque force.
     void
-    Force::setForce(double x, double y, double z, bool is_inertial, bool is_torque)
-    {
-      m_max_force[0] = x;
-      m_max_force[1] = y;
-      m_max_force[2] = z;
+    setForce(double, double, double, bool, bool);
 
-      m_fIsInertial = is_inertial;
-      m_fIsTorque = is_torque;
-    }
-
+    //! Sets position vector.
+    //! @param[in] x position of the force in the x-axis.
+    //! @param[in] y position of the force in the y-axis.
+    //! @param[in] z position of the force in the z-axis.
+    //! @param[in] is_inertial if position is in inertial referencial.
     void
-    Force::setPosition(double x, double y, double z, bool is_inertial)
-    {
-      m_act_position[0] = x;
-      m_act_position[1] = y;
-      m_act_position[2] = z;
+    setPosition(double, double, double, bool);
 
-      m_pIsInertial = is_inertial;
-    }
-
+    //! Is force in inertial referencial.
+    //! @return true if it is, false otherwise.
     bool
-    Force::isInertial()
-    {
-      return m_fIsInertial;
-    }
+    isInertial();
 
+    //! Is a torque.
+    //! @return true if it is, false otherwise.
     bool
-    Force::isTorque()
-    {
-      return m_fIsTorque;
-    }
+    isTorque();
 
+    //! Is position in inertial referencial.
+    //! @return true if it is, false otherwise.
     bool
-    Force::isPosInertial()
-    {
-      return m_pIsInertial;
-    }
+    isPosInertial();
 
-    void
-    Force::applyForce(double speed, double forces[6])
-    {
-      // do nothing.
-      (void)speed;
-      (void)forces;
-    }
+    //! Apply this force to body with id ident.
+    //! @param[in] speed speed reference.
+    //! @param[out] forces forces to be applied to body.
+    virtual void
+    applyForce(double speed, double forces[6]);
 
-    bool
-    Force::checkId(unsigned int testid)
-    {
-      // do nothing.
-      (void)testid;
-      return false;
-    }
+    //! Check force's id.
+    //! @param[in] testid force id.
+    //! @return true if id matches, false otherwise.
+    virtual bool
+    checkId(unsigned int testid);
 
-    void
-    Force::updateAct(double value)
-    {
-      // do nothing.
-      (void)value;
-    }
+    //! Update force's actuation.
+    //! @param[in] value force actuation value.
+    virtual void
+    updateAct(double value);
 
-    // return ASV actuation
-    double
-    Force::getActuation()
-    {
-      // do nothing.
-      return 0;
-    }
-  }
+    //! Retrieve current force actuation value.
+    //! @return force actuation value.
+    virtual double
+    getActuation();
+
+  protected:
+    //! Max force.
+    double m_max_force[3];
+    //! Force application position.
+    double m_act_position[3];
+
+  private:
+    //! Is force in inertial referential?
+    bool m_fIsInertial;
+    //! Is position in inertial referential?
+    bool m_pIsInertial;
+    //! Is a torque force?
+    bool m_fIsTorque;
+  };
 }
+
+#endif

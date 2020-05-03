@@ -28,87 +28,39 @@
 // Author: José Braga                                                       *
 //***************************************************************************
 
-#ifndef SIMULATORS_VSIM_VSIM_WORLD_HPP_INCLUDED_
-#define SIMULATORS_VSIM_VSIM_WORLD_HPP_INCLUDED_
+#ifndef SIMULATORS_VSIM_VSIM_VOLUME_HPP_INCLUDED_
+#define SIMULATORS_VSIM_VSIM_VOLUME_HPP_INCLUDED_
 
-// ISO C++ 98 headers.
-#include <list>
-
-// VSIM headers.
-#include <VSIM/Object.hpp>
-#include <VSIM/Vehicle.hpp>
-
-namespace Simulators
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  //! Submersed volume calculation class.
+  class Volume
   {
-    //! Virtual %World properties
-    class World
-    {
-    public:
-      //! Constructor.
-      World(int ident, double grv[3], double tstep);
+  public:
+    //! Constructor.
+    Volume(double height, double width, double length);
 
-      //! Destructor.
-      ~World();
+    //! Destructor.
+    virtual ~Volume () = default;
 
-      //! Define world's integration timestep.
-      //! @param[in] ts integration timestep.
-      void
-      setTimeStep(double ts)
-      {
-        m_timestep = ts;
-      }
+    //! Get aprox. submersed volume.
+    //! @param[in] depth depth of the submersed part.
+    //! @return submersed volume.
+    virtual double
+    sub_volume(double depth);
 
-      //! Returns world's integration timestep.
-      //! @return world integration timestep.
-      double
-      getTimeStep()
-      {
-        return m_timestep;
-      }
+  private:
+    //! Get submersed z component.
+    //! @param[in] depth depth of the submersed part.
+    //! @return submersed height of the volume (z coordinate).
+    virtual double
+    zunderwater(double depth);
 
-      //! Add object to world.
-      //! @param[in] obj new object.
-      void
-      addObject(Object*);
-
-      //! Add vehicle to world.
-      //! @param[in] veh new vehicle.
-      void
-      addVehicle(Vehicle*);
-
-      //! Simulation's tick.
-      void
-      takeStep();
-
-    private:
-      //! Applies forces to all objects/vehicles.
-      void
-      applyForces();
-
-      //! Fetches all objects and vehicles data from simulator.
-      void
-      update();
-
-      //! Set world's gravity.
-      //! @param[in] x set world gravity in the x-axis.
-      //! @param[in] y set world gravity in the y-axis.
-      //! @param[in] z set world gravity in the z-axis.
-      void
-      setGravity(double, double, double);
-
-      //! World's id
-      int m_world_id;
-      //! World's gravity.
-      double m_gravity[3];
-      //! World's vehicles.
-      std::list<Object*> m_objects;
-      //! World's objects.
-      std::list<Vehicle*> m_vehicles;
-      //! Integration timestep.
-      double m_timestep;
-    };
-  }
+    //! Dimensions of the volume.
+    double m_height;
+    double m_width;
+    double m_length;
+  };
 }
+
 #endif

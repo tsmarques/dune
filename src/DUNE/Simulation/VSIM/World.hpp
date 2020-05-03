@@ -28,76 +28,84 @@
 // Author: José Braga                                                       *
 //***************************************************************************
 
-#ifndef SIMULATORS_VSIM_VSIM_FIN_HPP_INCLUDED_
-#define SIMULATORS_VSIM_VSIM_FIN_HPP_INCLUDED_
+#ifndef SIMULATORS_VSIM_VSIM_WORLD_HPP_INCLUDED_
+#define SIMULATORS_VSIM_VSIM_WORLD_HPP_INCLUDED_
 
-//! VSIM headers.
-#include <VSIM/Force.hpp>
+// ISO C++ 98 headers.
+#include <list>
 
-namespace Simulators
+// VSIM headers.
+#include <DUNE/Simulation/VSIM/Object.hpp>
+#include <DUNE/Simulation/VSIM/Vehicle.hpp>
+
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  //! Virtual %World properties
+  class World
   {
-    //! AUV maximum actuation.
-    static const double c_max_act = 0.4363;
+  public:
+    //! Constructor.
+    World(int ident, double grv[3], double tstep);
 
-    //! %Fin control surfaces class.
-    class Fin: public Force
+    //! Destructor.
+    ~World();
+
+    //! Define world's integration timestep.
+    //! @param[in] ts integration timestep.
+    void
+    setTimeStep(double ts)
     {
-    public:
-      //! Constructor.
-      //! @param[in] finid fin id.
-      //! @param[in] coef fin coeficients.
-      //! @param[in] pos fin position.
-      Fin(unsigned int finid, double[3] = nullptr, double[3] = nullptr);
+      m_timestep = ts;
+    }
 
-      //! Update fin's actuation.
-      //! @param[in] value fin actuation.
-      void
-      updateAct(double value) override;
+    //! Returns world's integration timestep.
+    //! @return world integration timestep.
+    double
+    getTimeStep()
+    {
+      return m_timestep;
+    }
 
-      //! Apply fin's force
-      //! @param[in] speed speed reference.
-      //! @param[out] forces forces to be applied by the fin.
-      void
-      applyForce(double speed, double forces[6]) override;
+    //! Add object to world.
+    //! @param[in] obj new object.
+    void
+    addObject(Object*);
 
-      //! Check fin's id.
-      //! @return true if id matches, false otherwise.
-      bool
-      checkId(unsigned int testid) override;
+    //! Add vehicle to world.
+    //! @param[in] veh new vehicle.
+    void
+    addVehicle(Vehicle*);
 
-      //! Fin id encoding.
-      inline static int
-      encodeId(int id)
-      {
-        return id + 2000;
-      }
+    //! Simulation's tick.
+    void
+    takeStep();
 
-    private:
-      //! Define fin properties.
-      //! @param[in] id fin id.
-      //! @param[in] coefficient fin coeficients.
-      //! @param[in] position fin position.
-      void
-      setFin(unsigned int id = 0, double coefficient[3] = nullptr, double position[3] = nullptr);
+  private:
+    //! Applies forces to all objects/vehicles.
+    void
+    applyForces();
 
-      //! Gets fin produced force.
-      //! @param[out] f fin produced force.
-      void
-      getFinProducedForce(double f[3]);
+    //! Fetches all objects and vehicles data from simulator.
+    void
+    update();
 
-      //! Gets fin produced torque.
-      //! @param[out] f fin produced torque.
-      void
-      getFinProducedTorque(double f[3]);
+    //! Set world's gravity.
+    //! @param[in] x set world gravity in the x-axis.
+    //! @param[in] y set world gravity in the y-axis.
+    //! @param[in] z set world gravity in the z-axis.
+    void
+    setGravity(double, double, double);
 
-      //! Vehicle fin id.
-      unsigned int m_id;
-      //! Vehicle fin actuation.
-      double m_act;
-    };
-  }
+    //! World's id
+    int m_world_id;
+    //! World's gravity.
+    double m_gravity[3];
+    //! World's vehicles.
+    std::list<Object*> m_objects;
+    //! World's objects.
+    std::list<Vehicle*> m_vehicles;
+    //! Integration timestep.
+    double m_timestep;
+  };
 }
-
 #endif

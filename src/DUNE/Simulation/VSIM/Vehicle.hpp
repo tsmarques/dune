@@ -28,85 +28,73 @@
 // Author: José Braga                                                       *
 //***************************************************************************
 
+#ifndef SIMULATORS_VSIM_VSIM_VEHICLE_HPP_INCLUDED_
+#define SIMULATORS_VSIM_VSIM_VEHICLE_HPP_INCLUDED_
+
+// ISO C++ 98 headers.
+#include <list>
+
 // VSIM headers.
-#include <VSIM/Fin.hpp>
+#include <DUNE/Simulation/VSIM/Engine.hpp>
+#include <DUNE/Simulation/VSIM/Force.hpp>
+#include <DUNE/Simulation/VSIM/Object.hpp>
 
-namespace Simulators
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  //! %Vehicle general properties.
+  class Vehicle: public virtual Object
   {
-    Fin::Fin(unsigned int finid, double coef[3], double pos[3])
-    {
-      setFin(finid, coef, pos);
-    }
+  public:
+    //! Constructor.
+    Vehicle();
 
+    //! Destructor
+
+    ~Vehicle() override;
+
+    //! Add a force.
+    //! @param[in] force new force.
     void
-    Fin::updateAct(double value)
-    {
-      m_act = value;
-    }
+    addForce(Force* force);
 
+    //! Add Engine
+    //! @param[in] engine new engine.
     void
-    Fin::setFin(unsigned int finid, double coef[3], double pos[3])
-    {
-      m_act = 0;
-      m_id = encodeId(finid);
-      setForce(coef[0], coef[1], coef[2], false, false);
-      setPosition(pos[0], pos[1], pos[2], false);
-    }
+    addEngine(Engine* engine);
 
+    //! Applies vehicle commands forces.
     void
-    Fin::getFinProducedForce(double f[3])
-    {
-      if (m_act >= c_max_act)
-        m_act = c_max_act;
+    applyControlForces();
 
-      if (m_act <= -c_max_act)
-        m_act = -c_max_act;
-
-      for (unsigned i = 0; i < 3; ++i)
-        f[i] = m_max_force[i] / 2 * (m_act / c_max_act);
-    }
-
+    //! Applies all vehicle's forces.
     void
-    Fin::getFinProducedTorque(double f[3])
-    {
-      if (m_act >= c_max_act)
-        m_act = c_max_act;
+    applyForces() override;
 
-      if (m_act <= -c_max_act)
-        m_act = -c_max_act;
-
-      f[0] = (std::sqrt(std::pow(m_act_position[1], 2) + std::pow(m_act_position[2], 2)) *
-              std::fabs(m_max_force[0]) / 2 * (m_act / c_max_act));
-
-      f[1] = m_act_position[0] * std::fabs(m_max_force[1]) / 2 * (m_act / c_max_act);
-      f[2] = m_act_position[0] * std::fabs(m_max_force[2]) / 2 * (m_act / c_max_act);
-    }
-
+    //! Updates actuation.
+    //! @param[in] id actuation id.
+    //! @param[in] act new actuation value.
     void
-    Fin::applyForce(double speed, double forces[6])
-    {
-      double calc_force[3];
-      getFinProducedForce(calc_force);
+    updateact(unsigned int id, double act);
 
-      // The equation for the actuator is: (F = K * act * u * u).
-      for (unsigned i = 0; i < 3; ++i)
-        forces[i] = speed * speed * calc_force[i];
+    //! Updates a engine's actuation.
+    //! @param[in] id engine id.
+    //! @param[in] act new engine actuation value.
+    void
+    updateEngine(unsigned int id, double act);
 
-      getFinProducedTorque(calc_force);
+    //! Set added mass coefficient (for UUVs).
+    //! @param[in] coefs added mass matrix coefficients.
+    virtual void
+    setAddedMassCoef(double coefs[6]);
 
-      forces[3] = speed * speed * calc_force[0];
-      // Stern actuation.
-      forces[4] = speed * speed * calc_force[2];
-      // Rudder actuation.
-      forces[5] = speed * speed * calc_force[1];
-    }
+    //! Set body lift matrix (for UUVs).
+    //! @param[in] coefs body lift matrix coefficients.
+    virtual void
+    setBodyLiftCoef(double coefs[8]);
 
-    bool
-    Fin::checkId(unsigned int testid)
-    {
-      return (testid == m_id);
-    }
-  }
+    //! Engines/Fins vector.
+    std::list<Force*> m_vehicle_forces;
+  };
 }
+
+#endif

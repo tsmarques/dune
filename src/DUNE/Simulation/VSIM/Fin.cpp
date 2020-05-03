@@ -29,75 +29,81 @@
 //***************************************************************************
 
 // VSIM headers.
-#include <VSIM/World.hpp>
+#include <DUNE/Simulation/VSIM/Fin.hpp>
 
-namespace Simulators
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  Fin::Fin(unsigned int finid, double coef[3], double pos[3])
   {
-    World::World(int ident, double grv[3], double tstep):
-      m_timestep(tstep)
-    {
-      m_world_id = ident;
-      setGravity(grv[0], grv[1], grv[2]);
-    }
+    setFin(finid, coef, pos);
+  }
 
-    World::~World () = default;
+  void
+  Fin::updateAct(double value)
+  {
+    m_act = value;
+  }
 
-    void
-    World::setGravity(double x, double y, double z)
-    {
-      m_gravity[0] = x;
-      m_gravity[1] = y;
-      m_gravity[2] = z;
-    }
+  void
+  Fin::setFin(unsigned int finid, double coef[3], double pos[3])
+  {
+    m_act = 0;
+    m_id = encodeId(finid);
+    setForce(coef[0], coef[1], coef[2], false, false);
+    setPosition(pos[0], pos[1], pos[2], false);
+  }
 
-    void
-    World::addObject(Object* obj)
-    {
-      m_objects.push_back(obj);
-      obj->insertInWorld();
-    }
+  void
+  Fin::getFinProducedForce(double f[3])
+  {
+    if (m_act >= c_max_act)
+      m_act = c_max_act;
 
-    void
-    World::addVehicle(Vehicle* veh)
-    {
-      m_vehicles.push_back(veh);
-      veh->insertInWorld();
-    }
+    if (m_act <= -c_max_act)
+      m_act = -c_max_act;
 
-    void
-    World::applyForces()
-    {
-      std::list<Object*>::iterator oitr = m_objects.begin();
-      for (; oitr != m_objects.end(); ++oitr)
-        (*oitr)->applyForces();
+    for (unsigned i = 0; i < 3; ++i)
+      f[i] = m_max_force[i] / 2 * (m_act / c_max_act);
+  }
 
-      std::list<Vehicle*>::iterator vitr = m_vehicles.begin();
-      for (; vitr != m_vehicles.end(); ++vitr)
-        (*vitr)->applyForces();
-    }
+  void
+  Fin::getFinProducedTorque(double f[3])
+  {
+    if (m_act >= c_max_act)
+      m_act = c_max_act;
 
-    void
-    World::update()
-    {
-      std::list<Object*>::iterator oitr = m_objects.begin();
-      for (; oitr != m_objects.end(); ++oitr)
-        (*oitr)->update(m_timestep);
+    if (m_act <= -c_max_act)
+      m_act = -c_max_act;
 
-      std::list<Vehicle*>::iterator vitr = m_vehicles.begin();
-      for (; vitr != m_vehicles.end(); ++vitr)
-        (*vitr)->update(m_timestep);
-    }
+    f[0] = (std::sqrt(std::pow(m_act_position[1], 2) + std::pow(m_act_position[2], 2)) *
+            std::fabs(m_max_force[0]) / 2 * (m_act / c_max_act));
 
-    void
-    World::takeStep()
-    {
-      // Apply forces to vehicle.
-      applyForces();
+    f[1] = m_act_position[0] * std::fabs(m_max_force[1]) / 2 * (m_act / c_max_act);
+    f[2] = m_act_position[0] * std::fabs(m_max_force[2]) / 2 * (m_act / c_max_act);
+  }
 
-      // Update vehicle state.
-      update();
-    }
+  void
+  Fin::applyForce(double speed, double forces[6])
+  {
+    double calc_force[3];
+    getFinProducedForce(calc_force);
+
+    // The equation for the actuator is: (F = K * act * u * u).
+    for (unsigned i = 0; i < 3; ++i)
+      forces[i] = speed * speed * calc_force[i];
+
+    getFinProducedTorque(calc_force);
+
+    forces[3] = speed * speed * calc_force[0];
+    // Stern actuation.
+    forces[4] = speed * speed * calc_force[2];
+    // Rudder actuation.
+    forces[5] = speed * speed * calc_force[1];
+  }
+
+  bool
+  Fin::checkId(unsigned int testid)
+  {
+    return (testid == m_id);
   }
 }

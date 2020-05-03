@@ -24,77 +24,42 @@
 // https://github.com/LSTS/dune/blob/master/LICENCE.md and                  *
 // http://ec.europa.eu/idabc/eupl.html.                                     *
 //***************************************************************************
+// Author: Bruno Terra                                                      *
 // Author: José Braga                                                       *
 //***************************************************************************
 
-#ifndef SIMULATORS_VSIM_VSIM_ASV_HPP_INCLUDED_
-#define SIMULATORS_VSIM_VSIM_ASV_HPP_INCLUDED_
-
-// ISO C++ 98 headers.
-#include <numeric>
-
 // VSIM headers.
-#include <VSIM/Vehicle.hpp>
-#include <VSIM/Volume.hpp>
+#include <DUNE/Simulation/VSIM/Volume.hpp>
 
-namespace Simulators
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  Volume::Volume(double length, double width, double height):
+      m_height(height),
+      m_width(width),
+      m_length(length)
+  { }
+
+  double
+  Volume::zunderwater(double depth)
   {
-    //! %ASV Autonomous Surface Vehicle simulator.
-    class ASV: public Vehicle
-    {
-    public:
-      //! Default Constructor.
-      ASV();
+    double z;
 
-      //! Constructor.
-      //! @param[in] dimensions of the vehicle.
-      ASV(double[3]);
+    if (depth < (-m_height / 2))
+      z = (depth - (m_height / 2));
+    else
+      z = (depth + (m_height / 2));
 
-      //! Copy Constructor.
-      ASV(const ASV*);
+    if (z <= 0)
+      return 0;
+    else if (z <= m_height)
+      return z;
+    else
+      return m_height;
+  }
 
-      //! Destructor.
-      ~ASV() override;
-
-      //! Apply forces to ASV.
-      void
-      applyForces() override;
-
-      //! Apply ASV specific actuation.
-      void
-      applyAsvActuation();
-
-      //! Update ASV actiation.
-      //! @param[in] id vehicle id.
-      void
-      updateActuation(int id);
-
-    private:
-      //! %ASV auxiliary memory. Stores past actuation computations.
-      class ASVMemory
-      {
-      public:
-        double turnRight_k_2, turnRight_k_1;
-        double turnLeft_k_2, turnLeft_k_1;
-        ASVMemory()
-        {
-          turnRight_k_2 = 0.0;
-          turnRight_k_1 = 0.0;
-          turnLeft_k_2 = 0.0;
-          turnLeft_k_1 = 0.0;
-        }
-      };
-
-      //! ASV auxiliary memory object.
-      ASVMemory m_asvm;
-      //! ASV actuation.
-      double m_actuation[2];
-      //! Vehicle's volume.
-      Volume* m_volume;
-    };
+  double
+  Volume::sub_volume(double depth)
+  {
+    return (m_width * m_length * zunderwater(depth));
   }
 }
-
-#endif

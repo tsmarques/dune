@@ -24,38 +24,95 @@
 // https://github.com/LSTS/dune/blob/master/LICENCE.md and                  *
 // http://ec.europa.eu/idabc/eupl.html.                                     *
 //***************************************************************************
-// Author: Ricardo Martins                                                  *
+// Author: Bruno Terra                                                      *
+// Author: José Braga                                                       *
 //***************************************************************************
 
-#ifndef SIMULATORS_VSIM_FACTORY_HPP_INCLUDED_
-#define SIMULATORS_VSIM_FACTORY_HPP_INCLUDED_
-
-// DUNE headers.
-#include <DUNE/DUNE.hpp>
-
 // VSIM headers.
-#include <DUNE/Simulation/VSIM/World.hpp>
-#include <DUNE/Simulation/VSIM/Vehicle.hpp>
+#include <DUNE/Simulation/VSIM/Force.hpp>
 
 namespace Simulators::VSIM
 {
-  //! %Factory to produce world and vehicle
-  //! objects from configuration file parameters.
-  class Factory
+  Force::Force()
   {
-  public:
-    //! This task is responsible for creating the world.
-    //! @param[in] cfg configuration file.
-    //! @return pointer to a VSIM::World object.
-    static Simulators::VSIM::World*
-    produceWorld(DUNE::Parsers::Config& cfg);
+    for (unsigned i = 0; i < 3; ++i)
+    {
+      m_max_force[i] = 0.0;
+      m_act_position[i] = 0.0;
+    }
 
-    //! This task is responsible for creating the vehicle.
-    //! @param[in] cfg configuration file.
-    //! @return pointer to a VSIM::Vehicle object.
-    static Simulators::VSIM::Vehicle*
-    produceVehicle(DUNE::Parsers::Config& cfg);
-  };
+    m_fIsInertial = false;
+    m_pIsInertial = false;
+    m_fIsTorque = false;
+  }
+
+  void
+  Force::setForce(double x, double y, double z, bool is_inertial, bool is_torque)
+  {
+    m_max_force[0] = x;
+    m_max_force[1] = y;
+    m_max_force[2] = z;
+
+    m_fIsInertial = is_inertial;
+    m_fIsTorque = is_torque;
+  }
+
+  void
+  Force::setPosition(double x, double y, double z, bool is_inertial)
+  {
+    m_act_position[0] = x;
+    m_act_position[1] = y;
+    m_act_position[2] = z;
+
+    m_pIsInertial = is_inertial;
+  }
+
+  bool
+  Force::isInertial()
+  {
+    return m_fIsInertial;
+  }
+
+  bool
+  Force::isTorque()
+  {
+    return m_fIsTorque;
+  }
+
+  bool
+  Force::isPosInertial()
+  {
+    return m_pIsInertial;
+  }
+
+  void
+  Force::applyForce(double speed, double forces[6])
+  {
+    // do nothing.
+    (void)speed;
+    (void)forces;
+  }
+
+  bool
+  Force::checkId(unsigned int testid)
+  {
+    // do nothing.
+    (void)testid;
+    return false;
+  }
+
+  void
+  Force::updateAct(double value)
+  {
+    // do nothing.
+    (void)value;
+  }
+
+  // return ASV actuation
+  double
+  Force::getActuation()
+  {
+    // do nothing.
+    return 0;
+  }
 }
-
-#endif

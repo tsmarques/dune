@@ -38,14 +38,14 @@ namespace Simulators
   { }
 }
 
-#include <VSIM/ASV.hpp>
-#include <VSIM/Engine.hpp>
-#include <VSIM/Fin.hpp>
-#include <VSIM/Force.hpp>
-#include <VSIM/Object.hpp>
-#include <VSIM/UUV.hpp>
-#include <VSIM/Vehicle.hpp>
-#include <VSIM/Volume.hpp>
-#include <VSIM/World.hpp>
+#include <DUNE/Simulation/VSIM/ASV.hpp>
+#include <DUNE/Simulation/VSIM/Engine.hpp>
+#include <DUNE/Simulation/VSIM/Fin.hpp>
+#include <DUNE/Simulation/VSIM/Force.hpp>
+#include <DUNE/Simulation/VSIM/Object.hpp>
+#include <DUNE/Simulation/VSIM/UUV.hpp>
+#include <DUNE/Simulation/VSIM/Vehicle.hpp>
+#include <DUNE/Simulation/VSIM/Volume.hpp>
+#include <DUNE/Simulation/VSIM/World.hpp>
 
 #endif

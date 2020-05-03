@@ -29,40 +29,97 @@
 //***************************************************************************
 
 // VSIM headers.
-#include <VSIM/Volume.hpp>
+#include <DUNE/Simulation/VSIM/Vehicle.hpp>
 
-namespace Simulators
+namespace Simulators::VSIM
 {
-  namespace VSIM
+  Vehicle::Vehicle () = default;
+
+  Vehicle::~Vehicle ()
   {
-    Volume::Volume(double length, double width, double height):
-      m_height(height),
-      m_width(width),
-      m_length(length)
-    { }
-
-    double
-    Volume::zunderwater(double depth)
+    while (!m_vehicle_forces.empty ())
     {
-      double z;
-
-      if (depth < (-m_height / 2))
-        z = (depth - (m_height / 2));
-      else
-        z = (depth + (m_height / 2));
-
-      if (z <= 0)
-        return 0;
-      else if (z <= m_height)
-        return z;
-      else
-        return m_height;
+      Force* f = m_vehicle_forces.front();
+      m_vehicle_forces.pop_front();
+      delete f;
     }
+  }
 
-    double
-    Volume::sub_volume(double depth)
+  void
+  Vehicle::addEngine(Engine* f)
+  {
+    addForce(f);
+  }
+
+  void
+  Vehicle::addForce(Force* f)
+  {
+    m_vehicle_forces.push_back(f);
+  }
+
+  void
+  Vehicle::applyControlForces()
+  {
+    double f[6];
+    double speed = std::sqrt(std::pow(m_linear_velocity[0], 2) +
+                             std::pow(m_linear_velocity[1], 2) +
+                             std::pow(m_linear_velocity[2], 2));
+
+    for (std::list<Force*>::iterator itr = m_vehicle_forces.begin(); itr != m_vehicle_forces.end(); ++itr)
     {
-      return (m_width * m_length * zunderwater(depth));
+      for (unsigned i = 0; i < 6; i++)
+        f[i] = 0.0;
+
+      (*itr)->applyForce(speed, f);
+
+      // The following avoids vertical forces when the vehicle's
+      // center of gravity is above water (considered negative).
+      // Applies for AUVs and ASVs only.
+      if (m_position[2] <= 0.0)
+        f[2] = 0;
+
+      // Adding Control forces to m_forces vector.
+      addForces(f[0], f[1], f[2], f[3], f[4], f[5]);
     }
+  }
+
+  void
+  Vehicle::applyForces()
+  {
+    applyDragForces();
+    applyControlForces();
+  }
+
+  void
+  Vehicle::updateact(unsigned int id, double act)
+  {
+    std::list<Force*>::iterator itr = m_vehicle_forces.begin();
+
+    while (itr != m_vehicle_forces.end() && !(*itr)->checkId(id))
+      ++itr;
+
+    if (itr != m_vehicle_forces.end())
+      (*itr)->updateAct(act);
+  }
+
+  void
+  Vehicle::updateEngine(unsigned int id, double act)
+  {
+    id = Engine::encodeId(id);
+    updateact(id, act);
+  }
+
+  void
+  Vehicle::setAddedMassCoef(double coefs[6])
+  {
+    // do nothing.
+    (void)coefs;
+  }
+
+  void
+  Vehicle::setBodyLiftCoef(double coefs[8])
+  {
+    // do nothing.
+    (void)coefs;
   }
 }

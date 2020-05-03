@@ -34,8 +34,8 @@
 #include <cstdio>
 
 // VSIM headers.
-#include <VSIM/Object.hpp>
 #include <DUNE/DUNE.hpp>
+#include <DUNE/Simulation/VSIM/Object.hpp>
 
 namespace Simulators
 {

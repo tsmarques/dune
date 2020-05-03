@@ -24,76 +24,60 @@
 // https://github.com/LSTS/dune/blob/master/LICENCE.md and                  *
 // http://ec.europa.eu/idabc/eupl.html.                                     *
 //***************************************************************************
-// Author: Bruno Terra                                                      *
 // Author: José Braga                                                       *
 //***************************************************************************
 
+// ISO C++ 98 headers.
+#include <cstring>
+#include <iostream>
+#include <cstdio>
+#include <cmath>
+
 // VSIM headers.
-#include <VSIM/Vehicle.hpp>
+#include <DUNE/Simulation/VSIM/ASV.hpp>
 
 namespace Simulators
 {
   namespace VSIM
   {
-  Vehicle::Vehicle () = default;
+    ASV::ASV():
+      m_volume(nullptr)
+    { }
 
-  Vehicle::~Vehicle ()
-  {
-    while (!m_vehicle_forces.empty ())
+    ASV::ASV(double dimensions[3])
+    {
+      double x = 0;
+      double y = 0;
+      double z = 0;
+
+      x = dimensions[0] <= 0 ? 1 : dimensions[0];
+      y = dimensions[1] <= 0 ? 1 : dimensions[1];
+      z = dimensions[2] <= 0 ? 1 : dimensions[2];
+
+      m_actuation[0] = 0.0;
+      m_actuation[1] = 0.0;
+
+      m_volume = new Volume(x, y, z);
+    }
+
+    ASV::~ASV()
+    {
+      if (m_volume != nullptr)
       {
-        Force* f = m_vehicle_forces.front();
-        m_vehicle_forces.pop_front();
-        delete f;
+        delete m_volume;
+        m_volume = nullptr;
       }
     }
 
     void
-    Vehicle::addEngine(Engine* f)
-    {
-      addForce(f);
-    }
-
-    void
-    Vehicle::addForce(Force* f)
-    {
-      m_vehicle_forces.push_back(f);
-    }
-
-    void
-    Vehicle::applyControlForces()
-    {
-      double f[6];
-      double speed = std::sqrt(std::pow(m_linear_velocity[0], 2) +
-                               std::pow(m_linear_velocity[1], 2) +
-                               std::pow(m_linear_velocity[2], 2));
-
-      for (std::list<Force*>::iterator itr = m_vehicle_forces.begin(); itr != m_vehicle_forces.end(); ++itr)
-      {
-        for (unsigned i = 0; i < 6; i++)
-          f[i] = 0.0;
-
-        (*itr)->applyForce(speed, f);
-
-        // The following avoids vertical forces when the vehicle's
-        // center of gravity is above water (considered negative).
-        // Applies for AUVs and ASVs only.
-        if (m_position[2] <= 0.0)
-          f[2] = 0;
-
-        // Adding Control forces to m_forces vector.
-        addForces(f[0], f[1], f[2], f[3], f[4], f[5]);
-      }
-    }
-
-    void
-    Vehicle::applyForces()
+    ASV::applyForces()
     {
       applyDragForces();
-      applyControlForces();
+      applyAsvActuation();
     }
 
     void
-    Vehicle::updateact(unsigned int id, double act)
+    ASV::updateActuation(int id)
     {
       std::list<Force*>::iterator itr = m_vehicle_forces.begin();
 
@@ -101,28 +85,47 @@ namespace Simulators
         ++itr;
 
       if (itr != m_vehicle_forces.end())
-        (*itr)->updateAct(act);
+        m_actuation[id] = (*itr)->getActuation();
     }
 
     void
-    Vehicle::updateEngine(unsigned int id, double act)
+    ASV::applyAsvActuation()
     {
-      id = Engine::encodeId(id);
-      updateact(id, act);
-    }
+      // Original parameters.
+      double T2CLeft[] = {-0.7428, 1.6420, 4.0325, -0.769};
+      double T2CRight[] = {-0.7428, 1.6420, 4.0325, -0.769};
 
-    void
-    Vehicle::setAddedMassCoef(double coefs[6])
-    {
-      // do nothing.
-      (void)coefs;
-    }
+      updateActuation(0);
+      updateActuation(1);
 
-    void
-    Vehicle::setBodyLiftCoef(double coefs[8])
-    {
-      // do nothing.
-      (void)coefs;
+      double Tl = m_actuation[0];
+      double Tr = m_actuation[1];
+
+      double turnLeft_i[4] = {m_asvm.turnLeft_k_2, m_asvm.turnLeft_k_1, Tl * std::fabs(Tl), Tl};
+      double turnRight_i[4] = {m_asvm.turnRight_k_2, m_asvm.turnRight_k_1, Tr * std::fabs(Tr), Tr};
+
+      double turnLeft = std::inner_product(turnLeft_i, turnLeft_i + 4, T2CLeft, 0.0);
+      double turnRight = std::inner_product(turnRight_i, turnRight_i + 4, T2CRight, 0.0);
+
+      double curL = 0.0;
+      double curR = 0.0;
+
+      if (m_asvm.turnLeft_k_1)
+        curL = std::sqrt(std::fabs(m_asvm.turnLeft_k_1)) * (std::fabs(m_asvm.turnLeft_k_1) / m_asvm.turnLeft_k_1);
+
+      if (m_asvm.turnRight_k_1)
+        curR = std::sqrt(std::fabs(m_asvm.turnRight_k_1)) * (std::fabs(m_asvm.turnRight_k_1) / m_asvm.turnRight_k_1);
+
+      double Xf = 25 * (curL + curR);
+      double Nf = 0.00088667 * (curL - curR);
+
+      addForces(Xf, 0, 0, 0, 0, Nf);
+
+      // Set auxiliary memory.
+      m_asvm.turnLeft_k_2 = m_asvm.turnLeft_k_1;
+      m_asvm.turnLeft_k_1 = turnLeft;
+      m_asvm.turnRight_k_2 = m_asvm.turnRight_k_1;
+      m_asvm.turnRight_k_1 = turnRight;
     }
   }
 }

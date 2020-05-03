@@ -32,7 +32,7 @@
 #define SIMULATORS_VSIM_VSIM_ENGINE_HPP_INCLUDED_
 
 // VSIM headers.
-#include <VSIM/Force.hpp>
+#include <DUNE/Simulation/VSIM/Force.hpp>
 
 namespace Simulators
 {

@@ -24,44 +24,75 @@
 // https://github.com/LSTS/dune/blob/master/LICENCE.md and                  *
 // http://ec.europa.eu/idabc/eupl.html.                                     *
 //***************************************************************************
-// Author: Bruno Terra                                                      *
 // Author: José Braga                                                       *
 //***************************************************************************
 
-#ifndef SIMULATORS_VSIM_VSIM_VOLUME_HPP_INCLUDED_
-#define SIMULATORS_VSIM_VSIM_VOLUME_HPP_INCLUDED_
+#ifndef SIMULATORS_VSIM_VSIM_ASV_HPP_INCLUDED_
+#define SIMULATORS_VSIM_VSIM_ASV_HPP_INCLUDED_
+
+// ISO C++ 98 headers.
+#include <numeric>
+
+// VSIM headers.
+#include <DUNE/Simulation/VSIM/Vehicle.hpp>
+#include <DUNE/Simulation/VSIM/Volume.hpp>
 
 namespace Simulators
 {
   namespace VSIM
   {
-    //! Submersed volume calculation class.
-    class Volume
+    //! %ASV Autonomous Surface Vehicle simulator.
+    class ASV: public Vehicle
     {
     public:
+      //! Default Constructor.
+      ASV();
+
       //! Constructor.
-      Volume(double height, double width, double length);
+      //! @param[in] dimensions of the vehicle.
+      ASV(double[3]);
+
+      //! Copy Constructor.
+      ASV(const ASV*);
 
       //! Destructor.
-      virtual ~Volume () = default;
+      ~ASV() override;
 
-      //! Get aprox. submersed volume.
-      //! @param[in] depth depth of the submersed part.
-      //! @return submersed volume.
-      virtual double
-      sub_volume(double depth);
+      //! Apply forces to ASV.
+      void
+      applyForces() override;
+
+      //! Apply ASV specific actuation.
+      void
+      applyAsvActuation();
+
+      //! Update ASV actiation.
+      //! @param[in] id vehicle id.
+      void
+      updateActuation(int id);
 
     private:
-      //! Get submersed z component.
-      //! @param[in] depth depth of the submersed part.
-      //! @return submersed height of the volume (z coordinate).
-      virtual double
-      zunderwater(double depth);
+      //! %ASV auxiliary memory. Stores past actuation computations.
+      class ASVMemory
+      {
+      public:
+        double turnRight_k_2, turnRight_k_1;
+        double turnLeft_k_2, turnLeft_k_1;
+        ASVMemory()
+        {
+          turnRight_k_2 = 0.0;
+          turnRight_k_1 = 0.0;
+          turnLeft_k_2 = 0.0;
+          turnLeft_k_1 = 0.0;
+        }
+      };
 
-      //! Dimensions of the volume.
-      double m_height;
-      double m_width;
-      double m_length;
+      //! ASV auxiliary memory object.
+      ASVMemory m_asvm;
+      //! ASV actuation.
+      double m_actuation[2];
+      //! Vehicle's volume.
+      Volume* m_volume;
     };
   }
 }

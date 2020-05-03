@@ -41,7 +41,7 @@
 
 // Local headers.
 #include "Factory.hpp"
-#include <VSIM/VSIM.hpp>
+#include <DUNE/Simulation/VSIM/VSIM.hpp>
 
 using DUNE_NAMESPACES;
 
