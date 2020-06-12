@@ -560,16 +560,6 @@ namespace Simulators::LaunchVehicle
       if (getEntityState() != IMC::EntityState::ESTA_NORMAL)
         return;
 
-      if (!m_motor->isActive() && m_valid_thrust_curve)
-      {
-        IMC::SetThrusterActuation ignition;
-        ignition.value = 1;
-        ignition.setDestination(getSystemId());
-
-        dispatch(ignition, DF_LOOP_BACK);
-        return;
-      }
-
       float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
 
       m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass + m_parachute.getArea();
