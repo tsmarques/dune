@@ -473,8 +473,7 @@ namespace Simulators::LaunchVehicle
         k2.m_v(0, 2) = estate_clone->w;
 
         // k3
-        delete estate_clone;
-        estate_clone = m_estate.clone();
+        estate_clone->clear();
         estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * 0.5f;
         estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * 0.5f;
         estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * 0.5f;
@@ -484,8 +483,7 @@ namespace Simulators::LaunchVehicle
         k3.m_v(0, 2) = estate_clone->w;
 
         // k4
-        delete estate_clone;
-        estate_clone = m_estate.clone();
+        estate_clone->clear();
         estate_clone->u = m_estate.u  + k3.m_a.element(0, 0) * dt[step];
         estate_clone->v = m_estate.v  + k3.m_a.element(0, 1) * dt[step];
         estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * dt[step];
