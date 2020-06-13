@@ -556,7 +556,7 @@ namespace Simulators::LaunchVehicle
 
       float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
 
-      m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass + m_parachute.getArea();
+      m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass;
       updateForces(curr_time_sec);
       rk4Step(curr_time_sec);
 
