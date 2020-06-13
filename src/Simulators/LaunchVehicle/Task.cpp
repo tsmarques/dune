@@ -396,7 +396,7 @@ namespace Simulators::LaunchVehicle
     //! m - Current launcher's total mass
     //! g - Gravity constant
     SimulationState
-    rk4Step(const IMC::EstimatedState& curr_state, float t_sec, float mass) const
+    computeNewState(const IMC::EstimatedState& curr_state, float t_sec, float mass) const
     {
       SimulationState new_state;
 
@@ -405,11 +405,15 @@ namespace Simulators::LaunchVehicle
       new_state.m_a(0, 2) -= m_args.gravity;
       new_state.m_a(0, 2) -= (m_drag.value / mass);
 
+      new_state.m_v(0, 0) = curr_state.u;
+      new_state.m_v(0, 1) = curr_state.v;
+      new_state.m_v(0, 2) = curr_state.w;
+
       return new_state;
     }
 
     void
-    updateState(float t_sec)
+    rk4Step(float t_sec)
     {
       // not enough to lift
       if (m_thrust.value < m_args.gravity * m_mass && m_estate.alt == 0)
@@ -458,10 +462,7 @@ namespace Simulators::LaunchVehicle
       size_t step = 0;
       while (step < t_steps.capacity())
       {
-        SimulationState k1 = rk4Step(m_estate, t0[step], m_mass);
-        k1.m_v(0, 0) = m_estate.u;
-        k1.m_v(0, 1) = m_estate.v;
-        k1.m_v(0, 2) = m_estate.w;
+        SimulationState k1 = computeNewState(m_estate, t0[step], m_mass);
 
         IMC::EstimatedState* estate_clone = m_estate.clone();
 
@@ -469,30 +470,21 @@ namespace Simulators::LaunchVehicle
         estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * 0.5f;
         estate_clone->v = m_estate.v + k1.m_a.element(0, 1) * 0.5f;
         estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * 0.5f;
-        SimulationState k2 = rk4Step(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
-        k2.m_v(0, 0) = estate_clone->u;
-        k2.m_v(0, 1) = estate_clone->v;
-        k2.m_v(0, 2) = estate_clone->w;
+        SimulationState k2 = computeNewState(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
 
         // k3
         estate_clone->clear();
         estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * 0.5f;
         estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * 0.5f;
         estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * 0.5f;
-        SimulationState k3 = rk4Step(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
-        k3.m_v(0, 0) = estate_clone->u;
-        k3.m_v(0, 1) = estate_clone->v;
-        k3.m_v(0, 2) = estate_clone->w;
+        SimulationState k3 = computeNewState(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
 
         // k4
         estate_clone->clear();
         estate_clone->u = m_estate.u  + k3.m_a.element(0, 0) * dt[step];
         estate_clone->v = m_estate.v  + k3.m_a.element(0, 1) * dt[step];
         estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * dt[step];
-        SimulationState k4 = rk4Step(*estate_clone, t0[step] + dt[step], m_mass);
-        k4.m_v(0, 0) = estate_clone->u;
-        k4.m_v(0, 1) = estate_clone->v;
-        k4.m_v(0, 2) = estate_clone->w;
+        SimulationState k4 = computeNewState(*estate_clone, t0[step] + dt[step], m_mass);
 
         // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
         SimulationState delta;
@@ -566,7 +558,7 @@ namespace Simulators::LaunchVehicle
 
       m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass + m_parachute.getArea();
       updateForces(curr_time_sec);
-      updateState(curr_time_sec);
+      rk4Step(curr_time_sec);
 
       dispatch(m_thrust);
       dispatch(m_estate);
