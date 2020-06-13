@@ -364,6 +364,8 @@ namespace Simulators::LaunchVehicle
       m_weight.value = m_args.gravity * m_mass;
       m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
       m_drag.value = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
+
+      m_drag.value = m_drag.value * (m_estate.w >= 0 ? 1.0f : -1.0f);
     }
 
     void
@@ -398,13 +400,10 @@ namespace Simulators::LaunchVehicle
     {
       SimulationState new_state;
 
-      // should be opposite to velocity
-      float f_drag = m_drag.value * (curr_state.w >= 0 ? 1.0f : -1.0f);
-
       // update linear acceleration (on x)
       new_state.m_a(0, 2) = m_thrust.value / mass;
       new_state.m_a(0, 2) -= m_args.gravity;
-      new_state.m_a(0, 2) -= (f_drag / mass);
+      new_state.m_a(0, 2) -= (m_drag.value / mass);
 
       return new_state;
     }
