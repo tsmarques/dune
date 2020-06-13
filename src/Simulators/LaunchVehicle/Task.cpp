@@ -370,7 +370,10 @@ namespace Simulators::LaunchVehicle
     updateThrust(float curr_time_sec)
     {
       if (!m_motor->isActive() || !m_valid_thrust_curve)
+      {
+        m_thrust.value = 0;
         return;
+      }
 
       // For now assume that all motors are equal
       m_thrust.value = m_motor->computeEngineThrust(curr_time_sec);
