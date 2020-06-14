@@ -365,7 +365,7 @@ namespace Simulators::LaunchVehicle
       m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
       m_drag.value = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
 
-      m_drag.value = m_drag.value * (m_estate.w >= 0 ? 1.0f : -1.0f);
+      m_drag.value = m_drag.value * (m_estate.w >= 0 ? -1.0f : 1.0f);
     }
 
     void
