@@ -470,26 +470,33 @@ namespace Simulators::LaunchVehicle
         SimulationState k1 = computeNewState(m_estate, t0[step], m_mass);
 
         IMC::EstimatedState* estate_clone = m_estate.clone();
+        float rk4dt;
 
         // k2
-        estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * 0.5f;
-        estate_clone->v = m_estate.v + k1.m_a.element(0, 1) * 0.5f;
-        estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * 0.5f;
-        SimulationState k2 = computeNewState(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
+        rk4dt = 0.5f * dt[step];
+        estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * rk4dt;
+        estate_clone->v = m_estate.v + k1.m_a.element(0, 1) * rk4dt;
+        estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * rk4dt;
+        estate_clone->alt =  m_estate.alt + k1.m_v.element(0, 2) * rk4dt;
+        SimulationState k2 = computeNewState(*estate_clone, t0[step] + rk4dt, m_mass);
 
         // k3
+        rk4dt = 0.5f * dt[step];
         estate_clone->clear();
-        estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * 0.5f;
-        estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * 0.5f;
-        estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * 0.5f;
-        SimulationState k3 = computeNewState(*estate_clone, t0[step] + (0.5f * dt[step]), m_mass);
+        estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * rk4dt;
+        estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * rk4dt;
+        estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * rk4dt;
+        estate_clone->alt =  m_estate.alt + k2.m_v.element(0, 2) * rk4dt;
+        SimulationState k3 = computeNewState(*estate_clone, t0[step] + rk4dt, m_mass);
 
         // k4
+        rk4dt = dt[step];
         estate_clone->clear();
-        estate_clone->u = m_estate.u  + k3.m_a.element(0, 0) * dt[step];
-        estate_clone->v = m_estate.v  + k3.m_a.element(0, 1) * dt[step];
-        estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * dt[step];
-        SimulationState k4 = computeNewState(*estate_clone, t0[step] + dt[step], m_mass);
+        estate_clone->u = m_estate.u  + k3.m_a.element(0, 0) * rk4dt;
+        estate_clone->v = m_estate.v  + k3.m_a.element(0, 1) * rk4dt;
+        estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * rk4dt;
+        estate_clone->alt =  m_estate.alt + k3.m_v.element(0, 2) * rk4dt;
+        SimulationState k4 = computeNewState(*estate_clone, t0[step] + rk4dt, m_mass);
 
         // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
         SimulationState delta;
