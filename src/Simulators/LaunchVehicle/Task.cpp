@@ -400,10 +400,15 @@ namespace Simulators::LaunchVehicle
     {
       SimulationState new_state;
 
-      // update linear acceleration (on x)
-      new_state.m_a(0, 2) = m_thrust.value / mass;
-      new_state.m_a(0, 2) -= m_args.gravity;
-      new_state.m_a(0, 2) -= (m_drag.value / mass);
+      float f_thrust = m_motor->computeEngineThrust(t_sec);
+      float f_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area,
+                                           m_args.atmos_density, curr_state.alt,
+                                           curr_state.w);
+
+      f_drag = f_drag * (curr_state.w >= 0 ? -1.0f : 1.0f);
+
+      // update linear acceleration (on z)
+      new_state.m_a(0, 2) = ((f_thrust + f_drag) / mass) - m_args.gravity;
 
       new_state.m_v(0, 0) = curr_state.u;
       new_state.m_v(0, 1) = curr_state.v;
