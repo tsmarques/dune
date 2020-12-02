@@ -33,6 +33,7 @@
 #include <DUNE/DUNE.hpp>
 #include <DUNE/Physics.hpp>
 
+#include "Task.hpp"
 #include "Motor.hpp"
 #include "SimulationState.hpp"
 #include "Parachute.hpp"
@@ -51,58 +52,6 @@ using DUNE_NAMESPACES;
 //! @author Tiago Sá Marques
 namespace Simulators::LaunchVehicle
 {
-  struct MotorArguments
-  {
-    //! Which motor is being simulated
-    std::string name;
-    //! Propellant's mass
-    float prop_mass{};
-    //! Motor's casing mass
-    float mass{};
-    //! Data points that describe this motor's thrust curve
-    std::vector<std::string> thrust_curve;
-  };
-
-  //! %Task arguments.
-  struct Arguments
-  {
-    //! How many motors this launch vehicle has
-    int n_motors{};
-    //! Launcher's mass without motor
-    float dry_mass{};
-    //! Gravity constant
-    float gravity{};
-    //! Crag coefficient
-    float coeff_drag{};
-    //! Cross sectional area
-    float area{};
-    //! Atmospheric density
-    float atmos_density{};
-    //! LV's initial latitude in radians
-    double initial_lat{};
-    //! LV's initial longitude in radians
-    double initial_lon{};
-    //! LV's initial altitude in meters
-    float initial_altitude{};
-    //! Motor's arguments
-    MotorArguments motor;
-  };
-
-  //! Drag force entity label
-  static const char* c_drag_force_ent_label = "LV - Drag";
-
-  //! Weight entity label
-  static const char* c_weight_ent_label = "LV - Weight";
-
-  //! Dynamic pressure entity label
-  static const char* c_dynp_ent_label = "LV - Dynamic Pressure";
-
-  //! Thrust force entity label
-  static const char* c_thrust_ent_label = "LV - Thrust";
-
-  //! Entity label to dispatch navigation messages
-  static const char* c_navigation_ent_label = "Navigation";
-
   //! %LaunchVehicle simulator task
   struct Task: public Tasks::Periodic
   {
@@ -136,7 +85,6 @@ namespace Simulators::LaunchVehicle
     float curr_drag_coeff;
     //! Current reference area
     float curr_ref_area;
-    //! Parachute's arguments
     Parachute m_parachute;
     //! Task arguments
     Arguments m_args;
@@ -152,80 +100,9 @@ namespace Simulators::LaunchVehicle
         lift_off(false),
         curr_drag_coeff(0),
         curr_ref_area(0),
-        m_parachute()
+        m_parachute(m_args.parachute),
+        m_args(this)
     {
-      param("Number Of Motors", m_args.n_motors)
-          .defaultValue("1")
-          .description("How many motors this launch vehicle has");
-
-      param("Dry Mass", m_args.dry_mass)
-          .defaultValue("2.550")
-          .units(Units::Kilogram)
-          .description("Launcher's mass without motor (and propellant) in kg");
-
-      param("Motor -- Name", m_args.motor.name)
-          .defaultValue("Aerotech I65W")
-          .description("Name/Brand of the motor we're simulating");
-
-      param("Motor -- Thrust Curve", m_args.motor.thrust_curve)
-          .description("Data points, time in seconds and thrust in newtons, that describe this motor's thrust function");
-
-      param("Motor -- Mass", m_args.motor.mass)
-          .defaultValue("0.375")
-          .units(Units::Kilogram)
-          .description("Motor's casing mass without propellant in kg");
-
-      param("Motor -- Propellant Mass", m_args.motor.prop_mass)
-          .defaultValue("0.377")
-          .units(Units::Kilogram)
-          .description("Propellant's mass in kg");
-
-      param("Gravity", m_args.gravity)
-          .defaultValue("9.80665")
-          .units(Units::Newton)
-          .description("Gravity's value in Newtons");
-
-      param("Drag Coefficent", m_args.coeff_drag)
-          .defaultValue("0.45")
-          .description("Drag coefficient");
-
-      param("Area", m_args.area)
-          .defaultValue("0.006")
-          .description("Launcher's reference area in m^2");
-
-      param("Atmospheric density", m_args.atmos_density)
-          .defaultValue("1.225")
-          .units(Units::KilogramPerCubicMeter)
-          .description("Atmospheric density at sea-level, kg/m^3");
-
-      param("Initial Latitude", m_args.initial_lat)
-          .defaultValue("0.4992520593366")
-          .units(Units::Radian)
-          .description("Initial latitude in radians");
-
-      param("Initial Longitude", m_args.initial_lon)
-          .defaultValue("-1.40678083")
-          .units(Units::Radian)
-          .description("Initial longitude in radians");
-
-      param("Initial Altitude", m_args.initial_altitude)
-          .defaultValue("0.0")
-          .units(Units::Meter)
-          .description("Initial altitude in meters");
-
-      param("Parachute -- Drag Coefficient", m_parachute.m_args.drag_coeff)
-          .defaultValue("1.5")
-          .description("Parachute's drag coefficient when open");
-
-      param("Parachute -- Area", m_parachute.m_args.area)
-          .defaultValue("2.064")
-          .description("Parachute's projected area in m^2");
-
-      param("Parachute -- Mass", m_parachute.m_args.mass)
-          .defaultValue("0.062")
-          .units(Units::Kilogram)
-          .description("Parachute's mass in kg");
-
       // Register consumers.
       bind<IMC::SetThrusterActuation>(this);
       bind<IMC::FlightEvent>(this);
@@ -557,7 +434,7 @@ namespace Simulators::LaunchVehicle
           m_args.area,
           m_parachute.getDragCoeff(),
           m_parachute.getDragCoeff(),
-          m_parachute.m_args.mass);
+          m_parachute.getMass());
     }
 
     void

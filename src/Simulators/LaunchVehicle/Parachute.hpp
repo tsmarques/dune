@@ -23,7 +23,7 @@ namespace Simulators::LaunchVehicle
   //! Initialization arguments
   //! Throughout simulation use proper getters for current values
   //! instead of accessing directly
-  struct DuneArguments
+  struct ParachuteArguments
   {
     //! Parachute's drag coefficient
     float drag_coeff;
@@ -36,17 +36,15 @@ namespace Simulators::LaunchVehicle
   class Parachute
   {
   public:
-    //! DUNE Arguments
-    DuneArguments m_args;
-
-    Parachute() :
+    explicit Parachute(ParachuteArguments& args) :
+        m_args(args),
         m_is_triggered(false),
         m_inertia(),
-        m_forces(),
-        m_args()
+        m_forces()
     { }
 
   private:
+    ParachuteArguments& m_args;
     //! If this parachute has been triggered
     bool m_is_triggered;
     //! Inertia matrix.

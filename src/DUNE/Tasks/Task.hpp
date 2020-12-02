@@ -387,6 +387,18 @@ namespace DUNE
         m_entity->setLabel(label);
       }
 
+      //! Declare a configuration parameter that can be parsed using
+      //! the basic parameter parser.
+      //! @tparam T type of the destination variable.
+      //! @param[in] name parameter name.
+      //! @param[in] var variable that will hold the parameter value.
+      //! @return Parameter object.
+      template <typename T>
+      Parameter&
+      param(const std::string& name, T& var)
+      {
+        return param<BasicParameterParser<T> >(name, var);
+      }
     protected:
       //! Context.
       Context& m_ctx;
@@ -502,19 +514,6 @@ namespace DUNE
       consumeMessages()
       {
         m_recipient->runCallBacks();
-      }
-
-      //! Declare a configuration parameter that can be parsed using
-      //! the basic parameter parser.
-      //! @tparam T type of the destination variable.
-      //! @param[in] name parameter name.
-      //! @param[in] var variable that will hold the parameter value.
-      //! @return Parameter object.
-      template <typename T>
-      Parameter&
-      param(const std::string& name, T& var)
-      {
-        return param<BasicParameterParser<T> >(name, var);
       }
 
       //! Declare a configuration parameter that can be parsed using
