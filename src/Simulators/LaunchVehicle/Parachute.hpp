@@ -60,19 +60,19 @@ namespace Simulators::LaunchVehicle
     }
 
     float
-    getArea()
+    getArea() const
     {
       return m_args.area;
     }
 
     float
-    getDragCoeff()
+    getDragCoeff() const
     {
       return m_args.drag_coeff;
     }
 
     float
-    getMass()
+    getMass() const
     {
       return m_is_triggered ? m_args.mass : 0;
     }
