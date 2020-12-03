@@ -118,7 +118,9 @@ namespace Supervisors
             .units(Units::Second)
             .description("Wait this much before triggering parachute recovery");
 
-        m_thrust.value = 0;
+        m_thrust.x = 0;
+        m_thrust.y = 0;
+        m_thrust.z = 0;
         bind<IMC::Force>(this);
         bind<IMC::EstimatedState>(this);
         bind<IMC::Pressure>(this);
@@ -182,7 +184,7 @@ namespace Supervisors
         switch(m_flight_state.type)
         {
           case IMC::FlightEvent::FLEV_IDLE:
-            if (m_thrust.value <= 0)
+            if (m_thrust.z <= 0)
               break;
             inf("ignition");
             m_flight_state.type = IMC::FlightEvent::FLEV_IGNITION;

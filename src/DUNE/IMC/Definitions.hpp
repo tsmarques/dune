@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: c659e4d5ac49839c6943e6b96ceedb88                            *
+// IMC XML MD5: 131d9a09127324ee268805c13abdbfc6                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -7131,10 +7131,14 @@ namespace DUNE
     class Force: public Message
     {
     public:
-      //! Measured Force.
-      fp32_t value;
       //! Force Label.
       std::string label;
+      //! X.
+      fp64_t x;
+      //! Y.
+      fp64_t y;
+      //! Z.
+      fp64_t z;
 
       static uint16_t
       getIdStatic()
@@ -7183,7 +7187,7 @@ namespace DUNE
       unsigned
       getFixedSerializationSize() const override
       {
-        return 4;
+        return 24;
       }
 
       unsigned
@@ -7191,12 +7195,6 @@ namespace DUNE
       {
         return IMC::getSerializationSize(label);
       }
-
-      fp64_t
-      getValueFP() const override;
-
-      void
-      setValueFP(fp64_t val) override;
 
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;

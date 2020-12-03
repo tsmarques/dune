@@ -214,7 +214,11 @@ namespace Simulators::LaunchVehicle
         setEntityState(IMC::EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         m_motor->trigger();
         m_trigger_msec = Time::Clock::getSinceEpochMsec();
-        m_drag.value = 0;
+
+        m_drag.x = 0;
+        m_drag.y = 0;
+        m_drag.z = 0;
+
         m_estate.w = 0;
         m_estate.alt = m_args.initial_altitude;
         m_dynp.value = 0;
@@ -239,11 +243,22 @@ namespace Simulators::LaunchVehicle
     {
       updateThrust(t);
 
-      m_weight.value = m_args.gravity * m_mass;
-      m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
-      m_drag.value = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
+      // @todo x and y
+      m_weight.x = 0;
+      m_weight.y = 0;
+      m_weight.z = m_args.gravity * m_mass;
 
-      m_drag.value = m_drag.value * (m_estate.w >= 0 ? -1.0f : 1.0f);
+      m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
+
+      // @todo x and y
+      m_drag.x = 0;
+      m_drag.y = 0;
+      m_drag.z = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
+
+      // @todo x and y
+      m_drag.x = m_drag.x * (m_estate.u >= 0 ? -1.0f : 1.0f);
+      m_drag.y = m_drag.y * (m_estate.v >= 0 ? -1.0f : 1.0f);
+      m_drag.z = m_drag.z * (m_estate.w >= 0 ? -1.0f : 1.0f);
     }
 
     void
@@ -251,12 +266,17 @@ namespace Simulators::LaunchVehicle
     {
       if (!m_motor->isActive() || !m_valid_thrust_curve)
       {
-        m_thrust.value = 0;
+        m_thrust.x = 0;
+        m_thrust.y = 0;
+        m_thrust.z = 0;
         return;
       }
 
       // For now assume that all motors are equal
-      m_thrust.value = m_motor->computeEngineThrust(curr_time_sec);
+      // @todo x and y
+      m_thrust.x = 0;
+      m_thrust.y = 0;
+      m_thrust.z = m_motor->computeEngineThrust(curr_time_sec);
     }
 
     //! Compute acceleration's integral
@@ -299,13 +319,13 @@ namespace Simulators::LaunchVehicle
     rk4Step(float t_sec)
     {
       // not enough to lift
-      if (m_thrust.value < m_args.gravity * m_mass && m_estate.alt == 0)
+      if (m_thrust.z < m_args.gravity * m_mass && m_estate.alt == 0)
         return;
 
       if (!lift_off && m_estate.alt != 0)
       {
         lift_off = true;
-        war("Lift off %.4f", m_thrust.value);
+        war("Lift off %.4f | %.4f | %.4f", m_thrust.x, m_thrust.y, m_thrust.z);
       }
 
       ThrustParameters thrust_f = m_motor->getFunctionParameters(t_sec);

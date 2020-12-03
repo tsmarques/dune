@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: c659e4d5ac49839c6943e6b96ceedb88                            *
+// IMC XML MD5: 131d9a09127324ee268805c13abdbfc6                            *
 //***************************************************************************
 
 // ISO C++ 98 headers.
@@ -7108,16 +7108,20 @@ namespace DUNE
     void
     Force::clear()
     {
-      value = 0;
       label.clear();
+      x = 0;
+      y = 0;
+      z = 0;
     }
 
     bool
     Force::fieldsEqual(const Message& msg__) const
     {
       const IMC::Force& other__ = static_cast<const Force&>(msg__);
-      if (value != other__.value) return false;
       if (label != other__.label) return false;
+      if (x != other__.x) return false;
+      if (y != other__.y) return false;
+      if (z != other__.z) return false;
       return true;
     }
 
@@ -7131,8 +7135,10 @@ namespace DUNE
     Force::serializeFields(uint8_t* bfr__) const
     {
       uint8_t* ptr__ = bfr__;
-      ptr__ += IMC::serialize(value, ptr__);
       ptr__ += IMC::serialize(label, ptr__);
+      ptr__ += IMC::serialize(x, ptr__);
+      ptr__ += IMC::serialize(y, ptr__);
+      ptr__ += IMC::serialize(z, ptr__);
       return ptr__;
     }
 
@@ -7140,8 +7146,10 @@ namespace DUNE
     Force::deserializeFields(const uint8_t* bfr__, uint16_t size__)
     {
       const uint8_t* start__ = bfr__;
-      bfr__ += IMC::deserialize(value, bfr__, size__);
       bfr__ += IMC::deserialize(label, bfr__, size__);
+      bfr__ += IMC::deserialize(x, bfr__, size__);
+      bfr__ += IMC::deserialize(y, bfr__, size__);
+      bfr__ += IMC::deserialize(z, bfr__, size__);
       return bfr__ - start__;
     }
 
@@ -7149,28 +7157,20 @@ namespace DUNE
     Force::reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__)
     {
       const uint8_t* start__ = bfr__;
-      bfr__ += IMC::reverseDeserialize(value, bfr__, size__);
       bfr__ += IMC::reverseDeserialize(label, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(x, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(y, bfr__, size__);
+      bfr__ += IMC::reverseDeserialize(z, bfr__, size__);
       return bfr__ - start__;
-    }
-
-    fp64_t
-    Force::getValueFP() const
-    {
-      return static_cast<fp64_t>(value);
-    }
-
-    void
-    Force::setValueFP(fp64_t val)
-    {
-      value = static_cast<fp32_t>(val);
     }
 
     void
     Force::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
     {
-      IMC::toJSON(os__, "value", value, nindent__);
       IMC::toJSON(os__, "label", label, nindent__);
+      IMC::toJSON(os__, "x", x, nindent__);
+      IMC::toJSON(os__, "y", y, nindent__);
+      IMC::toJSON(os__, "z", z, nindent__);
     }
 
     SonarData::SonarData()
