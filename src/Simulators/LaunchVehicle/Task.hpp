@@ -93,7 +93,7 @@ namespace Simulators::LaunchVehicle
 
       task->param("Drag Coefficent", coeff_drag)
           .defaultValue("0.45")
-          .description("Drag coefficient");
+          .description("Drag coefficient at Mach 0");
 
       task->param("Area", area)
           .defaultValue("0.006")
