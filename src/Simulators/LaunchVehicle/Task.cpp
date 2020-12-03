@@ -85,6 +85,7 @@ namespace Simulators::LaunchVehicle
     float curr_drag_coeff;
     //! Current reference area
     float curr_ref_area;
+    //! Parachute handler
     Parachute m_parachute;
     //! Task arguments
     Arguments m_args;
