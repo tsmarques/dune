@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 131d9a09127324ee268805c13abdbfc6                            *
+// IMC XML MD5: b591a5cb787735a9548494ef95065bdf                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_DEFINITIONS_HPP_INCLUDED_
@@ -25052,6 +25052,73 @@ namespace DUNE
       {
         return 1;
       }
+
+      void
+      fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;
+    };
+
+    //! Scalar Data.
+    class Scalar: public Message
+    {
+    public:
+      //! Value.
+      fp32_t value;
+
+      static uint16_t
+      getIdStatic()
+      {
+        return 910;
+      }
+
+      Scalar();
+
+      Scalar*
+      clone() const override
+      {
+        return new Scalar(*this);
+      }
+
+      void
+      clear() override;
+
+      bool
+      fieldsEqual(const Message& msg__) const override;
+
+      int
+      validate() const override;
+
+      uint8_t*
+      serializeFields(uint8_t* bfr__) const override;
+
+      uint16_t
+      deserializeFields(const uint8_t* bfr__, uint16_t size__) override;
+
+      uint16_t
+      reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__) override;
+
+      uint16_t
+      getId() const override
+      {
+        return Scalar::getIdStatic();
+      }
+
+      const char*
+      getName() const override
+      {
+        return "Scalar";
+      }
+
+      unsigned
+      getFixedSerializationSize() const override
+      {
+        return 4;
+      }
+
+      fp64_t
+      getValueFP() const override;
+
+      void
+      setValueFP(fp64_t val) override;
 
       void
       fieldsToJSON(std::ostream& os__, unsigned nindent__) const override;

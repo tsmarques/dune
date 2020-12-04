@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 131d9a09127324ee268805c13abdbfc6                            *
+// IMC XML MD5: b591a5cb787735a9548494ef95065bdf                            *
 //***************************************************************************
 
 #ifndef DUNE_IMC_MACROS_HPP_INCLUDED_
@@ -654,6 +654,8 @@
 #define DUNE_IMC_DMSDETECTION 908
 //! FlightEvent identification number.
 #define DUNE_IMC_FLIGHTEVENT 909
+//! Scalar identification number.
+#define DUNE_IMC_SCALAR 910
 //! TotalMagIntensity identification number.
 #define DUNE_IMC_TOTALMAGINTENSITY 2006
 

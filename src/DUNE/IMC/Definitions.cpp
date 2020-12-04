@@ -28,7 +28,7 @@
 //***************************************************************************
 // Automatically generated.                                                 *
 //***************************************************************************
-// IMC XML MD5: 131d9a09127324ee268805c13abdbfc6                            *
+// IMC XML MD5: b591a5cb787735a9548494ef95065bdf                            *
 //***************************************************************************
 
 // ISO C++ 98 headers.
@@ -26528,6 +26528,74 @@ namespace DUNE
     FlightEvent::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
     {
       IMC::toJSON(os__, "type", type, nindent__);
+    }
+
+    Scalar::Scalar()
+    {
+      m_header.mgid = 910;
+      clear();
+    }
+
+    void
+    Scalar::clear()
+    {
+      value = 0;
+    }
+
+    bool
+    Scalar::fieldsEqual(const Message& msg__) const
+    {
+      const IMC::Scalar& other__ = static_cast<const Scalar&>(msg__);
+      if (value != other__.value) return false;
+      return true;
+    }
+
+    int
+    Scalar::validate() const
+    {
+      return true;
+    }
+
+    uint8_t*
+    Scalar::serializeFields(uint8_t* bfr__) const
+    {
+      uint8_t* ptr__ = bfr__;
+      ptr__ += IMC::serialize(value, ptr__);
+      return ptr__;
+    }
+
+    uint16_t
+    Scalar::deserializeFields(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::deserialize(value, bfr__, size__);
+      return bfr__ - start__;
+    }
+
+    uint16_t
+    Scalar::reverseDeserializeFields(const uint8_t* bfr__, uint16_t size__)
+    {
+      const uint8_t* start__ = bfr__;
+      bfr__ += IMC::reverseDeserialize(value, bfr__, size__);
+      return bfr__ - start__;
+    }
+
+    fp64_t
+    Scalar::getValueFP() const
+    {
+      return static_cast<fp64_t>(value);
+    }
+
+    void
+    Scalar::setValueFP(fp64_t val)
+    {
+      value = static_cast<fp32_t>(val);
+    }
+
+    void
+    Scalar::fieldsToJSON(std::ostream& os__, unsigned nindent__) const
+    {
+      IMC::toJSON(os__, "value", value, nindent__);
     }
 
     TotalMagIntensity::TotalMagIntensity()
