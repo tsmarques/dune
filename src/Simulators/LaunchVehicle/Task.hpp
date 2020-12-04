@@ -40,7 +40,7 @@ namespace Simulators::LaunchVehicle
     //! Gravity constant
     float gravity{};
     //! Crag coefficient
-    float coeff_drag{};
+    std::vector<std::string> coeff_drag{};
     //! Cross sectional area
     float area{};
     //! Atmospheric density
@@ -91,7 +91,7 @@ namespace Simulators::LaunchVehicle
           .units(Units::Newton)
           .description("Gravity's value in Newtons");
 
-      task->param("Drag Coefficent", coeff_drag)
+      task->param("Drag Coefficient", coeff_drag)
           .defaultValue("0.45")
           .description("Drag coefficient at Mach 0");
 

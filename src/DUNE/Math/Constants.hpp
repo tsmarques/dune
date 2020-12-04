@@ -63,6 +63,8 @@ namespace DUNE
     static const float c_pascal_per_bar = 100000.0f;
     //! Atmosphere's "Scale height"
     const float c_atmos_scale_height = 8000;
+    //! Speed of sound in the air, meters per second
+    const float c_speed_of_sound_air = 343;
   }
 }
 

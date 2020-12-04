@@ -37,6 +37,7 @@
 #include "Motor.hpp"
 #include "SimulationState.hpp"
 #include "Parachute.hpp"
+#include "DragModel.hpp"
 
 using DUNE_NAMESPACES;
 
@@ -61,6 +62,8 @@ namespace Simulators::LaunchVehicle
     Motor* m_motor;
     //! If task was given a valid description of the thrust curve
     bool m_valid_thrust_curve;
+    //! Rockets' Drag Model
+    DragModel* m_drag_model;
     //! Thrust produced by this engine/motor
     IMC::Force m_thrust;
     //! Curent drag force
@@ -82,7 +85,7 @@ namespace Simulators::LaunchVehicle
     //! Take off event has happened
     bool lift_off;
     //! Current drag coefficient
-    float curr_drag_coeff;
+    float m_curr_drag_coeff;
     //! Current reference area
     float curr_ref_area;
     //! Parachute handler
@@ -92,14 +95,15 @@ namespace Simulators::LaunchVehicle
 
     Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-      dt(0),
+        dt(0),
         m_motor(nullptr),
         m_valid_thrust_curve(false),
+        m_drag_model(nullptr),
         m_trigger_msec(0),
         m_prev_time_sec(0),
         m_mass(0),
         lift_off(false),
-        curr_drag_coeff(0),
+        m_curr_drag_coeff(0),
         curr_ref_area(0),
         m_parachute(m_args.parachute),
         m_args(this)
@@ -141,7 +145,11 @@ namespace Simulators::LaunchVehicle
       }
 
       if (paramChanged(m_args.coeff_drag))
-        curr_drag_coeff = m_args.coeff_drag;
+      {
+        if (m_drag_model != nullptr)
+          Memory::clear(m_drag_model);
+        m_drag_model = new DragModel(m_args.coeff_drag);
+      }
 
       if (paramChanged(m_args.area))
         curr_ref_area = m_args.area;
@@ -234,7 +242,7 @@ namespace Simulators::LaunchVehicle
 
       inf("activating parachute");
       curr_ref_area = std::max(m_parachute.getArea(), curr_ref_area);
-      curr_drag_coeff = std::max(m_parachute.getDragCoeff(), curr_drag_coeff);
+      m_curr_drag_coeff = std::max(m_parachute.getDragCoeff(), m_curr_drag_coeff);
       m_parachute.trigger();
     }
 
@@ -253,7 +261,7 @@ namespace Simulators::LaunchVehicle
       // @todo x and y
       m_drag.x = 0;
       m_drag.y = 0;
-      m_drag.z = Physics::getDragForce(curr_drag_coeff, curr_ref_area, m_dynp.value);
+      m_drag.z = m_drag_model->computeDrag(m_estate.w, curr_ref_area, m_dynp.value);
 
       // @todo x and y
       m_drag.x = m_drag.x * (m_estate.u >= 0 ? -1.0f : 1.0f);
@@ -299,9 +307,8 @@ namespace Simulators::LaunchVehicle
       SimulationState new_state;
 
       float f_thrust = m_motor->computeEngineThrust(t_sec);
-      float f_drag = Physics::getDragForce(curr_drag_coeff, curr_ref_area,
-                                           m_args.atmos_density, curr_state.alt,
-                                           curr_state.w);
+      float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.alt, curr_state.w);
+      float f_drag = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
 
       f_drag = f_drag * (curr_state.w >= 0 ? -1.0f : 1.0f);
 
@@ -401,7 +408,6 @@ namespace Simulators::LaunchVehicle
           "Dry Mass: %f\n"
           "Motor mass: %f\n"
           "Propellant Mass: %f\n"
-          "Drag Coefficient: %f\n"
           "Area: %f\n"
           "Parachute Drag Coefficient: %f\n"
           "Parachute area: %f\n"
@@ -411,7 +417,6 @@ namespace Simulators::LaunchVehicle
           m_args.dry_mass,
           m_args.motor.mass,
           m_args.motor.prop_mass,
-          m_args.coeff_drag,
           m_args.area,
           m_parachute.getDragCoeff(),
           m_parachute.getDragCoeff(),
@@ -429,8 +434,6 @@ namespace Simulators::LaunchVehicle
       m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass;
       updateForces(curr_time_sec);
       rk4Step(curr_time_sec);
-
-      inf("%f | %f", m_estate.w, m_thrust.z);
 
       dispatch(m_thrust);
       dispatch(m_estate);
