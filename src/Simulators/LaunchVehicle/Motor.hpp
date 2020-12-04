@@ -35,60 +35,49 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Simulators
+namespace Simulators::LaunchVehicle
 {
-  namespace LaunchVehicle
+  //! Thrust curve function parameters
+  struct ThrustCurve
   {
-    struct ThrustParameters
+    std::vector<float> time;
+    std::vector<float> thrust_value;
+  };
+
+  class Motor
+  {
+    //! Tasks that created this motor
+    DUNE::Tasks::Task* m_owner_task;
+    //! Thrust curve definition, as string
+    std::vector<std::string> m_thrust_curve_def;
+    //! Thrust curve
+    ThrustCurve m_thrust_curve_f;
+    //! If the engines have started combusting
+    bool m_triggered;
+
+  public:
+    //! Motor Constructor
+    Motor(DUNE::Tasks::Task* m_owner, std::vector<std::string>  m_thrust_curve_def);
+
+    //! Compute current thrust given a time in milliseconds
+    //! since the motor was triggered
+    fp64_t
+    computeEngineThrust(float curr_time_sec) const;
+
+    bool
+    parseThrustCurve();
+
+    void
+    trigger()
     {
-      float interval_start;
-      float interval_end;
-      float m;
-      float b;
-    };
+      m_triggered = true;
+    }
 
-    //! Thrust curve function parameters
-    typedef std::map<float, ThrustParameters> ThrustCurve;
-
-    class Motor
+    bool
+    isActive() const
     {
-      //! Tasks that created this motor
-      DUNE::Tasks::Task* m_owner_task;
-      //! Thrust curve definition, as string
-      std::vector<std::string> m_thrust_curve_def;
-      //! Mapping between the end of interval of time and the
-      //! the pair of m and b that describe the linear thrust function
-      ThrustCurve m_thrust_curve_f;
-      //! If the engines have started combusting
-      bool m_triggered;
-
-    public:
-      //! Motor Constructor
-      Motor(DUNE::Tasks::Task* m_owner, const std::vector<std::string>& m_thrust_curve_def);
-
-      //! Compute current thrust given a time in milliseconds
-      //! since the motor was triggered
-      fp64_t
-      computeEngineThrust(float curr_time_sec);
-
-      bool
-      parseThrustCurve();
-
-      ThrustParameters
-      getFunctionParameters(float curr_time_sec);
-
-      void
-      trigger(void)
-      {
-        m_triggered = true;
-      }
-
-      bool
-      isActive(void)
-      {
-        return m_triggered;
-      }
-    };
-  }
+      return m_triggered;
+    }
+  };
 }
 #endif

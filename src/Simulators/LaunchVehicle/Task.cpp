@@ -56,7 +56,7 @@ namespace Simulators::LaunchVehicle
   struct Task: public Tasks::Periodic
   {
     //! Timestep in seconds
-    double tstep_sec;
+    double dt;
     //! Motor(s) used by the launcher
     Motor* m_motor;
     //! If task was given a valid description of the thrust curve
@@ -92,7 +92,7 @@ namespace Simulators::LaunchVehicle
 
     Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
-        tstep_sec(0),
+      dt(0),
         m_motor(nullptr),
         m_valid_thrust_curve(false),
         m_trigger_msec(0),
@@ -132,7 +132,7 @@ namespace Simulators::LaunchVehicle
     void
     onUpdateParameters() override
     {
-      tstep_sec = 1.0 / getFrequency();
+      dt = 1.0 / getFrequency();
 
       if (m_args.motor.thrust_curve.empty())
       {
@@ -328,7 +328,6 @@ namespace Simulators::LaunchVehicle
         war("Lift off %.4f | %.4f | %.4f", m_thrust.x, m_thrust.y, m_thrust.z);
       }
 
-      float dt = t_sec - m_prev_time_sec;
       SimulationState k1 = computeNewState(m_estate, t_sec, m_mass);
 
       IMC::EstimatedState* estate_clone = m_estate.clone();
@@ -430,6 +429,8 @@ namespace Simulators::LaunchVehicle
       m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass;
       updateForces(curr_time_sec);
       rk4Step(curr_time_sec);
+
+      inf("%f | %f", m_estate.w, m_thrust.z);
 
       dispatch(m_thrust);
       dispatch(m_estate);
