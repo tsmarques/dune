@@ -14,11 +14,16 @@ namespace Simulators::LaunchVehicle
     }
 
     float
-    computeDrag(float speed, float ref_area, float dyn_p) const
+    computeDragCoefficient(float speed) const
     {
       float m = speed / Math::c_speed_of_sound_air;
-      float cd = Math::piecewiseLI(y_cd, x_mach, m);
-      return Physics::getDragForce(cd, ref_area, dyn_p);
+      return Math::piecewiseLI(y_cd, x_mach, m);
+    }
+
+    float
+    computeDrag(float speed, float ref_area, float dyn_p) const
+    {
+      return Physics::getDragForce(computeDragCoefficient(speed), ref_area, dyn_p);
     }
 
   private:

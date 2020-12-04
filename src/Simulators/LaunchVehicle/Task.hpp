@@ -17,6 +17,8 @@ namespace Simulators::LaunchVehicle
   static const char* c_thrust_ent_label = "LV - Thrust";
   //! Entity label to dispatch navigation messages
   static const char* c_navigation_ent_label = "Navigation";
+  //! Entity label to dispatch drag coefficient data
+  static const char* c_drag_coeff_ent_label = "Drag Coefficient";
 
   struct MotorArguments
   {

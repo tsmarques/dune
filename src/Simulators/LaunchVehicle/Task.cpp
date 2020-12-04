@@ -72,6 +72,8 @@ namespace Simulators::LaunchVehicle
     IMC::Force m_weight;
     //! Dynamic pressure felt by the vehicle
     IMC::Pressure m_dynp;
+    //! Current drag coefficient
+    IMC::Scalar m_drag_coeff;
     //! Epoch Time, in milliseconds, at which this motor was triggered
     uint64_t m_trigger_msec;
     //! Navigation data
@@ -121,6 +123,7 @@ namespace Simulators::LaunchVehicle
       reserveEntity(c_weight_ent_label);
       reserveEntity(c_dynp_ent_label);
       reserveEntity(c_navigation_ent_label);
+      reserveEntity(c_drag_coeff_ent_label);
     }
 
     void
@@ -131,6 +134,7 @@ namespace Simulators::LaunchVehicle
       m_weight.setSourceEntity(resolveEntity(c_weight_ent_label));
       m_dynp.setSourceEntity(resolveEntity(c_dynp_ent_label));
       m_estate.setSourceEntity(resolveEntity(c_navigation_ent_label));
+      m_drag_coeff.setSourceEntity(resolveEntity(c_drag_coeff_ent_label));
     }
 
     void
@@ -257,6 +261,8 @@ namespace Simulators::LaunchVehicle
       m_weight.z = m_args.gravity * m_mass;
 
       m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
+
+      m_drag_coeff.value = m_drag_model->computeDragCoefficient(m_estate.w);
 
       // @todo x and y
       m_drag.x = 0;
@@ -440,6 +446,7 @@ namespace Simulators::LaunchVehicle
       dispatch(m_drag);
       dispatch(m_weight);
       dispatch(m_dynp);
+      dispatch(m_drag_coeff);
 
       m_prev_time_sec = curr_time_sec;
     }
