@@ -328,100 +328,61 @@ namespace Simulators::LaunchVehicle
         war("Lift off %.4f | %.4f | %.4f", m_thrust.x, m_thrust.y, m_thrust.z);
       }
 
-      ThrustParameters thrust_f = m_motor->getFunctionParameters(t_sec);
-      ThrustParameters prev_params = m_motor->getFunctionParameters(m_prev_time_sec);
+      float dt = t_sec - m_prev_time_sec;
+      SimulationState k1 = computeNewState(m_estate, t_sec, m_mass);
 
-      std::vector<float> t_steps;
-      std::vector<float> t0;
-      std::vector<float> dt;
+      IMC::EstimatedState* estate_clone = m_estate.clone();
+      float rk4dt;
 
-      // prepare simulation step
-      if (thrust_f.interval_start != prev_params.interval_start)
-      {
-        t_steps.reserve(2);
-        t0.reserve(2);
-        dt.reserve(2);
+      // k2
+      rk4dt = 0.5f * dt;
+      estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * rk4dt;
+      estate_clone->v = m_estate.v + k1.m_a.element(0, 1) * rk4dt;
+      estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * rk4dt;
+      estate_clone->alt =  m_estate.alt + k1.m_v.element(0, 2) * rk4dt;
+      SimulationState k2 = computeNewState(*estate_clone, t_sec + rk4dt, m_mass);
 
-        t_steps[0] = prev_params.interval_end;
-        t_steps[1] = t_sec;
+      // k3
+      rk4dt = 0.5f * dt;
+      estate_clone->clear();
+      estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * rk4dt;
+      estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * rk4dt;
+      estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * rk4dt;
+      estate_clone->alt =  m_estate.alt + k2.m_v.element(0, 2) * rk4dt;
+      SimulationState k3 = computeNewState(*estate_clone, t_sec + rk4dt, m_mass);
 
-        t0[0] = m_prev_time_sec;
-        t0[1] = t_steps[0];
+      // k4
+      rk4dt = dt;
+      estate_clone->clear();
+      estate_clone->u = m_estate.u  + k3.m_a.element(0, 0) * rk4dt;
+      estate_clone->v = m_estate.v  + k3.m_a.element(0, 1) * rk4dt;
+      estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * rk4dt;
+      estate_clone->alt =  m_estate.alt + k3.m_v.element(0, 2) * rk4dt;
+      SimulationState k4 = computeNewState(*estate_clone, t_sec + rk4dt, m_mass);
 
-        dt[0] = (t_steps[0] - t0[0]);
-        dt[1] = (t_steps[1] - t0[1]);
-      }
-      else
-      {
-        t_steps.reserve(1);
-        t0.reserve(1);
-        dt.reserve(1);
+      // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
+      SimulationState delta;
+      // integrate for velocity
+      delta.m_v = dt * (k1.m_a + 2 * (k2.m_a + k3.m_a) + k4.m_a) / 6.0f;
+      // integrate for position
+      delta.m_p = dt * (k1.m_v + 2 * (k2.m_v + k3.m_v) + k4.m_v) / 6.0f;
 
-        t0[0] = m_prev_time_sec;
-        t_steps[0] = t_sec;
-        dt[0] = tstep_sec;
-      }
+      // update state
 
-      size_t step = 0;
-      while (step < t_steps.capacity())
-      {
-        SimulationState k1 = computeNewState(m_estate, t0[step], m_mass);
+      // velocity
+      m_estate.u = m_estate.u + delta.m_v.element(0, 0);
+      m_estate.v = m_estate.v + delta.m_v.element(0, 1);
+      m_estate.w = m_estate.w + delta.m_v.element(0, 2);
 
-        IMC::EstimatedState* estate_clone = m_estate.clone();
-        float rk4dt;
+      // position offsets
+      m_estate.x = m_estate.x + delta.m_p.element(0, 0);
+      m_estate.y = m_estate.y + delta.m_p.element(0, 1);
+      m_estate.z = m_estate.z + delta.m_p.element(0, 2);
 
-        // k2
-        rk4dt = 0.5f * dt[step];
-        estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * rk4dt;
-        estate_clone->v = m_estate.v + k1.m_a.element(0, 1) * rk4dt;
-        estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * rk4dt;
-        estate_clone->alt =  m_estate.alt + k1.m_v.element(0, 2) * rk4dt;
-        SimulationState k2 = computeNewState(*estate_clone, t0[step] + rk4dt, m_mass);
+      // @fixme: is altitude the same as Z offset?
+      m_estate.alt =  m_estate.alt + delta.m_p.element(0, 2);
 
-        // k3
-        rk4dt = 0.5f * dt[step];
-        estate_clone->clear();
-        estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * rk4dt;
-        estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * rk4dt;
-        estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * rk4dt;
-        estate_clone->alt =  m_estate.alt + k2.m_v.element(0, 2) * rk4dt;
-        SimulationState k3 = computeNewState(*estate_clone, t0[step] + rk4dt, m_mass);
-
-        // k4
-        rk4dt = dt[step];
-        estate_clone->clear();
-        estate_clone->u = m_estate.u  + k3.m_a.element(0, 0) * rk4dt;
-        estate_clone->v = m_estate.v  + k3.m_a.element(0, 1) * rk4dt;
-        estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * rk4dt;
-        estate_clone->alt =  m_estate.alt + k3.m_v.element(0, 2) * rk4dt;
-        SimulationState k4 = computeNewState(*estate_clone, t0[step] + rk4dt, m_mass);
-
-        // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
-        SimulationState delta;
-        // integrate for velocity
-        delta.m_v = dt[step] * (k1.m_a + 2 * (k2.m_a + k3.m_a) + k4.m_a) / 6.0f;
-        // integrate for position
-        delta.m_p = dt[step] * (k1.m_v + 2 * (k2.m_v + k3.m_v) + k4.m_v) / 6.0f;
-
-        // update state
-
-        // velocity
-        m_estate.u = m_estate.u + delta.m_v.element(0, 0);
-        m_estate.v = m_estate.v + delta.m_v.element(0, 1);
-        m_estate.w = m_estate.w + delta.m_v.element(0, 2);
-
-        // position offsets
-        m_estate.x = m_estate.x + delta.m_p.element(0, 0);
-        m_estate.y = m_estate.y + delta.m_p.element(0, 1);
-        m_estate.z = m_estate.z + delta.m_p.element(0, 2);
-
-        // @fixme: is altitude the same as Z offset?
-        m_estate.alt =  m_estate.alt + delta.m_p.element(0, 2);
-
-        delete estate_clone;
-
-        ++step;
-      }
+      delete estate_clone;
 
       if (m_estate.alt < 0)
       {
