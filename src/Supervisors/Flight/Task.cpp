@@ -131,7 +131,7 @@ namespace Supervisors
 
       //! Resolve entity names.
       void
-      onEntityResolution(void)
+      onEntityResolution() override
       {
         try
         {
@@ -146,7 +146,7 @@ namespace Supervisors
 
       //! Acquire resources.
       void
-      onResourceAcquisition(void)
+      onResourceAcquisition() override
       {
         m_dyn_monitor = new DynamicPressureMonitor(m_args.pressure_window_size);
         m_apogee_monitor = new ApogeeMonitor(m_args.altitude_window_size);
@@ -154,7 +154,7 @@ namespace Supervisors
 
       //! Release resources.
       void
-      onResourceRelease(void)
+      onResourceRelease() override
       {
         Memory::clear(m_dyn_monitor);
         Memory::clear(m_apogee_monitor);
@@ -179,6 +179,9 @@ namespace Supervisors
       void
       consume(const IMC::Pressure* msg)
       {
+        if (m_flight_state.type == IMC::FlightEvent::FLEV_IDLE)
+          return;
+
         if (msg->getSourceEntity() == m_dyn_eid)
           m_dyn_monitor->consume(msg);
       }
@@ -209,9 +212,10 @@ namespace Supervisors
             m_flight_state.type = IMC::FlightEvent::FLEV_MAX_Q;
             break;
           case IMC::FlightEvent::FLEV_MAX_Q:
-            // for now nothing to do here
-            // TODO transition should'nt be to coasting
-            //      coasting is when thrust == 0
+            if (m_thrust.z != 0)
+              break;
+
+            war("coasting");
             m_flight_state.type = IMC::FlightEvent::FLEV_COASTING;
             break;
           case IMC::FlightEvent::FLEV_COASTING:
@@ -244,7 +248,7 @@ namespace Supervisors
 
       //! Main loop.
       void
-      onMain(void)
+      onMain() override
       {
         setEntityState(EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
         while (!stopping())
