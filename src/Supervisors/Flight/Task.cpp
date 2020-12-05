@@ -46,7 +46,7 @@ namespace Supervisors
       //! Entity ID for thrust messages
       std::string thrust_ent_label;
       //! Entity ID for pressure messages
-      std::string pressure_eid;
+      std::string pressure_elabel;
       //! Minimum altitude to consider that liftoff has been achieved
       fp32_t liftoff_altitude;
       //! Window size for dynamic pressure monitor
@@ -71,6 +71,8 @@ namespace Supervisors
       ApogeeMonitor* m_apogee_monitor;
       //! Entity ID for thrust messages
       unsigned int m_thrust_eid;
+      //! Entity ID for dynamic pressure messages
+      unsigned int m_dyn_eid;
       //! Timer to trigger parachute
       Time::Counter<double> m_parachute_wdg;
       //! Task Arguments
@@ -84,9 +86,10 @@ namespace Supervisors
           m_flight_state(),
           m_thrust(),
           m_estate(),
-          m_dyn_monitor(NULL),
-          m_apogee_monitor(NULL),
-          m_thrust_eid(0)
+          m_dyn_monitor(nullptr),
+          m_apogee_monitor(nullptr),
+          m_thrust_eid(0),
+          m_dyn_eid(0)
       {
         m_flight_state.type = IMC::FlightEvent::FLEV_IDLE;
 
@@ -94,8 +97,8 @@ namespace Supervisors
             .defaultValue("LV - Thrust")
             .description("Entity Label for consuming producing Thrust messages");
 
-        param("Entity Label - Pressure", m_args.pressure_eid)
-            .defaultValue("LV - Pressure")
+        param("Entity Label - Pressure", m_args.pressure_elabel)
+            .defaultValue("LV - Dynamic Pressure")
             .description("Entity Label for consuming Pressure messages");
 
         param("Liftoff Altitude", m_args.liftoff_altitude)
@@ -133,6 +136,7 @@ namespace Supervisors
         try
         {
           m_thrust_eid = resolveEntity(m_args.thrust_ent_label);
+          m_dyn_eid = resolveEntity(m_args.pressure_elabel);
         }
         catch (...)
         {
@@ -175,7 +179,8 @@ namespace Supervisors
       void
       consume(const IMC::Pressure* msg)
       {
-        m_dyn_monitor->consume(msg);
+        if (msg->getSourceEntity() == m_dyn_eid)
+          m_dyn_monitor->consume(msg);
       }
 
       void update()
@@ -186,21 +191,21 @@ namespace Supervisors
           case IMC::FlightEvent::FLEV_IDLE:
             if (m_thrust.z <= 0)
               break;
-            inf("ignition");
+            war("ignition");
             m_flight_state.type = IMC::FlightEvent::FLEV_IGNITION;
             break;
           case IMC::FlightEvent::FLEV_IGNITION:
-            if (m_estate.height <= m_args.liftoff_altitude)
+            if (m_estate.alt <= m_args.liftoff_altitude)
               break;
 
-            inf("liftoff");
+            war("liftoff");
             m_flight_state.type = IMC::FlightEvent::FLEV_LIFTOFF;
             break;
           case IMC::FlightEvent::FLEV_LIFTOFF:
             if (!m_dyn_monitor->maxDynReached())
               break;
 
-            inf("maximum dynamic pressure");
+            war("maximum dynamic pressure");
             m_flight_state.type = IMC::FlightEvent::FLEV_MAX_Q;
             break;
           case IMC::FlightEvent::FLEV_MAX_Q:
@@ -213,7 +218,7 @@ namespace Supervisors
             if (!m_apogee_monitor->apogeeReached())
               break;
 
-            inf("apogee");
+            war("apogee");
             m_flight_state.type = IMC::FlightEvent::FLEV_APOGEE;
             m_parachute_wdg.setTop(m_args.parachute_delay);
             break;
@@ -222,14 +227,14 @@ namespace Supervisors
             if (!m_parachute_wdg.overflow())
               break;
 
-            inf("recovery");
+            war("recovery");
             m_flight_state.type = IMC::FlightEvent::FLEV_RECOVERY;
             break;
           case IMC::FlightEvent::FLEV_RECOVERY:
             // do nothing ?
             break;
           default:
-            war("Unknown flight event %d", m_flight_state.type);
+            err("Unknown flight event %d", m_flight_state.type);
             break;
         }
 
