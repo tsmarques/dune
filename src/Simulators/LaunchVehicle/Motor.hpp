@@ -35,6 +35,8 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
+#include "Task.hpp"
+
 namespace Simulators::LaunchVehicle
 {
   //! Thrust curve function parameters
@@ -44,25 +46,40 @@ namespace Simulators::LaunchVehicle
     std::vector<float> thrust_value;
   };
 
+  struct PropellantMassModel
+  {
+    std::vector<float> time;
+    std::vector<float> mass;
+  };
+
   class Motor
   {
     //! Tasks that created this motor
     DUNE::Tasks::Task* m_owner_task;
-    //! Thrust curve definition, as string
-    std::vector<std::string> m_thrust_curve_def;
+    //! Motor parameters
+    const MotorArguments& m_args;
     //! Thrust curve
     ThrustCurve m_thrust_curve_f;
+    //! Model for propellant mass depletion
+    PropellantMassModel m_prop_mass_model;
     //! If the engines have started combusting
     bool m_triggered;
 
+    void
+    parsePropellantMassModel();
+
   public:
     //! Motor Constructor
-    Motor(DUNE::Tasks::Task* m_owner, std::vector<std::string>  m_thrust_curve_def);
+    Motor(DUNE::Tasks::Task* m_owner, const MotorArguments& args);
 
     //! Compute current thrust given a time in milliseconds
     //! since the motor was triggered
     fp64_t
     computeEngineThrust(float curr_time_sec) const;
+
+    //! Get casing and propellant mass at the given burn time
+    double
+    getMass(float time_after_trigger_sec) const;
 
     bool
     parseThrustCurve();

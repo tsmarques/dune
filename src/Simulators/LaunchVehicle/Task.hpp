@@ -25,7 +25,7 @@ namespace Simulators::LaunchVehicle
     //! Which motor is being simulated
     std::string name;
     //! Propellant's mass
-    float prop_mass{};
+    std::vector<std::string> prop_mass{};
     //! Motor's casing mass
     float mass{};
     //! Data points that describe this motor's thrust curve
@@ -84,9 +84,9 @@ namespace Simulators::LaunchVehicle
           .description("Motor's casing mass without propellant in kg");
 
       task->param("Motor -- Propellant Mass", motor.prop_mass)
-          .defaultValue("0.377")
+          .defaultValue("")
           .units(Units::Kilogram)
-          .description("Propellant's mass in kg");
+          .description("Propellant's mass curve in kg");
 
       task->param("Gravity", gravity)
           .defaultValue("9.80665")
@@ -94,7 +94,7 @@ namespace Simulators::LaunchVehicle
           .description("Gravity's value in Newtons");
 
       task->param("Drag Coefficient", coeff_drag)
-          .defaultValue("0.45")
+          .defaultValue("")
           .description("Drag coefficient at Mach 0");
 
       task->param("Area", area)

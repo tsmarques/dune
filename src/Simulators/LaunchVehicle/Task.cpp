@@ -193,7 +193,7 @@ namespace Simulators::LaunchVehicle
     void
     onResourceAcquisition() override
     {
-      m_motor = new Motor(this, m_args.motor.thrust_curve);
+      m_motor = new Motor(this, m_args.motor);
     }
 
     void
@@ -345,32 +345,36 @@ namespace Simulators::LaunchVehicle
 
       IMC::EstimatedState* estate_clone = m_estate.clone();
       float rk4dt;
+      float mass;
 
       // k2
       rk4dt = 0.5f * dt;
+      mass = computeMass(t_sec + rk4dt);
       estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * rk4dt;
       estate_clone->v = m_estate.v + k1.m_a.element(0, 1) * rk4dt;
       estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * rk4dt;
       estate_clone->alt =  m_estate.alt + k1.m_v.element(0, 2) * rk4dt;
-      SimulationState k2 = computeNewState(*estate_clone, t_sec + rk4dt, m_mass);
+      SimulationState k2 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // k3
       rk4dt = 0.5f * dt;
+      mass = computeMass(t_sec + rk4dt);
       estate_clone->clear();
       estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * rk4dt;
       estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * rk4dt;
       estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * rk4dt;
       estate_clone->alt =  m_estate.alt + k2.m_v.element(0, 2) * rk4dt;
-      SimulationState k3 = computeNewState(*estate_clone, t_sec + rk4dt, m_mass);
+      SimulationState k3 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // k4
       rk4dt = dt;
+      mass = computeMass(t_sec + rk4dt);
       estate_clone->clear();
       estate_clone->u = m_estate.u  + k3.m_a.element(0, 0) * rk4dt;
       estate_clone->v = m_estate.v  + k3.m_a.element(0, 1) * rk4dt;
       estate_clone->w = m_estate.w  + k3.m_a.element(0, 2) * rk4dt;
       estate_clone->alt =  m_estate.alt + k3.m_v.element(0, 2) * rk4dt;
-      SimulationState k4 = computeNewState(*estate_clone, t_sec + rk4dt, m_mass);
+      SimulationState k4 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
       SimulationState delta;
@@ -403,6 +407,12 @@ namespace Simulators::LaunchVehicle
       }
     }
 
+    float
+    computeMass(float curr_dt_sec) const
+    {
+      return m_args.dry_mass + m_motor->getMass(curr_dt_sec);
+    }
+
     void
     setInitialConditions()
     {
@@ -413,7 +423,6 @@ namespace Simulators::LaunchVehicle
           "Number of motors: %d\n"
           "Dry Mass: %f\n"
           "Motor mass: %f\n"
-          "Propellant Mass: %f\n"
           "Area: %f\n"
           "Parachute Drag Coefficient: %f\n"
           "Parachute area: %f\n"
@@ -422,7 +431,6 @@ namespace Simulators::LaunchVehicle
           m_args.n_motors,
           m_args.dry_mass,
           m_args.motor.mass,
-          m_args.motor.prop_mass,
           m_args.area,
           m_parachute.getDragCoeff(),
           m_parachute.getDragCoeff(),
@@ -437,7 +445,7 @@ namespace Simulators::LaunchVehicle
 
       float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
 
-      m_mass = m_args.dry_mass + m_args.motor.prop_mass + m_args.motor.mass;
+      m_mass = computeMass(curr_time_sec);
       updateForces(curr_time_sec);
       rk4Step(curr_time_sec);
 

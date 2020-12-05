@@ -4,11 +4,13 @@
 
 namespace Simulators::LaunchVehicle
 {
-  Motor::Motor(DUNE::Tasks::Task* owner, std::vector<std::string> thrust_curve_def) :
+  Motor::Motor(DUNE::Tasks::Task* owner, const MotorArguments& args) :
       m_owner_task(owner),
-      m_thrust_curve_def(std::move(thrust_curve_def)),
+      m_args(args),
       m_triggered(false)
-  { }
+  {
+    parsePropellantMassModel();
+  }
 
 
   fp64_t
@@ -24,7 +26,7 @@ namespace Simulators::LaunchVehicle
   bool
   Motor::parseThrustCurve()
   {
-    for (const std::string& line : m_thrust_curve_def)
+    for (const std::string& line : m_args.thrust_curve)
     {
       float xn;
       float yn;
@@ -39,5 +41,42 @@ namespace Simulators::LaunchVehicle
     }
 
     return true;
+  }
+
+  void
+  Motor::parsePropellantMassModel()
+  {
+    for (const std::string& line : m_args.prop_mass)
+    {
+      float xn;
+      float yn;
+      if (std::sscanf(line.c_str(), "%f %f", &xn, &yn) != 2)
+        throw std::invalid_argument(String::str("Invalid propellant mass data points %s", line.c_str()));
+
+      m_prop_mass_model.time.push_back(xn);
+      m_prop_mass_model.mass.push_back(yn);
+    }
+
+    m_owner_task->inf("test");
+  }
+
+  double
+  Motor::getMass(float time_after_trigger_sec) const
+  {
+    double mass = m_args.mass;
+    if (!m_triggered)
+      return mass + m_prop_mass_model.mass[0];
+
+    float value = piecewiseLI(m_prop_mass_model.mass,
+                              m_prop_mass_model.time,
+                              time_after_trigger_sec);
+
+    if (value < 0)
+      return mass;
+
+    if (value > m_prop_mass_model.mass[0])
+      return mass + m_prop_mass_model.mass[0];
+
+    return mass + value;
   }
 }
