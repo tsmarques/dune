@@ -34,9 +34,7 @@
 
 #include <DUNE/DUNE.hpp>
 
-namespace Supervisors
-{
-  namespace Flight
+namespace Supervisors::Flight
   {
     using DUNE_NAMESPACES;
 
@@ -52,7 +50,7 @@ namespace Supervisors
       //! If this monitor has been triggered
       bool m_triggered;
 
-      ApogeeMonitor(uint16_t window_size) :
+      explicit ApogeeMonitor(uint16_t window_size) :
           m_window_size(window_size),
           m_max_altitude(0),
           m_nmatch(0),
@@ -61,9 +59,8 @@ namespace Supervisors
 
       //! Return if apogee has been reached
       bool
-      apogeeReached()
+      apogeeReached() const
       {
-        m_triggered = (m_nmatch == m_window_size);
         return m_triggered;
       }
 
@@ -78,11 +75,12 @@ namespace Supervisors
           m_max_altitude = msg->height;
           m_nmatch = 0;
         }
-        else if (msg->height <= m_max_altitude)
+        else
           ++m_nmatch;
+
+        m_triggered = (m_nmatch == m_window_size);
       }
     };
   }
-}
 
 #endif

@@ -52,7 +52,7 @@ namespace Supervisors
       //! If this montiro has been triggered
       bool m_triggered;
 
-      DynamicPressureMonitor(uint16_t window_size) :
+      explicit DynamicPressureMonitor(uint16_t window_size) :
           m_window_size(window_size),
           m_max_press(0),
           m_nmatch(0),
@@ -61,9 +61,8 @@ namespace Supervisors
 
       //! Return if MAX Q has been reached
       bool
-      maxDynReached()
+      maxDynReached() const
       {
-        m_triggered = (m_nmatch == m_window_size);
         return m_triggered;
       }
 
@@ -78,8 +77,10 @@ namespace Supervisors
           m_max_press = msg->value;
           m_nmatch = 0;
         }
-        else if (msg->value <= m_max_press)
+        else
           ++m_nmatch;
+
+        m_triggered = (m_nmatch >= m_window_size);
       }
     };
   }
