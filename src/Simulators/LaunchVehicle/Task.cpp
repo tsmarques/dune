@@ -343,7 +343,7 @@ namespace Simulators::LaunchVehicle
 
       SimulationState k1 = computeNewState(m_estate, t_sec, m_mass);
 
-      IMC::EstimatedState* estate_clone = m_estate.clone();
+      std::unique_ptr<EstimatedState> estate_clone(m_estate.clone());
       float rk4dt;
       float mass;
 
@@ -397,8 +397,6 @@ namespace Simulators::LaunchVehicle
 
       // @fixme: is altitude the same as Z offset?
       m_estate.alt =  m_estate.alt + delta.m_p.element(0, 2);
-
-      delete estate_clone;
 
       if (m_estate.alt < 0)
       {
