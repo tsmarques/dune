@@ -123,6 +123,7 @@ namespace Simulators::LaunchVehicle
       reserveEntity(c_thrust_ent_label);
       reserveEntity(c_drag_force_ent_label);
       reserveEntity(c_weight_ent_label);
+      reserveEntity(c_gravity_accel_ent_label);
       reserveEntity(c_dynp_ent_label);
       reserveEntity(c_navigation_ent_label);
       reserveEntity(c_drag_coeff_ent_label);
@@ -134,6 +135,7 @@ namespace Simulators::LaunchVehicle
       m_thrust.setSourceEntity(resolveEntity(c_thrust_ent_label));
       m_drag.setSourceEntity(resolveEntity(c_drag_force_ent_label));
       m_weight.setSourceEntity(resolveEntity(c_weight_ent_label));
+      m_gravity.setSourceEntity(resolveEntity(c_gravity_accel_ent_label));
       m_dynp.setSourceEntity(resolveEntity(c_dynp_ent_label));
       m_estate.setSourceEntity(resolveEntity(c_navigation_ent_label));
       m_drag_coeff.setSourceEntity(resolveEntity(c_drag_coeff_ent_label));
