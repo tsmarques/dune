@@ -258,7 +258,7 @@ namespace Simulators::LaunchVehicle
       // @todo x and y
       m_weight.x = 0;
       m_weight.y = 0;
-      m_weight.z = m_args.gravity * m_mass;
+      m_weight.z = c_gravity * m_mass;
 
       m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
 
@@ -319,7 +319,7 @@ namespace Simulators::LaunchVehicle
       f_drag = f_drag * (curr_state.w >= 0 ? -1.0f : 1.0f);
 
       // update linear acceleration (on z)
-      new_state.m_a(0, 2) = ((f_thrust + f_drag) / mass) - m_args.gravity;
+      new_state.m_a(0, 2) = ((f_thrust + f_drag) / mass) - c_gravity;
 
       new_state.m_v(0, 0) = curr_state.u;
       new_state.m_v(0, 1) = curr_state.v;
@@ -332,7 +332,7 @@ namespace Simulators::LaunchVehicle
     rk4Step(float t_sec)
     {
       // not enough to lift
-      if (m_thrust.z < m_args.gravity * m_mass && m_estate.alt == 0)
+      if (m_thrust.z < c_gravity * m_mass && m_estate.alt == 0)
         return;
 
       if (!lift_off && m_estate.alt != 0)

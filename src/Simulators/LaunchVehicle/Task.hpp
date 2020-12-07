@@ -39,8 +39,6 @@ namespace Simulators::LaunchVehicle
     int n_motors{};
     //! Launcher's mass without motor
     float dry_mass{};
-    //! Gravity constant
-    float gravity{};
     //! Crag coefficient
     std::vector<std::string> coeff_drag{};
     //! Cross sectional area
@@ -87,11 +85,6 @@ namespace Simulators::LaunchVehicle
           .defaultValue("")
           .units(Units::Kilogram)
           .description("Propellant's mass curve in kg");
-
-      task->param("Gravity", gravity)
-          .defaultValue("9.80665")
-          .units(Units::Newton)
-          .description("Gravity's value in Newtons");
 
       task->param("Drag Coefficient", coeff_drag)
           .defaultValue("")
