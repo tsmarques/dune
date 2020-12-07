@@ -70,6 +70,8 @@ namespace Simulators::LaunchVehicle
     IMC::Force m_drag;
     //! Weight force
     IMC::Force m_weight;
+    //! Gravity readings
+    IMC::Acceleration m_gravity;
     //! Dynamic pressure felt by the vehicle
     IMC::Pressure m_dynp;
     //! Current drag coefficient
@@ -255,10 +257,12 @@ namespace Simulators::LaunchVehicle
     {
       updateThrust(t);
 
+      m_gravity.z = Physics::getGravity(m_estate.alt, m_estate.lat);
+
       // @todo x and y
       m_weight.x = 0;
       m_weight.y = 0;
-      m_weight.z = c_gravity * m_mass;
+      m_weight.z = m_gravity.z * m_mass;
 
       m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
 
@@ -319,7 +323,7 @@ namespace Simulators::LaunchVehicle
       f_drag = f_drag * (curr_state.w >= 0 ? -1.0f : 1.0f);
 
       // update linear acceleration (on z)
-      new_state.m_a(0, 2) = ((f_thrust + f_drag) / mass) - c_gravity;
+      new_state.m_a(0, 2) = ((f_thrust + f_drag) / mass) - Physics::getGravity(curr_state.alt, curr_state.lat);
 
       new_state.m_v(0, 0) = curr_state.u;
       new_state.m_v(0, 1) = curr_state.v;
@@ -332,7 +336,7 @@ namespace Simulators::LaunchVehicle
     rk4Step(float t_sec)
     {
       // not enough to lift
-      if (m_thrust.z < c_gravity * m_mass && m_estate.alt == 0)
+      if (m_thrust.z < Physics::getGravity(m_estate.alt, m_estate.lat) * m_mass && m_estate.alt == 0)
         return;
 
       if (!lift_off && m_estate.alt != 0)
@@ -452,6 +456,7 @@ namespace Simulators::LaunchVehicle
       dispatch(m_estate);
       dispatch(m_drag);
       dispatch(m_weight);
+      dispatch(m_gravity);
       dispatch(m_dynp);
       dispatch(m_drag_coeff);
 

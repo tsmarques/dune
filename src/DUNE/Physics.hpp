@@ -75,6 +75,21 @@ namespace DUNE::Physics
   {
     return cd * area * dynp;
   }
+
+  //!Approximate acceleration due to gravity on the surface of the Earth
+  //! based on the altitude
+  //! @param[in] altitude_m Altitude in meters
+  //! @param[in] latitude_rad Latitude in radians
+  inline fp64_t
+  getGravity(double altitude_m, double latitude_rad)
+  {
+    double alt_km = altitude_m / 1000.0f;
+
+    double sin2lat = std::pow(std::sin(latitude_rad), 2);
+    double g0 = 9.7803267714 * ((1.0 + 0.00193185138639 * sin2lat) /
+                                std::sqrt(1.0 - 0.00669437999013 * sin2lat));
+    return g0 * std::pow(c_earth_radius / (c_earth_radius + alt_km), 2);
+  }
 }
 
 #endif

@@ -65,6 +65,8 @@ namespace DUNE
     const float c_atmos_scale_height = 8000;
     //! Speed of sound in the air, meters per second
     const float c_speed_of_sound_air = 343;
+    //! Mean radius of the earth in km
+    const float c_earth_radius = 6371.009;
   }
 }
 
