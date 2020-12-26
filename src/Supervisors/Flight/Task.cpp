@@ -246,7 +246,7 @@ namespace Supervisors::Flight
       setEntityState(EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
       while (!stopping())
       {
-        consumeMessages();
+        waitForMessages(1.0);
         update();
       }
     }
