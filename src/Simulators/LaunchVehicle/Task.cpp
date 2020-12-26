@@ -146,6 +146,18 @@ namespace Simulators::LaunchVehicle
     {
       dt = 1.0 / getFrequency();
 
+      if (m_args.length < 0 || m_args.cg < 0 || m_args.cp < 0)
+        throw std::invalid_argument("Length and positions can't be negative");
+
+      if (m_args.cg > m_args.length)
+        throw std::invalid_argument("Center of gravity greater than length");
+
+      if (m_args.cp > m_args.length)
+        throw std::invalid_argument("Center of pressure greater than length");
+
+      if (m_args.cp < m_args.cg)
+        war("launcher might be unstable : cp < cg (%f < %f)", m_args.cp, m_args.cg);
+
       if (m_args.motor.thrust_curve.empty())
       {
         war("No thrust curve found");
@@ -342,10 +354,7 @@ namespace Simulators::LaunchVehicle
         return;
 
       if (!lift_off && m_estate.alt != 0)
-      {
         lift_off = true;
-        war("Lift off %.4f | %.4f | %.4f", m_thrust.x, m_thrust.y, m_thrust.z);
-      }
 
       SimulationState k1 = computeNewState(m_estate, t_sec, m_mass);
 
@@ -411,7 +420,7 @@ namespace Simulators::LaunchVehicle
       }
     }
 
-    // @fixme: "F = ma" souldn't be used for variable mass systems
+    // @fixme: "F = ma" shouldn't be used for variable mass systems
     float
     computeMass(float curr_dt_sec) const
     {
