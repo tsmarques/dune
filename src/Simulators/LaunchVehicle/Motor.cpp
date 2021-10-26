@@ -13,14 +13,20 @@ namespace Simulators::LaunchVehicle
   }
 
 
-  fp64_t
+  DUNE::Math::Matrix
   Motor::computeEngineThrust(float curr_time_sec) const
   {
     float value = piecewiseLI(m_thrust_curve_f.thrust_value,
                               m_thrust_curve_f.time,
                               curr_time_sec);
 
-    return value > 0 ? value : 0;
+    // [x, y, z]
+    DUNE::Math::Matrix force(1, 3, 0);
+    force(0, 0) = 0;
+    force(0, 1) = 0;
+    force(0, 2) = value > 0 ? value : 0;
+
+    return force;
   }
 
   bool

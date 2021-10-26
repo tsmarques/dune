@@ -312,14 +312,14 @@ namespace Simulators::LaunchVehicle
     {
       SimulationState new_state;
 
-      float f_thrust = m_motor->computeEngineThrust(t_sec);
+      Math::Matrix f_thrust = m_motor->computeEngineThrust(t_sec);
       float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.alt, curr_state.w);
-      float f_drag = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
+      Math::Matrix f_drag = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
 
       f_drag = f_drag * (curr_state.w >= 0 ? -1.0f : 1.0f);
 
-      // update linear acceleration (on z)
-      new_state.m_a(0, 2) = ((f_thrust + f_drag) / mass) - Physics::getGravity(curr_state.alt, curr_state.lat);
+      // update linear acceleration
+      new_state.m_a = ((f_thrust + f_drag) / mass) - Physics::getGravity(curr_state.alt, curr_state.lat);
 
       new_state.m_v(0, 0) = curr_state.u;
       new_state.m_v(0, 1) = curr_state.v;
