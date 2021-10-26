@@ -40,6 +40,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(cmake/Toolchain.cmake)
+# Useful for clang stuff
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 ##########################################################################
 #                         Project information                            #
