@@ -59,11 +59,11 @@ namespace Simulators::LaunchVehicle
     //! Timestep in seconds
     double dt;
     //! Motor(s) used by the launcher
-    Motor* m_motor;
+    std::unique_ptr<Motor> m_motor;
     //! If task was given a valid description of the thrust curve
     bool m_valid_thrust_curve;
     //! Rockets' Drag Model
-    DragModel* m_drag_model;
+    std::unique_ptr<DragModel> m_drag_model;
     //! Thrust produced by this engine/motor
     IMC::Force m_thrust;
     //! Curent drag force
@@ -100,9 +100,7 @@ namespace Simulators::LaunchVehicle
     Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
         dt(0),
-        m_motor(nullptr),
         m_valid_thrust_curve(false),
-        m_drag_model(nullptr),
         m_trigger_msec(0),
         m_prev_time_sec(0),
         m_mass(0),
@@ -164,13 +162,6 @@ namespace Simulators::LaunchVehicle
         return;
       }
 
-      if (paramChanged(m_args.coeff_drag))
-      {
-        if (m_drag_model != nullptr)
-          Memory::clear(m_drag_model);
-        m_drag_model = new DragModel(m_args.coeff_drag);
-      }
-
       if (paramChanged(m_args.area))
         curr_ref_area = m_args.area;
 
@@ -194,6 +185,13 @@ namespace Simulators::LaunchVehicle
       }
     }
 
+    void
+    onResourceAcquisition() override
+    {
+      m_motor = std::make_unique<Motor>(this, m_args.motor);
+      m_drag_model = std::make_unique<DragModel>(m_args.coeff_drag);
+    }
+
     //! Initialize resources.
     void
     onResourceInitialization() override
@@ -204,18 +202,6 @@ namespace Simulators::LaunchVehicle
       Status::Code status = m_valid_thrust_curve ? Status::CODE_ACTIVE : Status::CODE_IDLE;
       IMC::EntityState::StateEnum state = m_valid_thrust_curve ? IMC::EntityState::ESTA_NORMAL : IMC::EntityState::ESTA_ERROR;
       setEntityState(state, status);
-    }
-
-    void
-    onResourceAcquisition() override
-    {
-      m_motor = new Motor(this, m_args.motor);
-    }
-
-    void
-    onResourceRelease() override
-    {
-      Memory::clear(m_motor);
     }
 
     void
