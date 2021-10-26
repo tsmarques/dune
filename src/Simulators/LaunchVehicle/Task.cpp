@@ -60,8 +60,6 @@ namespace Simulators::LaunchVehicle
     double dt;
     //! Motor(s) used by the launcher
     std::unique_ptr<Motor> m_motor;
-    //! If task was given a valid description of the thrust curve
-    bool m_valid_thrust_curve;
     //! Rockets' Drag Model
     std::unique_ptr<DragModel> m_drag_model;
     //! Thrust produced by this engine/motor
@@ -100,7 +98,6 @@ namespace Simulators::LaunchVehicle
     Task(const std::string& name, Tasks::Context& ctx):
         Tasks::Periodic(name, ctx),
         dt(0),
-        m_valid_thrust_curve(false),
         m_trigger_msec(0),
         m_prev_time_sec(0),
         m_mass(0),
@@ -196,20 +193,19 @@ namespace Simulators::LaunchVehicle
     void
     onResourceInitialization() override
     {
-      m_valid_thrust_curve = m_motor->parseThrustCurve();
-      setInitialConditions();
+      if (!m_motor->parseThrustCurve())
+      {
+        setEntityState(EntityState::ESTA_ERROR, String::str("Invalid thrust curve"));
+        throw RestartNeeded(String::str("Invalid thrust curve"), 60);
+      }
 
-      Status::Code status = m_valid_thrust_curve ? Status::CODE_ACTIVE : Status::CODE_IDLE;
-      IMC::EntityState::StateEnum state = m_valid_thrust_curve ? IMC::EntityState::ESTA_NORMAL : IMC::EntityState::ESTA_ERROR;
-      setEntityState(state, status);
+      setInitialConditions();
+      setEntityState(EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
     }
 
     void
     consume(const IMC::SetThrusterActuation* msg)
     {
-      if (!m_valid_thrust_curve)
-        return;
-
       if (msg->value == 0)
       {
         war("can't stop a solid motor");
@@ -282,7 +278,7 @@ namespace Simulators::LaunchVehicle
     void
     updateThrust(float curr_time_sec)
     {
-      if (!m_motor->isActive() || !m_valid_thrust_curve)
+      if (!m_motor->isActive())
       {
         m_thrust.x = 0;
         m_thrust.y = 0;
