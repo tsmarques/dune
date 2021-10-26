@@ -40,9 +40,7 @@
 #include <DUNE/Compression/Bzip2Decompressor.hpp>
 #include <DUNE/Compression/Factory.hpp>
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     Methods
     Factory::method(const std::string& name)
@@ -169,4 +167,3 @@ namespace DUNE
       return decompressor(method(dec_method));
     }
   }
-}

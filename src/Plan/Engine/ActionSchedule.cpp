@@ -30,9 +30,7 @@
 // Local headers
 #include "ActionSchedule.hpp"
 
-namespace Plan
-{
-  namespace Engine
+namespace Plan::Engine
   {
     ActionSchedule::ActionSchedule(Tasks::Task* task, const IMC::PlanSpecification* spec,
                                    const std::vector<IMC::PlanManeuver*>& nodes,
@@ -746,4 +744,3 @@ namespace Plan
       }
     }
   }
-}

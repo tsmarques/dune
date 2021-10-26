@@ -36,9 +36,7 @@
 #include <DUNE/Tasks.hpp>
 #include <DUNE/Casts.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
   MessageFilter::MessageFilter () = default;
 
@@ -152,4 +150,3 @@ namespace DUNE
       }
     }
   }
-}

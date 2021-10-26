@@ -32,11 +32,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Maneuver
-{
-  namespace FollowReference
-  {
-    namespace UAV
+namespace Maneuver::FollowReference::UAV
     {
       using DUNE_NAMESPACES;
 
@@ -463,7 +459,5 @@ namespace Maneuver
         }
       };
     }
-  }
-}
 
 DUNE_TASK

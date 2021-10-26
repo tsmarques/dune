@@ -33,9 +33,7 @@
 #include <DUNE/IMC/Serialization.hpp>
 #include <DUNE/IMC/InlineMessage.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     uint16_t
     serialize(const std::string& t, uint8_t* bfr)
@@ -130,4 +128,3 @@ namespace DUNE
       return s + 2;
     }
   }
-}

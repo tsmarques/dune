@@ -30,9 +30,7 @@
 #include <DUNE/Coordinates.hpp>
 #include <DUNE/Maneuvers/FollowTrajectory.hpp>
 
-namespace DUNE
-{
-  namespace Maneuvers
+namespace DUNE::Maneuvers
   {
     using namespace DUNE::IMC;
 
@@ -185,4 +183,3 @@ namespace DUNE
       dispatch(speed);
     }
   }
-}

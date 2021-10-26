@@ -56,9 +56,7 @@
 #include "Sample.hpp"
 #include "StationKeepingExtended.hpp"
 
-namespace Maneuver
-{
-  namespace Multiplexer
+namespace Maneuver::Multiplexer
   {
     using DUNE_NAMESPACES;
 
@@ -507,6 +505,5 @@ namespace Maneuver
       }
     };
   }
-}
 
 DUNE_TASK

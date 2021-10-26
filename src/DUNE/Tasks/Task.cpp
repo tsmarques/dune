@@ -50,9 +50,7 @@
 #  include <sys/prctl.h>
 #endif
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     //! Maximum size of a log book entry message.
     const static size_t c_log_message_max_size = 1024;
@@ -720,4 +718,3 @@ namespace DUNE
       }
     }
   }
-}

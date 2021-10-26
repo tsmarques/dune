@@ -41,9 +41,7 @@
 // DUNE headers.
 #include <DUNE/Simulation/UAV.hpp>
 
-namespace DUNE
-{
-  namespace Simulation
+namespace DUNE::Simulation
   {
     UAVSimulation::UAVSimulation(Tasks::Task& task):
       m_task(task),
@@ -1169,4 +1167,3 @@ namespace DUNE
       }
     }
   }
-}

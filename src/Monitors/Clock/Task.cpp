@@ -35,30 +35,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Monitors
-{
-  //! %Clock is responsible to monitor system's hardware
-  //! clock. This task uses valid GPS's UTC time and if
-  //! hardware clock is out of synch for more than a
-  //! configurable amount of time, the system clock
-  //! is corrected once in a task lifetime at startup.
-  //!
-  //! This %Task is capable of controlling the following
-  //! parameters:
-  //!  - <em>Minimum GPS Fixes</em>: Minimum number of
-  //!    GPS fixes required to compute the clock offset.
-  //!  - <em>Maximum Clock Offset</em>: If the clock
-  //!    offset is above this value the clock will be
-  //!    synchronized.
-  //!  - <em>Boot Synchronization Timeout</em>: At boot
-  //!    the system tries to synchronize clocks. It
-  //!    continues unsynched after timeout.
-  //!  - <em>Hardware Clock Synchronization Command</em>:
-  //!    System command to execute everytime the clock
-  //!    is synchronized.
-  //!
-  //! @author Ricardo Martins
-  namespace Clock
+namespace Monitors::Clock
   {
     using DUNE_NAMESPACES;
 
@@ -233,6 +210,5 @@ namespace Monitors
       }
     };
   }
-}
 
 DUNE_TASK

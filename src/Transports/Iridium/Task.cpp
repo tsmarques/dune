@@ -32,9 +32,7 @@
 #include <DUNE/IMC/IridiumMessageDefinitions.hpp>
 #include <DUNE/Math/Random.hpp>
 
-namespace Transports
-{
-  namespace Iridium
+namespace Transports::Iridium
   {
     using DUNE_NAMESPACES;
 
@@ -447,6 +445,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

@@ -34,9 +34,7 @@
 // Bzip2 headers.
 #include <bzip2/bzlib.h>
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     unsigned long
     Bzip2Compressor::compressBlock(char* dst, unsigned long dst_len, char* src, unsigned long src_len)
@@ -61,4 +59,3 @@ namespace DUNE
       return 0;
     }
   }
-}

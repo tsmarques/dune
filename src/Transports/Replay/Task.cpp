@@ -36,9 +36,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Transports
-{
-  namespace Replay
+namespace Transports::Replay
   {
     using DUNE_NAMESPACES;
 
@@ -459,6 +457,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

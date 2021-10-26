@@ -55,9 +55,7 @@
 #define STATUS_LINE_500 "HTTP/1.0 500 Internal Server Error\r\n"
 #define STATUS_LINE_503 "HTTP/1.0 503 Service Unavailable\r\n"
 
-namespace Transports
-{
-  namespace HTTP
+namespace Transports::HTTP
   {
     // Maximum size of a request.
     static const unsigned c_max_request_size = 2048;
@@ -313,4 +311,3 @@ namespace Transports
       delete[] hdr;
     }
   }
-}

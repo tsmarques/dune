@@ -42,11 +42,7 @@
 
 using DUNE::FileSystem::Path;
 
-namespace DUNE
-{
-  namespace Hardware
-  {
-    namespace LUCL
+namespace DUNE::Hardware::LUCL
     {
       const char* Protocol::c_error_strs[] =
       {
@@ -514,5 +510,3 @@ namespace DUNE
         return "";
       }
     }
-  }
-}

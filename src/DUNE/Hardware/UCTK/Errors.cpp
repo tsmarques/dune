@@ -31,11 +31,7 @@
 #include <DUNE/Config.hpp>
 #include <DUNE/Hardware/UCTK/Errors.hpp>
 
-namespace DUNE
-{
-  namespace Hardware
-  {
-    namespace UCTK
+namespace DUNE::Hardware::UCTK
     {
       static const char* c_error_strings[] =
       {
@@ -60,5 +56,3 @@ namespace DUNE
         return c_error_strings[code];
       }
     }
-  }
-}

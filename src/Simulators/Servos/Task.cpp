@@ -37,15 +37,7 @@ static const unsigned c_servo_count = 4;
 //! Fixed time for fault duration
 static const float c_fault_duration = 60.0;
 
-namespace Simulators
-{
-  //! %Servos simulator for DUNE.
-  //! %Servos is responsible to gather actuation values from
-  //! the DUNE control layer and outputs rotation information
-  //! in radians (rad).
-  //!
-  //! @author Pedro Calado
-  namespace Servos
+namespace Simulators::Servos
   {
     //! %Task arguments.
     struct Arguments
@@ -249,6 +241,5 @@ namespace Simulators
       }
     };
   }
-}
 
 DUNE_TASK

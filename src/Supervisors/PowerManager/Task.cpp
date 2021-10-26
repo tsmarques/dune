@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Supervisors
-{
-    namespace PowerManager
+namespace Supervisors::PowerManager
     {
         using DUNE_NAMESPACES;
 
@@ -194,6 +192,5 @@ namespace Supervisors
             }
         };
     }
-}
 
 DUNE_TASK

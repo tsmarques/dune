@@ -34,9 +34,7 @@
 // DUNE headers.
 #include <DUNE/IMC/Blob.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     static const unsigned char c_imc_blob[] =
     {
@@ -2858,4 +2856,3 @@ namespace DUNE
       return sizeof(c_imc_blob);
     }
   }
-}

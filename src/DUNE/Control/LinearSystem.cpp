@@ -31,9 +31,7 @@
 
 using namespace DUNE::Math;
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     static const unsigned int c_ds = 1000; // Number of discretization steps
 
@@ -175,4 +173,3 @@ namespace DUNE
       return os;
     }
   }
-}

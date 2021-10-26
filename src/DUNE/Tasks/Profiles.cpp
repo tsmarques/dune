@@ -35,9 +35,7 @@
 #include <DUNE/Utils/String.hpp>
 #include <DUNE/Concurrency/ScopedMutex.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     struct Profiles::Details
     {
@@ -136,4 +134,3 @@ namespace DUNE
       return str;
     }
   }
-}

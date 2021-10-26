@@ -34,9 +34,7 @@
 #include <DUNE/Math/Angles.hpp>
 #include <DUNE/Utils/String.hpp>
 
-namespace DUNE
-{
-  namespace Coordinates
+namespace DUNE::Coordinates
   {
     void
     toWGS84(const IMC::EstimatedState& estate, double& lat, double& lon, float& hae)
@@ -104,4 +102,3 @@ namespace DUNE
       return Utils::String::str("%03d%02d.%05d,%c", std::abs(lon_deg), lon_min, lon_min_frac, (lon_deg >= 0) ? 'E' : 'W');
     }
   }
-}

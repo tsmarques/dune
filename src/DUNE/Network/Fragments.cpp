@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Network/Fragments.hpp>
 
-namespace DUNE
-{
-  namespace Network
+namespace DUNE::Network
   {
     int Fragments::s_uid = 0;
 
@@ -85,5 +83,4 @@ namespace DUNE
       m_fragments.clear();
     }
 
-  } /* namespace Fragments */
-} /* namespace Transports */
+  } /* namespace Transports */

@@ -58,9 +58,7 @@
 #  define DUNE_SYS_HAS_POSIX_IPC
 #endif
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     SharedMemory::SharedMemory(const char* name, unsigned size):
       m_creator(false),
@@ -165,4 +163,3 @@ namespace DUNE
 #endif
     }
   }
-}

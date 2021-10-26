@@ -44,9 +44,7 @@
 static const unsigned c_put_bfr_size = 128 * 1024;
 static const unsigned c_get_bfr_size = 256 * 1024;
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     StreamBuffer::StreamBuffer(std::ostream* stream, Methods method):
       m_method(method),
@@ -152,4 +150,3 @@ namespace DUNE
       return chunk_idx;
     }
   }
-}

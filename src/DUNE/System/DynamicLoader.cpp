@@ -52,9 +52,7 @@
 
 #endif
 
-namespace DUNE
-{
-  namespace System
+namespace DUNE::System
   {
     DynamicLoader::DynamicLoader():
       m_handle(nullptr)
@@ -129,4 +127,3 @@ namespace DUNE
       return symbol;
     }
   }
-}

@@ -39,9 +39,7 @@
 // SQLITE3 headers
 #include <sqlite3/sqlite3.h>
 
-namespace DUNE
-{
-  namespace Database
+namespace DUNE::Database
   {
     Statement::Statement(const char* sql_stmt, Connection& conn):
       m_handle(nullptr),
@@ -210,4 +208,3 @@ namespace DUNE
       return *this;
     }
   }
-}

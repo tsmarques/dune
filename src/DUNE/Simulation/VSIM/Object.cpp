@@ -37,9 +37,7 @@
 #include <DUNE/DUNE.hpp>
 #include <DUNE/Simulation/VSIM/Object.hpp>
 
-namespace Simulators
-{
-  namespace VSIM
+namespace Simulators::VSIM
   {
     Object::Object()
     {
@@ -236,4 +234,3 @@ namespace Simulators
         m_position[2] = 0.0;
     }
   }
-}

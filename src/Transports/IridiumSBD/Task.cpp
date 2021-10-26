@@ -38,9 +38,7 @@
 #include "TxRequest.hpp"
 #include "SessionResultCode.hpp"
 
-namespace Transports
-{
-  namespace IridiumSBD
+namespace Transports::IridiumSBD
   {
     using DUNE_NAMESPACES;
 
@@ -406,6 +404,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

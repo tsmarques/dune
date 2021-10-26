@@ -54,9 +54,7 @@
 #define ALLOCD(count) (double*)std::malloc(sizeof(double) * (count))
 #define ALLOCI(count) (int*)std::malloc(sizeof(int) * (count))
 
-namespace DUNE
-{
-  namespace Math
+namespace DUNE::Math
   {
     //! The value used to test for zero in matrix inversion
     double Matrix::precision = 1e-10;
@@ -2291,4 +2289,3 @@ namespace DUNE
       this->readFromLines(clines);
     }
   }
-}

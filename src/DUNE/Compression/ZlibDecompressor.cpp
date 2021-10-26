@@ -35,9 +35,7 @@
 // Zlib headers.
 #include <zlib/zlib.h>
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     struct ZlibDecompressor::PrivateData
     {
@@ -110,4 +108,3 @@ namespace DUNE
       return dst_len;
     }
   }
-}

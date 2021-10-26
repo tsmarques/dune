@@ -42,9 +42,7 @@
 #include <DUNE/Math/Constants.hpp>
 #include <DUNE/Math/Optimization.hpp>
 
-namespace DUNE
-{
-  namespace Math
+namespace DUNE::Math
   {
     // Wrapper structure to allow conversion of calls to maximize() to
     // calls to minimize().
@@ -125,4 +123,3 @@ namespace DUNE
       return minimize(&max_function_wrapper, &fw, a, b, tol, max_iter, min_out, tol_out);
     }
   }
-}

@@ -43,9 +43,7 @@
 #include "Listener.hpp"
 #include "LimitedComms.hpp"
 
-namespace Transports
-{
-  namespace UDP
+namespace Transports::UDP
   {
     using DUNE_NAMESPACES;
 
@@ -421,6 +419,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

@@ -39,9 +39,7 @@
 #include <DUNE/Algorithms/CRC8.hpp>
 #include <DUNE/Hardware/IntelHEX.hpp>
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     //! Maximum number of characters in one line.
     static const unsigned c_max_line_length = 256;
@@ -161,4 +159,3 @@ namespace DUNE
       }
     }
   }
-}

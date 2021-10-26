@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Maneuver
-{
-  namespace FollowTrajectory
+namespace Maneuver::FollowTrajectory
   {
     using DUNE_NAMESPACES;
 
@@ -281,6 +279,5 @@ namespace Maneuver
       }
     };
   }
-}
 
 DUNE_TASK

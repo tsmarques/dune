@@ -33,22 +33,7 @@
 
 using DUNE_NAMESPACES;
 
-namespace Simulators
-{
-  //! %IMU simulator for DUNE.
-  //! %IMU is responsible to gather data from the
-  //! vehicle simulator by consuming SimulatedState
-  //! IMC messages and then add a configurable
-  //! gaussian noise component before sending
-  //! EulerAngles, AngularVelocity and Acceleration
-  //! information to the bus.
-  //!
-  //! To conform with existent hardware properties
-  //! it is also possible to define a gyro rate bias.
-  //!
-  //! @author Ricardo Martins
-  //! @author José Braga
-  namespace IMU
+namespace Simulators::IMU
   {
     //! %Task arguments
     struct Arguments
@@ -240,6 +225,5 @@ namespace Simulators
       }
     };
   }
-}
 
 DUNE_TASK

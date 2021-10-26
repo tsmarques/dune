@@ -33,18 +33,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Simulators
-{
-  //! %GPS simulator for DUNE.
-  //! %GPS is responsible to gather data from the vehicle simulator
-  //! by consuming SimulatedState IMC messages and then add sending
-  //! GpsFix messages to the bus.
-  //!
-  //! This task can also send GroundVelocity and EulerAngles
-  //! messages to the bus.
-  //!
-  //! @author Eduardo Marques.
-  namespace GPS
+namespace Simulators::GPS
   {
     using DUNE_NAMESPACES;
 
@@ -264,6 +253,5 @@ namespace Simulators
       }
     };
   }
-}
 
 DUNE_TASK

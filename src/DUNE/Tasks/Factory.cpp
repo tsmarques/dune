@@ -38,9 +38,7 @@
 #include <DUNE/FileSystem/Path.hpp>
 #include <DUNE/FileSystem/Directory.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     static Factory::Table c_table;
 
@@ -116,4 +114,3 @@ namespace DUNE
       return c_table;
     }
   }
-}

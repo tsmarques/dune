@@ -140,9 +140,7 @@
 #  define PATH_MAX 4096
 #endif
 
-namespace DUNE
-{
-  namespace FileSystem
+namespace DUNE::FileSystem
   {
     const char*
     Path::separator()
@@ -765,4 +763,3 @@ namespace DUNE
       return m_path.empty();
     }
   }
-}

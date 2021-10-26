@@ -45,17 +45,7 @@
 
 using DUNE_NAMESPACES;
 
-namespace Simulators
-{
-  //! Vehicle SIMulator for DUNE.
-  //! %VSIM is responsible for multiple vehicle simulation.
-  //! In the present, it is able to simulate
-  //! Unmanned Underwater Vehicles
-  //! and Autonomous Surface Vehicles.
-  //!
-  //! @author Bruno Terra
-  //! @author José Braga
-  namespace VSIM
+namespace Simulators::VSIM
   {
     //! %Task arguments.
     struct Arguments
@@ -216,6 +206,5 @@ namespace Simulators
       }
     };
   }
-}
 
 DUNE_TASK

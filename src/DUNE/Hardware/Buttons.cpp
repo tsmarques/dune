@@ -55,9 +55,7 @@
 #  include <linux/input.h>
 #endif
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     Buttons::Buttons(const std::string& source_dev):
       m_changed(0),
@@ -101,4 +99,3 @@ namespace DUNE
 #endif
     }
   }
-}

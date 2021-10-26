@@ -31,9 +31,7 @@
 #include <DUNE/Compression/Compressor.hpp>
 #include <DUNE/Compression/Exceptions.hpp>
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     void
     Compressor::compress(char* dst, unsigned long dst_len, char* src, unsigned long src_len)
@@ -93,4 +91,3 @@ namespace DUNE
       return compress(dst, src.getBufferSigned(), src.getSize());
     }
   }
-}

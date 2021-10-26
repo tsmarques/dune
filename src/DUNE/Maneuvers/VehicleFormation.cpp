@@ -30,9 +30,7 @@
 #include <DUNE/Coordinates.hpp>
 #include <DUNE/Maneuvers/VehicleFormation.hpp>
 
-namespace DUNE
-{
-  namespace Maneuvers
+namespace DUNE::Maneuvers
   {
     using namespace DUNE::IMC;
 
@@ -297,4 +295,3 @@ namespace DUNE
       return p;
     }
   }
-}

@@ -38,9 +38,7 @@
 // Local headers.
 #include "Session.hpp"
 
-namespace Transports
-{
-  namespace FTP
+namespace Transports::FTP
   {
     using DUNE_NAMESPACES;
 
@@ -233,6 +231,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

@@ -89,9 +89,7 @@
 #  define ENETUNREACH WSAENETUNREACH
 #endif
 
-namespace DUNE
-{
-  namespace Network
+namespace DUNE::Network
   {
     UDPSocket::UDPSocket():
       m_con_port(0)
@@ -241,4 +239,3 @@ namespace DUNE
 #endif
     }
   }
-}

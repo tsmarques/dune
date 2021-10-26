@@ -44,9 +44,7 @@
 #  include <pthread.h>
 #endif
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     //! Default scheduling policy.
     static Scheduler::Policy g_policy = Scheduler::POLICY_OTHER;
@@ -120,4 +118,3 @@ namespace DUNE
 #endif
     }
   }
-}

@@ -38,9 +38,7 @@
 // Local headers.
 #include "ManeuverSupervisor.hpp"
 
-namespace Supervisors
-{
-  namespace Vehicle
+namespace Supervisors::Vehicle
   {
     using DUNE_NAMESPACES;
 
@@ -755,6 +753,5 @@ namespace Supervisors
       }
     };
   }
-}
 
 DUNE_TASK

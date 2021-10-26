@@ -54,9 +54,7 @@
 #  include <windows.h>
 #endif
 
-namespace DUNE
-{
-  namespace FileSystem
+namespace DUNE::FileSystem
   {
     Directory::Directory(const Path& path)
     {
@@ -202,4 +200,3 @@ namespace DUNE
       return nullptr;
     }
   }
-}

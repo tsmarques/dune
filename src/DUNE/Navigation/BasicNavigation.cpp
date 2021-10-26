@@ -31,9 +31,7 @@
 // Local headers.
 #include <DUNE/Navigation/BasicNavigation.hpp>
 
-namespace DUNE
-{
-  namespace Navigation
+namespace DUNE::Navigation
   {
     using Tasks::DF_KEEP_TIME;
 
@@ -1236,4 +1234,3 @@ namespace DUNE
       r -= av(2);
     }
   }
-}

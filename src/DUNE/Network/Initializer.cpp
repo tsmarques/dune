@@ -36,9 +36,7 @@
 #  include <winsock2.h>
 #endif
 
-namespace DUNE
-{
-  namespace Network
+namespace DUNE::Network
   {
     static int counter = 0;
 
@@ -63,4 +61,3 @@ namespace DUNE
       }
     }
   }
-}

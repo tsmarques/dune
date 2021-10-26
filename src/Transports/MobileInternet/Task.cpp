@@ -36,9 +36,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Transports
-{
-  namespace MobileInternet
+namespace Transports::MobileInternet
   {
     using DUNE_NAMESPACES;
 
@@ -578,6 +576,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

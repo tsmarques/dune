@@ -31,9 +31,7 @@
 #include <DUNE/Utils/TupleList.hpp>
 #include <DUNE/Utils/Exceptions.hpp>
 
-namespace DUNE
-{
-  namespace Utils
+namespace DUNE::Utils
   {
     TupleList&
     TupleList::operator<<(const std::string str)
@@ -101,4 +99,3 @@ namespace DUNE
       return ret;
     }
   }
-}

@@ -38,9 +38,7 @@
 #include <DUNE/Hardware/Exceptions.hpp>
 #include <DUNE/Hardware/BasicModem.hpp>
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     //! Default command timeout.
     static const double c_timeout = 5.0;
@@ -398,4 +396,3 @@ namespace DUNE
       }
     }
   }
-}

@@ -31,9 +31,7 @@
 #include <DUNE/Maneuvers/Circular.hpp>
 #include <DUNE/Coordinates/WGS84.hpp>
 
-namespace DUNE
-{
-  namespace Maneuvers
+namespace DUNE::Maneuvers
   {
     //! Default constructor.
     Circular::Circular(const IMC::Loiter* maneuver, Maneuvers::Maneuver* task,
@@ -100,4 +98,3 @@ namespace DUNE
       return m_loitering;
     }
   }
-}

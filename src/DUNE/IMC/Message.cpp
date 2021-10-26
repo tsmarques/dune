@@ -38,9 +38,7 @@
 #include <DUNE/IMC/JSON.hpp>
 #include <DUNE/IMC/Exceptions.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     static const unsigned c_nindent = 2;
 
@@ -82,4 +80,3 @@ namespace DUNE
       os << "\n}\n";
     }
   }
-}

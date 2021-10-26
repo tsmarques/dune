@@ -38,9 +38,7 @@
 #include <DUNE/Time/Clock.hpp>
 #include <DUNE/Time/Delay.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     Periodic::Periodic(const std::string& name, Context& ctx):
       Task(name, ctx),
@@ -84,4 +82,3 @@ namespace DUNE
       }
     }
   }
-}

@@ -36,9 +36,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Sensors
-{
-  namespace EmulatedGPS
+namespace Sensors::EmulatedGPS
   {
     using DUNE_NAMESPACES;
 
@@ -288,6 +286,5 @@ namespace Sensors
       }
     };
   }
-}
 
 DUNE_TASK

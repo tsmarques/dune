@@ -34,9 +34,7 @@
 #include <DUNE/Network/URL.hpp>
 #include <DUNE/Utils/String.hpp>
 
-namespace DUNE
-{
-  namespace Network
+namespace DUNE::Network
   {
     std::string
     URL::decode(const std::string& str)
@@ -93,4 +91,3 @@ namespace DUNE
       return result;
     }
   }
-}

@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Plans/SpeedModel.hpp>
 
-namespace DUNE
-{
-  namespace Plans
+namespace DUNE::Plans
   {
     SpeedModel::SpeedModel(Parsers::Config* config)
     {
@@ -128,4 +126,3 @@ namespace DUNE
       }
     }
   }
-}

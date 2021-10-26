@@ -32,9 +32,7 @@
 #include <DUNE/Entities/StatefulEntity.hpp>
 #include <DUNE/Tasks/Task.hpp>
 
-namespace DUNE
-{
-  namespace Entities
+namespace DUNE::Entities
   {
     void
     StatefulEntity::setState(IMC::EntityState::StateEnum state,
@@ -197,4 +195,3 @@ namespace DUNE
       reportActivationState();
     }
   }
-}

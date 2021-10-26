@@ -34,9 +34,7 @@
 #include <DUNE/Maneuvers/FigureEight.hpp>
 #include <DUNE/Coordinates.hpp>
 
-namespace DUNE
-{
-  namespace Maneuvers
+namespace DUNE::Maneuvers
   {
     //! Minimum arc to travel in radians
     static const float c_min_arc = Math::c_pi;
@@ -264,4 +262,3 @@ namespace DUNE
       return m_state != FE_INIT;
     }
   }
-}

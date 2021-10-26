@@ -66,9 +66,7 @@
 #  include <ws2tcpip.h>
 #endif
 
-namespace DUNE
-{
-  namespace Network
+namespace DUNE::Network
   {
     Address::Address():
       m_resolved(false)
@@ -282,4 +280,3 @@ namespace DUNE
       return (toIntegerNative() & 0xffffff00) == 0x00000000;
     }
   }
-}

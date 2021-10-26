@@ -51,9 +51,7 @@
 #  include <windows.h>
 #endif
 
-namespace DUNE
-{
-  namespace Time
+namespace DUNE::Time
   {
     uint64_t
     Clock::getNsec()
@@ -128,4 +126,3 @@ namespace DUNE
 #endif
     }
   }
-}

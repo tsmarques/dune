@@ -33,9 +33,7 @@
 // Local headers.
 #include "MessageMonitor.hpp"
 
-namespace Transports
-{
-  namespace HTTP
+namespace Transports::HTTP
   {
     using DUNE_NAMESPACES;
 
@@ -224,4 +222,3 @@ namespace Transports
         m_power_channels[msg->name] = new IMC::PowerChannelState(*msg);
     }
   }
-}

@@ -37,11 +37,7 @@
 #include <DUNE/Hardware/UCTK/Bootloader.hpp>
 #include <DUNE/Hardware/UCTK/FirmwareInfo.hpp>
 
-namespace DUNE
-{
-  namespace Hardware
-  {
-    namespace UCTK
+namespace DUNE::Hardware::UCTK
     {
       //! Jump to bootloader delay.
       static const double c_jump_boot_delay = 1.0;
@@ -234,5 +230,3 @@ namespace DUNE
         print("\nSuccess!\n\n");
       }
     }
-  }
-}

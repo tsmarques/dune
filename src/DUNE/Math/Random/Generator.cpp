@@ -35,11 +35,7 @@
 #include <DUNE/Math/Random/KernelDevice.hpp>
 #include <DUNE/Time/Clock.hpp>
 
-namespace DUNE
-{
-  namespace Math
-  {
-    namespace Random
+namespace DUNE::Math::Random
     {
       static double c_max_random_d = (double)Generator::c_max_random;
 
@@ -113,5 +109,3 @@ namespace DUNE
         *y = std::sin(a) * r;
       }
     }
-  }
-}

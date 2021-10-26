@@ -38,12 +38,7 @@
 // Local headers.
 #include "Driver.hpp"
 
-namespace Transports
-{
-  //! Device driver for ETSI GSM 07.07 compatible GSM modems.
-  //!
-  //! @author Ricardo Martins
-  namespace GSM
+namespace Transports::GSM
   {
     using DUNE_NAMESPACES;
 
@@ -420,6 +415,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

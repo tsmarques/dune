@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/Algorithms/UNESCO1983.hpp>
 
-namespace DUNE
-{
-  namespace Algorithms
+namespace DUNE::Algorithms
   {
     double
     UNESCO1983::computeDepth(double p, double lat, double del)
@@ -119,4 +117,3 @@ namespace DUNE
       return c + (a + b * sr + d * s) * s;
     }
   }
-}

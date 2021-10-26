@@ -36,9 +36,7 @@
 #include <DUNE/Time/Utils.hpp>
 #include <DUNE/Time/Clock.hpp>
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     Condition::Condition():
       m_clock_monotonic(false)
@@ -155,4 +153,3 @@ namespace DUNE
 #endif
     }
   }
-}

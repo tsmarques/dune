@@ -39,9 +39,7 @@
 #include <DUNE/Tasks/Exceptions.hpp>
 #include <DUNE/Utils/XML.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     static const char* c_visibility_strs[] =
     {
@@ -224,4 +222,3 @@ namespace DUNE
       os << "</param>\n";
     }
   }
-}

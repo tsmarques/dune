@@ -32,9 +32,7 @@
 #include <DUNE/Concurrency/Exceptions.hpp>
 #include <DUNE/Concurrency/RWLock.hpp>
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     RWLock::RWLock()
     {
@@ -104,4 +102,3 @@ namespace DUNE
 #endif
     }
   }
-}

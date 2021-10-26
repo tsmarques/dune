@@ -37,9 +37,7 @@
 // Local headers.
 #include <DUNE/System/Environment.hpp>
 
-namespace DUNE
-{
-  namespace System
+namespace DUNE::System
   {
     bool
     Environment::get(std::string var, std::string& value)
@@ -81,4 +79,3 @@ namespace DUNE
 #endif
     }
   }
-}

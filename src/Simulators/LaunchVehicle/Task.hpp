@@ -37,11 +37,17 @@ namespace Simulators::LaunchVehicle
   //! %Task arguments.
   struct Arguments
   {
+    //! Center Of Gravity
+    float cg{};
+    //! Center Of Pressure
+    float cp{};
+    //! Launcher's length
+    float length{};
     //! How many motors this launch vehicle has
     int n_motors{};
     //! Launcher's mass without motor
     float dry_mass{};
-    //! Crag coefficient
+    //! Drag coefficient model
     std::vector<std::string> coeff_drag{};
     //! Cross sectional area
     float area{};
@@ -60,6 +66,20 @@ namespace Simulators::LaunchVehicle
 
     explicit Arguments(DUNE::Tasks::Task* task)
     {
+      task->param("Center Of Gravity", cg)
+          .defaultValue("")
+          .units(Units::Meter)
+          .description("Launcher's center of gravity");
+
+      task->param("Center Of Pressure", cp)
+          .defaultValue("")
+          .units(Units::Meter)
+          .description("Launcher's center of pressure");
+
+      task->param("Length", length)
+          .defaultValue("")
+          .description("Launcher's length");
+
       // Motor arguments
       task->param("Number Of Motors", n_motors)
           .defaultValue("1")

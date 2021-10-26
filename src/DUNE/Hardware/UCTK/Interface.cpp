@@ -33,11 +33,7 @@
 #include <DUNE/Hardware/UCTK/Interface.hpp>
 #include <DUNE/Hardware/UCTK/Errors.hpp>
 
-namespace DUNE
-{
-  namespace Hardware
-  {
-    namespace UCTK
+namespace DUNE::Hardware::UCTK
     {
       Interface::Interface(IO::Handle* handle):
         m_handle(handle)
@@ -159,5 +155,3 @@ namespace DUNE
         frame.get(info.patch, 2);
       }
     }
-  }
-}

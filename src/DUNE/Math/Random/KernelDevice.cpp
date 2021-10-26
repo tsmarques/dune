@@ -34,11 +34,7 @@
 #include <DUNE/FileSystem/Path.hpp>
 #include <DUNE/Math/Random/KernelDevice.hpp>
 
-namespace DUNE
-{
-  namespace Math
-  {
-    namespace Random
+namespace DUNE::Math::Random
     {
       static const char* c_device_file = "/dev/urandom";
 
@@ -96,5 +92,3 @@ namespace DUNE
         // No effect - you cannot seed as this is supposed to be a true RNG
       }
     }
-  }
-}

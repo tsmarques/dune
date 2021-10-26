@@ -125,9 +125,7 @@ static std::pair<int, int> brate_pairs[] =
 
 DUNE_DECLARE_STATIC_MAP(baudrates, int, int, brate_pairs);
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     std::vector<std::string>
     SerialPort::enumerate()
@@ -694,4 +692,3 @@ namespace DUNE
 #endif
     }
   }
-}

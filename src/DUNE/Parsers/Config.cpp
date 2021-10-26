@@ -46,9 +46,7 @@
 #include <DUNE/Parsers/Exceptions.hpp>
 #include <DUNE/Parsers/Config.hpp>
 
-namespace DUNE
-{
-  namespace Parsers
+namespace DUNE::Parsers
   {
     using FileSystem::Path;
     using Utils::String;
@@ -265,4 +263,3 @@ namespace DUNE
       return os;
     }
   }
-}

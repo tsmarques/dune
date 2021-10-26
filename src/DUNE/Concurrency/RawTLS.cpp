@@ -32,9 +32,7 @@
 #include <DUNE/Concurrency/Exceptions.hpp>
 #include <DUNE/Concurrency/RawTLS.hpp>
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     RawTLS::RawTLS(dune_concurrency_raw_tls_dtr_t dtor):
       m_dtor(dtor)
@@ -78,4 +76,3 @@ namespace DUNE
 #endif
     }
   }
-}

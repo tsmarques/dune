@@ -35,14 +35,7 @@
 
 using DUNE_NAMESPACES;
 
-namespace Navigation
-{
-  namespace General
-  {
-    //! Navigation filter using only GPS information.
-    //!
-    //! @author Ricardo Martins
-    namespace GPSNavigation
+namespace Navigation::General::GPSNavigation
     {
       struct Arguments
       {
@@ -245,7 +238,5 @@ namespace Navigation
         }
       };
     }
-  }
-}
 
 DUNE_TASK

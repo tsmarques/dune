@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/Concurrency/Semaphore.hpp>
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     Semaphore::Semaphore(int value)
     {
@@ -86,4 +84,3 @@ namespace DUNE
       return value;
     }
   }
-}

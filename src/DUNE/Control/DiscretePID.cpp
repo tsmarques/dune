@@ -31,9 +31,7 @@
 #include <DUNE/Control/DiscretePID.hpp>
 #include <DUNE/Math.hpp>
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     //! Constructor.
     DiscretePID::DiscretePID():
@@ -159,4 +157,3 @@ namespace DUNE
       m_prev_err = 0;
     }
   }
-}

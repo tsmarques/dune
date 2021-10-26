@@ -80,9 +80,7 @@ emptyBuffer(j_compress_ptr cinfo)
   return TRUE;
 }
 
-namespace DUNE
-{
-  namespace Media
+namespace DUNE::Media
   {
     JPEGCompressor::JPEGCompressor()
     {
@@ -215,4 +213,3 @@ namespace DUNE
       return m_mgr->bfr_size - m_mgr->mgr.free_in_buffer;
     }
   }
-}

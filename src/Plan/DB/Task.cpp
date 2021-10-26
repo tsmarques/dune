@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Plan
-{
-  namespace DB
+namespace Plan::DB
   {
     using DUNE_NAMESPACES;
 
@@ -625,6 +623,5 @@ namespace Plan
       }
     };
   }
-}
 
 DUNE_TASK

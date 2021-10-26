@@ -35,18 +35,7 @@
 
 using DUNE_NAMESPACES;
 
-namespace Plan
-{
-  //! This task accepts and processes messages of type PlanGeneration,
-  //! resulting in the generation of corresponding plans.
-  //! The idea is simple: According to the plan identifier and an
-  //! optional set of parameters, this task generates a
-  //! PlanSpecification that is sent to the plan database and
-  //! (optionally) is also executed immediately (through a PlanControl
-  //! message).
-  //!
-  //! @author José Pinto
-  namespace Generator
+namespace Plan::Generator
   {
     struct Arguments
     {
@@ -821,6 +810,5 @@ namespace Plan
       }
     };
   }
-}
 
 DUNE_TASK

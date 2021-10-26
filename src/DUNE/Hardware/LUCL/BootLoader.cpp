@@ -87,11 +87,7 @@ static const double c_reset_delay = 0.2;
 using namespace DUNE::Time;
 using namespace DUNE::Utils;
 
-namespace DUNE
-{
-  namespace Hardware
-  {
-    namespace LUCL
+namespace DUNE::Hardware::LUCL
     {
       BootLoader::BootLoader(Protocol& proto, bool verbose, int baudrate):
         m_proto(proto),
@@ -420,5 +416,3 @@ namespace DUNE
         }
       }
     }
-  }
-}

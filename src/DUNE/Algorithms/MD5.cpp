@@ -41,9 +41,7 @@
 // DUNE headers.
 #include <DUNE/Algorithms/MD5.hpp>
 
-namespace DUNE
-{
-  namespace Algorithms
+namespace DUNE::Algorithms
   {
     void
     MD5::compute(const uint8_t* buffer, unsigned int length, uint8_t* digest)
@@ -114,4 +112,3 @@ namespace DUNE
       MD5Final(digest, &m_handle->ctx);
     }
   }
-}

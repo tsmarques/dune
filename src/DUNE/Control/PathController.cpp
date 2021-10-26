@@ -42,9 +42,7 @@ using namespace DUNE::Math;
 using namespace DUNE::IMC;
 using namespace DUNE::Time;
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     //! Loiter size factor to compute if inside the circle
     static const double c_lsize_factor = 0.75;
@@ -1095,4 +1093,3 @@ namespace DUNE
       }
     }
   }
-}

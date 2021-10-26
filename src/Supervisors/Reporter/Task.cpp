@@ -34,9 +34,7 @@
 #include "Dispatcher.hpp"
 #include "Ticket.hpp"
 
-namespace Supervisors
-{
-  namespace Reporter
+namespace Supervisors::Reporter
   {
     using DUNE_NAMESPACES;
 
@@ -202,6 +200,5 @@ namespace Supervisors
       }
     };
   }
-}
 
 DUNE_TASK

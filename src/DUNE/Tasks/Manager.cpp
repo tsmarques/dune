@@ -42,9 +42,7 @@
 #include <DUNE/Tasks/Exceptions.hpp>
 #include <DUNE/Tasks/Manager.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     static const int c_high_task_cpu_usage = 10;
 
@@ -264,4 +262,3 @@ namespace DUNE
       }
     }
   }
-}

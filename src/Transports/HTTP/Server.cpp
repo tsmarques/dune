@@ -43,9 +43,7 @@
 // Local headers.
 #include "Server.hpp"
 
-namespace Transports
-{
-  namespace HTTP
+namespace Transports::HTTP
   {
     class Handler: public Concurrency::Thread
     {
@@ -145,4 +143,3 @@ namespace Transports
       }
     }
   }
-}

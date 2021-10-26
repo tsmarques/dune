@@ -35,9 +35,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Transports
-{
-  namespace SerialOverTCP
+namespace Transports::SerialOverTCP
   {
     using DUNE_NAMESPACES;
 
@@ -245,6 +243,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

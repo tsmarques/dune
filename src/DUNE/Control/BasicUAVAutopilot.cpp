@@ -36,9 +36,7 @@
 using namespace DUNE::Time;
 using namespace DUNE::Utils;
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
 
     BasicUAVAutopilot::BasicUAVAutopilot(const std::string& name,
@@ -154,4 +152,3 @@ namespace DUNE
     }
 
   }
-}

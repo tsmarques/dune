@@ -36,9 +36,7 @@
 #include <DUNE/Utils/String.hpp>
 #include <DUNE/Hardware/GPIO.hpp>
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     using System::Error;
     using Utils::String;
@@ -157,4 +155,3 @@ namespace DUNE
 
 #endif
   }
-}

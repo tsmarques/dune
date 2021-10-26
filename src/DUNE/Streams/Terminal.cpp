@@ -36,9 +36,7 @@
 #include <DUNE/Streams/Terminal.hpp>
 #include <DUNE/Concurrency/ScopedMutex.hpp>
 
-namespace DUNE
-{
-  namespace Streams
+namespace DUNE::Streams
   {
     Terminal dune_term;
     Terminal::Flusher dune_term_flush;
@@ -85,4 +83,3 @@ namespace DUNE
       return *this;
     }
   }
-}

@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/Units.hpp>
 
-namespace DUNE
-{
-  namespace Units
+namespace DUNE::Units
   {
     static const char* c_abbrevs[] =
     {
@@ -50,4 +48,3 @@ namespace DUNE
       return c_abbrevs[type];
     }
   }
-}

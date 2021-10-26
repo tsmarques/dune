@@ -40,9 +40,7 @@
 // DUNE headers.
 #include <DUNE/Media/VideoIIDC1394.hpp>
 
-namespace DUNE
-{
-  namespace Media
+namespace DUNE::Media
   {
     VideoIIDC1394::VideoIIDC1394(int source, uint8_t iso, uint8_t vid_mode, uint8_t f_rate, uint32_t w, uint32_t h)
     {
@@ -311,4 +309,3 @@ namespace DUNE
 #endif
     }
   }
-}

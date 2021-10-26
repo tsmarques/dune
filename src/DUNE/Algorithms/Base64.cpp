@@ -37,9 +37,7 @@
 // DUNE headers.
 #include <DUNE/Algorithms/Base64.hpp>
 
-namespace DUNE
-{
-  namespace Algorithms
+namespace DUNE::Algorithms
   {
     //! Base64 mapping table.
     static const std::string c_b64_en = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -160,4 +158,3 @@ namespace DUNE
       return msg;
     }
   }
-}

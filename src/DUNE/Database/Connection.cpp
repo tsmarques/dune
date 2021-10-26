@@ -38,9 +38,7 @@
 // SQLITE3 headers.
 #include <sqlite3/sqlite3.h>
 
-namespace DUNE
-{
-  namespace Database
+namespace DUNE::Database
   {
     Connection::Connection(int flags)
     {
@@ -132,4 +130,3 @@ namespace DUNE
       m_trollback_stmt->execute();
     }
   }
-}

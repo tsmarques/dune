@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Algorithms/CRC16.hpp>
 
-namespace DUNE
-{
-  namespace Algorithms
+namespace DUNE::Algorithms
   {
     const uint16_t c_crc16_ibm_table[256] =
     {
@@ -70,4 +68,3 @@ namespace DUNE
       0x8201, 0x42C0, 0x4380, 0x8341, 0x4100, 0x81C1, 0x8081, 0x4040
     };
   }
-}

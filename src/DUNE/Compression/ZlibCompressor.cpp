@@ -34,9 +34,7 @@
 // Zlib headers.
 #include <zlib/zlib.h>
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     unsigned long
     ZlibCompressor::compressBlock(char* dst, unsigned long dst_len, char* src, unsigned long src_len)
@@ -62,4 +60,3 @@ namespace DUNE
       return ::compressBound(length);
     }
   }
-}

@@ -68,9 +68,7 @@
 #  define DUNE_SYS_HAS_LINUX_I2C_DEV 1
 #endif
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     I2C::I2C(const std::string& dev)
     {
@@ -270,4 +268,3 @@ namespace DUNE
 #endif
     }
   }
-}

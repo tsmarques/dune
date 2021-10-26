@@ -38,9 +38,7 @@
 #include <DUNE/Math/General.hpp>
 #include <DUNE/Utils/RawFifo.hpp>
 
-namespace DUNE
-{
-  namespace Utils
+namespace DUNE::Utils
   {
     RawFifo::RawFifo(uint32_t s):
       m_size(s)
@@ -108,4 +106,3 @@ namespace DUNE
       return len;
     }
   }
-}

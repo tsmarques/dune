@@ -36,9 +36,7 @@
 using namespace DUNE::Time;
 using namespace DUNE::Utils;
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     //! Timeout when waiting for some control mode
     static const float c_mode_timeout = 5.0f;
@@ -426,4 +424,3 @@ namespace DUNE
       }
     }
   }
-}

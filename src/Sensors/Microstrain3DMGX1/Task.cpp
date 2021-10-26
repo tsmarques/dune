@@ -32,10 +32,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Sensors
-{
-  //! Device driver for the Microstrain 3DM-GX1 AHRS.
-  namespace Microstrain3DMGX1
+namespace Sensors::Microstrain3DMGX1
   {
     using DUNE_NAMESPACES;
 
@@ -796,6 +793,5 @@ namespace Sensors
       }
     };
   }
-}
 
 DUNE_TASK

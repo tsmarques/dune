@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/Parsers/NMEAWriter.hpp>
 
-namespace DUNE
-{
-  namespace Parsers
+namespace DUNE::Parsers
   {
     NMEAWriter::NMEAWriter(const std::string& code)
     {
@@ -104,4 +102,3 @@ namespace DUNE
       return m_stream.str();
     }
   }
-}

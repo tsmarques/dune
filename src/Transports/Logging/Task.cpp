@@ -37,9 +37,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Transports
-{
-  namespace Logging
+namespace Transports::Logging
   {
     using DUNE_NAMESPACES;
 
@@ -453,6 +451,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

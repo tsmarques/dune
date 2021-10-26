@@ -31,9 +31,7 @@
 // DUNE headers.
 #include <DUNE/Navigation/KalmanFilter.hpp>
 
-namespace DUNE
-{
-  namespace Navigation
+namespace DUNE::Navigation
   {
     KalmanFilter::KalmanFilter()
     {
@@ -341,4 +339,3 @@ namespace DUNE
       }
     }
   }
-}

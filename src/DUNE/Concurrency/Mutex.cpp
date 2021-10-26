@@ -34,9 +34,7 @@
 #include <DUNE/Concurrency/Exceptions.hpp>
 #include <DUNE/Concurrency/Mutex.hpp>
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     Mutex::Mutex()
     {
@@ -110,4 +108,3 @@ namespace DUNE
 #endif
     }
   }
-}

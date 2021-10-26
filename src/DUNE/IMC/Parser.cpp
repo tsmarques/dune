@@ -31,9 +31,7 @@
 #include <DUNE/IMC/Parser.hpp>
 #include <DUNE/IMC/Packet.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     Parser::Parser()
     {
@@ -132,4 +130,3 @@ namespace DUNE
       return m;
     }
   }
-}

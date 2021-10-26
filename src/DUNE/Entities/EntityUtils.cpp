@@ -31,9 +31,7 @@
 #include <DUNE/Entities/EntityUtils.hpp>
 #include <DUNE/Entities/BasicEntity.hpp>
 
-namespace DUNE
-{
-  namespace Entities
+namespace DUNE::Entities
   {
     bool
     operator==(const BasicEntity* e, const std::string& label)
@@ -41,4 +39,3 @@ namespace DUNE
       return e->getLabel() == label;
     }
   }
-}

@@ -39,9 +39,7 @@
 #include <DUNE/IMC/Packet.hpp>
 #include <DUNE/IMC/Constants.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     uint16_t
     Packet::serialize(const Message* msg, uint8_t* bfr, uint16_t size)
@@ -274,4 +272,3 @@ namespace DUNE
       return msg;
     }
   }
-}

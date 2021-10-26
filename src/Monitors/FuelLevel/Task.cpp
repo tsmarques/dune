@@ -39,9 +39,7 @@
 #include "EntityPower.hpp"
 #include "FuelFilter.hpp"
 
-namespace Monitors
-{
-  namespace FuelLevel
+namespace Monitors::FuelLevel
   {
     using DUNE_NAMESPACES;
 
@@ -380,6 +378,5 @@ namespace Monitors
       }
     };
   }
-}
 
 DUNE_TASK

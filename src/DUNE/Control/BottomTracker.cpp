@@ -58,9 +58,7 @@ static const std::string c_str_states[] = {DTR_RT("Idle"), DTR_RT("Tracking"),
 //! Bottom tracker name
 static const std::string c_bt_name = DTR_RT("BottomTrack");
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     BottomTracker::BottomTracker(const Arguments* args):
       m_args(args),
@@ -710,4 +708,3 @@ namespace DUNE
                         DTR(c_str_states[m_mstate].c_str()), msg.c_str());
     }
   }
-}

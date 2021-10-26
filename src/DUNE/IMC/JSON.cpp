@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/IMC/JSON.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     // Indentation levels.
     static const char* c_levels[] =
@@ -64,4 +62,3 @@ namespace DUNE
       return c_levels[count];
     }
   }
-}

@@ -36,9 +36,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Transports
-{
-  namespace Announce
+namespace Transports::Announce
   {
     using DUNE_NAMESPACES;
 
@@ -476,6 +474,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Network/FragmentedMessage.hpp>
 
-namespace DUNE
-{
-  namespace Network
+namespace DUNE::Network
   {
     FragmentedMessage::FragmentedMessage()
     {
@@ -114,4 +112,3 @@ namespace DUNE
       m_fragments.clear();
     }
   }
-}

@@ -37,9 +37,7 @@
 using namespace DUNE::Math;
 using namespace DUNE::Coordinates;
 
-namespace DUNE
-{
-  namespace Maneuvers
+namespace DUNE::Maneuvers
   {
     //! Value for y coordinate close to zero
     static const float c_y_margin = 1e-03;
@@ -288,4 +286,3 @@ namespace DUNE
       return false;
     }
   }
-}

@@ -30,11 +30,7 @@
 // DUNE headers.
 #include <DUNE/Math/Random/FSR256.hpp>
 
-namespace DUNE
-{
-  namespace Math
-  {
-    namespace Random
+namespace DUNE::Math::Random
     {
       FSR256::FSR256()
       {
@@ -97,5 +93,3 @@ namespace DUNE
           (void)random();
       }
     }
-  }
-}

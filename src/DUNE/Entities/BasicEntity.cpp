@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/Entities/BasicEntity.hpp>
 
-namespace DUNE
-{
-  namespace Entities
+namespace DUNE::Entities
   {
     void
     BasicEntity::setLabel(const std::string& label)
@@ -84,4 +82,3 @@ namespace DUNE
     }
 
   }
-}

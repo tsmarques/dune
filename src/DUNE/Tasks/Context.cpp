@@ -33,9 +33,7 @@
 #include <DUNE/FileSystem/Path.hpp>
 #include <DUNE/Time/Clock.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     Context::Context()
     {
@@ -77,4 +75,3 @@ namespace DUNE
       uid = Time::Clock::getNsec();
     }
   }
-}

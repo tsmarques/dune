@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Tasks/ParameterTable.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     void
     ParameterTable::set(const std::string& name, const std::string& value)
@@ -70,4 +68,3 @@ namespace DUNE
       return list;
     }
   }
-}

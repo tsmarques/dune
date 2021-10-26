@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Utils/XML.hpp>
 
-namespace DUNE
-{
-  namespace Utils
+namespace DUNE::Utils
   {
     std::string
     XML::escapePredefinedEntities(const std::string& str)
@@ -66,4 +64,3 @@ namespace DUNE
       return escaped;
     }
   }
-}

@@ -30,11 +30,7 @@
 // DUNE headers.
 #include <DUNE/Math/Random/DRand48.hpp>
 
-namespace DUNE
-{
-  namespace Math
-  {
-    namespace Random
+namespace DUNE::Math::Random
     {
       // ISO C++ does not stricly accept C99 long long constants (i.e. <n>LL)
       // hence the use of some "funny" stuff here.
@@ -83,5 +79,3 @@ namespace DUNE
         m_seed = (m_seed << 16) | 0x330e;
       }
     }
-  }
-}

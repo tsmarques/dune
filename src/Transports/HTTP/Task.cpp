@@ -44,12 +44,7 @@
 #include "RequestHandler.hpp"
 #include "Server.hpp"
 
-namespace Transports
-{
-  //! %HTTP server.
-  //!
-  //! @author Ricardo Martins
-  namespace HTTP
+namespace Transports::HTTP
   {
     using DUNE_NAMESPACES;
 
@@ -460,6 +455,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

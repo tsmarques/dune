@@ -35,9 +35,7 @@
 #include "Plan.hpp"
 #include "Calibration.hpp"
 
-namespace Plan
-{
-  namespace Engine
+namespace Plan::Engine
   {
     using DUNE_NAMESPACES;
 
@@ -1202,6 +1200,5 @@ namespace Plan
       }
     };
   }
-}
 
 DUNE_TASK

@@ -33,9 +33,7 @@
 using namespace DUNE::Math;
 using namespace DUNE::IMC;
 
-namespace DUNE
-{
-  namespace Maneuvers
+namespace DUNE::Maneuvers
   {
     //! Tolerance when elevating towards a new depth
     static const float c_elevator_tolerance = 0.3f;
@@ -171,4 +169,3 @@ namespace DUNE
                     m_elevator.end_z);
     }
   }
-}

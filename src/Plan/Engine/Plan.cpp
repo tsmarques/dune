@@ -33,9 +33,7 @@
 // Local headers.
 #include "Plan.hpp"
 
-namespace Plan
-{
-  namespace Engine
+namespace Plan::Engine
   {
     Plan::Plan(const IMC::PlanSpecification* spec, bool compute_progress,
                bool fpredict, float max_depth, Tasks::Task* task,
@@ -761,4 +759,3 @@ namespace Plan
       }
     }
   }
-}

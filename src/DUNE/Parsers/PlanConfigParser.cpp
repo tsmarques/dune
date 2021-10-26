@@ -35,9 +35,7 @@
 #include <DUNE/Parsers/PlanConfigParser.hpp>
 #include <DUNE/Math/Matrix.hpp>
 
-namespace DUNE
-{
-  namespace Parsers
+namespace DUNE::Parsers
   {
     void
     PlanConfigParser::parse(Parsers::Config& cfg, std::string id, IMC::IdleManeuver& man)
@@ -377,4 +375,3 @@ namespace DUNE
       }
     }
   }
-}

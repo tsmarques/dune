@@ -41,9 +41,7 @@
 //! Characters to ignore in the beginning and end of a string.
 static const char* c_blanks = " \t\r\n";
 
-namespace DUNE
-{
-  namespace Parsers
+namespace DUNE::Parsers
   {
     NMEAReader::NMEAReader(const std::string& sentence):
       m_field(0)
@@ -294,4 +292,3 @@ namespace DUNE
       return result;
     }
   }
-}

@@ -33,9 +33,7 @@
 // Local headers.
 #include "SessionResultCode.hpp"
 
-namespace Transports
-{
-  namespace IridiumSBD
+namespace Transports::IridiumSBD
   {
     std::string
     SessionResultCode::translate(unsigned code)
@@ -52,4 +50,3 @@ namespace Transports
       }
     }
   }
-}

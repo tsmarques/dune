@@ -41,9 +41,7 @@
 // WMM 2015 headers.
 #include <wmm2015/GeomagnetismHeader.h>
 
-namespace DUNE
-{
-  namespace Coordinates
+namespace DUNE::Coordinates
   {
     static const unsigned c_num_geoid_cols = 1441;
     static const unsigned c_num_geoid_rows = 721;
@@ -146,4 +144,3 @@ namespace DUNE
       return Math::Angles::radians(gme.Decl);
     }
   }
-}

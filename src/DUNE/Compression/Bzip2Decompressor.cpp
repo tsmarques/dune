@@ -35,9 +35,7 @@
 // Bzip2 headers.
 #include <bzip2/bzlib.h>
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     struct Bzip2Decompressor::PrivateData
     {
@@ -107,4 +105,3 @@ namespace DUNE
       return dst_len;
     }
   }
-}

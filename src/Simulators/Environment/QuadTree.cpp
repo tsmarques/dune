@@ -37,9 +37,7 @@
 // Local headers.
 #include "QuadTree.hpp"
 
-namespace Simulators
-{
-  namespace Environment
+namespace Simulators::Environment
   {
     // The actual implementation
     struct Node
@@ -292,4 +290,3 @@ namespace Simulators
       b.width() << " x " << b.height();
     }
   }
-}

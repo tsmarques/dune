@@ -38,9 +38,7 @@
 // DUNE headers.
 #include <DUNE/Streams/OutputMultiplexerBuffer.hpp>
 
-namespace DUNE
-{
-  namespace Streams
+namespace DUNE::Streams
   {
   OutputMultiplexerBuffer::OutputMultiplexerBuffer () = default;
 
@@ -93,4 +91,3 @@ namespace DUNE
       return length;
     }
   }
-}

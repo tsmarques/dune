@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Control/ProxyPathController.hpp>
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     using namespace Tasks;
     using namespace IMC;
@@ -69,4 +67,3 @@ namespace DUNE
       return !m_state_filter->match(es);
     }
   }
-}

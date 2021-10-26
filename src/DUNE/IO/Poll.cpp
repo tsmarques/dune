@@ -38,9 +38,7 @@
 #include <DUNE/Time/Utils.hpp>
 #include <DUNE/IO/Poll.hpp>
 
-namespace DUNE
-{
-  namespace IO
+namespace DUNE::IO
   {
     using std::memset;
     using System::Error;
@@ -172,4 +170,3 @@ namespace DUNE
 #endif
     }
   }
-}

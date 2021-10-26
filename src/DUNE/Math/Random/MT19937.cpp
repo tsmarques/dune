@@ -30,11 +30,7 @@
 // DUNE headers.
 #include <DUNE/Math/Random/MT19937.hpp>
 
-namespace DUNE
-{
-  namespace Math
-  {
-    namespace Random
+namespace DUNE::Math::Random
     {
       static const int c_m = 397;
       static const uint32_t c_matrix_a = 0x9908b0dfUL;
@@ -124,5 +120,3 @@ namespace DUNE
         m_pos = 0;
       }
     }
-  }
-}

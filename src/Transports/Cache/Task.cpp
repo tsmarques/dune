@@ -36,9 +36,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Transports
-{
-  namespace Cache
+namespace Transports::Cache
   {
     using DUNE_NAMESPACES;
 
@@ -299,6 +297,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

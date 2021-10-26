@@ -38,9 +38,7 @@
 // Gzip headers.
 #include <zlib/zlib.h>
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     //! GZIP header.
     static const uint8_t c_header[] = {0x1f, 0x8b, 8, 0, 0, 0, 0, 0, 0, 255};
@@ -64,4 +62,3 @@ namespace DUNE
       return usable_len + c_header_size + sizeof(crc) + sizeof(length);
     }
   }
-}

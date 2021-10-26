@@ -33,17 +33,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Sensors
-{
-  //! Device driver for the Microstrain 3DM-GX3 AHRS.
-  //!
-  //! This task is responsible to extract acceleration, angular rates, magnetic
-  //! field and euler angles information from the device.
-  //!
-  //! This task allows for Hard-Iron calibration when resources are initialized.
-  //!
-  //! @author Ricardo Martins
-  namespace Microstrain3DMGX3
+namespace Sensors::Microstrain3DMGX3
   {
     using DUNE_NAMESPACES;
 
@@ -716,6 +706,5 @@ namespace Sensors
       }
     };
   }
-}
 
 DUNE_TASK

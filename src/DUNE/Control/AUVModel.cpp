@@ -33,9 +33,7 @@
 // Local headers.
 #include <DUNE/Control/AUVModel.hpp>
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     using namespace Math;
     using std::sin;
@@ -243,4 +241,3 @@ namespace DUNE
       return tau;
     }
   }
-}

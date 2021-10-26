@@ -47,9 +47,7 @@
 #include <DUNE/IMC/Factory.hpp>
 #include <DUNE/IMC/Serialization.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     EntityState::EntityState()
     {
@@ -26666,4 +26664,3 @@ namespace DUNE
       IMC::toJSON(os__, "value", value, nindent__);
     }
   }
-}

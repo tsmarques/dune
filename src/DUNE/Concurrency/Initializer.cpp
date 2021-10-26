@@ -36,9 +36,7 @@
 #  include <pthread.h>
 #endif
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     static int counter = 0;
 
@@ -62,4 +60,3 @@ namespace DUNE
       }
     }
   }
-}

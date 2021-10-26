@@ -33,9 +33,7 @@
 #include <DUNE/Config.hpp>
 #include <DUNE/Status/Messages.hpp>
 
-namespace DUNE
-{
-  namespace Status
+namespace DUNE::Status
   {
     static const char* c_status_messages[33] =
     {
@@ -80,4 +78,3 @@ namespace DUNE
       return c_status_messages[code];
     }
   }
-}

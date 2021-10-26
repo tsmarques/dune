@@ -36,9 +36,7 @@
 // VSIM headers.
 #include <DUNE/Simulation/VSIM/ASV.hpp>
 
-namespace Simulators
-{
-  namespace VSIM
+namespace Simulators::VSIM
   {
     ASV::ASV():
       m_volume(nullptr)
@@ -128,4 +126,3 @@ namespace Simulators
       m_asvm.turnRight_k_1 = turnRight;
     }
   }
-}

@@ -34,9 +34,7 @@
 #include <DUNE/Concurrency/ScopedMutex.hpp>
 #include <DUNE/Hardware/HayesModem.hpp>
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     //! Maximum number of revision lines.
     static const unsigned c_max_rev_lines = 10;
@@ -199,4 +197,3 @@ namespace DUNE
       expect("READY");
     }
   }
-}

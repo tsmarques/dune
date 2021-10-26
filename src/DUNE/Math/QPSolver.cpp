@@ -51,9 +51,7 @@
 #include <stdexcept>
 
 //#define __QPDBG__
-namespace DUNE
-{
-  namespace Math
+namespace DUNE::Math
   {
     // Template class just to encapsulate operator() in access to a std::vector
     // (for pedantic syntactic sugar in consistencty with DUNE::Math::Matrix
@@ -844,4 +842,3 @@ l2a:    /* Step 2a: determine step direction */
 
 #endif
   }
-}

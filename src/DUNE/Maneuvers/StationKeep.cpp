@@ -35,9 +35,7 @@ using namespace DUNE::Math;
 using namespace DUNE::Coordinates;
 using namespace DUNE::IMC;
 
-namespace DUNE
-{
-  namespace Maneuvers
+namespace DUNE::Maneuvers
   {
     //! Factor for the radius to consider traveling at the surface
     static const float c_surface_factor = 2.5f;
@@ -191,4 +189,3 @@ namespace DUNE
       return (m_sks == ST_OFF_STATION);
     }
   }
-}

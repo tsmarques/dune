@@ -32,9 +32,7 @@
 
 using DUNE_NAMESPACES;
 
-namespace Simulators
-{
-  namespace Gaussian
+namespace Simulators::Gaussian
   {
     //! %Task arguments.
     struct Arguments
@@ -201,6 +199,5 @@ namespace Simulators
       }
     };
   }
-}
 
 DUNE_TASK

@@ -33,11 +33,7 @@
 
 using DUNE_NAMESPACES;
 
-namespace Simulators
-{
-  //! This task simulates Iridium communications
-  //! by posting messages directly to Ripples
-  namespace Iridium
+namespace Simulators::Iridium
   {
     //! %Task arguments.
     struct Arguments
@@ -160,6 +156,5 @@ namespace Simulators
       }
     };
   }
-}
 
 DUNE_TASK

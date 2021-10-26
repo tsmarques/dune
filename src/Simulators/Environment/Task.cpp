@@ -37,13 +37,7 @@
 // Local headers.
 #include "QuadTree.hpp"
 
-namespace Simulators
-{
-  //! This task simulates signals for the bottom and forward looking echo sounders
-  //! Uses bathymetry data from APDL to generate bottom distance data.
-  //! Uses two configurable WGS84 points to simulate a pier or a straight-line
-  //! obstacle.
-  namespace Environment
+namespace Simulators::Environment
   {
     using DUNE_NAMESPACES;
     using std::sin;
@@ -753,6 +747,5 @@ namespace Simulators
       }
     };
   }
-}
 
 DUNE_TASK

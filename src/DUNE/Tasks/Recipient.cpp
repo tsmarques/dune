@@ -36,9 +36,7 @@
 #include <DUNE/Tasks/Context.hpp>
 #include <DUNE/Tasks/Recipient.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     Recipient::Recipient(AbstractTask* task, Context& ctx):
       m_task(task),
@@ -114,4 +112,3 @@ namespace DUNE
       }
     }
   }
-}

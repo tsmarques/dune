@@ -31,9 +31,7 @@
 #include <DUNE/Concurrency/ScopedMutex.hpp>
 #include <DUNE/IMC/AddressResolver.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     //! Name of the unknown address.
     static const char* c_unknown = "unknown";
@@ -114,4 +112,3 @@ namespace DUNE
       return itr->second;
     }
   }
-}

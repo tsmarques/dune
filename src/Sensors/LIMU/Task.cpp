@@ -33,9 +33,7 @@
 // Local headers.
 #include "ErrorHandling.hpp"
 
-namespace Sensors
-{
-  namespace LIMU
+namespace Sensors::LIMU
   {
     using DUNE_NAMESPACES;
 
@@ -590,6 +588,5 @@ namespace Sensors
       }
     };
   }
-}
 
 DUNE_TASK

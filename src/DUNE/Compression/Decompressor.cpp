@@ -29,9 +29,7 @@
 
 #include <DUNE/Compression/Decompressor.hpp>
 
-namespace DUNE
-{
-  namespace Compression
+namespace DUNE::Compression
   {
     void
     Decompressor::decompress(char* dst, unsigned long dst_len, char* src, unsigned long src_len)
@@ -66,4 +64,3 @@ namespace DUNE
       dst.setSize(decompressed());
     }
   }
-}

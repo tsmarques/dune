@@ -40,9 +40,7 @@
 #  include <windows.h>
 #endif
 
-namespace DUNE
-{
-  namespace Time
+namespace DUNE::Time
   {
     std::string
     Format::getTimeDate()
@@ -145,4 +143,3 @@ namespace DUNE
       return bfr;
     }
   }
-}

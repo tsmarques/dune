@@ -41,9 +41,7 @@
 #  include <unistd.h>
 #endif
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     inline void
     throwLastError(const std::string& msg)
@@ -113,4 +111,3 @@ namespace DUNE
 #endif
     }
   }
-}

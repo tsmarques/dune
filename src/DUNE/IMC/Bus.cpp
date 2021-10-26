@@ -38,9 +38,7 @@
 #include <DUNE/IMC/Message.hpp>
 #include <DUNE/IMC/Definitions.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     struct BackLogEntry
     {
@@ -147,4 +145,3 @@ namespace DUNE
       return m_bind_msgs;
     }
   }
-}

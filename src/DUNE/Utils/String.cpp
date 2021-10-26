@@ -35,9 +35,7 @@
 // Local headers.
 #include <DUNE/Utils/String.hpp>
 
-namespace DUNE
-{
-  namespace Utils
+namespace DUNE::Utils
   {
     //! Blank characters.
     static const std::string c_blank = " \n\r\t";
@@ -374,4 +372,3 @@ namespace DUNE
       return str.compare(str.size() - suffix.size(), suffix.size(), suffix) == 0;
     }
   }
-}

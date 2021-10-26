@@ -117,9 +117,7 @@ getLastErrorMessage()
 #endif
 }
 
-namespace DUNE
-{
-  namespace Network
+namespace DUNE::Network
   {
     TCPSocket::TCPSocket(bool create):
       m_handle(INVALID_SOCKET)
@@ -406,4 +404,3 @@ namespace DUNE
 #endif
     }
   }
-}

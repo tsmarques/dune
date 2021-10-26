@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Plans/TimeProfile.hpp>
 
-namespace DUNE
-{
-  namespace Plans
+namespace DUNE::Plans
   {
     float
     TimeProfile::distance2D(const Position& new_pos, const Position& last_pos)
@@ -572,4 +570,3 @@ namespace DUNE
       return;
     }
   }
-}

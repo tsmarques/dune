@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Monitors
-{
-  namespace Entities
+namespace Monitors::Entities
   {
     using DUNE_NAMESPACES;
 
@@ -464,6 +462,5 @@ namespace Monitors
       }
     };
   }
-}
 
 DUNE_TASK

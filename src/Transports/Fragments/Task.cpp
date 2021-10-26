@@ -31,9 +31,7 @@
 #include <DUNE/DUNE.hpp>
 #include <DUNE/Network/FragmentedMessage.hpp>
 
-namespace Transports
-{
-  namespace Fragments
+namespace Transports::Fragments
   {
     using DUNE_NAMESPACES;
 
@@ -129,6 +127,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

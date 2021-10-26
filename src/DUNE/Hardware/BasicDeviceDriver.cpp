@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/Hardware/BasicDeviceDriver.hpp>
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     using DUNE_NAMESPACES;
 
@@ -545,4 +543,3 @@ namespace DUNE
       }
     }
   }
-}

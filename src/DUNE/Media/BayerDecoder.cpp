@@ -33,9 +33,7 @@
 #include <DUNE/Config.hpp>
 #include <DUNE/Media/BayerDecoder.hpp>
 
-namespace DUNE
-{
-  namespace Media
+namespace DUNE::Media
   {
     BayerDecoder::BayerDecoder(Tile tile, Method method)
     {
@@ -459,4 +457,3 @@ namespace DUNE
       }
     }
   }
-}

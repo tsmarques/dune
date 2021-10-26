@@ -42,9 +42,7 @@
 #include <DUNE/IMC/Factory.hpp>
 #include <DUNE/IMC/Definitions.hpp>
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
     using Creator = Message *(*)();
 
@@ -149,4 +147,3 @@ namespace DUNE
         v.push_back(getIdFromAbbrev(l[i]));
     }
   }
-}

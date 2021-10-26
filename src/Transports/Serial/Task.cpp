@@ -33,9 +33,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Transports
-{
-  namespace Serial
+namespace Transports::Serial
   {
     using DUNE_NAMESPACES;
 
@@ -122,6 +120,5 @@ namespace Transports
       }
     };
   }
-}
 
 DUNE_TASK

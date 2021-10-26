@@ -40,9 +40,7 @@
 #include <DUNE/Utils/String.hpp>
 #include <DUNE/Utils/OptionParser.hpp>
 
-namespace DUNE
-{
-  namespace Utils
+namespace DUNE::Utils
   {
     OptionParser::OptionParser()
     {
@@ -205,4 +203,3 @@ namespace DUNE
       return true;
     }
   }
-}

@@ -40,9 +40,7 @@
 
 using DUNE_NAMESPACES;
 
-namespace Simulators
-{
-  namespace VSIM
+namespace Simulators::VSIM
   {
     Simulators::VSIM::World*
     Factory::produceWorld(Parsers::Config& cfg)
@@ -196,5 +194,4 @@ namespace Simulators
       return vehicle;
     }
   }
-}
 

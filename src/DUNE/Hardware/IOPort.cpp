@@ -59,9 +59,7 @@
 #  include <unistd.h>
 #endif
 
-namespace DUNE
-{
-  namespace Hardware
+namespace DUNE::Hardware
   {
     IOPort::IOPort(uint32_t base_address, uint32_t size):
       m_base_address(base_address),
@@ -165,4 +163,3 @@ namespace DUNE
       return value;
     }
   }
-}

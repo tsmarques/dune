@@ -35,9 +35,7 @@
 // Local headers.
 #include "Model.hpp"
 
-namespace DUNE
-{
-  namespace Power
+namespace DUNE::Power
   {
     Model::Model(Parsers::Config* cfg)
     {
@@ -139,4 +137,3 @@ namespace DUNE
       m_power_full = m_power_hotel + m_power_imu + m_power_payload;
     }
   }
-}

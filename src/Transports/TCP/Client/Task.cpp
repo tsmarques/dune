@@ -33,11 +33,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Transports
-{
-  namespace TCP
-  {
-    namespace Client
+namespace Transports::TCP::Client
     {
       using DUNE_NAMESPACES;
 
@@ -138,7 +134,5 @@ namespace Transports
         }
       };
     }
-  }
-}
 
 DUNE_TASK

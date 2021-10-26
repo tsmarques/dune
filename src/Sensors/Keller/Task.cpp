@@ -34,10 +34,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Sensors
-{
-  //! Device driver for %Keller Pressure %Sensors.
-  namespace Keller
+namespace Sensors::Keller
   {
     using DUNE_NAMESPACES;
 
@@ -619,6 +616,5 @@ namespace Sensors
       }
     };
   }
-}
 
 DUNE_TASK

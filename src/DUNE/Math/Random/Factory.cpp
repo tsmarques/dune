@@ -38,11 +38,7 @@
 #include <DUNE/Math/Random/MT19937.hpp>
 #include <DUNE/Math/Random/KernelDevice.hpp>
 
-namespace DUNE
-{
-  namespace Math
-  {
-    namespace Random
+namespace DUNE::Math::Random
     {
       const char* Factory::c_drand48 = "drand48";
       const char* Factory::c_fsr256 = "fsr256";
@@ -100,5 +96,3 @@ namespace DUNE
         }
       }
     }
-  }
-}

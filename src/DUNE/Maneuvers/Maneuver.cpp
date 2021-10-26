@@ -31,9 +31,7 @@
 #include <DUNE/Maneuvers/Maneuver.hpp>
 #include <DUNE/Time/Clock.hpp>
 
-namespace DUNE
-{
-  namespace Maneuvers
+namespace DUNE::Maneuvers
   {
     static Concurrency::Mutex s_amask_lock;
     static Concurrency::Mutex s_path_lock;
@@ -256,4 +254,3 @@ namespace DUNE
       }
     }
   }
-}

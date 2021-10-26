@@ -33,20 +33,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Supervisors
-{
-  //! This task mimicks the entity state and entity activation state of a
-  //! surrogate remote system entity. Moreover, it relays the entity parameters
-  //! from the surrogate system, while relaying to it entity parameters queries
-  //! and setters.
-  //!
-  //! This task allows the following parameters to be defined
-  //!  - <em>system_name</em>: surrogate system name.
-  //!  - <em>entity_name</em>: surrogate system entity name.
-  //!  - <em>task_name</em>: surrogate system task name to write xml parameters.
-  //!
-  //! @author Ricardo Martins
-  namespace Delegator
+namespace Supervisors::Delegator
   {
     using DUNE_NAMESPACES;
 
@@ -295,6 +282,5 @@ namespace Supervisors
       }
     };
   }
-}
 
 DUNE_TASK

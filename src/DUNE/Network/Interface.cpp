@@ -70,9 +70,7 @@
 #  include <iphlpapi.h>
 #endif
 
-namespace DUNE
-{
-  namespace Network
+namespace DUNE::Network
   {
     Interface::Interface():
       m_features(0)
@@ -156,4 +154,3 @@ namespace DUNE
       return (m_features & feature) != 0;
     }
   }
-}

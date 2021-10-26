@@ -35,9 +35,7 @@
 // DUNE headers.
 #include <DUNE/Parsers/PD4.hpp>
 
-namespace DUNE
-{
-  namespace Parsers
+namespace DUNE::Parsers
   {
     //! Invalid velocity.
     static const int16_t c_invalid_vel = -32768;
@@ -189,4 +187,3 @@ namespace DUNE
       m_state = ST_NONE;
     }
   }
-}

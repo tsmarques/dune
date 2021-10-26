@@ -30,9 +30,7 @@
 // DUNE headers.
 #include <DUNE/Plans/Progress.hpp>
 
-namespace DUNE
-{
-  namespace Plans
+namespace DUNE::Plans
   {
     static const std::string c_waypoint_str = "waypoint";
 
@@ -155,4 +153,3 @@ namespace DUNE
     }
 
   }
-}

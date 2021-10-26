@@ -98,9 +98,7 @@ dune_concurrency_thread_entry_point(void* data)
   return nullptr;
 }
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     Thread::Thread():
       m_start_barrier(2)
@@ -299,4 +297,3 @@ namespace DUNE
 #endif
     }
   }
-}

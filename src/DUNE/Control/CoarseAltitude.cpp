@@ -31,9 +31,7 @@
 #include <DUNE/Control/CoarseAltitude.hpp>
 #include <DUNE/Memory.hpp>
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     CoarseAltitude::CoarseAltitude(const Arguments* args):
       m_active(false),
@@ -171,4 +169,3 @@ namespace DUNE
       parcel.a = m_args->upper_gap[m_corridor];
     }
   }
-}

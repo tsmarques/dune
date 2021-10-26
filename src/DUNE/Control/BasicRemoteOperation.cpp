@@ -41,9 +41,7 @@
 // Local headers.
 #include <DUNE/Control/BasicRemoteOperation.hpp>
 
-namespace DUNE
-{
-  namespace Control
+namespace DUNE::Control
   {
     //! Constructor.
     BasicRemoteOperation::BasicRemoteOperation(const std::string& name, Tasks::Context& ctx):
@@ -212,4 +210,3 @@ namespace DUNE
         actuate();
     }
   }
-}

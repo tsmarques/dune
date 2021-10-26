@@ -32,9 +32,7 @@
 #include <DUNE/Coordinates/WGS84.hpp>
 #include <DUNE/Coordinates/UTM.hpp>
 
-namespace DUNE
-{
-  namespace Coordinates
+namespace DUNE::Coordinates
   {
     double
     UTM::distance(double north1, double east1, double z1, int zone1, double north2, double east2, double z2, int zone2)
@@ -219,4 +217,3 @@ namespace DUNE
       m_z = z;
     }
   }
-}

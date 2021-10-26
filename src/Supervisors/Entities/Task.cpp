@@ -35,9 +35,7 @@
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
 
-namespace Supervisors
-{
-  namespace Entities
+namespace Supervisors::Entities
   {
     using DUNE_NAMESPACES;
 
@@ -165,6 +163,5 @@ namespace Supervisors
       }
     };
   }
-}
 
 DUNE_TASK

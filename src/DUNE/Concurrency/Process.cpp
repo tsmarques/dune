@@ -54,9 +54,7 @@
 #  include <csignal>
 #endif
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     struct ProcessPrivate
     {
@@ -156,4 +154,3 @@ namespace DUNE
       (void)priority;
     }
   }
-}

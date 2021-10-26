@@ -76,9 +76,7 @@ extern "C" int
 getrusage(int who, struct rusage* r_usage);
 #endif
 
-namespace DUNE
-{
-  namespace System
+namespace DUNE::System
   {
 #if defined(DUNE_OS_LINUX)
     //! Number of useful fields in /proc/stat.
@@ -226,4 +224,3 @@ namespace DUNE
 #endif
     }
   }
-}

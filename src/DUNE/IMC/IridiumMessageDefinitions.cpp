@@ -33,9 +33,7 @@
 // Local headers.
 #include "IridiumMessageDefinitions.hpp"
 
-namespace DUNE
-{
-  namespace IMC
+namespace DUNE::IMC
   {
 
     IridiumMessage *
@@ -353,5 +351,4 @@ namespace DUNE
 
       return buffer - start;
     }
-  } /* namespace IMC */
-} /* namespace DUNE */
+  } /* namespace DUNE */

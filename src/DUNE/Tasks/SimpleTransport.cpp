@@ -32,9 +32,7 @@
 #include <DUNE/Time/Clock.hpp>
 #include <DUNE/Utils/String.hpp>
 
-namespace DUNE
-{
-  namespace Tasks
+namespace DUNE::Tasks
   {
     SimpleTransport::SimpleTransport(const std::string& name, Tasks::Context& ctx):
       Tasks::Task(name, ctx),
@@ -116,4 +114,3 @@ namespace DUNE
       }
     }
   }
-}

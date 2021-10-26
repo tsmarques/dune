@@ -31,9 +31,7 @@
 #include <DUNE/Concurrency/Barrier.hpp>
 #include <DUNE/Concurrency/Exceptions.hpp>
 
-namespace DUNE
-{
-  namespace Concurrency
+namespace DUNE::Concurrency
   {
     //! Constructor.
     Barrier::Barrier(int count)
@@ -87,4 +85,3 @@ namespace DUNE
 #endif
     }
   }
-}

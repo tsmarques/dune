@@ -41,9 +41,7 @@
 #  include <windows.h>
 #endif
 
-namespace DUNE
-{
-  namespace Time
+namespace DUNE::Time
   {
     void
     Delay::waitNsec(uint64_t nsec)
@@ -77,4 +75,3 @@ namespace DUNE
 #endif
     }
   }
-}
