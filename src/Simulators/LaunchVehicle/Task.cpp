@@ -270,8 +270,6 @@ namespace Simulators::LaunchVehicle
       m_drag.z = m_drag_model->computeDrag(m_estate.w, curr_ref_area, m_dynp.value);
 
       // @todo x and y
-      m_drag.x = m_drag.x * (m_estate.u >= 0 ? -1.0f : 1.0f);
-      m_drag.y = m_drag.y * (m_estate.v >= 0 ? -1.0f : 1.0f);
       m_drag.z = m_drag.z * (m_estate.w >= 0 ? -1.0f : 1.0f);
     }
 
