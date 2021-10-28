@@ -59,6 +59,8 @@ namespace Simulators::LaunchVehicle
     double initial_lon{};
     //! LV's initial altitude in meters
     float initial_altitude{};
+    //! Allow to do small randomization on initial pitch
+    bool randomize_pitch{};
     //! Parachute's arguments
     ParachuteArguments parachute{};
     //! Motor's arguments
@@ -135,6 +137,11 @@ namespace Simulators::LaunchVehicle
           .defaultValue("0.0")
           .units(Units::Meter)
           .description("Initial altitude in meters");
+
+      task->param("Randomize Pitch", randomize_pitch)
+          .defaultValue("false")
+          .description("Simulate the imperfect pitch of the mounting rod\n"
+                       "Allowed values are between -5 and 5");
 
       task->param("Parachute -- Drag Coefficient", parachute.drag_coeff)
           .defaultValue("1.5")

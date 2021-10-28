@@ -286,10 +286,11 @@ namespace Simulators::LaunchVehicle
 
       // For now assume that all motors are equal
       // @todo x and y
-      Math::Matrix thrust = m_motor->computeEngineThrust(curr_time_sec);
-      m_thrust.x = thrust.element(0, 0);
-      m_thrust.y = thrust.element(0, 1);
-      m_thrust.z = thrust.element(0, 2);
+      fp64_t f = m_motor->computeEngineThrust(curr_time_sec);
+      Math::Matrix thrust(1, 3, 0);
+      m_thrust.x = 0;
+      m_thrust.y = 0;
+      m_thrust.z = f;
     }
 
     //! Compute acceleration's integral
@@ -311,7 +312,12 @@ namespace Simulators::LaunchVehicle
     {
       SimulationState new_state;
 
-      Math::Matrix f_thrust = m_motor->computeEngineThrust(t_sec);
+      fp64_t f = m_motor->computeEngineThrust(t_sec);
+      Math::Matrix f_thrust(1, 3, 0);
+      f_thrust(0, 0) = 0;
+      f_thrust(0, 1) = 0;
+      f_thrust(0, 2) = f;
+
       float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.alt, curr_state.w);
 
       Math::Matrix f_drag(1, 3, 0);
@@ -430,6 +436,12 @@ namespace Simulators::LaunchVehicle
     void
     setInitialConditions()
     {
+      if (m_args.randomize_pitch)
+      {
+        auto rnd = Random::Factory::create(Random::Factory::c_default, -1.0);
+        m_estate.theta = 5 * rnd->uniform();
+      }
+
       dispatch(m_initial_fix);
       dispatch(m_estate);
 

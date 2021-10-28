@@ -74,7 +74,7 @@ namespace Simulators::LaunchVehicle
 
     //! Compute current thrust given a time in milliseconds
     //! since the motor was triggered
-    DUNE::Math::Matrix
+    fp64_t
     computeEngineThrust(float curr_time_sec) const;
 
     //! Get casing and propellant mass at the given burn time
