@@ -360,7 +360,10 @@ namespace Simulators::LaunchVehicle
       estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * 0.5;
       estate_clone->v = m_estate.v + k1.m_a.element(0, 1) * 0.5;
       estate_clone->w = m_estate.w + k1.m_a.element(0, 2) * 0.5;
-      estate_clone->alt =  m_estate.alt + k1.m_v.element(0, 2) * 0.5;
+
+      estate_clone->x = m_estate.x + k1.m_v.element(0, 0) * 0.5;
+      estate_clone->y = m_estate.y + k1.m_v.element(0, 1) * 0.5;
+      estate_clone->z = m_estate.z + k1.m_v.element(0, 2) * 0.5;
       SimulationState k2 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // k3
@@ -370,7 +373,10 @@ namespace Simulators::LaunchVehicle
       estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * 0.5;
       estate_clone->v = m_estate.v  + k2.m_a.element(0, 1) * 0.5;
       estate_clone->w = m_estate.w  + k2.m_a.element(0, 2) * 0.5;
-      estate_clone->alt =  m_estate.alt + k2.m_v.element(0, 2) * 0.5;
+
+      estate_clone->x = m_estate.x + k2.m_v.element(0, 0) * 0.5;
+      estate_clone->y = m_estate.y + k2.m_v.element(0, 1) * 0.5;
+      estate_clone->z = m_estate.z + k2.m_v.element(0, 2) * 0.5;
       SimulationState k3 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // k4
@@ -380,7 +386,10 @@ namespace Simulators::LaunchVehicle
       estate_clone->u = m_estate.u  + k3.m_a.element(0, 0);
       estate_clone->v = m_estate.v  + k3.m_a.element(0, 1);
       estate_clone->w = m_estate.w  + k3.m_a.element(0, 2);
-      estate_clone->alt =  m_estate.alt + k3.m_v.element(0, 2);
+
+      estate_clone->x = m_estate.x + k3.m_v.element(0, 0);
+      estate_clone->y = m_estate.y + k3.m_v.element(0, 1);
+      estate_clone->z = m_estate.z + k3.m_v.element(0, 2);
       SimulationState k4 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
@@ -401,9 +410,10 @@ namespace Simulators::LaunchVehicle
       m_estate.x = m_estate.x + delta.m_p.element(0, 0);
       m_estate.y = m_estate.y + delta.m_p.element(0, 1);
       m_estate.z = m_estate.z + delta.m_p.element(0, 2);
-
-      // @fixme: is altitude the same as Z offset?
-      m_estate.alt =  m_estate.alt + delta.m_p.element(0, 2);
+      WGS84::displace(m_estate.x, m_estate.y, -m_estate.z, &m_estate.lat, &m_estate.lon, &m_estate.alt);
+      m_estate.x = 0;
+      m_estate.y = 0;
+      m_estate.z = 0;
 
       if (m_estate.alt < 0)
       {
