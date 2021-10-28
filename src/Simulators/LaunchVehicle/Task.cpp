@@ -288,9 +288,10 @@ namespace Simulators::LaunchVehicle
 
       // For now assume that all motors are equal
       // @todo x and y
-      m_thrust.x = 0;
-      m_thrust.y = 0;
-      m_thrust.z = m_motor->computeEngineThrust(curr_time_sec);
+      Math::Matrix thrust = m_motor->computeEngineThrust(curr_time_sec);
+      m_thrust.x = thrust.element(0, 0);
+      m_thrust.y = thrust.element(0, 1);
+      m_thrust.z = thrust.element(0, 2);
     }
 
     //! Compute acceleration's integral
@@ -314,12 +315,21 @@ namespace Simulators::LaunchVehicle
 
       Math::Matrix f_thrust = m_motor->computeEngineThrust(t_sec);
       float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.alt, curr_state.w);
-      Math::Matrix f_drag = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
+
+      Math::Matrix f_drag(1, 3, 0);
+      f_drag(0, 0) = 0;
+      f_drag(0, 1) = 0;
+      f_drag(0, 2) = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
 
       f_drag = f_drag * (curr_state.w >= 0 ? -1.0f : 1.0f);
 
       // update linear acceleration
-      new_state.m_a = ((f_thrust + f_drag) / mass) - Physics::getGravity(curr_state.alt, curr_state.lat);
+      Math::Matrix g(1, 3, 0);
+      g(0, 0) = 0;
+      g(0, 1) = 0;
+      g(0, 2) = Physics::getGravity(curr_state.alt, curr_state.lat);
+
+      new_state.m_a = ((f_thrust + f_drag) / mass) - g;
 
       new_state.m_v(0, 0) = curr_state.u;
       new_state.m_v(0, 1) = curr_state.v;
