@@ -178,7 +178,7 @@ namespace Simulators::LaunchVehicle
       {
         // @fixme is this correct?
         m_initial_fix.height = m_args.initial_altitude;
-        m_estate.alt = m_args.initial_altitude;
+        m_estate.height = m_args.initial_altitude;
       }
     }
 
@@ -230,7 +230,7 @@ namespace Simulators::LaunchVehicle
         m_drag.z = 0;
 
         m_estate.w = 0;
-        m_estate.alt = m_args.initial_altitude;
+        m_estate.height = m_args.initial_altitude;
         m_dynp.value = 0;
         return;
       }
@@ -253,14 +253,14 @@ namespace Simulators::LaunchVehicle
     {
       updateThrust(t);
 
-      m_gravity.z = Physics::getGravity(m_estate.alt, m_estate.lat);
+      m_gravity.z = Physics::getGravity(m_estate.height, m_estate.lat);
 
       // @todo x and y
       m_weight.x = 0;
       m_weight.y = 0;
       m_weight.z = m_gravity.z * m_mass;
 
-      m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.alt, m_estate.w);
+      m_dynp.value = Physics::getDynamicPressure(m_args.atmos_density, m_estate.height, m_estate.w);
 
       m_drag_coeff.value = m_drag_model->computeDragCoefficient(m_estate.w);
 
@@ -318,7 +318,7 @@ namespace Simulators::LaunchVehicle
       f_thrust(0, 1) = 0;
       f_thrust(0, 2) = f;
 
-      float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.alt, curr_state.w);
+      float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.height, curr_state.w);
 
       Math::Matrix f_drag(1, 3, 0);
       f_drag(0, 0) = 0;
@@ -331,7 +331,7 @@ namespace Simulators::LaunchVehicle
       Math::Matrix g(1, 3, 0);
       g(0, 0) = 0;
       g(0, 1) = 0;
-      g(0, 2) = Physics::getGravity(curr_state.alt, curr_state.lat);
+      g(0, 2) = Physics::getGravity(curr_state.height, curr_state.lat);
 
       new_state.m_a = ((f_thrust + f_drag) / mass) - g;
 
@@ -346,10 +346,10 @@ namespace Simulators::LaunchVehicle
     rk4Step(float t_sec)
     {
       // not enough to lift
-      if (m_thrust.z < Physics::getGravity(m_estate.alt, m_estate.lat) * m_mass && m_estate.alt == 0)
+      if (m_thrust.z < Physics::getGravity(m_estate.height, m_estate.lat) * m_mass && m_estate.height == 0)
         return;
 
-      if (!lift_off && m_estate.alt != 0)
+      if (!lift_off && m_estate.height != 0)
         lift_off = true;
 
       SimulationState k1 = computeNewState(m_estate, t_sec, m_mass);
@@ -414,14 +414,14 @@ namespace Simulators::LaunchVehicle
       m_estate.x = m_estate.x + delta.m_p.element(0, 0);
       m_estate.y = m_estate.y + delta.m_p.element(0, 1);
       m_estate.z = m_estate.z + delta.m_p.element(0, 2);
-      WGS84::displace(m_estate.x, m_estate.y, -m_estate.z, &m_estate.lat, &m_estate.lon, &m_estate.alt);
+      WGS84::displace(m_estate.x, m_estate.y, -m_estate.z, &m_estate.lat, &m_estate.lon, &m_estate.height);
       m_estate.x = 0;
       m_estate.y = 0;
       m_estate.z = 0;
 
-      if (m_estate.alt < 0)
+      if (m_estate.height < 0)
       {
-        m_estate.alt = 0;
+        m_estate.height = 0;
         m_estate.w = 0;
       }
     }
