@@ -459,7 +459,7 @@ namespace Simulators::LaunchVehicle
           m_args.motor.mass,
           m_args.area,
           m_parachute.getDragCoeff(),
-          m_parachute.getDragCoeff(),
+          m_parachute.getArea(),
           m_parachute.getMass());
     }
 
