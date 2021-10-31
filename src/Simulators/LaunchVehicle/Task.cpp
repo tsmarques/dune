@@ -398,6 +398,10 @@ namespace Simulators::LaunchVehicle
       estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * 0.5;
       estate_clone->v = m_estate.v + k1.m_a.element(1, 0) * 0.5;
       estate_clone->w = m_estate.w + k1.m_a.element(2, 0) * 0.5;
+      // @todo compute
+      estate_clone->phi = m_estate.phi;
+      estate_clone->theta = m_estate.theta;
+      estate_clone->psi = m_estate.psi;
 
       estate_clone->x = m_estate.x + k1.m_v.element(0, 0) * 0.5;
       estate_clone->y = m_estate.y + k1.m_v.element(1, 0) * 0.5;
@@ -411,6 +415,10 @@ namespace Simulators::LaunchVehicle
       estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * 0.5;
       estate_clone->v = m_estate.v  + k2.m_a.element(1, 0) * 0.5;
       estate_clone->w = m_estate.w  + k2.m_a.element(2, 0) * 0.5;
+      // @todo compute
+      estate_clone->phi = m_estate.phi;
+      estate_clone->theta = m_estate.theta;
+      estate_clone->psi = m_estate.psi;
 
       estate_clone->x = m_estate.x + k2.m_v.element(0, 0) * 0.5;
       estate_clone->y = m_estate.y + k2.m_v.element(1, 0) * 0.5;
@@ -424,6 +432,10 @@ namespace Simulators::LaunchVehicle
       estate_clone->u = m_estate.u  + k3.m_a.element(0, 0);
       estate_clone->v = m_estate.v  + k3.m_a.element(1, 0);
       estate_clone->w = m_estate.w  + k3.m_a.element(2, 0);
+      // @todo compute
+      estate_clone->phi = m_estate.phi;
+      estate_clone->theta = m_estate.theta;
+      estate_clone->psi = m_estate.psi;
 
       estate_clone->x = m_estate.x + k3.m_v.element(0, 0);
       estate_clone->y = m_estate.y + k3.m_v.element(1, 0);
