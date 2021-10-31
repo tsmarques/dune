@@ -468,6 +468,8 @@ namespace Simulators::LaunchVehicle
       if (m_estate.height < 0)
       {
         m_estate.height = 0;
+        m_estate.u = 0;
+        m_estate.v = 0;
         m_estate.w = 0;
       }
     }
