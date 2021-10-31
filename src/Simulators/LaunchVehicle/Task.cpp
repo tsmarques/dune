@@ -254,10 +254,10 @@ namespace Simulators::LaunchVehicle
     Math::Matrix
     toDcm(const IMC::EstimatedState& es)
     {
-      Math::Matrix euler(3, 1);
-      euler(0) = es.phi;
-      euler(1) = es.theta;
-      euler(2) = es.psi;
+      Math::Matrix euler(3, 1, 0);
+      euler(0, 0) = es.phi;
+      euler(1, 0) = es.theta;
+      euler(2, 0) = es.psi;
 
       return euler.toDCM();
     }
@@ -286,13 +286,13 @@ namespace Simulators::LaunchVehicle
       m_drag_coeff.value = m_drag_model->computeDragCoefficient(m_estate.w);
 
       Math::Matrix d(3, 1, 0);
-      d(0) = m_drag_model->computeDrag(m_estate.w, curr_ref_area, m_dynp.value);
-      d(1) = 0;
-      d(2) = 0;
+      d(0, 0) = m_drag_model->computeDrag(m_estate.w, curr_ref_area, m_dynp.value);
+      d(1, 0) = 0;
+      d(2, 0) = 0;
       d = m_dcm * d;
-      m_drag.x = d(0);
-      m_drag.y = d(1);
-      m_drag.z = d(2);
+      m_drag.x = d(0, 0);
+      m_drag.y = d(1, 0);
+      m_drag.z = d(2, 0);
 
       // @todo x and y
       m_drag.z = m_drag.z * (m_estate.w >= 0 ? -1.0f : 1.0f);
@@ -313,14 +313,14 @@ namespace Simulators::LaunchVehicle
       // @todo x and y
       fp64_t f = m_motor->computeEngineThrust(curr_time_sec);
       Math::Matrix thrust(3, 1, 0);
-      thrust(0) = f;
-      thrust(1) = 0;
-      thrust(2) = 0;
+      thrust(0, 0) = f;
+      thrust(1, 0) = 0;
+      thrust(2, 0) = 0;
       thrust = m_dcm * thrust;
 
-      m_thrust.x = thrust.element(0);
-      m_thrust.y = thrust.element(1);
-      m_thrust.z = thrust.element(2);
+      m_thrust.x = thrust.element(0, 0);
+      m_thrust.y = thrust.element(1, 0);
+      m_thrust.z = thrust.element(2, 0);
     }
 
     //! Compute acceleration's integral
@@ -345,33 +345,33 @@ namespace Simulators::LaunchVehicle
 
       fp64_t f = m_motor->computeEngineThrust(t_sec);
       Math::Matrix f_thrust(3, 1, 0);
-      f_thrust(0) = f;
-      f_thrust(1) = 0;
-      f_thrust(2) = 0;
+      f_thrust(0, 0) = f;
+      f_thrust(1, 0) = 0;
+      f_thrust(2, 0) = 0;
       f_thrust = dcm * f_thrust;
 
       float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.height, curr_state.w);
 
       Math::Matrix f_drag(3, 1, 0);
-      f_drag(0) = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
-      f_drag(1) = 0;
-      f_drag(2) = 0;
+      f_drag(0, 0) = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
+      f_drag(1, 0) = 0;
+      f_drag(2, 0) = 0;
       f_drag = dcm * f_drag;
 
       f_drag = f_drag * (curr_state.w >= 0 ? -1.0f : 1.0f);
 
       // update linear acceleration
       Math::Matrix g(3, 1, 0);
-      g(0) = Physics::getGravity(curr_state.height, curr_state.lat);
-      g(1) = 0;
-      g(2) = 0;
+      g(0, 0) = Physics::getGravity(curr_state.height, curr_state.lat);
+      g(1, 0) = 0;
+      g(2, 0) = 0;
       g = dcm * g;
 
       new_state.m_a = ((f_thrust + f_drag) / mass) - g;
 
-      new_state.m_v(0) = curr_state.u;
-      new_state.m_v(1) = curr_state.v;
-      new_state.m_v(2) = curr_state.w;
+      new_state.m_v(0, 0) = curr_state.u;
+      new_state.m_v(1, 0) = curr_state.v;
+      new_state.m_v(2, 0) = curr_state.w;
 
       return new_state;
     }
@@ -395,39 +395,39 @@ namespace Simulators::LaunchVehicle
       // k2
       rk4dt = 0.5f * dt;
       mass = computeMass(t_sec + rk4dt);
-      estate_clone->u = m_estate.u + k1.m_a.element(0) * 0.5;
-      estate_clone->v = m_estate.v + k1.m_a.element(1) * 0.5;
-      estate_clone->w = m_estate.w + k1.m_a.element(2) * 0.5;
+      estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * 0.5;
+      estate_clone->v = m_estate.v + k1.m_a.element(1, 0) * 0.5;
+      estate_clone->w = m_estate.w + k1.m_a.element(2, 0) * 0.5;
 
-      estate_clone->x = m_estate.x + k1.m_v.element(0) * 0.5;
-      estate_clone->y = m_estate.y + k1.m_v.element(1) * 0.5;
-      estate_clone->z = m_estate.z + k1.m_v.element(2) * 0.5;
+      estate_clone->x = m_estate.x + k1.m_v.element(0, 0) * 0.5;
+      estate_clone->y = m_estate.y + k1.m_v.element(1, 0) * 0.5;
+      estate_clone->z = m_estate.z + k1.m_v.element(2, 0) * 0.5;
       SimulationState k2 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // k3
       rk4dt = 0.5f * dt;
       mass = computeMass(t_sec + rk4dt);
       estate_clone->clear();
-      estate_clone->u = m_estate.u  + k2.m_a.element(0) * 0.5;
-      estate_clone->v = m_estate.v  + k2.m_a.element(1) * 0.5;
-      estate_clone->w = m_estate.w  + k2.m_a.element(2) * 0.5;
+      estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * 0.5;
+      estate_clone->v = m_estate.v  + k2.m_a.element(1, 0) * 0.5;
+      estate_clone->w = m_estate.w  + k2.m_a.element(2, 0) * 0.5;
 
-      estate_clone->x = m_estate.x + k2.m_v.element(0) * 0.5;
-      estate_clone->y = m_estate.y + k2.m_v.element(1) * 0.5;
-      estate_clone->z = m_estate.z + k2.m_v.element(2) * 0.5;
+      estate_clone->x = m_estate.x + k2.m_v.element(0, 0) * 0.5;
+      estate_clone->y = m_estate.y + k2.m_v.element(1, 0) * 0.5;
+      estate_clone->z = m_estate.z + k2.m_v.element(2, 0) * 0.5;
       SimulationState k3 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // k4
       rk4dt = dt;
       mass = computeMass(t_sec + rk4dt);
       estate_clone->clear();
-      estate_clone->u = m_estate.u  + k3.m_a.element(0);
-      estate_clone->v = m_estate.v  + k3.m_a.element(1);
-      estate_clone->w = m_estate.w  + k3.m_a.element(2);
+      estate_clone->u = m_estate.u  + k3.m_a.element(0, 0);
+      estate_clone->v = m_estate.v  + k3.m_a.element(1, 0);
+      estate_clone->w = m_estate.w  + k3.m_a.element(2, 0);
 
-      estate_clone->x = m_estate.x + k3.m_v.element(0);
-      estate_clone->y = m_estate.y + k3.m_v.element(1);
-      estate_clone->z = m_estate.z + k3.m_v.element(2);
+      estate_clone->x = m_estate.x + k3.m_v.element(0, 0);
+      estate_clone->y = m_estate.y + k3.m_v.element(1, 0);
+      estate_clone->z = m_estate.z + k3.m_v.element(2, 0);
       SimulationState k4 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
@@ -440,14 +440,14 @@ namespace Simulators::LaunchVehicle
       // update state
 
       // velocity
-      m_estate.u = m_estate.u + delta.m_v.element(0);
-      m_estate.v = m_estate.v + delta.m_v.element(1);
-      m_estate.w = m_estate.w + delta.m_v.element(2);
+      m_estate.u = m_estate.u + delta.m_v.element(0, 0);
+      m_estate.v = m_estate.v + delta.m_v.element(1, 0);
+      m_estate.w = m_estate.w + delta.m_v.element(2, 0);
 
       // position offsets
-      m_estate.x = m_estate.x + delta.m_p.element(0);
-      m_estate.y = m_estate.y + delta.m_p.element(1);
-      m_estate.z = m_estate.z + delta.m_p.element(2);
+      m_estate.x = m_estate.x + delta.m_p.element(0, 0);
+      m_estate.y = m_estate.y + delta.m_p.element(1, 0);
+      m_estate.z = m_estate.z + delta.m_p.element(2, 0);
       WGS84::displace(m_estate.x, m_estate.y, -m_estate.z, &m_estate.lat, &m_estate.lon, &m_estate.height);
       m_estate.x = 0;
       m_estate.y = 0;

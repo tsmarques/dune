@@ -21,11 +21,11 @@ namespace Simulators::LaunchVehicle
     DUNE::Math::Matrix m_p;
 
     SimulationState() :
-        m_v(1, 3, 0),
-        m_a(1, 3, 0),
-        m_rv(1, 3, 0),
-        m_ra(1, 3, 0),
-        m_p(1, 3, 0)
+        m_v(3, 1),
+        m_a(3, 1),
+        m_rv(3, 1),
+        m_ra(3, 1),
+        m_p(3, 1)
     {  }
   };
 }
