@@ -521,6 +521,9 @@ namespace Simulators::LaunchVehicle
 
       float curr_time_sec = (Time::Clock::getSinceEpochMsec() - m_trigger_msec) / 1000.0;
 
+      // update dcm
+      m_dcm = toDcm(m_estate);
+
       m_mass = computeMass(curr_time_sec);
       updateForces(curr_time_sec);
       rk4Step(curr_time_sec);
