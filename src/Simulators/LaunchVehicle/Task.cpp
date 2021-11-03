@@ -528,9 +528,6 @@ namespace Simulators::LaunchVehicle
       updateForces(curr_time_sec);
       rk4Step(curr_time_sec);
 
-      // update dcm
-      m_dcm = toDcm(m_estate);
-
       dispatch(m_thrust);
       dispatch(m_estate);
       dispatch(m_drag);
