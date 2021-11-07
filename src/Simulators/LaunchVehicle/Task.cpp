@@ -33,11 +33,11 @@
 #include <DUNE/DUNE.hpp>
 #include <DUNE/Physics.hpp>
 
-#include "Task.hpp"
-#include "Motor.hpp"
-#include "SimulationState.hpp"
-#include "Parachute.hpp"
 #include "DragModel.hpp"
+#include "Motor.hpp"
+#include "Parachute.hpp"
+#include "Rk4State.hpp"
+#include "Task.hpp"
 
 using DUNE_NAMESPACES;
 
@@ -337,10 +337,10 @@ namespace Simulators::LaunchVehicle
     //! v - velocity
     //! m - Current launcher's total mass
     //! g - Gravity constant
-    SimulationState
+    Rk4State
     computeNewState(const IMC::EstimatedState& curr_state, float t_sec, float mass)
     {
-      SimulationState new_state;
+      Rk4State new_state;
       Math::Matrix dcm = toDcm(curr_state);
 
       fp64_t f = m_motor->computeEngineThrust(t_sec);
@@ -367,11 +367,11 @@ namespace Simulators::LaunchVehicle
       g(2, 0) = 0;
       g = dcm * g;
 
-      new_state.m_a = ((f_thrust + f_drag) / mass) - g;
+      new_state.a = ((f_thrust + f_drag) / mass) - g;
 
-      new_state.m_v(0, 0) = curr_state.u;
-      new_state.m_v(1, 0) = curr_state.v;
-      new_state.m_v(2, 0) = curr_state.w;
+      new_state.v(0, 0) = curr_state.u;
+      new_state.v(1, 0) = curr_state.v;
+      new_state.v(2, 0) = curr_state.w;
 
       return new_state;
     }
@@ -386,7 +386,7 @@ namespace Simulators::LaunchVehicle
       if (!lift_off && m_estate.height != 0)
         lift_off = true;
 
-      SimulationState k1 = computeNewState(m_estate, t_sec, m_mass);
+      Rk4State k1 = computeNewState(m_estate, t_sec, m_mass);
 
       std::unique_ptr<EstimatedState> estate_clone(m_estate.clone());
       float rk4dt;
@@ -395,71 +395,71 @@ namespace Simulators::LaunchVehicle
       // k2
       rk4dt = 0.5f * dt;
       mass = computeMass(t_sec + rk4dt);
-      estate_clone->u = m_estate.u + k1.m_a.element(0, 0) * 0.5;
-      estate_clone->v = m_estate.v + k1.m_a.element(1, 0) * 0.5;
-      estate_clone->w = m_estate.w + k1.m_a.element(2, 0) * 0.5;
+      estate_clone->u = m_estate.u + k1.a.element(0, 0) * 0.5;
+      estate_clone->v = m_estate.v + k1.a.element(1, 0) * 0.5;
+      estate_clone->w = m_estate.w + k1.a.element(2, 0) * 0.5;
       // @todo compute
       estate_clone->phi = m_estate.phi;
       estate_clone->theta = m_estate.theta;
       estate_clone->psi = m_estate.psi;
 
-      estate_clone->x = m_estate.x + k1.m_v.element(0, 0) * 0.5;
-      estate_clone->y = m_estate.y + k1.m_v.element(1, 0) * 0.5;
-      estate_clone->z = m_estate.z + k1.m_v.element(2, 0) * 0.5;
-      SimulationState k2 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
+      estate_clone->x = m_estate.x + k1.v.element(0, 0) * 0.5;
+      estate_clone->y = m_estate.y + k1.v.element(1, 0) * 0.5;
+      estate_clone->z = m_estate.z + k1.v.element(2, 0) * 0.5;
+      Rk4State k2 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // k3
       rk4dt = 0.5f * dt;
       mass = computeMass(t_sec + rk4dt);
       estate_clone->clear();
-      estate_clone->u = m_estate.u  + k2.m_a.element(0, 0) * 0.5;
-      estate_clone->v = m_estate.v  + k2.m_a.element(1, 0) * 0.5;
-      estate_clone->w = m_estate.w  + k2.m_a.element(2, 0) * 0.5;
+      estate_clone->u = m_estate.u  + k2.a.element(0, 0) * 0.5;
+      estate_clone->v = m_estate.v  + k2.a.element(1, 0) * 0.5;
+      estate_clone->w = m_estate.w  + k2.a.element(2, 0) * 0.5;
       // @todo compute
       estate_clone->phi = m_estate.phi;
       estate_clone->theta = m_estate.theta;
       estate_clone->psi = m_estate.psi;
 
-      estate_clone->x = m_estate.x + k2.m_v.element(0, 0) * 0.5;
-      estate_clone->y = m_estate.y + k2.m_v.element(1, 0) * 0.5;
-      estate_clone->z = m_estate.z + k2.m_v.element(2, 0) * 0.5;
-      SimulationState k3 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
+      estate_clone->x = m_estate.x + k2.v.element(0, 0) * 0.5;
+      estate_clone->y = m_estate.y + k2.v.element(1, 0) * 0.5;
+      estate_clone->z = m_estate.z + k2.v.element(2, 0) * 0.5;
+      Rk4State k3 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // k4
       rk4dt = dt;
       mass = computeMass(t_sec + rk4dt);
       estate_clone->clear();
-      estate_clone->u = m_estate.u  + k3.m_a.element(0, 0);
-      estate_clone->v = m_estate.v  + k3.m_a.element(1, 0);
-      estate_clone->w = m_estate.w  + k3.m_a.element(2, 0);
+      estate_clone->u = m_estate.u  + k3.a.element(0, 0);
+      estate_clone->v = m_estate.v  + k3.a.element(1, 0);
+      estate_clone->w = m_estate.w  + k3.a.element(2, 0);
       // @todo compute
       estate_clone->phi = m_estate.phi;
       estate_clone->theta = m_estate.theta;
       estate_clone->psi = m_estate.psi;
 
-      estate_clone->x = m_estate.x + k3.m_v.element(0, 0);
-      estate_clone->y = m_estate.y + k3.m_v.element(1, 0);
-      estate_clone->z = m_estate.z + k3.m_v.element(2, 0);
-      SimulationState k4 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
+      estate_clone->x = m_estate.x + k3.v.element(0, 0);
+      estate_clone->y = m_estate.y + k3.v.element(1, 0);
+      estate_clone->z = m_estate.z + k3.v.element(2, 0);
+      Rk4State k4 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
 
       // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
-      SimulationState delta;
+      Rk4State delta;
       // integrate for velocity
-      delta.m_v = dt * (k1.m_a + 2 * (k2.m_a + k3.m_a) + k4.m_a) / 6.0f;
+      delta.v = dt * (k1.a + 2 * (k2.a + k3.a) + k4.a) / 6.0f;
       // integrate for position
-      delta.m_p = dt * (k1.m_v + 2 * (k2.m_v + k3.m_v) + k4.m_v) / 6.0f;
+      delta.p = dt * (k1.v + 2 * (k2.v + k3.v) + k4.v) / 6.0f;
 
       // update state
 
       // velocity
-      m_estate.u = m_estate.u + delta.m_v.element(0, 0);
-      m_estate.v = m_estate.v + delta.m_v.element(1, 0);
-      m_estate.w = m_estate.w + delta.m_v.element(2, 0);
+      m_estate.u = m_estate.u + delta.v.element(0, 0);
+      m_estate.v = m_estate.v + delta.v.element(1, 0);
+      m_estate.w = m_estate.w + delta.v.element(2, 0);
 
       // position offsets
-      m_estate.x = m_estate.x + delta.m_p.element(0, 0);
-      m_estate.y = m_estate.y + delta.m_p.element(1, 0);
-      m_estate.z = m_estate.z + delta.m_p.element(2, 0);
+      m_estate.x = m_estate.x + delta.p.element(0, 0);
+      m_estate.y = m_estate.y + delta.p.element(1, 0);
+      m_estate.z = m_estate.z + delta.p.element(2, 0);
       WGS84::displace(m_estate.x, m_estate.y, -m_estate.z, &m_estate.lat, &m_estate.lon, &m_estate.height);
       m_estate.x = 0;
       m_estate.y = 0;
