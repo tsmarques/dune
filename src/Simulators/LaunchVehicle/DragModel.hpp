@@ -1,7 +1,11 @@
 #ifndef DUNE_SIMULATORS_LAUNCH_VEHICLE__DRAG_MODEL_HPP
 #define DUNE_SIMULATORS_LAUNCH_VEHICLE__DRAG_MODEL_HPP
 
+#include <DUNE/Math/General.hpp>
+#include <DUNE/Physics.hpp>
 #include <string>
+
+using DUNE_NAMESPACES;
 
 namespace Simulators::LaunchVehicle
 {
