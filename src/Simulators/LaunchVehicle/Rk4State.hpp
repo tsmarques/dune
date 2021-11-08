@@ -21,12 +21,12 @@ namespace Simulators::LaunchVehicle
     DUNE::Math::Matrix p;
 
     Rk4State() :
-      v(3, 1),
-      a(3, 1),
-      e(3, 1),
-      w(3, 1),
-      wa(3, 1),
-      p(3, 1)
+      v(3, 1, 0),
+      a(3, 1, 0),
+      e(3, 1, 0),
+      w(3, 1, 0),
+      wa(3, 1, 0),
+      p(3, 1, 0)
     {  }
   };
 }
