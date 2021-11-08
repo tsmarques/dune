@@ -1,5 +1,5 @@
 ---
-Checks:          '-*,modernize-*,-modernize-deprecated-headers,-modernize-loop-convert,-modernize-pass-by-value,-modernize-raw-string-literal,,-modernize-use-auto,-modernize-use-default-member-init,-modernize-use-emplace,-modernize-use-equals-delete,-modernize-return-braced-init-list'
+Checks:          '-*,modernize-*,-modernize-deprecated-headers,-modernize-loop-convert,-modernize-pass-by-value,-modernize-raw-string-literal,,-modernize-use-auto,-modernize-use-default-member-init,-modernize-use-emplace,-modernize-use-equals-delete,-modernize-return-braced-init-list,-modernize-use-trailing-return-type'
 WarningsAsErrors: '*'
 HeaderFilterRegex: 'src'
 AnalyzeTemporaryDtors: false

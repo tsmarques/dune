@@ -7,21 +7,6 @@ namespace Simulators::LaunchVehicle
 {
   using DUNE_NAMESPACES;
 
-  //! Drag force entity label
-  static const char* c_drag_force_ent_label = "LV - Drag";
-  //! Weight entity label
-  static const char* c_weight_ent_label = "LV - Weight";
-  //! Dynamic pressure entity label
-  static const char* c_dynp_ent_label = "LV - Dynamic Pressure";
-  //! Thrust force entity label
-  static const char* c_thrust_ent_label = "LV - Thrust";
-  //! Entity label to dispatch navigation messages
-  static const char* c_navigation_ent_label = "Navigation";
-  //! Entity label to dispatch drag coefficient data
-  static const char* c_drag_coeff_ent_label = "Drag Coefficient";
-  //! Entity label with which to log gravity acceleration felt by the launcher
-  static const char* c_gravity_accel_ent_label = "LV - Gravity Acceleration";
-
   struct MotorArguments
   {
     //! Which motor is being simulated
@@ -82,15 +67,29 @@ namespace Simulators::LaunchVehicle
           .defaultValue("")
           .description("Launcher's length");
 
-      // Motor arguments
-      task->param("Number Of Motors", n_motors)
-          .defaultValue("1")
-          .description("How many motors this launch vehicle has");
-
       task->param("Dry Mass", dry_mass)
           .defaultValue("2.550")
           .units(Units::Kilogram)
           .description("Launcher's mass without motor (and propellant) in kg");
+
+      task->param("Drag Coefficient", coeff_drag)
+          .defaultValue("")
+          .description("Drag coefficient at Mach 0");
+
+      task->param("Area", area)
+          .defaultValue("0.006")
+          .description("Launcher's reference area in m^2");
+
+      task->param("Randomize Pitch", randomize_pitch)
+          .defaultValue("false")
+          .description("Simulate the imperfect pitch of the mounting rod\n"
+                       "Allowed values are between -5 and 5");
+
+      // Motor arguments
+
+      task->param("Number Of Motors", n_motors)
+          .defaultValue("1")
+          .description("How many motors this launch vehicle has");
 
       task->param("Motor -- Name", motor.name)
           .defaultValue("Aerotech I65W")
@@ -110,13 +109,7 @@ namespace Simulators::LaunchVehicle
           .units(Units::Kilogram)
           .description("Propellant's mass curve in kg");
 
-      task->param("Drag Coefficient", coeff_drag)
-          .defaultValue("")
-          .description("Drag coefficient at Mach 0");
-
-      task->param("Area", area)
-          .defaultValue("0.006")
-          .description("Launcher's reference area in m^2");
+      // Environment arguments
 
       task->param("Atmospheric density", atmos_density)
           .defaultValue("1.225")
@@ -138,10 +131,7 @@ namespace Simulators::LaunchVehicle
           .units(Units::Meter)
           .description("Initial altitude in meters");
 
-      task->param("Randomize Pitch", randomize_pitch)
-          .defaultValue("false")
-          .description("Simulate the imperfect pitch of the mounting rod\n"
-                       "Allowed values are between -5 and 5");
+      // Parachute arguments
 
       task->param("Parachute -- Drag Coefficient", parachute.drag_coeff)
           .defaultValue("1.5")

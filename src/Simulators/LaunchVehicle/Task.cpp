@@ -53,6 +53,21 @@ using DUNE_NAMESPACES;
 //! @author Tiago Sá Marques
 namespace Simulators::LaunchVehicle
 {
+  //! Drag force entity label
+  static const char* c_drag_force_ent_label = "LV - Drag";
+  //! Weight entity label
+  static const char* c_weight_ent_label = "LV - Weight";
+  //! Dynamic pressure entity label
+  static const char* c_dynp_ent_label = "LV - Dynamic Pressure";
+  //! Thrust force entity label
+  static const char* c_thrust_ent_label = "LV - Thrust";
+  //! Entity label to dispatch navigation messages
+  static const char* c_navigation_ent_label = "Navigation";
+  //! Entity label to dispatch drag coefficient data
+  static const char* c_drag_coeff_ent_label = "Drag Coefficient";
+  //! Entity label with which to log gravity acceleration felt by the launcher
+  static const char* c_gravity_accel_ent_label = "LV - Gravity Acceleration";
+
   //! %LaunchVehicle simulator task
   struct Task: public Tasks::Periodic
   {
@@ -82,8 +97,6 @@ namespace Simulators::LaunchVehicle
     IMC::EstimatedState m_estate;
     //! Initial GPS state
     IMC::GpsFix m_initial_fix;
-    //! Previous timestep in seconds
-    float m_prev_time_sec;
     //! Current mass of the launcher
     float m_mass;
     //! Take off event has happened
@@ -102,7 +115,6 @@ namespace Simulators::LaunchVehicle
         dt(0),
         m_dcm(3, 3 ,0),
         m_trigger_msec(0),
-        m_prev_time_sec(0),
         m_mass(0),
         lift_off(false),
         m_curr_drag_coeff(0),
@@ -388,7 +400,7 @@ namespace Simulators::LaunchVehicle
 
       Rk4State k1 = computeNewState(m_estate, t_sec, m_mass);
 
-      std::unique_ptr<EstimatedState> estate_clone(m_estate.clone());
+      std::unique_ptr<EstimatedState> navstate(m_estate.clone());
       float rk4dt;
       float mass;
 
@@ -396,64 +408,64 @@ namespace Simulators::LaunchVehicle
       rk4dt = 0.5f * dt;
       mass = computeMass(t_sec + rk4dt);
       // velocities
-      estate_clone->u = m_estate.u + k1.a.element(0, 0) * 0.5;
-      estate_clone->v = m_estate.v + k1.a.element(1, 0) * 0.5;
-      estate_clone->w = m_estate.w + k1.a.element(2, 0) * 0.5;
+      navstate->u = m_estate.u + k1.a.element(0, 0) * 0.5;
+      navstate->v = m_estate.v + k1.a.element(1, 0) * 0.5;
+      navstate->w = m_estate.w + k1.a.element(2, 0) * 0.5;
       // attitude
-      estate_clone->phi = m_estate.phi + k1.w.element(0, 0) * 0.5;
-      estate_clone->theta = m_estate.theta + k1.w.element(1, 0) * 0.5;
-      estate_clone->psi = m_estate.psi + k1.w.element(2, 0) * 0.5;
+      navstate->phi = m_estate.phi + k1.w.element(0, 0) * 0.5;
+      navstate->theta = m_estate.theta + k1.w.element(1, 0) * 0.5;
+      navstate->psi = m_estate.psi + k1.w.element(2, 0) * 0.5;
       // angular velocity
-      estate_clone->p = m_estate.p + k1.wa.element(0, 0) * 0.5;
-      estate_clone->q = m_estate.q + k1.wa.element(1, 0) * 0.5;
-      estate_clone->r = m_estate.p + k1.wa.element(2, 0) * 0.5;
+      navstate->p = m_estate.p + k1.wa.element(0, 0) * 0.5;
+      navstate->q = m_estate.q + k1.wa.element(1, 0) * 0.5;
+      navstate->r = m_estate.p + k1.wa.element(2, 0) * 0.5;
       // position
-      estate_clone->x = m_estate.x + k1.v.element(0, 0) * 0.5;
-      estate_clone->y = m_estate.y + k1.v.element(1, 0) * 0.5;
-      estate_clone->z = m_estate.z + k1.v.element(2, 0) * 0.5;
-      Rk4State k2 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
+      navstate->x = m_estate.x + k1.v.element(0, 0) * 0.5;
+      navstate->y = m_estate.y + k1.v.element(1, 0) * 0.5;
+      navstate->z = m_estate.z + k1.v.element(2, 0) * 0.5;
+      Rk4State k2 = computeNewState(*navstate, t_sec + rk4dt, mass);
 
       // k3
       rk4dt = 0.5f * dt;
       mass = computeMass(t_sec + rk4dt);
-      estate_clone->clear();
-      estate_clone->u = m_estate.u  + k2.a.element(0, 0) * 0.5;
-      estate_clone->v = m_estate.v  + k2.a.element(1, 0) * 0.5;
-      estate_clone->w = m_estate.w  + k2.a.element(2, 0) * 0.5;
+      navstate->clear();
+      navstate->u = m_estate.u  + k2.a.element(0, 0) * 0.5;
+      navstate->v = m_estate.v  + k2.a.element(1, 0) * 0.5;
+      navstate->w = m_estate.w  + k2.a.element(2, 0) * 0.5;
       // attitude
-      estate_clone->phi = m_estate.phi + k2.w.element(0, 0) * 0.5;
-      estate_clone->theta = m_estate.theta + k2.w.element(1, 0) * 0.5;
-      estate_clone->psi = m_estate.psi + k2.w.element(2, 0) * 0.5;
+      navstate->phi = m_estate.phi + k2.w.element(0, 0) * 0.5;
+      navstate->theta = m_estate.theta + k2.w.element(1, 0) * 0.5;
+      navstate->psi = m_estate.psi + k2.w.element(2, 0) * 0.5;
       // angular velocity
-      estate_clone->p = m_estate.p + k2.wa.element(0, 0) * 0.5;
-      estate_clone->q = m_estate.q + k2.wa.element(1, 0) * 0.5;
-      estate_clone->r = m_estate.p + k2.wa.element(2, 0) * 0.5;
+      navstate->p = m_estate.p + k2.wa.element(0, 0) * 0.5;
+      navstate->q = m_estate.q + k2.wa.element(1, 0) * 0.5;
+      navstate->r = m_estate.p + k2.wa.element(2, 0) * 0.5;
       // position
-      estate_clone->x = m_estate.x + k2.v.element(0, 0) * 0.5;
-      estate_clone->y = m_estate.y + k2.v.element(1, 0) * 0.5;
-      estate_clone->z = m_estate.z + k2.v.element(2, 0) * 0.5;
-      Rk4State k3 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
+      navstate->x = m_estate.x + k2.v.element(0, 0) * 0.5;
+      navstate->y = m_estate.y + k2.v.element(1, 0) * 0.5;
+      navstate->z = m_estate.z + k2.v.element(2, 0) * 0.5;
+      Rk4State k3 = computeNewState(*navstate, t_sec + rk4dt, mass);
 
       // k4
       rk4dt = dt;
       mass = computeMass(t_sec + rk4dt);
-      estate_clone->clear();
-      estate_clone->u = m_estate.u  + k3.a.element(0, 0);
-      estate_clone->v = m_estate.v  + k3.a.element(1, 0);
-      estate_clone->w = m_estate.w  + k3.a.element(2, 0);
+      navstate->clear();
+      navstate->u = m_estate.u  + k3.a.element(0, 0);
+      navstate->v = m_estate.v  + k3.a.element(1, 0);
+      navstate->w = m_estate.w  + k3.a.element(2, 0);
       // attitude
-      estate_clone->phi = m_estate.phi + k1.w.element(0, 0);
-      estate_clone->theta = m_estate.theta + k1.w.element(1, 0);
-      estate_clone->psi = m_estate.psi + k1.w.element(2, 0);
+      navstate->phi = m_estate.phi + k1.w.element(0, 0);
+      navstate->theta = m_estate.theta + k1.w.element(1, 0);
+      navstate->psi = m_estate.psi + k1.w.element(2, 0);
       // angular velocity
-      estate_clone->p = m_estate.p + k3.wa.element(0, 0);
-      estate_clone->q = m_estate.q + k3.wa.element(1, 0);
-      estate_clone->r = m_estate.p + k3.wa.element(2, 0);
+      navstate->p = m_estate.p + k3.wa.element(0, 0);
+      navstate->q = m_estate.q + k3.wa.element(1, 0);
+      navstate->r = m_estate.p + k3.wa.element(2, 0);
       // position
-      estate_clone->x = m_estate.x + k3.v.element(0, 0);
-      estate_clone->y = m_estate.y + k3.v.element(1, 0);
-      estate_clone->z = m_estate.z + k3.v.element(2, 0);
-      Rk4State k4 = computeNewState(*estate_clone, t_sec + rk4dt, mass);
+      navstate->x = m_estate.x + k3.v.element(0, 0);
+      navstate->y = m_estate.y + k3.v.element(1, 0);
+      navstate->z = m_estate.z + k3.v.element(2, 0);
+      Rk4State k4 = computeNewState(*navstate, t_sec + rk4dt, mass);
 
       // y(n+1) = y(n) + h*(k1 + 2 * (k2 + k3) + k4)/6
       Rk4State delta;
@@ -559,8 +571,6 @@ namespace Simulators::LaunchVehicle
       dispatch(m_gravity);
       dispatch(m_dynp);
       dispatch(m_drag_coeff);
-
-      m_prev_time_sec = curr_time_sec;
     }
   };
 }
