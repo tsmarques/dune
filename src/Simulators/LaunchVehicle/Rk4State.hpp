@@ -11,6 +11,8 @@ namespace Simulators::LaunchVehicle
     DUNE::Math::Matrix v;
     //! Linear acceleration (x, y, z)
     DUNE::Math::Matrix a;
+    //! Euler angles (roll, pitch, yaw)
+    DUNE::Math::Matrix e;
     //! Angular Velocity (x, y, z)
     DUNE::Math::Matrix w;
     //! Angular Acceleration (x, y, z)
@@ -21,6 +23,7 @@ namespace Simulators::LaunchVehicle
     Rk4State() :
       v(3, 1),
       a(3, 1),
+      e(3, 1),
       w(3, 1),
       wa(3, 1),
       p(3, 1)

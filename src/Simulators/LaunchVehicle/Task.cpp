@@ -395,14 +395,19 @@ namespace Simulators::LaunchVehicle
       // k2
       rk4dt = 0.5f * dt;
       mass = computeMass(t_sec + rk4dt);
+      // velocities
       estate_clone->u = m_estate.u + k1.a.element(0, 0) * 0.5;
       estate_clone->v = m_estate.v + k1.a.element(1, 0) * 0.5;
       estate_clone->w = m_estate.w + k1.a.element(2, 0) * 0.5;
-      // @todo compute
-      estate_clone->phi = m_estate.phi;
-      estate_clone->theta = m_estate.theta;
-      estate_clone->psi = m_estate.psi;
-
+      // attitude
+      estate_clone->phi = m_estate.phi + k1.w.element(0, 0) * 0.5;
+      estate_clone->theta = m_estate.theta + k1.w.element(1, 0) * 0.5;
+      estate_clone->psi = m_estate.psi + k1.w.element(2, 0) * 0.5;
+      // angular velocity
+      estate_clone->p = m_estate.p + k1.wa.element(0, 0) * 0.5;
+      estate_clone->q = m_estate.q + k1.wa.element(1, 0) * 0.5;
+      estate_clone->r = m_estate.p + k1.wa.element(2, 0) * 0.5;
+      // position
       estate_clone->x = m_estate.x + k1.v.element(0, 0) * 0.5;
       estate_clone->y = m_estate.y + k1.v.element(1, 0) * 0.5;
       estate_clone->z = m_estate.z + k1.v.element(2, 0) * 0.5;
@@ -415,11 +420,15 @@ namespace Simulators::LaunchVehicle
       estate_clone->u = m_estate.u  + k2.a.element(0, 0) * 0.5;
       estate_clone->v = m_estate.v  + k2.a.element(1, 0) * 0.5;
       estate_clone->w = m_estate.w  + k2.a.element(2, 0) * 0.5;
-      // @todo compute
-      estate_clone->phi = m_estate.phi;
-      estate_clone->theta = m_estate.theta;
-      estate_clone->psi = m_estate.psi;
-
+      // attitude
+      estate_clone->phi = m_estate.phi + k2.w.element(0, 0) * 0.5;
+      estate_clone->theta = m_estate.theta + k2.w.element(1, 0) * 0.5;
+      estate_clone->psi = m_estate.psi + k2.w.element(2, 0) * 0.5;
+      // angular velocity
+      estate_clone->p = m_estate.p + k2.wa.element(0, 0) * 0.5;
+      estate_clone->q = m_estate.q + k2.wa.element(1, 0) * 0.5;
+      estate_clone->r = m_estate.p + k2.wa.element(2, 0) * 0.5;
+      // position
       estate_clone->x = m_estate.x + k2.v.element(0, 0) * 0.5;
       estate_clone->y = m_estate.y + k2.v.element(1, 0) * 0.5;
       estate_clone->z = m_estate.z + k2.v.element(2, 0) * 0.5;
@@ -432,11 +441,15 @@ namespace Simulators::LaunchVehicle
       estate_clone->u = m_estate.u  + k3.a.element(0, 0);
       estate_clone->v = m_estate.v  + k3.a.element(1, 0);
       estate_clone->w = m_estate.w  + k3.a.element(2, 0);
-      // @todo compute
-      estate_clone->phi = m_estate.phi;
-      estate_clone->theta = m_estate.theta;
-      estate_clone->psi = m_estate.psi;
-
+      // attitude
+      estate_clone->phi = m_estate.phi + k1.w.element(0, 0);
+      estate_clone->theta = m_estate.theta + k1.w.element(1, 0);
+      estate_clone->psi = m_estate.psi + k1.w.element(2, 0);
+      // angular velocity
+      estate_clone->p = m_estate.p + k3.wa.element(0, 0);
+      estate_clone->q = m_estate.q + k3.wa.element(1, 0);
+      estate_clone->r = m_estate.p + k3.wa.element(2, 0);
+      // position
       estate_clone->x = m_estate.x + k3.v.element(0, 0);
       estate_clone->y = m_estate.y + k3.v.element(1, 0);
       estate_clone->z = m_estate.z + k3.v.element(2, 0);
@@ -446,6 +459,10 @@ namespace Simulators::LaunchVehicle
       Rk4State delta;
       // integrate for velocity
       delta.v = dt * (k1.a + 2 * (k2.a + k3.a) + k4.a) / 6.0f;
+      // integrate for orientation
+      delta.e = dt * (k1.w + 2 * (k2.w + k3.w) + k4.w) / 6.0f;
+      // integrate for angular velocity
+      delta.w = dt * (k1.wa + 2 * (k2.wa + k3.wa) + k4.wa) / 6.0f;
       // integrate for position
       delta.p = dt * (k1.v + 2 * (k2.v + k3.v) + k4.v) / 6.0f;
 
@@ -455,7 +472,14 @@ namespace Simulators::LaunchVehicle
       m_estate.u = m_estate.u + delta.v.element(0, 0);
       m_estate.v = m_estate.v + delta.v.element(1, 0);
       m_estate.w = m_estate.w + delta.v.element(2, 0);
-
+      // attitude
+      m_estate.phi = m_estate.phi + delta.e.element(0, 0);
+      m_estate.theta = m_estate.theta + delta.e.element(1, 0);
+      m_estate.psi = m_estate.psi + delta.e.element(2, 0);
+      // angular velocity
+      m_estate.p += delta.w.element(0, 0);
+      m_estate.q += delta.w.element(1, 0);
+      m_estate.r += delta.w.element(2, 0);
       // position offsets
       m_estate.x = m_estate.x + delta.p.element(0, 0);
       m_estate.y = m_estate.y + delta.p.element(1, 0);
