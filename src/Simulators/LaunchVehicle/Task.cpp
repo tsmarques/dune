@@ -336,7 +336,7 @@ namespace Simulators::LaunchVehicle
     }
 
     //! Compute acceleration's integral
-    //! F = Ft - Fd - Fg
+    //! F = Ft + Fd - Fg + Fn + Fs
     //! F - total force
     //! Ft - Thrust force
     //! Fd - Drag force
@@ -354,6 +354,10 @@ namespace Simulators::LaunchVehicle
     {
       Rk4State new_state;
       Math::Matrix dcm = toDcm(curr_state);
+
+      // @todo
+      Math::Matrix f_normal(3, 1, 0);
+      Math::Matrix f_side(3, 1, 0);
 
       fp64_t f = m_motor->computeEngineThrust(t_sec);
       Math::Matrix f_thrust(3, 1, 0);
@@ -379,11 +383,13 @@ namespace Simulators::LaunchVehicle
       g(2, 0) = 0;
       g = dcm * g;
 
-      new_state.a = ((f_thrust + f_drag) / mass) - g;
+      new_state.a = ((f_thrust + f_drag + f_normal + f_side) / mass) - g;
 
       new_state.v(0, 0) = curr_state.u;
       new_state.v(1, 0) = curr_state.v;
       new_state.v(2, 0) = curr_state.w;
+
+      // @todo angular acceleration
 
       return new_state;
     }
