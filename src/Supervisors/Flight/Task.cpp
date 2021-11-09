@@ -217,7 +217,7 @@ namespace Supervisors::Flight
           if (!m_apogee_monitor->apogeeReached())
             break;
 
-          war("apogee");
+          war("apogee at %f", m_apogee_monitor->apogeeAltitude());
           m_flight_state.type = IMC::FlightEvent::FLEV_APOGEE;
           m_parachute_wdg.setTop(m_args.parachute_delay);
           break;

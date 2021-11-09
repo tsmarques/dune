@@ -64,13 +64,19 @@ namespace Supervisors::Flight
         return m_triggered;
       }
 
+      fp64_t
+      apogeeAltitude() const
+      {
+        return m_max_altitude;
+      }
+
       void
       consume(const IMC::EstimatedState* msg)
       {
         if (m_triggered)
           return;
 
-        if (msg->height > m_max_altitude)
+        if (msg->height >= m_max_altitude)
         {
           m_max_altitude = msg->height;
           m_nmatch = 0;
