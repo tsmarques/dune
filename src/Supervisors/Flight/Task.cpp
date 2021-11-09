@@ -230,7 +230,12 @@ namespace Supervisors::Flight
           m_flight_state.type = IMC::FlightEvent::FLEV_RECOVERY;
           break;
         case IMC::FlightEvent::FLEV_RECOVERY:
-          // do nothing ?
+          if (m_estate.height != 0)
+            break;
+
+          war("touchdown");
+          m_flight_state.type = IMC::FlightEvent::FLEV_TOUCHDOWN;
+        case IMC::FlightEvent::FLEV_TOUCHDOWN:
           break;
         default:
           err("Unknown flight event %d", m_flight_state.type);
