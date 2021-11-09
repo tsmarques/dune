@@ -191,7 +191,7 @@ namespace Supervisors::Flight
           m_flight_state.type = IMC::FlightEvent::FLEV_IGNITION;
           break;
         case IMC::FlightEvent::FLEV_IGNITION:
-          if (m_estate.alt <= m_args.liftoff_altitude)
+          if (m_estate.height <= m_args.liftoff_altitude)
             break;
 
           war("liftoff");
