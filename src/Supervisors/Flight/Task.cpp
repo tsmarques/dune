@@ -55,7 +55,7 @@ namespace Supervisors::Flight
     double parachute_delay{};
   };
 
-  struct Task: public DUNE::Tasks::Task
+  struct Task: public Tasks::Periodic
   {
     //! Current flight state
     IMC::FlightEvent m_flight_state;
@@ -80,7 +80,7 @@ namespace Supervisors::Flight
     //! @param[in] name task name.
     //! @param[in] ctx context.
     Task(const std::string& name, Tasks::Context& ctx):
-        DUNE::Tasks::Task(name, ctx),
+        Tasks::Periodic(name, ctx),
         m_flight_state(),
         m_thrust(),
         m_estate(),
@@ -147,10 +147,11 @@ namespace Supervisors::Flight
       m_apogee_monitor = std::make_unique<ApogeeMonitor>(m_args.altitude_window_size);
     }
 
-    //! Release resources.
     void
-    onResourceRelease() override
-    { }
+    onResourceInitialization() override
+    {
+      setEntityState(EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
+    }
 
     void
     consume(const IMC::Force* msg)
@@ -178,8 +179,9 @@ namespace Supervisors::Flight
         m_dyn_monitor->consume(msg);
     }
 
+    //! Main loop.
     void
-    update()
+    task() override
     {
       uint8_t start_state = m_flight_state.type;
       switch(m_flight_state.type)
@@ -237,18 +239,6 @@ namespace Supervisors::Flight
 
       if (start_state != m_flight_state.type)
         dispatch(m_flight_state);
-    }
-
-    //! Main loop.
-    void
-    onMain() override
-    {
-      setEntityState(EntityState::ESTA_NORMAL, Status::CODE_ACTIVE);
-      while (!stopping())
-      {
-        waitForMessages(1.0);
-        update();
-      }
     }
   };
 }
