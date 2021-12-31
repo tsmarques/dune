@@ -325,10 +325,10 @@ namespace Simulators::LaunchVehicle
       // @todo x and y
       fp64_t f = m_motor->computeEngineThrust(curr_time_sec);
       Math::Matrix thrust(3, 1, 0);
-      thrust(0, 0) = f;
+      thrust(0, 0) = 0;
       thrust(1, 0) = 0;
-      thrust(2, 0) = 0;
-      thrust = m_dcm * thrust;
+      thrust(2, 0) = f;
+//      thrust = m_dcm * thrust;
 
       m_thrust.x = thrust.element(0, 0);
       m_thrust.y = thrust.element(1, 0);
@@ -361,10 +361,10 @@ namespace Simulators::LaunchVehicle
 
       fp64_t f = m_motor->computeEngineThrust(t_sec);
       Math::Matrix f_thrust(3, 1, 0);
-      f_thrust(0, 0) = f;
+      f_thrust(0, 0) = 0;
       f_thrust(1, 0) = 0;
-      f_thrust(2, 0) = 0;
-      f_thrust = dcm * f_thrust;
+      f_thrust(2, 0) = f;
+//      f_thrust = dcm * f_thrust;
 
       float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.height, curr_state.w);
 
