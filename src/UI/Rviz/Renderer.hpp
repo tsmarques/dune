@@ -105,6 +105,8 @@ namespace UI::Rviz
     ScrollingBuffer phi, theta, psi;
     //! drag force
     ScrollingBuffer fdx, fdy, fdz;
+    //! Altitude
+    ScrollingBuffer alt;
     float max_velocities;
     float max_forces;
     float max_euler;
@@ -122,23 +124,7 @@ namespace UI::Rviz
         m_args(args),
         m_first_time(init_time),
         m_paused(false)
-    {
-      u.AddPoint(0.0, 0);
-      v.AddPoint(0.0, 0);
-      w.AddPoint(0.0, 0);
-
-      ftx.AddPoint(0.0, 0);
-      fty.AddPoint(0.0, 0);
-      ftz.AddPoint(0.0, 0);
-
-      phi.AddPoint(0.0, 0);
-      theta.AddPoint(0.0, 0);
-      psi.AddPoint(0.0, 0);
-
-      fdx.AddPoint(0.0, 0);
-      fdy.AddPoint(0.0, 0);
-      fdz.AddPoint(0.0, 0);
-    }
+    {  }
 
     void
     readData()
@@ -189,7 +175,7 @@ namespace UI::Rviz
             theta.AddPoint(time, state->theta);
             psi.AddPoint(time, state->psi);
 
-//            std::cout << state->phi << " " << state->theta << " " << state->psi << std::endl;
+            alt.AddPoint(time, state->height);
 
             max_velocities = std::max(max_velocities, state->u);
             max_velocities = std::max(max_velocities, state->v);
@@ -240,8 +226,10 @@ namespace UI::Rviz
         ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({u, v, w}) - 10,
                                    ScrollingBuffer::max_of({u, v, w}) + 10,
                                    cond);
-        if (ImPlot::BeginPlot("##Velocity", "Time (s)", "Velocity (m/s)", ImVec2(-1, 400),
-                              0, flags, flags))
+        if (ImPlot::BeginPlot("##Velocity", "Time (s)",
+                              "Velocity (m/s)", ImVec2(-1, 400),
+                              0, flags, flags) &&
+            !u.Data.empty())
         {
           ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
           ImPlot::PlotLine("u",
@@ -263,29 +251,63 @@ namespace UI::Rviz
         }
 
         ImGui::NewLine();
-        ImPlot::SetNextPlotLimitsX(0, t + 5, cond);
-        ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({ftx, fty, ftz}) - 10,
-                                   ScrollingBuffer::max_of({ftx, fty, ftz}) + 10, cond);
-        if (ImPlot::BeginPlot("##Thrust", "Time (s)", "Thrust (N)", ImVec2(-1, 400),
-                              0, flags, flags))
+
+        if (ImGui::BeginTabBar("Extra Plots"))
         {
-          ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
-          ImPlot::PlotLine("x",
-                           &ftx.Data[0].x, &ftx.Data[0].y, ftx.Data.size(),
-                           ftx.Offset,
-                           2 * sizeof(float));
+          bool ftab = true;
+          if (ImGui::BeginTabItem("Altitude", &ftab, ImGuiTabItemFlags_None))
+          {
+            ImPlot::SetNextPlotLimitsX(0, t + 5, cond);
+            ImPlot::SetNextPlotLimitsY(
+                0,
+                alt.max() + 10, cond);
+            if (ImPlot::BeginPlot("##Altitude", "Time (s)", "Altitude (m)",
+                                  ImVec2(-1, 400), 0, flags, flags)
+                && !alt.Data.empty())
+            {
+              ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
+              ImPlot::PlotLine("Altitude", &alt.Data[0].x, &alt.Data[0].y,
+                               alt.Data.size(), alt.Offset, 2 * sizeof(float));
 
-          ImPlot::PlotLine("y",
-                           &fty.Data[0].x, &fty.Data[0].y, fty.Data.size(),
-                           fty.Offset,
-                           2 * sizeof(float));
+              ImPlot::EndPlot();
+            }
 
-          ImPlot::PlotLine("z",
-                           &ftz.Data[0].x, &ftz.Data[0].y, ftz.Data.size(),
-                           ftz.Offset,
-                           2 * sizeof(float));
+            ImGui::EndTabItem();
+          }
 
-          ImPlot::EndPlot();
+          bool alttab = true;
+          if (ImGui::BeginTabItem("Thrust", &alttab, ImGuiTabItemFlags_None))
+          {
+            ImPlot::SetNextPlotLimitsX(0, t + 5, cond);
+            ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({ftx, fty, ftz}) - 10,
+                                       ScrollingBuffer::max_of({ftx, fty, ftz}) + 10, cond);
+            if (ImPlot::BeginPlot("##Thrust", "Time (s)",
+                                  "Thrust (N)", ImVec2(-1, 400),
+                                  0, flags, flags) &&
+                !ftx.Data.empty())
+            {
+              ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
+              ImPlot::PlotLine("x",
+                               &ftx.Data[0].x, &ftx.Data[0].y, ftx.Data.size(),
+                               ftx.Offset,
+                               2 * sizeof(float));
+
+              ImPlot::PlotLine("y",
+                               &fty.Data[0].x, &fty.Data[0].y, fty.Data.size(),
+                               fty.Offset,
+                               2 * sizeof(float));
+
+              ImPlot::PlotLine("z",
+                               &ftz.Data[0].x, &ftz.Data[0].y, ftz.Data.size(),
+                               ftz.Offset,
+                               2 * sizeof(float));
+
+              ImPlot::EndPlot();
+            }
+
+            ImGui::EndTabItem();
+          }
+          ImGui::EndTabBar();
         }
 
         ImGui::NextColumn();
@@ -293,8 +315,10 @@ namespace UI::Rviz
         ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({phi, theta, psi}) - 1,
                                    ScrollingBuffer::max_of({phi, theta, psi}) + 1,
                                    cond);
-        if (ImPlot::BeginPlot("##Atitude", "Time (s)", "Euler Angles", ImVec2(-1, 400),
-                              0, flags, flags))
+        if (ImPlot::BeginPlot("##Atitude", "Time (s)",
+                              "Euler Angles", ImVec2(-1, 400),
+                              0, flags, flags) &&
+            !phi.Data.empty())
         {
           ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
           ImPlot::PlotLine("phi",
@@ -315,11 +339,14 @@ namespace UI::Rviz
           ImPlot::EndPlot();
         }
 
+        ImGui::NewLine();
         ImPlot::SetNextPlotLimitsX(0, t + 5, cond);
         ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({fdx, fdy, fdz}) - 5,
                                    ScrollingBuffer::max_of({fdx, fdy, fdz}) + 5, cond);
-        if (ImPlot::BeginPlot("##Drag", "Time (s)", "Drag Force", ImVec2(-1, 400),
-                              0, flags, flags))
+        if (ImPlot::BeginPlot("##Drag", "Time (s)",
+                              "Drag Force", ImVec2(-1, 400),
+                              0, flags, flags) &&
+            !fdx.Data.empty())
         {
           ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
           ImPlot::PlotLine("Drag - x",
