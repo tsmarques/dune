@@ -12,14 +12,39 @@ namespace UI::Rviz
 
   struct ScrollingBuffer
   {
+    static float
+    min_of(std::initializer_list<ScrollingBuffer> list)
+    {
+      float minv = std::numeric_limits<float>::max();
+      for(auto elem : list)
+        minv = std::min(minv, elem.min());
+
+      return minv;
+    }
+
+    static float
+    max_of(std::initializer_list<ScrollingBuffer> list)
+    {
+      float maxv = std::numeric_limits<float>::min();
+      for(auto elem : list)
+        maxv = std::max(maxv, elem.max());
+
+      return maxv;
+    }
+
     int MaxSize;
     int Offset;
     ImVector<ImVec2> Data;
+    //! max min
+    float limits[2];
+
     ScrollingBuffer(int max_size = 10000)
     {
       MaxSize = max_size;
       Offset = 0;
       Data.reserve(MaxSize);
+      limits[0] = std::numeric_limits<float>::max();
+      limits[1] = std::numeric_limits<float>::min();
     }
     void
     AddPoint(float x, float y)
@@ -31,7 +56,21 @@ namespace UI::Rviz
         Data[Offset] = ImVec2(x, y);
         Offset = (Offset + 1) % MaxSize;
       }
+
+      limits[0] = std::min(limits[0], y);
+      limits[1] = std::max(limits[1], y);
     }
+
+    float min() const
+    {
+      return limits[0];
+    }
+
+    float max() const
+    {
+      return limits[1];
+    }
+
     void
     Erase()
     {
@@ -48,6 +87,8 @@ namespace UI::Rviz
     std::atomic<bool>& canary;
     TSQueue<IMC::Message*> inqueue;
     TSQueue<IMC::Message*> outqueue;
+    uint16_t eid_thrust {};
+    uint16_t eid_drag {};
 
     explicit RendererArguments(std::atomic<bool>& signal) :
         canary(signal)
@@ -56,9 +97,14 @@ namespace UI::Rviz
 
   class Renderer : public Application
   {
+    //! velocities
     ScrollingBuffer u, v, w;
+    //! thrust force
     ScrollingBuffer ftx, fty, ftz;
+    //! attitude
     ScrollingBuffer phi, theta, psi;
+    //! drag force
+    ScrollingBuffer fdx, fdy, fdz;
     float max_velocities;
     float max_forces;
     float max_euler;
@@ -88,6 +134,10 @@ namespace UI::Rviz
       phi.AddPoint(0.0, 0);
       theta.AddPoint(0.0, 0);
       psi.AddPoint(0.0, 0);
+
+      fdx.AddPoint(0.0, 0);
+      fdy.AddPoint(0.0, 0);
+      fdz.AddPoint(0.0, 0);
     }
 
     void
@@ -103,16 +153,27 @@ namespace UI::Rviz
         {
           case DUNE_IMC_FORCE:
           {
-            const IMC::Force* thrust = dynamic_cast<const IMC::Force*>(m);
+            const IMC::Force* force = dynamic_cast<const IMC::Force*>(m);
             auto time = std::max(0.0, m->getTimeStamp() - m_first_time);
 
-            ftx.AddPoint(time, thrust->x);
-            fty.AddPoint(time, thrust->y);
-            ftz.AddPoint(time, thrust->z);
+            if (m->getSourceEntity() == m_args.eid_thrust)
+            {
+              ftx.AddPoint(time, force->x);
+              fty.AddPoint(time, force->y);
+              ftz.AddPoint(time, force->z);
+            }
+            else if(m->getSourceEntity() == m_args.eid_drag)
+            {
+              fdx.AddPoint(time, force->x);
+              fdy.AddPoint(time, force->y);
+              fdz.AddPoint(time, force->z);
+            }
+            else
+              return;
 
-            max_forces = std::max(max_forces, (float) thrust->x);
-            max_forces = std::max(max_forces, (float) thrust->y);
-            max_forces = std::max(max_forces, (float) thrust->z);
+            max_forces = std::max(max_forces, (float) force->x);
+            max_forces = std::max(max_forces, (float) force->y);
+            max_forces = std::max(max_forces, (float) force->z);
 
           }
             break;
@@ -175,8 +236,10 @@ namespace UI::Rviz
         }
 
         static ImPlotAxisFlags flags = ImPlotAxisFlags_None;
-        ImPlot::SetNextPlotLimitsX(0, t, cond);
-        ImPlot::SetNextPlotLimitsY(-120, max_velocities + 20, cond);
+        ImPlot::SetNextPlotLimitsX(0, t + 5, cond);
+        ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({u, v, w}) - 10,
+                                   ScrollingBuffer::max_of({u, v, w}) + 10,
+                                   cond);
         if (ImPlot::BeginPlot("##Velocity", "Time (s)", "Velocity (m/s)", ImVec2(-1, 400),
                               0, flags, flags))
         {
@@ -200,8 +263,9 @@ namespace UI::Rviz
         }
 
         ImGui::NewLine();
-        ImPlot::SetNextPlotLimitsX(0, t, cond);
-        ImPlot::SetNextPlotLimitsY(0, max_forces + 20, cond);
+        ImPlot::SetNextPlotLimitsX(0, t + 5, cond);
+        ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({ftx, fty, ftz}) - 10,
+                                   ScrollingBuffer::max_of({ftx, fty, ftz}) + 10, cond);
         if (ImPlot::BeginPlot("##Thrust", "Time (s)", "Thrust (N)", ImVec2(-1, 400),
                               0, flags, flags))
         {
@@ -225,8 +289,10 @@ namespace UI::Rviz
         }
 
         ImGui::NextColumn();
-        ImPlot::SetNextPlotLimitsX(0, t, cond);
-        ImPlot::SetNextPlotLimitsY(-2, 2, cond);
+        ImPlot::SetNextPlotLimitsX(0, t + 5, cond);
+        ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({phi, theta, psi}) - 1,
+                                   ScrollingBuffer::max_of({phi, theta, psi}) + 1,
+                                   cond);
         if (ImPlot::BeginPlot("##Atitude", "Time (s)", "Euler Angles", ImVec2(-1, 400),
                               0, flags, flags))
         {
@@ -244,6 +310,31 @@ namespace UI::Rviz
           ImPlot::PlotLine("psi",
                            &psi.Data[0].x, &psi.Data[0].y, psi.Data.size(),
                            psi.Offset,
+                           2 * sizeof(float));
+
+          ImPlot::EndPlot();
+        }
+
+        ImPlot::SetNextPlotLimitsX(0, t + 5, cond);
+        ImPlot::SetNextPlotLimitsY(ScrollingBuffer::min_of({fdx, fdy, fdz}) - 5,
+                                   ScrollingBuffer::max_of({fdx, fdy, fdz}) + 5, cond);
+        if (ImPlot::BeginPlot("##Drag", "Time (s)", "Drag Force", ImVec2(-1, 400),
+                              0, flags, flags))
+        {
+          ImPlot::SetNextFillStyle(IMPLOT_AUTO_COL, 0.5f);
+          ImPlot::PlotLine("Drag - x",
+                           &fdx.Data[0].x, &fdx.Data[0].y, fdx.Data.size(),
+                           fdx.Offset,
+                           2 * sizeof(float));
+
+          ImPlot::PlotLine("Drag - y",
+                           &fdy.Data[0].x, &fdy.Data[0].y, fdy.Data.size(),
+                           fdy.Offset,
+                           2 * sizeof(float));
+
+          ImPlot::PlotLine("Drag - z",
+                           &fdz.Data[0].x, &fdz.Data[0].y, fdz.Data.size(),
+                           fdz.Offset,
                            2 * sizeof(float));
 
           ImPlot::EndPlot();

@@ -72,6 +72,13 @@ namespace UI::Rviz
     }
 
     void
+    onEntityResolution() override
+    {
+      m_args_rend.eid_drag = resolveEntity("LV - Drag");
+      m_args_rend.eid_thrust = resolveEntity("LV - Thrust");
+    }
+
+    void
     onResourceInitialization() override
     {
       setEntityState(IMC::EntityState::ESTA_NORMAL, CODE_ACTIVE);
@@ -92,9 +99,6 @@ namespace UI::Rviz
     consume(const IMC::Force* m)
     {
       if (!m_running)
-        return;
-
-      if (resolveEntity(m->getSourceEntity()) != "LV - Thrust")
         return;
 
       m_args_rend.inqueue.push(m->clone());
