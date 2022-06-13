@@ -53,31 +53,31 @@ BODY = [
 
     # onUpdateParameters.
     '//! Update internal state with new parameter values.',
-    'void', 'onUpdateParameters(void)', '{', '}', '\n',
+    'void', 'onUpdateParameters() override', '{', '}', '\n',
 
     # onEntityReservation.
     '//! Reserve entity identifiers.',
-    'void', 'onEntityReservation(void)', '{', '}', '\n',
+    'void', 'onEntityReservation() override', '{', '}', '\n',
 
     # onEntityResolution.
     '//! Resolve entity names.',
-    'void', 'onEntityResolution(void)', '{', '}', '\n',
+    'void', 'onEntityResolution() override', '{', '}', '\n',
 
     # onResourceAcquisition.
     '//! Acquire resources.',
-    'void', 'onResourceAcquisition(void)', '{', '}', '\n',
+    'void', 'onResourceAcquisition() override', '{', '}', '\n',
 
     # onResourceInitialization.
     '//! Initialize resources.',
-    'void', 'onResourceInitialization(void)', '{', '}', '\n',
+    'void', 'onResourceInitialization() override', '{', '}', '\n',
 
     # onResourceRelease.
     '//! Release resources.',
-    'void', 'onResourceRelease(void)', '{', '}', '\n',
+    'void', 'onResourceRelease() override', '{', '}', '\n',
 
     # onMain.
     '//! Main loop.',
-    'void', 'onMain(void)', '{',
+    'void', 'onMain() override', '{',
     'while (!stopping())', '{', 'waitForMessages(1.0);', '}', '}', '};'
     ]
 
@@ -89,16 +89,11 @@ class Task:
         self._nss = nss
         self.add('// DUNE headers.')
         self.add('#include <DUNE/DUNE.hpp>', '\n')
-        for ns in nss:
-            self.add('namespace ' + ns, '{')
-            if ns == nss[0]:
-                self.add(*DESCRIPTION)
-                line = ('//! @author ' + self._author)
-                self.add(line)
+        self.add('namespace ' + '::'.join(self._nss), '{')
+
         self.add('using DUNE_NAMESPACES;', '\n')
         self.add(*BODY)
-        for ns in self._nss:
-            self.add('}')
+        self.add('}')
         self.add('\n', 'DUNE_TASK')
 
     # Extract the license from this script and convert it to a format
