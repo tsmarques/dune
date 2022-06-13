@@ -34,56 +34,53 @@
 
 #include <DUNE/DUNE.hpp>
 
-namespace Supervisors
+namespace Supervisors::Flight
 {
-  namespace Flight
+  using DUNE_NAMESPACES;
+
+  class DynamicPressureMonitor
   {
-    using DUNE_NAMESPACES;
+  public:
+    //! After maximum pressure accumulate this amount of data until triggering
+    uint16_t m_window_size;
+    //! Current maximum pressure read
+    fp64_t m_max_press;
+    //! When == m_window_size, trigger MAX Q
+    uint16_t m_nmatch;
+    //! If this montiro has been triggered
+    bool m_triggered;
 
-    class DynamicPressureMonitor
+    explicit DynamicPressureMonitor(uint16_t window_size) :
+        m_window_size(window_size),
+        m_max_press(0),
+        m_nmatch(0),
+        m_triggered(false)
+    { }
+
+    //! Return if MAX Q has been reached
+    bool
+    maxDynReached() const
     {
-    public:
-      //! After maximum pressure accumulate this amount of data until triggering
-      uint16_t m_window_size;
-      //! Current maximum pressure read
-      fp64_t m_max_press;
-      //! When == m_window_size, trigger MAX Q
-      uint16_t m_nmatch;
-      //! If this montiro has been triggered
-      bool m_triggered;
+      return m_triggered;
+    }
 
-      explicit DynamicPressureMonitor(uint16_t window_size) :
-          m_window_size(window_size),
-          m_max_press(0),
-          m_nmatch(0),
-          m_triggered(false)
-      { }
+    void
+    consume(const IMC::Pressure* msg)
+    {
+      if (m_triggered)
+        return;
 
-      //! Return if MAX Q has been reached
-      bool
-      maxDynReached() const
+      if (msg->value > m_max_press)
       {
-        return m_triggered;
+        m_max_press = msg->value;
+        m_nmatch = 0;
       }
+      else
+        ++m_nmatch;
 
-      void
-      consume(const IMC::Pressure* msg)
-      {
-        if (m_triggered)
-          return;
-
-        if (msg->value > m_max_press)
-        {
-          m_max_press = msg->value;
-          m_nmatch = 0;
-        }
-        else
-          ++m_nmatch;
-
-        m_triggered = (m_nmatch >= m_window_size);
-      }
-    };
-  }
+      m_triggered = (m_nmatch >= m_window_size);
+    }
+  };
 }
 
 #endif

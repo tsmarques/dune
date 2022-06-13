@@ -35,58 +35,58 @@
 #include <DUNE/DUNE.hpp>
 
 namespace Supervisors::Flight
+{
+  using DUNE_NAMESPACES;
+
+  class ApogeeMonitor
   {
-    using DUNE_NAMESPACES;
+  public:
+    //! After maximum pressure accumulate this amount of data until triggering
+    uint16_t m_window_size;
+    //! Current maximum atitude reached
+    fp64_t m_max_altitude;
+    //! When == m_window_size, trigger apogee detection
+    uint16_t m_nmatch;
+    //! If this monitor has been triggered
+    bool m_triggered;
 
-    class ApogeeMonitor
+    explicit ApogeeMonitor(uint16_t window_size) :
+        m_window_size(window_size),
+        m_max_altitude(0),
+        m_nmatch(0),
+        m_triggered(false)
+    { }
+
+    //! Return if apogee has been reached
+    bool
+    apogeeReached() const
     {
-    public:
-      //! After maximum pressure accumulate this amount of data until triggering
-      uint16_t m_window_size;
-      //! Current maximum atitude reached
-      fp64_t m_max_altitude;
-      //! When == m_window_size, trigger apogee detection
-      uint16_t m_nmatch;
-      //! If this monitor has been triggered
-      bool m_triggered;
+      return m_triggered;
+    }
 
-      explicit ApogeeMonitor(uint16_t window_size) :
-          m_window_size(window_size),
-          m_max_altitude(0),
-          m_nmatch(0),
-          m_triggered(false)
-      { }
+    fp64_t
+    apogeeAltitude() const
+    {
+      return m_max_altitude;
+    }
 
-      //! Return if apogee has been reached
-      bool
-      apogeeReached() const
+    void
+    consume(const IMC::EstimatedState* msg)
+    {
+      if (m_triggered)
+        return;
+
+      if (msg->height >= m_max_altitude)
       {
-        return m_triggered;
+        m_max_altitude = msg->height;
+        m_nmatch = 0;
       }
+      else
+        ++m_nmatch;
 
-      fp64_t
-      apogeeAltitude() const
-      {
-        return m_max_altitude;
-      }
-
-      void
-      consume(const IMC::EstimatedState* msg)
-      {
-        if (m_triggered)
-          return;
-
-        if (msg->height >= m_max_altitude)
-        {
-          m_max_altitude = msg->height;
-          m_nmatch = 0;
-        }
-        else
-          ++m_nmatch;
-
-        m_triggered = (m_nmatch == m_window_size);
-      }
-    };
-  }
+      m_triggered = (m_nmatch == m_window_size);
+    }
+  };
+}
 
 #endif

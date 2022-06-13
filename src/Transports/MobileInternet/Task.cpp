@@ -276,7 +276,7 @@ namespace Transports::MobileInternet
       }
 
       void
-	  onDeactivation(void)
+      onDeactivation() override
       {
     	if (m_reactivating)
     	{
@@ -286,7 +286,7 @@ namespace Transports::MobileInternet
       }
 
       void
-	  requestReactivation(void)
+      requestReactivation()
       {
     	m_reactivating = true;
     	m_conn_timeout = std::min(m_conn_timeout + 10, 240);

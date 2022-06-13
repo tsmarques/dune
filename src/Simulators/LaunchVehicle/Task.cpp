@@ -39,6 +39,8 @@
 #include "Rk4State.hpp"
 #include "Task.hpp"
 
+#include <memory>
+
 using DUNE_NAMESPACES;
 
 //! %Launch Vehicle (aka Rocket) simulator for DUNE.

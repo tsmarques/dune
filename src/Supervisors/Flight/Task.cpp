@@ -35,6 +35,8 @@
 #include "DynamicPressureMonitor.hpp"
 #include "ApogeeMonitor.hpp"
 
+#include <memory>
+
 namespace Supervisors::Flight
 {
   using DUNE_NAMESPACES;
