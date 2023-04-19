@@ -161,7 +161,6 @@ namespace Monitors::Simulation
       }
 
       IMC::Message* m = nullptr;
-      std::unique_ptr<IMC::EstimatedState> curr_estate{ nullptr };
       std::unique_ptr<IMC::FlightEvent> curr_stage{ nullptr };
 
       try
@@ -171,15 +170,11 @@ namespace Monitors::Simulation
         {
           if (m->getId() == DUNE_IMC_ESTIMATEDSTATE)
           {
-            auto es = static_cast<IMC::EstimatedState*>(m);
             // only care about data after ignition
             if (m_launch_time < 0)
-            {
-              curr_estate.reset(es);
               continue;
-            }
 
-            m_estate_data.push_back(*es);
+            m_estate_data.push_back(*static_cast<IMC::EstimatedState*>(m));
           }
           else if (m->getId() == DUNE_IMC_ACCELERATION)
           {
@@ -188,14 +183,15 @@ namespace Monitors::Simulation
 
             m_acc_data.push_back(*static_cast<IMC::Acceleration*>(m));
           }
+          else if (m->getId() == DUNE_IMC_SETTHRUSTERACTUATION)
+          {
+            m_launch_time = m->getTimeStamp();
+          }
           else if (m->getId() == DUNE_IMC_FLIGHTEVENT)
           {
             auto ev = static_cast<IMC::FlightEvent*>(m);
             if (ev->type == IMC::FlightEvent::FLEV_IDLE)
               continue;
-            else if (ev->type == IMC::FlightEvent::FLEV_IGNITION
-                     && m_launch_time < 0)
-              m_launch_time = curr_estate->getTimeStamp();
 
             m_flight_stages.push_back(*ev);
           }
