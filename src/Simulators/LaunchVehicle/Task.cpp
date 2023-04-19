@@ -371,19 +371,18 @@ namespace Simulators::LaunchVehicle
       float dynp = Physics::getDynamicPressure(m_args.atmos_density, curr_state.height, curr_state.w);
 
       Math::Matrix f_drag(3, 1, 0);
-      f_drag(0, 0) = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
+      f_drag(0, 0) = 0;
       f_drag(1, 0) = 0;
-      f_drag(2, 0) = 0;
-      f_drag = dcm * f_drag;
+      f_drag(2, 0) = m_drag_model->computeDrag(curr_state.w, curr_ref_area, dynp);
+//      f_drag = dcm * f_drag;
 
       f_drag = f_drag * (curr_state.w >= 0 ? -1.0f : 1.0f);
 
       // update linear acceleration
       Math::Matrix g(3, 1, 0);
-      g(0, 0) = Physics::getGravity(curr_state.height, curr_state.lat);
+      g(0, 0) = 0;
       g(1, 0) = 0;
-      g(2, 0) = 0;
-      g = dcm * g;
+      g(2, 0) = Physics::getGravity(curr_state.height, curr_state.lat);;
 
       new_state.a = ((f_thrust + f_drag + f_normal + f_side) / mass) - g;
 
