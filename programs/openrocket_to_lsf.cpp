@@ -34,6 +34,96 @@
 
 using DUNE_NAMESPACES;
 
+IMC::FlightEvent::TypeEnum
+getFlightEvent(char* event)
+{
+  if (strcmp(event, "IGNITION") == 0)
+    return IMC::FlightEvent::FLEV_IGNITION;
+
+  if (strcmp(event, "LIFTOFF") == 0)
+    return IMC::FlightEvent::FLEV_LIFTOFF;
+
+  // Maybe
+  if (strcmp(event, "LAUNCHROD") == 0)
+    return IMC::FlightEvent::FLEV_MAX_Q;
+
+  if (strcmp(event, "BURNOUT") == 0)
+    return IMC::FlightEvent::FLEV_COASTING;
+
+  if (strcmp(event, "APOGEE") == 0)
+    return IMC::FlightEvent::FLEV_APOGEE;
+
+  if (strcmp(event, "GROUND_HIT") == 0)
+    return IMC::FlightEvent::FLEV_RECOVERY;
+
+  return IMC::FlightEvent::FLEV_IDLE;
+}
+
+void
+recordFlightEvent(std::string& line, std::ofstream& file)
+{
+  ByteBuffer buffer;
+  double time;
+  char event[32];
+
+  sscanf(line.c_str(), "# Event %s occurred at t=%lf seconds", event, &time);
+
+  // Debug
+  std::cout << time << " " 
+            << event << '\n';
+
+  IMC::FlightEvent fevent;
+  fevent.setTimeStamp(time);
+  fevent.type = getFlightEvent(event);
+
+  if (fevent.type == IMC::FlightEvent::FLEV_IDLE)
+    return;
+
+  IMC::Packet::serialize(&fevent, buffer);
+  file.write(buffer.getBufferSigned(), buffer.getSize());
+
+  return;
+}
+void
+recordData(std::string& line, std::ofstream& file)
+{
+  ByteBuffer buffer;
+  double time;
+  double alt;
+  double vz;
+  double az;
+  double pressure;
+
+  sscanf(line.c_str(), "%lf, %lf, %lf, %lf, %lf", &time, &alt, &vz, &az, &pressure);
+  
+  // Debug
+  // std::cout << time << " " 
+  //           << alt << " "
+  //           << vz << " "
+  //           << az << '\n';
+
+  IMC::EstimatedState estate;
+  estate.setTimeStamp(time);
+  estate.height = alt;
+  estate.w = vz;
+  IMC::Packet::serialize(&estate, buffer);
+  file.write(buffer.getBufferSigned(), buffer.getSize());
+
+  IMC::Acceleration acc;
+  acc.setTimeStamp(time);
+  acc.z = alt;
+  IMC::Packet::serialize(&acc, buffer);
+  file.write(buffer.getBufferSigned(), buffer.getSize());
+
+  IMC::Pressure press;
+  press.setTimeStamp(time);
+  press.value = pressure;
+  IMC::Packet::serialize(&press, buffer);
+  file.write(buffer.getBufferSigned(), buffer.getSize());
+
+  return;
+}
+
 int
 main(int32_t argc, char** argv)
 {
@@ -45,7 +135,6 @@ main(int32_t argc, char** argv)
   }
   
   std::string line;
-  ByteBuffer buffer;
   std::ifstream csv(argv[1]);
   std::ofstream lsf(argv[2], std::ios::binary);
 
@@ -61,31 +150,10 @@ main(int32_t argc, char** argv)
   std::cout << "Converting..." << "\n";
   while (getline(csv, line))
   {
-    double time;
-    double alt;
-    double vz;
-    double az;
-    sscanf(line.c_str(), "%lf, %lf, %lf, %lf", &time, &alt, &vz, &az);
-    
-    // Debug
-    // std::cout << time << " " 
-    //           << alt << " "
-    //           << vz << " "
-    //           << az << '\n';
-
-    IMC::EstimatedState estate;
-    estate.setTimeStamp(time);
-    estate.height = alt;
-    estate.w = vz;
-    IMC::Packet::serialize(&estate, buffer);
-    lsf.write(buffer.getBufferSigned(), buffer.getSize());
-
-
-    IMC::Acceleration acc;
-    acc.setTimeStamp(time);
-    acc.z = alt;
-    IMC::Packet::serialize(&acc, buffer);
-    lsf.write(buffer.getBufferSigned(), buffer.getSize());
+    if (String::startsWith(line, "# Event")) // Get Flight event
+      recordFlightEvent(line, lsf);
+    else // Get Data
+      recordData(line, lsf);
   }
   std::cout << "Done" << "\n";
   
