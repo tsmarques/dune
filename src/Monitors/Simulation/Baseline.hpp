@@ -101,7 +101,7 @@ namespace Monitors::Simulation
     double
     nextStep() const
     {
-      return m_estate_itr->getTimeStamp() - m_launch_time;
+      return m_estate_itr->getTimeStamp();
     }
 
     double
@@ -161,7 +161,6 @@ namespace Monitors::Simulation
       }
 
       IMC::Message* m = nullptr;
-      std::unique_ptr<IMC::FlightEvent> curr_stage{ nullptr };
 
       try
       {
@@ -170,22 +169,11 @@ namespace Monitors::Simulation
         {
           if (m->getId() == DUNE_IMC_ESTIMATEDSTATE)
           {
-            // only care about data after ignition
-            if (m_launch_time < 0)
-              continue;
-
             m_estate_data.push_back(*static_cast<IMC::EstimatedState*>(m));
           }
           else if (m->getId() == DUNE_IMC_ACCELERATION)
           {
-            if (m_launch_time < 0)
-              continue;
-
             m_acc_data.push_back(*static_cast<IMC::Acceleration*>(m));
-          }
-          else if (m->getId() == DUNE_IMC_SETTHRUSTERACTUATION)
-          {
-            m_launch_time = m->getTimeStamp();
           }
           else if (m->getId() == DUNE_IMC_FLIGHTEVENT)
           {
@@ -206,9 +194,13 @@ namespace Monitors::Simulation
 
       delete m;
 
+      if (m_estate_data.empty())
+        throw std::runtime_error("Failed to load EstimatedState messages from file.");
+
       // Calculate timestep
       m_timestep =
           m_estate_data[1].getTimeStamp() - m_estate_data[0].getTimeStamp();
+
       m_task->war("Ready");
     }
   };
