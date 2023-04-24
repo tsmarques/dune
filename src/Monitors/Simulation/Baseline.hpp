@@ -42,26 +42,44 @@ namespace Monitors::Simulation
 {
   class Baseline
   {
-    DUNE::Tasks::Task* m_task{ nullptr };
-    //! Simulation file handle
-    std::istream* m_is{ nullptr };
-    //! Estimated State data
-    std::vector<IMC::EstimatedState> m_estate_data{};
+  private:
     //! Estimated State data step iterator
     std::vector<IMC::EstimatedState>::iterator m_estate_itr{};
+    //! Current baseline flight stage
+    std::vector<IMC::FlightEvent>::iterator m_flight_stage_itr{};
+
+  protected:
+    DUNE::Tasks::Task* m_task{ nullptr };
+    //! Estimated State data
+    std::vector<IMC::EstimatedState> m_estate_data{};
     //! Acceleration data
     std::vector<IMC::Acceleration> m_acc_data{};
     //! Flight events
     std::vector<IMC::FlightEvent> m_flight_stages{};
-    //! Current baseline flight stage
-    std::vector<IMC::FlightEvent>::iterator m_flight_stage_itr{};
     //! Integration timestep
     double m_timestep{ -1.F };
-    //! Launch time
-    double m_launch_time{ -1.F };
 
-  private:
     explicit Baseline(DUNE::Tasks::Task* owner) : m_task(owner) {}
+
+    std::unique_ptr<std::istream>
+    getInputStream(const std::string& file)
+    {
+      try
+      {
+        Compression::Methods method =
+            Compression::Factory::detect(file.c_str());
+        if (method == Compression::METHOD_UNKNOWN)
+          return std::make_unique<std::ifstream>(file.c_str(), std::ios::binary);
+        else
+          return std::make_unique<Compression::FileInput>(file.c_str(), method);
+      }
+      catch (std::exception& e)
+      {
+        m_task->err("%s '%s': %s", DTR("could not open"), file.c_str(),
+                    e.what());
+        return nullptr;
+      }
+    }
 
   public:
     Baseline(const Baseline&)            = delete;
@@ -134,7 +152,7 @@ namespace Monitors::Simulation
       return m_estate_itr.base();
     }
 
-    void
+    virtual void
     loadData(const std::string& file)
     {
       m_task->war("Loading data...");
@@ -144,28 +162,15 @@ namespace Monitors::Simulation
         return;
       }
 
-      try
-      {
-        Compression::Methods method =
-            Compression::Factory::detect(file.c_str());
-        if (method == Compression::METHOD_UNKNOWN)
-          m_is = new std::ifstream(file.c_str(), std::ios::binary);
-        else
-          m_is = new Compression::FileInput(file.c_str(), method);
-      }
-      catch (std::exception& e)
-      {
-        m_task->err("%s '%s': %s", DTR("could not open"), file.c_str(),
-                    e.what());
+      std::unique_ptr<std::istream> is = getInputStream(file);
+      if (is == nullptr)
         return;
-      }
 
       IMC::Message* m = nullptr;
-
       try
       {
-        while ((m = DUNE::IMC::Packet::deserialize(*m_is)) != nullptr
-               && !m_is->eof())
+        while ((m = DUNE::IMC::Packet::deserialize(*is)) != nullptr
+               && !is->eof())
         {
           if (m->getId() == DUNE_IMC_ESTIMATEDSTATE)
           {
