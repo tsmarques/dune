@@ -27,8 +27,8 @@
 // Author: Tiago Sa Marques                                                 *
 //***************************************************************************
 
-#ifndef MONITORS_SIMULATION_BASELINE_HPP_INCLUDED_
-#define MONITORS_SIMULATION_BASELINE_HPP_INCLUDED_
+#ifndef MONITORS_SIMULATION_BASELINE_REPLAY_HPP_INCLUDED_
+#define MONITORS_SIMULATION_BASELINE_REPLAY_HPP_INCLUDED_
 
 #include <memory>
 #include <optional>
@@ -36,98 +36,31 @@
 #include <DUNE/FileSystem/Path.hpp>
 #include <DUNE/Compression.hpp>
 
+// Local headers
+#include "Baseline.hpp"
+
 using namespace DUNE;
 
 namespace Monitors::Simulation
 {
-  class Baseline
+  class BaselineReplay : public Baseline
   {
   private:
-    //! Estimated State data step iterator
-    std::vector<IMC::EstimatedState>::iterator m_estate_itr{};
-    //! Current baseline flight stage
-    std::vector<IMC::FlightEvent>::iterator m_flight_stage_itr{};
-
-  protected:
-    DUNE::Tasks::Task* m_task{ nullptr };
-    //! Estimated State data
-    std::vector<IMC::EstimatedState> m_estate_data{};
-    //! Acceleration data
-    std::vector<IMC::Acceleration> m_acc_data{};
-    //! Flight events
-    std::vector<IMC::FlightEvent> m_flight_stages{};
-    //! Integration timestep
-    double m_timestep{ -1.F };
-
-    explicit Baseline(DUNE::Tasks::Task* owner) : m_task(owner) {}
+    //! Launch time
+    double m_launch_time{ -1.F };
 
   public:
-    Baseline(const Baseline&)            = delete;
-    Baseline& operator=(const Baseline&) = delete;
-    
+    BaselineReplay(const Baseline&)                   = delete;
+    BaselineReplay& operator=(const BaselineReplay&)  = delete;
+
     explicit 
-    Baseline(DUNE::Tasks::Task* owner, std::unique_ptr<std::istream> is) : 
+    BaselineReplay(DUNE::Tasks::Task* owner, std::unique_ptr<std::istream> is) : 
       Baseline(owner)
     {
       loadData(std::move(is));
     }
 
     void
-    step()
-    {
-      m_estate_itr++;
-    }
-
-    double
-    getAltitudeAtStep() const
-    {
-      // todo check if finished
-      return m_estate_itr->height;
-    }
-
-    bool
-    hasFinished() const
-    {
-      return m_estate_itr == m_estate_data.end();
-    }
-
-    double
-    nextStep() const
-    {
-      return m_estate_itr->getTimeStamp();
-    }
-
-    double
-    getTimestep() const
-    {
-      return m_timestep;
-    }
-
-    void
-    start()
-    {
-      m_estate_itr = m_estate_data.begin();
-      m_flight_stage_itr = m_flight_stages.begin();
-    }
-
-    //! Handle new simulation FlightEvent and return baseline navigation data
-    //! at the corresponding event
-    const IMC::EstimatedState*
-    onEvent(const IMC::FlightEvent* m)
-    {
-      if (m->type != m_flight_stage_itr->type)
-      {
-        m_task->war("mismatched flight stages: got %d, expected %d", m->type,
-                    m_flight_stage_itr->type);
-        return nullptr;
-      }
-
-      m_flight_stage_itr++;
-
-      return m_estate_itr.base();
-    }
-
-    virtual void
     loadData(std::unique_ptr<std::istream> is)
     {
       m_task->war("Loading data...");
@@ -143,11 +76,23 @@ namespace Monitors::Simulation
         {
           if (m->getId() == DUNE_IMC_ESTIMATEDSTATE)
           {
+            // only care about data after ignition
+            if (m_launch_time < 0)
+              continue;
+
+            m->setTimeStamp(m->getTimeStamp() - m_launch_time);
             m_estate_data.push_back(*static_cast<IMC::EstimatedState*>(m));
           }
           else if (m->getId() == DUNE_IMC_ACCELERATION)
           {
+            if (m_launch_time < 0)
+              continue;
+
             m_acc_data.push_back(*static_cast<IMC::Acceleration*>(m));
+          }
+          else if (m->getId() == DUNE_IMC_SETTHRUSTERACTUATION)
+          {
+            m_launch_time = m->getTimeStamp();
           }
           else if (m->getId() == DUNE_IMC_FLIGHTEVENT)
           {

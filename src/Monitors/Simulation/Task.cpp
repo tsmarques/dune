@@ -33,7 +33,7 @@
 
 // DUNE headers.
 #include <DUNE/DUNE.hpp>
-#include "Baseline.hpp"
+#include "BaselineGenerator.hpp"
 
 namespace Monitors::Simulation
   {
@@ -78,7 +78,7 @@ namespace Monitors::Simulation
 
         try
         {
-          m_baseline = Baseline::from(this, m_args.simulation_file);
+          m_baseline = BaselineGenerator::generateBaseline(this, m_args.simulation_file);
         }
         catch (std::exception& e)
         {
@@ -108,7 +108,8 @@ namespace Monitors::Simulation
         war("Starting error integration...");
       }
 
-      void consume(const IMC::FlightEvent* m)
+      void 
+      consume(const IMC::FlightEvent* m)
       {
         auto rv = m_baseline->onEvent(m);
 
